@@ -1,0 +1,242 @@
+digraph interactive_questioning_workflow {
+    // Graph configuration
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+
+    // Title
+    title [label="Interactive Question Tool Workflow\n(Clarification & Planning)", shape=ellipse, style=filled, fillcolor=lightblue];
+
+    // Entry point
+    start [label="TRIGGER: Need to ask\nuser clarifying questions", shape=ellipse, style=filled, fillcolor=lightyellow];
+
+    start -> what_is_tool;
+
+    // What is it?
+    what_is_tool [label="Interactive Question Tool\n\n• Claude can ask up to 4 questions\n• Multiple choice or custom answers\n• Used automatically in planning mode\n• Can be explicitly requested\n• Reduces ambiguity before work starts", shape=box, style=filled, fillcolor=lavender];
+
+    what_is_tool -> when_used;
+
+    // When is it used?
+    when_used [label="When Is It Used?", shape=diamond, style=filled, fillcolor=lightcyan];
+
+    when_used -> auto_planning [label="Automatically"];
+    when_used -> explicit_request [label="User requests"];
+    when_used -> claude_decides [label="Claude decides"];
+
+    // Automatic in planning mode
+    auto_planning [label="Automatic in Planning Mode\n\n• User gives vague requirements\n• Claude enters planning mode\n• Tool used to clarify before plan\n• Common in web interface"];
+
+    auto_planning -> example_auto;
+
+    example_auto [label="Example (Automatic):\n\nUser: 'Change color scheme of landing page'\n\nClaude explores project, then asks:\n1. What theme style? (Modern/Classic/Playful)\n2. Primary color preference? (Blue/Red/Green/Other)\n3. Background approach? (Light/Dark/Gradient)\n4. Accent style? (Bold/Subtle/None)", shape=plaintext, fontname="Courier", style=filled, fillcolor=lightyellow];
+
+    example_auto -> questions_presented;
+
+    // Explicit request
+    explicit_request [label="User Explicitly Requests\n\nUser says:\n'Use interactive quiz tool to...'\n'Ask me clarifying questions about...'\n'Give me a quiz on...'"];
+
+    explicit_request -> example_explicit;
+
+    example_explicit [label="Example (Explicit Request):\n\nUser: 'Using the interactive question tool,\ngive me a math quiz with 5 questions'\n\nClaude uses tool (max 4 at a time):\n1. What is 2 + 2?\n2. Solve: 5x = 15\n3. Calculate: 10% of 200\n4. What is sqrt(16)?", shape=plaintext, fontname="Courier", style=filled, fillcolor=lightyellow];
+
+    example_explicit -> questions_presented;
+
+    // Claude decides
+    claude_decides [label="Claude Decides to Use\n\nClaude determines:\n• Requirements too vague\n• Multiple valid approaches\n• Need user preference\n• Risk of wrong assumptions"];
+
+    claude_decides -> example_claude;
+
+    example_claude [label="Example (Claude Decides):\n\nUser: 'Add authentication to the app'\n\nClaude thinks:\n• Multiple auth strategies exist\n• Need to know user preference\n• Risk of wrong choice\n\nClaude asks:\n1. Auth provider? (OAuth/JWT/Session/Custom)\n2. Social login? (Yes/No)\n3. Two-factor auth? (Yes/No/Later)\n4. Password reset? (Email/SMS/None)", shape=plaintext, fontname="Courier", style=filled, fillcolor=lightyellow];
+
+    example_claude -> questions_presented;
+
+    // Questions presented
+    questions_presented [label="Questions Presented to User\n\nFormat:\n• Up to 4 questions\n• Multiple choice options\n• Option to type custom answer\n• Submit all at once"];
+
+    questions_presented -> user_responds;
+
+    // User response
+    user_responds [label="User Responds to Questions", shape=diamond];
+
+    user_responds -> answer_multiple_choice [label="Select options"];
+    user_responds -> answer_custom [label="Type custom"];
+    user_responds -> answer_mixed [label="Mix both"];
+
+    answer_multiple_choice [label="Select Multiple Choice\n\n• Click provided options\n• Quick and easy\n• Guided choices\n• No ambiguity"];
+
+    answer_custom [label="Type Custom Answer\n\n• 'Something else' option\n• Free-form text\n• More flexibility\n• May need follow-up"];
+
+    answer_mixed [label="Mix Both Approaches\n\n• Some multiple choice\n• Some custom answers\n• Best of both worlds"];
+
+    answer_multiple_choice -> submit_answers;
+    answer_custom -> submit_answers;
+    answer_mixed -> submit_answers;
+
+    submit_answers [label="Submit All Answers\nClick 'Submit' or press Enter"];
+
+    submit_answers -> claude_processes;
+
+    // Claude processes
+    claude_processes [label="Claude Processes Answers\n• Understands preferences\n• Refines approach\n• Reduces ambiguity", style=filled, fillcolor=lightcyan];
+
+    claude_processes -> answers_clear;
+
+    answers_clear [label="Are Answers Clear?", shape=diamond];
+
+    answers_clear -> proceed_with_plan [label="YES\nAll clear"];
+    answers_clear -> need_followup [label="NO\nStill ambiguous"];
+
+    // Need follow-up
+    need_followup [label="Need Follow-up Questions"];
+
+    need_followup -> followup_limit_check;
+
+    followup_limit_check [label="Already Asked 4 Questions?", shape=diamond];
+
+    followup_limit_check -> at_limit [label="YES\nMax reached"];
+    followup_limit_check -> can_ask_more [label="NO\nCan ask more"];
+
+    at_limit [label="⚠️ Tool Limitation: 4 Question Max\n\nCannot use tool again immediately.\n\nAlternatives:\n• Ask questions in plain text\n• Make reasonable assumptions\n• Request explicit user instruction", shape=octagon, style=filled, fillcolor=orange];
+
+    at_limit -> ask_plaintext;
+
+    ask_plaintext [label="Ask Questions in Plain Text\n\nClaude: 'I also need to know:\n• Question 5?\n• Question 6?\n• etc.'\n\nUser responds normally"];
+
+    ask_plaintext -> proceed_with_plan;
+
+    can_ask_more [label="Ask Follow-up Questions\nUse tool again (up to 4 more)"];
+
+    can_ask_more -> questions_presented [label="Repeat process"];
+
+    // Proceed with plan
+    proceed_with_plan [label="Proceed with Plan\nClaude has enough information"];
+
+    proceed_with_plan -> create_plan;
+
+    create_plan [label="Create Implementation Plan\n• Based on user answers\n• Tailored to preferences\n• Reduced assumptions\n• Clear next steps"];
+
+    create_plan -> present_plan;
+
+    present_plan [label="Present Plan to User\n\nClaude: 'Based on your answers:\n1. I'll implement X\n2. Using approach Y\n3. With configuration Z\n\nShall I proceed?'"];
+
+    present_plan -> user_approves_plan;
+
+    user_approves_plan [label="User Approves Plan?", shape=diamond];
+
+    user_approves_plan -> plan_approved [label="YES"];
+    user_approves_plan -> plan_rejected [label="NO"];
+
+    plan_rejected [label="Revise Plan\nAsk for specific changes"];
+    plan_rejected -> create_plan [label="Iterate"];
+
+    plan_approved [label="Plan Approved\nBegin implementation"];
+
+    plan_approved -> exit_questions_complete;
+
+    exit_questions_complete [label="Clarification Complete", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // Advanced usage
+    advanced_usage [label="Advanced Usage Patterns", shape=box, style=filled, fillcolor=lightblue];
+
+    title -> advanced_usage [label="Advanced", style=dotted];
+
+    advanced_usage -> pattern_onboarding;
+    advanced_usage -> pattern_requirements;
+    advanced_usage -> pattern_education;
+
+    pattern_onboarding [label="Pattern 1: Project Onboarding\n\nUse in claude.md or skill:\n\n'Before implementing any feature,\nuse the interactive question tool\nto ask me:\n1. Architecture preference\n2. Testing approach\n3. Documentation level\n4. Performance priorities'\n\nEnsures consistency across features"];
+
+    pattern_requirements [label="Pattern 2: Requirements Gathering\n\nUse in slash command:\n\n/gather-requirements:\n'Use interactive question tool to:\n1. Understand user personas\n2. Identify core use cases\n3. Determine priority features\n4. Establish success criteria'\n\nStructured requirements collection"];
+
+    pattern_education [label="Pattern 3: Educational Quizzes\n\n'Create a quiz on [topic]\nusing the interactive tool:\n1. Difficulty level?\n2. Question types?\n3. Include code examples?\n4. Provide explanations?'\n\nInteractive learning"];
+
+    // Limitations
+    limitations [label="Tool Limitations", shape=box, style=filled, fillcolor=lightcoral];
+
+    title -> limitations [label="Limits", style=dotted];
+
+    limitations -> limit1;
+    limitations -> limit2;
+    limitations -> limit3;
+    limitations -> limit4;
+
+    limit1 [label="Limit 1: Maximum 4 Questions\n\nPer tool invocation:\n• Only 4 questions at a time\n• Cannot ask more in same use\n• Can use tool multiple times\n• Or switch to plain text questions"];
+
+    limit2 [label="Limit 2: No Nested Questions\n\nCannot do:\n• Conditional questions based on previous answers\n• Dynamic question generation\n• Question trees\n\nMust ask all 4 upfront"];
+
+    limit3 [label="Limit 3: Simple Answer Format\n\nAnswers are:\n• Text or selection\n• No file uploads\n• No complex structures\n• No code blocks in tool"];
+
+    limit4 [label="Limit 4: No Long-Form\n\nNot ideal for:\n• Lengthy explanations needed\n• Complex architectural decisions\n• Multi-paragraph requirements\n\nBetter to ask in plain conversation"];
+
+    // Best practices
+    best_practices [label="Best Practices", shape=box, style=filled, fillcolor=lightgreen];
+
+    title -> best_practices [label="Tips", style=dotted];
+
+    best_practices -> bp1;
+    best_practices -> bp2;
+    best_practices -> bp3;
+    best_practices -> bp4;
+    best_practices -> bp5;
+
+    bp1 [label="✓ Use for high-impact decisions\n  (architecture, major features)"];
+    bp2 [label="✓ Provide good multiple choice options\n  (cover common cases)"];
+    bp3 [label="✓ Always offer 'Other/Custom' option\n  (user flexibility)"];
+    bp4 [label="✓ Ask most important questions first\n  (in case of 4-question limit)"];
+    bp5 [label="✓ Follow up with plain text if needed\n  (don't be constrained by tool)"];
+
+    // Anti-patterns
+    anti_patterns [label="Anti-Patterns (Avoid)", shape=box, style=filled, fillcolor=orange];
+
+    title -> anti_patterns [label="Don't", style=dotted];
+
+    anti_patterns -> ap1;
+    anti_patterns -> ap2;
+    anti_patterns -> ap3;
+
+    ap1 [label="✗ Don't ask trivial questions\n  (waste of 4-question limit)"];
+    ap2 [label="✗ Don't ask questions with obvious answers\n  (Claude can infer from context)"];
+    ap3 [label="✗ Don't rely solely on tool for 20+ questions\n  (use claude.md prompts instead)"];
+
+    // Integration with planning mode
+    integration_planning [label="Integration with Planning Mode", shape=box, style=filled, fillcolor=lightyellow];
+
+    title -> integration_planning [label="Planning", style=dotted];
+
+    integration_planning -> planning_flow;
+
+    planning_flow [label="Typical Planning Flow:\n\n1. User gives vague prompt\n2. Claude enters planning mode\n3. Claude explores codebase\n4. Claude uses question tool (auto)\n5. User answers questions\n6. Claude creates detailed plan\n7. User approves plan\n8. Claude implements", shape=plaintext, fontname="Courier"];
+
+    planning_flow -> planning_override;
+
+    planning_override [label="Override Default Behavior?\n\nIn claude.md:\n'Don't use interactive question tool.\nAsk me 20-30 questions as plain text\nfor new projects.'\n\nUseful when:\n• Need many questions (>4)\n• Using voice input (Hyperwhisper)\n• Prefer all questions upfront"];
+
+    // Examples by domain
+    examples_domain [label="Examples by Domain", shape=box, style=filled, fillcolor=lavender];
+
+    title -> examples_domain [label="Examples", style=dotted];
+
+    examples_domain -> example_ui;
+    examples_domain -> example_api;
+    examples_domain -> example_database;
+
+    example_ui [label="UI/Frontend Questions:\n\n1. Design system? (Material/Tailwind/Custom)\n2. Responsive approach? (Mobile-first/Desktop-first)\n3. Animation level? (Heavy/Moderate/Minimal)\n4. Accessibility priority? (WCAG AAA/AA/Basic)"];
+
+    example_api [label="API Questions:\n\n1. API style? (REST/GraphQL/gRPC)\n2. Authentication? (OAuth/JWT/API Key)\n3. Rate limiting? (Yes/No/Later)\n4. Versioning? (URL/Header/None)"];
+
+    example_database [label="Database Questions:\n\n1. Database type? (PostgreSQL/MySQL/MongoDB)\n2. ORM? (Prisma/TypeORM/Raw SQL)\n3. Migration approach? (Auto/Manual)\n4. Seeding? (Required/Optional/None)"];
+
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=dashed;
+
+        legend_box [label="Box = Action/State", shape=box];
+        legend_diamond [label="Diamond = Decision", shape=diamond];
+        legend_ellipse [label="Ellipse = Entry", shape=ellipse];
+        legend_doublecircle [label="Double Circle = Exit", shape=doublecircle];
+        legend_octagon [label="Octagon = Warning/Limitation", shape=octagon];
+        legend_plaintext [label="Plaintext = Example", shape=plaintext, fontname="Courier"];
+    }
+}

@@ -1,0 +1,287 @@
+digraph sandbox_configuration_guide {
+    // Graph configuration
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+
+    // Title
+    title [label="Claude Code Sandbox Configuration Guide\n(Security & Isolation)", shape=ellipse, style=filled, fillcolor=lightblue];
+
+    // Entry point
+    start [label="TRIGGER: Need to configure\nClaude Code sandbox", shape=ellipse, style=filled, fillcolor=lightyellow];
+
+    start -> why_sandbox;
+
+    // Why sandbox?
+    why_sandbox [label="Why Use Sandbox?\n\n1. Prevent prompt injection attacks\n2. Limit file system access\n3. Control network access\n4. Protect sensitive data\n5. Reduce approval fatigue", shape=box, style=filled, fillcolor=lavender];
+
+    why_sandbox -> check_version;
+
+    // Check version
+    check_version [label="Ensure Latest Version\nRun: claude update", shape=plaintext, fontname="Courier"];
+
+    check_version -> open_sandbox_config;
+
+    open_sandbox_config [label="Open Sandbox Configuration\nRun: claude code\nThen: /sandbox", shape=plaintext, fontname="Courier"];
+
+    open_sandbox_config -> choose_mode;
+
+    // Choose sandbox mode
+    choose_mode [label="Choose Sandbox Mode", shape=diamond, style=filled, fillcolor=lightcyan];
+
+    choose_mode -> mode_disabled [label="No sandbox"];
+    choose_mode -> mode_auto_allow [label="Auto-allow\n+ accept edits"];
+    choose_mode -> mode_regular [label="Regular\npermissions"];
+    choose_mode -> mode_custom [label="Custom\npermissions"];
+
+    // Mode: Disabled
+    mode_disabled [label="Mode: No Sandbox\n❌ NOT RECOMMENDED\n\n• No isolation\n• Full system access\n• Prompt injection risk\n• Manual approvals for everything", style=filled, fillcolor=lightcoral];
+
+    mode_disabled -> warning_no_sandbox;
+
+    warning_no_sandbox [label="⚠️ SECURITY WARNING\n\nDisabled sandbox = vulnerable to:\n• Malicious code execution\n• Data exfiltration\n• Credential theft\n• System compromise\n\nOnly use for trusted, isolated environments", shape=octagon, style=filled, fillcolor=red];
+
+    warning_no_sandbox -> exit_configured [label="I understand\nthe risks"];
+
+    // Mode: Auto-allow
+    mode_auto_allow [label="Mode: Auto-Allow + Accept Edits\n⚠️ USE WITH CAUTION\n\n• Bash commands auto-approved\n• File edits auto-approved\n• Sandbox still active\n• Good for rapid iteration", style=filled, fillcolor=orange];
+
+    mode_auto_allow -> configure_auto_allow;
+
+    configure_auto_allow [label="Configuration:\n{\n  'sandbox': true,\n  'autoAllowBashIfSandbox': true,\n  'autoAcceptEdits': true\n}", shape=plaintext, fontname="Courier"];
+
+    configure_auto_allow -> warning_auto_allow;
+
+    warning_auto_allow [label="⚠️ CAUTION\n\nAuto-allow reduces safety\nUse only for:\n• Trusted repositories\n• Development environments\n• Known safe operations", shape=octagon, style=filled, fillcolor=orange];
+
+    warning_auto_allow -> exit_configured [label="Configure"];
+
+    // Mode: Regular permissions
+    mode_regular [label="Mode: Regular Permissions\n✓ RECOMMENDED (Balanced)\n\n• Sandbox enabled\n• Manual approvals required\n• File isolation active\n• Network isolation active", style=filled, fillcolor=lightgreen];
+
+    mode_regular -> configure_regular;
+
+    configure_regular [label="Opens settings.local.json\nBase configuration applied"];
+    configure_regular -> customize_regular;
+
+    customize_regular [label="Customize Settings?", shape=diamond];
+    customize_regular -> yes_customize [label="YES\n(Recommended)"];
+    customize_regular -> no_customize [label="NO\n(Use defaults)"];
+
+    no_customize -> exit_configured;
+
+    yes_customize -> edit_settings;
+
+    // Mode: Custom permissions
+    mode_custom [label="Mode: Custom Permissions\n✓ BEST FOR ENTERPRISE\n\n• Full control\n• Tailored to organization\n• Documented policies\n• Audit-friendly", style=filled, fillcolor=lightblue];
+
+    mode_custom -> edit_settings;
+
+    // Edit settings
+    edit_settings [label="Edit settings.local.json\nLocation: .claude/settings.local.json"];
+
+    edit_settings -> config_file_system;
+    edit_settings -> config_network;
+    edit_settings -> config_commands;
+
+    // File system configuration
+    config_file_system [label="File System Isolation", shape=box, style=filled, fillcolor=lightyellow];
+
+    config_file_system -> fs_workspace_only;
+
+    fs_workspace_only [label="Workspace Restriction\n• Default: workspace only\n• Cannot access parent dirs\n• Cannot access home directory\n• Cannot access system files"];
+
+    fs_workspace_only -> fs_custom_paths;
+
+    fs_custom_paths [label="Custom Path Allowlist?\n(Advanced)", shape=diamond];
+
+    fs_custom_paths -> fs_add_paths [label="YES"];
+    fs_custom_paths -> fs_done [label="NO"];
+
+    fs_add_paths [label="Add to config:\n{\n  'filesystem': {\n    'allowedPaths': [\n      '/path/to/data',\n      '/path/to/shared'\n    ]\n  }\n}", shape=plaintext, fontname="Courier"];
+
+    fs_add_paths -> fs_done;
+    fs_done [label="File system config complete"];
+
+    // Network configuration
+    config_network [label="Network Isolation", shape=box, style=filled, fillcolor=lightcyan];
+
+    config_network -> net_choose_mode;
+
+    net_choose_mode [label="Network Access Mode?", shape=diamond];
+
+    net_choose_mode -> net_trusted [label="Trusted\ndomains"];
+    net_choose_mode -> net_none [label="No network"];
+    net_choose_mode -> net_custom [label="Custom\ndomains"];
+
+    // Trusted network
+    net_trusted [label="Trusted Network Access\n✓ Recommended for development\n\nAllows:\n• github.com\n• npmjs.com\n• pypi.org\n• hub.docker.com\n• Package managers"];
+
+    net_trusted -> net_local_binding;
+
+    // No network
+    net_none [label="No Network Access\n✓ Maximum security\n\nBlocks:\n• All external requests\n• Package downloads\n• API calls\n\nUse for:\n• Air-gapped environments\n• Sensitive data processing"];
+
+    net_none -> net_config_example;
+
+    // Custom network
+    net_custom [label="Custom Network Access\n✓ Enterprise use case"];
+
+    net_custom -> net_custom_domains;
+
+    net_custom_domains [label="Add custom domains:\n{\n  'network': {\n    'allowedDomains': [\n      'internal.company.com',\n      'docs.company.com',\n      'artifactory.company.com'\n    ]\n  }\n}", shape=plaintext, fontname="Courier"];
+
+    net_custom_domains -> net_local_binding;
+
+    // Local binding
+    net_local_binding [label="Allow Local Port Binding?\n(for npm run dev, etc.)", shape=diamond];
+
+    net_local_binding -> net_enable_local [label="YES\n(Development)"];
+    net_local_binding -> net_disable_local [label="NO\n(Production)"];
+
+    net_enable_local [label="Enable local binding:\n{\n  'network': {\n    'allowLocalBinding': true,\n    'allowUnixSockets': true\n  }\n}", shape=plaintext, fontname="Courier"];
+
+    net_enable_local -> net_config_example;
+    net_disable_local -> net_config_example;
+
+    net_config_example [label="Network config complete"];
+
+    // Command configuration
+    config_commands [label="Command Isolation", shape=box, style=filled, fillcolor=lavender];
+
+    config_commands -> cmd_excluded;
+
+    cmd_excluded [label="Excluded Commands\n(run outside sandbox)"];
+
+    cmd_excluded -> cmd_add_excluded;
+
+    cmd_add_excluded [label="Common exclusions:\n• docker (needs host Docker daemon)\n• git (needs real Git history)\n• ssh (needs real SSH agent)\n• gpg (needs real keyring)", shape=box, style=filled, fillcolor=lightyellow];
+
+    cmd_add_excluded -> cmd_config_json;
+
+    cmd_config_json [label="Add to config:\n{\n  'excludedCommands': [\n    'docker',\n    'git',\n    'ssh',\n    'gpg'\n  ]\n}", shape=plaintext, fontname="Courier"];
+
+    cmd_config_json -> cmd_warning;
+
+    cmd_warning [label="⚠️ WARNING\n\nExcluded commands bypass sandbox\nOnly exclude what's absolutely necessary\nEach exclusion = potential attack vector", shape=octagon, style=filled, fillcolor=orange];
+
+    cmd_warning -> cmd_done;
+    cmd_done [label="Command config complete"];
+
+    // Combine all configs
+    fs_done -> combine_config;
+    net_config_example -> combine_config;
+    cmd_done -> combine_config;
+
+    combine_config [label="Complete Configuration Example", shape=box, style=filled, fillcolor=lightgreen];
+
+    combine_config -> full_config;
+
+    full_config [label="settings.local.json:\n{\n  'sandbox': true,\n  'autoAllowBashIfSandbox': false,\n  'excludedCommands': ['docker', 'git'],\n  'network': {\n    'allowLocalBinding': true,\n    'allowUnixSockets': true,\n    'allowedDomains': [\n      'github.com',\n      'npmjs.com',\n      'pypi.org'\n    ]\n  },\n  'filesystem': {\n    'allowedPaths': []\n  }\n}", shape=plaintext, fontname="Courier"];
+
+    full_config -> save_config;
+
+    save_config [label="Save settings.local.json"];
+    save_config -> restart_claude;
+
+    restart_claude [label="Restart Claude Code\nSettings applied on next session"];
+    restart_claude -> test_config;
+
+    // Test configuration
+    test_config [label="Test Configuration", shape=box, style=filled, fillcolor=lightyellow];
+
+    test_config -> test_file_access;
+    test_config -> test_network;
+    test_config -> test_commands;
+
+    test_file_access [label="Test 1: File Access\nAsk Claude to:\n'Read /etc/passwd'", shape=plaintext, fontname="Courier"];
+
+    test_file_access -> test_file_result;
+
+    test_file_result [label="Should see:\n'Sandbox blocked one operation'\n✓ File isolation working", shape=box, style=filled, fillcolor=lightgreen];
+
+    test_network [label="Test 2: Network Access\nAsk Claude to:\n'Fetch https://evil.com'", shape=plaintext, fontname="Courier"];
+
+    test_network -> test_network_result;
+
+    test_network_result [label="Should see:\nEither blocked or allowed\nbased on your config\n✓ Network isolation working", shape=box, style=filled, fillcolor=lightgreen];
+
+    test_commands [label="Test 3: Commands\nAsk Claude to:\n'Run npm run dev'", shape=plaintext, fontname="Courier"];
+
+    test_commands -> test_commands_result;
+
+    test_commands_result [label="Should work if:\n• allowLocalBinding: true\n✓ Command isolation working", shape=box, style=filled, fillcolor=lightgreen];
+
+    test_file_result -> tests_complete;
+    test_network_result -> tests_complete;
+    test_commands_result -> tests_complete;
+
+    tests_complete [label="All Tests Passed\nSandbox configured correctly", shape=box, style=filled, fillcolor=lightgreen];
+
+    tests_complete -> exit_configured;
+
+    // Exit
+    exit_configured [label="Sandbox Configured Successfully", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // Best practices
+    best_practices [label="Sandbox Best Practices", shape=box, style=filled, fillcolor=lightblue];
+
+    title -> best_practices [label="Reference", style=dotted];
+
+    best_practices -> bp1;
+    best_practices -> bp2;
+    best_practices -> bp3;
+    best_practices -> bp4;
+    best_practices -> bp5;
+    best_practices -> bp6;
+
+    bp1 [label="✓ Always enable sandbox in production"];
+    bp2 [label="✓ Use trusted network for development"];
+    bp3 [label="✓ Minimize excluded commands"];
+    bp4 [label="✓ Test configuration after changes"];
+    bp5 [label="✓ Document custom settings"];
+    bp6 [label="✓ Sync settings across team\n  (commit settings.local.json)"];
+
+    // Common issues
+    troubleshooting [label="Troubleshooting", shape=box, style=filled, fillcolor=orange];
+
+    title -> troubleshooting [label="Issues", style=dotted];
+
+    troubleshooting -> issue1;
+    troubleshooting -> issue2;
+    troubleshooting -> issue3;
+
+    issue1 [label="Issue: 'Sandbox blocked'\nfor npm run dev\n\nFix: Enable allowLocalBinding"];
+
+    issue2 [label="Issue: Git commands fail\n\nFix: Add 'git' to excludedCommands"];
+
+    issue3 [label="Issue: Can't download packages\n\nFix: Add package registry to\nallowedDomains or use trusted mode"];
+
+    // Use cases
+    use_cases [label="Common Use Cases", shape=box, style=filled, fillcolor=lavender];
+
+    title -> use_cases [label="Examples", style=dotted];
+
+    use_cases -> uc_dev;
+    use_cases -> uc_prod;
+    use_cases -> uc_enterprise;
+
+    uc_dev [label="Development Environment\n{\n  'sandbox': true,\n  'network': 'trusted',\n  'allowLocalBinding': true,\n  'excludedCommands': ['docker', 'git']\n}"];
+
+    uc_prod [label="Production Environment\n{\n  'sandbox': true,\n  'network': 'custom',\n  'allowLocalBinding': false,\n  'excludedCommands': ['git']\n}"];
+
+    uc_enterprise [label="Enterprise Environment\n{\n  'sandbox': true,\n  'network': {\n    'allowedDomains': [\n      'internal.company.com',\n      'artifactory.company.com'\n    ],\n    'proxy': 'http://proxy.company.com:8080'\n  },\n  'excludedCommands': ['git', 'ssh']\n}"];
+
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=dashed;
+
+        legend_box [label="Box = Action/State", shape=box];
+        legend_diamond [label="Diamond = Decision", shape=diamond];
+        legend_ellipse [label="Ellipse = Entry", shape=ellipse];
+        legend_doublecircle [label="Double Circle = Exit", shape=doublecircle];
+        legend_octagon [label="Octagon = Warning", shape=octagon];
+        legend_plaintext [label="Plaintext = Command", shape=plaintext, fontname="Courier"];
+    }
+}

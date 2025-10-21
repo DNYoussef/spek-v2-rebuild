@@ -1,0 +1,148 @@
+digraph claude_code_capabilities {
+    // Graph configuration
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+
+    // Title
+    title [label="Claude Code Capabilities Overview\n(2025 Feature Set)", shape=ellipse, style=filled, fillcolor=lightblue];
+
+    // Main capability categories
+    title -> deployment_modes [label="Deployment"];
+    title -> sandbox_features [label="Security"];
+    title -> session_features [label="Session Mgmt"];
+    title -> interaction_features [label="Interaction"];
+    title -> ide_features [label="IDE Features"];
+
+    // Deployment Modes
+    deployment_modes [label="Deployment Modes", shape=box, style=filled, fillcolor=lightyellow];
+    deployment_modes -> cli_mode;
+    deployment_modes -> web_mode;
+    deployment_modes -> vscode_mode;
+    deployment_modes -> ios_mode;
+
+    cli_mode [label="CLI Mode\n• Local execution\n• Full system access\n• Inline diffs\n• Background tasks"];
+    web_mode [label="Web Mode (claude.ai/code)\n• Cloud execution\n• GitHub integration\n• Branch management\n• PR creation"];
+    vscode_mode [label="VS Code Extension\n• IDE integration\n• Inline edits\n• Thinking mode toggle\n• Real-time collaboration"];
+    ios_mode [label="iOS App\n• Mobile access\n• Notifications\n• Session monitoring\n• Task approval"];
+
+    // Sandbox Features
+    sandbox_features [label="Sandbox Security", shape=box, style=filled, fillcolor=lightcoral];
+    sandbox_features -> sandbox_modes;
+    sandbox_features -> sandbox_isolation;
+
+    sandbox_modes [label="Sandbox Modes\n1. No sandbox\n2. Auto-allow with accept edits\n3. Regular permissions\n4. Custom permissions"];
+
+    sandbox_isolation [label="Isolation Controls"];
+    sandbox_isolation -> file_isolation [label="File System"];
+    sandbox_isolation -> network_isolation [label="Network"];
+    sandbox_isolation -> command_isolation [label="Commands"];
+
+    file_isolation [label="File System Isolation\n• Workspace-only access\n• Directory whitelisting\n• Path restrictions"];
+
+    network_isolation [label="Network Isolation\n• Trusted domains only\n• No network access\n• Custom domain lists\n• Proxy support"];
+
+    command_isolation [label="Command Isolation\n• Excluded commands\n• Docker/Git exceptions\n• Unix socket control\n• Local port binding"];
+
+    // Session Features
+    session_features [label="Session Management", shape=box, style=filled, fillcolor=lightgreen];
+    session_features -> session_teleport;
+    session_features -> session_sync;
+    session_features -> session_notifications;
+
+    session_teleport [label="Session Teleportation\n• Web → CLI transfer\n• Full context preservation\n• 50%+ token recovery\n• Seamless handoff"];
+
+    session_sync [label="Cross-Platform Sync\n• Same session on web/iOS/CLI\n• Real-time updates\n• Branch synchronization\n• File state sync"];
+
+    session_notifications [label="Notifications\n• Task completion alerts\n• Web notifications\n• Mobile push\n• Error notifications"];
+
+    // Interaction Features
+    interaction_features [label="Interaction Modes", shape=box, style=filled, fillcolor=lavender];
+    interaction_features -> planning_mode;
+    interaction_features -> interactive_questions;
+    interaction_features -> approval_modes;
+
+    planning_mode [label="Planning Mode\n• Pre-execution planning\n• Todo list generation\n• User approval required\n• More clarifying questions"];
+
+    interactive_questions [label="Interactive Question Tool\n• Up to 4 questions/batch\n• Multiple choice answers\n• Custom responses\n• Clarification workflow"];
+
+    approval_modes [label="Approval Modes\n• Per-operation approval\n• Batch approval\n• Auto-allow in sandbox\n• Accept edits mode"];
+
+    // IDE Features
+    ide_features [label="IDE Integration", shape=box, style=filled, fillcolor=lightgoldenrodyellow];
+    ide_features -> thinking_toggle;
+    ide_features -> inline_diffs;
+    ide_features -> workspace_management;
+
+    thinking_toggle [label="Thinking Mode Toggle\n• Enable/disable deep reasoning\n• Stopwatch icon in VS Code\n• Performance vs quality trade-off"];
+
+    inline_diffs [label="Inline Diffs\n• CLI: Full diff view\n• Web: Limited diff view (improving)\n• VS Code: Native integration"];
+
+    workspace_management [label="Workspace Management\n• Multi-folder support\n• .claude/settings.local.json\n• Environment variables\n• Git integration"];
+
+    // Network Access Modes
+    network_isolation -> trusted_network;
+    network_isolation -> no_network;
+    network_isolation -> custom_network;
+
+    trusted_network [label="Trusted Network Access\n• Container registries\n• GitHub\n• Package managers\n• NPM/PyPI/etc."];
+
+    no_network [label="No Network Access\n• Air-gapped execution\n• Maximum security\n• Local-only operations"];
+
+    custom_network [label="Custom Network Access\n• Enterprise internal docs\n• Corporate proxies\n• Whitelisted domains"];
+
+    // Best Practices
+    best_practices [label="Best Practices", shape=octagon, style=filled, fillcolor=orange];
+
+    sandbox_features -> best_practices [style=dotted, label="Follow"];
+    deployment_modes -> best_practices [style=dotted, label="Follow"];
+
+    best_practices -> bp_web_use;
+    best_practices -> bp_cli_use;
+    best_practices -> bp_sandbox_config;
+
+    bp_web_use [label="Use Web Mode For:\n• Well-defined tasks\n• 1-2 step changes\n• Translation/formatting\n• Quick fixes"];
+
+    bp_cli_use [label="Use CLI Mode For:\n• Complex back-and-forth\n• Multi-step workflows\n• Local testing\n• Advanced debugging"];
+
+    bp_sandbox_config [label="Sandbox Configuration:\n• Enable for production\n• Exclude Docker/Git\n• Allow local binding for dev\n• Use custom domains for enterprise"];
+
+    // Configuration Example
+    config_example [label="settings.local.json Example:\n{\n  \"sandbox\": true,\n  \"autoAllowBashIfSandbox\": false,\n  \"excludedCommands\": [\"docker\", \"git\"],\n  \"network\": {\n    \"allowLocalBinding\": true,\n    \"allowUnixSockets\": true\n  }\n}", shape=plaintext, fontname="Courier"];
+
+    sandbox_features -> config_example [style=dotted, label="Configure"];
+
+    // Platform Comparison
+    comparison [label="Platform Comparison", shape=box, style=filled, fillcolor=lightcyan];
+
+    comparison -> web_pros;
+    comparison -> web_cons;
+    comparison -> cli_pros;
+    comparison -> cli_cons;
+
+    web_pros [label="Web Pros:\n✓ No setup required\n✓ GitHub integration\n✓ Mobile access\n✓ Notifications", style=filled, fillcolor=lightgreen];
+
+    web_cons [label="Web Cons:\n✗ Limited diff view\n✗ Network restrictions\n✗ Less flexible\n✗ Small tasks only", style=filled, fillcolor=lightcoral];
+
+    cli_pros [label="CLI Pros:\n✓ Full control\n✓ Complex workflows\n✓ Local testing\n✓ Inline diffs", style=filled, fillcolor=lightgreen];
+
+    cli_cons [label="CLI Cons:\n✗ Setup required\n✗ Terminal only\n✗ No mobile\n✗ Manual notifications", style=filled, fillcolor=lightcoral];
+
+    // Exit points
+    exit_configured [label="Ready to Use Claude Code", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    bp_sandbox_config -> exit_configured;
+    config_example -> exit_configured;
+
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=dashed;
+
+        legend_box [label="Box = Feature/Action", shape=box];
+        legend_ellipse [label="Ellipse = Entry", shape=ellipse];
+        legend_doublecircle [label="Double Circle = Exit", shape=doublecircle];
+        legend_octagon [label="Octagon = Warning", shape=octagon];
+        legend_plaintext [label="Plaintext = Literal Code", shape=plaintext, fontname="Courier"];
+    }
+}

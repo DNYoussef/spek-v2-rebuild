@@ -1,0 +1,287 @@
+digraph session_teleportation_workflow {
+    // Graph configuration
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+
+    // Title
+    title [label="Session Teleportation Workflow\n(Web ↔ CLI Transfer)", shape=ellipse, style=filled, fillcolor=lightblue];
+
+    // Entry points
+    start_web_to_cli [label="TRIGGER: Need to move\nweb session to CLI", shape=ellipse, style=filled, fillcolor=lightyellow];
+    start_cli_to_web [label="TRIGGER: Need to move\nCLI session to web", shape=ellipse, style=filled, fillcolor=lightyellow];
+
+    title -> start_web_to_cli [label="Web→CLI"];
+    title -> start_cli_to_web [label="CLI→Web"];
+
+    // Web to CLI workflow
+    start_web_to_cli -> why_teleport_to_cli;
+
+    why_teleport_to_cli [label="Why Teleport to CLI?\n\n✓ Need full diff view\n✓ Complex back-and-forth\n✓ Local testing required\n✓ Advanced debugging\n✓ Multi-step workflows", shape=box, style=filled, fillcolor=lavender];
+
+    why_teleport_to_cli -> web_session_active;
+
+    web_session_active [label="Ensure Web Session Complete\nOr at good stopping point"];
+
+    web_session_active -> web_click_open_cli;
+
+    web_click_open_cli [label="In Claude Code Web:\nClick 'Open in CLI' button"];
+
+    web_click_open_cli -> cmd_copied;
+
+    cmd_copied [label="Command Copied to Clipboard\nclaude --teleport <session-id>", shape=plaintext, fontname="Courier"];
+
+    cmd_copied -> warning_git_clean;
+
+    warning_git_clean [label="⚠️ CRITICAL: Git Working Directory Must Be Clean\n\nTeleportation WILL FAIL if you have:\n• Uncommitted changes\n• Untracked files (depending on .gitignore)\n• Staged but not committed changes\n\nClaude needs clean state to load web session", shape=octagon, style=filled, fillcolor=red];
+
+    warning_git_clean -> check_git_status;
+
+    check_git_status [label="Check Git Status\ngit status", shape=plaintext, fontname="Courier"];
+
+    check_git_status -> git_status_result;
+
+    git_status_result [label="Git Working Directory Clean?", shape=diamond, style=filled, fillcolor=lightcyan];
+
+    git_status_result -> git_clean [label="YES\nNothing to commit,\nworking tree clean"];
+    git_status_result -> git_dirty [label="NO\nUncommitted changes\nor untracked files"];
+
+    // Handle dirty git
+    git_dirty [label="Git Directory Not Clean\nMust clean before teleporting"];
+
+    git_dirty -> choose_cleanup;
+
+    choose_cleanup [label="Cleanup Strategy?", shape=diamond];
+
+    choose_cleanup -> cleanup_stash [label="Temporary\n(come back to changes)"];
+    choose_cleanup -> cleanup_commit [label="Permanent\n(commit changes)"];
+    choose_cleanup -> cleanup_discard [label="Discard\n(lose changes)"];
+
+    cleanup_stash [label="Stash Changes\ngit stash push -m 'Before teleport'\ngit status  # verify clean", shape=plaintext, fontname="Courier"];
+
+    cleanup_commit [label="Commit Changes\ngit add .\ngit commit -m 'WIP: Before teleport'\ngit status  # verify clean", shape=plaintext, fontname="Courier"];
+
+    cleanup_discard [label="⚠️ Discard Changes (DANGEROUS)\ngit reset --hard HEAD\ngit clean -fd\ngit status  # verify clean", shape=plaintext, fontname="Courier", style=filled, fillcolor=lightcoral];
+
+    cleanup_stash -> git_clean;
+    cleanup_commit -> git_clean;
+    cleanup_discard -> git_clean;
+
+    // Continue teleportation
+    git_clean [label="Git Working Directory Clean\nReady to teleport"];
+
+    git_clean -> open_terminal;
+
+    open_terminal [label="Open Terminal\nNavigate to project directory"];
+
+    open_terminal -> paste_teleport_cmd;
+
+    paste_teleport_cmd [label="Paste Teleport Command\nclaude --teleport <session-id>", shape=plaintext, fontname="Courier"];
+
+    paste_teleport_cmd -> press_enter;
+
+    press_enter [label="Press Enter\nInitiate teleportation"];
+
+    press_enter -> loading_session;
+
+    loading_session [label="Loading Session...\n• Downloading context\n• Restoring chat history\n• Recovering tokens", style=filled, fillcolor=lightcyan];
+
+    loading_session -> session_loaded;
+
+    session_loaded [label="Session Loaded Successfully\n\nContext Window: ~50%+\n(Full history preserved)", shape=box, style=filled, fillcolor=lightgreen];
+
+    session_loaded -> verify_context;
+
+    verify_context [label="Verify Context Preserved\n• Scroll up in chat\n• Review previous messages\n• Check file states"];
+
+    verify_context -> context_ok;
+
+    context_ok [label="Context Correct?", shape=diamond];
+
+    context_ok -> context_verified [label="YES\nAll history visible"];
+    context_ok -> context_missing [label="NO\nSome history missing"];
+
+    context_missing [label="⚠️ Context Issues\n\nPossible causes:\n• Session too long (context limit)\n• Network interruption\n• Session expired\n\nTry:\n• Re-teleport\n• Start fresh session\n• Reference web UI for history", shape=octagon, style=filled, fillcolor=orange];
+
+    context_missing -> context_retry;
+
+    context_retry [label="Retry teleportation?", shape=diamond];
+    context_retry -> paste_teleport_cmd [label="YES"];
+    context_retry -> start_fresh [label="NO"];
+
+    start_fresh [label="Start Fresh CLI Session\nReference web for context"];
+    start_fresh -> exit_fresh_session;
+
+    exit_fresh_session [label="Using Fresh CLI Session", shape=doublecircle];
+
+    context_verified [label="Context Verified Successfully\nReady to continue in CLI"];
+
+    context_verified -> cli_advantages;
+
+    cli_advantages [label="CLI Advantages Now Available:\n\n✓ Full inline diffs\n✓ Direct file editing\n✓ Local testing (npm run dev)\n✓ Advanced debugging\n✓ Complex workflows", shape=box, style=filled, fillcolor=lightgreen];
+
+    cli_advantages -> continue_work_cli;
+
+    continue_work_cli [label="Continue Work in CLI\nPrompt Claude as normal"];
+
+    continue_work_cli -> exit_web_to_cli_complete;
+
+    exit_web_to_cli_complete [label="Teleportation Complete (Web→CLI)", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // CLI to Web workflow
+    start_cli_to_web -> why_teleport_to_web;
+
+    why_teleport_to_web [label="Why Move to Web?\n\n✓ Mobile access needed\n✓ Share with team\n✓ Create PR from web\n✓ Notification alerts\n✓ No terminal available", shape=box, style=filled, fillcolor=lavender];
+
+    why_teleport_to_web -> cli_session_active;
+
+    cli_session_active [label="Current CLI Session Active"];
+
+    cli_session_active -> note_cli_to_web;
+
+    note_cli_to_web [label="📝 NOTE: CLI → Web Not Directly Supported\n\nCannot teleport active CLI session to web.\n\nWorkarounds available:", shape=box, style=filled, fillcolor=lightyellow];
+
+    note_cli_to_web -> workaround_choice;
+
+    workaround_choice [label="Choose Workaround?", shape=diamond];
+
+    workaround_choice -> workaround_commit_pr [label="Commit & PR"];
+    workaround_choice -> workaround_new_web [label="Start new\nweb session"];
+    workaround_choice -> workaround_stay_cli [label="Stay in CLI"];
+
+    // Workaround 1: Commit and PR
+    workaround_commit_pr [label="Workaround 1: Commit & PR\n\nBest for: Sharing work"];
+
+    workaround_commit_pr -> commit_changes;
+
+    commit_changes [label="Commit Current Changes\ngit add .\ngit commit -m 'Feature: X'\ngit push origin feature-branch", shape=plaintext, fontname="Courier"];
+
+    commit_changes -> create_pr_cli;
+
+    create_pr_cli [label="Create PR (via CLI)\nAsk Claude:\n'Create a pull request'", shape=plaintext, fontname="Courier"];
+
+    create_pr_cli -> pr_created;
+
+    pr_created [label="PR Created on GitHub\nAccessible from anywhere"];
+
+    pr_created -> access_pr_web;
+
+    access_pr_web [label="Access PR from:\n• GitHub web\n• Claude Code web\n• Mobile app"];
+
+    access_pr_web -> exit_cli_to_web_pr;
+
+    exit_cli_to_web_pr [label="Work Accessible via Web (PR)", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // Workaround 2: New web session
+    workaround_new_web [label="Workaround 2: New Web Session\n\nBest for: Quick sharing"];
+
+    workaround_new_web -> summarize_context;
+
+    summarize_context [label="Ask Claude in CLI:\n'Summarize what we've done\nso far in this session'", shape=plaintext, fontname="Courier"];
+
+    summarize_context -> copy_summary;
+
+    copy_summary [label="Copy Summary to Clipboard"];
+
+    copy_summary -> open_web_new;
+
+    open_web_new [label="Open claude.ai/code\nStart new session"];
+
+    open_web_new -> paste_context;
+
+    paste_context [label="Paste Summary as Context\n'Here's what I've been working on:\n[paste summary]\n\nPlease continue from here.'"];
+
+    paste_context -> web_continues;
+
+    web_continues [label="Web Session Continues\nWith approximate context"];
+
+    web_continues -> exit_cli_to_web_new;
+
+    exit_cli_to_web_new [label="New Web Session Started", shape=doublecircle, style=filled, fillcolor=lightyellow];
+
+    // Workaround 3: Stay in CLI
+    workaround_stay_cli [label="Workaround 3: Stay in CLI\n\nBest for: Complex work"];
+
+    workaround_stay_cli -> continue_cli;
+
+    continue_cli [label="Continue in CLI\nAccess via:\n• Terminal (local)\n• SSH (remote)\n• VS Code (IDE integration)"];
+
+    continue_cli -> exit_stay_cli;
+
+    exit_stay_cli [label="Continuing in CLI", shape=doublecircle];
+
+    // Session state management
+    session_state [label="Session State Management", shape=box, style=filled, fillcolor=lightblue];
+
+    title -> session_state [label="Reference", style=dotted];
+
+    session_state -> state_token_recovery;
+    session_state -> state_limitations;
+
+    state_token_recovery [label="Token Recovery\n\nWeb→CLI teleportation:\n• ~50% context window used\n• Full chat history preserved\n• All file states maintained\n• Can resume immediately"];
+
+    state_limitations [label="Limitations\n\n• CLI→Web: Not directly supported\n• Very long sessions: May hit context limit\n• Network interruption: May fail\n• Session expiry: ~24 hours"];
+
+    // Best practices
+    best_practices [label="Teleportation Best Practices", shape=box, style=filled, fillcolor=lightgreen];
+
+    title -> best_practices [label="Tips", style=dotted];
+
+    best_practices -> bp1;
+    best_practices -> bp2;
+    best_practices -> bp3;
+    best_practices -> bp4;
+    best_practices -> bp5;
+
+    bp1 [label="✓ Always clean Git working directory\n  before teleporting"];
+    bp2 [label="✓ Verify context after teleportation\n  (scroll up, check history)"];
+    bp3 [label="✓ Use web for simple tasks\n  then teleport to CLI for complexity"];
+    bp4 [label="✓ Commit frequently\n  (makes cleanup easier)"];
+    bp5 [label="✓ For CLI→Web, use PR workflow\n  (most reliable sharing method)"];
+
+    // Troubleshooting
+    troubleshooting [label="Common Issues", shape=box, style=filled, fillcolor=orange];
+
+    title -> troubleshooting [label="Problems", style=dotted];
+
+    troubleshooting -> issue1;
+    troubleshooting -> issue2;
+    troubleshooting -> issue3;
+    troubleshooting -> issue4;
+
+    issue1 [label="Issue: 'Working directory not clean'\n\nFix: git stash or git commit\nThen retry teleportation"];
+
+    issue2 [label="Issue: 'Session not found'\n\nCauses:\n• Session expired (>24hrs)\n• Wrong account\n• Network issue\n\nFix: Start fresh session"];
+
+    issue3 [label="Issue: 'Context incomplete'\n\nCauses:\n• Session too long\n• Context limit hit\n\nFix: Summarize in web,\nstart fresh CLI session"];
+
+    issue4 [label="Issue: 'Cannot teleport CLI→Web'\n\nThis is expected behavior.\n\nUse workarounds:\n• Commit & PR\n• Summarize & new session"];
+
+    // Use cases
+    use_cases [label="Common Use Cases", shape=box, style=filled, fillcolor=lavender];
+
+    title -> use_cases [label="Examples", style=dotted];
+
+    use_cases -> uc1;
+    use_cases -> uc2;
+    use_cases -> uc3;
+
+    uc1 [label="Use Case 1: Mobile Review\n\n1. Start in web (mobile)\n2. Review/approve plan\n3. Teleport to CLI (desktop)\n4. Do complex work\n5. Commit & PR\n6. Review PR (mobile)"];
+
+    uc2 [label="Use Case 2: Quick Fix\n\n1. Start in web\n2. Do simple translation\n3. Realize needs complexity\n4. Teleport to CLI\n5. Iterate with full diffs\n6. Commit when done"];
+
+    uc3 [label="Use Case 3: Team Handoff\n\n1. Work in CLI\n2. Commit progress\n3. Create PR\n4. Teammate reviews in web\n5. Teammate teleports to CLI\n6. Teammate continues work"];
+
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=dashed;
+
+        legend_box [label="Box = Action/State", shape=box];
+        legend_diamond [label="Diamond = Decision", shape=diamond];
+        legend_ellipse [label="Ellipse = Entry", shape=ellipse];
+        legend_doublecircle [label="Double Circle = Exit", shape=doublecircle];
+        legend_octagon [label="Octagon = Warning", shape=octagon];
+        legend_plaintext [label="Plaintext = Command", shape=plaintext, fontname="Courier"];
+    }
+}

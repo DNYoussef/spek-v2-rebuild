@@ -1,0 +1,268 @@
+digraph claude_code_web_workflow {
+    // Graph configuration
+    rankdir=TB;
+    node [shape=box, style=rounded];
+    edge [fontsize=10];
+
+    // Title
+    title [label="Claude Code Web Workflow\n(claude.ai/code)", shape=ellipse, style=filled, fillcolor=lightblue];
+
+    // Entry point
+    start [label="Need to Use Claude Code Web", shape=ellipse, style=filled, fillcolor=lightyellow];
+
+    start -> decide_platform [label="Start"];
+
+    // Decision: Which platform?
+    decide_platform [label="Is task well-defined?\n(1-2 steps, no back-and-forth)", shape=diamond, style=filled, fillcolor=lightcyan];
+
+    decide_platform -> use_web [label="YES\n(translate, format, quick fix)"];
+    decide_platform -> use_cli [label="NO\n(complex, multi-step)"];
+
+    use_cli [label="Use CLI/VS Code Instead\n• Better for complex workflows\n• Full diff view\n• Local testing", style=filled, fillcolor=lightcoral];
+    use_cli -> exit_use_cli [label="Follow CLI workflow"];
+    exit_use_cli [label="See CLI Documentation", shape=doublecircle];
+
+    // Web workflow
+    use_web [label="Use Claude Code Web", style=filled, fillcolor=lightgreen];
+    use_web -> first_time_check;
+
+    first_time_check [label="First time using\nClaude Code Web?", shape=diamond];
+
+    first_time_check -> onboarding [label="YES"];
+    first_time_check -> open_web [label="NO"];
+
+    // Onboarding flow
+    onboarding [label="Onboarding Required"];
+    onboarding -> goto_website;
+
+    goto_website [label="Go to claude.ai\nClick 'Code' button", shape=plaintext, fontname="Courier"];
+    goto_website -> link_github;
+
+    link_github [label="Link GitHub Account\n• OAuth authentication\n• Repository access\n• Branch permissions"];
+    link_github -> choose_environment;
+
+    choose_environment [label="Choose Default Environment", shape=box, style=filled, fillcolor=lightyellow];
+    choose_environment -> env_trusted;
+    choose_environment -> env_no_network;
+    choose_environment -> env_custom;
+
+    env_trusted [label="Trusted Network Access\n(Recommended)\n\nWhitelisted domains:\n• Container registries\n• GitHub\n• Package managers\n• NPM, PyPI, etc."];
+
+    env_no_network [label="No Network Access\n(Maximum Security)\n\n• Air-gapped execution\n• Local-only operations\n• No external dependencies"];
+
+    env_custom [label="Custom Access\n(Enterprise)\n\n• Custom domain list\n• Internal documentation\n• Corporate proxies"];
+
+    env_trusted -> set_env_vars;
+    env_no_network -> set_env_vars;
+    env_custom -> set_env_vars;
+
+    set_env_vars [label="Set Environment Variables\n(Optional)\n\n• Build command keys\n• API tokens\n• Configuration values", shape=box, style=filled, fillcolor=lavender];
+
+    set_env_vars -> onboarding_complete;
+    onboarding_complete [label="Onboarding Complete", shape=box, style=filled, fillcolor=lightgreen];
+    onboarding_complete -> open_web;
+
+    // Open web interface
+    open_web [label="Open claude.ai/code"];
+    open_web -> select_repo;
+
+    select_repo [label="Select Repository\n• Search for repo\n• Or use recent repo\n• Creates new session"];
+    select_repo -> enable_notifications;
+
+    enable_notifications [label="Enable Notifications?\n(Recommended)", shape=diamond];
+    enable_notifications -> notif_yes [label="YES"];
+    enable_notifications -> notif_no [label="NO"];
+
+    notif_yes [label="Click 'Enable notifications'\n• Desktop alerts\n• Task completion\n• Error notifications"];
+    notif_no [label="Skip notifications\n(can enable later)"];
+
+    notif_yes -> enter_prompt;
+    notif_no -> enter_prompt;
+
+    // Main workflow
+    enter_prompt [label="Enter Task Prompt\n\nExample:\n'Translate landing page to Japanese,\ncome up with key-value pairs,\ninstall relevant packages'", shape=plaintext, fontname="Courier"];
+
+    enter_prompt -> ask_for_plan;
+
+    ask_for_plan [label="Ask for Plan First?\n(Recommended for clarity)", shape=diamond];
+
+    ask_for_plan -> request_plan [label="YES"];
+    ask_for_plan -> direct_execution [label="NO"];
+
+    request_plan [label="Add to prompt:\n'First come up with a plan\nand let me know what you're\ngoing to do. If I approve,\nthen go ahead.'", shape=plaintext, fontname="Courier"];
+
+    request_plan -> submit_prompt;
+    direct_execution -> submit_prompt;
+
+    submit_prompt [label="Press Enter to Submit"];
+    submit_prompt -> claude_planning;
+
+    // Claude Code processing
+    claude_planning [label="Claude Code Planning\n• Exploring repository\n• Creating todo list\n• Determining steps", style=filled, fillcolor=lightcyan];
+
+    claude_planning -> plan_ready;
+
+    plan_ready [label="Plan Presented\n• Todo items shown\n• Approach explained\n• Awaiting approval"];
+
+    plan_ready -> review_plan;
+
+    review_plan [label="Review Plan", shape=diamond];
+    review_plan -> approve_plan [label="Looks good"];
+    review_plan -> modify_plan [label="Needs changes"];
+    review_plan -> reject_plan [label="Wrong approach"];
+
+    modify_plan [label="Provide Feedback\n'Actually, I need...'\n'Can you also...'\n'Don't do X, do Y instead'"];
+    modify_plan -> claude_planning [label="Revise"];
+
+    reject_plan [label="Start Over\nClear chat or new session"];
+    reject_plan -> enter_prompt;
+
+    approve_plan [label="Approve Plan\n'Go for it'\n'Looks good'\n'Proceed'"];
+    approve_plan -> claude_executing;
+
+    // Execution phase
+    claude_executing [label="Claude Code Executing\n\nProgress indicators:\n• Crunching\n• Moseying  \n• Unraveling\n• etc.", style=filled, fillcolor=lightyellow];
+
+    claude_executing -> monitor_progress;
+
+    monitor_progress [label="Monitor Progress\n• Todo items updating\n• Status changes\n• Real-time feedback"];
+
+    monitor_progress -> execution_complete;
+
+    execution_complete [label="Execution Complete\n✓ All todos finished"];
+    execution_complete -> review_changes;
+
+    // Review changes
+    review_changes [label="Review Changes\n(Web has limited diff view)", shape=diamond];
+
+    review_changes -> changes_good [label="Looks good"];
+    review_changes -> changes_issues [label="Has issues"];
+
+    changes_issues [label="Request Fixes\nDescribe what needs changing"];
+    changes_issues -> claude_executing [label="Iterate"];
+
+    changes_good -> decide_next_action;
+
+    // Next action decision
+    decide_next_action [label="What next?", shape=diamond];
+
+    decide_next_action -> create_pr [label="Create PR"];
+    decide_next_action -> teleport_cli [label="Continue in CLI"];
+    decide_next_action -> continue_web [label="Keep working in web"];
+
+    // Create PR
+    create_pr [label="Click 'Create PR' button"];
+    create_pr -> pr_created;
+
+    pr_created [label="PR Created Successfully\n• Auto-generated branch\n• Commit message\n• Ready for review"];
+    pr_created -> view_pr;
+
+    view_pr [label="View PR on GitHub\n• Full diffs visible\n• Request reviews\n• Merge when ready"];
+    view_pr -> exit_pr_complete;
+
+    exit_pr_complete [label="Task Complete (PR)", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // Teleport to CLI
+    teleport_cli [label="Click 'Open in CLI' button"];
+    teleport_cli -> copy_teleport_cmd;
+
+    copy_teleport_cmd [label="Command Copied to Clipboard\nclaude --teleport <session-id>", shape=plaintext, fontname="Courier"];
+
+    copy_teleport_cmd -> warning_git_clean [label="Next"];
+
+    warning_git_clean [label="⚠️ WARNING: Clean Git Working Directory\n\nMust have no uncommitted changes\nbefore teleporting session", shape=octagon, style=filled, fillcolor=orange];
+
+    warning_git_clean -> check_git_status;
+
+    check_git_status [label="Run in terminal:\ngit status", shape=plaintext, fontname="Courier"];
+
+    check_git_status -> git_clean_check [label="Check output"];
+
+    git_clean_check [label="Working directory clean?", shape=diamond];
+
+    git_clean_check -> clean_git [label="YES\n(nothing to commit)"];
+    git_clean_check -> dirty_git [label="NO\n(uncommitted changes)"];
+
+    dirty_git [label="Clean up first:\ngit stash\n  or\ngit commit -am 'WIP'", shape=plaintext, fontname="Courier"];
+    dirty_git -> clean_git [label="After cleanup"];
+
+    clean_git [label="Paste teleport command\nPress Enter"];
+    clean_git -> session_loading;
+
+    session_loading [label="Session Loading\n• Full context transfer\n• 50%+ token recovery\n• All history preserved", style=filled, fillcolor=lightcyan];
+
+    session_loading -> session_resumed;
+
+    session_resumed [label="Session Resumed in CLI\n✓ Full context available\n✓ Can view inline diffs\n✓ Continue work locally"];
+
+    session_resumed -> exit_teleport_complete;
+
+    exit_teleport_complete [label="Task Complete (Teleported)", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // Continue in web
+    continue_web [label="Continue in Web\nAdd more requirements"];
+    continue_web -> enter_prompt [label="New prompt"];
+
+    // Mobile app workflow (iOS)
+    mobile_access [label="Access via iOS App\n(Android not yet available)", shape=box, style=filled, fillcolor=lavender];
+
+    title -> mobile_access [label="Mobile", style=dotted];
+
+    mobile_access -> open_ios_app;
+
+    open_ios_app [label="Open Claude iOS App\nTap 'Code' tab"];
+    open_ios_app -> view_session;
+
+    view_session [label="View Active Session\n• Same session as web\n• Real-time sync\n• Enable notifications"];
+
+    view_session -> mobile_approve;
+
+    mobile_approve [label="Approve/Monitor Tasks\n• View progress\n• Approve plans\n• Get notified when done"];
+
+    mobile_approve -> mobile_switch;
+
+    mobile_switch [label="Switch to Desktop\nfor detailed review", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Best practices
+    best_practices [label="Best Practices for Web", shape=box, style=filled, fillcolor=lightgreen];
+
+    title -> best_practices [label="Reference", style=dotted];
+
+    best_practices -> bp1;
+    best_practices -> bp2;
+    best_practices -> bp3;
+    best_practices -> bp4;
+    best_practices -> bp5;
+
+    bp1 [label="✓ Use for well-defined tasks\n  (translation, formatting, quick fixes)"];
+    bp2 [label="✓ Request plan before execution\n  (avoid surprises)"];
+    bp3 [label="✓ Enable notifications\n  (stay informed)"];
+    bp4 [label="✓ Teleport to CLI for complex iteration\n  (better for back-and-forth)"];
+    bp5 [label="✓ Review PRs on GitHub\n  (full diff view)"];
+
+    // Anti-patterns
+    anti_patterns [label="Avoid in Web Mode", shape=box, style=filled, fillcolor=lightcoral];
+
+    title -> anti_patterns [label="Don't", style=dotted];
+
+    anti_patterns -> ap1;
+    anti_patterns -> ap2;
+    anti_patterns -> ap3;
+
+    ap1 [label="✗ Complex multi-step workflows\n  (use CLI instead)"];
+    ap2 [label="✗ Extensive back-and-forth\n  (limited diff view)"];
+    ap3 [label="✗ Local testing required\n  (web can't run npm run dev)"];
+
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=dashed;
+
+        legend_box [label="Box = Action/State", shape=box];
+        legend_diamond [label="Diamond = Decision", shape=diamond];
+        legend_ellipse [label="Ellipse = Entry", shape=ellipse];
+        legend_doublecircle [label="Double Circle = Exit", shape=doublecircle];
+        legend_octagon [label="Octagon = Warning", shape=octagon];
+        legend_plaintext [label="Plaintext = Command", shape=plaintext, fontname="Courier"];
+    }
+}

@@ -40,6 +40,11 @@
 | **Reviewing executive summary** | [executive-summary-v8-final.dot](strategic/executive-summary-v8-final.dot) | Strategic overview + GO/NO-GO | P1 |
 | **Reviewing Week 18 strategic status** | [executive-summary-v8-updated.dot](strategic/executive-summary-v8-updated.dot) | Week 18 GO decision | P1 |
 | **Reviewing agent instructions** | [agent-instruction-system.dot](quality/agent-instruction-system.dot) | 26 prompt engineering principles | P1 |
+| **Using Claude Code Web** | [claude-code-web-workflow.dot](platform/claude-code-web-workflow.dot) | Web interface workflow, PR creation | P0 |
+| **Configuring sandbox security** | [sandbox-configuration-guide.dot](platform/sandbox-configuration-guide.dot) | Security isolation setup | P0 |
+| **Moving sessions between platforms** | [session-teleportation-workflow.dot](platform/session-teleportation-workflow.dot) | Web ↔ CLI session transfer | P1 |
+| **Using interactive questions** | [interactive-questioning-workflow.dot](platform/interactive-questioning-workflow.dot) | Clarification and planning | P1 |
+| **Understanding Claude Code features** | [claude-code-capabilities-overview.dot](platform/claude-code-capabilities-overview.dot) | Platform capabilities reference | P1 |
 
 ---
 
@@ -147,6 +152,13 @@
 
 ### ✨ Quality Processes (1 process)
 - **agent-instruction-system.dot**: 26 prompt engineering principles embedded in agent system
+
+### 🌐 Platform Processes (5 processes)
+- **claude-code-capabilities-overview.dot**: Complete reference of Claude Code features (CLI, Web, VS Code, iOS, Sandbox, etc.)
+- **claude-code-web-workflow.dot**: Using Claude Code Web (claude.ai/code) with environment setup, PR creation, and teleportation
+- **sandbox-configuration-guide.dot**: Security sandbox configuration with file/network/command isolation
+- **session-teleportation-workflow.dot**: Moving sessions between Web and CLI with context preservation
+- **interactive-questioning-workflow.dot**: Using the interactive question tool for clarification and planning
 
 ---
 
@@ -416,10 +428,10 @@ git checkout HEAD~1 -- .claude/processes/security/incident-response.dot
 
 ---
 
-**Last Updated**: 2025-10-11 (Week 26 Complete)
-**Process Count**: 27 processes (7 deployment, 2 security, 8 development, 2 planning, 2 strategic, 3 technical, 2 workflow, 1 quality)
-**Coverage**: Complete development workflow (TDD + quality gates + decision matrices + TypeScript fixing), deployment automation, security hardening, DSPy optimization, Week 26 production launch, Claude Code backend integration
+**Last Updated**: 2025-10-21 (Platform Capabilities Added)
+**Process Count**: 32 processes (7 deployment, 2 security, 8 development, 2 planning, 2 strategic, 3 technical, 2 workflow, 1 quality, 5 platform)
+**Coverage**: Complete development workflow (TDD + quality gates + decision matrices + TypeScript fixing), deployment automation, security hardening, DSPy optimization, Week 26 production launch, Claude Code backend integration, platform capabilities (Web, CLI, Sandbox, Teleportation, Interactive Questions)
 **Status**: Active - ready for use
 **Integration**: All workflows referenced in CLAUDE.md with TRIGGER-based navigation
 **Markdown Conversions**: 12 documentation files converted to visual workflows with MECE audits (95%+ coverage)
-**Latest Addition**: Week 26 workflows (production launch, deployment readiness checklist, Claude Code backend integration)
+**Latest Addition**: Platform processes (Claude Code Web, Sandbox, Session Teleportation, Interactive Questions, Capabilities Overview)
