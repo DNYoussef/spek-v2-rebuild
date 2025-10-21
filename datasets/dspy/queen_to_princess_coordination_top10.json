@@ -1,0 +1,444 @@
+{
+  "dataset_name": "queen_to_princess_coordination_top10",
+  "description": "Top 10 examples selected for DSPy BootstrapFewShot demonstrations",
+  "selection_criteria": "Diversity (40%), Quality (25%), Real-world applicability (20%), Teaching value (10%), Completeness (5%)",
+  "total_examples": 10,
+  "coverage": {
+    "strategic_planning": 5,
+    "workflow_orchestration": 1,
+    "risk_management": 1,
+    "resource_optimization": 3
+  },
+  "examples": [
+    {
+      "id": 6,
+      "rank": 1,
+      "selection_reason": "Underrepresented strategic_planning category, well-structured decomposition, real-world pattern",
+      "category": "strategic_planning",
+      "task_description": "Design CI/CD pipeline for 50-service microservices platform",
+      "objective": "10-minute build-to-deploy with automated testing",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design parallel build, test orchestration, and deployment strategy",
+          "dependencies": [],
+          "estimated_minutes": 38
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Estimate CI/CD compute, artifact storage, and runner costs",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Deploy CI/CD infrastructure with pipeline templates",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 45
+        }
+      ],
+      "score": 82.0,
+      "score_breakdown": {
+        "diversity": 40,
+        "quality": 25.0,
+        "real_world": 12,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 76,
+      "rank": 2,
+      "selection_reason": "Underrepresented workflow_orchestration category, well-structured decomposition, real-world pattern",
+      "category": "workflow_orchestration",
+      "task_description": "Coordinate machine learning model deployment pipeline",
+      "objective": "Deploy 5 new models with A/B testing and performance tracking",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design model validation, deployment strategy, and monitoring",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Calculate inference costs and infrastructure requirements",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Execute model deployment with performance validation",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 48
+        }
+      ],
+      "score": 82.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 25.0,
+        "real_world": 12,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 88,
+      "rank": 3,
+      "selection_reason": "Backup/restore: underrepresented risk_management category, well-structured decomposition",
+      "category": "risk_management",
+      "task_description": "Establish automated backup validation and recovery testing",
+      "objective": "Verify backup integrity monthly with automated restore tests",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design validation schedule, restore testing, and alert strategy",
+          "dependencies": [],
+          "estimated_minutes": 32
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Calculate testing infrastructure and storage verification costs",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Deploy backup validation automation with reporting",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 42
+        }
+      ],
+      "score": 81.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 36,
+      "rank": 4,
+      "selection_reason": "Performance testing: underrepresented resource_optimization category, well-structured decomposition",
+      "category": "resource_optimization",
+      "task_description": "Optimize database query performance for high-traffic endpoints",
+      "objective": "Reduce p95 query time from 800ms to <100ms",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Analyze slow queries, design index strategy, and query rewrites",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Calculate cost impact of additional indexes and caching",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Deploy optimizations with performance monitoring",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 40
+        }
+      ],
+      "score": 78.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 46,
+      "rank": 5,
+      "selection_reason": "Performance testing: underrepresented resource_optimization category, well-structured decomposition",
+      "category": "resource_optimization",
+      "task_description": "Optimize Elasticsearch cluster for cost and performance",
+      "objective": "Reduce node count from 12 to 6 while maintaining query performance",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Analyze shard allocation, replication, and index optimization",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Calculate monthly savings from cluster right-sizing",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Execute cluster resize with performance validation",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 45
+        }
+      ],
+      "score": 73.0,
+      "score_breakdown": {
+        "diversity": 35.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 24,
+      "rank": 6,
+      "selection_reason": "Good strategic_planning coverage, well-structured decomposition",
+      "category": "strategic_planning",
+      "task_description": "Design authentication and authorization architecture",
+      "objective": "OAuth2/OIDC with RBAC and <50ms token validation",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design identity provider, token issuance, and RBAC model",
+          "dependencies": [],
+          "estimated_minutes": 38
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Estimate IdP infrastructure and token storage costs",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Deploy auth infrastructure with client integration",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 45
+        }
+      ],
+      "score": 71.0,
+      "score_breakdown": {
+        "diversity": 30.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 47,
+      "rank": 7,
+      "selection_reason": "Good resource_optimization coverage, well-structured decomposition",
+      "category": "resource_optimization",
+      "task_description": "Implement database read replica strategy for query distribution",
+      "objective": "Offload 80% of read traffic to replicas to improve primary performance",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design replica placement, routing logic, and replication lag handling",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Calculate replica costs vs primary instance upgrade costs",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Deploy read replicas with application routing changes",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 40
+        }
+      ],
+      "score": 68.0,
+      "score_breakdown": {
+        "diversity": 30.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 7,
+      "rank": 8,
+      "selection_reason": "Api integration: good strategic_planning coverage, well-structured decomposition",
+      "category": "strategic_planning",
+      "task_description": "Plan API versioning and deprecation strategy",
+      "objective": "Backward compatibility with 6-month migration window",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design version routing, deprecation timeline, and client migration",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Calculate dual-version maintenance and migration support costs",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 15
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Execute versioning rollout with client communication plan",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 35
+        }
+      ],
+      "score": 62.0,
+      "score_breakdown": {
+        "diversity": 24.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 26,
+      "rank": 9,
+      "selection_reason": "Well-structured decomposition",
+      "category": "strategic_planning",
+      "task_description": "Architect machine learning model serving platform",
+      "objective": "Deploy 50 models with A/B testing and <100ms inference",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design model registry, serving infrastructure, and routing",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Estimate GPU/CPU inference costs and model storage",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 24
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Deploy ML platform with model deployment pipelines",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 55
+        }
+      ],
+      "score": 58.0,
+      "score_breakdown": {
+        "diversity": 20.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 28,
+      "rank": 10,
+      "selection_reason": "Backup/restore: well-structured decomposition",
+      "category": "strategic_planning",
+      "task_description": "Plan database backup and recovery strategy",
+      "objective": "Continuous backups with point-in-time recovery",
+      "expected_subtasks": [
+        {
+          "princess": "princess-coordination",
+          "task_type": "plan",
+          "description": "Design backup schedule, retention, and recovery procedures",
+          "dependencies": [],
+          "estimated_minutes": 32
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "track-cost",
+          "description": "Calculate backup storage and cross-region replication costs",
+          "dependencies": [
+            "plan"
+          ],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-coordination",
+          "task_type": "orchestrate",
+          "description": "Implement backup automation with recovery testing",
+          "dependencies": [
+            "track-cost"
+          ],
+          "estimated_minutes": 40
+        }
+      ],
+      "score": 55.1,
+      "score_breakdown": {
+        "diversity": 17.1,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    }
+  ]
+}

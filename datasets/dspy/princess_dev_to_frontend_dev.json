@@ -1,0 +1,1343 @@
+{
+  "communication_path": "princess-dev→frontend-dev",
+  "description": "Princess-Dev delegates frontend/UI implementation tasks to Frontend-Dev drone",
+  "version": "1.0",
+  "total_examples": 50,
+  "examples": [
+    {
+      "id": 1,
+      "phase": "implement-component",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "User profile card with avatar, name, bio, and follow button",
+        "design_system": "Material UI v5",
+        "state_management": "React Context + Hooks"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-component",
+        "description": "Implement UserProfileCard component with Material UI",
+        "specifications": {
+          "component_type": "functional",
+          "props": ["userId", "onFollow", "variant"],
+          "state": ["isFollowing", "isLoading"],
+          "hooks": ["useState", "useEffect", "useContext"],
+          "styling": "styled-components with theme",
+          "accessibility": "ARIA labels, keyboard navigation",
+          "responsive": "mobile-first, breakpoints at 768px and 1024px"
+        },
+        "dependencies": ["design complete", "API endpoints ready"],
+        "estimated_minutes": 45,
+        "quality_gates": ["TypeScript strict mode", "100% prop types", "responsive on all devices", "WCAG AA compliant"]
+      }
+    },
+    {
+      "id": 2,
+      "phase": "implement-form",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Multi-step registration form with validation",
+        "design_system": "Custom Tailwind",
+        "state_management": "React Hook Form + Zod"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-form",
+        "description": "Create 3-step registration form with validation and progress indicator",
+        "specifications": {
+          "steps": ["Account Info", "Profile Details", "Preferences"],
+          "validation": "Zod schema with async email uniqueness check",
+          "state": "React Hook Form with controlled inputs",
+          "progress": "Step indicator with back/next navigation",
+          "styling": "Tailwind with custom animations",
+          "accessibility": "Error announcements, focus management",
+          "responsive": "stacked layout on mobile, side-by-side on desktop"
+        },
+        "dependencies": ["validation endpoint ready", "design tokens defined"],
+        "estimated_minutes": 55,
+        "quality_gates": ["all validation tested", "keyboard navigation", "error messages clear", "progress saved to localStorage"]
+      }
+    },
+    {
+      "id": 3,
+      "phase": "implement-data-grid",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Data table with sorting, filtering, pagination",
+        "design_system": "AG Grid React",
+        "state_management": "React Query for data fetching"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-data-grid",
+        "description": "Implement AG Grid with server-side pagination and filtering",
+        "specifications": {
+          "features": ["column sorting", "multi-column filtering", "pagination", "row selection", "export to CSV"],
+          "data_source": "React Query with infinite scroll",
+          "columns": ["name", "email", "status", "created_at", "actions"],
+          "actions": ["edit", "delete", "view details"],
+          "styling": "custom theme matching design system",
+          "performance": "virtualization for 10,000+ rows",
+          "responsive": "horizontal scroll on mobile"
+        },
+        "dependencies": ["API endpoints", "AG Grid license"],
+        "estimated_minutes": 60,
+        "quality_gates": ["performance tested", "filtering works", "pagination accurate", "export functional"]
+      }
+    },
+    {
+      "id": 4,
+      "phase": "implement-modal",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Confirmation modal with custom actions",
+        "design_system": "Headless UI + Tailwind",
+        "state_management": "Local state with context"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-modal",
+        "description": "Create reusable confirmation modal with variants",
+        "specifications": {
+          "variants": ["info", "warning", "danger", "success"],
+          "props": ["title", "message", "onConfirm", "onCancel", "confirmText", "cancelText"],
+          "features": ["backdrop click to close", "escape key", "focus trap", "scroll lock"],
+          "styling": "Tailwind with variant-specific colors",
+          "accessibility": "role='dialog', aria-labelledby, focus management",
+          "animations": "fade-in/fade-out with Framer Motion"
+        },
+        "dependencies": ["Headless UI installed"],
+        "estimated_minutes": 40,
+        "quality_gates": ["accessibility audit pass", "keyboard navigation", "focus trap works", "animations smooth"]
+      }
+    },
+    {
+      "id": 5,
+      "phase": "implement-navigation",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Responsive sidebar navigation with nested routes",
+        "design_system": "Custom components",
+        "state_management": "Zustand for sidebar state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-navigation",
+        "description": "Build responsive sidebar with collapsible sections and active state",
+        "specifications": {
+          "features": ["collapsible sidebar", "nested menu items", "active link highlighting", "icons", "mobile drawer"],
+          "state": "Zustand store for collapsed/expanded state",
+          "routing": "React Router with active link detection",
+          "styling": "CSS transitions for collapse/expand",
+          "accessibility": "ARIA navigation landmarks, keyboard shortcuts",
+          "responsive": "drawer on mobile (<768px), sidebar on desktop"
+        },
+        "dependencies": ["route structure defined", "icons imported"],
+        "estimated_minutes": 50,
+        "quality_gates": ["responsive tested", "active state accurate", "keyboard shortcuts work", "performance optimized"]
+      }
+    },
+    {
+      "id": 6,
+      "phase": "implement-dashboard",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Analytics dashboard with charts and metrics",
+        "design_system": "Recharts + Material UI",
+        "state_management": "React Query + Context"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-dashboard",
+        "description": "Create analytics dashboard with real-time data visualization",
+        "specifications": {
+          "widgets": ["metric cards", "line chart", "bar chart", "pie chart", "recent activity list"],
+          "data_fetching": "React Query with 30s refetch interval",
+          "charts": "Recharts with responsive containers",
+          "layout": "CSS Grid with responsive breakpoints",
+          "interactions": ["date range picker", "metric filters", "chart tooltips"],
+          "styling": "Material UI cards with elevation",
+          "responsive": "1-column mobile, 2-column tablet, 3-column desktop"
+        },
+        "dependencies": ["analytics API", "date range picker"],
+        "estimated_minutes": 60,
+        "quality_gates": ["charts render correctly", "real-time updates", "responsive layout", "loading states"]
+      }
+    },
+    {
+      "id": 7,
+      "phase": "implement-autocomplete",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Search autocomplete with debouncing",
+        "design_system": "Downshift + Tailwind",
+        "state_management": "Local state + React Query"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-autocomplete",
+        "description": "Build autocomplete search with keyboard navigation and highlighting",
+        "specifications": {
+          "features": ["debounced search", "keyboard navigation", "highlighted results", "loading state", "empty state"],
+          "debounce": "300ms using lodash.debounce",
+          "data": "React Query for API search",
+          "accessibility": "ARIA combobox pattern",
+          "styling": "Tailwind with custom dropdown",
+          "responsive": "full-width on mobile"
+        },
+        "dependencies": ["search API endpoint"],
+        "estimated_minutes": 45,
+        "quality_gates": ["debouncing works", "keyboard nav smooth", "accessibility compliant", "loading/empty states"]
+      }
+    },
+    {
+      "id": 8,
+      "phase": "implement-file-upload",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Drag-and-drop file uploader with preview",
+        "design_system": "React Dropzone + custom UI",
+        "state_management": "Local state with upload progress"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-file-upload",
+        "description": "Create drag-and-drop file uploader with multi-file support and progress",
+        "specifications": {
+          "features": ["drag and drop", "file selection", "preview thumbnails", "progress bars", "remove files", "validation"],
+          "validation": "file type (jpg, png, pdf), max size 10MB",
+          "upload": "multipart upload with progress tracking",
+          "preview": "image thumbnails, file icons for others",
+          "styling": "dashed border dropzone with hover state",
+          "accessibility": "keyboard file selection, ARIA live region for progress",
+          "responsive": "grid layout adapts to screen size"
+        },
+        "dependencies": ["upload API endpoint", "file validation rules"],
+        "estimated_minutes": 55,
+        "quality_gates": ["drag/drop works", "validation accurate", "progress updates", "preview renders"]
+      }
+    },
+    {
+      "id": 9,
+      "phase": "implement-infinite-scroll",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Infinite scroll feed with lazy loading",
+        "design_system": "Custom components",
+        "state_management": "React Query infinite queries"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-infinite-scroll",
+        "description": "Build infinite scrolling feed with intersection observer",
+        "specifications": {
+          "features": ["lazy loading", "intersection observer", "loading spinner", "end of results message"],
+          "data": "React Query useInfiniteQuery",
+          "observer": "trigger fetch 200px before end",
+          "items": "post cards with image, title, excerpt",
+          "performance": "image lazy loading with loading='lazy'",
+          "styling": "masonry-style grid",
+          "responsive": "1 column mobile, 2 tablet, 3 desktop"
+        },
+        "dependencies": ["feed API with cursor pagination"],
+        "estimated_minutes": 50,
+        "quality_gates": ["smooth scrolling", "no duplicate loads", "performance optimized", "end state clear"]
+      }
+    },
+    {
+      "id": 10,
+      "phase": "implement-toast-notifications",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Toast notification system with queue",
+        "design_system": "React Hot Toast",
+        "state_management": "Context for notification management"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-toast-notifications",
+        "description": "Create toast notification system with variants and positioning",
+        "specifications": {
+          "variants": ["success", "error", "warning", "info"],
+          "features": ["auto-dismiss", "manual close", "action buttons", "stacking", "positioning"],
+          "positions": ["top-right", "top-center", "bottom-right", "bottom-center"],
+          "timeout": "5s default, configurable per toast",
+          "styling": "variant-specific colors, slide-in animation",
+          "accessibility": "ARIA live region, role='alert'",
+          "api": "useToast() hook for easy invocation"
+        },
+        "dependencies": ["React Hot Toast library"],
+        "estimated_minutes": 40,
+        "quality_gates": ["all variants work", "auto-dismiss timing", "accessibility compliant", "stacking correct"]
+      }
+    },
+    {
+      "id": 11,
+      "phase": "implement-theme-switcher",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Dark mode toggle with persistence",
+        "design_system": "Tailwind with CSS variables",
+        "state_management": "Context + localStorage"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-theme-switcher",
+        "description": "Build theme switcher with smooth transitions and persistence",
+        "specifications": {
+          "themes": ["light", "dark", "system"],
+          "storage": "localStorage with 'theme' key",
+          "detection": "system preference via prefers-color-scheme",
+          "toggle": "animated toggle button with icon",
+          "transitions": "CSS transitions for color changes",
+          "styling": "CSS variables for theme tokens",
+          "ssr": "avoid flash of unstyled content"
+        },
+        "dependencies": ["theme tokens defined"],
+        "estimated_minutes": 35,
+        "quality_gates": ["persistence works", "system detection", "smooth transitions", "no FOUC"]
+      }
+    },
+    {
+      "id": 12,
+      "phase": "implement-calendar",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Calendar component with event management",
+        "design_system": "FullCalendar + custom styling",
+        "state_management": "React Query + local state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-calendar",
+        "description": "Create interactive calendar with drag-drop events",
+        "specifications": {
+          "views": ["month", "week", "day", "agenda"],
+          "features": ["drag and drop", "resize events", "create event on click", "event details modal"],
+          "data": "React Query for fetching events",
+          "interactions": "click to view, double-click to edit, drag to reschedule",
+          "styling": "custom theme matching design system",
+          "accessibility": "keyboard navigation between dates",
+          "responsive": "agenda view on mobile, full calendar on desktop"
+        },
+        "dependencies": ["events API", "FullCalendar license"],
+        "estimated_minutes": 60,
+        "quality_gates": ["drag-drop works", "events persist", "responsive views", "accessibility tested"]
+      }
+    },
+    {
+      "id": 13,
+      "phase": "implement-carousel",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Image carousel with autoplay and thumbnails",
+        "design_system": "Swiper React + custom controls",
+        "state_management": "Swiper internal state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-carousel",
+        "description": "Build responsive image carousel with navigation and autoplay",
+        "specifications": {
+          "features": ["autoplay", "navigation arrows", "pagination dots", "thumbnail strip", "swipe gestures", "keyboard nav"],
+          "autoplay": "5s interval, pause on hover",
+          "thumbnails": "clickable thumbnails below main image",
+          "styling": "custom arrows and pagination",
+          "accessibility": "ARIA carousel pattern",
+          "responsive": "stack thumbnails on mobile",
+          "performance": "lazy load images"
+        },
+        "dependencies": ["Swiper library", "image assets"],
+        "estimated_minutes": 45,
+        "quality_gates": ["autoplay works", "swipe gestures smooth", "keyboard nav", "lazy loading"]
+      }
+    },
+    {
+      "id": 14,
+      "phase": "implement-tabs",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Tabbed interface with lazy loading",
+        "design_system": "Headless UI + Tailwind",
+        "state_management": "URL state with React Router"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-tabs",
+        "description": "Create tabbed interface with URL routing and lazy content loading",
+        "specifications": {
+          "tabs": ["Profile", "Settings", "Activity", "Notifications"],
+          "routing": "URL params for active tab (shareable links)",
+          "lazy": "React.lazy for tab content components",
+          "styling": "underline active tab with animation",
+          "accessibility": "ARIA tabs pattern, keyboard arrow navigation",
+          "responsive": "horizontal scroll on mobile"
+        },
+        "dependencies": ["tab content components"],
+        "estimated_minutes": 40,
+        "quality_gates": ["URL routing works", "lazy loading", "keyboard navigation", "responsive scroll"]
+      }
+    },
+    {
+      "id": 15,
+      "phase": "implement-accordion",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "FAQ accordion with animations",
+        "design_system": "Framer Motion + custom components",
+        "state_management": "Local state for expanded items"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-accordion",
+        "description": "Build animated accordion with single/multiple expansion modes",
+        "specifications": {
+          "modes": ["single expand", "multiple expand"],
+          "animations": "smooth height animation with Framer Motion",
+          "icons": "chevron rotates 180deg when expanded",
+          "styling": "border between items, padding",
+          "accessibility": "ARIA accordion pattern, button for headers",
+          "responsive": "full width"
+        },
+        "dependencies": ["Framer Motion installed"],
+        "estimated_minutes": 35,
+        "quality_gates": ["animations smooth", "modes work correctly", "accessibility compliant", "keyboard navigation"]
+      }
+    },
+    {
+      "id": 16,
+      "phase": "implement-breadcrumbs",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Dynamic breadcrumb navigation",
+        "design_system": "Custom components",
+        "state_management": "Derived from React Router location"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-breadcrumbs",
+        "description": "Create breadcrumb navigation that builds from route path",
+        "specifications": {
+          "generation": "auto-generate from React Router location",
+          "links": "all items clickable except current page",
+          "separators": "chevron-right icon",
+          "truncation": "truncate middle items if >5 levels",
+          "styling": "hover states, current page bold",
+          "accessibility": "ARIA breadcrumb navigation",
+          "responsive": "truncate on mobile"
+        },
+        "dependencies": ["React Router", "route configuration"],
+        "estimated_minutes": 30,
+        "quality_gates": ["correct path generation", "links work", "truncation", "accessibility"]
+      }
+    },
+    {
+      "id": 17,
+      "phase": "implement-skeleton-loader",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Skeleton loading placeholders",
+        "design_system": "Custom components with CSS animation",
+        "state_management": "None (presentational)"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-skeleton-loader",
+        "description": "Create skeleton loader components for various content types",
+        "specifications": {
+          "components": ["SkeletonText", "SkeletonCard", "SkeletonList", "SkeletonAvatar"],
+          "animation": "shimmer effect with CSS gradient animation",
+          "variants": "match actual content dimensions",
+          "styling": "gray background with animated gradient overlay",
+          "accessibility": "ARIA busy state",
+          "responsive": "adapt to container width"
+        },
+        "dependencies": ["design specs for dimensions"],
+        "estimated_minutes": 35,
+        "quality_gates": ["shimmer animation smooth", "variants accurate", "responsive", "accessibility"]
+      }
+    },
+    {
+      "id": 18,
+      "phase": "implement-tooltip",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Tooltip component with positioning",
+        "design_system": "Tippy.js + custom theme",
+        "state_management": "Library internal state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-tooltip",
+        "description": "Build tooltip component with smart positioning and arrow",
+        "specifications": {
+          "positions": ["top", "bottom", "left", "right"],
+          "features": ["auto-positioning", "arrow pointer", "hover/focus trigger", "delay"],
+          "triggers": ["hover", "focus", "click"],
+          "styling": "dark background, white text, rounded corners",
+          "accessibility": "ARIA describedby relationship",
+          "responsive": "adjust position on mobile"
+        },
+        "dependencies": ["Tippy.js library"],
+        "estimated_minutes": 30,
+        "quality_gates": ["positioning works", "triggers correct", "accessibility compliant", "responsive"]
+      }
+    },
+    {
+      "id": 19,
+      "phase": "implement-pagination",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Pagination component with page size selector",
+        "design_system": "Custom components",
+        "state_management": "URL params for page state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-pagination",
+        "description": "Create pagination with ellipsis and page size options",
+        "specifications": {
+          "features": ["page numbers", "prev/next buttons", "first/last buttons", "ellipsis for large ranges", "page size selector"],
+          "routing": "URL params for page and pageSize (shareable)",
+          "styling": "Material Design pagination style",
+          "accessibility": "ARIA navigation, current page indication",
+          "responsive": "hide page numbers on mobile, show prev/next only"
+        },
+        "dependencies": ["URL routing setup"],
+        "estimated_minutes": 40,
+        "quality_gates": ["URL state correct", "ellipsis logic", "page size changes", "accessibility"]
+      }
+    },
+    {
+      "id": 20,
+      "phase": "implement-progress-bar",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Progress indicators (linear and circular)",
+        "design_system": "Custom components with CSS/SVG",
+        "state_management": "Props-driven"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-progress-bar",
+        "description": "Build linear and circular progress indicators with variants",
+        "specifications": {
+          "types": ["linear", "circular"],
+          "variants": ["determinate", "indeterminate"],
+          "features": ["percentage label", "color variants", "size variants"],
+          "styling": "smooth transitions, animated indeterminate",
+          "accessibility": "ARIA progressbar role, aria-valuenow",
+          "responsive": "adapt width to container"
+        },
+        "dependencies": ["CSS/SVG animations"],
+        "estimated_minutes": 35,
+        "quality_gates": ["smooth animations", "variants work", "accessibility compliant", "performance"]
+      }
+    },
+    {
+      "id": 21,
+      "phase": "implement-context-menu",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Right-click context menu",
+        "design_system": "Headless UI + custom positioning",
+        "state_management": "Local state for menu position"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-context-menu",
+        "description": "Create context menu with smart positioning and keyboard navigation",
+        "specifications": {
+          "trigger": "right-click event",
+          "positioning": "near cursor, adjust if near viewport edge",
+          "items": ["action items", "dividers", "submenu support"],
+          "features": ["keyboard navigation", "escape to close", "click outside to close"],
+          "styling": "elevated card with list items",
+          "accessibility": "ARIA menu pattern",
+          "responsive": "touch-friendly on mobile"
+        },
+        "dependencies": ["Headless UI Menu"],
+        "estimated_minutes": 45,
+        "quality_gates": ["positioning correct", "keyboard nav", "accessibility compliant", "submenus work"]
+      }
+    },
+    {
+      "id": 22,
+      "phase": "implement-stepper",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Multi-step wizard with progress",
+        "design_system": "Material UI Stepper",
+        "state_management": "Local state + URL params"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-stepper",
+        "description": "Build multi-step wizard with validation and progress tracking",
+        "specifications": {
+          "steps": ["Step 1", "Step 2", "Step 3", "Review"],
+          "features": ["step indicator", "back/next buttons", "step validation", "optional steps", "complete state"],
+          "validation": "validate before proceeding to next step",
+          "persistence": "save progress to localStorage",
+          "styling": "horizontal stepper with line connectors",
+          "accessibility": "ARIA landmarks, step status",
+          "responsive": "vertical stepper on mobile"
+        },
+        "dependencies": ["validation schemas"],
+        "estimated_minutes": 50,
+        "quality_gates": ["validation works", "persistence", "responsive layout", "accessibility"]
+      }
+    },
+    {
+      "id": 23,
+      "phase": "implement-drawer",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Slide-out drawer panel",
+        "design_system": "Headless UI + Framer Motion",
+        "state_management": "Context for drawer state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-drawer",
+        "description": "Create animated drawer component with backdrop and positions",
+        "specifications": {
+          "positions": ["left", "right", "top", "bottom"],
+          "features": ["backdrop", "escape to close", "click outside to close", "focus trap", "scroll lock"],
+          "animations": "slide-in/slide-out with Framer Motion",
+          "sizing": "configurable width/height (sm, md, lg, full)",
+          "styling": "elevated panel with shadow",
+          "accessibility": "ARIA dialog, focus management",
+          "responsive": "full-screen on mobile"
+        },
+        "dependencies": ["Framer Motion installed"],
+        "estimated_minutes": 45,
+        "quality_gates": ["animations smooth", "all positions work", "accessibility compliant", "focus trap"]
+      }
+    },
+    {
+      "id": 24,
+      "phase": "implement-command-palette",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Command palette for quick actions",
+        "design_system": "Cmdk library + custom styling",
+        "state_management": "Command registry context"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-command-palette",
+        "description": "Build command palette with fuzzy search and keyboard shortcuts",
+        "specifications": {
+          "trigger": "Cmd/Ctrl+K to open",
+          "features": ["fuzzy search", "keyboard navigation", "recent commands", "grouped commands", "icons"],
+          "search": "instant search with highlighting",
+          "commands": ["navigation", "actions", "settings"],
+          "styling": "centered modal with spotlight design",
+          "accessibility": "ARIA combobox, keyboard-only operation",
+          "responsive": "full-screen on mobile"
+        },
+        "dependencies": ["cmdk library", "command definitions"],
+        "estimated_minutes": 55,
+        "quality_gates": ["fuzzy search works", "keyboard shortcuts", "accessibility compliant", "performance"]
+      }
+    },
+    {
+      "id": 25,
+      "phase": "implement-tree-view",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Hierarchical tree navigation",
+        "design_system": "React AriaKit + custom styling",
+        "state_management": "Local state for expanded nodes"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-tree-view",
+        "description": "Create collapsible tree view with selection and keyboard navigation",
+        "specifications": {
+          "features": ["expand/collapse", "selection", "icons", "lazy loading", "search/filter"],
+          "interactions": "click to expand/collapse, keyboard arrow navigation",
+          "selection": "single or multi-select with checkboxes",
+          "lazy": "load children on expand",
+          "styling": "indented hierarchy with connecting lines",
+          "accessibility": "ARIA tree pattern",
+          "responsive": "touch-friendly tap targets"
+        },
+        "dependencies": ["tree data structure", "lazy load API"],
+        "estimated_minutes": 60,
+        "quality_gates": ["keyboard nav works", "lazy loading", "selection accurate", "accessibility"]
+      }
+    },
+    {
+      "id": 26,
+      "phase": "implement-kanban-board",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Drag-and-drop Kanban board",
+        "design_system": "React Beautiful DnD + custom cards",
+        "state_management": "React Query + optimistic updates"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-kanban-board",
+        "description": "Build Kanban board with drag-drop between columns",
+        "specifications": {
+          "columns": ["To Do", "In Progress", "Review", "Done"],
+          "features": ["drag and drop cards", "drag columns", "add card", "edit card", "delete card"],
+          "dnd": "React Beautiful DnD for smooth drag-drop",
+          "persistence": "optimistic updates with React Query",
+          "styling": "card-based design with color coding",
+          "accessibility": "keyboard card movement",
+          "responsive": "horizontal scroll on mobile"
+        },
+        "dependencies": ["React Beautiful DnD", "cards API"],
+        "estimated_minutes": 60,
+        "quality_gates": ["drag-drop smooth", "optimistic updates", "responsive", "keyboard accessible"]
+      }
+    },
+    {
+      "id": 27,
+      "phase": "implement-rich-text-editor",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "WYSIWYG rich text editor",
+        "design_system": "Tiptap editor + custom toolbar",
+        "state_management": "Editor state managed by Tiptap"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-rich-text-editor",
+        "description": "Create rich text editor with formatting toolbar",
+        "specifications": {
+          "features": ["bold", "italic", "underline", "headings", "lists", "links", "images", "code blocks"],
+          "toolbar": "floating toolbar on text selection",
+          "shortcuts": "keyboard shortcuts (Cmd+B for bold, etc.)",
+          "output": "HTML or Markdown",
+          "styling": "editor content area with border",
+          "accessibility": "ARIA textbox, keyboard commands",
+          "responsive": "toolbar adapts to mobile"
+        },
+        "dependencies": ["Tiptap library", "image upload API"],
+        "estimated_minutes": 55,
+        "quality_gates": ["all features work", "shortcuts functional", "output format correct", "accessibility"]
+      }
+    },
+    {
+      "id": 28,
+      "phase": "implement-video-player",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Custom video player with controls",
+        "design_system": "Video.js + custom skin",
+        "state_management": "Player state from Video.js"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-video-player",
+        "description": "Build custom video player with controls and quality selector",
+        "specifications": {
+          "controls": ["play/pause", "progress bar", "volume", "fullscreen", "quality selector", "playback speed"],
+          "features": ["keyboard shortcuts", "picture-in-picture", "subtitles", "thumbnail preview on hover"],
+          "player": "Video.js with HLS support",
+          "styling": "custom control bar with brand colors",
+          "accessibility": "keyboard controls, captions",
+          "responsive": "full-width, maintain aspect ratio"
+        },
+        "dependencies": ["Video.js library", "video sources"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all controls work", "HLS streaming", "accessibility compliant", "responsive"]
+      }
+    },
+    {
+      "id": 29,
+      "phase": "implement-chat-interface",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Real-time chat interface",
+        "design_system": "Custom components",
+        "state_management": "WebSocket + React Query"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-chat-interface",
+        "description": "Create real-time chat UI with message threading",
+        "specifications": {
+          "features": ["message list", "input box", "emoji picker", "file attachments", "typing indicators", "read receipts"],
+          "real_time": "WebSocket for live updates",
+          "ui": ["message bubbles", "timestamps", "avatars", "auto-scroll to bottom"],
+          "styling": "messenger-style bubbles",
+          "accessibility": "ARIA live region for new messages",
+          "responsive": "full-screen on mobile"
+        },
+        "dependencies": ["WebSocket connection", "chat API"],
+        "estimated_minutes": 60,
+        "quality_gates": ["real-time works", "auto-scroll", "emoji picker", "accessibility"]
+      }
+    },
+    {
+      "id": 30,
+      "phase": "implement-heatmap",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Activity heatmap calendar",
+        "design_system": "React Calendar Heatmap",
+        "state_management": "React Query for activity data"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-heatmap",
+        "description": "Build GitHub-style activity heatmap calendar",
+        "specifications": {
+          "display": "365 days of activity in grid",
+          "colors": "gradient based on activity level (0-4 levels)",
+          "tooltips": "show date and activity count on hover",
+          "data": "React Query to fetch daily activity",
+          "styling": "color scale matching brand",
+          "accessibility": "ARIA labels for screen readers",
+          "responsive": "horizontal scroll on mobile"
+        },
+        "dependencies": ["activity API", "React Calendar Heatmap"],
+        "estimated_minutes": 40,
+        "quality_gates": ["colors accurate", "tooltips work", "responsive", "accessibility"]
+      }
+    },
+    {
+      "id": 31,
+      "phase": "implement-gantt-chart",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Project timeline Gantt chart",
+        "design_system": "DHTMLX Gantt + custom theme",
+        "state_management": "Gantt internal state + API sync"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-gantt-chart",
+        "description": "Create interactive Gantt chart for project timeline",
+        "specifications": {
+          "features": ["task bars", "dependencies", "milestones", "drag to resize/move", "zoom levels"],
+          "views": ["day", "week", "month"],
+          "interactions": "drag to adjust dates, click for details",
+          "data": "sync with API on changes",
+          "styling": "custom colors for task types",
+          "accessibility": "keyboard navigation",
+          "responsive": "horizontal scroll with fixed headers"
+        },
+        "dependencies": ["DHTMLX Gantt license", "tasks API"],
+        "estimated_minutes": 60,
+        "quality_gates": ["drag interactions work", "dependencies render", "responsive", "API sync"]
+      }
+    },
+    {
+      "id": 32,
+      "phase": "implement-map-component",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Interactive map with markers",
+        "design_system": "React Leaflet + custom markers",
+        "state_management": "Map state + React Query for locations"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-map-component",
+        "description": "Build interactive map with custom markers and clustering",
+        "specifications": {
+          "features": ["markers", "popups", "clustering", "search location", "geolocation", "draw tools"],
+          "library": "React Leaflet with OpenStreetMap tiles",
+          "clustering": "marker clustering for dense areas",
+          "popups": "custom popup with location details",
+          "styling": "custom marker icons",
+          "accessibility": "keyboard navigation between markers",
+          "responsive": "full-width, touch gestures on mobile"
+        },
+        "dependencies": ["React Leaflet", "locations API"],
+        "estimated_minutes": 55,
+        "quality_gates": ["markers render", "clustering works", "popups functional", "responsive"]
+      }
+    },
+    {
+      "id": 33,
+      "phase": "implement-code-editor",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "In-browser code editor",
+        "design_system": "Monaco Editor + custom theme",
+        "state_management": "Editor state + debounced save"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-code-editor",
+        "description": "Create in-browser code editor with syntax highlighting",
+        "specifications": {
+          "editor": "Monaco Editor (VS Code engine)",
+          "features": ["syntax highlighting", "autocomplete", "linting", "multi-file tabs", "search/replace"],
+          "languages": ["javascript", "typescript", "python", "json"],
+          "theme": "custom VS Code theme",
+          "persistence": "debounced auto-save (2s)",
+          "accessibility": "keyboard shortcuts, screen reader support",
+          "responsive": "full-screen on mobile"
+        },
+        "dependencies": ["Monaco Editor", "save API"],
+        "estimated_minutes": 60,
+        "quality_gates": ["syntax highlighting", "autocomplete works", "auto-save", "responsive"]
+      }
+    },
+    {
+      "id": 34,
+      "phase": "implement-timeline",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Vertical timeline for events",
+        "design_system": "Custom components with CSS",
+        "state_management": "React Query for timeline data"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-timeline",
+        "description": "Build vertical timeline with icons and alternating layout",
+        "specifications": {
+          "layout": "vertical line with events alternating left/right",
+          "items": ["icon", "date", "title", "description", "optional image"],
+          "features": ["lazy loading", "filtering by category", "scroll-triggered animations"],
+          "styling": "timeline line with branch connectors",
+          "accessibility": "semantic HTML, ARIA labels",
+          "responsive": "single column on mobile"
+        },
+        "dependencies": ["timeline data API"],
+        "estimated_minutes": 45,
+        "quality_gates": ["layout correct", "animations smooth", "responsive", "accessibility"]
+      }
+    },
+    {
+      "id": 35,
+      "phase": "implement-pricing-table",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Pricing comparison table",
+        "design_system": "Custom cards with Tailwind",
+        "state_management": "Local state for billing period"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-pricing-table",
+        "description": "Create responsive pricing table with toggle and highlights",
+        "specifications": {
+          "tiers": ["Free", "Pro", "Enterprise"],
+          "toggle": "monthly/annual billing toggle",
+          "features": ["feature list", "checkmarks/crosses", "CTA buttons", "popular badge"],
+          "styling": "card-based layout, highlight popular tier",
+          "accessibility": "semantic table structure or ARIA grid",
+          "responsive": "stack cards on mobile",
+          "animations": "price transition on toggle"
+        },
+        "dependencies": ["pricing data"],
+        "estimated_minutes": 40,
+        "quality_gates": ["toggle works", "responsive layout", "accessibility compliant", "animations"]
+      }
+    },
+    {
+      "id": 36,
+      "phase": "implement-onboarding-flow",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "User onboarding tutorial",
+        "design_system": "React Joyride + custom styles",
+        "state_management": "Context for onboarding progress"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-onboarding-flow",
+        "description": "Build guided onboarding tour with spotlights and tooltips",
+        "specifications": {
+          "steps": ["welcome", "feature 1", "feature 2", "feature 3", "completion"],
+          "features": ["spotlight on elements", "tooltips", "next/back buttons", "skip tour", "progress dots"],
+          "library": "React Joyride for tour orchestration",
+          "persistence": "save progress, don't repeat for returning users",
+          "styling": "custom tooltip theme",
+          "accessibility": "keyboard navigation, focus management",
+          "responsive": "adapt spotlight on mobile"
+        },
+        "dependencies": ["React Joyride", "onboarding content"],
+        "estimated_minutes": 50,
+        "quality_gates": ["tour flow correct", "persistence works", "responsive", "accessibility"]
+      }
+    },
+    {
+      "id": 37,
+      "phase": "implement-audio-waveform",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Audio player with waveform visualization",
+        "design_system": "WaveSurfer.js + custom controls",
+        "state_management": "WaveSurfer state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-audio-waveform",
+        "description": "Create audio player with interactive waveform visualization",
+        "specifications": {
+          "features": ["waveform visualization", "play/pause", "seek", "volume", "playback speed", "regions/markers"],
+          "waveform": "WaveSurfer.js with gradient colors",
+          "interactions": "click waveform to seek",
+          "styling": "custom controls bar",
+          "accessibility": "keyboard controls, time display",
+          "responsive": "full-width waveform"
+        },
+        "dependencies": ["WaveSurfer.js", "audio files"],
+        "estimated_minutes": 50,
+        "quality_gates": ["waveform renders", "controls work", "seek functional", "responsive"]
+      }
+    },
+    {
+      "id": 38,
+      "phase": "implement-emoji-picker",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Emoji picker with categories",
+        "design_system": "Emoji Mart + custom styling",
+        "state_management": "Picker state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-emoji-picker",
+        "description": "Build emoji picker with search and categories",
+        "specifications": {
+          "features": ["categories", "search", "recently used", "skin tone selector"],
+          "library": "Emoji Mart for emoji data",
+          "trigger": "button opens picker in popover",
+          "search": "fuzzy search by name",
+          "styling": "popover with custom theme",
+          "accessibility": "keyboard navigation, ARIA labels",
+          "responsive": "bottom sheet on mobile"
+        },
+        "dependencies": ["Emoji Mart library"],
+        "estimated_minutes": 40,
+        "quality_gates": ["search works", "categories functional", "responsive", "accessibility"]
+      }
+    },
+    {
+      "id": 39,
+      "phase": "implement-color-picker",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Color picker component",
+        "design_system": "React Color + custom input",
+        "state_management": "Controlled input state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-color-picker",
+        "description": "Create color picker with multiple input formats",
+        "specifications": {
+          "picker": "React Color with multiple picker styles",
+          "formats": ["HEX", "RGB", "HSL"],
+          "features": ["alpha channel", "preset colors", "eyedropper (if supported)", "recent colors"],
+          "ui": ["color swatch trigger", "popover picker"],
+          "styling": "custom picker theme",
+          "accessibility": "keyboard input, ARIA labels",
+          "responsive": "full-width on mobile"
+        },
+        "dependencies": ["React Color library"],
+        "estimated_minutes": 45,
+        "quality_gates": ["all formats work", "alpha channel", "eyedropper", "accessibility"]
+      }
+    },
+    {
+      "id": 40,
+      "phase": "implement-drag-drop-upload",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Drag-drop file uploader with S3 direct upload",
+        "design_system": "React Dropzone + custom UI",
+        "state_management": "Upload state with progress"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-drag-drop-upload",
+        "description": "Build drag-drop uploader with direct S3 upload and progress",
+        "specifications": {
+          "features": ["drag and drop", "file selection", "multiple files", "progress per file", "cancel upload", "retry failed"],
+          "upload": "direct S3 upload with presigned URLs",
+          "validation": "file type, size (max 100MB per file)",
+          "ui": ["dropzone", "file list", "progress bars", "success/error states"],
+          "styling": "dashed border dropzone, file cards",
+          "accessibility": "keyboard file selection, status announcements",
+          "responsive": "touch-friendly"
+        },
+        "dependencies": ["S3 presigned URL API", "AWS SDK"],
+        "estimated_minutes": 60,
+        "quality_gates": ["drag-drop works", "direct upload", "progress accurate", "error handling"]
+      }
+    },
+    {
+      "id": 41,
+      "phase": "implement-virtual-scroll",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Virtual scroll list for large datasets",
+        "design_system": "React Virtual + custom items",
+        "state_management": "React Query for data"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-virtual-scroll",
+        "description": "Create virtual scroll list for rendering thousands of items",
+        "specifications": {
+          "features": ["windowing", "variable height items", "scroll to index", "sticky headers"],
+          "library": "React Virtual (TanStack Virtual)",
+          "data": "React Query with infinite scroll",
+          "performance": "render only visible items (60 FPS)",
+          "styling": "seamless scrolling experience",
+          "accessibility": "keyboard navigation, ARIA roles",
+          "responsive": "full-height container"
+        },
+        "dependencies": ["React Virtual", "data API"],
+        "estimated_minutes": 50,
+        "quality_gates": ["performance at 10k+ items", "smooth scrolling", "variable heights", "accessibility"]
+      }
+    },
+    {
+      "id": 42,
+      "phase": "implement-markdown-renderer",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Markdown renderer with syntax highlighting",
+        "design_system": "React Markdown + custom styles",
+        "state_management": "Props-driven"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-markdown-renderer",
+        "description": "Build markdown renderer with code syntax highlighting",
+        "specifications": {
+          "library": "React Markdown with remark/rehype plugins",
+          "features": ["syntax highlighting", "GFM support", "custom renderers", "link handling"],
+          "syntax": "Prism.js or Highlight.js for code blocks",
+          "styling": "GitHub-flavored markdown styles",
+          "security": "sanitize HTML to prevent XSS",
+          "accessibility": "semantic HTML, heading hierarchy",
+          "responsive": "code blocks horizontal scroll"
+        },
+        "dependencies": ["React Markdown", "syntax highlighter"],
+        "estimated_minutes": 45,
+        "quality_gates": ["all markdown features", "syntax highlighting", "XSS prevention", "responsive"]
+      }
+    },
+    {
+      "id": 43,
+      "phase": "implement-image-gallery",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Image gallery with lightbox",
+        "design_system": "React Image Gallery + custom lightbox",
+        "state_management": "Gallery state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-image-gallery",
+        "description": "Create image gallery with thumbnail grid and lightbox viewer",
+        "specifications": {
+          "features": ["thumbnail grid", "lightbox on click", "navigation arrows", "thumbnails in lightbox", "zoom", "download"],
+          "library": "React Image Gallery or PhotoSwipe",
+          "grid": "CSS Grid with responsive columns",
+          "lightbox": "full-screen with backdrop",
+          "styling": "masonry or grid layout",
+          "accessibility": "keyboard navigation, ARIA labels",
+          "responsive": "1-4 columns based on screen size"
+        },
+        "dependencies": ["image gallery library", "image assets"],
+        "estimated_minutes": 50,
+        "quality_gates": ["lightbox works", "navigation smooth", "responsive grid", "accessibility"]
+      }
+    },
+    {
+      "id": 44,
+      "phase": "implement-comparison-slider",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Image comparison slider (before/after)",
+        "design_system": "React Compare Slider + custom handle",
+        "state_management": "Slider position state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-comparison-slider",
+        "description": "Build before/after image comparison slider",
+        "specifications": {
+          "features": ["draggable divider", "touch support", "keyboard arrows", "labels (before/after)"],
+          "library": "React Compare Slider",
+          "handle": "custom drag handle with icon",
+          "styling": "full-width images, smooth dragging",
+          "accessibility": "keyboard control, ARIA labels",
+          "responsive": "full-width on all devices"
+        },
+        "dependencies": ["React Compare Slider", "image pairs"],
+        "estimated_minutes": 40,
+        "quality_gates": ["drag smooth", "touch works", "keyboard control", "responsive"]
+      }
+    },
+    {
+      "id": 45,
+      "phase": "implement-notification-center",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Notification center with badge and panel",
+        "design_system": "Headless UI + custom components",
+        "state_management": "React Query + WebSocket for real-time"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-notification-center",
+        "description": "Create notification center with real-time updates and filtering",
+        "specifications": {
+          "features": ["notification bell with count badge", "dropdown panel", "mark as read", "delete", "filtering", "infinite scroll"],
+          "real_time": "WebSocket for live notifications",
+          "types": ["info", "success", "warning", "error"],
+          "ui": ["grouped by date", "unread highlighting", "empty state"],
+          "styling": "dropdown panel with notifications list",
+          "accessibility": "ARIA live region, keyboard navigation",
+          "responsive": "full-screen panel on mobile"
+        },
+        "dependencies": ["notifications API", "WebSocket"],
+        "estimated_minutes": 60,
+        "quality_gates": ["real-time updates", "filtering works", "mark as read", "accessibility"]
+      }
+    },
+    {
+      "id": 46,
+      "phase": "implement-feedback-widget",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "User feedback widget with screenshot",
+        "design_system": "Custom components",
+        "state_management": "Local form state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-feedback-widget",
+        "description": "Build feedback widget with screenshot capture and submission",
+        "specifications": {
+          "trigger": "floating button (bottom-right)",
+          "features": ["text feedback", "screenshot capture", "drawing on screenshot", "email field", "submit"],
+          "screenshot": "html2canvas for capturing screen",
+          "drawing": "canvas overlay for annotations",
+          "styling": "slide-in panel from bottom",
+          "accessibility": "keyboard trigger, ARIA labels",
+          "responsive": "full-screen on mobile"
+        },
+        "dependencies": ["html2canvas library", "feedback API"],
+        "estimated_minutes": 55,
+        "quality_gates": ["screenshot works", "drawing functional", "submission success", "responsive"]
+      }
+    },
+    {
+      "id": 47,
+      "phase": "implement-search-filters",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "Advanced search with multiple filters",
+        "design_system": "Custom components + Downshift",
+        "state_management": "URL params for filter state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-search-filters",
+        "description": "Create search interface with multiple filter types and active filter chips",
+        "specifications": {
+          "filters": ["text search", "category dropdown", "price range slider", "date range picker", "checkboxes"],
+          "features": ["active filter chips", "clear all", "filter count", "apply/reset buttons"],
+          "state": "URL params for shareable filter state",
+          "ui": ["collapsible filter panel", "applied filters header"],
+          "styling": "sidebar filters on desktop, drawer on mobile",
+          "accessibility": "ARIA landmarks, keyboard navigation",
+          "responsive": "filter drawer on mobile"
+        },
+        "dependencies": ["search API with filter params"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all filter types work", "URL state correct", "responsive layout", "accessibility"]
+      }
+    },
+    {
+      "id": 48,
+      "phase": "implement-password-strength",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Password input with strength indicator",
+        "design_system": "Custom components",
+        "state_management": "Local input state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-password-strength",
+        "description": "Build password input with real-time strength meter and requirements",
+        "specifications": {
+          "features": ["toggle visibility", "strength meter", "requirements checklist", "suggestions"],
+          "strength": "zxcvbn library for accurate scoring",
+          "requirements": ["min length", "uppercase", "lowercase", "number", "special char"],
+          "meter": "color-coded bar (weak, fair, good, strong)",
+          "styling": "password input with icon, meter below",
+          "accessibility": "ARIA live announcements for strength",
+          "responsive": "full-width input"
+        },
+        "dependencies": ["zxcvbn library"],
+        "estimated_minutes": 45,
+        "quality_gates": ["strength accurate", "requirements update live", "accessibility compliant", "responsive"]
+      }
+    },
+    {
+      "id": 49,
+      "phase": "implement-qr-code-generator",
+      "context": {
+        "previous_phase": "design",
+        "component_spec": "QR code generator with customization",
+        "design_system": "qrcode.react + custom controls",
+        "state_management": "Local state for QR options"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-qr-code-generator",
+        "description": "Create QR code generator with customization options",
+        "specifications": {
+          "features": ["text/URL input", "size selector", "color customization", "logo overlay", "download PNG/SVG"],
+          "library": "qrcode.react for QR generation",
+          "customization": ["foreground color", "background color", "error correction level", "logo image"],
+          "export": "download as PNG or SVG",
+          "styling": "preview QR code with options panel",
+          "accessibility": "alt text for QR code, keyboard navigation",
+          "responsive": "stacked layout on mobile"
+        },
+        "dependencies": ["qrcode.react library"],
+        "estimated_minutes": 50,
+        "quality_gates": ["QR codes scannable", "customization works", "export functional", "responsive"]
+      }
+    },
+    {
+      "id": 50,
+      "phase": "implement-confetti-animation",
+      "context": {
+        "previous_phase": "architecture",
+        "component_spec": "Confetti celebration animation",
+        "design_system": "React Confetti + custom trigger",
+        "state_management": "Animation state"
+      },
+      "expected_drone_task": {
+        "drone_id": "frontend-dev",
+        "task_type": "implement-confetti-animation",
+        "description": "Build confetti animation for success celebrations",
+        "specifications": {
+          "features": ["confetti burst", "customizable colors", "duration control", "trigger API"],
+          "library": "React Confetti for canvas animation",
+          "trigger": "programmatic trigger from success events",
+          "customization": ["colors", "particle count", "duration", "origin point"],
+          "styling": "full-screen overlay, non-blocking",
+          "accessibility": "prefers-reduced-motion support",
+          "responsive": "adapts to viewport size"
+        },
+        "dependencies": ["React Confetti library"],
+        "estimated_minutes": 35,
+        "quality_gates": ["animation smooth", "customization works", "reduced-motion respected", "performance"]
+      }
+    }
+  ]
+}

@@ -1,0 +1,138 @@
+digraph INCIDENT_RESPONSE {
+    // TRIGGER: Security incident detected
+    // USE WHEN:
+    //   - Unauthorized access detected
+    //   - Data breach suspected
+    //   - Security vulnerability exploited
+    //   - Unusual traffic patterns
+    //   - Failed login threshold exceeded
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_incident_response {
+        label="TRIGGER: Security Incident Detected";
+        style="rounded,bold";
+        bgcolor="#ffebee";
+
+        // Entry
+        "Security incident detected" [shape=ellipse];
+
+        // Phase 1: Detection & Classification
+        "Classify incident severity" [shape=box];
+        "Critical severity?" [shape=diamond];
+        "High severity?" [shape=diamond];
+
+        // Phase 2: Immediate Containment (Critical/High)
+        "IMMEDIATE CONTAINMENT" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+        // Containment actions
+        "Block malicious IPs:\nufw deny from <malicious-ip>" [shape=plaintext];
+        "Isolate affected systems:\nkubectl drain <node-name>" [shape=plaintext];
+        "Revoke compromised credentials:\nRevoke JWT tokens, rotate API keys" [shape=box];
+        "Enable enhanced logging" [shape=box];
+
+        // Phase 3: Evidence Collection
+        "Preserve logs:\nkubectl logs <pod-name> > incident-logs-$(date +%Y%m%d).txt" [shape=plaintext];
+        "Take system snapshots:\naws ec2 create-snapshot --volume-id <vol-id>" [shape=plaintext];
+        "Document timeline:\n- What happened\n- When discovered\n- Actions taken" [shape=box];
+
+        // Phase 4: Eradication
+        "Identify attack vector" [shape=box];
+        "Remove malware/backdoors" [shape=box];
+        "Patch vulnerabilities:\nnpm audit fix\napt update && apt upgrade" [shape=plaintext];
+        "Reset compromised credentials" [shape=box];
+
+        // Phase 5: Recovery
+        "Restore from clean backup?" [shape=diamond];
+        "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < clean_backup.sql" [shape=plaintext];
+        "Verify system integrity:\nRun security scans" [shape=box];
+        "kubectl get pods" [shape=plaintext];
+        "curl https://spek.platform/health" [shape=plaintext];
+        "Systems operational?" [shape=diamond];
+
+        // Phase 6: Notification
+        "Notify stakeholders" [shape=box];
+        "Security team notified?" [shape=diamond];
+        "Legal team notified?" [shape=diamond];
+        "Users notified (if required)?" [shape=diamond];
+
+        // Phase 7: Post-Incident
+        "Create incident report" [shape=box];
+        "Schedule post-mortem" [shape=box];
+        "Update security measures" [shape=box];
+
+        "Incident resolved" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "ESCALATE TO SECURITY TEAM" [shape=octagon, style=filled, fillcolor=orange];
+
+        // Flow
+        "Security incident detected" -> "Classify incident severity";
+        "Classify incident severity" -> "Critical severity?";
+
+        "Critical severity?" -> "IMMEDIATE CONTAINMENT" [label="yes"];
+        "Critical severity?" -> "High severity?" [label="no"];
+
+        "High severity?" -> "IMMEDIATE CONTAINMENT" [label="yes"];
+        "High severity?" -> "Document timeline:\n- What happened\n- When discovered\n- Actions taken" [label="no"];
+
+        // Containment flow
+        "IMMEDIATE CONTAINMENT" -> "Block malicious IPs:\nufw deny from <malicious-ip>";
+        "Block malicious IPs:\nufw deny from <malicious-ip>" -> "Isolate affected systems:\nkubectl drain <node-name>";
+        "Isolate affected systems:\nkubectl drain <node-name>" -> "Revoke compromised credentials:\nRevoke JWT tokens, rotate API keys";
+        "Revoke compromised credentials:\nRevoke JWT tokens, rotate API keys" -> "Enable enhanced logging";
+        "Enable enhanced logging" -> "Preserve logs:\nkubectl logs <pod-name> > incident-logs-$(date +%Y%m%d).txt";
+
+        // Evidence collection
+        "Preserve logs:\nkubectl logs <pod-name> > incident-logs-$(date +%Y%m%d).txt" -> "Take system snapshots:\naws ec2 create-snapshot --volume-id <vol-id>";
+        "Take system snapshots:\naws ec2 create-snapshot --volume-id <vol-id>" -> "Document timeline:\n- What happened\n- When discovered\n- Actions taken";
+
+        // Eradication
+        "Document timeline:\n- What happened\n- When discovered\n- Actions taken" -> "Identify attack vector";
+        "Identify attack vector" -> "Remove malware/backdoors";
+        "Remove malware/backdoors" -> "Patch vulnerabilities:\nnpm audit fix\napt update && apt upgrade";
+        "Patch vulnerabilities:\nnpm audit fix\napt update && apt upgrade" -> "Reset compromised credentials";
+
+        // Recovery
+        "Reset compromised credentials" -> "Restore from clean backup?";
+        "Restore from clean backup?" -> "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < clean_backup.sql" [label="yes"];
+        "Restore from clean backup?" -> "Verify system integrity:\nRun security scans" [label="no"];
+        "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < clean_backup.sql" -> "Verify system integrity:\nRun security scans";
+
+        "Verify system integrity:\nRun security scans" -> "kubectl get pods";
+        "kubectl get pods" -> "curl https://spek.platform/health";
+        "curl https://spek.platform/health" -> "Systems operational?";
+        "Systems operational?" -> "Notify stakeholders" [label="yes"];
+        "Systems operational?" -> "ESCALATE TO SECURITY TEAM" [label="no"];
+
+        // Notification
+        "Notify stakeholders" -> "Security team notified?";
+        "Security team notified?" -> "Legal team notified?";
+        "Legal team notified?" -> "Users notified (if required)?";
+
+        // Post-incident
+        "Users notified (if required)?" -> "Create incident report";
+        "Create incident report" -> "Schedule post-mortem";
+        "Schedule post-mortem" -> "Update security measures";
+        "Update security measures" -> "Incident resolved";
+    }
+
+    // Notification requirements
+    subgraph cluster_notification {
+        label="Notification Requirements";
+        bgcolor="#fff3e0";
+
+        "Critical incident:\n- Notify within 1 hour\n- Security team + Management" [shape=box];
+        "Data breach:\n- Notify within 72 hours (GDPR)\n- Legal + Users" [shape=box];
+        "Vulnerability exploit:\n- Notify affected users\n- Document in security log" [shape=box];
+    }
+
+    // Incident types
+    subgraph cluster_incident_types {
+        label="Incident Classification";
+        bgcolor="#ffcdd2";
+
+        "Critical:\n- Data breach\n- System compromise\n- Ransomware" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "High:\n- Unauthorized access attempt\n- DDoS attack\n- Malware detection" [shape=octagon, style=filled, fillcolor=orange];
+        "Medium:\n- Failed login spikes\n- Port scanning\n- Suspicious traffic" [shape=octagon, style=filled, fillcolor=yellow];
+    }
+}

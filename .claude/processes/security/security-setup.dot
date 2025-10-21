@@ -1,0 +1,110 @@
+digraph SECURITY_SETUP {
+    // TRIGGER: Setting up security for production deployment
+    // USE WHEN:
+    //   - New application deployment
+    //   - Security audit required
+    //   - Compliance requirements
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_security_setup {
+        label="TRIGGER: Production Security Setup";
+        style="rounded,bold";
+        bgcolor="#fff3e0";
+
+        // Entry
+        "Security setup needed" [shape=ellipse];
+
+        // Security headers
+        "Configure security headers in next.config.ts:\n- X-Frame-Options: SAMEORIGIN\n- X-Content-Type-Options: nosniff\n- Strict-Transport-Security\n- Content-Security-Policy" [shape=box];
+        "Security headers configured?" [shape=diamond];
+
+        // HTTPS/TLS
+        "SSL certificate valid?" [shape=diamond];
+        "Install Let's Encrypt:\ncertbot certonly --standalone -d spek.platform" [shape=plaintext];
+        "Configure Nginx TLS:\n- TLS 1.2+\n- Strong ciphers\n- OCSP stapling" [shape=box];
+        "openssl s_client -connect spek.platform:443" [shape=plaintext];
+        "TLS configured correctly?" [shape=diamond];
+
+        // Authentication & secrets
+        "Secrets in vault?" [shape=diamond];
+        "Move secrets to vault:\n- DATABASE_URL\n- JWT_SECRET\n- API_KEYS" [shape=box];
+        "Verify .env not in git:\ngrep -r \"DATABASE_URL\" --include=.env ." [shape=plaintext];
+
+        // Input validation
+        "Input validation implemented?" [shape=diamond];
+        "Implement Zod schemas:\n- Email validation\n- SQL injection prevention\n- XSS prevention" [shape=box];
+
+        // Dependency scanning
+        "npm audit --production" [shape=plaintext];
+        "No critical vulnerabilities?" [shape=diamond];
+        "npm audit fix" [shape=plaintext];
+        "pip-audit" [shape=plaintext];
+
+        // Rate limiting
+        "Rate limiting configured?" [shape=diamond];
+        "Configure rate limiter:\n- 100 req/15min per IP\n- API authentication required" [shape=box];
+
+        // Firewall
+        "ufw status" [shape=plaintext];
+        "Firewall configured?" [shape=diamond];
+        "Configure firewall:\nufw default deny incoming\nufw allow 22/tcp\nufw allow 80/tcp\nufw allow 443/tcp\nufw enable" [shape=plaintext];
+
+        "Security setup complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "FIX SECURITY ISSUES" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+        // Flow
+        "Security setup needed" -> "Configure security headers in next.config.ts:\n- X-Frame-Options: SAMEORIGIN\n- X-Content-Type-Options: nosniff\n- Strict-Transport-Security\n- Content-Security-Policy";
+
+        "Configure security headers in next.config.ts:\n- X-Frame-Options: SAMEORIGIN\n- X-Content-Type-Options: nosniff\n- Strict-Transport-Security\n- Content-Security-Policy" -> "Security headers configured?";
+        "Security headers configured?" -> "SSL certificate valid?" [label="yes"];
+        "Security headers configured?" -> "FIX SECURITY ISSUES" [label="no"];
+
+        "SSL certificate valid?" -> "Configure Nginx TLS:\n- TLS 1.2+\n- Strong ciphers\n- OCSP stapling" [label="yes"];
+        "SSL certificate valid?" -> "Install Let's Encrypt:\ncertbot certonly --standalone -d spek.platform" [label="no"];
+
+        "Install Let's Encrypt:\ncertbot certonly --standalone -d spek.platform" -> "Configure Nginx TLS:\n- TLS 1.2+\n- Strong ciphers\n- OCSP stapling";
+        "Configure Nginx TLS:\n- TLS 1.2+\n- Strong ciphers\n- OCSP stapling" -> "openssl s_client -connect spek.platform:443";
+        "openssl s_client -connect spek.platform:443" -> "TLS configured correctly?";
+
+        "TLS configured correctly?" -> "Secrets in vault?" [label="yes"];
+        "TLS configured correctly?" -> "FIX SECURITY ISSUES" [label="no"];
+
+        "Secrets in vault?" -> "Input validation implemented?" [label="yes"];
+        "Secrets in vault?" -> "Move secrets to vault:\n- DATABASE_URL\n- JWT_SECRET\n- API_KEYS" [label="no"];
+        "Move secrets to vault:\n- DATABASE_URL\n- JWT_SECRET\n- API_KEYS" -> "Verify .env not in git:\ngrep -r \"DATABASE_URL\" --include=.env .";
+        "Verify .env not in git:\ngrep -r \"DATABASE_URL\" --include=.env ." -> "Input validation implemented?";
+
+        "Input validation implemented?" -> "npm audit --production" [label="yes"];
+        "Input validation implemented?" -> "Implement Zod schemas:\n- Email validation\n- SQL injection prevention\n- XSS prevention" [label="no"];
+        "Implement Zod schemas:\n- Email validation\n- SQL injection prevention\n- XSS prevention" -> "npm audit --production";
+
+        "npm audit --production" -> "No critical vulnerabilities?";
+        "No critical vulnerabilities?" -> "pip-audit" [label="yes"];
+        "No critical vulnerabilities?" -> "npm audit fix" [label="no"];
+        "npm audit fix" -> "npm audit --production";
+
+        "pip-audit" -> "Rate limiting configured?";
+        "Rate limiting configured?" -> "ufw status" [label="yes"];
+        "Rate limiting configured?" -> "Configure rate limiter:\n- 100 req/15min per IP\n- API authentication required" [label="no"];
+        "Configure rate limiter:\n- 100 req/15min per IP\n- API authentication required" -> "ufw status";
+
+        "ufw status" -> "Firewall configured?";
+        "Firewall configured?" -> "Security setup complete" [label="yes"];
+        "Firewall configured?" -> "Configure firewall:\nufw default deny incoming\nufw allow 22/tcp\nufw allow 80/tcp\nufw allow 443/tcp\nufw enable" [label="no"];
+        "Configure firewall:\nufw default deny incoming\nufw allow 22/tcp\nufw allow 80/tcp\nufw allow 443/tcp\nufw enable" -> "Security setup complete";
+    }
+
+    // Critical warnings
+    subgraph cluster_warnings {
+        label="SECURITY REQUIREMENTS";
+        bgcolor="#ffcdd2";
+
+        "NEVER hardcode secrets" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "NEVER skip TLS" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "NEVER allow default deny" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS validate inputs" [shape=octagon, style=filled, fillcolor=orange];
+        "ALWAYS use HTTPS" [shape=octagon, style=filled, fillcolor=orange];
+    }
+}

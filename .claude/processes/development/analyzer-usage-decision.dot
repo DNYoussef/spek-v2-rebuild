@@ -1,0 +1,96 @@
+digraph ANALYZER_USAGE_DECISION {
+    // TRIGGER: Deciding whether to use Analyzer for code validation
+    // USE WHEN:
+    //   - Need to validate code quality
+    //   - Considering manual validation vs Analyzer
+    //   - Want NASA compliance check
+    //   - Pattern detection needed
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_analyzer_decision {
+        label="TRIGGER: Should I Use the Analyzer?";
+        style="rounded,bold";
+        bgcolor="#e3f2fd";
+
+        // Entry
+        "Need to validate code" [shape=ellipse];
+
+        // Primary decision
+        "Is this legacy/existing code?" [shape=diamond];
+
+        // Legacy code path (USE ANALYZER)
+        "YES: Use Full Analyzer" [shape=box, style=filled, fillcolor=lightgreen];
+        "python -m analyzer.api analyze --source src/ --format summary" [shape=plaintext];
+        "python -m analyzer.engines.compliance_validator --file src/agents/" [shape=plaintext];
+        "python -m analyzer.engines.pattern_detector --file src/" [shape=plaintext];
+        "python -m analyzer.api analyze --source src/ --format json > report.json" [shape=plaintext];
+
+        // New code path (MANUAL VALIDATION)
+        "NO: Use Manual Validation" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // Manual validation steps
+        "1. Count LOC (progress tracking)" [shape=box];
+        "python -c \"with open('file.py', 'r', encoding='utf-8') as f: print(len([l for l in f if l.strip() and not l.strip().startswith('#')]))\"" [shape=plaintext];
+
+        "2. NASA compliance check" [shape=box];
+        "python -c \"\nimport ast\nwith open('file.py', 'r', encoding='utf-8') as f:\n    tree = ast.parse(f.read())\nfor node in ast.walk(tree):\n    if isinstance(node, ast.FunctionDef):\n        length = node.end_lineno - node.lineno + 1\n        if length > 60:\n            print(f'{node.name}: {length} LOC (violation)')\n\"" [shape=plaintext];
+
+        "3. Import validation" [shape=box];
+        "pytest tests/test_imports.py -v" [shape=plaintext];
+
+        "4. Type safety check" [shape=box];
+        "mypy src/" [shape=plaintext];
+
+        "Validation complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Flow - Legacy code
+        "Need to validate code" -> "Is this legacy/existing code?";
+        "Is this legacy/existing code?" -> "YES: Use Full Analyzer" [label="yes\n(refactoring,\ninherited code,\npattern detection)"];
+
+        "YES: Use Full Analyzer" -> "python -m analyzer.api analyze --source src/ --format summary";
+        "python -m analyzer.api analyze --source src/ --format summary" -> "python -m analyzer.engines.compliance_validator --file src/agents/";
+        "python -m analyzer.engines.compliance_validator --file src/agents/" -> "python -m analyzer.engines.pattern_detector --file src/";
+        "python -m analyzer.engines.pattern_detector --file src/" -> "python -m analyzer.api analyze --source src/ --format json > report.json";
+        "python -m analyzer.api analyze --source src/ --format json > report.json" -> "Validation complete";
+
+        // Flow - New code
+        "Is this legacy/existing code?" -> "NO: Use Manual Validation" [label="no\n(new code,\ngreenfield)"];
+
+        "NO: Use Manual Validation" -> "1. Count LOC (progress tracking)";
+        "1. Count LOC (progress tracking)" -> "python -c \"with open('file.py', 'r', encoding='utf-8') as f: print(len([l for l in f if l.strip() and not l.strip().startswith('#')]))\"";
+        "python -c \"with open('file.py', 'r', encoding='utf-8') as f: print(len([l for l in f if l.strip() and not l.strip().startswith('#')]))\"" -> "2. NASA compliance check";
+
+        "2. NASA compliance check" -> "python -c \"\nimport ast\nwith open('file.py', 'r', encoding='utf-8') as f:\n    tree = ast.parse(f.read())\nfor node in ast.walk(tree):\n    if isinstance(node, ast.FunctionDef):\n        length = node.end_lineno - node.lineno + 1\n        if length > 60:\n            print(f'{node.name}: {length} LOC (violation)')\n\"";
+        "python -c \"\nimport ast\nwith open('file.py', 'r', encoding='utf-8') as f:\n    tree = ast.parse(f.read())\nfor node in ast.walk(tree):\n    if isinstance(node, ast.FunctionDef):\n        length = node.end_lineno - node.lineno + 1\n        if length > 60:\n            print(f'{node.name}: {length} LOC (violation)')\n\"" -> "3. Import validation";
+
+        "3. Import validation" -> "pytest tests/test_imports.py -v";
+        "pytest tests/test_imports.py -v" -> "4. Type safety check";
+
+        "4. Type safety check" -> "mypy src/";
+        "mypy src/" -> "Validation complete";
+    }
+
+    // Decision rationale
+    subgraph cluster_rationale {
+        label="Why Manual for New Code?";
+        bgcolor="#fff3e0";
+
+        "✅ Quality built-in from start\n(type hints, NASA compliance during coding)" [shape=box];
+        "✅ Test-driven validation\n(139 analyzer tests + 68 implementation tests)" [shape=box];
+        "✅ Faster and more direct\n(manual scripts vs full analyzer)" [shape=box];
+        "✅ All code is greenfield\n(no legacy patterns to detect)" [shape=box];
+    }
+
+    // Analyzer use cases
+    subgraph cluster_analyzer_use_cases {
+        label="Use Analyzer When:";
+        bgcolor="#e8f5e9";
+
+        "Analyzing existing code for refactoring" [shape=box];
+        "Detecting patterns in legacy systems" [shape=box];
+        "Compliance validation of inherited code" [shape=box];
+        "Pattern detection across codebase" [shape=box];
+    }
+}

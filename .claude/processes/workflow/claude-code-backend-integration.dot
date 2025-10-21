@@ -1,0 +1,158 @@
+digraph CLAUDE_CODE_BACKEND_INTEGRATION {
+    // TRIGGER: Understanding how THIS Claude Code instance acts as Queen agent
+    // USE WHEN:
+    //   - Need to understand Week 26 backend architecture
+    //   - Starting work on SPEK Platform coordination
+    //   - Debugging message flow or agent spawning
+    //   - Setting up new Claude Code instance as Queen
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_architecture {
+        label="TRIGGER: Claude Code Backend Integration (Week 26)";
+        style="rounded,bold";
+        bgcolor="#e8f5e9";
+
+        // Entry
+        "User opens Atlantis UI" [shape=ellipse];
+
+        // UI Flow
+        "User selects New/Existing Project" [shape=box];
+        "User types message in MonarchChat" [shape=box];
+        "UI sends POST to /api/monarch/chat" [shape=box];
+
+        // Flask Backend
+        "Flask receives message" [shape=box];
+        "Flask writes to .claude_messages/message-{timestamp}.json" [shape=plaintext];
+        "Flask returns immediate ack to UI" [shape=box];
+
+        // Message Queue
+        "Message file contains:\n- user_message\n- project_context\n- task_id\n- timestamp" [shape=box];
+
+        // THIS Claude Code Instance (Queen)
+        "THIS Claude Code reads .claude_messages/" [shape=box];
+        "Queen orchestrator analyzes request" [shape=box];
+        "Keywords detected?" [shape=diamond];
+        "Select loop:\n- Loop 1 (research) → princess-coordination\n- Loop 2 (dev) → princess-dev\n- Loop 3 (quality) → princess-quality" [shape=box];
+
+        // Agent Registry
+        "Query agent_registry.py for Drones" [shape=box];
+        "Registry returns recommended Drones:\n- coder, tester, reviewer (dev)\n- researcher, spec-writer (coord)\n- theater-detector, nasa-enforcer (quality)" [shape=box];
+
+        // Princess Prompt Creation
+        "Create Princess prompt with:\n1. Project context\n2. User request\n3. Recommended Drones list\n4. Task tool instructions" [shape=box];
+
+        // Broadcast to UI
+        "POST /api/claude/agent-spawned:\n- agentId: princess-dev\n- taskId: task-123\n- loop: loop2" [shape=plaintext];
+        "WebSocket broadcasts agent:spawned event" [shape=box];
+        "UI sidebar shows Princess spawned" [shape=box];
+
+        // Task Tool Spawning
+        "Use Task tool to spawn Princess" [shape=box];
+        "NEW Claude Code instance launches" [shape=box];
+        "Princess receives:\n- Detailed prompt\n- Drone list from registry\n- Project context" [shape=box];
+
+        // Princess Operations
+        "Princess analyzes task" [shape=box];
+        "Princess selects Drones from list" [shape=box];
+        "Princess uses Task tool to spawn Drones" [shape=box];
+
+        // Drone Operations
+        "NEW Claude Code instances (Drones)" [shape=box];
+        "Each Drone receives specific task" [shape=box];
+        "Drone works and reports via:\nPOST /api/claude/task-progress\nPOST /api/claude/task-completed" [shape=plaintext];
+
+        // WebSocket Updates
+        "Flask broadcasts:\n- task:update (progress 0-100%)\n- task:completed\n- agent:error (if needed)" [shape=box];
+        "UI shows real-time updates" [shape=box];
+
+        // Completion
+        "Princess aggregates Drone results" [shape=box];
+        "Princess reports to Queen via /api/claude/response" [shape=plaintext];
+        "Queen relays to UI via WebSocket" [shape=box];
+        "User sees final result" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "User opens Atlantis UI" -> "User selects New/Existing Project";
+        "User selects New/Existing Project" -> "User types message in MonarchChat";
+        "User types message in MonarchChat" -> "UI sends POST to /api/monarch/chat";
+
+        "UI sends POST to /api/monarch/chat" -> "Flask receives message";
+        "Flask receives message" -> "Flask writes to .claude_messages/message-{timestamp}.json";
+        "Flask writes to .claude_messages/message-{timestamp}.json" -> "Flask returns immediate ack to UI";
+        "Flask returns immediate ack to UI" -> "Message file contains:\n- user_message\n- project_context\n- task_id\n- timestamp";
+
+        "Message file contains:\n- user_message\n- project_context\n- task_id\n- timestamp" -> "THIS Claude Code reads .claude_messages/";
+        "THIS Claude Code reads .claude_messages/" -> "Queen orchestrator analyzes request";
+        "Queen orchestrator analyzes request" -> "Keywords detected?";
+
+        "Keywords detected?" -> "Select loop:\n- Loop 1 (research) → princess-coordination\n- Loop 2 (dev) → princess-dev\n- Loop 3 (quality) → princess-quality" [label="yes"];
+        "Keywords detected?" -> "Select loop:\n- Loop 1 (research) → princess-coordination\n- Loop 2 (dev) → princess-dev\n- Loop 3 (quality) → princess-quality" [label="no (default=loop2)"];
+
+        "Select loop:\n- Loop 1 (research) → princess-coordination\n- Loop 2 (dev) → princess-dev\n- Loop 3 (quality) → princess-quality" -> "Query agent_registry.py for Drones";
+
+        "Query agent_registry.py for Drones" -> "Registry returns recommended Drones:\n- coder, tester, reviewer (dev)\n- researcher, spec-writer (coord)\n- theater-detector, nasa-enforcer (quality)";
+        "Registry returns recommended Drones:\n- coder, tester, reviewer (dev)\n- researcher, spec-writer (coord)\n- theater-detector, nasa-enforcer (quality)" -> "Create Princess prompt with:\n1. Project context\n2. User request\n3. Recommended Drones list\n4. Task tool instructions";
+
+        "Create Princess prompt with:\n1. Project context\n2. User request\n3. Recommended Drones list\n4. Task tool instructions" -> "POST /api/claude/agent-spawned:\n- agentId: princess-dev\n- taskId: task-123\n- loop: loop2";
+        "POST /api/claude/agent-spawned:\n- agentId: princess-dev\n- taskId: task-123\n- loop: loop2" -> "WebSocket broadcasts agent:spawned event";
+        "WebSocket broadcasts agent:spawned event" -> "UI sidebar shows Princess spawned";
+
+        "UI sidebar shows Princess spawned" -> "Use Task tool to spawn Princess";
+        "Use Task tool to spawn Princess" -> "NEW Claude Code instance launches";
+        "NEW Claude Code instance launches" -> "Princess receives:\n- Detailed prompt\n- Drone list from registry\n- Project context";
+
+        "Princess receives:\n- Detailed prompt\n- Drone list from registry\n- Project context" -> "Princess analyzes task";
+        "Princess analyzes task" -> "Princess selects Drones from list";
+        "Princess selects Drones from list" -> "Princess uses Task tool to spawn Drones";
+
+        "Princess uses Task tool to spawn Drones" -> "NEW Claude Code instances (Drones)";
+        "NEW Claude Code instances (Drones)" -> "Each Drone receives specific task";
+        "Each Drone receives specific task" -> "Drone works and reports via:\nPOST /api/claude/task-progress\nPOST /api/claude/task-completed";
+
+        "Drone works and reports via:\nPOST /api/claude/task-progress\nPOST /api/claude/task-completed" -> "Flask broadcasts:\n- task:update (progress 0-100%)\n- task:completed\n- agent:error (if needed)";
+        "Flask broadcasts:\n- task:update (progress 0-100%)\n- task:completed\n- agent:error (if needed)" -> "UI shows real-time updates";
+
+        "UI shows real-time updates" -> "Princess aggregates Drone results";
+        "Princess aggregates Drone results" -> "Princess reports to Queen via /api/claude/response";
+        "Princess reports to Queen via /api/claude/response" -> "Queen relays to UI via WebSocket";
+        "Queen relays to UI via WebSocket" -> "User sees final result";
+    }
+
+    // Key Files
+    subgraph cluster_files {
+        label="Key Files (Week 26)";
+        bgcolor="#fff3e0";
+
+        "claude_backend_server.py (Flask + 12 endpoints)" [shape=box];
+        "src/agents/queen_orchestrator.py (Queen logic)" [shape=box];
+        "src/coordination/agent_registry.py (28 agents)" [shape=box];
+        ".claude_messages/ (message queue)" [shape=box];
+        "atlantis-ui/src/components/chat/MonarchChat.tsx (UI)" [shape=box];
+    }
+
+    // Agent Hierarchy
+    subgraph cluster_hierarchy {
+        label="Agent Hierarchy (28 Agents)";
+        bgcolor="#e3f2fd";
+
+        "Queen (THIS Claude Code instance)" [shape=box, style=filled, fillcolor=gold];
+        "3 Princesses:\n- princess-dev\n- princess-coordination\n- princess-quality" [shape=box, style=filled, fillcolor=lightblue];
+        "24 Drones (specialized agents)" [shape=box, style=filled, fillcolor=lightgreen];
+    }
+
+    // Critical Rules
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        bgcolor="#ffcdd2";
+
+        "Queen = THIS Claude Code instance" [shape=octagon, style=filled, fillcolor=orange];
+        "Drones selected from agent_registry.py" [shape=octagon, style=filled, fillcolor=orange];
+        "Existing projects: NO COPYING (read from original)" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Each agent spawn = NEW Claude Code instance via Task tool" [shape=octagon, style=filled, fillcolor=orange];
+    }
+
+    // External connections
+    "User sees final result" -> week26_production_launch [label="ready to deploy", style=dotted];
+}

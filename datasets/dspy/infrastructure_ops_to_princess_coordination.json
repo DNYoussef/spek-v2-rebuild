@@ -1,0 +1,491 @@
+{
+  "communication_path": "infrastructure-ops→princess-coordination",
+  "description": "Infrastructure-Ops reports task completion and issues back to Princess-Coordination",
+  "examples": [
+    {
+      "phase": "task-completion",
+      "context": {
+        "original_task": "Deploy production Kubernetes cluster",
+        "status": "completed",
+        "duration_minutes": 52
+      },
+      "report_to_princess": {
+        "task_id": "infra-k8s-prod-001",
+        "status": "completed",
+        "summary": "Successfully deployed production Kubernetes cluster on AWS EKS with 3 microservices",
+        "details": {
+          "cluster": {"provider": "AWS EKS 1.27", "nodes": 3, "instance_type": "t3.medium"},
+          "deployments": ["auth-service (3 replicas)", "api-gateway (3 replicas)", "user-service (2 replicas)"],
+          "networking": "VPC configured with private subnets, ALB ingress operational",
+          "monitoring": "CloudWatch and Prometheus deployed, dashboards created",
+          "security": "RBAC enabled, Pod Security Standards enforced, NetworkPolicies active"
+        },
+        "metrics": {
+          "deployment_time": "52 minutes",
+          "health_check_status": "all passing",
+          "resource_utilization": {"cpu": "35%", "memory": "48%"}
+        },
+        "quality_gates_passed": ["health checks passing", "auto-scaling configured", "monitoring active", "security scan clean"],
+        "artifacts": ["kubeconfig file", "deployment manifests", "monitoring dashboards", "runbook documentation"],
+        "next_steps": ["monitor cluster for 24 hours", "tune resource requests/limits", "configure backup strategy"],
+        "estimated_cost": "$420/month"
+      }
+    },
+    {
+      "phase": "task-blocked",
+      "context": {
+        "original_task": "Deploy monitoring stack",
+        "status": "blocked",
+        "blocker": "persistent volume provisioning failed"
+      },
+      "report_to_princess": {
+        "task_id": "infra-monitoring-002",
+        "status": "blocked",
+        "summary": "Monitoring stack deployment blocked due to storage provisioner issue",
+        "blocker_details": {
+          "issue": "EBS CSI driver not properly configured",
+          "error": "Failed to provision volume: no storage class found",
+          "impact": "Cannot deploy Prometheus and Grafana with persistent storage"
+        },
+        "investigation": {
+          "root_cause": "EBS CSI driver addon not enabled on EKS cluster",
+          "attempted_fixes": ["manual CSI driver installation", "storage class creation"],
+          "current_status": "waiting for AWS IAM permissions to enable CSI driver addon"
+        },
+        "resolution_plan": {
+          "action": "request IAM permissions from security team",
+          "estimated_unblock_time": "2 hours",
+          "workaround": "deploy monitoring stack with emptyDir volumes (non-persistent) for testing"
+        },
+        "escalation_needed": true,
+        "assistance_required": "security team to grant IAM permissions for EKS CSI driver addon"
+      }
+    },
+    {
+      "phase": "partial-completion",
+      "context": {
+        "original_task": "Implement multi-region disaster recovery",
+        "status": "partially_completed",
+        "progress": "70%"
+      },
+      "report_to_princess": {
+        "task_id": "infra-dr-003",
+        "status": "partially_completed",
+        "summary": "Disaster recovery setup 70% complete, standby region operational, automated failover pending",
+        "completed_items": [
+          "Standby infrastructure deployed in us-west-2",
+          "Database WAL archiving configured",
+          "S3 cross-region replication enabled",
+          "Route53 health checks configured",
+          "DR runbook documented"
+        ],
+        "pending_items": [
+          "Automated DNS failover testing (blocked by change control approval)",
+          "Quarterly DR drill scheduling",
+          "Database restore time optimization"
+        ],
+        "test_results": {
+          "manual_failover": "successful (RTO: 25 minutes, RPO: 45 minutes)",
+          "data_integrity": "verified, zero data loss in tests",
+          "application_availability": "all services operational in standby region"
+        },
+        "risks": ["RTO exceeds 4-hour target by 20 minutes (manual failover)", "automated failover not yet tested"],
+        "estimated_completion": "3 days (pending change control approval)",
+        "recommendation": "proceed with change control approval for automated failover testing"
+      }
+    },
+    {
+      "phase": "task-failed",
+      "context": {
+        "original_task": "Database migration to PostgreSQL 14",
+        "status": "failed",
+        "failure_reason": "replication lag exceeded threshold"
+      },
+      "report_to_princess": {
+        "task_id": "infra-db-migration-004",
+        "status": "failed",
+        "summary": "Database migration to PostgreSQL 14 failed due to excessive replication lag",
+        "failure_details": {
+          "stage": "data replication phase",
+          "error": "Replication lag exceeded 30 seconds (threshold: 10 seconds)",
+          "root_cause": "High transaction volume during business hours prevented timely replication",
+          "data_impact": "No data loss, rollback successful"
+        },
+        "rollback_status": {
+          "completed": true,
+          "duration": "15 minutes",
+          "verification": "all applications reconnected to original database, no errors"
+        },
+        "lessons_learned": [
+          "Migration should occur during maintenance window with reduced traffic",
+          "Need to scale up replication instance for faster sync",
+          "Consider multi-phase migration with smaller batches"
+        ],
+        "revised_plan": {
+          "approach": "schedule migration for Sunday 2 AM UTC (lowest traffic)",
+          "improvements": ["use larger replication instance (r5.4xlarge)", "pre-warm cache on new cluster", "implement progressive cutover"],
+          "estimated_retry_date": "next Sunday",
+          "success_probability": "high (95%)"
+        },
+        "stakeholder_impact": "No customer impact, downtime window not used",
+        "recommendation": "approve revised migration plan for next weekend"
+      }
+    },
+    {
+      "phase": "optimization-results",
+      "context": {
+        "original_task": "Optimize cloud costs",
+        "status": "completed",
+        "results": "exceeded target"
+      },
+      "report_to_princess": {
+        "task_id": "infra-cost-opt-005",
+        "status": "completed",
+        "summary": "Cloud cost optimization achieved 38% reduction, exceeding 30% target",
+        "optimizations_applied": [
+          {"action": "right-sized instances", "savings": "$1,200/month"},
+          {"action": "implemented spot instances for batch jobs", "savings": "$800/month"},
+          {"action": "purchased reserved instances", "savings": "$1,500/month"},
+          {"action": "S3 lifecycle policies", "savings": "$300/month"},
+          {"action": "cleaned up unused EBS volumes", "savings": "$200/month"}
+        ],
+        "total_savings": "$4,000/month",
+        "original_spend": "$10,500/month",
+        "new_spend": "$6,500/month",
+        "reduction_percentage": "38%",
+        "performance_impact": {
+          "latency": "unchanged",
+          "availability": "99.95% (no degradation)",
+          "error_rate": "0.1% (unchanged)"
+        },
+        "ongoing_monitoring": {
+          "cost_anomaly_detection": "enabled",
+          "budget_alerts": "configured at $7,000/month",
+          "tagging_compliance": "98% (improved from 45%)"
+        },
+        "recommendations": [
+          "Continue spot instance expansion to non-critical workloads",
+          "Evaluate Savings Plans for additional 5-10% reduction",
+          "Schedule quarterly cost reviews"
+        ]
+      }
+    },
+    {
+      "phase": "security-incident",
+      "context": {
+        "original_task": "Routine cluster maintenance",
+        "status": "incident",
+        "severity": "high"
+      },
+      "report_to_princess": {
+        "task_id": "infra-maintenance-006",
+        "status": "incident_detected",
+        "summary": "Security vulnerability discovered during cluster maintenance - immediate action required",
+        "incident_details": {
+          "type": "security_vulnerability",
+          "severity": "high",
+          "description": "Discovered publicly exposed Kubernetes API server without authentication",
+          "discovery_method": "automated security scan during maintenance",
+          "exposure_duration": "unknown (potentially weeks)",
+          "affected_resources": ["Kubernetes API server on port 6443", "etcd backup endpoint"]
+        },
+        "immediate_actions_taken": [
+          "Blocked public access to API server via security group update",
+          "Rotated all Kubernetes certificates and tokens",
+          "Enabled API server audit logging",
+          "Initiated full cluster security audit"
+        ],
+        "incident_status": {
+          "threat_neutralized": true,
+          "investigation_ongoing": true,
+          "estimated_investigation_time": "4 hours"
+        },
+        "potential_impact": [
+          "Unauthorized API access (no evidence found yet)",
+          "Possible cluster compromise (scanning for indicators)",
+          "Compliance violation (PCI-DSS, SOC2)"
+        ],
+        "escalation": {
+          "security_team": "notified",
+          "incident_commander": "assigned",
+          "stakeholders": "executive team notified",
+          "external": "compliance team alerted"
+        },
+        "next_steps": [
+          "Complete forensic analysis of API server logs",
+          "Review all Kubernetes RBAC permissions",
+          "Implement additional security hardening",
+          "Schedule incident postmortem"
+        ],
+        "urgent_action_required": true
+      }
+    },
+    {
+      "phase": "capacity-warning",
+      "context": {
+        "original_task": "Monitor cluster capacity",
+        "status": "warning",
+        "issue": "approaching resource limits"
+      },
+      "report_to_princess": {
+        "task_id": "infra-capacity-007",
+        "status": "warning",
+        "summary": "Production cluster approaching capacity limits - scaling recommended",
+        "capacity_metrics": {
+          "cpu_utilization": "78% (threshold: 70%)",
+          "memory_utilization": "82% (threshold: 75%)",
+          "pod_count": "245/250 (98%)",
+          "node_count": "8/10 (80%)"
+        },
+        "trend_analysis": {
+          "growth_rate": "15% per week",
+          "projected_exhaustion": "2 weeks at current growth",
+          "peak_usage_time": "Monday 9 AM - Friday 5 PM EST"
+        },
+        "immediate_risks": [
+          "Pod scheduling failures if traffic spike occurs",
+          "Potential service degradation during peak hours",
+          "Auto-scaling unable to provision new pods"
+        ],
+        "recommendations": {
+          "short_term": ["increase node count to 12", "enable cluster autoscaler (3-15 nodes)", "review and optimize resource requests/limits"],
+          "medium_term": ["implement horizontal pod autoscaling for all services", "optimize container images to reduce memory footprint", "consider larger instance types (t3.large)"],
+          "long_term": ["capacity planning for 3x growth", "multi-cluster strategy for better resource isolation", "cost optimization through spot instances"]
+        },
+        "cost_impact": {
+          "immediate_scaling": "+$600/month (4 additional nodes)",
+          "with_spot_instances": "+$350/month (mixed spot/on-demand)"
+        },
+        "action_required": "approve cluster scaling within 1 week",
+        "urgency": "medium-high"
+      }
+    },
+    {
+      "phase": "maintenance-window",
+      "context": {
+        "original_task": "Scheduled Kubernetes upgrade",
+        "status": "completed",
+        "downtime": "zero downtime achieved"
+      },
+      "report_to_princess": {
+        "task_id": "infra-k8s-upgrade-008",
+        "status": "completed",
+        "summary": "Kubernetes upgrade from 1.26 to 1.27 completed successfully with zero downtime",
+        "upgrade_details": {
+          "start_time": "2025-10-11T02:00:00Z",
+          "end_time": "2025-10-11T03:45:00Z",
+          "duration": "1 hour 45 minutes",
+          "affected_resources": ["control plane", "worker nodes (8 nodes)", "add-ons (CoreDNS, kube-proxy, CNI)"]
+        },
+        "execution_phases": [
+          {"phase": "control plane upgrade", "status": "success", "duration": "30 minutes"},
+          {"phase": "worker node upgrades (rolling)", "status": "success", "duration": "60 minutes"},
+          {"phase": "add-on updates", "status": "success", "duration": "15 minutes"}
+        ],
+        "validation_results": {
+          "health_checks": "all passing",
+          "pod_restarts": "0 unexpected restarts",
+          "api_availability": "100% (no downtime)",
+          "workload_availability": "100% (rolling updates successful)",
+          "performance": "latency unchanged, no degradation"
+        },
+        "issues_encountered": [
+          {"issue": "CoreDNS crashloop on initial upgrade", "resolution": "rolled back CoreDNS config, re-applied with fix", "duration": "5 minutes"}
+        ],
+        "post_upgrade_tasks": [
+          "Monitor cluster for 24 hours",
+          "Validate deprecated API usage",
+          "Update documentation with new version",
+          "Schedule next upgrade (1.28) for Q2"
+        ],
+        "lessons_learned": [
+          "CoreDNS config needs validation before upgrade",
+          "Rolling node upgrades work well for zero-downtime",
+          "Monitoring dashboards critical for real-time validation"
+        ],
+        "stakeholder_communication": "upgrade notification sent, no customer impact reported"
+      }
+    },
+    {
+      "phase": "performance-degradation",
+      "context": {
+        "original_task": "Deploy new application version",
+        "status": "completed_with_issues",
+        "issue": "performance regression detected"
+      },
+      "report_to_princess": {
+        "task_id": "infra-app-deploy-009",
+        "status": "completed_with_issues",
+        "summary": "Application deployment successful but performance regression detected post-deployment",
+        "deployment_details": {
+          "version": "v2.5.0",
+          "strategy": "rolling update",
+          "completed_at": "2025-10-11T14:30:00Z",
+          "rollout_duration": "25 minutes"
+        },
+        "performance_regression": {
+          "metric": "API response time",
+          "baseline": "p95 latency 180ms",
+          "current": "p95 latency 420ms",
+          "degradation": "133% increase",
+          "affected_endpoints": ["/api/v1/users", "/api/v1/orders", "/api/v1/products"]
+        },
+        "investigation_findings": {
+          "root_cause": "N+1 query introduced in new ORM query optimization",
+          "affected_code": "UserService.getWithOrders() method",
+          "database_load": "query count increased 5x per request"
+        },
+        "mitigation_options": [
+          {"option": "rollback to v2.4.3", "pros": "immediate fix", "cons": "lose new features", "eta": "15 minutes"},
+          {"option": "hotfix with eager loading", "pros": "keeps new features", "cons": "requires testing", "eta": "2 hours"},
+          {"option": "implement DataLoader pattern", "pros": "best long-term solution", "cons": "complex refactor", "eta": "1 day"}
+        ],
+        "current_impact": {
+          "user_complaints": "3 support tickets received",
+          "error_rate": "unchanged (0.1%)",
+          "traffic": "normal levels",
+          "revenue_impact": "minimal (slower checkout but no failures)"
+        },
+        "recommendation": "proceed with option 2 (hotfix) to balance features and performance",
+        "action_required": "approve hotfix deployment within 2 hours",
+        "monitoring": "increased monitoring on affected endpoints, alerting on-call team"
+      }
+    },
+    {
+      "phase": "compliance-audit",
+      "context": {
+        "original_task": "Prepare for SOC2 audit",
+        "status": "completed",
+        "audit_outcome": "passed with minor findings"
+      },
+      "report_to_princess": {
+        "task_id": "infra-soc2-audit-010",
+        "status": "completed",
+        "summary": "SOC2 audit completed successfully, passed with 2 minor findings to address",
+        "audit_scope": {
+          "controls": ["access controls", "encryption", "monitoring", "incident response", "change management"],
+          "systems": ["Kubernetes clusters", "databases", "CI/CD pipelines", "logging infrastructure"],
+          "duration": "3 days"
+        },
+        "audit_results": {
+          "overall": "pass",
+          "controls_passed": "47/49",
+          "minor_findings": 2,
+          "major_findings": 0,
+          "critical_findings": 0
+        },
+        "findings": [
+          {
+            "id": "SOC2-001",
+            "severity": "minor",
+            "control": "access controls",
+            "issue": "3 service accounts with cluster-admin role (excessive privileges)",
+            "remediation": "reduce to least privilege, implement role-based access",
+            "due_date": "30 days",
+            "assigned_to": "security team"
+          },
+          {
+            "id": "SOC2-002",
+            "severity": "minor",
+            "control": "monitoring",
+            "issue": "log retention for audit logs is 30 days (requirement: 90 days)",
+            "remediation": "increase retention to 90 days, configure cold storage archival",
+            "due_date": "14 days",
+            "assigned_to": "infrastructure team"
+          }
+        ],
+        "evidence_collected": [
+          "RBAC policies and role assignments",
+          "Encryption configuration (at-rest and in-transit)",
+          "Audit log samples (API server, database, application)",
+          "Incident response runbooks",
+          "Change management records (last 6 months)"
+        ],
+        "auditor_feedback": {
+          "strengths": ["comprehensive monitoring", "well-documented procedures", "strong encryption posture"],
+          "areas_for_improvement": ["tighten service account permissions", "extend log retention"]
+        },
+        "remediation_plan": {
+          "finding_soc2_001": "audit all service accounts, create custom roles, apply least privilege",
+          "finding_soc2_002": "configure S3 lifecycle policy for 90-day log retention",
+          "estimated_effort": "2 days",
+          "completion_target": "within 14 days"
+        },
+        "next_audit": "annual audit scheduled for October 2026",
+        "stakeholder_notification": "audit report sent to executive team and compliance officer"
+      }
+    },
+    {
+      "phase": "disaster-recovery-drill",
+      "context": {
+        "original_task": "Quarterly disaster recovery test",
+        "status": "completed",
+        "outcome": "successful with learnings"
+      },
+      "report_to_princess": {
+        "task_id": "infra-dr-drill-011",
+        "status": "completed",
+        "summary": "Q4 disaster recovery drill completed successfully, RTO/RPO targets met with room for improvement",
+        "drill_scenario": {
+          "type": "region failure simulation",
+          "scope": "complete us-east-1 failure, failover to us-west-2",
+          "duration": "2 hours",
+          "participants": ["infrastructure team", "application team", "database team", "incident commander"]
+        },
+        "execution_timeline": [
+          {"time": "T+0", "event": "region failure simulated", "action": "incident declared"},
+          {"time": "T+5m", "event": "incident commander assigned", "action": "initiated DR runbook"},
+          {"time": "T+15m", "event": "database failover triggered", "action": "promoted standby to primary"},
+          {"time": "T+20m", "event": "application traffic redirected", "action": "Route53 DNS updated"},
+          {"time": "T+30m", "event": "smoke tests passed", "action": "declared operational in us-west-2"},
+          {"time": "T+2h", "event": "drill concluded", "action": "postmortem scheduled"}
+        ],
+        "rto_rpo_results": {
+          "rto_target": "4 hours",
+          "rto_actual": "30 minutes",
+          "rto_met": true,
+          "rpo_target": "1 hour",
+          "rpo_actual": "0 minutes (zero data loss)",
+          "rpo_met": true
+        },
+        "test_results": {
+          "database_failover": "successful, 15 minutes",
+          "application_availability": "restored in 30 minutes",
+          "data_integrity": "verified, zero data loss",
+          "dns_propagation": "5 minutes (faster than expected)",
+          "monitoring": "all alerts triggered correctly"
+        },
+        "issues_identified": [
+          {"issue": "database connection pool exhaustion during failover", "impact": "5-minute latency spike", "severity": "low"},
+          {"issue": "monitoring dashboard URLs hardcoded to us-east-1", "impact": "dashboards inaccessible during drill", "severity": "medium"},
+          {"issue": "runbook step 7 unclear (missing DNS verification command)", "impact": "team confusion for 2 minutes", "severity": "low"}
+        ],
+        "improvements": [
+          "Update connection pool config to handle failover gracefully",
+          "Use region-agnostic URLs for monitoring dashboards",
+          "Enhance runbook with specific verification commands",
+          "Add automated health checks to DR process"
+        ],
+        "team_performance": {
+          "communication": "excellent (Slack war room effective)",
+          "coordination": "good (some initial confusion on roles)",
+          "runbook_adherence": "85% (minor deviations)",
+          "decision_making": "fast and effective"
+        },
+        "lessons_learned": [
+          "Automated failover would reduce RTO to <10 minutes",
+          "Regular drills essential for team muscle memory",
+          "Runbook improvements needed based on real execution",
+          "Consider fully automated DR for critical services"
+        ],
+        "next_steps": [
+          "Implement identified improvements within 2 weeks",
+          "Update DR runbook with learnings",
+          "Schedule next drill for January 2026",
+          "Explore automated DR testing tools"
+        ],
+        "stakeholder_report": "Executive summary sent to leadership, drill successful, targets exceeded"
+      }
+    }
+  ]
+}

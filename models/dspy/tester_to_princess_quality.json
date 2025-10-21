@@ -1,0 +1,62 @@
+{
+  "aggregate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "drone_results": "{\"success\": true, \"tests_total\": 21, \"tests_passed\": 20, \"tests_failed\": 1, \"coverage_percent\": 94, \"test_types\": {\"unit\": 12, \"integration\": 8, \"e2e\": 0}, \"execution_time_ms\": 9660}",
+        "quality_gates": "{\"test_coverage\": 94, \"test_pass_rate\": 95.2, \"tests_total\": 21, \"tests_failed\": 1}",
+        "aggregated_result": "{\"phase\": \"test\", \"status\": \"complete\", \"summary\": \"Test suite passed: 20/21 tests passed, 94% coverage.\", \"quality_metrics\": {\"test_coverage\": 94, \"test_pass_rate\": 95.2, \"tests_total\": 21, \"tests_failed\": 1}, \"next_phase\": \"deploy\", \"blockers\": [], \"recommendations\": [\"Add edge case tests\"]}"
+      },
+      {
+        "drone_results": "{\"success\": false, \"tests_total\": 10, \"tests_passed\": 7, \"tests_failed\": 3, \"coverage_percent\": 58, \"test_types\": {\"unit\": 11, \"integration\": 3, \"e2e\": 2}, \"execution_time_ms\": 10482}",
+        "quality_gates": "{\"test_coverage\": 58, \"test_pass_rate\": 70.0, \"tests_total\": 10, \"tests_failed\": 3}",
+        "aggregated_result": "{\"phase\": \"test\", \"status\": \"blocked\", \"summary\": \"Test suite failed: 7/10 tests passed, 58% coverage.\", \"quality_metrics\": {\"test_coverage\": 58, \"test_pass_rate\": 70.0, \"tests_total\": 10, \"tests_failed\": 3}, \"next_phase\": \"code\", \"blockers\": [\"Fix 3 failing tests\", \"Increase coverage to \\u226580%\"], \"recommendations\": [\"Debug failing test scenarios\"]}"
+      },
+      {
+        "drone_results": "{\"success\": false, \"tests_total\": 12, \"tests_passed\": 9, \"tests_failed\": 3, \"coverage_percent\": 58, \"test_types\": {\"unit\": 11, \"integration\": 6, \"e2e\": 0}, \"execution_time_ms\": 12519}",
+        "quality_gates": "{\"test_coverage\": 58, \"test_pass_rate\": 75.0, \"tests_total\": 12, \"tests_failed\": 3}",
+        "aggregated_result": "{\"phase\": \"test\", \"status\": \"blocked\", \"summary\": \"Test suite failed: 9/12 tests passed, 58% coverage.\", \"quality_metrics\": {\"test_coverage\": 58, \"test_pass_rate\": 75.0, \"tests_total\": 12, \"tests_failed\": 3}, \"next_phase\": \"code\", \"blockers\": [\"Fix 3 failing tests\", \"Increase coverage to \\u226580%\"], \"recommendations\": [\"Debug failing test scenarios\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"tests_total\": 23, \"tests_passed\": 21, \"tests_failed\": 2, \"coverage_percent\": 91, \"test_types\": {\"unit\": 13, \"integration\": 8, \"e2e\": 3}, \"execution_time_ms\": 14012}",
+        "quality_gates": "{\"test_coverage\": 91, \"test_pass_rate\": 91.3, \"tests_total\": 23, \"tests_failed\": 2}",
+        "aggregated_result": "{\"phase\": \"test\", \"status\": \"complete\", \"summary\": \"Test suite passed: 21/23 tests passed, 91% coverage.\", \"quality_metrics\": {\"test_coverage\": 91, \"test_pass_rate\": 91.3, \"tests_total\": 23, \"tests_failed\": 2}, \"next_phase\": \"deploy\", \"blockers\": [], \"recommendations\": [\"Add edge case tests\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"tests_total\": 21, \"tests_passed\": 21, \"tests_failed\": 0, \"coverage_percent\": 96, \"test_types\": {\"unit\": 11, \"integration\": 3, \"e2e\": 2}, \"execution_time_ms\": 6798}",
+        "quality_gates": "{\"test_coverage\": 96, \"test_pass_rate\": 100.0, \"tests_total\": 21, \"tests_failed\": 0}",
+        "aggregated_result": "{\"phase\": \"test\", \"status\": \"complete\", \"summary\": \"Test suite passed: 21/21 tests passed, 96% coverage.\", \"quality_metrics\": {\"test_coverage\": 96, \"test_pass_rate\": 100.0, \"tests_total\": 21, \"tests_failed\": 0}, \"next_phase\": \"deploy\", \"blockers\": [], \"recommendations\": [\"Add edge case tests\"]}"
+      }
+    ],
+    "signature": {
+      "instructions": "Aggregate drone results into coherent princess-level output.\n\nYou are a Princess agent receiving results from multiple drone agents\nthat executed tasks in parallel or sequence. Your role is to combine\ntheir individual results into a unified, comprehensive result that\ncan be reported to the Queen.\n\nAggregation must include:\n- Success/failure status of overall workflow\n- Quality metrics from all drones\n- Validation against quality gates\n- Artifacts produced by drones\n- Recommendations or next steps\n\nFollow the 26 prompt engineering principles:\n- Completeness: Include all relevant drone outputs\n- Quality: Validate against gates (test coverage, NASA compliance, etc.)\n- Clarity: Summarize complex results clearly\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Drone Results:",
+          "description": "List of results from drone agents (each with success, data, metrics)"
+        },
+        {
+          "prefix": "Quality Gates:",
+          "description": "Quality gates to validate against (e.g., test_coverage >= 80%)"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Aggregation reasoning explaining how results were combined and validated"
+        },
+        {
+          "prefix": "Aggregated Result:",
+          "description": "Aggregated result as JSON object. Must have: {'success': bool, 'overall_score': float, 'gates_passed': int, 'gates_failed': int, 'artifacts': list[str], 'recommendations': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

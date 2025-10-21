@@ -1,0 +1,1093 @@
+{
+  "communication_path": "princess-quality→theater-detector",
+  "description": "Princess-Quality delegates mock code and theater detection to Theater-Detector drone",
+  "agent_context": {
+    "coordinator": "princess-quality",
+    "drone": "theater-detector",
+    "relationship": "quality_validation_delegation",
+    "coordination_protocol": "EnhancedLightweightProtocol"
+  },
+  "examples": [
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "User authentication service",
+        "code_files": ["src/auth/authenticator.py", "src/auth/password_hasher.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan auth service for mock implementations",
+        "specifications": {
+          "detection_patterns": ["TODO comments", "FIXME markers", "mock implementations", "placeholder functions", "pass statements", "NotImplementedError"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "no TODO comments", "genuine implementations"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Payment processing gateway",
+        "code_files": ["src/payments/processor.py", "src/payments/stripe_adapter.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical payment code theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "HACK", "XXX", "mock", "fake", "stub", "NotImplementedError", "pass"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero theater patterns", "production-ready code"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Database migration system",
+        "code_files": ["src/db/migrator.py", "src/db/schema_validator.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check migration system for placeholders",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "placeholder", "stub", "NotImplementedError", "pass # TODO"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "no pending work markers", "complete implementation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API rate limiter",
+        "code_files": ["src/middleware/rate_limiter.py", "src/middleware/token_bucket.py"],
+        "theater_threshold": 55
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan rate limiter for mock logic",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock", "fake", "stub", "return True # TODO", "pass"],
+          "scoring_threshold": 55,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <55", "no mock implementations", "real rate limiting"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "File upload handler",
+        "code_files": ["src/uploads/handler.py", "src/uploads/virus_scanner.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check upload handler for fake security",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock", "fake scan", "skip validation", "pass # security"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real virus scanning", "genuine validation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Cache invalidation system",
+        "code_files": ["src/cache/invalidator.py", "src/cache/redis_client.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock cache operations",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock redis", "fake cache", "stub", "pass # invalidate"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real cache operations", "no fake Redis"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Email notification service",
+        "code_files": ["src/notifications/email_sender.py", "src/notifications/smtp_client.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check for fake email sending",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock send", "fake SMTP", "print('sending')", "pass # send"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real SMTP client", "genuine email sending"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "WebSocket connection manager",
+        "code_files": ["src/websocket/manager.py", "src/websocket/broadcaster.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan WebSocket for mock connections",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock connection", "fake broadcast", "stub", "NotImplementedError"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real WebSocket handling", "no mock broadcasts"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Search indexing service",
+        "code_files": ["src/search/indexer.py", "src/search/elasticsearch_client.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect fake Elasticsearch operations",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock elasticsearch", "fake index", "stub search", "pass # index"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real ES client", "genuine indexing"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Task queue worker",
+        "code_files": ["src/tasks/worker.py", "src/tasks/celery_config.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check for mock task execution",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock celery", "fake task", "stub worker", "print('executing')"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real Celery integration", "genuine task execution"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "GraphQL resolver",
+        "code_files": ["src/graphql/resolvers.py", "src/graphql/loaders.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan resolvers for placeholder logic",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "stub resolver", "return None # TODO", "pass"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "complete resolvers", "no stub loaders"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Audit logging system",
+        "code_files": ["src/audit/logger.py", "src/audit/integrity_checker.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical audit system theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock audit", "fake integrity", "skip check", "pass # log"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero theater patterns", "real audit trail"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Session management",
+        "code_files": ["src/sessions/manager.py", "src/sessions/redis_store.py"],
+        "theater_threshold": 55
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check session management for mocks",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock redis", "fake session", "stub validation", "pass # validate"],
+          "scoring_threshold": 55,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review done"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <55", "real session storage", "genuine validation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Permission system",
+        "code_files": ["src/permissions/checker.py", "src/permissions/rbac.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical permission system theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "return True # bypass", "mock permission", "fake check", "pass # security"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero bypass comments", "real permission checks"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Data export service",
+        "code_files": ["src/export/exporter.py", "src/export/csv_generator.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock export operations",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "fake export", "mock data", "stub generator", "pass"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real export logic", "genuine data transformation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Webhook delivery system",
+        "code_files": ["src/webhooks/dispatcher.py", "src/webhooks/retry_handler.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check webhook system for fake delivery",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock dispatch", "fake webhook", "print('sending')", "pass # retry"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real HTTP requests", "genuine retry logic"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Backup automation",
+        "code_files": ["src/backup/automator.py", "src/backup/s3_uploader.py"],
+        "theater_threshold": 55
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan backup system for mock S3",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock S3", "fake upload", "stub backup", "pass # upload"],
+          "scoring_threshold": 55,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <55", "real S3 client", "genuine backup creation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Feature flag system",
+        "code_files": ["src/features/flags.py", "src/features/evaluator.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock feature flag evaluation",
+        "specifications": {
+          "detection_patterns": ["TODO", "return True # TODO", "fake evaluation", "mock flag", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real flag evaluation", "no hardcoded returns"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API versioning middleware",
+        "code_files": ["src/middleware/versioning.py", "src/middleware/deprecation.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check versioning for placeholders",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "stub route", "mock version", "pass # route"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "complete routing logic", "no pending deprecations"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Circuit breaker",
+        "code_files": ["src/resilience/circuit_breaker.py", "src/resilience/failure_detector.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan circuit breaker for mock state",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock state", "fake failure", "stub detector", "pass"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real state management", "genuine failure detection"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Inventory management",
+        "code_files": ["src/inventory/stock_tracker.py", "src/inventory/reservation_system.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical inventory system theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock stock", "fake reservation", "skip lock", "pass # update"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero theater patterns", "real stock management"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Batch job scheduler",
+        "code_files": ["src/scheduler/job_runner.py", "src/scheduler/cron_parser.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check scheduler for mock execution",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock run", "fake cron", "stub job", "print('running')"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real job execution", "genuine cron parsing"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Multi-tenant isolation",
+        "code_files": ["src/tenancy/isolator.py", "src/tenancy/context_manager.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical tenant isolation theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock isolation", "fake tenant", "skip check", "pass # isolate"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero bypass logic", "real tenant isolation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "A/B test framework",
+        "code_files": ["src/experiments/variant_selector.py", "src/experiments/metrics_tracker.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock A/B test assignment",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock variant", "fake assignment", "return 'A' # TODO"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real variant assignment", "genuine metrics tracking"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Chat message system",
+        "code_files": ["src/chat/message_handler.py", "src/chat/presence_tracker.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check chat system for mock delivery",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock send", "fake message", "stub presence", "print('delivered')"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real message delivery", "genuine presence tracking"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Comment moderation",
+        "code_files": ["src/moderation/filter.py", "src/moderation/ml_classifier.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan moderation for fake ML",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock ML", "fake classifier", "return False # TODO", "stub model"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real ML integration", "genuine classification"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Invoice generation",
+        "code_files": ["src/billing/invoice_generator.py", "src/billing/tax_calculator.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical billing system theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock invoice", "fake tax", "return 0 # TODO", "stub"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["financial review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero theater patterns", "real money calculations"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "URL shortener",
+        "code_files": ["src/shortener/encoder.py", "src/shortener/redirect_handler.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check URL shortener for mocks",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock encode", "fake redirect", "stub", "pass # encode"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real encoding logic", "genuine redirect handling"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API key rotation",
+        "code_files": ["src/security/key_rotator.py", "src/security/key_validator.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical key rotation theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock rotation", "fake key", "return True # bypass", "skip validation"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero bypass logic", "real key cryptography"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Form builder",
+        "code_files": ["src/forms/builder.py", "src/forms/validator.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock form validation",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock validate", "fake form", "return True # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real validation logic", "genuine form building"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Health check system",
+        "code_files": ["src/health/checker.py", "src/health/probe_manager.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check health system for fake probes",
+        "specifications": {
+          "detection_patterns": ["TODO", "mock probe", "fake health", "return True # healthy", "stub check"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real dependency checks", "genuine health probes"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Distributed lock manager",
+        "code_files": ["src/locks/manager.py", "src/locks/redis_backend.py"],
+        "theater_threshold": 55
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan lock manager for mock Redis",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock redis", "fake lock", "return True # acquired", "stub"],
+          "scoring_threshold": 55,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["concurrency review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <55", "real Redis operations", "genuine lock acquisition"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Data anonymization",
+        "code_files": ["src/privacy/anonymizer.py", "src/privacy/k_anonymity.py"],
+        "theater_threshold": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Critical privacy code theater scan",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock anonymize", "fake privacy", "return data # TODO", "skip masking"],
+          "scoring_threshold": 50,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["privacy review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": ["score <50", "zero theater patterns", "real PII protection"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Query optimizer",
+        "code_files": ["src/database/query_optimizer.py", "src/database/index_advisor.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check optimizer for placeholder logic",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock optimize", "fake analysis", "return query # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real optimization logic", "genuine query analysis"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Internationalization engine",
+        "code_files": ["src/i18n/translator.py", "src/i18n/locale_detector.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock translation logic",
+        "specifications": {
+          "detection_patterns": ["TODO", "return text # TODO", "fake translate", "mock locale", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real translation files", "genuine locale detection"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Load balancer",
+        "code_files": ["src/loadbalancer/distributor.py", "src/loadbalancer/health_monitor.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan load balancer for fake distribution",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock distribute", "fake health", "return backends[0] # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real distribution algorithm", "genuine health monitoring"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Time series aggregator",
+        "code_files": ["src/timeseries/aggregator.py", "src/timeseries/downsampler.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check time series for mock aggregation",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock aggregate", "fake downsample", "return [] # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real aggregation logic", "genuine downsampling"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Markdown parser",
+        "code_files": ["src/markdown/parser.py", "src/markdown/sanitizer.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect fake markdown sanitization",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock parse", "fake sanitize", "return html # TODO", "skip XSS"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["security review done"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real XSS prevention", "genuine parsing"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Content recommendation engine",
+        "code_files": ["src/recommendations/engine.py", "src/recommendations/collaborative_filter.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check recommendation engine for mocks",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock recommend", "fake filter", "return [] # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real recommendation algorithm", "genuine filtering"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Real-time analytics",
+        "code_files": ["src/analytics/realtime_processor.py", "src/analytics/event_aggregator.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan real-time analytics for fake processing",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock process", "fake aggregate", "print('processing')", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real event processing", "genuine aggregation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Configuration management",
+        "code_files": ["src/config/loader.py", "src/config/validator.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check config management for placeholders",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock config", "fake validate", "return {} # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real config loading", "genuine validation"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Notification preferences",
+        "code_files": ["src/notifications/preferences.py", "src/notifications/scheduler.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock preference handling",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock update", "fake schedule", "pass # update"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real preference storage", "genuine scheduling"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "PDF generation service",
+        "code_files": ["src/pdf/generator.py", "src/pdf/template_renderer.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check PDF generator for fake rendering",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock generate", "fake PDF", "return bytes() # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real PDF library", "genuine template rendering"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Geolocation service",
+        "code_files": ["src/geo/locator.py", "src/geo/distance_calculator.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Scan geolocation for mock API calls",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock geolocate", "fake distance", "return 0 # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real geolocation API", "genuine distance calculations"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Changelog generator",
+        "code_files": ["src/changelog/parser.py", "src/changelog/formatter.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check changelog generator for stubs",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock parse", "fake format", "return '' # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real git parsing", "genuine formatting"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Code syntax highlighter",
+        "code_files": ["src/highlighting/lexer.py", "src/highlighting/theme_engine.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Detect mock syntax highlighting",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock tokenize", "fake highlight", "return code # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 8,
+        "quality_gates": ["score <60", "real lexer", "genuine theme application"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Image processing pipeline",
+        "code_files": ["src/images/processor.py", "src/images/resizer.py"],
+        "theater_threshold": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "theater-detector",
+        "task_type": "detect-theater-code",
+        "description": "Check image processor for fake operations",
+        "specifications": {
+          "detection_patterns": ["TODO", "FIXME", "mock process", "fake resize", "return image # TODO", "stub"],
+          "scoring_threshold": 60,
+          "report_suspicious": true,
+          "check_imports": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["score <60", "real image library", "genuine transformations"]
+      }
+    }
+  ]
+}

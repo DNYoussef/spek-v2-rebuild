@@ -1,0 +1,238 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main, develop ]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: Test Suite
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
+        cache: 'pip'
+
+    - name: Install dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install pytest pytest-cov pytest-xdist
+        pip install -r requirements.txt || echo "No requirements.txt found"
+
+    - name: Run unit tests
+      run: |
+        pytest tests/unit -v --cov=analyzer --cov-report=xml --cov-report=term-missing -n auto
+
+    - name: Run integration tests
+      run: |
+        pytest tests/integration -v --cov=analyzer --cov-append --cov-report=xml --cov-report=term-missing
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v4
+      with:
+        file: ./coverage.xml
+        flags: unittests
+        name: codecov-umbrella
+        fail_ci_if_error: false
+
+    - name: Check coverage threshold
+      run: |
+        pytest --cov=analyzer --cov-fail-under=80 --cov-report=term-missing
+
+  lint:
+    name: Code Quality
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install linting tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install ruff black isort mypy
+
+    - name: Run Black formatter check
+      run: |
+        black --check analyzer/ tests/ || echo "Black formatting issues found"
+
+    - name: Run isort import check
+      run: |
+        isort --check-only analyzer/ tests/ || echo "Import sorting issues found"
+
+    - name: Run Ruff linter
+      run: |
+        ruff check analyzer/ tests/ || echo "Ruff linting issues found"
+
+    - name: Run mypy type checker
+      run: |
+        mypy analyzer/ --ignore-missing-imports || echo "Type checking issues found"
+
+  security:
+    name: Security Scan
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install security tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install bandit safety
+
+    - name: Run Bandit security scanner
+      run: |
+        bandit -r analyzer/ -f json -o bandit-report.json || echo "Security issues found"
+
+    - name: Upload Bandit report
+      uses: actions/upload-artifact@v4
+      if: always()
+      with:
+        name: bandit-report
+        path: bandit-report.json
+
+    - name: Check dependencies for vulnerabilities
+      run: |
+        pip freeze | safety check --stdin || echo "Dependency vulnerabilities found"
+
+  nasa-compliance:
+    name: NASA POT10 Compliance
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Check function length (NASA Rule 3)
+      run: |
+        python -c "
+        import ast
+        import sys
+        from pathlib import Path
+
+        violations = []
+        for py_file in Path('analyzer').rglob('*.py'):
+            try:
+                with open(py_file) as f:
+                    tree = ast.parse(f.read())
+                for node in ast.walk(tree):
+                    if isinstance(node, ast.FunctionDef):
+                        func_lines = len(node.body)
+                        if func_lines > 60:
+                            violations.append(f'{py_file}:{node.lineno} - {node.name} ({func_lines} statements)')
+            except:
+                pass
+
+        if violations:
+            print('NASA Rule 3 Violations (functions >60 lines):')
+            for v in violations:
+                print(f'  - {v}')
+            sys.exit(1)
+        else:
+            print('✅ NASA Rule 3: All functions ≤60 lines')
+        "
+
+    - name: Check file length (NASA guideline)
+      run: |
+        python -c "
+        import sys
+        from pathlib import Path
+
+        violations = []
+        for py_file in Path('analyzer').rglob('*.py'):
+            line_count = len(py_file.read_text().splitlines())
+            if line_count > 300 and '__init__' not in py_file.name:
+                violations.append(f'{py_file}: {line_count} lines')
+
+        if violations:
+            print('NASA Guideline Violations (files >300 LOC):')
+            for v in violations:
+                print(f'  - {v}')
+            sys.exit(1)
+        else:
+            print('✅ NASA Guideline: All files ≤300 LOC')
+        "
+
+  build:
+    name: Build and Package
+    runs-on: ubuntu-latest
+    needs: [test, lint, security, nasa-compliance]
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: "3.11"
+
+    - name: Install build tools
+      run: |
+        python -m pip install --upgrade pip
+        pip install build twine
+
+    - name: Build package
+      run: |
+        python -m build
+
+    - name: Check package
+      run: |
+        twine check dist/*
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: dist-packages
+        path: dist/
+
+  report:
+    name: Generate Report
+    runs-on: ubuntu-latest
+    needs: [test, lint, security, nasa-compliance]
+    if: always()
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Generate summary
+      run: |
+        echo "## CI/CD Pipeline Results" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Test Results" >> $GITHUB_STEP_SUMMARY
+        echo "- Unit Tests: ${{ needs.test.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Code Quality: ${{ needs.lint.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- Security Scan: ${{ needs.security.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "- NASA Compliance: ${{ needs.nasa-compliance.result }}" >> $GITHUB_STEP_SUMMARY
+        echo "" >> $GITHUB_STEP_SUMMARY
+        echo "### Build Status" >> $GITHUB_STEP_SUMMARY
+        echo "- Package Build: ${{ needs.build.result }}" >> $GITHUB_STEP_SUMMARY

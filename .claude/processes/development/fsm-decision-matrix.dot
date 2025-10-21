@@ -1,0 +1,119 @@
+digraph FSM_DECISION_MATRIX {
+    // TRIGGER: Deciding whether to use FSM (Finite State Machine) for a feature
+    // USE WHEN:
+    //   - Considering state management approach
+    //   - About to implement complex workflow
+    //   - Need to choose between FSM vs simple if/else
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_fsm_decision {
+        label="TRIGGER: Should I Use FSM for Feature X?";
+        style="rounded,bold";
+        bgcolor="#fff3e0";
+
+        // Entry
+        "Feature needs state management" [shape=ellipse];
+
+        // Criterion 1
+        "Has ≥3 distinct states?" [shape=diamond];
+        "Examples:\n- idle/loading/success/error\n- draft/review/approved/published" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // Criterion 2
+        "Has ≥5 state transitions?" [shape=diamond];
+        "Examples:\n- idle→loading→success\n- idle→loading→error→retry→loading" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // Criterion 3
+        "Needs complex error recovery?" [shape=diamond];
+        "Examples:\n- Retry logic with backoff\n- Rollback to previous state\n- Multi-step recovery" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // Criterion 4
+        "Needs audit trail?" [shape=diamond];
+        "Examples:\n- State change logging\n- Compliance tracking\n- User activity history" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // Criterion 5
+        "Has multiple concurrent sessions?" [shape=diamond];
+        "Examples:\n- Multiple users with separate states\n- Parallel workflows\n- Isolated state per instance" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // Count criteria
+        "Count 'yes' answers" [shape=box];
+        "≥3 criteria met?" [shape=diamond];
+
+        // FSM justified
+        "YES: Use XState FSM" [shape=box, style=filled, fillcolor=lightgreen];
+        "Validate with Constitution:\nAligns with simplicity principle?" [shape=diamond];
+        "Approved: Implement XState FSM" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // FSM NOT justified
+        "NO: Use Simple if/else Logic" [shape=box, style=filled, fillcolor=lightyellow];
+        "Implement with:\n- Simple conditionals\n- State variables\n- Switch statements" [shape=box];
+        "Approved: Use Simple Logic" [shape=doublecircle, style=filled, fillcolor=lightblue];
+
+        // Rejected path
+        "REJECTED: FSM Not Aligned" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+        // Flow
+        "Feature needs state management" -> "Has ≥3 distinct states?";
+
+        "Has ≥3 distinct states?" -> "Examples:\n- idle/loading/success/error\n- draft/review/approved/published" [style=dotted, label="help"];
+        "Has ≥3 distinct states?" -> "Has ≥5 state transitions?";
+
+        "Has ≥5 state transitions?" -> "Examples:\n- idle→loading→success\n- idle→loading→error→retry→loading" [style=dotted, label="help"];
+        "Has ≥5 state transitions?" -> "Needs complex error recovery?";
+
+        "Needs complex error recovery?" -> "Examples:\n- Retry logic with backoff\n- Rollback to previous state\n- Multi-step recovery" [style=dotted, label="help"];
+        "Needs complex error recovery?" -> "Needs audit trail?";
+
+        "Needs audit trail?" -> "Examples:\n- State change logging\n- Compliance tracking\n- User activity history" [style=dotted, label="help"];
+        "Needs audit trail?" -> "Has multiple concurrent sessions?";
+
+        "Has multiple concurrent sessions?" -> "Examples:\n- Multiple users with separate states\n- Parallel workflows\n- Isolated state per instance" [style=dotted, label="help"];
+        "Has multiple concurrent sessions?" -> "Count 'yes' answers";
+
+        "Count 'yes' answers" -> "≥3 criteria met?";
+
+        // FSM path
+        "≥3 criteria met?" -> "YES: Use XState FSM" [label="yes"];
+        "YES: Use XState FSM" -> "Validate with Constitution:\nAligns with simplicity principle?";
+        "Validate with Constitution:\nAligns with simplicity principle?" -> "Approved: Implement XState FSM" [label="yes"];
+        "Validate with Constitution:\nAligns with simplicity principle?" -> "REJECTED: FSM Not Aligned" [label="no"];
+
+        // Simple logic path
+        "≥3 criteria met?" -> "NO: Use Simple if/else Logic" [label="no\n(<3 criteria)"];
+        "NO: Use Simple if/else Logic" -> "Implement with:\n- Simple conditionals\n- State variables\n- Switch statements";
+        "Implement with:\n- Simple conditionals\n- State variables\n- Switch statements" -> "Approved: Use Simple Logic";
+    }
+
+    // Governance layers
+    subgraph cluster_governance {
+        label="Governance Decision Flow";
+        bgcolor="#e3f2fd";
+
+        "1. FSM Decision Matrix\n(>=3 criteria must pass)" [shape=box];
+        "2. Constitution Validation\n(simplicity principle)" [shape=box];
+        "Both must approve" [shape=box, style=filled, fillcolor=orange];
+
+        "1. FSM Decision Matrix\n(>=3 criteria must pass)" -> "2. Constitution Validation\n(simplicity principle)";
+        "2. Constitution Validation\n(simplicity principle)" -> "Both must approve";
+    }
+
+    // Examples
+    subgraph cluster_examples {
+        label="Real-World Examples";
+        bgcolor="#fff3e0";
+
+        "✅ FSM Justified:\n- Agent lifecycle (idle/active/paused/terminated)\n- Deployment pipeline (build/test/deploy/verify)\n- Payment processing (pending/processing/success/failed/refund)" [shape=box, style=filled, fillcolor=lightgreen];
+
+        "❌ FSM NOT Justified:\n- Toggle button (on/off) - 2 states\n- Form validation (valid/invalid) - simple boolean\n- Loading indicator (show/hide) - 2 states" [shape=box, style=filled, fillcolor=lightcoral];
+    }
+
+    // Critical rule
+    subgraph cluster_rules {
+        label="CRITICAL RULE";
+        bgcolor="#ffcdd2";
+
+        "Use XState ONLY for FSMs that meet ≥3 criteria" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Simple logic uses if/else, switch, or state variables" [shape=octagon, style=filled, fillcolor=orange];
+    }
+}

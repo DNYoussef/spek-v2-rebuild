@@ -1,0 +1,43 @@
+{
+  "total_agents_tested": 4,
+  "test_duration_sec": 0.012965679168701172,
+  "timestamp": "2025-10-08 21:45:34",
+  "metrics": {
+    "queen": {
+      "agent_id": "queen",
+      "validation_time_ms": 0.0,
+      "execution_time_ms": 0.13292630513509116,
+      "success_rate": 66.66666666666666,
+      "quality_score": 66.66666666666666,
+      "throughput_tasks_per_sec": 7522.965443022838,
+      "timestamp": "2025-10-08 21:45:34"
+    },
+    "tester": {
+      "agent_id": "tester",
+      "validation_time_ms": 0.0,
+      "execution_time_ms": 0.26599566141764325,
+      "success_rate": 0.0,
+      "quality_score": 0.0,
+      "throughput_tasks_per_sec": 3759.459814759486,
+      "timestamp": "2025-10-08 21:45:34"
+    },
+    "reviewer": {
+      "agent_id": "reviewer",
+      "validation_time_ms": 0.0,
+      "execution_time_ms": 0.26594797770182294,
+      "success_rate": 0.0,
+      "quality_score": 0.0,
+      "throughput_tasks_per_sec": 3760.13387520918,
+      "timestamp": "2025-10-08 21:45:34"
+    },
+    "coder": {
+      "agent_id": "coder",
+      "validation_time_ms": 0.0,
+      "execution_time_ms": 0.1995086669921875,
+      "success_rate": 0.0,
+      "quality_score": 0.0,
+      "throughput_tasks_per_sec": 5012.313575525813,
+      "timestamp": "2025-10-08 21:45:34"
+    }
+  }
+}

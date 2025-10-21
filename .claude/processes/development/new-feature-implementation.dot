@@ -1,0 +1,138 @@
+digraph NEW_FEATURE_IMPLEMENTATION {
+    // TRIGGER: Starting implementation of a new feature/task
+    // USE WHEN:
+    //   - New request arrives
+    //   - Feature specification ready
+    //   - About to write code
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_implementation {
+        label="TRIGGER: New Feature Implementation";
+        style="rounded,bold";
+        bgcolor="#e8f5e9";
+
+        // Entry
+        "New feature request received" [shape=ellipse];
+
+        // Comprehension check
+        "Do I understand requirements?" [shape=diamond];
+        "Ask specific questions:\n- What is the expected behavior?\n- What are the inputs/outputs?\n- What are edge cases?" [shape=box];
+
+        // Context gathering
+        "grep -r 'similar_function' ." [shape=plaintext];
+        "Read 2-3 similar files completely" [shape=box];
+
+        // Scope check
+        "Will change >10 files?" [shape=diamond];
+        "STOP: Get user's permission\n(explain scope, get approval)" [shape=octagon, style=filled, fillcolor=orange];
+
+        // Planning
+        "Break down into steps" [shape=box];
+        "Identify components:\n- New files needed\n- Existing files to modify\n- Tests to write" [shape=box];
+
+        // TDD workflow
+        "Write ONE failing test" [shape=box];
+        "npm test" [shape=plaintext];
+        "Test fails as expected?" [shape=diamond];
+        "Fix test (wrong assertion)" [shape=box];
+
+        // Implementation
+        "Write MINIMAL code to pass test" [shape=box];
+        "Code should:\n- Make test pass\n- Nothing more\n- Be clear over clever\n- Match codebase style" [shape=box];
+
+        "npm test" [shape=plaintext];
+        "Test passes?" [shape=diamond];
+
+        // Quality check
+        "NASA compliance check:\n<=60 LOC per function" [shape=box];
+        "Type hints added?" [shape=diamond];
+        "Add type hints" [shape=box];
+
+        // Code style
+        "Matches codebase style?" [shape=diamond];
+        "Review 2-3 similar files\nAdjust style to match" [shape=box];
+
+        // Commit
+        "git add <specific-files>" [shape=plaintext];
+        "git commit -m 'Add [feature]: [description]'" [shape=plaintext];
+
+        // Continue or complete
+        "More features to implement?" [shape=diamond];
+        "Feature complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "New feature request received" -> "Do I understand requirements?";
+
+        "Do I understand requirements?" -> "grep -r 'similar_function' ." [label="yes"];
+        "Do I understand requirements?" -> "Ask specific questions:\n- What is the expected behavior?\n- What are the inputs/outputs?\n- What are edge cases?" [label="no"];
+        "Ask specific questions:\n- What is the expected behavior?\n- What are the inputs/outputs?\n- What are edge cases?" -> "Do I understand requirements?";
+
+        "grep -r 'similar_function' ." -> "Read 2-3 similar files completely";
+        "Read 2-3 similar files completely" -> "Will change >10 files?";
+
+        "Will change >10 files?" -> "STOP: Get user's permission\n(explain scope, get approval)" [label="yes"];
+        "Will change >10 files?" -> "Break down into steps" [label="no"];
+        "STOP: Get user's permission\n(explain scope, get approval)" -> "Break down into steps";
+
+        "Break down into steps" -> "Identify components:\n- New files needed\n- Existing files to modify\n- Tests to write";
+        "Identify components:\n- New files needed\n- Existing files to modify\n- Tests to write" -> "Write ONE failing test";
+
+        "Write ONE failing test" -> "npm test";
+        "npm test" -> "Test fails as expected?";
+        "Test fails as expected?" -> "Write MINIMAL code to pass test" [label="yes"];
+        "Test fails as expected?" -> "Fix test (wrong assertion)" [label="no"];
+        "Fix test (wrong assertion)" -> "npm test";
+
+        "Write MINIMAL code to pass test" -> "Code should:\n- Make test pass\n- Nothing more\n- Be clear over clever\n- Match codebase style";
+        "Code should:\n- Make test pass\n- Nothing more\n- Be clear over clever\n- Match codebase style" -> "npm test";
+
+        "npm test" -> "Test passes?";
+        "Test passes?" -> "Write MINIMAL code to pass test" [label="no"];
+        "Test passes?" -> "NASA compliance check:\n<=60 LOC per function" [label="yes"];
+
+        "NASA compliance check:\n<=60 LOC per function" -> "Type hints added?";
+        "Type hints added?" -> "Matches codebase style?" [label="yes"];
+        "Type hints added?" -> "Add type hints" [label="no"];
+        "Add type hints" -> "Matches codebase style?";
+
+        "Matches codebase style?" -> "git add <specific-files>" [label="yes"];
+        "Matches codebase style?" -> "Review 2-3 similar files\nAdjust style to match" [label="no"];
+        "Review 2-3 similar files\nAdjust style to match" -> "git add <specific-files>";
+
+        "git add <specific-files>" -> "git commit -m 'Add [feature]: [description]'";
+        "git commit -m 'Add [feature]: [description]'" -> "More features to implement?";
+
+        "More features to implement?" -> "Write ONE failing test" [label="yes"];
+        "More features to implement?" -> "Feature complete" [label="no"];
+    }
+
+    // File organization rules
+    subgraph cluster_file_org {
+        label="File Organization (NEVER save to root)";
+        bgcolor="#fff3e0";
+
+        "/src - Source code" [shape=box];
+        "/tests - Test files" [shape=box];
+        "/docs - Documentation" [shape=box];
+        "/specs - Specifications" [shape=box];
+        "/plans - Implementation plans" [shape=box];
+    }
+
+    // Critical rules
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        bgcolor="#ffcdd2";
+
+        "NEVER skip writing test first" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "NEVER use git add -A" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "NEVER save working files to root" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS search for similar code first" [shape=octagon, style=filled, fillcolor=orange];
+        "ALWAYS prefer editing existing files" [shape=octagon, style=filled, fillcolor=orange];
+    }
+
+    // External connections
+    "Test passes?" -> when_stuck [label="if confused", style=dotted];
+    "Feature complete" -> completion_checklist [label="verify complete", style=dotted];
+}

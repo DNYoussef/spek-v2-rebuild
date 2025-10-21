@@ -1,0 +1,1392 @@
+{
+  "communication_path": "princess-dev→integration-engineer",
+  "description": "Princess-Dev delegates system integration and orchestration tasks to Integration-Engineer drone",
+  "version": "1.0",
+  "total_examples": 50,
+  "examples": [
+    {
+      "id": 1,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["authentication-service", "user-service", "api-gateway"],
+        "requirements": "Integrate new authentication flow with user service"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate authentication service with user service and API gateway",
+        "specifications": {
+          "integration_points": [
+            "API gateway → authentication service (JWT validation)",
+            "Authentication service → user service (user lookup)",
+            "User service → authentication service (profile updates)"
+          ],
+          "data_flow": "Request → Gateway → Auth validation → User service → Response",
+          "contracts": ["AuthAPI v1", "UserAPI v2"],
+          "error_handling": "Propagate auth errors, handle user not found, retry on network failures"
+        },
+        "dependencies": ["all services deployed", "service contracts defined"],
+        "estimated_minutes": 50,
+        "quality_gates": ["integration tests pass", "error scenarios handled", "performance <200ms"]
+      }
+    },
+    {
+      "id": 2,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["payment-gateway", "order-service", "notification-service"],
+        "requirements": "Connect payment processing with order fulfillment"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate payment gateway with order and notification services",
+        "specifications": {
+          "integration_points": [
+            "Order service → payment gateway (charge customer)",
+            "Payment gateway webhook → order service (payment status)",
+            "Order service → notification service (send receipts)"
+          ],
+          "data_flow": "Order created → Payment initiated → Webhook received → Order updated → Notification sent",
+          "contracts": ["StripeAPI v1", "OrderAPI v3", "NotificationAPI v1"],
+          "error_handling": "Handle payment failures, duplicate webhooks, notification retries"
+        },
+        "dependencies": ["Stripe configured", "webhook endpoint exposed"],
+        "estimated_minutes": 60,
+        "quality_gates": ["end-to-end flow works", "idempotency verified", "all scenarios tested"]
+      }
+    },
+    {
+      "id": 3,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["frontend-app", "graphql-api", "rest-services"],
+        "requirements": "Unify data fetching through GraphQL layer"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate frontend with GraphQL API that aggregates REST services",
+        "specifications": {
+          "integration_points": [
+            "Frontend → GraphQL API (unified queries)",
+            "GraphQL resolvers → REST services (data fetching)",
+            "GraphQL subscriptions → WebSocket (real-time updates)"
+          ],
+          "data_flow": "Frontend query → GraphQL → Multiple REST calls → Aggregate response",
+          "contracts": ["GraphQL schema", "REST API specs"],
+          "error_handling": "Partial failures, timeout handling, fallback data"
+        },
+        "dependencies": ["GraphQL server setup", "REST services accessible"],
+        "estimated_minutes": 55,
+        "quality_gates": ["queries resolve correctly", "N+1 prevented", "error handling robust"]
+      }
+    },
+    {
+      "id": 4,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["mobile-app", "sync-service", "cloud-storage"],
+        "requirements": "Implement offline-first sync between mobile and cloud"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate mobile app with cloud sync service for offline-first operation",
+        "specifications": {
+          "integration_points": [
+            "Mobile app → sync service (delta sync)",
+            "Sync service → cloud storage (data persistence)",
+            "Cloud storage → sync service (change notifications)"
+          ],
+          "data_flow": "Local changes → Sync queue → Upload → Conflict resolution → Download changes",
+          "contracts": ["SyncAPI v1", "StorageAPI v2"],
+          "error_handling": "Conflict resolution, network failures, partial syncs"
+        },
+        "dependencies": ["sync protocol defined", "conflict resolution strategy"],
+        "estimated_minutes": 60,
+        "quality_gates": ["sync works offline", "conflicts resolved", "data consistency verified"]
+      }
+    },
+    {
+      "id": 5,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["analytics-service", "event-bus", "data-warehouse"],
+        "requirements": "Stream analytics events to data warehouse"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate analytics service with event bus and data warehouse",
+        "specifications": {
+          "integration_points": [
+            "Services → event bus (publish events)",
+            "Analytics service → event bus (subscribe to events)",
+            "Analytics service → data warehouse (batch writes)"
+          ],
+          "data_flow": "Event published → Kafka topic → Analytics consumer → Transform → Warehouse batch",
+          "contracts": ["EventSchema v1", "WarehouseAPI v1"],
+          "error_handling": "Message replay, batch failures, schema evolution"
+        },
+        "dependencies": ["Kafka cluster", "warehouse connection"],
+        "estimated_minutes": 55,
+        "quality_gates": ["events flow correctly", "no data loss", "schema versioning works"]
+      }
+    },
+    {
+      "id": 6,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["search-service", "elasticsearch", "product-catalog"],
+        "requirements": "Keep search index in sync with product catalog"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate Elasticsearch search with product catalog updates",
+        "specifications": {
+          "integration_points": [
+            "Product catalog → event bus (change events)",
+            "Search service → event bus (consume changes)",
+            "Search service → Elasticsearch (index updates)"
+          ],
+          "data_flow": "Product updated → Event published → Search service indexes → Elasticsearch updated",
+          "contracts": ["ProductAPI v2", "SearchAPI v1"],
+          "error_handling": "Reindexing on failures, partial updates, consistency checks"
+        },
+        "dependencies": ["Elasticsearch cluster", "event bus configured"],
+        "estimated_minutes": 50,
+        "quality_gates": ["index stays in sync", "search results accurate", "performance acceptable"]
+      }
+    },
+    {
+      "id": 7,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["ci-pipeline", "github-actions", "deployment-service"],
+        "requirements": "Automate deployment pipeline from CI"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate GitHub Actions CI with automated deployment service",
+        "specifications": {
+          "integration_points": [
+            "GitHub Actions → build/test (CI pipeline)",
+            "CI success → deployment service (trigger deploy)",
+            "Deployment service → Kubernetes (rolling update)"
+          ],
+          "data_flow": "Push → CI runs → Tests pass → Build image → Deploy to staging → Manual approval → Deploy to prod",
+          "contracts": ["DeploymentAPI v1", "K8s API"],
+          "error_handling": "Build failures, deployment rollback, approval timeout"
+        },
+        "dependencies": ["GitHub Actions configured", "deployment credentials"],
+        "estimated_minutes": 55,
+        "quality_gates": ["pipeline works end-to-end", "rollback tested", "zero downtime"]
+      }
+    },
+    {
+      "id": 8,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["monitoring-service", "prometheus", "grafana", "alertmanager"],
+        "requirements": "Set up comprehensive monitoring and alerting"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate Prometheus monitoring with Grafana dashboards and Alertmanager",
+        "specifications": {
+          "integration_points": [
+            "Services → Prometheus (metrics scraping)",
+            "Prometheus → Grafana (dashboard data)",
+            "Prometheus → Alertmanager (alert rules)",
+            "Alertmanager → PagerDuty/Slack (notifications)"
+          ],
+          "data_flow": "Metrics exposed → Scraped → Stored → Visualized → Alerts triggered → Notifications sent",
+          "contracts": ["Prometheus metrics format", "Alert format"],
+          "error_handling": "Scrape failures, alert fatigue, notification delivery"
+        },
+        "dependencies": ["Prometheus deployed", "Grafana configured"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all services monitored", "dashboards functional", "alerts working"]
+      }
+    },
+    {
+      "id": 9,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["email-service", "template-engine", "smtp-provider"],
+        "requirements": "Integrate email sending with templating system"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate email service with template engine and SMTP provider",
+        "specifications": {
+          "integration_points": [
+            "Services → email service (send email requests)",
+            "Email service → template engine (render templates)",
+            "Email service → SMTP provider (deliver emails)"
+          ],
+          "data_flow": "Email request → Load template → Render with data → Send via SMTP → Track delivery",
+          "contracts": ["EmailAPI v1", "TemplateAPI v1", "SMTP config"],
+          "error_handling": "Template errors, SMTP failures, bounce handling"
+        },
+        "dependencies": ["SMTP credentials", "email templates"],
+        "estimated_minutes": 45,
+        "quality_gates": ["emails send successfully", "templates render correctly", "delivery tracked"]
+      }
+    },
+    {
+      "id": 10,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["file-upload-service", "s3", "image-processing-service"],
+        "requirements": "Process uploaded images asynchronously"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate file upload with S3 storage and image processing",
+        "specifications": {
+          "integration_points": [
+            "Frontend → upload service (multipart upload)",
+            "Upload service → S3 (store original)",
+            "S3 event → image processing service (generate thumbnails)",
+            "Processing service → S3 (store thumbnails)"
+          ],
+          "data_flow": "Upload → S3 original → S3 event → Process → S3 thumbnails → Update DB",
+          "contracts": ["UploadAPI v1", "S3 event schema"],
+          "error_handling": "Upload failures, processing errors, storage limits"
+        },
+        "dependencies": ["S3 bucket", "Lambda/processing service"],
+        "estimated_minutes": 50,
+        "quality_gates": ["uploads work", "processing automatic", "error handling robust"]
+      }
+    },
+    {
+      "id": 11,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["api-gateway", "rate-limiter", "microservices"],
+        "requirements": "Add rate limiting at API gateway level"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate rate limiting into API gateway for all microservices",
+        "specifications": {
+          "integration_points": [
+            "Clients → API gateway (all requests)",
+            "API gateway → rate limiter (check limits)",
+            "API gateway → microservices (allowed requests)"
+          ],
+          "data_flow": "Request → Gateway → Rate limit check → Pass/reject → Microservice",
+          "contracts": ["RateLimitAPI v1", "Gateway middleware"],
+          "error_handling": "Distributed rate limiting, Redis failures, limit configuration"
+        },
+        "dependencies": ["Redis for rate limiting", "gateway configuration"],
+        "estimated_minutes": 40,
+        "quality_gates": ["rate limits enforced", "distributed consistency", "proper HTTP responses"]
+      }
+    },
+    {
+      "id": 12,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["recommendation-engine", "user-behavior-tracker", "ml-model-service"],
+        "requirements": "Integrate ML recommendations with user tracking"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate recommendation engine with user behavior tracking and ML models",
+        "specifications": {
+          "integration_points": [
+            "Frontend → behavior tracker (track events)",
+            "Behavior tracker → data pipeline (stream events)",
+            "ML service → behavior data (training)",
+            "Recommendation engine → ML service (get recommendations)"
+          ],
+          "data_flow": "User action → Tracked → Pipeline → ML training → Model updated → Recommendations served",
+          "contracts": ["TrackerAPI v1", "MLAPI v2", "RecommendationAPI v1"],
+          "error_handling": "Model unavailable, cold start, stale recommendations"
+        },
+        "dependencies": ["ML model deployed", "event pipeline running"],
+        "estimated_minutes": 60,
+        "quality_gates": ["recommendations work", "real-time updates", "model versioning"]
+      }
+    },
+    {
+      "id": 13,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["audit-log-service", "database", "compliance-dashboard"],
+        "requirements": "Centralize audit logging across all services"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate audit logging service across all microservices",
+        "specifications": {
+          "integration_points": [
+            "All services → audit log service (log events)",
+            "Audit service → database (persist logs)",
+            "Compliance dashboard → audit service (query logs)"
+          ],
+          "data_flow": "Service event → Audit log → Database → Dashboard query → Compliance report",
+          "contracts": ["AuditAPI v1", "Event schema"],
+          "error_handling": "Asynchronous logging, storage capacity, query performance"
+        },
+        "dependencies": ["audit log service deployed", "database schema"],
+        "estimated_minutes": 50,
+        "quality_gates": ["all services log", "logs queryable", "compliance requirements met"]
+      }
+    },
+    {
+      "id": 14,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["frontend", "backend-for-frontend", "microservices"],
+        "requirements": "Add BFF layer to aggregate microservice calls"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate BFF layer between frontend and microservices",
+        "specifications": {
+          "integration_points": [
+            "Frontend → BFF (optimized API)",
+            "BFF → multiple microservices (parallel calls)",
+            "BFF → frontend (aggregated response)"
+          ],
+          "data_flow": "Frontend request → BFF → Parallel microservice calls → Aggregate → Response",
+          "contracts": ["BFF API spec", "Microservice APIs"],
+          "error_handling": "Partial failures, timeout handling, circuit breaker"
+        },
+        "dependencies": ["BFF service deployed", "microservices accessible"],
+        "estimated_minutes": 55,
+        "quality_gates": ["BFF reduces frontend calls", "error handling robust", "performance improved"]
+      }
+    },
+    {
+      "id": 15,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["inventory-service", "order-service", "warehouse-system"],
+        "requirements": "Sync inventory with external warehouse system"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate inventory and order services with external warehouse system",
+        "specifications": {
+          "integration_points": [
+            "Order service → inventory service (reserve stock)",
+            "Inventory service → warehouse system (check availability)",
+            "Warehouse system → inventory service (stock updates)"
+          ],
+          "data_flow": "Order placed → Reserve inventory → Check warehouse → Update inventory → Fulfill order",
+          "contracts": ["InventoryAPI v2", "WarehouseAPI (external)"],
+          "error_handling": "Stock discrepancies, warehouse API downtime, rollback reservations"
+        },
+        "dependencies": ["warehouse API credentials", "inventory service"],
+        "estimated_minutes": 60,
+        "quality_gates": ["stock accuracy", "order fulfillment works", "external API resilience"]
+      }
+    },
+    {
+      "id": 16,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["chat-service", "moderation-service", "user-service"],
+        "requirements": "Add content moderation to chat messages"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate chat service with content moderation and user management",
+        "specifications": {
+          "integration_points": [
+            "Chat service → moderation service (check message)",
+            "Moderation service → user service (check user reputation)",
+            "Chat service → websocket (broadcast if approved)"
+          ],
+          "data_flow": "Message sent → Moderation check → Reputation check → Approve/reject → Broadcast",
+          "contracts": ["ModerationAPI v1", "UserAPI v2"],
+          "error_handling": "Moderation service down (allow/deny?), false positives, user appeals"
+        },
+        "dependencies": ["moderation service API", "chat service"],
+        "estimated_minutes": 50,
+        "quality_gates": ["messages moderated", "low latency", "fallback strategy works"]
+      }
+    },
+    {
+      "id": 17,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["billing-service", "stripe", "subscription-service"],
+        "requirements": "Integrate subscription billing with Stripe"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate subscription service with Stripe billing",
+        "specifications": {
+          "integration_points": [
+            "Subscription service → Stripe (create subscription)",
+            "Stripe webhook → billing service (payment events)",
+            "Billing service → subscription service (update status)"
+          ],
+          "data_flow": "Subscribe → Stripe subscription → Recurring payments → Webhook → Update access",
+          "contracts": ["StripeAPI", "SubscriptionAPI v1"],
+          "error_handling": "Payment failures, subscription cancellations, pro-rating"
+        },
+        "dependencies": ["Stripe account", "webhook endpoints"],
+        "estimated_minutes": 60,
+        "quality_gates": ["subscriptions work", "webhooks reliable", "billing accurate"]
+      }
+    },
+    {
+      "id": 18,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["sso-service", "okta", "application-services"],
+        "requirements": "Integrate single sign-on with Okta"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate SSO service with Okta for enterprise authentication",
+        "specifications": {
+          "integration_points": [
+            "Application → SSO service (initiate login)",
+            "SSO service → Okta (SAML flow)",
+            "Okta → SSO service (user attributes)",
+            "SSO service → application (session token)"
+          ],
+          "data_flow": "Login → Redirect to Okta → SAML assertion → Create session → Redirect back",
+          "contracts": ["SAML 2.0", "OktaAPI"],
+          "error_handling": "Okta downtime, invalid assertions, user not found"
+        },
+        "dependencies": ["Okta tenant", "SAML configuration"],
+        "estimated_minutes": 55,
+        "quality_gates": ["SSO works", "user attributes mapped", "error scenarios handled"]
+      }
+    },
+    {
+      "id": 19,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["reporting-service", "data-warehouse", "bi-tool"],
+        "requirements": "Connect BI tool to data warehouse for reporting"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate BI tool with data warehouse for business reporting",
+        "specifications": {
+          "integration_points": [
+            "Services → data pipeline (ETL)",
+            "Data pipeline → warehouse (load data)",
+            "BI tool → warehouse (query data)",
+            "Reporting service → BI tool (scheduled reports)"
+          ],
+          "data_flow": "Data collected → ETL → Warehouse → BI queries → Reports generated",
+          "contracts": ["WarehouseSchema", "BI connector"],
+          "error_handling": "Query timeouts, data freshness, large result sets"
+        },
+        "dependencies": ["data warehouse", "BI tool credentials"],
+        "estimated_minutes": 50,
+        "quality_gates": ["BI connected", "reports accurate", "performance acceptable"]
+      }
+    },
+    {
+      "id": 20,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["cache-service", "redis", "application-services"],
+        "requirements": "Add distributed caching layer"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate distributed Redis cache across application services",
+        "specifications": {
+          "integration_points": [
+            "Services → cache service (get/set)",
+            "Cache service → Redis (storage)",
+            "Event bus → cache service (invalidation)"
+          ],
+          "data_flow": "Request → Check cache → Cache miss → Fetch data → Store cache → Return",
+          "contracts": ["CacheAPI v1", "Invalidation events"],
+          "error_handling": "Cache miss, Redis failure (fallback), stale data"
+        },
+        "dependencies": ["Redis cluster", "invalidation strategy"],
+        "estimated_minutes": 45,
+        "quality_gates": ["caching reduces load", "invalidation works", "Redis failure handled"]
+      }
+    },
+    {
+      "id": 21,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["backup-service", "database", "s3"],
+        "requirements": "Automate database backups to S3"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate automated database backup service with S3 storage",
+        "specifications": {
+          "integration_points": [
+            "Backup service → database (create snapshot)",
+            "Backup service → S3 (upload backup)",
+            "Scheduler → backup service (daily trigger)",
+            "Monitoring → backup service (verify success)"
+          ],
+          "data_flow": "Schedule triggered → Snapshot database → Compress → Upload S3 → Verify → Alert",
+          "contracts": ["BackupAPI v1", "S3 storage"],
+          "error_handling": "Snapshot failures, upload errors, storage limits, retention policy"
+        },
+        "dependencies": ["database credentials", "S3 bucket"],
+        "estimated_minutes": 40,
+        "quality_gates": ["backups automated", "retention policy enforced", "restore tested"]
+      }
+    },
+    {
+      "id": 22,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["feature-flag-service", "application-services", "admin-ui"],
+        "requirements": "Centralize feature flag management"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate feature flag service across all application services",
+        "specifications": {
+          "integration_points": [
+            "Services → feature flag service (check flags)",
+            "Admin UI → feature flag service (manage flags)",
+            "Feature flag service → cache (reduce latency)"
+          ],
+          "data_flow": "Service checks flag → Cache/service lookup → Feature enabled/disabled → Logic branch",
+          "contracts": ["FeatureFlagAPI v1"],
+          "error_handling": "Service unavailable (default behavior), cache staleness, gradual rollout"
+        },
+        "dependencies": ["feature flag service", "Redis cache"],
+        "estimated_minutes": 45,
+        "quality_gates": ["flags work across services", "low latency", "gradual rollout supported"]
+      }
+    },
+    {
+      "id": 23,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["api-versioning", "v1-services", "v2-services"],
+        "requirements": "Support multiple API versions simultaneously"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate API versioning to support v1 and v2 simultaneously",
+        "specifications": {
+          "integration_points": [
+            "API gateway → version routing (path or header)",
+            "v1 adapter → v1 services",
+            "v2 adapter → v2 services",
+            "Shared services → version-agnostic"
+          ],
+          "data_flow": "Request → Version detection → Route to correct version → Adapter → Service",
+          "contracts": ["API v1 spec", "API v2 spec"],
+          "error_handling": "Unknown version, breaking changes, deprecation warnings"
+        },
+        "dependencies": ["gateway routing", "both API versions"],
+        "estimated_minutes": 55,
+        "quality_gates": ["both versions work", "routing correct", "deprecation strategy clear"]
+      }
+    },
+    {
+      "id": 24,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["log-aggregation", "elk-stack", "application-services"],
+        "requirements": "Centralize logging with ELK stack"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate ELK stack for centralized logging across services",
+        "specifications": {
+          "integration_points": [
+            "Services → Logstash (ship logs)",
+            "Logstash → Elasticsearch (index logs)",
+            "Kibana → Elasticsearch (visualize logs)",
+            "Alerting → Elasticsearch (log-based alerts)"
+          ],
+          "data_flow": "Log generated → Logstash → Parse/enrich → Elasticsearch → Kibana dashboard",
+          "contracts": ["Log format standard", "ELK APIs"],
+          "error_handling": "Log buffering, Elasticsearch capacity, parsing errors"
+        },
+        "dependencies": ["ELK stack deployed", "log shippers configured"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all services log to ELK", "searchable logs", "dashboards functional"]
+      }
+    },
+    {
+      "id": 25,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["cdn", "static-assets", "web-application"],
+        "requirements": "Serve static assets through CDN"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate CDN for static asset delivery",
+        "specifications": {
+          "integration_points": [
+            "Build process → S3 (upload assets)",
+            "S3 → CloudFront (CDN origin)",
+            "Web app → CDN (asset references)",
+            "Cache invalidation → CDN (on deploys)"
+          ],
+          "data_flow": "Build → Upload S3 → CDN caches → Users request → CDN serves",
+          "contracts": ["CDN configuration", "Asset naming"],
+          "error_handling": "Cache invalidation, origin failures, SSL certificates"
+        },
+        "dependencies": ["CDN configured", "S3 bucket"],
+        "estimated_minutes": 40,
+        "quality_gates": ["assets served from CDN", "cache invalidation works", "performance improved"]
+      }
+    },
+    {
+      "id": 26,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["scheduler-service", "job-queue", "worker-services"],
+        "requirements": "Set up distributed job scheduling"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate scheduler with job queue and worker services",
+        "specifications": {
+          "integration_points": [
+            "Scheduler → job queue (enqueue jobs)",
+            "Workers → job queue (consume jobs)",
+            "Workers → result storage (store results)",
+            "Scheduler → monitoring (job status)"
+          ],
+          "data_flow": "Schedule time → Enqueue job → Worker picks up → Execute → Store result",
+          "contracts": ["JobAPI v1", "Worker protocol"],
+          "error_handling": "Job failures, retries, worker crashes, duplicate execution"
+        },
+        "dependencies": ["job queue (RabbitMQ/SQS)", "worker services"],
+        "estimated_minutes": 55,
+        "quality_gates": ["jobs execute on schedule", "retry logic works", "monitoring in place"]
+      }
+    },
+    {
+      "id": 27,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["api-documentation", "openapi-spec", "developer-portal"],
+        "requirements": "Auto-generate API documentation"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate OpenAPI spec generation with developer portal",
+        "specifications": {
+          "integration_points": [
+            "Code annotations → OpenAPI spec (generation)",
+            "OpenAPI spec → developer portal (documentation)",
+            "Developer portal → sandbox API (try it out)",
+            "CI/CD → spec validation (on PR)"
+          ],
+          "data_flow": "Code → Generate spec → Publish portal → Developers consume",
+          "contracts": ["OpenAPI 3.0", "Portal API"],
+          "error_handling": "Spec validation errors, breaking changes, versioning"
+        },
+        "dependencies": ["OpenAPI tooling", "developer portal"],
+        "estimated_minutes": 45,
+        "quality_gates": ["docs auto-generated", "sandbox functional", "always up-to-date"]
+      }
+    },
+    {
+      "id": 28,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["tracing-service", "jaeger", "microservices"],
+        "requirements": "Add distributed tracing across services"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate Jaeger distributed tracing across all microservices",
+        "specifications": {
+          "integration_points": [
+            "Services → Jaeger agent (send spans)",
+            "Jaeger agent → Jaeger collector",
+            "Jaeger UI → trace visualization",
+            "Services → context propagation (trace IDs)"
+          ],
+          "data_flow": "Request → Generate trace → Propagate context → Services add spans → Jaeger collects",
+          "contracts": ["OpenTelemetry", "Jaeger protocol"],
+          "error_handling": "Sampling strategy, storage capacity, missing spans"
+        },
+        "dependencies": ["Jaeger deployed", "OpenTelemetry SDKs"],
+        "estimated_minutes": 60,
+        "quality_gates": ["traces complete", "performance overhead minimal", "UI functional"]
+      }
+    },
+    {
+      "id": 29,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["secret-manager", "vault", "application-services"],
+        "requirements": "Centralize secrets management with Vault"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate HashiCorp Vault for centralized secrets management",
+        "specifications": {
+          "integration_points": [
+            "Services → Vault (fetch secrets at startup)",
+            "Vault → secret rotation (automatic)",
+            "CI/CD → Vault (deploy-time secrets)",
+            "Vault → audit logs (secret access)"
+          ],
+          "data_flow": "Service starts → Authenticate to Vault → Fetch secrets → Use in app → Rotate periodically",
+          "contracts": ["VaultAPI", "Authentication methods"],
+          "error_handling": "Vault unavailable, auth failures, secret not found, rotation"
+        },
+        "dependencies": ["Vault deployed", "auth policies configured"],
+        "estimated_minutes": 55,
+        "quality_gates": ["no hardcoded secrets", "rotation works", "audit logs complete"]
+      }
+    },
+    {
+      "id": 30,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["database-migration", "application-deploy", "blue-green-setup"],
+        "requirements": "Coordinate database migrations with zero-downtime deploys"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate database migrations with blue-green deployment strategy",
+        "specifications": {
+          "integration_points": [
+            "Migration service → database (schema changes)",
+            "Blue environment → old schema (compatible)",
+            "Green environment → new schema",
+            "Load balancer → traffic switch"
+          ],
+          "data_flow": "Deploy green → Run migrations → Test green → Switch traffic → Retire blue",
+          "contracts": ["MigrationAPI", "Deployment pipeline"],
+          "error_handling": "Migration failures, rollback strategy, incompatible changes"
+        },
+        "dependencies": ["blue-green infrastructure", "migration tooling"],
+        "estimated_minutes": 60,
+        "quality_gates": ["zero downtime", "migrations safe", "rollback tested"]
+      }
+    },
+    {
+      "id": 31,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["ab-testing-service", "analytics", "frontend"],
+        "requirements": "Implement A/B testing framework"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate A/B testing service with analytics and frontend",
+        "specifications": {
+          "integration_points": [
+            "Frontend → A/B service (get variant)",
+            "A/B service → user assignment (consistent hashing)",
+            "Frontend → analytics (track variant events)",
+            "Analytics → A/B service (experiment results)"
+          ],
+          "data_flow": "User visit → Assign variant → Serve experience → Track events → Analyze results",
+          "contracts": ["ABTestAPI v1", "AnalyticsAPI v1"],
+          "error_handling": "Service unavailable (default variant), user consistency, statistical significance"
+        },
+        "dependencies": ["A/B service", "analytics pipeline"],
+        "estimated_minutes": 50,
+        "quality_gates": ["variants assigned correctly", "tracking accurate", "results analyzable"]
+      }
+    },
+    {
+      "id": 32,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["geolocation-service", "ip-database", "content-service"],
+        "requirements": "Serve geo-specific content"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate geolocation service for geo-specific content delivery",
+        "specifications": {
+          "integration_points": [
+            "Request → geolocation service (detect location)",
+            "Geolocation → IP database (lookup)",
+            "Content service → geolocation (check location)",
+            "Content service → localized content"
+          ],
+          "data_flow": "Request IP → Geolocate → Determine region → Serve regional content",
+          "contracts": ["GeolocationAPI v1", "ContentAPI v2"],
+          "error_handling": "Unknown IP, VPN/proxy detection, fallback content"
+        },
+        "dependencies": ["IP geolocation database", "regional content"],
+        "estimated_minutes": 40,
+        "quality_gates": ["geolocation accurate", "content localized", "performance acceptable"]
+      }
+    },
+    {
+      "id": 33,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["push-notification-service", "fcm", "apns", "user-service"],
+        "requirements": "Send push notifications across platforms"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate push notification service with FCM, APNS, and user management",
+        "specifications": {
+          "integration_points": [
+            "Services → notification service (send notification)",
+            "Notification service → FCM (Android)",
+            "Notification service → APNS (iOS)",
+            "User service → notification service (device tokens)"
+          ],
+          "data_flow": "Trigger event → Get user devices → Send to FCM/APNS → Track delivery",
+          "contracts": ["NotificationAPI v1", "FCM/APNS protocols"],
+          "error_handling": "Invalid tokens, platform failures, rate limits, retry logic"
+        },
+        "dependencies": ["FCM credentials", "APNS certificates"],
+        "estimated_minutes": 55,
+        "quality_gates": ["notifications deliver", "both platforms work", "error handling robust"]
+      }
+    },
+    {
+      "id": 34,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["service-mesh", "istio", "microservices"],
+        "requirements": "Add service mesh for traffic management"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate Istio service mesh for traffic management and observability",
+        "specifications": {
+          "integration_points": [
+            "Microservices → Istio sidecar (automatic injection)",
+            "Istio → traffic policies (routing, retries, timeouts)",
+            "Istio → observability (metrics, tracing)",
+            "Istio → security (mTLS, authorization)"
+          ],
+          "data_flow": "Request → Envoy proxy → Traffic policy → Target service → Response",
+          "contracts": ["Istio VirtualServices", "DestinationRules"],
+          "error_handling": "Circuit breaking, retries, timeouts, failover"
+        },
+        "dependencies": ["Istio deployed", "service mesh enabled"],
+        "estimated_minutes": 60,
+        "quality_gates": ["mesh functional", "policies enforced", "observability improved"]
+      }
+    },
+    {
+      "id": 35,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["webhook-service", "external-systems", "retry-queue"],
+        "requirements": "Reliably deliver webhooks to external systems"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate webhook delivery service with retry logic and monitoring",
+        "specifications": {
+          "integration_points": [
+            "Services → webhook service (trigger event)",
+            "Webhook service → external endpoints (POST)",
+            "Failed webhooks → retry queue",
+            "Webhook service → monitoring (delivery status)"
+          ],
+          "data_flow": "Event → Queue webhook → Attempt delivery → Success/retry → Monitor",
+          "contracts": ["WebhookAPI v1", "Signature verification"],
+          "error_handling": "Endpoint timeouts, failures, signature validation, exponential backoff"
+        },
+        "dependencies": ["webhook queue", "retry logic"],
+        "estimated_minutes": 50,
+        "quality_gates": ["webhooks deliver reliably", "retries work", "monitoring complete"]
+      }
+    },
+    {
+      "id": 36,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["cost-tracking", "cloud-billing-api", "finance-dashboard"],
+        "requirements": "Track and visualize cloud infrastructure costs"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate cloud billing APIs with cost tracking dashboard",
+        "specifications": {
+          "integration_points": [
+            "Scheduler → cloud billing API (fetch costs)",
+            "Cost service → database (store cost data)",
+            "Finance dashboard → cost service (visualize)",
+            "Alerting → cost thresholds (budget alerts)"
+          ],
+          "data_flow": "Fetch billing data → Parse → Store → Aggregate → Visualize → Alert on thresholds",
+          "contracts": ["AWS Cost Explorer API", "GCP Billing API"],
+          "error_handling": "API rate limits, data delays, currency conversion"
+        },
+        "dependencies": ["billing API access", "cost tracking service"],
+        "estimated_minutes": 50,
+        "quality_gates": ["costs tracked accurately", "visualizations clear", "alerts functional"]
+      }
+    },
+    {
+      "id": 37,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["disaster-recovery", "backup-systems", "failover-automation"],
+        "requirements": "Automate disaster recovery procedures"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate disaster recovery automation with backup and failover systems",
+        "specifications": {
+          "integration_points": [
+            "Monitoring → DR service (detect outage)",
+            "DR service → backup restoration (automated)",
+            "DR service → DNS/load balancer (failover)",
+            "DR service → notification (alert team)"
+          ],
+          "data_flow": "Outage detected → Restore from backup → Failover traffic → Notify team → Monitor recovery",
+          "contracts": ["DRAPI v1", "Backup protocol"],
+          "error_handling": "Partial failures, data consistency, false positives"
+        },
+        "dependencies": ["backup infrastructure", "failover region"],
+        "estimated_minutes": 60,
+        "quality_gates": ["DR tested", "RTO/RPO met", "automation works"]
+      }
+    },
+    {
+      "id": 38,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["compliance-service", "encryption-service", "audit-logs"],
+        "requirements": "Ensure GDPR and data encryption compliance"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate compliance service for GDPR with encryption and audit logging",
+        "specifications": {
+          "integration_points": [
+            "Services → encryption service (encrypt PII)",
+            "Services → audit logs (track data access)",
+            "Compliance service → data deletion (right to erasure)",
+            "Compliance service → data export (data portability)"
+          ],
+          "data_flow": "PII collected → Encrypted → Stored → Audited → Export/delete on request",
+          "contracts": ["EncryptionAPI v1", "ComplianceAPI v1"],
+          "error_handling": "Encryption key management, audit completeness, deletion cascades"
+        },
+        "dependencies": ["encryption keys", "audit infrastructure"],
+        "estimated_minutes": 60,
+        "quality_gates": ["PII encrypted", "audit complete", "GDPR requirements met"]
+      }
+    },
+    {
+      "id": 39,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["load-testing", "performance-monitoring", "auto-scaling"],
+        "requirements": "Integrate load testing with auto-scaling validation"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate load testing framework with auto-scaling and monitoring",
+        "specifications": {
+          "integration_points": [
+            "Load testing tool → system under test",
+            "Monitoring → metrics collection (during test)",
+            "Auto-scaler → scaling actions (observed)",
+            "Results aggregator → performance report"
+          ],
+          "data_flow": "Run load test → Monitor system → Observe scaling → Collect metrics → Generate report",
+          "contracts": ["Load test scenarios", "Monitoring APIs"],
+          "error_handling": "Test failures, system instability, metric collection gaps"
+        },
+        "dependencies": ["load testing tool", "auto-scaling configured"],
+        "estimated_minutes": 50,
+        "quality_gates": ["load tests automated", "scaling validated", "bottlenecks identified"]
+      }
+    },
+    {
+      "id": 40,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["multi-tenant-service", "database", "authorization-service"],
+        "requirements": "Enforce tenant isolation in multi-tenant system"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate tenant isolation across database and authorization layers",
+        "specifications": {
+          "integration_points": [
+            "Request → tenant identification (from JWT)",
+            "Authorization service → tenant permissions",
+            "Database → row-level security (tenant filter)",
+            "Monitoring → tenant resource usage"
+          ],
+          "data_flow": "Request → Extract tenant → Verify permissions → Filter data → Return tenant-specific results",
+          "contracts": ["TenantAPI v1", "Authorization policies"],
+          "error_handling": "Tenant leak prevention, missing tenant context, cross-tenant access"
+        },
+        "dependencies": ["tenant identification strategy", "RLS configured"],
+        "estimated_minutes": 55,
+        "quality_gates": ["tenant isolation enforced", "no data leaks", "performance acceptable"]
+      }
+    },
+    {
+      "id": 41,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["api-gateway", "waf", "ddos-protection"],
+        "requirements": "Add security layers at API gateway"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate WAF and DDoS protection at API gateway level",
+        "specifications": {
+          "integration_points": [
+            "Clients → WAF (filter malicious requests)",
+            "WAF → rate limiting (DDoS mitigation)",
+            "WAF → API gateway (allowed traffic)",
+            "WAF → security logs (attack monitoring)"
+          ],
+          "data_flow": "Request → WAF rules → Rate limit check → API gateway → Backend services",
+          "contracts": ["WAF rules", "Gateway policies"],
+          "error_handling": "False positives, rule tuning, bypass attempts"
+        },
+        "dependencies": ["WAF configured", "rule sets defined"],
+        "estimated_minutes": 50,
+        "quality_gates": ["security layers active", "attacks blocked", "legitimate traffic flows"]
+      }
+    },
+    {
+      "id": 42,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["config-service", "consul", "application-services"],
+        "requirements": "Centralize configuration with Consul"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate Consul for centralized configuration management",
+        "specifications": {
+          "integration_points": [
+            "Services → Consul (fetch config at startup)",
+            "Consul → config updates (watch for changes)",
+            "Services → config reload (hot reload)",
+            "Admin UI → Consul (manage configs)"
+          ],
+          "data_flow": "Service starts → Load config from Consul → Watch for updates → Reload on change",
+          "contracts": ["ConsulAPI", "Config schema"],
+          "error_handling": "Consul unavailable (use cached config), invalid config, reload failures"
+        },
+        "dependencies": ["Consul cluster", "config schemas"],
+        "estimated_minutes": 45,
+        "quality_gates": ["config centralized", "hot reload works", "fallback strategy tested"]
+      }
+    },
+    {
+      "id": 43,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["sla-monitoring", "uptime-tracker", "incident-management"],
+        "requirements": "Track SLA compliance and incidents"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate SLA monitoring with uptime tracking and incident management",
+        "specifications": {
+          "integration_points": [
+            "Monitoring → uptime tracker (record availability)",
+            "Uptime tracker → SLA calculator (compute compliance)",
+            "Incidents → SLA impact (track downtime)",
+            "Dashboard → SLA reports (visualize)"
+          ],
+          "data_flow": "Monitor uptime → Log incidents → Calculate SLA → Generate reports → Alert on breaches",
+          "contracts": ["SLA definitions", "Incident API"],
+          "error_handling": "Missing data, timezone handling, incident resolution tracking"
+        },
+        "dependencies": ["monitoring in place", "SLA definitions"],
+        "estimated_minutes": 50,
+        "quality_gates": ["SLA tracked accurately", "reports generated", "breach alerts work"]
+      }
+    },
+    {
+      "id": 44,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["legacy-system", "api-adapter", "modern-services"],
+        "requirements": "Integrate legacy system with modern microservices"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Create adapter layer to integrate legacy system with microservices",
+        "specifications": {
+          "integration_points": [
+            "Modern services → adapter (translate requests)",
+            "Adapter → legacy system (SOAP/XML)",
+            "Adapter → modern services (REST/JSON response)",
+            "Adapter → error mapping (legacy to modern)"
+          ],
+          "data_flow": "Modern request → Adapter translates → Legacy call → Parse response → Return JSON",
+          "contracts": ["Legacy WSDL", "Modern API spec"],
+          "error_handling": "Legacy downtime, data format issues, timeout handling"
+        },
+        "dependencies": ["legacy system access", "adapter service"],
+        "estimated_minutes": 60,
+        "quality_gates": ["integration works", "data translated correctly", "error handling robust"]
+      }
+    },
+    {
+      "id": 45,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["chaos-engineering", "fault-injection", "resilience-testing"],
+        "requirements": "Integrate chaos engineering for resilience testing"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate chaos engineering tools for automated resilience testing",
+        "specifications": {
+          "integration_points": [
+            "Chaos tool → services (inject faults)",
+            "Monitoring → chaos events (track impact)",
+            "Chaos tool → report generation (resilience metrics)",
+            "CI/CD → chaos tests (automated)"
+          ],
+          "data_flow": "Schedule chaos → Inject faults → Monitor impact → System recovers → Generate report",
+          "contracts": ["Chaos scenarios", "Monitoring APIs"],
+          "error_handling": "Uncontrolled failures, rollback mechanisms, blast radius"
+        },
+        "dependencies": ["chaos tool (Gremlin/Chaos Mesh)", "monitoring"],
+        "estimated_minutes": 55,
+        "quality_gates": ["chaos tests automated", "system resilient", "recovery validated"]
+      }
+    },
+    {
+      "id": 46,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["ml-pipeline", "training-service", "model-serving"],
+        "requirements": "Integrate ML training pipeline with model serving"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate ML training pipeline with model serving infrastructure",
+        "specifications": {
+          "integration_points": [
+            "Data pipeline → training service (prepare data)",
+            "Training service → model registry (store models)",
+            "Model registry → serving service (deploy models)",
+            "Serving service → A/B testing (champion/challenger)"
+          ],
+          "data_flow": "Train model → Register → Deploy → A/B test → Promote or rollback",
+          "contracts": ["Model format", "Serving API"],
+          "error_handling": "Training failures, model validation, serving errors, rollback"
+        },
+        "dependencies": ["ML training infrastructure", "model registry"],
+        "estimated_minutes": 60,
+        "quality_gates": ["pipeline automated", "models deploy correctly", "A/B testing works"]
+      }
+    },
+    {
+      "id": 47,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["customer-data-platform", "marketing-tools", "analytics"],
+        "requirements": "Integrate CDP with marketing automation"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate customer data platform with marketing automation tools",
+        "specifications": {
+          "integration_points": [
+            "Services → CDP (customer events)",
+            "CDP → profile unification (single customer view)",
+            "CDP → marketing tools (segments, audiences)",
+            "Marketing tools → CDP (campaign results)"
+          ],
+          "data_flow": "Events collected → Profiles unified → Segments created → Marketing campaigns → Results tracked",
+          "contracts": ["CDPAPI v1", "Marketing tool APIs"],
+          "error_handling": "Data quality, deduplication, sync delays, API rate limits"
+        },
+        "dependencies": ["CDP deployed", "marketing tool credentials"],
+        "estimated_minutes": 55,
+        "quality_gates": ["profiles unified", "segments sync", "campaigns trackable"]
+      }
+    },
+    {
+      "id": 48,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["iot-devices", "iot-gateway", "time-series-database"],
+        "requirements": "Integrate IoT device data collection"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate IoT devices with gateway and time-series database",
+        "specifications": {
+          "integration_points": [
+            "IoT devices → gateway (MQTT protocol)",
+            "Gateway → time-series DB (store metrics)",
+            "Dashboard → time-series DB (visualize)",
+            "Alerting → anomaly detection (device issues)"
+          ],
+          "data_flow": "Device telemetry → MQTT → Gateway → Parse → InfluxDB → Dashboard/alerts",
+          "contracts": ["MQTT topics", "Device schema"],
+          "error_handling": "Device offline, message loss, data validation, storage capacity"
+        },
+        "dependencies": ["MQTT broker", "InfluxDB"],
+        "estimated_minutes": 60,
+        "quality_gates": ["devices connected", "data flowing", "alerting functional"]
+      }
+    },
+    {
+      "id": 49,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["blockchain-service", "smart-contracts", "backend-services"],
+        "requirements": "Integrate blockchain with backend services"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate blockchain smart contracts with backend application services",
+        "specifications": {
+          "integration_points": [
+            "Backend → blockchain node (read/write)",
+            "Smart contracts → event logs",
+            "Backend → event indexer (track blockchain events)",
+            "Backend → wallet management (user wallets)"
+          ],
+          "data_flow": "User action → Backend validates → Submit transaction → Wait confirmation → Index events",
+          "contracts": ["Smart contract ABI", "Backend API"],
+          "error_handling": "Transaction failures, gas estimation, network congestion, confirmation delays"
+        },
+        "dependencies": ["blockchain node", "smart contracts deployed"],
+        "estimated_minutes": 60,
+        "quality_gates": ["transactions submit", "events indexed", "wallet management works"]
+      }
+    },
+    {
+      "id": 50,
+      "phase": "integration",
+      "context": {
+        "previous_phase": "code",
+        "components": ["orchestration-service", "workflow-engine", "distributed-tasks"],
+        "requirements": "Orchestrate complex multi-service workflows"
+      },
+      "expected_drone_task": {
+        "drone_id": "integration-engineer",
+        "task_type": "integrate",
+        "description": "Integrate workflow orchestration engine for complex multi-service processes",
+        "specifications": {
+          "integration_points": [
+            "Services → workflow engine (start workflow)",
+            "Workflow engine → task queue (distribute tasks)",
+            "Workers → task execution (service calls)",
+            "Workflow engine → state management (track progress)"
+          ],
+          "data_flow": "Start workflow → Execute tasks → Parallel/sequential → Aggregate results → Complete",
+          "contracts": ["Workflow DSL", "Task API"],
+          "error_handling": "Task failures, compensation/rollback, timeout handling, state recovery"
+        },
+        "dependencies": ["workflow engine (Temporal/Cadence)", "task workers"],
+        "estimated_minutes": 60,
+        "quality_gates": ["workflows complete", "error handling robust", "state consistent"]
+      }
+    }
+  ]
+}

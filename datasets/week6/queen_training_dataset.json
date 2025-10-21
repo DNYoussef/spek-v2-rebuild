@@ -1,0 +1,232 @@
+{
+  "agent_id": "queen",
+  "total_examples": 9,
+  "train_examples": 7,
+  "val_examples": 2,
+  "examples": [
+    {
+      "input_task": {
+        "id": "train-queen-001",
+        "type": "orchestrate",
+        "description": "Implement user authentication feature",
+        "payload": {
+          "workflow": {
+            "objective": "Add login/logout functionality",
+            "steps": []
+          }
+        },
+        "priority": 8
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-001",
+        "steps": [
+          {
+            "agent": "spec-writer",
+            "task_type": "write-spec",
+            "description": "Document auth requirements"
+          },
+          {
+            "agent": "architect",
+            "task_type": "design",
+            "description": "Design auth architecture"
+          },
+          {
+            "agent": "coder",
+            "task_type": "implement",
+            "description": "Implement login/logout"
+          },
+          {
+            "agent": "tester",
+            "task_type": "test",
+            "description": "Create auth tests"
+          },
+          {
+            "agent": "security-manager",
+            "task_type": "security-scan",
+            "description": "Validate auth security"
+          }
+        ],
+        "estimated_duration_min": 45
+      },
+      "quality_label": 95.0,
+      "rationale": "Complete workflow with security validation, proper sequencing"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-002",
+        "type": "coordinate",
+        "description": "Fix critical authentication bug",
+        "payload": {
+          "workflow": {
+            "objective": "Resolve login failure issue",
+            "steps": []
+          }
+        },
+        "priority": 9
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-002",
+        "steps": [
+          {
+            "agent": "debugger",
+            "task_type": "debug",
+            "description": "Identify root cause"
+          },
+          {
+            "agent": "coder",
+            "task_type": "fix",
+            "description": "Implement fix"
+          },
+          {
+            "agent": "tester",
+            "task_type": "test",
+            "description": "Verify fix"
+          }
+        ],
+        "estimated_duration_min": 20
+      },
+      "quality_label": 75.0,
+      "rationale": "Good workflow but missing reviewer step for quality assurance"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-003",
+        "type": "orchestrate",
+        "description": "Generic workflow 3",
+        "payload": {
+          "workflow": {
+            "objective": "Task 3",
+            "steps": []
+          }
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-003",
+        "steps": []
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-004",
+        "type": "orchestrate",
+        "description": "Generic workflow 4",
+        "payload": {
+          "workflow": {
+            "objective": "Task 4",
+            "steps": []
+          }
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-004",
+        "steps": []
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-005",
+        "type": "orchestrate",
+        "description": "Generic workflow 5",
+        "payload": {
+          "workflow": {
+            "objective": "Task 5",
+            "steps": []
+          }
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-005",
+        "steps": []
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-006",
+        "type": "orchestrate",
+        "description": "Generic workflow 6",
+        "payload": {
+          "workflow": {
+            "objective": "Task 6",
+            "steps": []
+          }
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-006",
+        "steps": []
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-007",
+        "type": "orchestrate",
+        "description": "Generic workflow 7",
+        "payload": {
+          "workflow": {
+            "objective": "Task 7",
+            "steps": []
+          }
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-007",
+        "steps": []
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-008",
+        "type": "orchestrate",
+        "description": "Generic workflow 8",
+        "payload": {
+          "workflow": {
+            "objective": "Task 8",
+            "steps": []
+          }
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-008",
+        "steps": []
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-queen-009",
+        "type": "orchestrate",
+        "description": "Generic workflow 9",
+        "payload": {
+          "workflow": {
+            "objective": "Task 9",
+            "steps": []
+          }
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "workflow_id": "train-queen-009",
+        "steps": []
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    }
+  ]
+}

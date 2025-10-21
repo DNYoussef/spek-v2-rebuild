@@ -1,0 +1,151 @@
+digraph DroneSelection {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start and end
+    start [shape=ellipse, label="Start:\nDrones Needed", fillcolor=lightgreen];
+    end [shape=ellipse, label="Complete:\nDrones Executing", fillcolor=green, fontcolor=white];
+
+    // Phase 1: Task Analysis
+    subgraph cluster_analysis {
+        label="Phase 1: Task Analysis";
+        fillcolor=lightyellow;
+        style=filled;
+
+        extract_desc [label="Extract Task\nDescription"];
+        identify_type [label="Identify Task Type\n(research/coding/testing)"];
+        get_loop [label="Get Current Loop\n(loop1/loop2/loop3)"];
+        extract_keywords [label="Extract Keywords\n(frontend, api, security)"];
+
+        extract_desc -> identify_type;
+        identify_type -> get_loop;
+        get_loop -> extract_keywords;
+    }
+
+    // Phase 2: Intelligent Selection
+    subgraph cluster_selection {
+        label="Phase 2: Intelligent Drone Selection";
+        fillcolor=lightblue;
+        style=filled;
+
+        call_registry [label="Call:\nfind_drones_for_task(\n  task_description,\n  loop\n)"];
+        score_drones [label="Score Drones:\n- Keyword match (+2)\n- Task type match (+1)"];
+        rank_drones [label="Rank by Score\n(top 5)"];
+        select_num [label="Select 1-5 Drones\n(based on complexity)"];
+
+        call_registry -> score_drones;
+        score_drones -> rank_drones;
+        rank_drones -> select_num;
+    }
+
+    // Decision: How many drones?
+    decision_count [shape=diamond, label="How Many\nDrones?", fillcolor=yellow];
+
+    one_drone [label="Simple Task:\n1 Drone", fillcolor=lightgreen];
+    multi_drone [label="Complex Task:\n2-5 Drones", fillcolor=lightblue];
+
+    // Phase 3: Prompt Construction
+    subgraph cluster_prompt {
+        label="Phase 3: Drone Task Prompt Construction";
+        fillcolor=lightyellow;
+        style=filled;
+
+        load_drone_template [label="Load Drone-Specific\nPrompt Template"];
+        insert_task [label="Insert Task Details"];
+        add_constraints [label="Add Constraints:\n- NASA Rule 10\n- TDD workflow\n- Time budget"];
+        add_deliverables [label="Add Deliverables\n& Quality Standards"];
+
+        load_drone_template -> insert_task;
+        insert_task -> add_constraints;
+        add_constraints -> add_deliverables;
+    }
+
+    // Phase 4: Spawning Strategy
+    decision_strategy [shape=diamond, label="Sequential or\nParallel?", fillcolor=yellow];
+
+    sequential [label="Sequential Spawning:\n1. Tester (TDD)\n2. Coder\n3. Reviewer", fillcolor=lightblue];
+    parallel [label="Parallel Spawning:\nAll independent tasks\nat once", fillcolor=lightgreen];
+
+    // Phase 5: Spawn Drones
+    subgraph cluster_spawn {
+        label="Phase 4: Spawn Drones";
+        fillcolor=lightgreen;
+        style=filled;
+
+        spawn_loop [label="For each selected Drone:\nTask(\n  subagent_type=drone_id,\n  prompt=drone_prompt\n)"];
+        track_spawns [label="Track Spawned Drones\n(memory)"];
+
+        spawn_loop -> track_spawns;
+    }
+
+    // Phase 6: Coordination
+    subgraph cluster_coord {
+        label="Phase 5: Coordinate Drone Outputs";
+        fillcolor=lightyellow;
+        style=filled;
+
+        collect_results [label="Collect Drone Results"];
+        validate_deliverables [label="Validate Deliverables\nMeet Requirements"];
+        integrate_outputs [label="Integrate Outputs\n(if multiple Drones)"];
+        report_princess [label="Report to Princess\nwith Summary"];
+
+        collect_results -> validate_deliverables;
+        validate_deliverables -> integrate_outputs;
+        integrate_outputs -> report_princess;
+    }
+
+    // Example Drones
+    subgraph cluster_examples {
+        label="Example Drone Types";
+        fillcolor=lightcoral;
+        style=filled;
+
+        loop1_drones [shape=folder, label="Loop 1 Drones:\nresearcher\nspec-writer\narchitect\nplanner\npseudocode-writer"];
+        loop2_drones [shape=folder, label="Loop 2 Drones:\ncoder\ntester\nreviewer\nfrontend-dev\nbackend-dev\ndebugger\nintegration-engineer"];
+        loop3_drones [shape=folder, label="Loop 3 Drones:\ntheater-detector\nnasa-enforcer\ndocs-writer\ncode-analyzer\nsecurity-manager\ndevops"];
+    }
+
+    // Warnings
+    warning_no_match [shape=octagon, label="WARNING:\nNo Drones Match Task", fillcolor=orange];
+    warning_spawn_fail [shape=octagon, label="STOP:\nDrone Spawn Failed", fillcolor=orange];
+
+    // Flow
+    start -> extract_desc [lhead=cluster_analysis];
+    extract_keywords -> call_registry [lhead=cluster_selection];
+    select_num -> decision_count;
+
+    decision_count -> one_drone [label="1"];
+    decision_count -> multi_drone [label="2-5"];
+
+    one_drone -> load_drone_template [lhead=cluster_prompt];
+    multi_drone -> load_drone_template [lhead=cluster_prompt];
+
+    add_deliverables -> decision_strategy;
+    decision_strategy -> sequential [label="dependencies\nexist"];
+    decision_strategy -> parallel [label="independent\ntasks"];
+
+    sequential -> spawn_loop [lhead=cluster_spawn];
+    parallel -> spawn_loop [lhead=cluster_spawn];
+
+    track_spawns -> collect_results [lhead=cluster_coord];
+    report_princess -> end;
+
+    // Error flows
+    rank_drones -> warning_no_match [label="0 matches", color=orange, style=dashed];
+    warning_no_match -> one_drone [label="use default\nfor Princess", style=dashed];
+
+    spawn_loop -> warning_spawn_fail [label="fails", color=red];
+    warning_spawn_fail -> spawn_loop [label="retry\n(up to 3x)", style=dashed];
+    warning_spawn_fail -> report_princess [label="3 failures:\nescalate to Princess", style=dashed, color=red];
+
+    // External references
+    agent_registry [shape=cylinder, label="agent_registry.py\n(24 Drones)", fillcolor=lightcoral];
+    call_registry -> agent_registry [label="uses", style=dashed];
+
+    labelloc="t";
+    label="Drone Selection: Princess Spawns Specialized Worker Agents";
+    fontsize=16;
+    fontname="Arial Bold";
+}

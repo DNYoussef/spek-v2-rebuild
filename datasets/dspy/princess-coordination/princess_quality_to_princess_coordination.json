@@ -1,0 +1,1218 @@
+{
+  "communication_path": "princess-quality→princess-coordination",
+  "description": "Princess-Quality provides cost-of-quality metrics to Princess-Coordination for budgeting and planning",
+  "metadata": {
+    "total_examples": 30,
+    "scenario_types": [
+      "quality_metrics_report",
+      "cost_of_defects",
+      "testing_cost_analysis",
+      "technical_debt_cost",
+      "quality_investment_recommendation"
+    ],
+    "version": "8.0.0",
+    "created_for": "DSPy optimization Week 6+"
+  },
+  "examples": [
+    {
+      "id": "qual-coord-001",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "OAuth2 testing cost analysis",
+        "quality_metrics": {
+          "test_coverage": 87,
+          "tests_passed": 31,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 91
+        },
+        "qa_cost_hours": 4.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for OAuth2 testing cost analysis",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 4.0,
+          "qa_cost_usd": 600.0,
+          "cost_per_test": 19.35,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=87%",
+          "Budget for ongoing QA: $720.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 600.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-002",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "GraphQL API quality metrics",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 32,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 92
+        },
+        "qa_cost_hours": 5.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for GraphQL API quality metrics",
+        "priority": 7,
+        "cost_metrics": {
+          "qa_hours": 5.0,
+          "qa_cost_usd": 750.0,
+          "cost_per_test": 23.44,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $900.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 750.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-003",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Analyzer refactoring quality report",
+        "quality_metrics": {
+          "test_coverage": 88,
+          "tests_passed": 33,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 93
+        },
+        "qa_cost_hours": 3.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Analyzer refactoring quality report",
+        "priority": 6,
+        "cost_metrics": {
+          "qa_hours": 3.0,
+          "qa_cost_usd": 450.0,
+          "cost_per_test": 13.64,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=88%",
+          "Budget for ongoing QA: $540.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 450.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-004",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Elasticsearch performance testing cost",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 34,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 94
+        },
+        "qa_cost_hours": 4.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Elasticsearch performance testing cost",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 4.5,
+          "qa_cost_usd": 675.0,
+          "cost_per_test": 19.85,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $810.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 675.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-005",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Payment processing quality validation cost",
+        "quality_metrics": {
+          "test_coverage": 98,
+          "tests_passed": 35,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 95
+        },
+        "qa_cost_hours": 6.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Payment processing quality validation cost",
+        "priority": 9,
+        "cost_metrics": {
+          "qa_hours": 6.0,
+          "qa_cost_usd": 900.0,
+          "cost_per_test": 25.71,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=98%",
+          "Budget for ongoing QA: $1080.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 900.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-006",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_of_defects",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "WebSocket system defect cost",
+        "quality_metrics": {
+          "test_coverage": 84,
+          "tests_passed": 36,
+          "tests_failed": 5,
+          "security_scan_passed": false,
+          "nasa_compliance": 96
+        },
+        "qa_cost_hours": 5.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for WebSocket system defect cost",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 5.0,
+          "qa_cost_usd": 750.0,
+          "cost_per_test": 20.83,
+          "defect_count": 5,
+          "cost_of_defects_usd": 2500
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=84%",
+          "Budget for ongoing QA: $900.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 750.0,
+          "potential_defect_cost": 2500,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-007",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Multi-tenant isolation security cost",
+        "quality_metrics": {
+          "test_coverage": 93,
+          "tests_passed": 37,
+          "tests_failed": 1,
+          "security_scan_passed": false,
+          "nasa_compliance": 97
+        },
+        "qa_cost_hours": 5.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Multi-tenant isolation security cost",
+        "priority": 9,
+        "cost_metrics": {
+          "qa_hours": 5.0,
+          "qa_cost_usd": 750.0,
+          "cost_per_test": 20.27,
+          "defect_count": 1,
+          "cost_of_defects_usd": 500
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=93%",
+          "Budget for ongoing QA: $900.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 750.0,
+          "potential_defect_cost": 500,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-008",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Memory leak fix quality validation",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 38,
+          "tests_failed": 1,
+          "security_scan_passed": false,
+          "nasa_compliance": 90
+        },
+        "qa_cost_hours": 3.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Memory leak fix quality validation",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 3.0,
+          "qa_cost_usd": 450.0,
+          "cost_per_test": 11.84,
+          "defect_count": 1,
+          "cost_of_defects_usd": 500
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $540.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 450.0,
+          "potential_defect_cost": 500,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-009",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "File upload security testing cost",
+        "quality_metrics": {
+          "test_coverage": 89,
+          "tests_passed": 39,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 91
+        },
+        "qa_cost_hours": 4.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for File upload security testing cost",
+        "priority": 9,
+        "cost_metrics": {
+          "qa_hours": 4.0,
+          "qa_cost_usd": 600.0,
+          "cost_per_test": 15.38,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=89%",
+          "Budget for ongoing QA: $720.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 600.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-010",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Audit logging quality metrics",
+        "quality_metrics": {
+          "test_coverage": 92,
+          "tests_passed": 40,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 92
+        },
+        "qa_cost_hours": 3.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Audit logging quality metrics",
+        "priority": 7,
+        "cost_metrics": {
+          "qa_hours": 3.0,
+          "qa_cost_usd": 450.0,
+          "cost_per_test": 11.25,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=92%",
+          "Budget for ongoing QA: $540.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 450.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-011",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Rate limiter performance testing cost",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 41,
+          "tests_failed": 1,
+          "security_scan_passed": false,
+          "nasa_compliance": 93
+        },
+        "qa_cost_hours": 2.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Rate limiter performance testing cost",
+        "priority": 7,
+        "cost_metrics": {
+          "qa_hours": 2.5,
+          "qa_cost_usd": 375.0,
+          "cost_per_test": 9.15,
+          "defect_count": 1,
+          "cost_of_defects_usd": 500
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $450.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 375.0,
+          "potential_defect_cost": 500,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-012",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Common utilities refactoring cost",
+        "quality_metrics": {
+          "test_coverage": 88,
+          "tests_passed": 42,
+          "tests_failed": 4,
+          "security_scan_passed": false,
+          "nasa_compliance": 94
+        },
+        "qa_cost_hours": 2.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Common utilities refactoring cost",
+        "priority": 6,
+        "cost_metrics": {
+          "qa_hours": 2.0,
+          "qa_cost_usd": 300.0,
+          "cost_per_test": 7.14,
+          "defect_count": 4,
+          "cost_of_defects_usd": 2000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=88%",
+          "Budget for ongoing QA: $360.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 300.0,
+          "potential_defect_cost": 2000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-013",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Email system security validation cost",
+        "quality_metrics": {
+          "test_coverage": 84,
+          "tests_passed": 43,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 95
+        },
+        "qa_cost_hours": 3.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Email system security validation cost",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 3.0,
+          "qa_cost_usd": 450.0,
+          "cost_per_test": 10.47,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=84%",
+          "Budget for ongoing QA: $540.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 450.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-014",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Pagination edge case testing cost",
+        "quality_metrics": {
+          "test_coverage": 82,
+          "tests_passed": 44,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 96
+        },
+        "qa_cost_hours": 1.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Pagination edge case testing cost",
+        "priority": 5,
+        "cost_metrics": {
+          "qa_hours": 1.5,
+          "qa_cost_usd": 225.0,
+          "cost_per_test": 5.11,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=82%",
+          "Budget for ongoing QA: $270.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 225.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-015",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_of_defects",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Elasticsearch optimization cost analysis",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 45,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 97
+        },
+        "qa_cost_hours": 4.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Elasticsearch optimization cost analysis",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 4.0,
+          "qa_cost_usd": 600.0,
+          "cost_per_test": 13.33,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $720.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 600.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-016",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Encryption security audit cost",
+        "quality_metrics": {
+          "test_coverage": 98,
+          "tests_passed": 46,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 90
+        },
+        "qa_cost_hours": 5.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Encryption security audit cost",
+        "priority": 10,
+        "cost_metrics": {
+          "qa_hours": 5.0,
+          "qa_cost_usd": 750.0,
+          "cost_per_test": 16.3,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=98%",
+          "Budget for ongoing QA: $900.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 750.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-017",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Celery task management testing cost",
+        "quality_metrics": {
+          "test_coverage": 84,
+          "tests_passed": 47,
+          "tests_failed": 3,
+          "security_scan_passed": false,
+          "nasa_compliance": 91
+        },
+        "qa_cost_hours": 2.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Celery task management testing cost",
+        "priority": 7,
+        "cost_metrics": {
+          "qa_hours": 2.5,
+          "qa_cost_usd": 375.0,
+          "cost_per_test": 7.98,
+          "defect_count": 3,
+          "cost_of_defects_usd": 1500
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=84%",
+          "Budget for ongoing QA: $450.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 375.0,
+          "potential_defect_cost": 1500,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-018",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "N+1 query fix validation cost",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 48,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 92
+        },
+        "qa_cost_hours": 2.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for N+1 query fix validation cost",
+        "priority": 6,
+        "cost_metrics": {
+          "qa_hours": 2.0,
+          "qa_cost_usd": 300.0,
+          "cost_per_test": 6.25,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $360.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 300.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-019",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "PDF generation testing cost",
+        "quality_metrics": {
+          "test_coverage": 83,
+          "tests_passed": 49,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 93
+        },
+        "qa_cost_hours": 2.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for PDF generation testing cost",
+        "priority": 6,
+        "cost_metrics": {
+          "qa_hours": 2.5,
+          "qa_cost_usd": 375.0,
+          "cost_per_test": 7.65,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=83%",
+          "Budget for ongoing QA: $450.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 375.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-020",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "CSV import/export security cost",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 30,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 94
+        },
+        "qa_cost_hours": 3.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for CSV import/export security cost",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 3.0,
+          "qa_cost_usd": 450.0,
+          "cost_per_test": 15.0,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $540.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 450.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-021",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "SQLAlchemy migration testing cost",
+        "quality_metrics": {
+          "test_coverage": 84,
+          "tests_passed": 31,
+          "tests_failed": 8,
+          "security_scan_passed": false,
+          "nasa_compliance": 95
+        },
+        "qa_cost_hours": 6.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for SQLAlchemy migration testing cost",
+        "priority": 9,
+        "cost_metrics": {
+          "qa_hours": 6.0,
+          "qa_cost_usd": 900.0,
+          "cost_per_test": 29.03,
+          "defect_count": 8,
+          "cost_of_defects_usd": 4000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=84%",
+          "Budget for ongoing QA: $1080.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 900.0,
+          "potential_defect_cost": 4000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-022",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "2FA security validation cost",
+        "quality_metrics": {
+          "test_coverage": 92,
+          "tests_passed": 32,
+          "tests_failed": 3,
+          "security_scan_passed": false,
+          "nasa_compliance": 96
+        },
+        "qa_cost_hours": 4.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for 2FA security validation cost",
+        "priority": 9,
+        "cost_metrics": {
+          "qa_hours": 4.0,
+          "qa_cost_usd": 600.0,
+          "cost_per_test": 18.75,
+          "defect_count": 3,
+          "cost_of_defects_usd": 1500
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=92%",
+          "Budget for ongoing QA: $720.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 600.0,
+          "potential_defect_cost": 1500,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-023",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Timezone handling testing cost",
+        "quality_metrics": {
+          "test_coverage": 84,
+          "tests_passed": 33,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 97
+        },
+        "qa_cost_hours": 2.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Timezone handling testing cost",
+        "priority": 6,
+        "cost_metrics": {
+          "qa_hours": 2.0,
+          "qa_cost_usd": 300.0,
+          "cost_per_test": 9.09,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=84%",
+          "Budget for ongoing QA: $360.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 300.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-024",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Redis caching performance cost",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 34,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 90
+        },
+        "qa_cost_hours": 3.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Redis caching performance cost",
+        "priority": 7,
+        "cost_metrics": {
+          "qa_hours": 3.0,
+          "qa_cost_usd": 450.0,
+          "cost_per_test": 13.24,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $540.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 450.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-025",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "API versioning testing cost",
+        "quality_metrics": {
+          "test_coverage": 84,
+          "tests_passed": 35,
+          "tests_failed": 4,
+          "security_scan_passed": false,
+          "nasa_compliance": 91
+        },
+        "qa_cost_hours": 3.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for API versioning testing cost",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 3.5,
+          "qa_cost_usd": 525.0,
+          "cost_per_test": 15.0,
+          "defect_count": 4,
+          "cost_of_defects_usd": 2000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=84%",
+          "Budget for ongoing QA: $630.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 525.0,
+          "potential_defect_cost": 2000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-026",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "testing_cost_analysis",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Session management security cost",
+        "quality_metrics": {
+          "test_coverage": 92,
+          "tests_passed": 36,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 92
+        },
+        "qa_cost_hours": 4.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Session management security cost",
+        "priority": 9,
+        "cost_metrics": {
+          "qa_hours": 4.0,
+          "qa_cost_usd": 600.0,
+          "cost_per_test": 16.67,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=92%",
+          "Budget for ongoing QA: $720.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 600.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-027",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Transaction deadlock fix cost",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 37,
+          "tests_failed": 1,
+          "security_scan_passed": false,
+          "nasa_compliance": 93
+        },
+        "qa_cost_hours": 2.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Transaction deadlock fix cost",
+        "priority": 8,
+        "cost_metrics": {
+          "qa_hours": 2.5,
+          "qa_cost_usd": 375.0,
+          "cost_per_test": 10.14,
+          "defect_count": 1,
+          "cost_of_defects_usd": 500
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $450.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 375.0,
+          "potential_defect_cost": 500,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-028",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Health check testing cost",
+        "quality_metrics": {
+          "test_coverage": 82,
+          "tests_passed": 38,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 94
+        },
+        "qa_cost_hours": 1.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Health check testing cost",
+        "priority": 6,
+        "cost_metrics": {
+          "qa_hours": 1.5,
+          "qa_cost_usd": 225.0,
+          "cost_per_test": 5.92,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=82%",
+          "Budget for ongoing QA: $270.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 225.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-029",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_metrics_report",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Feature flag system testing cost",
+        "quality_metrics": {
+          "test_coverage": 84,
+          "tests_passed": 39,
+          "tests_failed": 2,
+          "security_scan_passed": false,
+          "nasa_compliance": 95
+        },
+        "qa_cost_hours": 2.5
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Feature flag system testing cost",
+        "priority": 6,
+        "cost_metrics": {
+          "qa_hours": 2.5,
+          "qa_cost_usd": 375.0,
+          "cost_per_test": 9.62,
+          "defect_count": 2,
+          "cost_of_defects_usd": 1000
+        },
+        "recommendations": [
+          "Invest in preventive testing",
+          "Maintain test coverage >=84%",
+          "Budget for ongoing QA: $450.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 375.0,
+          "potential_defect_cost": 1000,
+          "roi": "positive"
+        }
+      }
+    },
+    {
+      "id": "qual-coord-030",
+      "sender": "princess-quality",
+      "receiver": "princess-coordination",
+      "scenario_type": "quality_investment_recommendation",
+      "context": {
+        "qa_phase_complete": true,
+        "feature": "Microservices quality analysis",
+        "quality_metrics": {
+          "test_coverage": 86,
+          "tests_passed": 40,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 96
+        },
+        "qa_cost_hours": 8.0
+      },
+      "expected_coordination_message": {
+        "message_type": "quality-cost-report",
+        "description": "Quality assurance cost report for Microservices quality analysis",
+        "priority": 9,
+        "cost_metrics": {
+          "qa_hours": 8.0,
+          "qa_cost_usd": 1200.0,
+          "cost_per_test": 30.0,
+          "defect_count": 0,
+          "cost_of_defects_usd": 0
+        },
+        "recommendations": [
+          "Continue current quality practices",
+          "Maintain test coverage >=86%",
+          "Budget for ongoing QA: $1440.0/sprint"
+        ],
+        "investment_analysis": {
+          "prevention_cost": 1200.0,
+          "potential_defect_cost": 0,
+          "roi": "maintained"
+        }
+      }
+    }
+  ]
+}

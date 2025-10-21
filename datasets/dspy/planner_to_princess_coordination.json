@@ -1,0 +1,1637 @@
+{
+  "communication_path": "planner→princess-coordination",
+  "description": "Planner reports task planning results to Princess-Coordination",
+  "drone_id": "planner",
+  "princess_id": "princess-coordination",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 42,
+    "failure": 8
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "planner",
+      "task_completed": "plan-1",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 15,
+        "estimated_duration_hours": 79,
+        "resource_requirements": {
+          "agents": 4,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 9,
+        "execution_time_ms": 6904
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 15 tasks, 15h estimated.",
+        "quality_metrics": {
+          "tasks_count": 15,
+          "feasibility_score": 100,
+          "dependencies_resolved": 11
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "planner",
+      "task_completed": "plan-2",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 10,
+        "estimated_duration_hours": 37,
+        "resource_requirements": {
+          "agents": 8,
+          "compute": "5GB RAM"
+        },
+        "dependencies_mapped": 10,
+        "execution_time_ms": 4924
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 10 tasks, 25h estimated.",
+        "quality_metrics": {
+          "tasks_count": 10,
+          "feasibility_score": 100,
+          "dependencies_resolved": 12
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "planner",
+      "task_completed": "plan-3",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 12,
+        "estimated_duration_hours": 15,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "6GB RAM"
+        },
+        "dependencies_mapped": 5,
+        "execution_time_ms": 7612
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 12 tasks, 97h estimated.",
+        "quality_metrics": {
+          "tasks_count": 12,
+          "feasibility_score": 100,
+          "dependencies_resolved": 11
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "planner",
+      "task_completed": "plan-4",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 13,
+        "estimated_duration_hours": 77,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "1GB RAM"
+        },
+        "dependencies_mapped": 10,
+        "execution_time_ms": 7347
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 13 tasks, 72h estimated.",
+        "quality_metrics": {
+          "tasks_count": 13,
+          "feasibility_score": 100,
+          "dependencies_resolved": 15
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "planner",
+      "task_completed": "plan-5",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 19,
+        "estimated_duration_hours": 14,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "3GB RAM"
+        },
+        "dependencies_mapped": 13,
+        "execution_time_ms": 3879
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 19 tasks, 27h estimated.",
+        "quality_metrics": {
+          "tasks_count": 19,
+          "feasibility_score": 100,
+          "dependencies_resolved": 15
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "planner",
+      "task_completed": "plan-6",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 19,
+        "estimated_duration_hours": 32,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "3GB RAM"
+        },
+        "dependencies_mapped": 8,
+        "execution_time_ms": 4689
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 19 tasks, 10h estimated.",
+        "quality_metrics": {
+          "tasks_count": 19,
+          "feasibility_score": 100,
+          "dependencies_resolved": 13
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "planner",
+      "task_completed": "plan-7",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 19,
+        "estimated_duration_hours": 16,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "3GB RAM"
+        },
+        "dependencies_mapped": 13,
+        "execution_time_ms": 4700
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 19 tasks, 87h estimated.",
+        "quality_metrics": {
+          "tasks_count": 19,
+          "feasibility_score": 100,
+          "dependencies_resolved": 5
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "planner",
+      "task_completed": "plan-8",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 16,
+        "estimated_duration_hours": 79,
+        "resource_requirements": {
+          "agents": 5,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 15,
+        "execution_time_ms": 5819
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 16 tasks, 77h estimated.",
+        "quality_metrics": {
+          "tasks_count": 16,
+          "feasibility_score": 100,
+          "dependencies_resolved": 12
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "planner",
+      "task_completed": "plan-9",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 20,
+        "estimated_duration_hours": 71,
+        "resource_requirements": {
+          "agents": 3,
+          "compute": "6GB RAM"
+        },
+        "dependencies_mapped": 15,
+        "execution_time_ms": 4787
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 20 tasks, 19h estimated.",
+        "quality_metrics": {
+          "tasks_count": 20,
+          "feasibility_score": 100,
+          "dependencies_resolved": 12
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "planner",
+      "task_completed": "plan-10",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 14,
+        "estimated_duration_hours": 46,
+        "resource_requirements": {
+          "agents": 4,
+          "compute": "4GB RAM"
+        },
+        "dependencies_mapped": 14,
+        "execution_time_ms": 4104
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 14 tasks, 42h estimated.",
+        "quality_metrics": {
+          "tasks_count": 14,
+          "feasibility_score": 100,
+          "dependencies_resolved": 10
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "planner",
+      "task_completed": "plan-11",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 10,
+        "estimated_duration_hours": 59,
+        "resource_requirements": {
+          "agents": 8,
+          "compute": "3GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 7999
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 10 tasks, 12h estimated.",
+        "quality_metrics": {
+          "tasks_count": 10,
+          "feasibility_score": 100,
+          "dependencies_resolved": 14
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "planner",
+      "task_completed": "plan-12",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 14,
+        "estimated_duration_hours": 91,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "5GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 6008
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 14 tasks, 70h estimated.",
+        "quality_metrics": {
+          "tasks_count": 14,
+          "feasibility_score": 100,
+          "dependencies_resolved": 11
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "planner",
+      "task_completed": "plan-13",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 13,
+        "estimated_duration_hours": 81,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "1GB RAM"
+        },
+        "dependencies_mapped": 10,
+        "execution_time_ms": 5811
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 13 tasks, 98h estimated.",
+        "quality_metrics": {
+          "tasks_count": 13,
+          "feasibility_score": 100,
+          "dependencies_resolved": 9
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "planner",
+      "task_completed": "plan-14",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 14,
+        "estimated_duration_hours": 45,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "8GB RAM"
+        },
+        "dependencies_mapped": 9,
+        "execution_time_ms": 7486
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 14 tasks, 95h estimated.",
+        "quality_metrics": {
+          "tasks_count": 14,
+          "feasibility_score": 100,
+          "dependencies_resolved": 9
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "planner",
+      "task_completed": "plan-15",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 11,
+        "estimated_duration_hours": 11,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 14,
+        "execution_time_ms": 3827
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 11 tasks, 17h estimated.",
+        "quality_metrics": {
+          "tasks_count": 11,
+          "feasibility_score": 100,
+          "dependencies_resolved": 13
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "planner",
+      "task_completed": "plan-16",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 17,
+        "estimated_duration_hours": 97,
+        "resource_requirements": {
+          "agents": 8,
+          "compute": "3GB RAM"
+        },
+        "dependencies_mapped": 9,
+        "execution_time_ms": 6022
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 17 tasks, 38h estimated.",
+        "quality_metrics": {
+          "tasks_count": 17,
+          "feasibility_score": 100,
+          "dependencies_resolved": 10
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "planner",
+      "task_completed": "plan-17",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 16,
+        "estimated_duration_hours": 72,
+        "resource_requirements": {
+          "agents": 4,
+          "compute": "8GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 5077
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 16 tasks, 83h estimated.",
+        "quality_metrics": {
+          "tasks_count": 16,
+          "feasibility_score": 100,
+          "dependencies_resolved": 9
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "planner",
+      "task_completed": "plan-18",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 16,
+        "estimated_duration_hours": 58,
+        "resource_requirements": {
+          "agents": 4,
+          "compute": "1GB RAM"
+        },
+        "dependencies_mapped": 9,
+        "execution_time_ms": 4672
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 16 tasks, 17h estimated.",
+        "quality_metrics": {
+          "tasks_count": 16,
+          "feasibility_score": 100,
+          "dependencies_resolved": 12
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "planner",
+      "task_completed": "plan-19",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 20,
+        "estimated_duration_hours": 26,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 9,
+        "execution_time_ms": 6058
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 20 tasks, 22h estimated.",
+        "quality_metrics": {
+          "tasks_count": 20,
+          "feasibility_score": 100,
+          "dependencies_resolved": 9
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "planner",
+      "task_completed": "plan-20",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 9,
+        "estimated_duration_hours": 90,
+        "resource_requirements": {
+          "agents": 6,
+          "compute": "7GB RAM"
+        },
+        "dependencies_mapped": 8,
+        "execution_time_ms": 6033
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 9 tasks, 83h estimated.",
+        "quality_metrics": {
+          "tasks_count": 9,
+          "feasibility_score": 100,
+          "dependencies_resolved": 8
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "planner",
+      "task_completed": "plan-21",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 13,
+        "estimated_duration_hours": 46,
+        "resource_requirements": {
+          "agents": 5,
+          "compute": "5GB RAM"
+        },
+        "dependencies_mapped": 10,
+        "execution_time_ms": 7214
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 13 tasks, 86h estimated.",
+        "quality_metrics": {
+          "tasks_count": 13,
+          "feasibility_score": 100,
+          "dependencies_resolved": 15
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "planner",
+      "task_completed": "plan-22",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 9,
+        "estimated_duration_hours": 75,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "5GB RAM"
+        },
+        "dependencies_mapped": 11,
+        "execution_time_ms": 6257
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 9 tasks, 77h estimated.",
+        "quality_metrics": {
+          "tasks_count": 9,
+          "feasibility_score": 100,
+          "dependencies_resolved": 6
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "planner",
+      "task_completed": "plan-23",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 17,
+        "estimated_duration_hours": 17,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "1GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 5010
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 17 tasks, 44h estimated.",
+        "quality_metrics": {
+          "tasks_count": 17,
+          "feasibility_score": 100,
+          "dependencies_resolved": 11
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "planner",
+      "task_completed": "plan-24",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 10,
+        "estimated_duration_hours": 87,
+        "resource_requirements": {
+          "agents": 6,
+          "compute": "6GB RAM"
+        },
+        "dependencies_mapped": 9,
+        "execution_time_ms": 5641
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 10 tasks, 45h estimated.",
+        "quality_metrics": {
+          "tasks_count": 10,
+          "feasibility_score": 100,
+          "dependencies_resolved": 15
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "planner",
+      "task_completed": "plan-25",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 9,
+        "estimated_duration_hours": 52,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "7GB RAM"
+        },
+        "dependencies_mapped": 5,
+        "execution_time_ms": 7184
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 9 tasks, 62h estimated.",
+        "quality_metrics": {
+          "tasks_count": 9,
+          "feasibility_score": 100,
+          "dependencies_resolved": 7
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "planner",
+      "task_completed": "plan-26",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 19,
+        "estimated_duration_hours": 74,
+        "resource_requirements": {
+          "agents": 3,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 5,
+        "execution_time_ms": 7825
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 19 tasks, 85h estimated.",
+        "quality_metrics": {
+          "tasks_count": 19,
+          "feasibility_score": 100,
+          "dependencies_resolved": 8
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "planner",
+      "task_completed": "plan-27",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 18,
+        "estimated_duration_hours": 87,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "3GB RAM"
+        },
+        "dependencies_mapped": 14,
+        "execution_time_ms": 3361
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 18 tasks, 11h estimated.",
+        "quality_metrics": {
+          "tasks_count": 18,
+          "feasibility_score": 100,
+          "dependencies_resolved": 7
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "planner",
+      "task_completed": "plan-28",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 8,
+        "estimated_duration_hours": 99,
+        "resource_requirements": {
+          "agents": 5,
+          "compute": "6GB RAM"
+        },
+        "dependencies_mapped": 5,
+        "execution_time_ms": 7934
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 8 tasks, 65h estimated.",
+        "quality_metrics": {
+          "tasks_count": 8,
+          "feasibility_score": 100,
+          "dependencies_resolved": 14
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "planner",
+      "task_completed": "plan-29",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 10,
+        "estimated_duration_hours": 50,
+        "resource_requirements": {
+          "agents": 8,
+          "compute": "1GB RAM"
+        },
+        "dependencies_mapped": 12,
+        "execution_time_ms": 3947
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 10 tasks, 54h estimated.",
+        "quality_metrics": {
+          "tasks_count": 10,
+          "feasibility_score": 100,
+          "dependencies_resolved": 5
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "planner",
+      "task_completed": "plan-30",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 18,
+        "estimated_duration_hours": 68,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "8GB RAM"
+        },
+        "dependencies_mapped": 8,
+        "execution_time_ms": 7857
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 18 tasks, 27h estimated.",
+        "quality_metrics": {
+          "tasks_count": 18,
+          "feasibility_score": 100,
+          "dependencies_resolved": 15
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "planner",
+      "task_completed": "plan-31",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 18,
+        "estimated_duration_hours": 88,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "5GB RAM"
+        },
+        "dependencies_mapped": 14,
+        "execution_time_ms": 4180
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 18 tasks, 45h estimated.",
+        "quality_metrics": {
+          "tasks_count": 18,
+          "feasibility_score": 100,
+          "dependencies_resolved": 5
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "planner",
+      "task_completed": "plan-32",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 20,
+        "estimated_duration_hours": 25,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "8GB RAM"
+        },
+        "dependencies_mapped": 5,
+        "execution_time_ms": 5253
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 20 tasks, 15h estimated.",
+        "quality_metrics": {
+          "tasks_count": 20,
+          "feasibility_score": 100,
+          "dependencies_resolved": 9
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "planner",
+      "task_completed": "plan-33",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 15,
+        "estimated_duration_hours": 17,
+        "resource_requirements": {
+          "agents": 5,
+          "compute": "7GB RAM"
+        },
+        "dependencies_mapped": 6,
+        "execution_time_ms": 3753
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 15 tasks, 100h estimated.",
+        "quality_metrics": {
+          "tasks_count": 15,
+          "feasibility_score": 100,
+          "dependencies_resolved": 9
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "planner",
+      "task_completed": "plan-34",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 19,
+        "estimated_duration_hours": 29,
+        "resource_requirements": {
+          "agents": 8,
+          "compute": "8GB RAM"
+        },
+        "dependencies_mapped": 5,
+        "execution_time_ms": 5967
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 19 tasks, 82h estimated.",
+        "quality_metrics": {
+          "tasks_count": 19,
+          "feasibility_score": 100,
+          "dependencies_resolved": 14
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "planner",
+      "task_completed": "plan-35",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 19,
+        "estimated_duration_hours": 13,
+        "resource_requirements": {
+          "agents": 6,
+          "compute": "6GB RAM"
+        },
+        "dependencies_mapped": 10,
+        "execution_time_ms": 4467
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 19 tasks, 86h estimated.",
+        "quality_metrics": {
+          "tasks_count": 19,
+          "feasibility_score": 100,
+          "dependencies_resolved": 8
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "planner",
+      "task_completed": "plan-36",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 9,
+        "estimated_duration_hours": 54,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "5GB RAM"
+        },
+        "dependencies_mapped": 13,
+        "execution_time_ms": 4414
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 9 tasks, 37h estimated.",
+        "quality_metrics": {
+          "tasks_count": 9,
+          "feasibility_score": 100,
+          "dependencies_resolved": 7
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "planner",
+      "task_completed": "plan-37",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 13,
+        "estimated_duration_hours": 30,
+        "resource_requirements": {
+          "agents": 3,
+          "compute": "4GB RAM"
+        },
+        "dependencies_mapped": 13,
+        "execution_time_ms": 5367
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 13 tasks, 92h estimated.",
+        "quality_metrics": {
+          "tasks_count": 13,
+          "feasibility_score": 100,
+          "dependencies_resolved": 10
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "planner",
+      "task_completed": "plan-38",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 20,
+        "estimated_duration_hours": 19,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 7690
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 20 tasks, 18h estimated.",
+        "quality_metrics": {
+          "tasks_count": 20,
+          "feasibility_score": 100,
+          "dependencies_resolved": 5
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "planner",
+      "task_completed": "plan-39",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 16,
+        "estimated_duration_hours": 53,
+        "resource_requirements": {
+          "agents": 3,
+          "compute": "7GB RAM"
+        },
+        "dependencies_mapped": 9,
+        "execution_time_ms": 4793
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 16 tasks, 68h estimated.",
+        "quality_metrics": {
+          "tasks_count": 16,
+          "feasibility_score": 100,
+          "dependencies_resolved": 10
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "planner",
+      "task_completed": "plan-40",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 17,
+        "estimated_duration_hours": 69,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 6493
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 17 tasks, 83h estimated.",
+        "quality_metrics": {
+          "tasks_count": 17,
+          "feasibility_score": 100,
+          "dependencies_resolved": 5
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "planner",
+      "task_completed": "plan-41",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 12,
+        "estimated_duration_hours": 18,
+        "resource_requirements": {
+          "agents": 5,
+          "compute": "1GB RAM"
+        },
+        "dependencies_mapped": 8,
+        "execution_time_ms": 6825
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 12 tasks, 17h estimated.",
+        "quality_metrics": {
+          "tasks_count": 12,
+          "feasibility_score": 100,
+          "dependencies_resolved": 10
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "planner",
+      "task_completed": "plan-42",
+      "drone_results": {
+        "success": true,
+        "plan_feasible": true,
+        "tasks_generated": 20,
+        "estimated_duration_hours": 21,
+        "resource_requirements": {
+          "agents": 6,
+          "compute": "6GB RAM"
+        },
+        "dependencies_mapped": 15,
+        "execution_time_ms": 5079
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "complete",
+        "summary": "Plan generated successfully: 20 tasks, 79h estimated.",
+        "quality_metrics": {
+          "tasks_count": 20,
+          "feasibility_score": 100,
+          "dependencies_resolved": 5
+        },
+        "next_phase": "orchestrate",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to execution"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "planner",
+      "task_completed": "plan-43",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 25,
+        "estimated_duration_hours": 97,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "7GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 5146
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 25 tasks, 30h estimated.",
+        "quality_metrics": {
+          "tasks_count": 25,
+          "feasibility_score": 64,
+          "dependencies_resolved": 9
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "planner",
+      "task_completed": "plan-44",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 23,
+        "estimated_duration_hours": 34,
+        "resource_requirements": {
+          "agents": 7,
+          "compute": "4GB RAM"
+        },
+        "dependencies_mapped": 13,
+        "execution_time_ms": 5963
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 23 tasks, 47h estimated.",
+        "quality_metrics": {
+          "tasks_count": 23,
+          "feasibility_score": 63,
+          "dependencies_resolved": 7
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "planner",
+      "task_completed": "plan-45",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 22,
+        "estimated_duration_hours": 73,
+        "resource_requirements": {
+          "agents": 4,
+          "compute": "3GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 5437
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 22 tasks, 63h estimated.",
+        "quality_metrics": {
+          "tasks_count": 22,
+          "feasibility_score": 43,
+          "dependencies_resolved": 13
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "planner",
+      "task_completed": "plan-46",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 30,
+        "estimated_duration_hours": 56,
+        "resource_requirements": {
+          "agents": 9,
+          "compute": "8GB RAM"
+        },
+        "dependencies_mapped": 6,
+        "execution_time_ms": 3140
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 30 tasks, 73h estimated.",
+        "quality_metrics": {
+          "tasks_count": 30,
+          "feasibility_score": 68,
+          "dependencies_resolved": 14
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "planner",
+      "task_completed": "plan-47",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 19,
+        "estimated_duration_hours": 42,
+        "resource_requirements": {
+          "agents": 3,
+          "compute": "7GB RAM"
+        },
+        "dependencies_mapped": 14,
+        "execution_time_ms": 4756
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 19 tasks, 70h estimated.",
+        "quality_metrics": {
+          "tasks_count": 19,
+          "feasibility_score": 56,
+          "dependencies_resolved": 6
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "planner",
+      "task_completed": "plan-48",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 26,
+        "estimated_duration_hours": 61,
+        "resource_requirements": {
+          "agents": 8,
+          "compute": "2GB RAM"
+        },
+        "dependencies_mapped": 14,
+        "execution_time_ms": 5486
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 26 tasks, 59h estimated.",
+        "quality_metrics": {
+          "tasks_count": 26,
+          "feasibility_score": 55,
+          "dependencies_resolved": 15
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "planner",
+      "task_completed": "plan-49",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 15,
+        "estimated_duration_hours": 89,
+        "resource_requirements": {
+          "agents": 3,
+          "compute": "8GB RAM"
+        },
+        "dependencies_mapped": 7,
+        "execution_time_ms": 3360
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 15 tasks, 73h estimated.",
+        "quality_metrics": {
+          "tasks_count": 15,
+          "feasibility_score": 60,
+          "dependencies_resolved": 10
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "planner",
+      "task_completed": "plan-50",
+      "drone_results": {
+        "success": false,
+        "plan_feasible": false,
+        "tasks_generated": 20,
+        "estimated_duration_hours": 86,
+        "resource_requirements": {
+          "agents": 10,
+          "compute": "5GB RAM"
+        },
+        "dependencies_mapped": 15,
+        "execution_time_ms": 6765
+      },
+      "expected_aggregated_result": {
+        "phase": "planning",
+        "status": "infeasible",
+        "summary": "Plan infeasible: 20 tasks, 92h estimated.",
+        "quality_metrics": {
+          "tasks_count": 20,
+          "feasibility_score": 68,
+          "dependencies_resolved": 13
+        },
+        "next_phase": "planning",
+        "blockers": [
+          "Resource constraints exceed capacity",
+          "Timeline unrealistic"
+        ],
+        "recommendations": [
+          "Reduce scope or extend timeline"
+        ]
+      }
+    }
+  ]
+}

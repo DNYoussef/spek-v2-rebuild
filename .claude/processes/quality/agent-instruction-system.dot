@@ -1,0 +1,336 @@
+digraph agent_instruction_system {
+  label="Agent Instruction System\n26 Prompt Engineering Principles Embedded\nQuality Enforcement Without DSPy";
+  rankdir=TB;
+  compound=true;
+
+  // ============================================================
+  // ENTRY POINT
+  // ============================================================
+
+  entry [label="Agent Instruction\nSystem", shape=ellipse, style=filled, fillcolor=lightblue];
+
+  nav_decision [label="Review Focus?", shape=diamond, style=filled, fillcolor=lightyellow];
+
+  entry -> nav_decision;
+
+  // ============================================================
+  // CLUSTER 1: SYSTEM OVERVIEW
+  // ============================================================
+
+  subgraph cluster_overview {
+    label="SYSTEM OVERVIEW";
+    style=filled;
+    fillcolor=lightgray;
+
+    overview_entry [label="Instruction System Purpose", shape=plaintext];
+
+    overview_problem [label="Problem:\nDSPy optimization expensive\n(time, cost, complexity)", shape=box, style=filled, fillcolor=orange];
+
+    overview_solution [label="Solution:\nEmbed 26 prompt engineering\nprinciples directly into\nagent base instructions", shape=box, style=filled, fillcolor=lightgreen];
+
+    overview_benefits [label="Benefits:\n- Quality enforcement without training\n- Zero DSPy overhead\n- Consistent agent behavior\n- Evidence-based principles\n- Immediate application", shape=box, style=filled, fillcolor=lightblue];
+
+    overview_scope [label="Scope:\n- 26 principles across 6 categories\n- Embedded in all 28 agents\n- Integration pattern defined\n- Remaining updates tracked", shape=box, style=filled, fillcolor=lightyellow];
+
+    overview_entry -> overview_problem -> overview_solution -> overview_benefits -> overview_scope;
+  }
+
+  nav_decision -> overview_entry [label="Overview", lhead=cluster_overview];
+
+  // ============================================================
+  // CLUSTER 2: 26 PRINCIPLES (6 Categories)
+  // ============================================================
+
+  subgraph cluster_principles {
+    label="26 PROMPT ENGINEERING PRINCIPLES (6 Categories)";
+    style=filled;
+    fillcolor=lightgray;
+
+    principles_entry [label="26 Principles Embedded", shape=plaintext];
+
+    // Category 1: Clarity & Specificity
+    cat1 [label="Category 1: Clarity & Specificity (5 principles)", shape=box, style=filled, fillcolor=lightblue];
+
+    p1 [label="P1: Be Specific\n'Generate Python function to calculate Fibonacci'\nvs 'Write code'", shape=box, style=filled, fillcolor=lightyellow];
+
+    p2 [label="P2: Use Delimiters\nUse ###, \"\"\", --- to separate sections\nfor clear structure", shape=box, style=filled, fillcolor=lightyellow];
+
+    p3 [label="P3: Specify Steps\n'1. Extract context, 2. Analyze code, 3. Generate tests'\nvs 'Create tests'", shape=box, style=filled, fillcolor=lightyellow];
+
+    p4 [label="P4: Provide Examples\n'Input: [code], Output: [test]'\nFew-shot learning improves quality", shape=box, style=filled, fillcolor=lightyellow];
+
+    p5 [label="P5: Specify Output Format\n'Return JSON: {\"status\": \"success\", \"result\": [...]}'\nvs unstructured output", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Category 2: Context & Constraints
+    cat2 [label="Category 2: Context & Constraints (5 principles)", shape=box, style=filled, fillcolor=lightblue];
+
+    p6 [label="P6: Provide Context\n'You are a Python test engineer with NASA Rule 10 compliance'\nvs no role definition", shape=box, style=filled, fillcolor=lightyellow];
+
+    p7 [label="P7: Set Constraints\n'Functions ≤60 LOC, type hints required, no recursion'\nvs unconstrained generation", shape=box, style=filled, fillcolor=lightyellow];
+
+    p8 [label="P8: Specify Persona\n'Act as senior architect with 10+ years experience'\nvs generic assistant", shape=box, style=filled, fillcolor=lightyellow];
+
+    p9 [label="P9: Define Success Criteria\n'Tests must achieve ≥80% coverage, all assertions pass'\nvs ambiguous quality", shape=box, style=filled, fillcolor=lightyellow];
+
+    p10 [label="P10: Provide Reference Materials\n'Follow patterns in src/tests/conftest.py'\nvs reinvent patterns", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Category 3: Iteration & Verification
+    cat3 [label="Category 3: Iteration & Verification (4 principles)", shape=box, style=filled, fillcolor=lightblue];
+
+    p11 [label="P11: Ask for Verification\n'Review code for NASA compliance before submission'\nvs assume correctness", shape=box, style=filled, fillcolor=lightyellow];
+
+    p12 [label="P12: Request Self-Critique\n'Identify 3 potential issues with this implementation'\nvs blind acceptance", shape=box, style=filled, fillcolor=lightyellow];
+
+    p13 [label="P13: Use Chain-of-Thought\n'Think step-by-step: 1. Analyze requirements, 2. Design...'\nvs direct answer", shape=box, style=filled, fillcolor=lightyellow];
+
+    p14 [label="P14: Iterative Refinement\n'Generate v1 → Review → Generate v2 → Validate'\nvs single-shot generation", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Category 4: Error Handling & Edge Cases
+    cat4 [label="Category 4: Error Handling & Edge Cases (4 principles)", shape=box, style=filled, fillcolor=lightblue];
+
+    p15 [label="P15: Handle Edge Cases\n'Consider: empty input, null values, large datasets'\nvs happy path only", shape=box, style=filled, fillcolor=lightyellow];
+
+    p16 [label="P16: Error Recovery\n'If test fails, analyze error and suggest fix'\nvs fail without diagnosis", shape=box, style=filled, fillcolor=lightyellow];
+
+    p17 [label="P17: Defensive Programming\n'Add input validation, type checking, error handling'\nvs assume valid input", shape=box, style=filled, fillcolor=lightyellow];
+
+    p18 [label="P18: Fallback Strategies\n'If primary approach fails, try alternative X'\nvs single rigid approach", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Category 5: Testing & Validation
+    cat5 [label="Category 5: Testing & Validation (4 principles)", shape=box, style=filled, fillcolor=lightblue];
+
+    p19 [label="P19: Test-Driven Development\n'Write failing test → Implement → Refactor'\nvs code-first approach", shape=box, style=filled, fillcolor=lightyellow];
+
+    p20 [label="P20: Comprehensive Coverage\n'Test happy path, edge cases, error conditions'\nvs minimal testing", shape=box, style=filled, fillcolor=lightyellow];
+
+    p21 [label="P21: Assertion Quality\n'Use specific assertions: assertEqual(result, expected)'\nvs assertTrue(result)', shape=box, style=filled, fillcolor=lightyellow];
+
+    p22 [label="P22: Test Independence\n'Each test self-contained, no shared state'\nvs interdependent tests", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Category 6: Efficiency & Optimization
+    cat6 [label="Category 6: Efficiency & Optimization (4 principles)", shape=box, style=filled, fillcolor=lightblue];
+
+    p23 [label="P23: Performance Awareness\n'Target: <10s execution, <100MB memory'\nvs ignore performance", shape=box, style=filled, fillcolor=lightyellow];
+
+    p24 [label="P24: Resource Efficiency\n'Use generators for large datasets, lazy loading'\nvs load all upfront", shape=box, style=filled, fillcolor=lightyellow];
+
+    p25 [label="P25: Code Reusability\n'Extract common patterns to shared utilities'\nvs duplicate code", shape=box, style=filled, fillcolor=lightyellow];
+
+    p26 [label="P26: Documentation Quality\n'Docstrings with Args, Returns, Raises, Examples'\nvs undocumented code", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Connect categories to principles
+    principles_entry -> cat1;
+    cat1 -> p1 -> p2 -> p3 -> p4 -> p5;
+
+    principles_entry -> cat2;
+    cat2 -> p6 -> p7 -> p8 -> p9 -> p10;
+
+    principles_entry -> cat3;
+    cat3 -> p11 -> p12 -> p13 -> p14;
+
+    principles_entry -> cat4;
+    cat4 -> p15 -> p16 -> p17 -> p18;
+
+    principles_entry -> cat5;
+    cat5 -> p19 -> p20 -> p21 -> p22;
+
+    principles_entry -> cat6;
+    cat6 -> p23 -> p24 -> p25 -> p26;
+  }
+
+  nav_decision -> principles_entry [label="26 Principles", lhead=cluster_principles];
+
+  // ============================================================
+  // CLUSTER 3: INSTRUCTION ARCHITECTURE
+  // ============================================================
+
+  subgraph cluster_architecture {
+    label="INSTRUCTION ARCHITECTURE";
+    style=filled;
+    fillcolor=lightgray;
+
+    arch_entry [label="Architecture Design", shape=plaintext];
+
+    arch_structure [label="Instruction Structure:\n1. Role & Context (P6, P8)\n2. Task Description (P1, P3)\n3. Constraints (P7, P9)\n4. Quality Standards (NASA, testing)\n5. Output Format (P5)\n6. Examples (P4)", shape=box, style=filled, fillcolor=lightblue];
+
+    arch_embedding [label="Embedding Strategy:\n- Base instructions in AgentBase class\n- Specialized instructions per agent type\n- Principles referenced explicitly\n- Quality standards enforced", shape=box, style=filled, fillcolor=lightgreen];
+
+    arch_template [label="Instruction Template:\n'You are {persona} (P8).\n\nTask: {task_description} (P1).\n\nConstraints:\n- {constraint_1} (P7)\n- {constraint_2} (P9)\n...\n\nOutput Format: {format} (P5).\n\nExample:\n{input} → {output} (P4).'", shape=box, style=filled, fillcolor=lightyellow];
+
+    arch_validation [label="Validation Layer:\n- Self-critique prompts (P12)\n- Verification requests (P11)\n- Chain-of-thought reasoning (P13)\n- Iterative refinement (P14)", shape=box, style=filled, fillcolor=lightblue];
+
+    arch_entry -> arch_structure -> arch_embedding -> arch_template -> arch_validation;
+  }
+
+  nav_decision -> arch_entry [label="Architecture", lhead=cluster_architecture];
+
+  // ============================================================
+  // CLUSTER 4: INTEGRATION PATTERN
+  // ============================================================
+
+  subgraph cluster_integration {
+    label="INTEGRATION PATTERN (AgentBase → Specialized Agents)";
+    style=filled;
+    fillcolor=lightgray;
+
+    integ_entry [label="Integration Workflow", shape=plaintext];
+
+    integ_step1 [label="Step 1: Update AgentBase\nAdd base instructions with\n26 principles embedded", shape=box, style=filled, fillcolor=lightyellow];
+
+    integ_step2 [label="Step 2: Update Each Agent\nExtend base instructions with\nspecialized task guidance", shape=box, style=filled, fillcolor=lightyellow];
+
+    integ_step3 [label="Step 3: Add Examples\nProvide few-shot examples\nfor each agent task type (P4)", shape=box, style=filled, fillcolor=lightyellow];
+
+    integ_step4 [label="Step 4: Validate Output\nAdd output format validation\nand success criteria (P5, P9)", shape=box, style=filled, fillcolor=lightyellow];
+
+    integ_step5 [label="Step 5: Test Integration\nVerify principle enforcement\nacross all agent tasks", shape=box, style=filled, fillcolor=lightyellow];
+
+    integ_verify [label="Verification:\nAll 28 agents produce\nquality-enforced output?", shape=diamond, style=filled, fillcolor=orange];
+
+    integ_pass [label="✅ Integration Complete\nQuality enforcement active", shape=box, style=filled, fillcolor=lightgreen];
+
+    integ_fail [label="❌ Issues Found\nRefine instructions and retest", shape=box, style=filled, fillcolor=red];
+
+    integ_entry -> integ_step1 -> integ_step2 -> integ_step3 -> integ_step4 -> integ_step5 -> integ_verify;
+    integ_verify -> integ_pass [label="Pass"];
+    integ_verify -> integ_fail [label="Fail"];
+    integ_fail -> integ_step2 [label="Refine", style=dashed];
+  }
+
+  nav_decision -> integ_entry [label="Integration", lhead=cluster_integration];
+
+  // ============================================================
+  // CLUSTER 5: AGENT UPDATES (28 Agents)
+  // ============================================================
+
+  subgraph cluster_updates {
+    label="AGENT UPDATES (28 Agents)";
+    style=filled;
+    fillcolor=lightgray;
+
+    updates_entry [label="Update Status", shape=plaintext];
+
+    // Core Agents (5)
+    updates_core [label="Core Agents (5):\n- queen ✅\n- coder ✅\n- researcher ✅\n- tester ✅\n- reviewer ✅", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Princess Coordinators (3)
+    updates_princess [label="Princess Coordinators (3):\n- princess-dev ✅\n- princess-quality ✅\n- princess-coordination ✅", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Specialized Agents (20)
+    updates_spec [label="Specialized Agents (20):\n- architect ✅\n- pseudocode-writer ✅\n- spec-writer ✅\n- integration-engineer ✅\n- debugger ✅\n- docs-writer ✅\n- devops ✅\n- security-manager ⏳\n- cost-tracker ⏳\n- theater-detector ⏳\n- nasa-enforcer ⏳\n- fsm-analyzer ⏳\n- orchestrator ⏳\n- planner ⏳\n- frontend-dev ✅\n- backend-dev ✅\n- code-analyzer ✅\n- infrastructure-ops ✅\n- release-manager ✅\n- performance-engineer ✅", shape=box, style=filled, fillcolor=lightyellow];
+
+    updates_remaining [label="Remaining: 7 agents\n(security, cost, theater,\nnasa, fsm, orchestrator, planner)", shape=box, style=filled, fillcolor=orange];
+
+    updates_entry -> updates_core -> updates_princess -> updates_spec -> updates_remaining;
+  }
+
+  nav_decision -> updates_entry [label="Agent Updates", lhead=cluster_updates];
+
+  // ============================================================
+  // CLUSTER 6: BENEFITS ACHIEVED
+  // ============================================================
+
+  subgraph cluster_benefits {
+    label="BENEFITS ACHIEVED";
+    style=filled;
+    fillcolor=lightgray;
+
+    benefits_entry [label="System Benefits", shape=plaintext];
+
+    benefit1 [label="Benefit 1: Zero DSPy Overhead\n- No training time\n- No training cost\n- No hyperparameter tuning\n- No dataset preparation", shape=box, style=filled, fillcolor=lightgreen];
+
+    benefit2 [label="Benefit 2: Immediate Application\n- Principles active from Day 1\n- No optimization phase required\n- Instant quality improvement\n- No waiting for convergence", shape=box, style=filled, fillcolor=lightgreen];
+
+    benefit3 [label="Benefit 3: Consistent Behavior\n- All agents follow same principles\n- Predictable output quality\n- Reduced variance\n- Unified code style", shape=box, style=filled, fillcolor=lightgreen];
+
+    benefit4 [label="Benefit 4: Evidence-Based\n- 26 principles from research\n- Proven prompt engineering techniques\n- Industry best practices\n- Validated effectiveness", shape=box, style=filled, fillcolor=lightgreen];
+
+    benefit5 [label="Benefit 5: Maintainability\n- Principles documented explicitly\n- Easy to update/extend\n- No black-box optimization\n- Clear cause-effect relationship", shape=box, style=filled, fillcolor=lightgreen];
+
+    benefit6 [label="Benefit 6: Quality Enforcement\n- NASA Rule 10 compliance\n- Test coverage requirements\n- Type safety enforcement\n- Error handling standards", shape=box, style=filled, fillcolor=lightgreen];
+
+    benefits_entry -> benefit1 -> benefit2 -> benefit3 -> benefit4 -> benefit5 -> benefit6;
+  }
+
+  nav_decision -> benefits_entry [label="Benefits", lhead=cluster_benefits];
+
+  // ============================================================
+  // CLUSTER 7: USAGE EXAMPLES
+  // ============================================================
+
+  subgraph cluster_examples {
+    label="USAGE EXAMPLES (3 Agents)";
+    style=filled;
+    fillcolor=lightgray;
+
+    examples_entry [label="Example Applications", shape=plaintext];
+
+    // Example 1: Tester Agent
+    ex1_agent [label="Example 1: Tester Agent", shape=box, style=filled, fillcolor=lightblue];
+
+    ex1_before [label="Before (No Principles):\n'Create tests for function X'", shape=box, style=filled, fillcolor=orange];
+
+    ex1_after [label="After (With Principles):\n'You are a Python test engineer (P8).\n\nTask: Generate pytest tests for function X\nwith ≥80% coverage (P1, P9).\n\nConstraints:\n- Follow TDD London School (P19)\n- Use pytest fixtures from conftest.py (P10)\n- Test happy path + edge cases (P15, P20)\n- Each test independent (P22)\n\nOutput Format:\n```python\ndef test_X():\n    # Arrange, Act, Assert\n    ...\n```\n\nExample:\nInput: def add(a, b): return a + b\nOutput: [test code] (P4)'", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Example 2: Coder Agent
+    ex2_agent [label="Example 2: Coder Agent", shape=box, style=filled, fillcolor=lightblue];
+
+    ex2_before [label="Before (No Principles):\n'Write code for feature Y'", shape=box, style=filled, fillcolor=orange];
+
+    ex2_after [label="After (With Principles):\n'You are a senior Python developer (P8).\n\nTask: Implement feature Y following\nNASA Rule 10 compliance (P1, P7).\n\nConstraints:\n- Functions ≤60 LOC (P7)\n- Type hints required (P7)\n- No recursion (P7)\n- Comprehensive docstrings (P26)\n- Input validation (P17)\n\nThink step-by-step (P13):\n1. Analyze requirements\n2. Design architecture\n3. Implement with TDD\n4. Self-critique (P12)\n\nOutput Format:\n```python\ndef feature_Y(param: Type) -> ReturnType:\n    \"\"\"Docstring with Args, Returns, Raises.\"\"\"\n    ...\n```\n\nReview for issues before submission (P11).'", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Example 3: Reviewer Agent
+    ex3_agent [label="Example 3: Reviewer Agent", shape=box, style=filled, fillcolor=lightblue];
+
+    ex3_before [label="Before (No Principles):\n'Review this code'", shape=box, style=filled, fillcolor=orange];
+
+    ex3_after [label="After (With Principles):\n'You are a code review expert (P8).\n\nTask: Review code for quality, NASA compliance,\nand best practices (P1).\n\nReview Checklist (P3):\n1. NASA Rule 10 compliance (≤60 LOC) (P7)\n2. Type hints present (P7)\n3. Error handling comprehensive (P17)\n4. Test coverage ≥80% (P9)\n5. Documentation quality (P26)\n6. Edge cases handled (P15)\n\nOutput Format (P5):\n{\n  \"status\": \"approved|changes_requested\",\n  \"issues\": [{\"type\": \"...\", \"line\": N, \"message\": \"...\"}],\n  \"suggestions\": [...]\n}\n\nProvide specific, actionable feedback (P1).\nSuggest improvements, don\\'t just identify problems (P14).'", shape=box, style=filled, fillcolor=lightgreen];
+
+    examples_entry -> ex1_agent -> ex1_before -> ex1_after;
+    examples_entry -> ex2_agent -> ex2_before -> ex2_after;
+    examples_entry -> ex3_agent -> ex3_before -> ex3_after;
+  }
+
+  nav_decision -> examples_entry [label="Examples", lhead=cluster_examples];
+
+  // ============================================================
+  // CLUSTER 8: NEXT STEPS
+  // ============================================================
+
+  subgraph cluster_next {
+    label="NEXT STEPS";
+    style=filled;
+    fillcolor=lightgray;
+
+    next_entry [label="Remaining Work", shape=plaintext];
+
+    next_step1 [label="Step 1: Complete Remaining 7 Agents\n- security-manager\n- cost-tracker\n- theater-detector\n- nasa-enforcer\n- fsm-analyzer\n- orchestrator\n- planner", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step2 [label="Step 2: Validate Integration\n- Test each agent with real tasks\n- Verify principle enforcement\n- Measure quality improvement\n- Compare to baseline", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step3 [label="Step 3: Measure Impact\n- NASA compliance rate\n- Test coverage improvement\n- Code quality metrics\n- Agent output consistency", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step4 [label="Step 4: Refine Instructions\n- Based on validation results\n- Add missing principles\n- Clarify ambiguous guidance\n- Optimize for each agent type", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step5 [label="Step 5: Document Best Practices\n- Instruction patterns library\n- Principle application guide\n- Agent-specific examples\n- Troubleshooting common issues", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_entry -> next_step1 -> next_step2 -> next_step3 -> next_step4 -> next_step5;
+  }
+
+  nav_decision -> next_entry [label="Next Steps", lhead=cluster_next];
+
+  // ============================================================
+  // EXIT POINT
+  // ============================================================
+
+  exit [label="Instruction System\nReview Complete", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+  overview_scope -> exit [style=dashed, label="Review complete"];
+  p26 -> exit [style=dashed, label="All 26 principles"];
+  arch_validation -> exit [style=dashed, label="Architecture defined"];
+  integ_pass -> exit [style=dashed, label="Integration validated"];
+  updates_remaining -> exit [style=dashed, label="Updates tracked"];
+  benefit6 -> exit [style=dashed, label="Benefits confirmed"];
+  ex3_after -> exit [style=dashed, label="Examples provided"];
+  next_step5 -> exit [style=dashed, label="Next steps clear"];
+}

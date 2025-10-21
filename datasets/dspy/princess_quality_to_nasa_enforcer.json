@@ -1,0 +1,1116 @@
+{
+  "communication_path": "princess-quality→nasa-enforcer",
+  "description": "Princess-Quality delegates NASA Rule 10 compliance validation to NASA-Enforcer drone",
+  "agent_context": {
+    "coordinator": "princess-quality",
+    "drone": "nasa-enforcer",
+    "relationship": "compliance_validation_delegation",
+    "coordination_protocol": "EnhancedLightweightProtocol"
+  },
+  "examples": [
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "User authentication service",
+        "code_files": ["src/auth/authenticator.py", "src/auth/token_manager.py"],
+        "nasa_target": ">=92%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check NASA Rule 10 compliance for auth service",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["authenticate", "validate_token", "refresh_token"],
+          "compliance_target": 92,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=92% compliance", "all critical paths checked", "violations documented"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Payment processing module",
+        "code_files": ["src/payments/processor.py"],
+        "nasa_target": ">=95%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Critical payment code NASA validation",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["process_payment", "handle_refund", "validate_amount"],
+          "compliance_target": 95,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=95% compliance", "zero violations in critical paths", "detailed report"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "refactor",
+        "implementation": "Legacy god object refactoring",
+        "code_files": ["src/legacy/monolith.py"],
+        "nasa_target": ">=80%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate refactored legacy code",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": [],
+          "compliance_target": 80,
+          "report_format": "summary"
+        },
+        "dependencies": ["refactoring complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=80% compliance", "improvement documented", "remaining violations tracked"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Database migration system",
+        "code_files": ["src/db/migrator.py", "src/db/rollback_handler.py"],
+        "nasa_target": ">=92%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check migration system compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["migrate_forward", "rollback", "validate_schema"],
+          "compliance_target": 92,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=92% compliance", "critical paths verified", "assertions present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API rate limiter",
+        "code_files": ["src/middleware/rate_limiter.py"],
+        "nasa_target": ">=90%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate rate limiter NASA compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["check_limit", "increment_counter"],
+          "compliance_target": 90,
+          "report_format": "detailed"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=90% compliance", "no while(true) loops", "function size verified"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "File upload handler",
+        "code_files": ["src/uploads/handler.py", "src/uploads/validator.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check upload handler compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "fixed loop bounds"],
+          "critical_paths": ["upload_file", "validate_file", "scan_for_malware"],
+          "compliance_target": 85,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security scan complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=85% compliance", "validators have assertions", "loops bounded"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Cache invalidation system",
+        "code_files": ["src/cache/invalidator.py"],
+        "nasa_target": ">=90%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate cache system compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["invalidate", "invalidate_pattern"],
+          "compliance_target": 90,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=90% compliance", "no recursive invalidation", "bounded operations"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Search indexing service",
+        "code_files": ["src/search/indexer.py", "src/search/query_builder.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check search service compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["index_document", "search"],
+          "compliance_target": 85,
+          "report_format": "detailed"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=85% compliance", "query building safe", "indexing bounded"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "WebSocket connection manager",
+        "code_files": ["src/websocket/manager.py", "src/websocket/broadcaster.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate WebSocket manager compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["connect", "disconnect", "broadcast"],
+          "compliance_target": 88,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=88% compliance", "connection handling safe", "no infinite loops"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Email notification service",
+        "code_files": ["src/notifications/email_sender.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check email service NASA compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "fixed loop bounds"],
+          "critical_paths": ["send_email", "retry_send"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "retry loops bounded", "assertions present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Task queue worker",
+        "code_files": ["src/tasks/worker.py", "src/tasks/retry_handler.py"],
+        "nasa_target": ">=90%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate task worker compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["execute_task", "handle_retry", "handle_failure"],
+          "compliance_target": 90,
+          "report_format": "detailed"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=90% compliance", "retry logic bounded", "failure handling safe"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "GraphQL resolver",
+        "code_files": ["src/graphql/resolvers.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check GraphQL resolvers compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": [],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=85% compliance", "resolvers not too complex", "no recursive queries"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Audit logging system",
+        "code_files": ["src/audit/logger.py", "src/audit/event_store.py"],
+        "nasa_target": ">=95%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Critical audit system NASA validation",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["log_event", "verify_integrity", "detect_tampering"],
+          "compliance_target": 95,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=95% compliance", "zero violations in critical paths", "audit trail safe"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Session management",
+        "code_files": ["src/sessions/manager.py", "src/sessions/validator.py"],
+        "nasa_target": ">=90%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate session management compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["create_session", "validate_session", "destroy_session"],
+          "compliance_target": 90,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security review done"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=90% compliance", "validation has assertions", "session handling safe"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Permission system",
+        "code_files": ["src/permissions/checker.py", "src/permissions/rbac.py"],
+        "nasa_target": ">=92%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check permission system compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["check_permission", "validate_role", "resolve_inheritance"],
+          "compliance_target": 92,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=92% compliance", "permission checks have assertions", "no recursive role resolution"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Data export service",
+        "code_files": ["src/export/exporter.py", "src/export/formatter.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate export service compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["export_data", "format_output"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "export loops bounded", "memory efficient"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Webhook delivery system",
+        "code_files": ["src/webhooks/dispatcher.py", "src/webhooks/retry_handler.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check webhook system compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "fixed loop bounds"],
+          "critical_paths": ["dispatch_webhook", "handle_retry"],
+          "compliance_target": 88,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=88% compliance", "retry logic bounded", "dispatch safe"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Backup automation",
+        "code_files": ["src/backup/automator.py", "src/backup/validator.py"],
+        "nasa_target": ">=90%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate backup system compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "fixed loop bounds"],
+          "critical_paths": ["create_backup", "validate_backup", "restore_backup"],
+          "compliance_target": 90,
+          "report_format": "detailed"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=90% compliance", "backup validation has assertions", "operations bounded"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Feature flag system",
+        "code_files": ["src/features/flags.py", "src/features/evaluator.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check feature flag compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["evaluate_flag"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "evaluation logic simple", "no complex nesting"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API versioning middleware",
+        "code_files": ["src/middleware/versioning.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate versioning middleware compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion"],
+          "critical_paths": ["route_version", "handle_deprecation"],
+          "compliance_target": 88,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=88% compliance", "routing logic simple", "functions manageable"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Circuit breaker",
+        "code_files": ["src/resilience/circuit_breaker.py"],
+        "nasa_target": ">=90%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check circuit breaker compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["execute", "record_success", "record_failure"],
+          "compliance_target": 90,
+          "report_format": "detailed"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=90% compliance", "state transitions safe", "counters verified"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Inventory management",
+        "code_files": ["src/inventory/stock_tracker.py", "src/inventory/reservation_system.py"],
+        "nasa_target": ">=95%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Critical inventory system NASA validation",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["update_stock", "reserve_item", "release_reservation"],
+          "compliance_target": 95,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=95% compliance", "zero violations in critical paths", "assertions present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Batch job scheduler",
+        "code_files": ["src/scheduler/job_runner.py", "src/scheduler/cron_parser.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate scheduler compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["run_job", "parse_cron"],
+          "compliance_target": 88,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=88% compliance", "job loops bounded", "parsing safe"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Multi-tenant isolation",
+        "code_files": ["src/tenancy/isolator.py", "src/tenancy/context_manager.py"],
+        "nasa_target": ">=95%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Critical tenant isolation NASA validation",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["switch_tenant", "validate_isolation", "check_access"],
+          "compliance_target": 95,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=95% compliance", "zero violations in critical paths", "isolation verified"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "A/B test framework",
+        "code_files": ["src/experiments/variant_selector.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check experiment framework compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["assign_variant"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "assignment logic simple", "no complex randomization"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Chat message system",
+        "code_files": ["src/chat/message_handler.py", "src/chat/presence_tracker.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate chat system compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["send_message", "broadcast"],
+          "compliance_target": 88,
+          "report_format": "detailed"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=88% compliance", "message handling bounded", "broadcast safe"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Comment moderation",
+        "code_files": ["src/moderation/filter.py", "src/moderation/classifier.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check moderation system compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["filter_content", "classify"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "filtering loops bounded", "classification manageable"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Invoice generation",
+        "code_files": ["src/billing/invoice_generator.py", "src/billing/tax_calculator.py"],
+        "nasa_target": ">=95%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Critical billing system NASA validation",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["generate_invoice", "calculate_tax", "apply_discount"],
+          "compliance_target": 95,
+          "report_format": "detailed"
+        },
+        "dependencies": ["financial review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=95% compliance", "zero violations in money handling", "assertions verified"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "URL shortener",
+        "code_files": ["src/shortener/encoder.py"],
+        "nasa_target": ">=80%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check URL shortener compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion"],
+          "critical_paths": ["encode_url"],
+          "compliance_target": 80,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": [">=80% compliance", "encoding simple", "no complex logic"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API key rotation",
+        "code_files": ["src/security/key_rotator.py", "src/security/key_validator.py"],
+        "nasa_target": ">=95%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Critical key rotation NASA validation",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["rotate_key", "validate_key", "revoke_key"],
+          "compliance_target": 95,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=95% compliance", "zero violations in security code", "validation has assertions"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Form builder",
+        "code_files": ["src/forms/builder.py", "src/forms/validator.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate form builder compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["build_form", "validate_form"],
+          "compliance_target": 85,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=85% compliance", "builder not recursive", "validation loops bounded"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Health check system",
+        "code_files": ["src/health/checker.py", "src/health/probe_manager.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check health check compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["check_health", "run_probes"],
+          "compliance_target": 88,
+          "report_format": "summary"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=88% compliance", "probe loops bounded", "checks simple"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Distributed lock manager",
+        "code_files": ["src/locks/manager.py", "src/locks/redis_backend.py"],
+        "nasa_target": ">=92%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate lock manager compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["acquire_lock", "release_lock", "extend_lock"],
+          "compliance_target": 92,
+          "report_format": "detailed"
+        },
+        "dependencies": ["concurrency review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=92% compliance", "critical operations verified", "no deadlock risk"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Data anonymization",
+        "code_files": ["src/privacy/anonymizer.py", "src/privacy/k_anonymity.py"],
+        "nasa_target": ">=95%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Critical privacy code NASA validation",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["anonymize_data", "apply_k_anonymity", "validate_privacy"],
+          "compliance_target": 95,
+          "report_format": "detailed"
+        },
+        "dependencies": ["privacy review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=95% compliance", "zero violations in PII handling", "assertions present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Query optimizer",
+        "code_files": ["src/database/query_optimizer.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check query optimizer compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["optimize_query"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=85% compliance", "optimization not recursive", "bounded analysis"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Internationalization engine",
+        "code_files": ["src/i18n/translator.py", "src/i18n/locale_detector.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate i18n engine compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["translate"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "translation loops bounded", "fallback simple"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Load balancer",
+        "code_files": ["src/loadbalancer/distributor.py", "src/loadbalancer/health_monitor.py"],
+        "nasa_target": ">=90%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check load balancer compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["distribute_request", "select_backend"],
+          "compliance_target": 90,
+          "report_format": "detailed"
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=90% compliance", "distribution logic simple", "selection bounded"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Time series aggregator",
+        "code_files": ["src/timeseries/aggregator.py", "src/timeseries/downsampler.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate time series compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["aggregate", "downsample"],
+          "compliance_target": 88,
+          "report_format": "detailed"
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=88% compliance", "aggregation loops bounded", "memory efficient"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Markdown parser",
+        "code_files": ["src/markdown/parser.py", "src/markdown/sanitizer.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check markdown parser compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion", "fixed loop bounds"],
+          "critical_paths": ["parse", "sanitize"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["security review done"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "parsing not recursive", "sanitization bounded"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Content recommendation engine",
+        "code_files": ["src/recommendations/engine.py"],
+        "nasa_target": ">=80%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate recommendation engine compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["generate_recommendations"],
+          "compliance_target": 80,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=80% compliance", "recommendation loops bounded", "computation manageable"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Real-time analytics",
+        "code_files": ["src/analytics/realtime_processor.py"],
+        "nasa_target": ">=88%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check real-time analytics compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["process_event"],
+          "compliance_target": 88,
+          "report_format": "detailed"
+        },
+        "dependencies": ["performance review done"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=88% compliance", "event processing bounded", "low latency maintained"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Configuration management",
+        "code_files": ["src/config/loader.py", "src/config/validator.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate config management compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", ">=2 assertions in critical paths", "no recursion"],
+          "critical_paths": ["load_config", "validate_config"],
+          "compliance_target": 85,
+          "report_format": "detailed"
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 12,
+        "quality_gates": [">=85% compliance", "validation has assertions", "loading safe"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Notification preferences",
+        "code_files": ["src/notifications/preferences.py"],
+        "nasa_target": ">=80%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check notification preferences compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["update_preferences"],
+          "compliance_target": 80,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 8,
+        "quality_gates": [">=80% compliance", "preference updates simple", "validation manageable"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "PDF generation service",
+        "code_files": ["src/pdf/generator.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate PDF generator compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["generate_pdf"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "generation loops bounded", "template rendering manageable"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Geolocation service",
+        "code_files": ["src/geo/locator.py", "src/geo/distance_calculator.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check geolocation service compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "no recursion"],
+          "critical_paths": ["calculate_distance"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "calculations not complex", "location handling simple"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Changelog generator",
+        "code_files": ["src/changelog/parser.py"],
+        "nasa_target": ">=80%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate changelog generator compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["parse_commits"],
+          "compliance_target": 80,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 8,
+        "quality_gates": [">=80% compliance", "parsing loops bounded", "categorization simple"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Code syntax highlighter",
+        "code_files": ["src/highlighting/lexer.py"],
+        "nasa_target": ">=80%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Check syntax highlighter compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["tokenize"],
+          "compliance_target": 80,
+        "report_format": "summary"
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=80% compliance", "lexing loops bounded", "highlighting manageable"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Image processing pipeline",
+        "code_files": ["src/images/processor.py"],
+        "nasa_target": ">=85%"
+      },
+      "expected_drone_task": {
+        "drone_id": "nasa-enforcer",
+        "task_type": "validate-nasa-compliance",
+        "description": "Validate image processor compliance",
+        "specifications": {
+          "rules": ["<=60 LOC per function", "fixed loop bounds"],
+          "critical_paths": ["process_image"],
+          "compliance_target": 85,
+          "report_format": "summary"
+        },
+        "dependencies": ["code complete"],
+        "estimated_minutes": 10,
+        "quality_gates": [">=85% compliance", "processing loops bounded", "transforms manageable"]
+      }
+    }
+  ]
+}

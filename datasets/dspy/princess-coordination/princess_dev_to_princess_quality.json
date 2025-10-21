@@ -1,0 +1,1348 @@
+{
+  "communication_path": "princess-dev→princess-quality",
+  "description": "Princess-Dev requests QA validation from Princess-Quality after development phase completion",
+  "metadata": {
+    "total_examples": 30,
+    "scenario_types": ["feature_complete", "bugfix_complete", "refactoring_complete", "security_implementation", "critical_path"],
+    "version": "8.0.0",
+    "created_for": "DSPy optimization Week 6+"
+  },
+  "examples": [
+    {
+      "id": "dev-qa-001",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "OAuth2 authentication with JWT tokens",
+        "artifacts": ["src/auth/oauth.py", "src/auth/jwt.py", "src/middleware/auth_middleware.py"],
+        "dev_metrics": {
+          "nasa_compliance": 94,
+          "type_coverage": 100,
+          "total_loc": 387,
+          "functions_count": 12,
+          "avg_function_loc": 32
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Request comprehensive QA validation for OAuth2 authentication implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "security"],
+          "coverage_target": 90,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "database migrations applied"],
+        "estimated_hours": 4,
+        "priority": 9,
+        "success_criteria": [
+          ">=90% test coverage for security code",
+          "All security tests pass",
+          "NASA compliance maintained (>=92%)",
+          "Zero critical vulnerabilities",
+          "OAuth2 flow tested end-to-end"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create unit and integration tests for OAuth2", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Security audit of authentication implementation", "estimated_min": 60},
+          {"drone": "nasa-enforcer", "task": "Validate NASA compliance", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-002",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "bugfix_complete",
+      "context": {
+        "dev_phase_complete": "bugfix",
+        "feature": "Fix race condition in task queue processor",
+        "artifacts": ["src/queue/processor.py", "src/queue/task_handler.py"],
+        "dev_metrics": {
+          "nasa_compliance": 96,
+          "type_coverage": 100,
+          "total_loc": 145,
+          "functions_count": 5,
+          "avg_function_loc": 29
+        },
+        "bug_id": "BUG-2451",
+        "severity": "HIGH"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate race condition fix in task queue processor",
+        "scope": {
+          "test_types": ["unit", "integration", "stress"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["bugfix complete", "existing tests passing"],
+        "estimated_hours": 2,
+        "priority": 8,
+        "success_criteria": [
+          "Race condition no longer reproducible",
+          ">=85% test coverage",
+          "No regressions in existing functionality",
+          "Stress tests pass with 100+ concurrent tasks",
+          "NASA compliance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create race condition regression tests", "estimated_min": 60},
+          {"drone": "reviewer", "task": "Code review for thread safety", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-003",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "GraphQL API with subscriptions support",
+        "artifacts": ["src/api/graphql/schema.py", "src/api/graphql/resolvers.py", "src/api/graphql/subscriptions.py"],
+        "dev_metrics": {
+          "nasa_compliance": 91,
+          "type_coverage": 98,
+          "total_loc": 512,
+          "functions_count": 18,
+          "avg_function_loc": 28
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Comprehensive testing for GraphQL API implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "security", "performance"],
+          "coverage_target": 85,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "Redis server configured"],
+        "estimated_hours": 5,
+        "priority": 8,
+        "success_criteria": [
+          ">=85% test coverage",
+          "All GraphQL queries/mutations tested",
+          "Subscriptions work with WebSocket",
+          "No SQL injection vulnerabilities",
+          "Performance: <100ms for simple queries",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create GraphQL integration tests", "estimated_min": 120},
+          {"drone": "security-manager", "task": "Security audit (SQL injection, auth)", "estimated_min": 60},
+          {"drone": "nasa-enforcer", "task": "NASA compliance validation", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-004",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "refactoring_complete",
+      "context": {
+        "dev_phase_complete": "refactoring",
+        "feature": "Refactor analyzer engine to modular architecture",
+        "artifacts": ["analyzer/engines/syntax_analyzer.py", "analyzer/engines/pattern_detector.py", "analyzer/engines/compliance_validator.py"],
+        "dev_metrics": {
+          "nasa_compliance": 97,
+          "type_coverage": 100,
+          "total_loc": 623,
+          "functions_count": 21,
+          "avg_function_loc": 30,
+          "loc_reduction": -412
+        },
+        "refactoring_type": "god_object_elimination"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate refactored analyzer maintains functionality",
+        "scope": {
+          "test_types": ["unit", "integration", "regression"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["refactoring complete", "all imports resolved"],
+        "estimated_hours": 3,
+        "priority": 7,
+        "success_criteria": [
+          "All existing tests pass",
+          ">=85% test coverage maintained",
+          "No performance regressions (±5% acceptable)",
+          "NASA compliance improved to >=97%",
+          "Backward compatibility maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Run full regression test suite", "estimated_min": 45},
+          {"drone": "reviewer", "task": "Review modular architecture", "estimated_min": 60},
+          {"drone": "theater-detector", "task": "Scan for mock code", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-005",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "critical_path",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Payment processing with Stripe integration",
+        "artifacts": ["src/payments/stripe_client.py", "src/payments/transaction_handler.py", "src/payments/webhook_handler.py"],
+        "dev_metrics": {
+          "nasa_compliance": 98,
+          "type_coverage": 100,
+          "total_loc": 289,
+          "functions_count": 11,
+          "avg_function_loc": 26
+        },
+        "integration_status": "ready_for_testing",
+        "criticality": "CRITICAL"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "CRITICAL: Validate payment processing implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "security", "compliance"],
+          "coverage_target": 100,
+          "security_scan_required": true,
+          "nasa_compliance_check": true,
+          "pci_compliance_required": true
+        },
+        "dependencies": ["implementation complete", "Stripe test account configured"],
+        "estimated_hours": 6,
+        "priority": 10,
+        "success_criteria": [
+          "100% test coverage (critical path)",
+          "All payment flows tested (success, failure, refund)",
+          "Security audit passed",
+          "PCI compliance validated",
+          "NASA compliance >=92%",
+          "Zero critical vulnerabilities",
+          "Idempotency verified"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create comprehensive payment tests", "estimated_min": 150},
+          {"drone": "security-manager", "task": "Security and PCI compliance audit", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Code review for error handling", "estimated_min": 45},
+          {"drone": "nasa-enforcer", "task": "NASA compliance validation", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-006",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Real-time notification system with WebSocket",
+        "artifacts": ["src/notifications/websocket_server.py", "src/notifications/notification_manager.py", "src/notifications/event_dispatcher.py"],
+        "dev_metrics": {
+          "nasa_compliance": 93,
+          "type_coverage": 97,
+          "total_loc": 456,
+          "functions_count": 15,
+          "avg_function_loc": 30
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate real-time notification system",
+        "scope": {
+          "test_types": ["unit", "integration", "load"],
+          "coverage_target": 85,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "Redis configured", "WebSocket server running"],
+        "estimated_hours": 4,
+        "priority": 8,
+        "success_criteria": [
+          ">=85% test coverage",
+          "WebSocket connection handling tested",
+          "Load test: 1000+ concurrent connections",
+          "Notification delivery verified",
+          "Reconnection logic tested",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create WebSocket integration tests", "estimated_min": 90},
+          {"drone": "tester", "task": "Load testing with 1000+ connections", "estimated_min": 60},
+          {"drone": "security-manager", "task": "WebSocket security audit", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-007",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Multi-tenant data isolation with RLS policies",
+        "artifacts": ["src/database/rls_policies.sql", "src/database/tenant_manager.py", "src/middleware/tenant_context.py"],
+        "dev_metrics": {
+          "nasa_compliance": 95,
+          "type_coverage": 100,
+          "total_loc": 312,
+          "functions_count": 10,
+          "avg_function_loc": 31
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Critical: Validate multi-tenant data isolation",
+        "scope": {
+          "test_types": ["unit", "integration", "security"],
+          "coverage_target": 95,
+          "security_scan_required": true,
+          "nasa_compliance_check": true,
+          "isolation_testing_required": true
+        },
+        "dependencies": ["implementation complete", "RLS policies applied", "test tenants created"],
+        "estimated_hours": 5,
+        "priority": 9,
+        "success_criteria": [
+          ">=95% test coverage (security critical)",
+          "Data isolation verified between tenants",
+          "No cross-tenant data leakage",
+          "RLS policies enforced correctly",
+          "Security audit passed",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create tenant isolation tests", "estimated_min": 120},
+          {"drone": "security-manager", "task": "Security audit for data isolation", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review RLS policies", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-008",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "bugfix_complete",
+      "context": {
+        "dev_phase_complete": "bugfix",
+        "feature": "Fix memory leak in background job processor",
+        "artifacts": ["src/jobs/processor.py", "src/jobs/worker_pool.py"],
+        "dev_metrics": {
+          "nasa_compliance": 94,
+          "type_coverage": 100,
+          "total_loc": 178,
+          "functions_count": 7,
+          "avg_function_loc": 25
+        },
+        "bug_id": "BUG-3102",
+        "severity": "HIGH"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate memory leak fix with profiling",
+        "scope": {
+          "test_types": ["unit", "integration", "memory_profiling"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "performance_test_required": true
+        },
+        "dependencies": ["bugfix complete", "memory profiler configured"],
+        "estimated_hours": 3,
+        "priority": 8,
+        "success_criteria": [
+          "Memory leak no longer present",
+          "Memory usage stable over 1000+ jobs",
+          ">=85% test coverage",
+          "No performance regressions",
+          "NASA compliance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create memory profiling tests", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review resource cleanup", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-009",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "File upload with virus scanning",
+        "artifacts": ["src/uploads/file_handler.py", "src/uploads/virus_scanner.py", "src/uploads/storage_manager.py"],
+        "dev_metrics": {
+          "nasa_compliance": 92,
+          "type_coverage": 98,
+          "total_loc": 389,
+          "functions_count": 13,
+          "avg_function_loc": 30
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate file upload and virus scanning",
+        "scope": {
+          "test_types": ["unit", "integration", "security"],
+          "coverage_target": 90,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "ClamAV configured", "S3 bucket created"],
+        "estimated_hours": 4,
+        "priority": 9,
+        "success_criteria": [
+          ">=90% test coverage",
+          "Virus scanning functional",
+          "Infected files rejected",
+          "File size limits enforced",
+          "Security audit passed",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create file upload tests", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Security audit for upload vulnerabilities", "estimated_min": 75},
+          {"drone": "nasa-enforcer", "task": "NASA compliance validation", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-010",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Audit logging system with tamper detection",
+        "artifacts": ["src/audit/logger.py", "src/audit/tamper_detector.py", "src/audit/log_analyzer.py"],
+        "dev_metrics": {
+          "nasa_compliance": 96,
+          "type_coverage": 100,
+          "total_loc": 267,
+          "functions_count": 9,
+          "avg_function_loc": 30
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate audit logging and tamper detection",
+        "scope": {
+          "test_types": ["unit", "integration", "security"],
+          "coverage_target": 95,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "log storage configured"],
+        "estimated_hours": 3,
+        "priority": 8,
+        "success_criteria": [
+          ">=95% test coverage",
+          "All audit events logged",
+          "Tamper detection works correctly",
+          "Log integrity verified",
+          "Security audit passed",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create audit logging tests", "estimated_min": 75},
+          {"drone": "security-manager", "task": "Tamper detection security audit", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-011",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Rate limiting with Redis backend",
+        "artifacts": ["src/middleware/rate_limiter.py", "src/cache/redis_client.py"],
+        "dev_metrics": {
+          "nasa_compliance": 93,
+          "type_coverage": 98,
+          "total_loc": 198,
+          "functions_count": 8,
+          "avg_function_loc": 25
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate rate limiting implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "load"],
+          "coverage_target": 85,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "Redis configured"],
+        "estimated_hours": 2.5,
+        "priority": 7,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Rate limits enforced correctly",
+          "Load test: 10000+ requests/min",
+          "Redis failure handling tested",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create rate limiting tests", "estimated_min": 60},
+          {"drone": "tester", "task": "Load test rate limiter", "estimated_min": 45},
+          {"drone": "security-manager", "task": "Review for bypass vulnerabilities", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-012",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "refactoring_complete",
+      "context": {
+        "dev_phase_complete": "refactoring",
+        "feature": "Extract shared utilities to common library",
+        "artifacts": ["src/common/string_utils.py", "src/common/date_utils.py", "src/common/validation_utils.py"],
+        "dev_metrics": {
+          "nasa_compliance": 98,
+          "type_coverage": 100,
+          "total_loc": 345,
+          "functions_count": 18,
+          "avg_function_loc": 19,
+          "loc_reduction": -234
+        },
+        "refactoring_type": "code_deduplication"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate refactored common utilities",
+        "scope": {
+          "test_types": ["unit", "integration", "regression"],
+          "coverage_target": 90,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["refactoring complete", "all imports updated"],
+        "estimated_hours": 2,
+        "priority": 6,
+        "success_criteria": [
+          "All existing tests pass",
+          ">=90% test coverage",
+          "No regressions",
+          "NASA compliance >=92%",
+          "Utilities reused across codebase"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Run regression tests", "estimated_min": 45},
+          {"drone": "reviewer", "task": "Review utility functions", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-013",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Email notification system with templates",
+        "artifacts": ["src/email/sender.py", "src/email/template_engine.py", "src/email/queue_manager.py"],
+        "dev_metrics": {
+          "nasa_compliance": 91,
+          "type_coverage": 95,
+          "total_loc": 423,
+          "functions_count": 14,
+          "avg_function_loc": 30
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate email notification system",
+        "scope": {
+          "test_types": ["unit", "integration"],
+          "coverage_target": 85,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "SMTP server configured"],
+        "estimated_hours": 3,
+        "priority": 7,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Email templates render correctly",
+          "Queue processing works",
+          "Security audit passed (no injection)",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create email system tests", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Review for injection vulnerabilities", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-014",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "bugfix_complete",
+      "context": {
+        "dev_phase_complete": "bugfix",
+        "feature": "Fix pagination edge case with zero results",
+        "artifacts": ["src/api/pagination.py"],
+        "dev_metrics": {
+          "nasa_compliance": 95,
+          "type_coverage": 100,
+          "total_loc": 87,
+          "functions_count": 4,
+          "avg_function_loc": 22
+        },
+        "bug_id": "BUG-1823",
+        "severity": "MEDIUM"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate pagination edge case fix",
+        "scope": {
+          "test_types": ["unit", "integration"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["bugfix complete"],
+        "estimated_hours": 1.5,
+        "priority": 6,
+        "success_criteria": [
+          "Zero results handled correctly",
+          ">=85% test coverage",
+          "No regressions",
+          "NASA compliance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create edge case tests", "estimated_min": 45},
+          {"drone": "reviewer", "task": "Code review", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-015",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Search functionality with Elasticsearch",
+        "artifacts": ["src/search/elasticsearch_client.py", "src/search/query_builder.py", "src/search/indexer.py"],
+        "dev_metrics": {
+          "nasa_compliance": 90,
+          "type_coverage": 96,
+          "total_loc": 567,
+          "functions_count": 19,
+          "avg_function_loc": 30
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate Elasticsearch search implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "performance"],
+          "coverage_target": 85,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "Elasticsearch running", "test index created"],
+        "estimated_hours": 4.5,
+        "priority": 8,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Search queries work correctly",
+          "Performance: <200ms for typical queries",
+          "No injection vulnerabilities",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create search integration tests", "estimated_min": 120},
+          {"drone": "security-manager", "task": "Review for query injection", "estimated_min": 60},
+          {"drone": "nasa-enforcer", "task": "NASA compliance check", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-016",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "critical_path",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Encryption at rest for sensitive data",
+        "artifacts": ["src/security/encryption.py", "src/security/key_manager.py", "src/database/encrypted_fields.py"],
+        "dev_metrics": {
+          "nasa_compliance": 97,
+          "type_coverage": 100,
+          "total_loc": 234,
+          "functions_count": 8,
+          "avg_function_loc": 29
+        },
+        "integration_status": "ready_for_testing",
+        "criticality": "CRITICAL"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "CRITICAL: Validate encryption implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "security"],
+          "coverage_target": 100,
+          "security_scan_required": true,
+          "nasa_compliance_check": true,
+          "cryptography_audit_required": true
+        },
+        "dependencies": ["implementation complete", "KMS configured"],
+        "estimated_hours": 5,
+        "priority": 10,
+        "success_criteria": [
+          "100% test coverage (critical path)",
+          "Encryption/decryption works correctly",
+          "Key rotation tested",
+          "Security audit passed",
+          "Cryptography best practices followed",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create encryption tests", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Cryptography audit", "estimated_min": 120},
+          {"drone": "reviewer", "task": "Code review for crypto usage", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-017",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Background job scheduling with Celery",
+        "artifacts": ["src/tasks/celery_app.py", "src/tasks/task_definitions.py", "src/tasks/scheduler.py"],
+        "dev_metrics": {
+          "nasa_compliance": 92,
+          "type_coverage": 97,
+          "total_loc": 412,
+          "functions_count": 13,
+          "avg_function_loc": 32
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate Celery background job system",
+        "scope": {
+          "test_types": ["unit", "integration", "load"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "Redis configured", "Celery workers running"],
+        "estimated_hours": 3.5,
+        "priority": 7,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Tasks execute correctly",
+          "Scheduling works",
+          "Load test: 100+ concurrent tasks",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create Celery integration tests", "estimated_min": 105},
+          {"drone": "tester", "task": "Load test task execution", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-018",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "bugfix_complete",
+      "context": {
+        "dev_phase_complete": "bugfix",
+        "feature": "Fix SQL N+1 query problem in user listing",
+        "artifacts": ["src/api/users.py", "src/database/queries.py"],
+        "dev_metrics": {
+          "nasa_compliance": 94,
+          "type_coverage": 100,
+          "total_loc": 156,
+          "functions_count": 6,
+          "avg_function_loc": 26
+        },
+        "bug_id": "PERF-932",
+        "severity": "MEDIUM"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate N+1 query fix with performance testing",
+        "scope": {
+          "test_types": ["unit", "integration", "performance"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "performance_test_required": true
+        },
+        "dependencies": ["bugfix complete"],
+        "estimated_hours": 2,
+        "priority": 7,
+        "success_criteria": [
+          "N+1 queries eliminated",
+          "Performance: >=10x improvement",
+          ">=85% test coverage",
+          "No regressions",
+          "NASA compliance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create performance regression tests", "estimated_min": 75},
+          {"drone": "reviewer", "task": "Review query optimization", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-019",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "PDF generation with watermarking",
+        "artifacts": ["src/documents/pdf_generator.py", "src/documents/watermark.py"],
+        "dev_metrics": {
+          "nasa_compliance": 91,
+          "type_coverage": 95,
+          "total_loc": 278,
+          "functions_count": 9,
+          "avg_function_loc": 31
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate PDF generation and watermarking",
+        "scope": {
+          "test_types": ["unit", "integration"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "wkhtmltopdf installed"],
+        "estimated_hours": 2.5,
+        "priority": 6,
+        "success_criteria": [
+          ">=85% test coverage",
+          "PDFs generate correctly",
+          "Watermark applied properly",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create PDF generation tests", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review document generation", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-020",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "CSV import/export with validation",
+        "artifacts": ["src/import_export/csv_importer.py", "src/import_export/csv_exporter.py", "src/import_export/validators.py"],
+        "dev_metrics": {
+          "nasa_compliance": 93,
+          "type_coverage": 98,
+          "total_loc": 389,
+          "functions_count": 13,
+          "avg_function_loc": 30
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate CSV import/export functionality",
+        "scope": {
+          "test_types": ["unit", "integration"],
+          "coverage_target": 85,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_hours": 3,
+        "priority": 7,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Import validation works",
+          "Export generates correct CSV",
+          "Large files handled correctly",
+          "Security audit passed (injection, encoding)",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create import/export tests", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Review for CSV injection", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-021",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "refactoring_complete",
+      "context": {
+        "dev_phase_complete": "refactoring",
+        "feature": "Migrate from SQLAlchemy 1.4 to 2.0",
+        "artifacts": ["src/database/*.py"],
+        "dev_metrics": {
+          "nasa_compliance": 94,
+          "type_coverage": 100,
+          "total_loc": 1234,
+          "functions_count": 42,
+          "avg_function_loc": 29
+        },
+        "refactoring_type": "library_upgrade"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate SQLAlchemy 2.0 migration",
+        "scope": {
+          "test_types": ["unit", "integration", "regression"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["migration complete", "all imports updated"],
+        "estimated_hours": 4,
+        "priority": 8,
+        "success_criteria": [
+          "All tests pass",
+          ">=85% test coverage",
+          "No regressions",
+          "Performance within ±5%",
+          "NASA compliance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Run full regression test suite", "estimated_min": 120},
+          {"drone": "reviewer", "task": "Review SQLAlchemy 2.0 patterns", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-022",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Two-factor authentication (TOTP)",
+        "artifacts": ["src/auth/totp.py", "src/auth/backup_codes.py", "src/middleware/2fa_middleware.py"],
+        "dev_metrics": {
+          "nasa_compliance": 96,
+          "type_coverage": 100,
+          "total_loc": 312,
+          "functions_count": 11,
+          "avg_function_loc": 28
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Critical: Validate 2FA implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "security"],
+          "coverage_target": 95,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_hours": 4,
+        "priority": 9,
+        "success_criteria": [
+          ">=95% test coverage",
+          "TOTP verification works",
+          "Backup codes functional",
+          "Security audit passed",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create 2FA integration tests", "estimated_min": 105},
+          {"drone": "security-manager", "task": "Security audit of 2FA", "estimated_min": 75},
+          {"drone": "reviewer", "task": "Code review", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-023",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "bugfix_complete",
+      "context": {
+        "dev_phase_complete": "bugfix",
+        "feature": "Fix timezone handling in datetime operations",
+        "artifacts": ["src/utils/datetime_utils.py", "src/api/timezone_middleware.py"],
+        "dev_metrics": {
+          "nasa_compliance": 95,
+          "type_coverage": 100,
+          "total_loc": 134,
+          "functions_count": 6,
+          "avg_function_loc": 22
+        },
+        "bug_id": "BUG-2789",
+        "severity": "MEDIUM"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate timezone handling fix",
+        "scope": {
+          "test_types": ["unit", "integration"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["bugfix complete"],
+        "estimated_hours": 2,
+        "priority": 6,
+        "success_criteria": [
+          "Timezone conversions correct",
+          ">=85% test coverage",
+          "No regressions",
+          "NASA compliance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create timezone edge case tests", "estimated_min": 60},
+          {"drone": "reviewer", "task": "Code review", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-024",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Caching layer with Redis and fallback",
+        "artifacts": ["src/cache/cache_manager.py", "src/cache/redis_backend.py", "src/cache/memory_backend.py"],
+        "dev_metrics": {
+          "nasa_compliance": 92,
+          "type_coverage": 97,
+          "total_loc": 345,
+          "functions_count": 12,
+          "avg_function_loc": 29
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate caching layer implementation",
+        "scope": {
+          "test_types": ["unit", "integration", "performance"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "Redis configured"],
+        "estimated_hours": 3,
+        "priority": 7,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Cache hits/misses work correctly",
+          "Fallback to memory cache works",
+          "Performance: cache lookup <5ms",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create caching tests", "estimated_min": 90},
+          {"drone": "tester", "task": "Performance test cache layer", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-025",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "API versioning with backward compatibility",
+        "artifacts": ["src/api/versioning.py", "src/api/v1/*.py", "src/api/v2/*.py"],
+        "dev_metrics": {
+          "nasa_compliance": 91,
+          "type_coverage": 96,
+          "total_loc": 567,
+          "functions_count": 18,
+          "avg_function_loc": 31
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate API versioning and backward compatibility",
+        "scope": {
+          "test_types": ["unit", "integration", "regression"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_hours": 3.5,
+        "priority": 8,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Both API versions work",
+          "Backward compatibility maintained",
+          "No regressions in v1",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create API versioning tests", "estimated_min": 120},
+          {"drone": "reviewer", "task": "Review backward compatibility", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-026",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "critical_path",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Session management with Redis store",
+        "artifacts": ["src/auth/session_manager.py", "src/auth/redis_session_store.py"],
+        "dev_metrics": {
+          "nasa_compliance": 94,
+          "type_coverage": 100,
+          "total_loc": 234,
+          "functions_count": 9,
+          "avg_function_loc": 26
+        },
+        "integration_status": "ready_for_testing",
+        "criticality": "CRITICAL"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "CRITICAL: Validate session management",
+        "scope": {
+          "test_types": ["unit", "integration", "security"],
+          "coverage_target": 95,
+          "security_scan_required": true,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "Redis configured"],
+        "estimated_hours": 4,
+        "priority": 9,
+        "success_criteria": [
+          ">=95% test coverage",
+          "Session creation/validation works",
+          "Session expiration correct",
+          "Security audit passed (fixation, hijacking)",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create session management tests", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Session security audit", "estimated_min": 75},
+          {"drone": "reviewer", "task": "Code review", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-027",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "bugfix_complete",
+      "context": {
+        "dev_phase_complete": "bugfix",
+        "feature": "Fix deadlock in concurrent transaction handling",
+        "artifacts": ["src/database/transaction_manager.py"],
+        "dev_metrics": {
+          "nasa_compliance": 96,
+          "type_coverage": 100,
+          "total_loc": 112,
+          "functions_count": 5,
+          "avg_function_loc": 22
+        },
+        "bug_id": "BUG-3456",
+        "severity": "HIGH"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate deadlock fix in transaction handling",
+        "scope": {
+          "test_types": ["unit", "integration", "stress"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true,
+          "performance_test_required": true
+        },
+        "dependencies": ["bugfix complete"],
+        "estimated_hours": 2.5,
+        "priority": 8,
+        "success_criteria": [
+          "Deadlock no longer reproducible",
+          ">=85% test coverage",
+          "Stress test: 100+ concurrent transactions",
+          "No regressions",
+          "NASA compliance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create deadlock regression tests", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review transaction isolation", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-028",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Health check endpoints for monitoring",
+        "artifacts": ["src/health/health_checker.py", "src/health/probes.py"],
+        "dev_metrics": {
+          "nasa_compliance": 93,
+          "type_coverage": 98,
+          "total_loc": 178,
+          "functions_count": 7,
+          "avg_function_loc": 25
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate health check endpoints",
+        "scope": {
+          "test_types": ["unit", "integration"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_hours": 1.5,
+        "priority": 6,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Health checks work correctly",
+          "Probes respond properly",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create health check tests", "estimated_min": 45},
+          {"drone": "reviewer", "task": "Code review", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-029",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "feature_complete",
+      "context": {
+        "dev_phase_complete": "implementation",
+        "feature": "Feature flag system with runtime toggling",
+        "artifacts": ["src/features/flag_manager.py", "src/features/flag_store.py"],
+        "dev_metrics": {
+          "nasa_compliance": 92,
+          "type_coverage": 97,
+          "total_loc": 223,
+          "functions_count": 8,
+          "avg_function_loc": 28
+        },
+        "integration_status": "ready_for_testing"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Validate feature flag system",
+        "scope": {
+          "test_types": ["unit", "integration"],
+          "coverage_target": 85,
+          "security_scan_required": false,
+          "nasa_compliance_check": true
+        },
+        "dependencies": ["implementation complete", "flag storage configured"],
+        "estimated_hours": 2.5,
+        "priority": 7,
+        "success_criteria": [
+          ">=85% test coverage",
+          "Feature flags toggle correctly",
+          "Runtime updates work",
+          "NASA compliance >=92%"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create feature flag tests", "estimated_min": 75},
+          {"drone": "reviewer", "task": "Review flag management", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-qa-030",
+      "sender": "princess-dev",
+      "receiver": "princess-quality",
+      "scenario_type": "refactoring_complete",
+      "context": {
+        "dev_phase_complete": "refactoring",
+        "feature": "Split monolithic service into microservices",
+        "artifacts": ["services/auth/*", "services/users/*", "services/notifications/*"],
+        "dev_metrics": {
+          "nasa_compliance": 94,
+          "type_coverage": 98,
+          "total_loc": 2341,
+          "functions_count": 78,
+          "avg_function_loc": 30
+        },
+        "refactoring_type": "architecture_change"
+      },
+      "expected_coordination_message": {
+        "request_type": "qa-validation",
+        "description": "Major: Validate microservices refactoring",
+        "scope": {
+          "test_types": ["unit", "integration", "regression", "performance"],
+          "coverage_target": 85,
+          "security_scan_required": true,
+          "nasa_compliance_check": true,
+          "regression_test_required": true
+        },
+        "dependencies": ["refactoring complete", "all services deployed"],
+        "estimated_hours": 8,
+        "priority": 9,
+        "success_criteria": [
+          "All tests pass",
+          ">=85% test coverage",
+          "No regressions",
+          "Service communication works",
+          "Performance within ±10%",
+          "NASA compliance maintained",
+          "Security boundaries enforced"
+        ],
+        "drone_assignments": [
+          {"drone": "tester", "task": "Create microservices integration tests", "estimated_min": 180},
+          {"drone": "security-manager", "task": "Security audit of service boundaries", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Architecture review", "estimated_min": 120},
+          {"drone": "nasa-enforcer", "task": "NASA compliance across services", "estimated_min": 30}
+        ]
+      }
+    }
+  ]
+}

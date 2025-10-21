@@ -1,0 +1,120 @@
+/**
+ * Flow Orchestrator: Bidirectional Flow Diagram
+ *
+ * Shows both Development Route (1→2→3) and Debug Route (3→1→2)
+ * for the SPEK Platform 3-loop methodology.
+ *
+ * VERSION: 1.0
+ * PRIORITY: P0 (Critical system architecture)
+ */
+
+digraph BidirectionalFlow {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // ========== START/END ==========
+    start [shape=ellipse, label="User Request", fillcolor=lightgreen];
+    production [shape=ellipse, label="Production\nDeployed ✅", fillcolor=green, fontcolor=white];
+    failed [shape=ellipse, label="Manual\nIntervention\nRequired ❌", fillcolor=red, fontcolor=white];
+
+    // ========== DEVELOPMENT ROUTE (1→2→3) ==========
+    subgraph cluster_development {
+        label="Development Route (1→2→3)\nNew Features, Greenfield";
+        fillcolor="#e8f5e9";
+        style=filled;
+
+        loop1_dev [label="Loop 1\n(Planning)", fillcolor=lightblue];
+        loop2_dev [label="Loop 2\n(Implementation)", fillcolor=lightblue];
+        loop3_dev [label="Loop 3\n(Quality)", fillcolor=lightblue];
+
+        loop1_dev -> loop2_dev [label="Plan complete\nGO decision", color=green];
+        loop2_dev -> loop3_dev [label="Implementation\ncomplete\nAll audits pass", color=green];
+    }
+
+    // ========== DEBUG ROUTE (3→1→2) ==========
+    subgraph cluster_debug {
+        label="Debug Route (3→1→2)\nQuality Failures, Bug Fixes";
+        fillcolor="#ffebee";
+        style=filled;
+
+        loop3_fail [label="Loop 3\n(Quality FAILED)", fillcolor=orange];
+        loop1_debug [label="Loop 1\n(Replan)", fillcolor=lightyellow];
+        loop2_debug [label="Loop 2\n(Fix)", fillcolor=lightyellow];
+        loop3_revalidate [label="Loop 3\n(Revalidate)", fillcolor=lightyellow];
+
+        loop3_fail -> loop1_debug [label="Escalate\nP0 failures\nNO-GO", color=red, style=bold];
+        loop1_debug -> loop2_debug [label="Fix plan\ncomplete", color=orange];
+        loop2_debug -> loop3_revalidate [label="Fix\nimplemented", color=orange];
+    }
+
+    // ========== DECISION POINTS ==========
+    quality_decision [shape=diamond, label="Quality\nScore ≥0.95?", fillcolor=yellow];
+    revalidate_decision [shape=diamond, label="Fix\nvalidated?", fillcolor=yellow];
+    escalation_count [shape=diamond, label="Escalation\ncount <3?", fillcolor=yellow];
+
+    // ========== WARNINGS ==========
+    rewrite_option [shape=octagon, label="OPTION:\nCoordinate rewrites\nin Loop 3\n(P1/P2 issues)", fillcolor=orange];
+
+    // ========== EXTERNAL REFERENCES ==========
+    loop1_skill [shape=cylinder, label="loop1-planning\nskill", fillcolor=lightcoral];
+    loop2_skill [shape=cylinder, label="loop2-implementation\nskill", fillcolor=lightcoral];
+    loop3_skill [shape=cylinder, label="loop3-quality\nskill", fillcolor=lightcoral];
+    memory [shape=cylinder, label="Memory System\n(State persistence)", fillcolor=lightcoral];
+
+    // ========== FLOW CONNECTIONS ==========
+
+    // Development route flow
+    start -> loop1_dev;
+    loop3_dev -> quality_decision;
+    quality_decision -> production [label="YES\nGO", color=green];
+    quality_decision -> loop3_fail [label="NO\nNO-GO", color=red];
+
+    // Debug route flow
+    loop3_fail -> escalation_count;
+    escalation_count -> failed [label="NO\n3+ failures", color=red, style=bold];
+    escalation_count -> loop1_debug [label="YES\nRetry", color=orange];
+
+    // Revalidation flow
+    loop3_revalidate -> revalidate_decision;
+    revalidate_decision -> production [label="YES\nFixed", color=green];
+    revalidate_decision -> loop3_fail [label="NO\nStill failing", color=red];
+
+    // Alternative: Rewrite in Loop 3 (non-critical)
+    loop3_fail -> rewrite_option [style=dashed, label="if P1/P2"];
+    rewrite_option -> loop3_dev [style=dashed, label="rewrites\ncomplete"];
+
+    // External skill references
+    loop1_dev -> loop1_skill [style=dashed, label="uses"];
+    loop2_dev -> loop2_skill [style=dashed, label="uses"];
+    loop3_dev -> loop3_skill [style=dashed, label="uses"];
+    loop1_debug -> loop1_skill [style=dashed, label="uses"];
+    loop2_debug -> loop2_skill [style=dashed, label="uses"];
+    loop3_revalidate -> loop3_skill [style=dashed, label="uses"];
+
+    // Memory system connections
+    loop1_dev -> memory [style=dotted, label="writes"];
+    loop2_dev -> memory [style=dotted, label="reads/writes"];
+    loop3_dev -> memory [style=dotted, label="reads/writes"];
+    loop1_debug -> memory [style=dotted, label="reads escalation"];
+    memory -> loop2_debug [style=dotted, label="provides context"];
+
+    // ========== CRITICAL RULES ==========
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        fillcolor="#ffcdd2";
+        style=filled;
+
+        rule1 [shape=octagon, label="NEVER skip\nLoop 1 planning", fillcolor=red, fontcolor=white];
+        rule2 [shape=octagon, label="ALWAYS run\n3-part audit\nin Loop 2", fillcolor=red, fontcolor=white];
+        rule3 [shape=octagon, label="NEVER deploy\nwithout Loop 3\nGO decision", fillcolor=red, fontcolor=white];
+        rule4 [shape=octagon, label="ESCALATE after\n3 consecutive\nfailures", fillcolor=red, fontcolor=white];
+    }
+
+    // ========== METADATA ==========
+    labelloc="t";
+    label="Flow Orchestrator: Bidirectional Flow\n\nDevelopment Route (1→2→3): New features\nDebug Route (3→1→2): Quality failures\n\nGreen = Success paths\nRed = Failure paths\nOrange = Recovery paths";
+    fontsize=14;
+    fontname="Arial Bold";
+}

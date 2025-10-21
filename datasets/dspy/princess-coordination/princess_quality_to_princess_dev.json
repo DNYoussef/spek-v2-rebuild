@@ -1,0 +1,1524 @@
+{
+  "communication_path": "princess-quality→princess-dev",
+  "description": "Princess-Quality requests bug fixes from Princess-Dev after QA validation finds issues",
+  "metadata": {
+    "total_examples": 30,
+    "scenario_types": ["test_failure", "security_vulnerability", "compliance_violation", "performance_issue", "code_quality_issue"],
+    "version": "8.0.0",
+    "created_for": "DSPy optimization Week 6+"
+  },
+  "examples": [
+    {
+      "id": "qa-dev-001",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "testing",
+        "feature": "OAuth2 authentication with JWT tokens",
+        "qa_results": {
+          "test_coverage": 87,
+          "tests_passed": 23,
+          "tests_failed": 3,
+          "security_scan_passed": true,
+          "nasa_compliance": 94
+        },
+        "failing_tests": [
+          {"name": "test_token_expiration", "file": "tests/test_oauth.py", "error": "AssertionError: Token should expire after 1 hour"},
+          {"name": "test_refresh_token_rotation", "file": "tests/test_oauth.py", "error": "AssertionError: Refresh token not rotated"},
+          {"name": "test_invalid_grant_type", "file": "tests/test_oauth.py", "error": "Expected 400, got 500"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 3 failing OAuth2 tests",
+        "priority": 8,
+        "estimated_hours": 2,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "test_failure",
+            "severity": "HIGH",
+            "description": "Token expiration not enforced correctly",
+            "file": "src/auth/jwt.py",
+            "suggested_fix": "Verify exp claim in JWT validation"
+          },
+          {
+            "type": "test_failure",
+            "severity": "HIGH",
+            "description": "Refresh token rotation not implemented",
+            "file": "src/auth/oauth.py",
+            "suggested_fix": "Implement refresh token rotation per RFC 6749"
+          },
+          {
+            "type": "test_failure",
+            "severity": "MEDIUM",
+            "description": "Invalid grant type returns 500 instead of 400",
+            "file": "src/auth/oauth.py",
+            "suggested_fix": "Add input validation before processing"
+          }
+        ],
+        "success_criteria": [
+          "All 3 tests pass",
+          "No new test failures introduced",
+          "Test coverage maintained >=85%"
+        ],
+        "drone_assignments": [
+          {"drone": "debugger", "task": "Fix token expiration issue", "estimated_min": 45},
+          {"drone": "coder", "task": "Implement refresh token rotation", "estimated_min": 60},
+          {"drone": "debugger", "task": "Fix error handling for invalid grant type", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-002",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "security_vulnerability",
+      "context": {
+        "qa_phase_complete": "security_audit",
+        "feature": "GraphQL API with subscriptions support",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 34,
+          "tests_failed": 0,
+          "security_scan_passed": false,
+          "nasa_compliance": 91,
+          "vulnerabilities": [
+            {"id": "SEC-001", "severity": "CRITICAL", "type": "SQL Injection", "cwe": "CWE-89"},
+            {"id": "SEC-002", "severity": "HIGH", "type": "Authorization Bypass", "cwe": "CWE-862"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "security-fix",
+        "description": "CRITICAL: Fix 2 security vulnerabilities in GraphQL API",
+        "priority": 10,
+        "estimated_hours": 4,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "security_vulnerability",
+            "severity": "CRITICAL",
+            "cwe": "CWE-89",
+            "description": "SQL injection vulnerability in user search resolver",
+            "file": "src/api/graphql/resolvers.py",
+            "line": 45,
+            "vulnerable_code": "query = f\"SELECT * FROM users WHERE name LIKE '%{search_term}%'\"",
+            "suggested_fix": "Use parameterized queries or ORM methods"
+          },
+          {
+            "type": "security_vulnerability",
+            "severity": "HIGH",
+            "cwe": "CWE-862",
+            "description": "Authorization bypass in subscription resolver",
+            "file": "src/api/graphql/subscriptions.py",
+            "line": 78,
+            "vulnerable_code": "Missing authorization check before subscribing",
+            "suggested_fix": "Add @requires_auth decorator to subscription resolvers"
+          }
+        ],
+        "success_criteria": [
+          "All security vulnerabilities fixed",
+          "Security scan passes",
+          "No new vulnerabilities introduced",
+          "Penetration testing passed"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix SQL injection with parameterized queries", "estimated_min": 90},
+          {"drone": "coder", "task": "Add authorization checks to subscriptions", "estimated_min": 75},
+          {"drone": "security-manager", "task": "Re-audit after fixes", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-003",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "compliance_violation",
+      "context": {
+        "qa_phase_complete": "compliance_check",
+        "feature": "Refactored analyzer engine",
+        "qa_results": {
+          "test_coverage": 88,
+          "tests_passed": 45,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 87,
+          "violations": [
+            {"rule": "NASA Rule 10", "type": "function_too_long", "count": 4},
+            {"rule": "NASA Rule 10", "type": "missing_assertions", "count": 2}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "compliance-fix",
+        "description": "Fix 6 NASA Rule 10 compliance violations",
+        "priority": 7,
+        "estimated_hours": 3,
+        "blocking": false,
+        "issues": [
+          {
+            "type": "compliance_violation",
+            "severity": "MEDIUM",
+            "rule": "NASA Rule 10",
+            "description": "4 functions exceed 60 LOC limit",
+            "files": [
+              {"file": "analyzer/engines/syntax_analyzer.py", "function": "analyze_syntax", "loc": 67},
+              {"file": "analyzer/engines/pattern_detector.py", "function": "detect_patterns", "loc": 72},
+              {"file": "analyzer/engines/compliance_validator.py", "function": "validate_compliance", "loc": 65},
+              {"file": "analyzer/engines/syntax_analyzer.py", "function": "parse_ast", "loc": 63}
+            ],
+            "suggested_fix": "Extract helper functions to reduce LOC"
+          },
+          {
+            "type": "compliance_violation",
+            "severity": "LOW",
+            "rule": "NASA Rule 10",
+            "description": "2 functions missing assertions in critical paths",
+            "files": [
+              {"file": "analyzer/engines/compliance_validator.py", "function": "check_function_length"},
+              {"file": "analyzer/engines/pattern_detector.py", "function": "match_pattern"}
+            ],
+            "suggested_fix": "Add assertions to validate inputs and invariants"
+          }
+        ],
+        "success_criteria": [
+          "NASA compliance >=92%",
+          "All functions <=60 LOC",
+          "Critical paths have >=2 assertions",
+          "No regressions"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Refactor 4 long functions", "estimated_min": 120},
+          {"drone": "coder", "task": "Add assertions to 2 functions", "estimated_min": 30},
+          {"drone": "nasa-enforcer", "task": "Re-validate compliance", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-004",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "performance_issue",
+      "context": {
+        "qa_phase_complete": "performance_testing",
+        "feature": "Search functionality with Elasticsearch",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 41,
+          "tests_failed": 2,
+          "security_scan_passed": true,
+          "nasa_compliance": 90,
+          "performance_issues": [
+            {"metric": "query_latency_p95", "target": "200ms", "actual": "450ms"},
+            {"metric": "memory_usage", "target": "500MB", "actual": "1.2GB"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "performance-fix",
+        "description": "Fix performance issues in Elasticsearch search",
+        "priority": 8,
+        "estimated_hours": 4,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "performance_issue",
+            "severity": "HIGH",
+            "metric": "query_latency_p95",
+            "description": "Query latency 2.25x higher than target",
+            "file": "src/search/query_builder.py",
+            "root_cause": "Inefficient query construction, missing index hints",
+            "suggested_fix": "Optimize query structure, add index hints, reduce fields fetched"
+          },
+          {
+            "type": "performance_issue",
+            "severity": "HIGH",
+            "metric": "memory_usage",
+            "description": "Memory usage 2.4x higher than target",
+            "file": "src/search/elasticsearch_client.py",
+            "root_cause": "Loading entire result set into memory",
+            "suggested_fix": "Implement pagination and streaming for large result sets"
+          }
+        ],
+        "success_criteria": [
+          "Query latency p95 <=200ms",
+          "Memory usage <=500MB",
+          "All tests pass",
+          "No functionality regressions"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Optimize Elasticsearch queries", "estimated_min": 120},
+          {"drone": "coder", "task": "Implement result set pagination", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review performance optimizations", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-005",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "code_quality_issue",
+      "context": {
+        "qa_phase_complete": "code_review",
+        "feature": "Payment processing with Stripe integration",
+        "qa_results": {
+          "test_coverage": 98,
+          "tests_passed": 56,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 98,
+          "code_quality_issues": [
+            {"type": "error_handling", "severity": "HIGH", "count": 3},
+            {"type": "code_duplication", "severity": "MEDIUM", "count": 2}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "quality-improvement",
+        "description": "Improve error handling and reduce duplication",
+        "priority": 7,
+        "estimated_hours": 2.5,
+        "blocking": false,
+        "issues": [
+          {
+            "type": "code_quality_issue",
+            "severity": "HIGH",
+            "category": "error_handling",
+            "description": "3 critical paths missing proper error handling",
+            "files": [
+              {"file": "src/payments/stripe_client.py", "function": "create_payment_intent", "issue": "No retry logic for network errors"},
+              {"file": "src/payments/transaction_handler.py", "function": "process_payment", "issue": "Catching generic Exception"},
+              {"file": "src/payments/webhook_handler.py", "function": "handle_webhook", "issue": "No idempotency check"}
+            ],
+            "suggested_fix": "Add specific exception handling, retry logic, and idempotency"
+          },
+          {
+            "type": "code_quality_issue",
+            "severity": "MEDIUM",
+            "category": "code_duplication",
+            "description": "2 instances of duplicated payment validation logic",
+            "files": [
+              {"file": "src/payments/stripe_client.py", "lines": "45-67"},
+              {"file": "src/payments/transaction_handler.py", "lines": "78-100"}
+            ],
+            "suggested_fix": "Extract common validation logic to shared utility function"
+          }
+        ],
+        "success_criteria": [
+          "All critical paths have proper error handling",
+          "Code duplication eliminated",
+          "All tests pass",
+          "Code review approved"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Add error handling and retry logic", "estimated_min": 90},
+          {"drone": "coder", "task": "Refactor duplicated validation logic", "estimated_min": 45},
+          {"drone": "reviewer", "task": "Re-review code quality", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-006",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "integration_testing",
+        "feature": "Real-time notification system with WebSocket",
+        "qa_results": {
+          "test_coverage": 84,
+          "tests_passed": 29,
+          "tests_failed": 5,
+          "security_scan_passed": true,
+          "nasa_compliance": 93
+        },
+        "failing_tests": [
+          {"name": "test_websocket_reconnection", "error": "Timeout after 5s"},
+          {"name": "test_notification_ordering", "error": "Messages out of order"},
+          {"name": "test_concurrent_subscriptions", "error": "Race condition"},
+          {"name": "test_connection_cleanup", "error": "Memory leak detected"},
+          {"name": "test_heartbeat_timeout", "error": "Connection not closed"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 5 failing WebSocket integration tests",
+        "priority": 8,
+        "estimated_hours": 5,
+        "blocking": true,
+        "issues": [
+          {"type": "test_failure", "severity": "HIGH", "description": "Reconnection logic not working", "file": "src/notifications/websocket_server.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Message ordering not guaranteed", "file": "src/notifications/event_dispatcher.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Race condition in concurrent subscriptions", "file": "src/notifications/notification_manager.py"},
+          {"type": "test_failure", "severity": "CRITICAL", "description": "Memory leak in connection cleanup", "file": "src/notifications/websocket_server.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Heartbeat timeout not enforced", "file": "src/notifications/websocket_server.py"}
+        ],
+        "success_criteria": [
+          "All 5 tests pass",
+          "No memory leaks",
+          "Message ordering guaranteed",
+          "Reconnection works within 2s"
+        ],
+        "drone_assignments": [
+          {"drone": "debugger", "task": "Fix reconnection and heartbeat issues", "estimated_min": 90},
+          {"drone": "debugger", "task": "Fix memory leak in connection cleanup", "estimated_min": 60},
+          {"drone": "coder", "task": "Implement message ordering with queue", "estimated_min": 75},
+          {"drone": "debugger", "task": "Fix race condition with locking", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-007",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "security_vulnerability",
+      "context": {
+        "qa_phase_complete": "security_audit",
+        "feature": "Multi-tenant data isolation with RLS policies",
+        "qa_results": {
+          "test_coverage": 93,
+          "tests_passed": 48,
+          "tests_failed": 1,
+          "security_scan_passed": false,
+          "nasa_compliance": 95,
+          "vulnerabilities": [
+            {"id": "SEC-003", "severity": "CRITICAL", "type": "Data Leakage", "cwe": "CWE-639"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "security-fix",
+        "description": "CRITICAL: Fix tenant data leakage vulnerability",
+        "priority": 10,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "security_vulnerability",
+            "severity": "CRITICAL",
+            "cwe": "CWE-639",
+            "description": "Tenant context not enforced in admin queries",
+            "file": "src/database/tenant_manager.py",
+            "line": 112,
+            "vulnerable_code": "Admin queries bypass RLS policies",
+            "suggested_fix": "Enforce tenant_id in all queries, even for admin users",
+            "impact": "Admin users can access data from other tenants"
+          }
+        ],
+        "success_criteria": [
+          "No cross-tenant data leakage",
+          "Security audit passes",
+          "All isolation tests pass",
+          "Penetration testing passed"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix admin query RLS enforcement", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Re-audit tenant isolation", "estimated_min": 60},
+          {"drone": "reviewer", "task": "Review all query paths", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-008",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "memory_profiling",
+        "feature": "Background job processor (memory leak fix)",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 18,
+          "tests_failed": 1,
+          "security_scan_passed": true,
+          "nasa_compliance": 94,
+          "memory_leak_still_present": true
+        },
+        "failing_tests": [
+          {"name": "test_memory_stability_1000_jobs", "error": "Memory increased from 100MB to 650MB"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Memory leak still present after initial fix",
+        "priority": 9,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "test_failure",
+            "severity": "HIGH",
+            "description": "Memory leak persists despite initial fix",
+            "file": "src/jobs/processor.py",
+            "root_cause": "Worker threads not properly cleaned up",
+            "suggested_fix": "Use context managers for worker lifecycle, explicitly call join() and cleanup()"
+          }
+        ],
+        "success_criteria": [
+          "Memory usage stable over 1000+ jobs (±10%)",
+          "All tests pass",
+          "Profiling shows no leak"
+        ],
+        "drone_assignments": [
+          {"drone": "debugger", "task": "Deep dive memory profiling", "estimated_min": 90},
+          {"drone": "coder", "task": "Fix worker thread cleanup", "estimated_min": 75}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-009",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "security_vulnerability",
+      "context": {
+        "qa_phase_complete": "security_audit",
+        "feature": "File upload with virus scanning",
+        "qa_results": {
+          "test_coverage": 89,
+          "tests_passed": 42,
+          "tests_failed": 0,
+          "security_scan_passed": false,
+          "nasa_compliance": 92,
+          "vulnerabilities": [
+            {"id": "SEC-004", "severity": "HIGH", "type": "Path Traversal", "cwe": "CWE-22"},
+            {"id": "SEC-005", "severity": "MEDIUM", "type": "File Type Bypass", "cwe": "CWE-434"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "security-fix",
+        "description": "Fix path traversal and file type bypass vulnerabilities",
+        "priority": 9,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "security_vulnerability",
+            "severity": "HIGH",
+            "cwe": "CWE-22",
+            "description": "Path traversal via filename manipulation",
+            "file": "src/uploads/file_handler.py",
+            "line": 67,
+            "vulnerable_code": "Filename not sanitized before storage",
+            "suggested_fix": "Use secure_filename() and validate against whitelist"
+          },
+          {
+            "type": "security_vulnerability",
+            "severity": "MEDIUM",
+            "cwe": "CWE-434",
+            "description": "File type validation can be bypassed",
+            "file": "src/uploads/file_handler.py",
+            "line": 89,
+            "vulnerable_code": "Only checking file extension, not content",
+            "suggested_fix": "Use magic bytes validation in addition to extension check"
+          }
+        ],
+        "success_criteria": [
+          "No path traversal possible",
+          "File type validation robust",
+          "Security audit passes",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix path traversal with secure_filename", "estimated_min": 60},
+          {"drone": "coder", "task": "Add magic bytes validation", "estimated_min": 75},
+          {"drone": "security-manager", "task": "Re-audit file upload", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-010",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "testing",
+        "feature": "Audit logging with tamper detection",
+        "qa_results": {
+          "test_coverage": 92,
+          "tests_passed": 34,
+          "tests_failed": 2,
+          "security_scan_passed": true,
+          "nasa_compliance": 96
+        },
+        "failing_tests": [
+          {"name": "test_tamper_detection", "error": "Tampered log not detected"},
+          {"name": "test_log_rotation", "error": "Old logs not archived correctly"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix tamper detection and log rotation",
+        "priority": 8,
+        "estimated_hours": 2.5,
+        "blocking": true,
+        "issues": [
+          {"type": "test_failure", "severity": "HIGH", "description": "Tamper detection not working", "file": "src/audit/tamper_detector.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Log rotation archiving fails", "file": "src/audit/logger.py"}
+        ],
+        "success_criteria": [
+          "Tamper detection functional",
+          "Log rotation works correctly",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "debugger", "task": "Fix tamper detection algorithm", "estimated_min": 90},
+          {"drone": "coder", "task": "Fix log rotation and archiving", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-011",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "performance_issue",
+      "context": {
+        "qa_phase_complete": "load_testing",
+        "feature": "Rate limiting with Redis backend",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 26,
+          "tests_failed": 1,
+          "security_scan_passed": true,
+          "nasa_compliance": 93,
+          "performance_issues": [
+            {"metric": "throughput", "target": "10000 req/min", "actual": "3500 req/min"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "performance-fix",
+        "description": "Rate limiter throughput 65% below target",
+        "priority": 8,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "performance_issue",
+            "severity": "HIGH",
+            "metric": "throughput",
+            "description": "Excessive Redis round trips",
+            "file": "src/middleware/rate_limiter.py",
+            "root_cause": "Making 3 Redis calls per request instead of 1",
+            "suggested_fix": "Use Redis Lua script to combine operations"
+          }
+        ],
+        "success_criteria": [
+          "Throughput >=10000 req/min",
+          "All tests pass",
+          "No functionality regressions"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Optimize Redis operations with Lua script", "estimated_min": 120},
+          {"drone": "reviewer", "task": "Review performance optimization", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-012",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "regression_testing",
+        "feature": "Common utilities refactoring",
+        "qa_results": {
+          "test_coverage": 88,
+          "tests_passed": 52,
+          "tests_failed": 4,
+          "security_scan_passed": true,
+          "nasa_compliance": 98
+        },
+        "failing_tests": [
+          {"name": "test_date_parsing_edge_cases", "error": "Invalid date format not rejected"},
+          {"name": "test_string_sanitization", "error": "XSS payload not sanitized"},
+          {"name": "test_validation_email", "error": "Invalid email accepted"},
+          {"name": "test_validation_phone", "error": "Invalid phone number accepted"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 4 validation regressions in common utilities",
+        "priority": 7,
+        "estimated_hours": 2,
+        "blocking": false,
+        "issues": [
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Date parsing too permissive", "file": "src/common/date_utils.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "String sanitization incomplete", "file": "src/common/string_utils.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Email validation regex incorrect", "file": "src/common/validation_utils.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Phone validation missing formats", "file": "src/common/validation_utils.py"}
+        ],
+        "success_criteria": [
+          "All 4 tests pass",
+          "No new regressions",
+          "Validation stricter than before"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix date parsing edge cases", "estimated_min": 30},
+          {"drone": "coder", "task": "Improve string sanitization", "estimated_min": 45},
+          {"drone": "coder", "task": "Fix email and phone validation", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-013",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "security_vulnerability",
+      "context": {
+        "qa_phase_complete": "security_audit",
+        "feature": "Email notification system",
+        "qa_results": {
+          "test_coverage": 84,
+          "tests_passed": 36,
+          "tests_failed": 0,
+          "security_scan_passed": false,
+          "nasa_compliance": 91,
+          "vulnerabilities": [
+            {"id": "SEC-006", "severity": "HIGH", "type": "Email Injection", "cwe": "CWE-93"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "security-fix",
+        "description": "Fix email injection vulnerability",
+        "priority": 9,
+        "estimated_hours": 2,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "security_vulnerability",
+            "severity": "HIGH",
+            "cwe": "CWE-93",
+            "description": "Email headers not sanitized",
+            "file": "src/email/sender.py",
+            "line": 45,
+            "vulnerable_code": "Subject and To fields accept newlines",
+            "suggested_fix": "Sanitize headers, reject newlines and special characters"
+          }
+        ],
+        "success_criteria": [
+          "Email injection not possible",
+          "Security audit passes",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Sanitize email headers", "estimated_min": 60},
+          {"drone": "security-manager", "task": "Re-audit email system", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-014",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "integration_testing",
+        "feature": "Pagination edge case fix",
+        "qa_results": {
+          "test_coverage": 82,
+          "tests_passed": 14,
+          "tests_failed": 2,
+          "security_scan_passed": true,
+          "nasa_compliance": 95
+        },
+        "failing_tests": [
+          {"name": "test_pagination_negative_page", "error": "500 error instead of 400"},
+          {"name": "test_pagination_page_beyond_limit", "error": "Empty results instead of error"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 2 additional pagination edge cases",
+        "priority": 6,
+        "estimated_hours": 1,
+        "blocking": false,
+        "issues": [
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Negative page number not validated", "file": "src/api/pagination.py"},
+          {"type": "test_failure", "severity": "LOW", "description": "Page beyond limit returns empty instead of error", "file": "src/api/pagination.py"}
+        ],
+        "success_criteria": [
+          "All edge cases handled",
+          "Proper error codes returned",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Add validation for negative page and beyond limit", "estimated_min": 30},
+          {"drone": "reviewer", "task": "Review pagination logic", "estimated_min": 15}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-015",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "performance_issue",
+      "context": {
+        "qa_phase_complete": "performance_testing",
+        "feature": "Elasticsearch search",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 39,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 90,
+          "performance_issues": [
+            {"metric": "query_latency_p99", "target": "300ms", "actual": "850ms"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "performance-fix",
+        "description": "p99 latency 2.8x higher than target",
+        "priority": 8,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "performance_issue",
+            "severity": "HIGH",
+            "metric": "query_latency_p99",
+            "description": "Complex queries very slow",
+            "file": "src/search/query_builder.py",
+            "root_cause": "No query result caching, inefficient aggregations",
+            "suggested_fix": "Add Redis caching for popular queries, optimize aggregations"
+          }
+        ],
+        "success_criteria": [
+          "p99 latency <=300ms",
+          "All tests pass",
+          "Cache hit rate >60% for popular queries"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Add Redis caching layer", "estimated_min": 90},
+          {"drone": "coder", "task": "Optimize Elasticsearch aggregations", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-016",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "security_vulnerability",
+      "context": {
+        "qa_phase_complete": "cryptography_audit",
+        "feature": "Encryption at rest",
+        "qa_results": {
+          "test_coverage": 98,
+          "tests_passed": 44,
+          "tests_failed": 0,
+          "security_scan_passed": false,
+          "nasa_compliance": 97,
+          "vulnerabilities": [
+            {"id": "SEC-007", "severity": "CRITICAL", "type": "Weak Encryption", "cwe": "CWE-327"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "security-fix",
+        "description": "CRITICAL: Fix weak encryption configuration",
+        "priority": 10,
+        "estimated_hours": 2,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "security_vulnerability",
+            "severity": "CRITICAL",
+            "cwe": "CWE-327",
+            "description": "Using AES-128 instead of AES-256",
+            "file": "src/security/encryption.py",
+            "line": 23,
+            "vulnerable_code": "cipher = AES.new(key, AES.MODE_CBC)",
+            "suggested_fix": "Use AES-256-GCM for authenticated encryption"
+          }
+        ],
+        "success_criteria": [
+          "AES-256-GCM used",
+          "Authenticated encryption implemented",
+          "Security audit passes",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Upgrade to AES-256-GCM", "estimated_min": 60},
+          {"drone": "security-manager", "task": "Re-audit cryptography", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-017",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "integration_testing",
+        "feature": "Celery background jobs",
+        "qa_results": {
+          "test_coverage": 84,
+          "tests_passed": 32,
+          "tests_failed": 3,
+          "security_scan_passed": true,
+          "nasa_compliance": 92
+        },
+        "failing_tests": [
+          {"name": "test_task_retry", "error": "Retry not triggered on failure"},
+          {"name": "test_task_timeout", "error": "Task not killed after timeout"},
+          {"name": "test_task_result_backend", "error": "Results not persisted"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 3 Celery task management issues",
+        "priority": 7,
+        "estimated_hours": 2.5,
+        "blocking": false,
+        "issues": [
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Retry decorator misconfigured", "file": "src/tasks/task_definitions.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Timeout not enforced", "file": "src/tasks/celery_app.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Result backend not configured", "file": "src/tasks/celery_app.py"}
+        ],
+        "success_criteria": [
+          "All 3 tests pass",
+          "Retry logic works",
+          "Timeouts enforced",
+          "Results persisted"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix retry and timeout configuration", "estimated_min": 60},
+          {"drone": "coder", "task": "Configure result backend", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-018",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "performance_issue",
+      "context": {
+        "qa_phase_complete": "performance_testing",
+        "feature": "SQL N+1 query fix",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 21,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 94,
+          "performance_improvement": "8x",
+          "performance_target_met": false
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "performance-improvement",
+        "description": "Performance improved 8x but target was 10x",
+        "priority": 6,
+        "estimated_hours": 2,
+        "blocking": false,
+        "issues": [
+          {
+            "type": "performance_issue",
+            "severity": "MEDIUM",
+            "metric": "query_time",
+            "description": "8x improvement achieved, 10x target not met",
+            "file": "src/api/users.py",
+            "root_cause": "Still making separate queries for nested relationships",
+            "suggested_fix": "Add prefetch_related for nested relationships"
+          }
+        ],
+        "success_criteria": [
+          ">=10x performance improvement",
+          "All tests pass",
+          "No N+1 queries remaining"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Add prefetch_related for nested relationships", "estimated_min": 60},
+          {"drone": "reviewer", "task": "Review query optimization", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-019",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "testing",
+        "feature": "PDF generation with watermarking",
+        "qa_results": {
+          "test_coverage": 83,
+          "tests_passed": 28,
+          "tests_failed": 2,
+          "security_scan_passed": true,
+          "nasa_compliance": 91
+        },
+        "failing_tests": [
+          {"name": "test_watermark_position", "error": "Watermark not in correct position"},
+          {"name": "test_pdf_unicode_content", "error": "Unicode characters not rendered"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix watermark positioning and Unicode handling",
+        "priority": 6,
+        "estimated_hours": 1.5,
+        "blocking": false,
+        "issues": [
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Watermark position calculation incorrect", "file": "src/documents/watermark.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Unicode encoding not set", "file": "src/documents/pdf_generator.py"}
+        ],
+        "success_criteria": [
+          "Watermark in correct position",
+          "Unicode content renders correctly",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix watermark positioning algorithm", "estimated_min": 45},
+          {"drone": "coder", "task": "Add Unicode encoding support", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-020",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "security_vulnerability",
+      "context": {
+        "qa_phase_complete": "security_audit",
+        "feature": "CSV import/export",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 38,
+          "tests_failed": 0,
+          "security_scan_passed": false,
+          "nasa_compliance": 93,
+          "vulnerabilities": [
+            {"id": "SEC-008", "severity": "HIGH", "type": "CSV Injection", "cwe": "CWE-1236"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "security-fix",
+        "description": "Fix CSV injection vulnerability",
+        "priority": 9,
+        "estimated_hours": 2,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "security_vulnerability",
+            "severity": "HIGH",
+            "cwe": "CWE-1236",
+            "description": "CSV formula injection possible",
+            "file": "src/import_export/csv_exporter.py",
+            "line": 67,
+            "vulnerable_code": "Cells starting with = + @ not escaped",
+            "suggested_fix": "Prefix dangerous characters with single quote"
+          }
+        ],
+        "success_criteria": [
+          "CSV injection not possible",
+          "Security audit passes",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Add CSV injection protection", "estimated_min": 60},
+          {"drone": "security-manager", "task": "Re-audit CSV handling", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-021",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "regression_testing",
+        "feature": "SQLAlchemy 2.0 migration",
+        "qa_results": {
+          "test_coverage": 84,
+          "tests_passed": 156,
+          "tests_failed": 8,
+          "security_scan_passed": true,
+          "nasa_compliance": 94
+        },
+        "failing_tests": [
+          {"name": "test_lazy_loading", "error": "Lazy loading behavior changed"},
+          {"name": "test_query_execution", "error": "Query returns different results"},
+          {"name": "test_relationship_cascade", "error": "Cascade delete not working"},
+          {"name": "test_session_commit", "error": "Session not committing"},
+          {"name": "test_bulk_insert", "error": "Bulk insert slower than before"},
+          {"name": "test_transaction_rollback", "error": "Rollback not working"},
+          {"name": "test_query_caching", "error": "Query cache not working"},
+          {"name": "test_connection_pooling", "error": "Connection pool exhausted"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 8 SQLAlchemy 2.0 migration regressions",
+        "priority": 9,
+        "estimated_hours": 6,
+        "blocking": true,
+        "issues": [
+          {"type": "test_failure", "severity": "HIGH", "description": "Lazy loading API changed in 2.0", "file": "src/database/*.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Query execution semantics different", "file": "src/database/*.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Cascade configuration incorrect", "file": "src/database/models.py"},
+          {"type": "test_failure", "severity": "CRITICAL", "description": "Session commit broken", "file": "src/database/session.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Bulk insert needs 2.0 syntax", "file": "src/database/bulk_operations.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Transaction handling changed", "file": "src/database/transaction.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Query caching API different", "file": "src/database/query_cache.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Connection pooling configuration wrong", "file": "src/database/engine.py"}
+        ],
+        "success_criteria": [
+          "All 8 tests pass",
+          "Performance within ±5% of 1.4",
+          "No new regressions",
+          "All SQLAlchemy 2.0 patterns correct"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix lazy loading and query execution", "estimated_min": 120},
+          {"drone": "coder", "task": "Fix cascade, session, and transaction issues", "estimated_min": 90},
+          {"drone": "coder", "task": "Fix bulk insert, cache, and pooling", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review all SQLAlchemy 2.0 changes", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-022",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "testing",
+        "feature": "Two-factor authentication (TOTP)",
+        "qa_results": {
+          "test_coverage": 92,
+          "tests_passed": 41,
+          "tests_failed": 3,
+          "security_scan_passed": true,
+          "nasa_compliance": 96
+        },
+        "failing_tests": [
+          {"name": "test_totp_time_window", "error": "Time window validation incorrect"},
+          {"name": "test_backup_code_regeneration", "error": "Old codes still valid"},
+          {"name": "test_2fa_bypass_attempt", "error": "Bypass not blocked"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 3 critical 2FA security issues",
+        "priority": 9,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {"type": "test_failure", "severity": "HIGH", "description": "TOTP time window too permissive", "file": "src/auth/totp.py"},
+          {"type": "test_failure", "severity": "CRITICAL", "description": "Old backup codes not invalidated", "file": "src/auth/backup_codes.py"},
+          {"type": "test_failure", "severity": "CRITICAL", "description": "2FA can be bypassed", "file": "src/middleware/2fa_middleware.py"}
+        ],
+        "success_criteria": [
+          "All 3 tests pass",
+          "No 2FA bypass possible",
+          "TOTP window secure (±30s)",
+          "Backup codes properly invalidated"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix TOTP time window validation", "estimated_min": 45},
+          {"drone": "coder", "task": "Fix backup code invalidation", "estimated_min": 60},
+          {"drone": "coder", "task": "Fix 2FA bypass vulnerability", "estimated_min": 75}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-023",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "integration_testing",
+        "feature": "Timezone handling fix",
+        "qa_results": {
+          "test_coverage": 84,
+          "tests_passed": 18,
+          "tests_failed": 2,
+          "security_scan_passed": true,
+          "nasa_compliance": 95
+        },
+        "failing_tests": [
+          {"name": "test_dst_transition", "error": "Daylight saving time not handled"},
+          {"name": "test_timezone_database_storage", "error": "Times stored without timezone"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix DST and database timezone storage",
+        "priority": 7,
+        "estimated_hours": 2,
+        "blocking": false,
+        "issues": [
+          {"type": "test_failure", "severity": "MEDIUM", "description": "DST transitions cause incorrect times", "file": "src/utils/datetime_utils.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Database storing naive datetime", "file": "src/api/timezone_middleware.py"}
+        ],
+        "success_criteria": [
+          "DST transitions handled correctly",
+          "All datetimes stored with timezone",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix DST transition handling", "estimated_min": 60},
+          {"drone": "coder", "task": "Ensure timezone-aware database storage", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-024",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "performance_issue",
+      "context": {
+        "qa_phase_complete": "performance_testing",
+        "feature": "Redis caching layer",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 34,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 92,
+          "performance_issues": [
+            {"metric": "cache_lookup", "target": "5ms", "actual": "12ms"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "performance-fix",
+        "description": "Cache lookup 2.4x slower than target",
+        "priority": 7,
+        "estimated_hours": 2,
+        "blocking": false,
+        "issues": [
+          {
+            "type": "performance_issue",
+            "severity": "MEDIUM",
+            "metric": "cache_lookup",
+            "description": "Cache key serialization inefficient",
+            "file": "src/cache/cache_manager.py",
+            "root_cause": "Using pickle instead of msgpack",
+            "suggested_fix": "Switch to msgpack for faster serialization"
+          }
+        ],
+        "success_criteria": [
+          "Cache lookup <=5ms",
+          "All tests pass",
+          "Hit rate maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Optimize cache serialization with msgpack", "estimated_min": 60},
+          {"drone": "reviewer", "task": "Review caching performance", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-025",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "regression_testing",
+        "feature": "API versioning",
+        "qa_results": {
+          "test_coverage": 84,
+          "tests_passed": 52,
+          "tests_failed": 4,
+          "security_scan_passed": true,
+          "nasa_compliance": 91
+        },
+        "failing_tests": [
+          {"name": "test_v1_response_format", "error": "v1 returns v2 format"},
+          {"name": "test_v2_new_fields", "error": "v2 fields missing in response"},
+          {"name": "test_version_header", "error": "Version header not respected"},
+          {"name": "test_default_version", "error": "Default version incorrect"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix 4 API versioning issues",
+        "priority": 8,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {"type": "test_failure", "severity": "HIGH", "description": "v1 endpoints returning v2 format", "file": "src/api/v1/*.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "v2 serializer incomplete", "file": "src/api/v2/*.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Version header parsing broken", "file": "src/api/versioning.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Default version not configured", "file": "src/api/versioning.py"}
+        ],
+        "success_criteria": [
+          "All 4 tests pass",
+          "Backward compatibility maintained",
+          "Version routing works correctly"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix v1/v2 response format inconsistencies", "estimated_min": 90},
+          {"drone": "coder", "task": "Fix version header parsing and defaults", "estimated_min": 60},
+          {"drone": "reviewer", "task": "Review API versioning", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-026",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "security_vulnerability",
+      "context": {
+        "qa_phase_complete": "security_audit",
+        "feature": "Session management",
+        "qa_results": {
+          "test_coverage": 92,
+          "tests_passed": 38,
+          "tests_failed": 0,
+          "security_scan_passed": false,
+          "nasa_compliance": 94,
+          "vulnerabilities": [
+            {"id": "SEC-009", "severity": "CRITICAL", "type": "Session Fixation", "cwe": "CWE-384"},
+            {"id": "SEC-010", "severity": "HIGH", "type": "Insecure Session Storage", "cwe": "CWE-922"}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "security-fix",
+        "description": "CRITICAL: Fix session fixation and storage vulnerabilities",
+        "priority": 10,
+        "estimated_hours": 3,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "security_vulnerability",
+            "severity": "CRITICAL",
+            "cwe": "CWE-384",
+            "description": "Session ID not regenerated on login",
+            "file": "src/auth/session_manager.py",
+            "line": 89,
+            "vulnerable_code": "Session ID reused after authentication",
+            "suggested_fix": "Regenerate session ID after successful login"
+          },
+          {
+            "type": "security_vulnerability",
+            "severity": "HIGH",
+            "cwe": "CWE-922",
+            "description": "Session data not encrypted in Redis",
+            "file": "src/auth/redis_session_store.py",
+            "line": 45,
+            "vulnerable_code": "Session data stored as plaintext",
+            "suggested_fix": "Encrypt session data before storing in Redis"
+          }
+        ],
+        "success_criteria": [
+          "Session ID regenerated on login",
+          "Session data encrypted",
+          "Security audit passes",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Implement session ID regeneration", "estimated_min": 75},
+          {"drone": "coder", "task": "Add session data encryption", "estimated_min": 90},
+          {"drone": "security-manager", "task": "Re-audit session security", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-027",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "stress_testing",
+        "feature": "Transaction deadlock fix",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 19,
+          "tests_failed": 1,
+          "security_scan_passed": true,
+          "nasa_compliance": 96
+        },
+        "failing_tests": [
+          {"name": "test_high_concurrency_200_transactions", "error": "Deadlock still occurs under extreme load"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Deadlock still occurs under extreme concurrency",
+        "priority": 8,
+        "estimated_hours": 2.5,
+        "blocking": true,
+        "issues": [
+          {
+            "type": "test_failure",
+            "severity": "HIGH",
+            "description": "Deadlock occurs with 200+ concurrent transactions",
+            "file": "src/database/transaction_manager.py",
+            "root_cause": "Lock ordering not consistent",
+            "suggested_fix": "Implement consistent lock ordering by entity ID"
+          }
+        ],
+        "success_criteria": [
+          "No deadlocks with 200+ concurrent transactions",
+          "All tests pass",
+          "Performance maintained"
+        ],
+        "drone_assignments": [
+          {"drone": "debugger", "task": "Implement consistent lock ordering", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review transaction handling", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-028",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "testing",
+        "feature": "Health check endpoints",
+        "qa_results": {
+          "test_coverage": 82,
+          "tests_passed": 16,
+          "tests_failed": 2,
+          "security_scan_passed": true,
+          "nasa_compliance": 93
+        },
+        "failing_tests": [
+          {"name": "test_readiness_probe", "error": "Returns ready when database down"},
+          {"name": "test_liveness_probe", "error": "Does not detect application hang"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix health check probe logic",
+        "priority": 7,
+        "estimated_hours": 1.5,
+        "blocking": false,
+        "issues": [
+          {"type": "test_failure", "severity": "HIGH", "description": "Readiness probe not checking dependencies", "file": "src/health/probes.py"},
+          {"type": "test_failure", "severity": "HIGH", "description": "Liveness probe too simplistic", "file": "src/health/probes.py"}
+        ],
+        "success_criteria": [
+          "Readiness checks all dependencies",
+          "Liveness detects hangs",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix readiness probe dependency checks", "estimated_min": 45},
+          {"drone": "coder", "task": "Improve liveness probe detection", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-029",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "test_failure",
+      "context": {
+        "qa_phase_complete": "integration_testing",
+        "feature": "Feature flag system",
+        "qa_results": {
+          "test_coverage": 84,
+          "tests_passed": 24,
+          "tests_failed": 2,
+          "security_scan_passed": true,
+          "nasa_compliance": 92
+        },
+        "failing_tests": [
+          {"name": "test_flag_cache_invalidation", "error": "Stale flags served"},
+          {"name": "test_flag_targeting_rules", "error": "User targeting not working"}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "bugfix",
+        "description": "Fix feature flag caching and targeting",
+        "priority": 6,
+        "estimated_hours": 2,
+        "blocking": false,
+        "issues": [
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Flag updates not propagating", "file": "src/features/flag_manager.py"},
+          {"type": "test_failure", "severity": "MEDIUM", "description": "Targeting rules evaluation broken", "file": "src/features/flag_store.py"}
+        ],
+        "success_criteria": [
+          "Flag updates propagate within 5s",
+          "Targeting rules work correctly",
+          "All tests pass"
+        ],
+        "drone_assignments": [
+          {"drone": "coder", "task": "Fix cache invalidation", "estimated_min": 60},
+          {"drone": "coder", "task": "Fix targeting rules evaluation", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "qa-dev-030",
+      "sender": "princess-quality",
+      "receiver": "princess-dev",
+      "scenario_type": "code_quality_issue",
+      "context": {
+        "qa_phase_complete": "architecture_review",
+        "feature": "Microservices refactoring",
+        "qa_results": {
+          "test_coverage": 86,
+          "tests_passed": 234,
+          "tests_failed": 0,
+          "security_scan_passed": true,
+          "nasa_compliance": 94,
+          "code_quality_issues": [
+            {"type": "service_coupling", "severity": "HIGH", "count": 4},
+            {"type": "api_contract_violations", "severity": "MEDIUM", "count": 6}
+          ]
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "architecture-improvement",
+        "description": "Reduce service coupling and fix API contracts",
+        "priority": 8,
+        "estimated_hours": 6,
+        "blocking": false,
+        "issues": [
+          {
+            "type": "code_quality_issue",
+            "severity": "HIGH",
+            "category": "service_coupling",
+            "description": "4 instances of tight service coupling",
+            "services": [
+              {"service": "auth", "couples_to": "users", "issue": "Direct database access"},
+              {"service": "notifications", "couples_to": "users", "issue": "Shared models"},
+              {"service": "users", "couples_to": "auth", "issue": "Circular dependency"},
+              {"service": "notifications", "couples_to": "auth", "issue": "Session sharing"}
+            ],
+            "suggested_fix": "Use API calls and events instead of direct coupling"
+          },
+          {
+            "type": "code_quality_issue",
+            "severity": "MEDIUM",
+            "category": "api_contract_violations",
+            "description": "6 API contract violations between services",
+            "violations": [
+              "auth service returns different user format than expected",
+              "users service missing pagination parameters",
+              "notifications service wrong error codes",
+              "auth service missing rate limit headers",
+              "users service different timestamp format",
+              "notifications service missing correlation IDs"
+            ],
+            "suggested_fix": "Standardize API contracts, add OpenAPI validation"
+          }
+        ],
+        "success_criteria": [
+          "Service coupling reduced to loose coupling",
+          "All API contracts validated",
+          "All tests pass",
+          "Architecture review approved"
+        ],
+        "drone_assignments": [
+          {"drone": "architect", "task": "Redesign service communication patterns", "estimated_min": 120},
+          {"drone": "coder", "task": "Implement loose coupling with API/events", "estimated_min": 120},
+          {"drone": "coder", "task": "Standardize API contracts", "estimated_min": 90},
+          {"drone": "reviewer", "task": "Review microservices architecture", "estimated_min": 60}
+        ]
+      }
+    }
+  ]
+}

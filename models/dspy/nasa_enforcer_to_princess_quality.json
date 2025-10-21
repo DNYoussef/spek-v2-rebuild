@@ -1,0 +1,66 @@
+{
+  "aggregate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "drone_results": "{\"success\": true, \"compliance_percent\": 94.7, \"functions_checked\": 17, \"violations_found\": 1, \"violations\": [{\"function\": \"func_0\", \"rule\": \"max_function_loc\", \"actual\": 82}], \"execution_time_ms\": 2493}",
+        "quality_gates": "{\"nasa_compliance\": 94.7, \"target_compliance\": 92.0, \"violations\": 1, \"functions_compliant\": 37}",
+        "reasoning": "Analyzing the drone results:\n- Overall success status is true\n- Compliance percentage is 94.7%, exceeding target of 92.0%\n- Only 1 violation found in function \"func_0\" with 82 lines (exceeds max LOC)\n- 17 functions were checked\n- 37 functions are compliant according to quality gates\n- Execution time was reasonable at 2.493 seconds\n\nDespite the single violation, the overall compliance is well above the target threshold, indicating this should be a passing status. The violation should be noted in recommendations but does not block deployment.",
+        "aggregated_result": "{\"success\": true, \"overall_score\": 94.7, \"gates_passed\": 1, \"gates_failed\": 0, \"artifacts\": [\"nasa_compliance_report.json\"], \"phase\": \"nasa_compliance\", \"status\": \"pass\", \"summary\": \"NASA Rule 10 compliance: 94.7%. 1 violation found.\", \"quality_metrics\": {\"nasa_compliance\": 94.7, \"target_compliance\": 92.0, \"violations\": 1, \"functions_compliant\": 37}, \"next_phase\": \"deploy\", \"blockers\": [], \"recommendations\": [\"Refactor func_0 to reduce from 82 LOC to under 60 LOC\", \"Consider reviewing similar functions for potential refactoring opportunities\"]}"
+      },
+      {
+        "augmented": true,
+        "drone_results": "{\"success\": true, \"compliance_percent\": 96.9, \"functions_checked\": 19, \"violations_found\": 2, \"violations\": [{\"function\": \"func_0\", \"rule\": \"max_function_loc\", \"actual\": 75}, {\"function\": \"func_1\", \"rule\": \"max_function_loc\", \"actual\": 72}], \"execution_time_ms\": 4257}",
+        "quality_gates": "{\"nasa_compliance\": 96.9, \"target_compliance\": 92.0, \"violations\": 2, \"functions_compliant\": 20}",
+        "reasoning": "I analyzed the drone results for NASA compliance checking:\n- Overall success status is true\n- Compliance percentage is 96.9% which exceeds target of 92.0%\n- 19 functions were checked\n- 2 violations were found in functions exceeding LOC limits\n- Execution completed in 4.2 seconds\n- 20 functions are compliant with standards\n\nDespite the 2 violations, the overall compliance rate is well above the target threshold. The workflow can proceed while addressing the violations in a future iteration.",
+        "aggregated_result": "{\"success\": true, \"overall_score\": 96.9, \"gates_passed\": 1, \"gates_failed\": 0, \"artifacts\": [\"nasa_compliance_report.json\"], \"recommendations\": [\"Refactor func_0 (75 LOC) to meet 60 LOC limit\", \"Refactor func_1 (72 LOC) to meet 60 LOC limit\", \"Consider code review for identified functions\"], \"phase\": \"nasa_compliance\", \"status\": \"pass\", \"summary\": \"NASA Rule 10 compliance: 96.9%. 2 minor violations found.\", \"quality_metrics\": {\"nasa_compliance\": 96.9, \"target_compliance\": 92.0, \"violations\": 2, \"functions_compliant\": 20}, \"next_phase\": \"deploy\", \"blockers\": []}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"compliance_percent\": 96.1, \"functions_checked\": 30, \"violations_found\": 0, \"violations\": [], \"execution_time_ms\": 4324}",
+        "quality_gates": "{\"nasa_compliance\": 96.1, \"target_compliance\": 92.0, \"violations\": 0, \"functions_compliant\": 39}",
+        "aggregated_result": "{\"phase\": \"nasa_compliance\", \"status\": \"pass\", \"summary\": \"NASA Rule 10 compliance: 96.1%. 0 violations found.\", \"quality_metrics\": {\"nasa_compliance\": 96.1, \"target_compliance\": 92.0, \"violations\": 0, \"functions_compliant\": 39}, \"next_phase\": \"deploy\", \"blockers\": [], \"recommendations\": [\"Excellent compliance\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"compliance_percent\": 97.2, \"functions_checked\": 17, \"violations_found\": 2, \"violations\": [{\"function\": \"func_0\", \"rule\": \"max_function_loc\", \"actual\": 69}, {\"function\": \"func_1\", \"rule\": \"max_function_loc\", \"actual\": 80}], \"execution_time_ms\": 4393}",
+        "quality_gates": "{\"nasa_compliance\": 97.2, \"target_compliance\": 92.0, \"violations\": 2, \"functions_compliant\": 18}",
+        "aggregated_result": "{\"phase\": \"nasa_compliance\", \"status\": \"pass\", \"summary\": \"NASA Rule 10 compliance: 97.2%. 2 violations found.\", \"quality_metrics\": {\"nasa_compliance\": 97.2, \"target_compliance\": 92.0, \"violations\": 2, \"functions_compliant\": 18}, \"next_phase\": \"deploy\", \"blockers\": [], \"recommendations\": [\"Excellent compliance\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"compliance_percent\": 99.0, \"functions_checked\": 35, \"violations_found\": 2, \"violations\": [{\"function\": \"func_0\", \"rule\": \"max_function_loc\", \"actual\": 73}, {\"function\": \"func_1\", \"rule\": \"max_function_loc\", \"actual\": 78}], \"execution_time_ms\": 2006}",
+        "quality_gates": "{\"nasa_compliance\": 99.0, \"target_compliance\": 92.0, \"violations\": 2, \"functions_compliant\": 19}",
+        "aggregated_result": "{\"phase\": \"nasa_compliance\", \"status\": \"pass\", \"summary\": \"NASA Rule 10 compliance: 99.0%. 2 violations found.\", \"quality_metrics\": {\"nasa_compliance\": 99.0, \"target_compliance\": 92.0, \"violations\": 2, \"functions_compliant\": 19}, \"next_phase\": \"deploy\", \"blockers\": [], \"recommendations\": [\"Excellent compliance\"]}"
+      }
+    ],
+    "signature": {
+      "instructions": "Aggregate drone results into coherent princess-level output.\n\nYou are a Princess agent receiving results from multiple drone agents\nthat executed tasks in parallel or sequence. Your role is to combine\ntheir individual results into a unified, comprehensive result that\ncan be reported to the Queen.\n\nAggregation must include:\n- Success/failure status of overall workflow\n- Quality metrics from all drones\n- Validation against quality gates\n- Artifacts produced by drones\n- Recommendations or next steps\n\nFollow the 26 prompt engineering principles:\n- Completeness: Include all relevant drone outputs\n- Quality: Validate against gates (test coverage, NASA compliance, etc.)\n- Clarity: Summarize complex results clearly\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Drone Results:",
+          "description": "List of results from drone agents (each with success, data, metrics)"
+        },
+        {
+          "prefix": "Quality Gates:",
+          "description": "Quality gates to validate against (e.g., test_coverage >= 80%)"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Aggregation reasoning explaining how results were combined and validated"
+        },
+        {
+          "prefix": "Aggregated Result:",
+          "description": "Aggregated result as JSON object. Must have: {'success': bool, 'overall_score': float, 'gates_passed': int, 'gates_failed': int, 'artifacts': list[str], 'recommendations': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

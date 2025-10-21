@@ -1,0 +1,1813 @@
+{
+  "communication_path": "reviewer→princess-dev",
+  "description": "Reviewer reports code review results to Princess-Dev",
+  "drone_id": "reviewer",
+  "princess_id": "princess-dev",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 40,
+    "failure": 10
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-1",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 90.8,
+        "nasa_compliance": 97.4,
+        "type_coverage": 99,
+        "execution_time_ms": 6100
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.8/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 90.8,
+          "nasa_compliance": 92.4,
+          "type_coverage": 98,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-2",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 94.6,
+        "nasa_compliance": 92.9,
+        "type_coverage": 100,
+        "execution_time_ms": 4796
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 94.6/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 94.6,
+          "nasa_compliance": 92.5,
+          "type_coverage": 98,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-3",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 3,
+        "issues_found": 3,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 2,
+        "overall_score": 91.4,
+        "nasa_compliance": 95.9,
+        "type_coverage": 100,
+        "execution_time_ms": 3235
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 91.4/100. Found 3 issues.",
+        "quality_metrics": {
+          "review_score": 91.4,
+          "nasa_compliance": 93.7,
+          "type_coverage": 96,
+          "critical_issues": 0,
+          "total_issues": 3
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-4",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 5,
+        "issues_found": 0,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 92.0,
+        "nasa_compliance": 92.2,
+        "type_coverage": 100,
+        "execution_time_ms": 6915
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 92.0/100. Found 0 issues.",
+        "quality_metrics": {
+          "review_score": 92.0,
+          "nasa_compliance": 94.1,
+          "type_coverage": 100,
+          "critical_issues": 0,
+          "total_issues": 0
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-5",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 99.1,
+        "nasa_compliance": 98.7,
+        "type_coverage": 95,
+        "execution_time_ms": 6283
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 99.1/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 99.1,
+          "nasa_compliance": 98.2,
+          "type_coverage": 96,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-6",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 92.9,
+        "nasa_compliance": 95.8,
+        "type_coverage": 99,
+        "execution_time_ms": 7914
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 92.9/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 92.9,
+          "nasa_compliance": 95.4,
+          "type_coverage": 99,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-7",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 0,
+        "overall_score": 90.7,
+        "nasa_compliance": 92.7,
+        "type_coverage": 100,
+        "execution_time_ms": 4542
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.7/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 90.7,
+          "nasa_compliance": 99.9,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-8",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 91.7,
+        "nasa_compliance": 92.9,
+        "type_coverage": 100,
+        "execution_time_ms": 6143
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 91.7/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 91.7,
+          "nasa_compliance": 95.7,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-9",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 2,
+        "low_issues": 2,
+        "overall_score": 86.2,
+        "nasa_compliance": 92.7,
+        "type_coverage": 98,
+        "execution_time_ms": 6141
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 86.2/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 86.2,
+          "nasa_compliance": 92.1,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "code",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-10",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 97.7,
+        "nasa_compliance": 93.2,
+        "type_coverage": 100,
+        "execution_time_ms": 4198
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 97.7/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 97.7,
+          "nasa_compliance": 98.3,
+          "type_coverage": 99,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-11",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 2,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 0,
+        "overall_score": 91.1,
+        "nasa_compliance": 92.3,
+        "type_coverage": 97,
+        "execution_time_ms": 5082
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 91.1/100. Found 2 issues.",
+        "quality_metrics": {
+          "review_score": 91.1,
+          "nasa_compliance": 97.6,
+          "type_coverage": 96,
+          "critical_issues": 0,
+          "total_issues": 2
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-12",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 2,
+        "overall_score": 90.9,
+        "nasa_compliance": 97.2,
+        "type_coverage": 97,
+        "execution_time_ms": 5452
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.9/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 90.9,
+          "nasa_compliance": 93.3,
+          "type_coverage": 100,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-13",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 94.5,
+        "nasa_compliance": 97.1,
+        "type_coverage": 97,
+        "execution_time_ms": 4415
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 94.5/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 94.5,
+          "nasa_compliance": 97.0,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-14",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 5,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 1,
+        "overall_score": 94.8,
+        "nasa_compliance": 93.4,
+        "type_coverage": 95,
+        "execution_time_ms": 5063
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 94.8/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 94.8,
+          "nasa_compliance": 99.7,
+          "type_coverage": 99,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-15",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 99.8,
+        "nasa_compliance": 92.9,
+        "type_coverage": 98,
+        "execution_time_ms": 4602
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 99.8/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 99.8,
+          "nasa_compliance": 95.3,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-16",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 3,
+        "issues_found": 2,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 1,
+        "overall_score": 92.7,
+        "nasa_compliance": 98.2,
+        "type_coverage": 100,
+        "execution_time_ms": 6539
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 92.7/100. Found 2 issues.",
+        "quality_metrics": {
+          "review_score": 92.7,
+          "nasa_compliance": 93.8,
+          "type_coverage": 99,
+          "critical_issues": 0,
+          "total_issues": 2
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-17",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 5,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 93.3,
+        "nasa_compliance": 94.5,
+        "type_coverage": 95,
+        "execution_time_ms": 5900
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 93.3/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 93.3,
+          "nasa_compliance": 97.1,
+          "type_coverage": 96,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-18",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 1,
+        "overall_score": 87.4,
+        "nasa_compliance": 98.2,
+        "type_coverage": 96,
+        "execution_time_ms": 6814
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 87.4/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 87.4,
+          "nasa_compliance": 98.5,
+          "type_coverage": 100,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "code",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-19",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": 0,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 0,
+        "overall_score": 93.7,
+        "nasa_compliance": 92.1,
+        "type_coverage": 100,
+        "execution_time_ms": 4898
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 93.7/100. Found 0 issues.",
+        "quality_metrics": {
+          "review_score": 93.7,
+          "nasa_compliance": 99.4,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": 0
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-20",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 97.7,
+        "nasa_compliance": 93.7,
+        "type_coverage": 99,
+        "execution_time_ms": 3017
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 97.7/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 97.7,
+          "nasa_compliance": 95.8,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-21",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 3,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 2,
+        "low_issues": 1,
+        "overall_score": 92.4,
+        "nasa_compliance": 94.2,
+        "type_coverage": 95,
+        "execution_time_ms": 5391
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 92.4/100. Found 3 issues.",
+        "quality_metrics": {
+          "review_score": 92.4,
+          "nasa_compliance": 96.1,
+          "type_coverage": 98,
+          "critical_issues": 0,
+          "total_issues": 3
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-22",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 5,
+        "issues_found": 2,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 90.6,
+        "nasa_compliance": 97.8,
+        "type_coverage": 99,
+        "execution_time_ms": 6831
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.6/100. Found 2 issues.",
+        "quality_metrics": {
+          "review_score": 90.6,
+          "nasa_compliance": 93.4,
+          "type_coverage": 96,
+          "critical_issues": 0,
+          "total_issues": 2
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-23",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 2,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 1,
+        "overall_score": 92.1,
+        "nasa_compliance": 99.9,
+        "type_coverage": 100,
+        "execution_time_ms": 6869
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 92.1/100. Found 2 issues.",
+        "quality_metrics": {
+          "review_score": 92.1,
+          "nasa_compliance": 95.1,
+          "type_coverage": 96,
+          "critical_issues": 0,
+          "total_issues": 2
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-24",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 5,
+        "issues_found": 3,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 1,
+        "overall_score": 87.6,
+        "nasa_compliance": 98.8,
+        "type_coverage": 96,
+        "execution_time_ms": 3065
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 87.6/100. Found 3 issues.",
+        "quality_metrics": {
+          "review_score": 87.6,
+          "nasa_compliance": 94.6,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": 3
+        },
+        "next_phase": "code",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-25",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 5,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 97.5,
+        "nasa_compliance": 96.3,
+        "type_coverage": 96,
+        "execution_time_ms": 6812
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 97.5/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 97.5,
+          "nasa_compliance": 92.4,
+          "type_coverage": 98,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-26",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 5,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 94.9,
+        "nasa_compliance": 94.7,
+        "type_coverage": 98,
+        "execution_time_ms": 7309
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 94.9/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 94.9,
+          "nasa_compliance": 94.3,
+          "type_coverage": 100,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-27",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": 2,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 1,
+        "overall_score": 89.4,
+        "nasa_compliance": 93.5,
+        "type_coverage": 100,
+        "execution_time_ms": 6238
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 89.4/100. Found 2 issues.",
+        "quality_metrics": {
+          "review_score": 89.4,
+          "nasa_compliance": 94.2,
+          "type_coverage": 100,
+          "critical_issues": 0,
+          "total_issues": 2
+        },
+        "next_phase": "code",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-28",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 0,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 90.1,
+        "nasa_compliance": 96.8,
+        "type_coverage": 95,
+        "execution_time_ms": 4621
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.1/100. Found 0 issues.",
+        "quality_metrics": {
+          "review_score": 90.1,
+          "nasa_compliance": 96.7,
+          "type_coverage": 98,
+          "critical_issues": 0,
+          "total_issues": 0
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-29",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 2,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 1,
+        "overall_score": 90.4,
+        "nasa_compliance": 97.4,
+        "type_coverage": 100,
+        "execution_time_ms": 7627
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.4/100. Found 2 issues.",
+        "quality_metrics": {
+          "review_score": 90.4,
+          "nasa_compliance": 97.0,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": 2
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-30",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 97.6,
+        "nasa_compliance": 99.7,
+        "type_coverage": 100,
+        "execution_time_ms": 6392
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 97.6/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 97.6,
+          "nasa_compliance": 93.2,
+          "type_coverage": 98,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-31",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 0,
+        "overall_score": 92.3,
+        "nasa_compliance": 95.4,
+        "type_coverage": 99,
+        "execution_time_ms": 3282
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 92.3/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 92.3,
+          "nasa_compliance": 95.6,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-32",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 0,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 93.4,
+        "nasa_compliance": 97.3,
+        "type_coverage": 98,
+        "execution_time_ms": 3966
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 93.4/100. Found 0 issues.",
+        "quality_metrics": {
+          "review_score": 93.4,
+          "nasa_compliance": 96.3,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": 0
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-33",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 2,
+        "overall_score": 86.6,
+        "nasa_compliance": 93.9,
+        "type_coverage": 100,
+        "execution_time_ms": 6635
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 86.6/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 86.6,
+          "nasa_compliance": 99.1,
+          "type_coverage": 97,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "code",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-34",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": 0,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 1,
+        "overall_score": 90.6,
+        "nasa_compliance": 94.6,
+        "type_coverage": 100,
+        "execution_time_ms": 7079
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.6/100. Found 0 issues.",
+        "quality_metrics": {
+          "review_score": 90.6,
+          "nasa_compliance": 95.2,
+          "type_coverage": 99,
+          "critical_issues": 0,
+          "total_issues": 0
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-35",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 95.0,
+        "nasa_compliance": 97.4,
+        "type_coverage": 96,
+        "execution_time_ms": 3083
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 95.0/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 95.0,
+          "nasa_compliance": 96.8,
+          "type_coverage": 99,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-36",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 3,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 2,
+        "low_issues": 1,
+        "overall_score": 90.2,
+        "nasa_compliance": 96.3,
+        "type_coverage": 100,
+        "execution_time_ms": 7814
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 90.2/100. Found 3 issues.",
+        "quality_metrics": {
+          "review_score": 90.2,
+          "nasa_compliance": 95.1,
+          "type_coverage": 100,
+          "critical_issues": 0,
+          "total_issues": 3
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-37",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 4,
+        "issues_found": 1,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 92.6,
+        "nasa_compliance": 95.9,
+        "type_coverage": 100,
+        "execution_time_ms": 3048
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 92.6/100. Found 1 issues.",
+        "quality_metrics": {
+          "review_score": 92.6,
+          "nasa_compliance": 96.0,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": 1
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-38",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 3,
+        "issues_found": 2,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 1,
+        "low_issues": 0,
+        "overall_score": 94.9,
+        "nasa_compliance": 92.1,
+        "type_coverage": 98,
+        "execution_time_ms": 7657
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 94.9/100. Found 2 issues.",
+        "quality_metrics": {
+          "review_score": 94.9,
+          "nasa_compliance": 92.4,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": 2
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-39",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 2,
+        "issues_found": 3,
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 2,
+        "low_issues": 1,
+        "overall_score": 87.8,
+        "nasa_compliance": 94.5,
+        "type_coverage": 96,
+        "execution_time_ms": 7107
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 87.8/100. Found 3 issues.",
+        "quality_metrics": {
+          "review_score": 87.8,
+          "nasa_compliance": 97.2,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": 3
+        },
+        "next_phase": "code",
+        "blockers": [],
+        "recommendations": [
+          "Address medium priority issues"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-40",
+      "drone_results": {
+        "success": true,
+        "files_reviewed": 1,
+        "issues_found": [],
+        "critical_issues": 0,
+        "high_issues": 0,
+        "medium_issues": 0,
+        "low_issues": 0,
+        "overall_score": 99.2,
+        "nasa_compliance": 94.2,
+        "type_coverage": 95,
+        "execution_time_ms": 3358
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "complete",
+        "summary": "Code review complete with overall score 99.2/100. Found [] issues.",
+        "quality_metrics": {
+          "review_score": 99.2,
+          "nasa_compliance": 92.7,
+          "type_coverage": 95,
+          "critical_issues": 0,
+          "total_issues": []
+        },
+        "next_phase": "integrate",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-41",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 1,
+        "issues_found": 14,
+        "critical_issues": 3,
+        "high_issues": 3,
+        "medium_issues": 4,
+        "low_issues": 2,
+        "overall_score": 77.4,
+        "nasa_compliance": 75.9,
+        "type_coverage": 71,
+        "execution_time_ms": 7471
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 77.4/100. Found 3 critical and 3 high priority issues.",
+        "quality_metrics": {
+          "review_score": 77.4,
+          "nasa_compliance": 80.1,
+          "type_coverage": 62,
+          "critical_issues": 3,
+          "total_issues": 14
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 critical security/NASA violations",
+          "Address 3 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-42",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 2,
+        "issues_found": 10,
+        "critical_issues": 1,
+        "high_issues": 4,
+        "medium_issues": 5,
+        "low_issues": 1,
+        "overall_score": 59.3,
+        "nasa_compliance": 88.0,
+        "type_coverage": 88,
+        "execution_time_ms": 6356
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 59.3/100. Found 1 critical and 4 high priority issues.",
+        "quality_metrics": {
+          "review_score": 59.3,
+          "nasa_compliance": 76.5,
+          "type_coverage": 75,
+          "critical_issues": 1,
+          "total_issues": 10
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 1 critical security/NASA violations",
+          "Address 4 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-43",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 4,
+        "issues_found": 14,
+        "critical_issues": 2,
+        "high_issues": 4,
+        "medium_issues": 5,
+        "low_issues": 2,
+        "overall_score": 50.5,
+        "nasa_compliance": 87.7,
+        "type_coverage": 84,
+        "execution_time_ms": 7242
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 50.5/100. Found 2 critical and 4 high priority issues.",
+        "quality_metrics": {
+          "review_score": 50.5,
+          "nasa_compliance": 75.7,
+          "type_coverage": 60,
+          "critical_issues": 2,
+          "total_issues": 14
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 2 critical security/NASA violations",
+          "Address 4 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-44",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 2,
+        "issues_found": 9,
+        "critical_issues": 3,
+        "high_issues": 2,
+        "medium_issues": 5,
+        "low_issues": 1,
+        "overall_score": 67.1,
+        "nasa_compliance": 87.1,
+        "type_coverage": 81,
+        "execution_time_ms": 4628
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 67.1/100. Found 3 critical and 2 high priority issues.",
+        "quality_metrics": {
+          "review_score": 67.1,
+          "nasa_compliance": 70.1,
+          "type_coverage": 87,
+          "critical_issues": 3,
+          "total_issues": 9
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 critical security/NASA violations",
+          "Address 2 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-45",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 5,
+        "issues_found": 5,
+        "critical_issues": 3,
+        "high_issues": 4,
+        "medium_issues": 4,
+        "low_issues": 2,
+        "overall_score": 63.8,
+        "nasa_compliance": 73.0,
+        "type_coverage": 81,
+        "execution_time_ms": 7291
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 63.8/100. Found 3 critical and 4 high priority issues.",
+        "quality_metrics": {
+          "review_score": 63.8,
+          "nasa_compliance": 88.5,
+          "type_coverage": 77,
+          "critical_issues": 3,
+          "total_issues": 5
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 critical security/NASA violations",
+          "Address 4 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-46",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 4,
+        "issues_found": 15,
+        "critical_issues": 3,
+        "high_issues": 2,
+        "medium_issues": 3,
+        "low_issues": 1,
+        "overall_score": 74.9,
+        "nasa_compliance": 70.2,
+        "type_coverage": 88,
+        "execution_time_ms": 6476
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 74.9/100. Found 3 critical and 2 high priority issues.",
+        "quality_metrics": {
+          "review_score": 74.9,
+          "nasa_compliance": 78.0,
+          "type_coverage": 77,
+          "critical_issues": 3,
+          "total_issues": 15
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 critical security/NASA violations",
+          "Address 2 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-47",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 1,
+        "issues_found": 9,
+        "critical_issues": 2,
+        "high_issues": 5,
+        "medium_issues": 5,
+        "low_issues": 1,
+        "overall_score": 74.9,
+        "nasa_compliance": 87.5,
+        "type_coverage": 87,
+        "execution_time_ms": 7036
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 74.9/100. Found 2 critical and 5 high priority issues.",
+        "quality_metrics": {
+          "review_score": 74.9,
+          "nasa_compliance": 88.4,
+          "type_coverage": 87,
+          "critical_issues": 2,
+          "total_issues": 9
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 2 critical security/NASA violations",
+          "Address 5 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-48",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 5,
+        "issues_found": 13,
+        "critical_issues": 1,
+        "high_issues": 5,
+        "medium_issues": 5,
+        "low_issues": 3,
+        "overall_score": 74.6,
+        "nasa_compliance": 71.7,
+        "type_coverage": 65,
+        "execution_time_ms": 7488
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 74.6/100. Found 1 critical and 5 high priority issues.",
+        "quality_metrics": {
+          "review_score": 74.6,
+          "nasa_compliance": 77.9,
+          "type_coverage": 82,
+          "critical_issues": 1,
+          "total_issues": 13
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 1 critical security/NASA violations",
+          "Address 5 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-49",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 3,
+        "issues_found": 11,
+        "critical_issues": 3,
+        "high_issues": 4,
+        "medium_issues": 2,
+        "low_issues": 1,
+        "overall_score": 76.2,
+        "nasa_compliance": 83.0,
+        "type_coverage": 85,
+        "execution_time_ms": 5799
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 76.2/100. Found 3 critical and 4 high priority issues.",
+        "quality_metrics": {
+          "review_score": 76.2,
+          "nasa_compliance": 85.9,
+          "type_coverage": 87,
+          "critical_issues": 3,
+          "total_issues": 11
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 critical security/NASA violations",
+          "Address 4 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "reviewer",
+      "task_completed": "review-code-50",
+      "drone_results": {
+        "success": false,
+        "files_reviewed": 3,
+        "issues_found": 15,
+        "critical_issues": 3,
+        "high_issues": 2,
+        "medium_issues": 3,
+        "low_issues": 3,
+        "overall_score": 54.4,
+        "nasa_compliance": 88.9,
+        "type_coverage": 89,
+        "execution_time_ms": 6643
+      },
+      "expected_aggregated_result": {
+        "phase": "review",
+        "status": "blocked",
+        "summary": "Code review failed with score 54.4/100. Found 3 critical and 2 high priority issues.",
+        "quality_metrics": {
+          "review_score": 54.4,
+          "nasa_compliance": 75.4,
+          "type_coverage": 83,
+          "critical_issues": 3,
+          "total_issues": 15
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 critical security/NASA violations",
+          "Address 2 high priority code quality issues"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding LOC limits",
+          "Add missing type hints",
+          "Address security vulnerabilities"
+        ]
+      }
+    }
+  ]
+}

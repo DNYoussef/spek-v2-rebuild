@@ -1,0 +1,1473 @@
+{
+  "communication_path": "theater-detector→princess-quality",
+  "description": "Theater-Detector reports mock code scan to Princess-Quality",
+  "drone_id": "theater-detector",
+  "princess_id": "princess-quality",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 45,
+    "failure": 5
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-1",
+      "drone_results": {
+        "success": true,
+        "theater_score": 3,
+        "theatrical_patterns": 2,
+        "todo_comments": 0,
+        "placeholder_code": 1,
+        "mock_implementations": 1,
+        "execution_time_ms": 3729
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 3/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 3,
+          "threshold": 30,
+          "patterns_detected": 2
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-2",
+      "drone_results": {
+        "success": true,
+        "theater_score": 7,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2735
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 7/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 7,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-3",
+      "drone_results": {
+        "success": true,
+        "theater_score": 8,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 1907
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 8/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 8,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-4",
+      "drone_results": {
+        "success": true,
+        "theater_score": 3,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2037
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 3/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 3,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-5",
+      "drone_results": {
+        "success": true,
+        "theater_score": 2,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3346
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 2/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 2,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-6",
+      "drone_results": {
+        "success": true,
+        "theater_score": 2,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2597
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 2/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 2,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-7",
+      "drone_results": {
+        "success": true,
+        "theater_score": 10,
+        "theatrical_patterns": 2,
+        "todo_comments": 1,
+        "placeholder_code": 1,
+        "mock_implementations": 0,
+        "execution_time_ms": 1771
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 10/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 10,
+          "threshold": 30,
+          "patterns_detected": 2
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-8",
+      "drone_results": {
+        "success": true,
+        "theater_score": 3,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3643
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 3/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 3,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-9",
+      "drone_results": {
+        "success": true,
+        "theater_score": 4,
+        "theatrical_patterns": 2,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 1,
+        "execution_time_ms": 1834
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 4/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 4,
+          "threshold": 30,
+          "patterns_detected": 2
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-10",
+      "drone_results": {
+        "success": true,
+        "theater_score": 10,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3732
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 10/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 10,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-11",
+      "drone_results": {
+        "success": true,
+        "theater_score": 1,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3217
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 1/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 1,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-12",
+      "drone_results": {
+        "success": true,
+        "theater_score": 10,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3738
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 10/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 10,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-13",
+      "drone_results": {
+        "success": true,
+        "theater_score": 10,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3797
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 10/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 10,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-14",
+      "drone_results": {
+        "success": true,
+        "theater_score": 9,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2227
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 9/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 9,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-15",
+      "drone_results": {
+        "success": true,
+        "theater_score": 9,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2928
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 9/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 9,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-16",
+      "drone_results": {
+        "success": true,
+        "theater_score": 1,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2311
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 1/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 1,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-17",
+      "drone_results": {
+        "success": true,
+        "theater_score": 0,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2998
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 0/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 0,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-18",
+      "drone_results": {
+        "success": true,
+        "theater_score": 0,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3614
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 0/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 0,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-19",
+      "drone_results": {
+        "success": true,
+        "theater_score": 8,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2758
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 8/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 8,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-20",
+      "drone_results": {
+        "success": true,
+        "theater_score": 8,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2492
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 8/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 8,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-21",
+      "drone_results": {
+        "success": true,
+        "theater_score": 4,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3826
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 4/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 4,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-22",
+      "drone_results": {
+        "success": true,
+        "theater_score": 2,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 1539
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 2/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 2,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-23",
+      "drone_results": {
+        "success": true,
+        "theater_score": 4,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3474
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 4/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 4,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-24",
+      "drone_results": {
+        "success": true,
+        "theater_score": 8,
+        "theatrical_patterns": 2,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3939
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 8/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 8,
+          "threshold": 30,
+          "patterns_detected": 2
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-25",
+      "drone_results": {
+        "success": true,
+        "theater_score": 9,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2231
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 9/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 9,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-26",
+      "drone_results": {
+        "success": true,
+        "theater_score": 1,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3488
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 1/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 1,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-27",
+      "drone_results": {
+        "success": true,
+        "theater_score": 6,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3769
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 6/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 6,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-28",
+      "drone_results": {
+        "success": true,
+        "theater_score": 1,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2290
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 1/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 1,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-29",
+      "drone_results": {
+        "success": true,
+        "theater_score": 10,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2594
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 10/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 10,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-30",
+      "drone_results": {
+        "success": true,
+        "theater_score": 3,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2740
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 3/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 3,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-31",
+      "drone_results": {
+        "success": true,
+        "theater_score": 3,
+        "theatrical_patterns": 2,
+        "todo_comments": 1,
+        "placeholder_code": 1,
+        "mock_implementations": 0,
+        "execution_time_ms": 1750
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 3/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 3,
+          "threshold": 30,
+          "patterns_detected": 2
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-32",
+      "drone_results": {
+        "success": true,
+        "theater_score": 9,
+        "theatrical_patterns": 2,
+        "todo_comments": 0,
+        "placeholder_code": 1,
+        "mock_implementations": 1,
+        "execution_time_ms": 2007
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 9/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 9,
+          "threshold": 30,
+          "patterns_detected": 2
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-33",
+      "drone_results": {
+        "success": true,
+        "theater_score": 6,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 1953
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 6/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 6,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-34",
+      "drone_results": {
+        "success": true,
+        "theater_score": 10,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3155
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 10/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 10,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-35",
+      "drone_results": {
+        "success": true,
+        "theater_score": 8,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3360
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 8/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 8,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-36",
+      "drone_results": {
+        "success": true,
+        "theater_score": 0,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2342
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 0/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 0,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-37",
+      "drone_results": {
+        "success": true,
+        "theater_score": 9,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3860
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 9/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 9,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-38",
+      "drone_results": {
+        "success": true,
+        "theater_score": 2,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2912
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 2/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 2,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-39",
+      "drone_results": {
+        "success": true,
+        "theater_score": 8,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3898
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 8/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 8,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-40",
+      "drone_results": {
+        "success": true,
+        "theater_score": 7,
+        "theatrical_patterns": 2,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 1987
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 7/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 7,
+          "threshold": 30,
+          "patterns_detected": 2
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-41",
+      "drone_results": {
+        "success": true,
+        "theater_score": 8,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3254
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 8/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 8,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-42",
+      "drone_results": {
+        "success": true,
+        "theater_score": 0,
+        "theatrical_patterns": 1,
+        "todo_comments": 1,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2332
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 0/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 0,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-43",
+      "drone_results": {
+        "success": true,
+        "theater_score": 5,
+        "theatrical_patterns": 0,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3160
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 5/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 5,
+          "threshold": 30,
+          "patterns_detected": 0
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-44",
+      "drone_results": {
+        "success": true,
+        "theater_score": 0,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 2796
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 0/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 0,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-45",
+      "drone_results": {
+        "success": true,
+        "theater_score": 0,
+        "theatrical_patterns": 1,
+        "todo_comments": 0,
+        "placeholder_code": 0,
+        "mock_implementations": 0,
+        "execution_time_ms": 3871
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "clean",
+        "summary": "Theater score: 0/100. Code is production-ready.",
+        "quality_metrics": {
+          "theater_score": 0,
+          "threshold": 30,
+          "patterns_detected": 1
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Code quality excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-46",
+      "drone_results": {
+        "success": false,
+        "theater_score": 91,
+        "theatrical_patterns": 9,
+        "todo_comments": 1,
+        "placeholder_code": 3,
+        "mock_implementations": 3,
+        "execution_time_ms": 1620
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "theatrical",
+        "summary": "Theater score: 91/100. Found 9 theatrical patterns.",
+        "quality_metrics": {
+          "theater_score": 91,
+          "threshold": 30,
+          "patterns_detected": 9
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Remove 9 theatrical code patterns"
+        ],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-47",
+      "drone_results": {
+        "success": false,
+        "theater_score": 76,
+        "theatrical_patterns": 13,
+        "todo_comments": 4,
+        "placeholder_code": 2,
+        "mock_implementations": 0,
+        "execution_time_ms": 3707
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "theatrical",
+        "summary": "Theater score: 76/100. Found 13 theatrical patterns.",
+        "quality_metrics": {
+          "theater_score": 76,
+          "threshold": 30,
+          "patterns_detected": 13
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Remove 13 theatrical code patterns"
+        ],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-48",
+      "drone_results": {
+        "success": false,
+        "theater_score": 50,
+        "theatrical_patterns": 5,
+        "todo_comments": 4,
+        "placeholder_code": 1,
+        "mock_implementations": 0,
+        "execution_time_ms": 2514
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "theatrical",
+        "summary": "Theater score: 50/100. Found 5 theatrical patterns.",
+        "quality_metrics": {
+          "theater_score": 50,
+          "threshold": 30,
+          "patterns_detected": 5
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Remove 5 theatrical code patterns"
+        ],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-49",
+      "drone_results": {
+        "success": false,
+        "theater_score": 71,
+        "theatrical_patterns": 9,
+        "todo_comments": 2,
+        "placeholder_code": 2,
+        "mock_implementations": 1,
+        "execution_time_ms": 2469
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "theatrical",
+        "summary": "Theater score: 71/100. Found 9 theatrical patterns.",
+        "quality_metrics": {
+          "theater_score": 71,
+          "threshold": 30,
+          "patterns_detected": 9
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Remove 9 theatrical code patterns"
+        ],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "theater-detector",
+      "task_completed": "theater-scan-50",
+      "drone_results": {
+        "success": false,
+        "theater_score": 73,
+        "theatrical_patterns": 10,
+        "todo_comments": 7,
+        "placeholder_code": 3,
+        "mock_implementations": 5,
+        "execution_time_ms": 2288
+      },
+      "expected_aggregated_result": {
+        "phase": "theater_detection",
+        "status": "theatrical",
+        "summary": "Theater score: 73/100. Found 10 theatrical patterns.",
+        "quality_metrics": {
+          "theater_score": 73,
+          "threshold": 30,
+          "patterns_detected": 10
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Remove 10 theatrical code patterns"
+        ],
+        "recommendations": [
+          "Replace TODOs and placeholders with real implementation"
+        ]
+      }
+    }
+  ]
+}

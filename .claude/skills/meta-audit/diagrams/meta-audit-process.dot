@@ -1,0 +1,170 @@
+digraph MetaAudit {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start and end
+    start [shape=ellipse, label="Start:\nMeta-Audit Request", fillcolor=lightgreen];
+    end [shape=ellipse, label="Complete:\nProduction-Ready Code", fillcolor=green, fontcolor=white];
+
+    // PHASE 1: Theater Detection & Elimination (Enhanced with PatternDetector)
+    subgraph cluster_phase1 {
+        label="Phase 1: Theater Detection & Elimination (Enhanced with Analyzer)";
+        fillcolor=lightyellow;
+        style=filled;
+
+        p1_audit [label="Run Theater Audit:\n- TODOs/FIXME (PatternDetector)\n- Mocks (mock_, fake_, stub_)\n- Placeholders (pass, NotImplementedError)\n- Magic Literals (CoM detection)\n- Commented Code"];
+        p1_analyzer_patterns [label="Analyzer PatternDetector:\n- Mock patterns\n- TODO patterns\n- CoM (magic literals)\n- Placeholder patterns", fillcolor=lightyellow, style=dashed];
+        p1_score [label="Calculate Theater Score:\nTODOs: 10 pts each\nMocks: 20 pts each\nPlaceholders: 15 pts each\nMagic Literals: 5 pts each", fillcolor=lightyellow, style=dotted];
+        p1_decision [shape=diamond, label="Theater Score\n< 60?", fillcolor=yellow];
+        p1_spawn [label="Spawn Coder Drone:\nEliminate Theater\n(Replace with genuine code)"];
+        p1_verify [label="Re-run Theater Audit\n(Verify Fixes)"];
+        p1_retry [shape=octagon, label="Retry Count < 3?", fillcolor=orange];
+
+        p1_audit -> p1_analyzer_patterns [style=dashed, label="uses"];
+        p1_analyzer_patterns -> p1_score;
+        p1_score -> p1_decision;
+        p1_decision -> p1_spawn [label="no\n(has theater)", color=red];
+        p1_spawn -> p1_verify;
+        p1_verify -> p1_retry;
+        p1_retry -> p1_spawn [label="yes\n(retry)", style=dashed];
+    }
+
+    // PHASE 2: Functionality Validation & Correction (Enhanced with SyntaxAnalyzer)
+    subgraph cluster_phase2 {
+        label="Phase 2: Functionality Validation & Correction (Enhanced with Analyzer)";
+        fillcolor=lightblue;
+        style=filled;
+
+        p2_audit [label="Run Functionality Audit:\n- Syntax Validation (AST)\n- Import Resolution\n- Test Execution\n- Coverage Analysis"];
+        p2_analyzer_syntax [label="Analyzer SyntaxAnalyzer:\n- Syntax issues (AST)\n- Import validation\n- NASA Rule 4 (assertions)\n- Type hints coverage", fillcolor=lightblue, style=dashed];
+        p2_decision [shape=diamond, label="Syntax Valid?\nImports Valid?\nTests Passing?\nCoverage ≥80%?\nAssertions ≥2?", fillcolor=yellow];
+        p2_spawn_debugger [label="Spawn Debugger:\nFix Failing Tests"];
+        p2_spawn_tester [label="Spawn Tester:\nAdd Missing Tests"];
+        p2_verify [label="Re-run Functionality Audit\n(Verify Fixes)"];
+        p2_retry [shape=octagon, label="Retry Count < 3?", fillcolor=orange];
+
+        p2_audit -> p2_analyzer_syntax [style=dashed, label="uses"];
+        p2_analyzer_syntax -> p2_decision;
+        p2_decision -> p2_spawn_debugger [label="tests failing", color=red];
+        p2_decision -> p2_spawn_tester [label="low coverage", color=orange];
+        p2_spawn_debugger -> p2_verify;
+        p2_spawn_tester -> p2_verify;
+        p2_verify -> p2_retry;
+        p2_retry -> p2_spawn_debugger [label="yes\n(retry)", style=dashed];
+    }
+
+    // PHASE 3: Style/Quality Refactoring (Full Analyzer Integration)
+    subgraph cluster_phase3 {
+        label="Phase 3: Style/Quality Refactoring (Full Analyzer with NASA POT10)";
+        fillcolor=lightgreen;
+        style=filled;
+
+        p3_audit [label="Run Style/Quality Audit:\n- NASA POT10 Compliance\n- Complexity Analysis\n- MECE Duplication\n- God Object Detection\n- Connascence Patterns"];
+        p3_analyzer_full [label="Analyzer (Full Policy):\n- NASA POT10 (≥92% compliance)\n- Complexity (≤10 threshold)\n- MECE (80% similarity)\n- God Objects (>20 methods)\n- Pattern Detection", fillcolor=lightgreen, style=dashed];
+        p3_nasa_check [label="NASA Compliance:\n- Rule 3: ≤60 LOC/function\n- Rule 4: ≥2 assertions\n- Rule 5: No recursion\n- Rule 6: ≤6 parameters\n- Rule 7: Fixed loop bounds", fillcolor=lightgreen, style=dotted];
+        p3_quality_metrics [label="Quality Metrics:\n- Avg Complexity\n- Max Complexity\n- Duplication %\n- God Objects Count\n- Overall Quality Score", fillcolor=lightgreen, style=dotted];
+        p3_decision [shape=diamond, label="NASA ≥92%?\nComplexity ≤10?\nDuplication <80%?\nNo God Objects?", fillcolor=yellow];
+        p3_spawn [label="Spawn Reviewer:\nRefactor for Quality\n(Prioritize violations)"];
+        p3_regression [label="⚠️ CRITICAL:\nRe-run Functionality\n(No Regressions)"];
+        p3_regression_check [shape=diamond, label="Tests Still\nPassing?", fillcolor=yellow];
+        p3_revert [shape=octagon, label="REVERT\nBroken Changes", fillcolor=red, fontcolor=white];
+        p3_verify [label="Re-run Style Audit\n(Verify Improvements)"];
+        p3_retry [shape=octagon, label="Retry Count < 3?", fillcolor=orange];
+
+        p3_audit -> p3_analyzer_full [style=dashed, label="uses"];
+        p3_analyzer_full -> p3_nasa_check;
+        p3_analyzer_full -> p3_quality_metrics;
+        p3_nasa_check -> p3_decision;
+        p3_quality_metrics -> p3_decision;
+        p3_decision -> p3_spawn [label="no\n(quality issues)", color=red];
+        p3_spawn -> p3_regression;
+        p3_regression -> p3_regression_check;
+        p3_regression_check -> p3_revert [label="no\n(BROKE TESTS!)", color=red];
+        p3_revert -> p3_retry;
+        p3_regression_check -> p3_verify [label="yes\n(tests pass)", color=green];
+        p3_verify -> p3_retry;
+        p3_retry -> p3_spawn [label="yes\n(retry)", style=dashed];
+    }
+
+    // Phase transitions
+    start -> p1_audit [lhead=cluster_phase1];
+    p1_decision -> p2_audit [lhead=cluster_phase2, label="yes\n(theater-free)", color=green];
+    p2_decision -> p3_audit [lhead=cluster_phase3, label="yes\n(all tests pass)", color=green];
+    p3_decision -> end [label="yes\n(production quality)", color=green];
+
+    // Escalations
+    escalate1 [shape=octagon, label="ESCALATE\nPhase 1 Failed\n(3 attempts)", fillcolor=red, fontcolor=white];
+    escalate2 [shape=octagon, label="ESCALATE\nPhase 2 Failed\n(3 attempts)", fillcolor=red, fontcolor=white];
+    escalate3 [shape=octagon, label="WARNING\nPhase 3 Incomplete\n(Code Functional)", fillcolor=orange];
+
+    p1_retry -> escalate1 [label="no\n(max retries)", color=red];
+    p2_retry -> escalate2 [label="no\n(max retries)", color=red];
+    p3_retry -> escalate3 [label="no\n(max retries)", color=orange];
+
+    escalate1 -> end [label="User Decision:\nAbort or Continue", style=dashed];
+    escalate2 -> end [label="User Decision:\nAbort or Continue", style=dashed];
+    escalate3 -> end [label="Accept Current\nQuality Level", style=dashed];
+
+    // External tool references
+    theater_skill [shape=folder, label="theater-detection-audit\n(detection logic)", fillcolor=lightsalmon];
+    func_skill [shape=folder, label="functionality-audit\n(validation logic)", fillcolor=lightsalmon];
+    style_skill [shape=folder, label="style-audit\n(quality logic)", fillcolor=lightsalmon];
+    analyzer [shape=cylinder, label="analyzer/\n(comprehensive analysis)", fillcolor=lightcoral];
+    audit_runner [shape=cylinder, label="audit_runner.py\n(audit execution)", fillcolor=lightcoral];
+    analyzer_integration [shape=cylinder, label="analyzer_integration.py\n(Phase 1-3 integration)", fillcolor=lightcoral];
+
+    // Analyzer engines
+    pattern_detector [shape=cylinder, label="PatternDetector\n(Phase 1)", fillcolor=lightcoral];
+    syntax_analyzer [shape=cylinder, label="SyntaxAnalyzer\n(Phase 2)", fillcolor=lightcoral];
+    compliance_validator [shape=cylinder, label="ComplianceValidator\n(Phase 3)", fillcolor=lightcoral];
+
+    // Analyzer constants
+    thresholds [shape=note, label="Thresholds:\n- Function ≤60 LOC\n- Complexity ≤10\n- Theater <60\n- Coverage ≥80%\n- NASA ≥92%", fillcolor=lightyellow];
+    nasa_rules [shape=note, label="NASA POT10:\n- Rule 3: Function length\n- Rule 4: Assertions\n- Rule 5: No recursion\n- Rule 6: Parameters ≤6\n- Rule 7: Fixed loops", fillcolor=lightyellow];
+
+    p1_audit -> theater_skill [style=dashed, label="uses"];
+    p2_audit -> func_skill [style=dashed, label="uses"];
+    p3_audit -> style_skill [style=dashed, label="uses"];
+    p3_audit -> analyzer [style=dashed, label="uses"];
+    p1_audit -> audit_runner [style=dashed, label="via"];
+    p2_audit -> audit_runner [style=dashed, label="via"];
+    p3_audit -> audit_runner [style=dashed, label="via"];
+
+    // Analyzer integration references
+    p1_analyzer_patterns -> analyzer_integration [style=dashed];
+    p2_analyzer_syntax -> analyzer_integration [style=dashed];
+    p3_analyzer_full -> analyzer_integration [style=dashed];
+
+    p1_analyzer_patterns -> pattern_detector [style=dashed, label="uses"];
+    p2_analyzer_syntax -> syntax_analyzer [style=dashed, label="uses"];
+    p3_analyzer_full -> compliance_validator [style=dashed, label="uses"];
+
+    p1_score -> thresholds [style=dotted, label="THEATER_THRESHOLD"];
+    p2_decision -> thresholds [style=dotted, label="COVERAGE_THRESHOLD"];
+    p3_nasa_check -> nasa_rules [style=dotted, label="NASA_RULES"];
+    p3_quality_metrics -> thresholds [style=dotted, label="COMPLEXITY_THRESHOLD"];
+
+    // Fix agents
+    subgraph cluster_agents {
+        label="Fix Agents (Drones)";
+        fillcolor=lightcoral;
+        style=filled;
+
+        agent_coder [shape=folder, label="Coder Drone\n(Theater elimination)"];
+        agent_debugger [shape=folder, label="Debugger Drone\n(Fix failing tests)"];
+        agent_tester [shape=folder, label="Tester Drone\n(Add test coverage)"];
+        agent_reviewer [shape=folder, label="Reviewer Drone\n(Quality refactoring)"];
+    }
+
+    p1_spawn -> agent_coder [style=dashed];
+    p2_spawn_debugger -> agent_debugger [style=dashed];
+    p2_spawn_tester -> agent_tester [style=dashed];
+    p3_spawn -> agent_reviewer [style=dashed];
+
+    labelloc="t";
+    label="Meta-Audit: Sequential 3-Phase Quality Orchestration with Analyzer Integration\n(Phase 1: PatternDetector | Phase 2: SyntaxAnalyzer | Phase 3: Full NASA POT10 Compliance)";
+    fontsize=16;
+    fontname="Arial Bold";
+}

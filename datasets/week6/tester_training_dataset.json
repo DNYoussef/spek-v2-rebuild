@@ -1,0 +1,229 @@
+{
+  "agent_id": "tester",
+  "total_examples": 9,
+  "train_examples": 7,
+  "val_examples": 2,
+  "examples": [
+    {
+      "input_task": {
+        "id": "train-tester-001",
+        "type": "test",
+        "description": "Create unit tests for authentication function",
+        "payload": {
+          "source_file": "src/auth/login.py",
+          "function_name": "authenticate_user",
+          "test_type": "unit"
+        },
+        "priority": 7
+      },
+      "expected_output": {
+        "test_file": "tests/unit/test_auth_login.py",
+        "test_count": 8,
+        "coverage_pct": 95.0,
+        "tests": [
+          {
+            "name": "test_valid_credentials",
+            "type": "happy_path"
+          },
+          {
+            "name": "test_invalid_password",
+            "type": "error_case"
+          },
+          {
+            "name": "test_invalid_email",
+            "type": "error_case"
+          },
+          {
+            "name": "test_missing_credentials",
+            "type": "edge_case"
+          },
+          {
+            "name": "test_sql_injection_attempt",
+            "type": "security"
+          },
+          {
+            "name": "test_concurrent_login",
+            "type": "edge_case"
+          },
+          {
+            "name": "test_account_locked",
+            "type": "error_case"
+          },
+          {
+            "name": "test_expired_session",
+            "type": "edge_case"
+          }
+        ]
+      },
+      "quality_label": 95.0,
+      "rationale": "Comprehensive coverage: happy path, errors, edge cases, security"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-002",
+        "type": "generate-tests",
+        "description": "Create integration tests for API endpoints",
+        "payload": {
+          "source_file": "src/api/auth_routes.py",
+          "test_type": "integration"
+        },
+        "priority": 6
+      },
+      "expected_output": {
+        "test_file": "tests/integration/test_auth_api.py",
+        "test_count": 5,
+        "coverage_pct": 85.0,
+        "tests": [
+          {
+            "name": "test_login_endpoint",
+            "type": "happy_path"
+          },
+          {
+            "name": "test_logout_endpoint",
+            "type": "happy_path"
+          },
+          {
+            "name": "test_invalid_token",
+            "type": "error_case"
+          },
+          {
+            "name": "test_rate_limiting",
+            "type": "edge_case"
+          },
+          {
+            "name": "test_cors_headers",
+            "type": "security"
+          }
+        ]
+      },
+      "quality_label": 85.0,
+      "rationale": "Good coverage but missing some edge cases like token expiry"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-003",
+        "type": "test",
+        "description": "Test generation 3",
+        "payload": {
+          "source_file": "src/module_3.py",
+          "test_type": "unit"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "test_file": "tests/test_module_3.py",
+        "test_count": 5
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-004",
+        "type": "test",
+        "description": "Test generation 4",
+        "payload": {
+          "source_file": "src/module_4.py",
+          "test_type": "unit"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "test_file": "tests/test_module_4.py",
+        "test_count": 5
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-005",
+        "type": "test",
+        "description": "Test generation 5",
+        "payload": {
+          "source_file": "src/module_5.py",
+          "test_type": "unit"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "test_file": "tests/test_module_5.py",
+        "test_count": 5
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-006",
+        "type": "test",
+        "description": "Test generation 6",
+        "payload": {
+          "source_file": "src/module_6.py",
+          "test_type": "unit"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "test_file": "tests/test_module_6.py",
+        "test_count": 5
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-007",
+        "type": "test",
+        "description": "Test generation 7",
+        "payload": {
+          "source_file": "src/module_7.py",
+          "test_type": "unit"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "test_file": "tests/test_module_7.py",
+        "test_count": 5
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-008",
+        "type": "test",
+        "description": "Test generation 8",
+        "payload": {
+          "source_file": "src/module_8.py",
+          "test_type": "unit"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "test_file": "tests/test_module_8.py",
+        "test_count": 5
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    },
+    {
+      "input_task": {
+        "id": "train-tester-009",
+        "type": "test",
+        "description": "Test generation 9",
+        "payload": {
+          "source_file": "src/module_9.py",
+          "test_type": "unit"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "test_file": "tests/test_module_9.py",
+        "test_count": 5
+      },
+      "quality_label": 70.0,
+      "rationale": "Synthetic example"
+    }
+  ]
+}

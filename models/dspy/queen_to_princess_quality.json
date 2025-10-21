@@ -1,0 +1,107 @@
+{
+  "decompose.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "task_description": "API authentication security audit",
+        "objective": "JWT validation, rate limiting, CSRF protection",
+        "reasoning": "The overall task is to perform a security audit of the API authentication mechanisms. This requires breaking down the audit into specific areas: JWT validation, rate limiting, and CSRF protection. Each of these areas needs to be tested to ensure they are implemented correctly and securely. The tests should cover both functional and security aspects. Finally, a NASA check is added to ensure code quality.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test JWT signature validation\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test JWT expiration handling\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test API rate limiting functionality\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test CSRF protection on sensitive endpoints\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"nasa-check\",\n    \"description\": \"Verify no hardcoded secrets in auth code\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 20\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Test payment processing module",
+        "objective": "90% coverage, all edge cases, error handling",
+        "reasoning": "To ensure the payment processing module functions correctly, we need to test various aspects including code coverage, edge cases, and error handling. This requires creating specific tests for each of these areas. We will use princess-quality for all testing tasks.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Achieve 90% code coverage for payment module\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 60\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test successful payment processing\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test payment processing with invalid card number\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test payment processing with expired card\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test payment processing with insufficient funds\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test payment processing with incorrect CVC\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test payment processing with declined transaction\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test payment processing timeout handling\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test payment processing with currency conversion\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test handling of payment gateway errors\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Third-party integration security audit",
+        "objective": "API key security, webhook validation, rate limits",
+        "reasoning": "To ensure the third-party integration is secure, we need to verify the security of API keys, validate incoming webhooks, and enforce rate limits. Each of these aspects requires specific tests and checks.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test API key storage security\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test webhook signature validation\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 40\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test third-party API rate limit handling\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 35\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"theater-detect\",\n    \"description\": \"Scan for insecure data transmission\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 25\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Validate database migration system",
+        "objective": "Zero data loss, rollback support",
+        "reasoning": "We need to verify the database migration system to ensure it meets the objectives of zero data loss and rollback support. This involves several testing and validation steps, covering both the migration process and the rollback process. We also need to confirm that database constraints are maintained after migration.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test database migration with a small dataset and verify data integrity\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test database migration with a large dataset and verify data integrity\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 60\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test database migration rollback with a small dataset and verify data integrity\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test database migration rollback with a large dataset and verify data integrity\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 60\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Validate database constraints after migration\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Performance test API endpoints",
+        "objective": "<200ms response time, 1000 RPS capacity",
+        "reasoning": "To achieve the objective of ensuring API endpoints meet performance requirements, I need to create subtasks that cover load testing, response time measurement, and capacity validation. The subtasks should be assigned to the Quality princess, as they are responsible for testing and validation.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Load test /endpoint1 with 1000 RPS for 5 minutes\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Measure average response time of /endpoint1 under load\",\n    \"dependencies\": [\n      \"Load test /endpoint1 with 1000 RPS for 5 minutes\"\n    ],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Load test /endpoint2 with 1000 RPS for 5 minutes\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Measure average response time of /endpoint2 under load\",\n    \"dependencies\": [\n      \"Load test /endpoint2 with 1000 RPS for 5 minutes\"\n    ],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Verify /endpoint1 sustains 1000 RPS without errors\",\n    \"dependencies\": [\n      \"Load test /endpoint1 with 1000 RPS for 5 minutes\"\n    ],\n    \"estimated_minutes\": 20\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Verify /endpoint2 sustains 1000 RPS without errors\",\n    \"dependencies\": [\n      \"Load test /endpoint2 with 1000 RPS for 5 minutes\"\n    ],\n    \"estimated_minutes\": 20\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Input sanitization security audit",
+        "objective": "XSS prevention, SQL escaping, command injection",
+        "reasoning": "To ensure the application is secure against common injection attacks, we need to test input sanitization for XSS, SQL injection, and command injection vulnerabilities. Each of these requires specific tests to validate that user-supplied input is properly sanitized before being used in the application.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test XSS prevention by injecting malicious scripts into input fields\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test SQL injection prevention by injecting SQL code into input fields\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Test command injection prevention by injecting shell commands into input fields\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"theater-detect\",\n    \"description\": \"Scan for blacklist-based sanitization\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 15\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Test file upload handling",
+        "objective": "Support 10MB files, virus scanning, type validation",
+        "reasoning": "To ensure robust file upload handling, we need to test various aspects including file size limits, security against malicious files, and validation of file types. Each of these aspects can be tested independently.",
+        "subtasks": "[{\"princess\": \"princess-quality\", \"task_type\": \"test\", \"description\": \"Test upload of 10MB file\", \"dependencies\": [], \"estimated_minutes\": 30}, {\"princess\": \"princess-quality\", \"task_type\": \"test\", \"description\": \"Test virus scanning on uploaded files\", \"dependencies\": [], \"estimated_minutes\": 45}, {\"princess\": \"princess-quality\", \"task_type\": \"test\", \"description\": \"Test file type validation\", \"dependencies\": [], \"estimated_minutes\": 30}]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Cache layer performance validation",
+        "objective": "95% hit rate, <10ms cache lookup",
+        "reasoning": "To validate the cache layer performance, we need to create tests that measure the cache hit rate and lookup time. We also need to analyze the code to ensure that the cache is being used effectively and that there are no potential bottlenecks.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Implement cache hit rate monitoring\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Measure average cache lookup time\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Simulate high load to test cache performance\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 60\n  },\n  {\n    \"princess\": \"princess-dev\",\n    \"task_type\": \"code-review\",\n    \"description\": \"Review cache key generation logic for efficiency\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-dev\",\n    \"task_type\": \"code-review\",\n    \"description\": \"Analyze cache eviction policy effectiveness\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Validate OAuth2 implementation quality",
+        "objective": "80% coverage, NASA compliant, zero mock code",
+        "reasoning": "To ensure the OAuth2 implementation meets the required quality standards, I need to create subtasks that cover code coverage, NASA compliance (function length), and the absence of mock code. The subtasks will focus on testing different aspects of the OAuth2 flow and verifying adherence to the specified constraints.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Measure code coverage of OAuth2 authorization flow\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Measure code coverage of OAuth2 token exchange flow\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Measure code coverage of OAuth2 refresh token flow\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Measure code coverage of OAuth2 revocation flow\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 45\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"nasa-check\",\n    \"description\": \"Verify all OAuth2 functions are NASA compliant (<= 60 LOC)\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 60\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"theater-detect\",\n    \"description\": \"Scan OAuth2 code for mock code patterns\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  }\n]"
+      },
+      {
+        "augmented": true,
+        "task_description": "Validate CI/CD pipeline integration",
+        "objective": "Auto-deploy on merge, rollback support",
+        "reasoning": "To ensure the CI/CD pipeline is functioning correctly, we need to verify that code merges trigger automatic deployments and that rollback mechanisms are in place and functional. This requires testing the deployment process, simulating failures, and validating the rollback procedure.",
+        "subtasks": "[\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Trigger CI/CD pipeline by merging a code change to the main branch.\",\n    \"dependencies\": [],\n    \"estimated_minutes\": 30\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Verify that the merged code change is automatically deployed to the staging environment.\",\n    \"dependencies\": [\n      \"Trigger CI/CD pipeline by merging a code change to the main branch.\"\n    ],\n    \"estimated_minutes\": 20\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Simulate a deployment failure by introducing a bug in the merged code.\",\n    \"dependencies\": [\n      \"Verify that the merged code change is automatically deployed to the staging environment.\"\n    ],\n    \"estimated_minutes\": 25\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Initiate a rollback to the previous working version.\",\n    \"dependencies\": [\n      \"Simulate a deployment failure by introducing a bug in the merged code.\"\n    ],\n    \"estimated_minutes\": 20\n  },\n  {\n    \"princess\": \"princess-quality\",\n    \"task_type\": \"test\",\n    \"description\": \"Verify that the rollback successfully reverts the application to the previous working state.\",\n    \"dependencies\": [\n      \"Initiate a rollback to the previous working version.\"\n    ],\n    \"estimated_minutes\": 25\n  },\n  {\n    \"princess\": \"princess-coordination\",\n    \"task_type\": \"documentation\",\n    \"description\": \"Document the rollback procedure for future reference.\",\n    \"dependencies\": [\n      \"Verify that the rollback successfully reverts the application to the previous working state.\"\n    ],\n    \"estimated_minutes\": 30\n  }\n]"
+      }
+    ],
+    "signature": {
+      "instructions": "Decompose complex task into princess-level subtasks.\n\nYou are an expert Queen agent coordinating Princess agents.\nYour role is to break down complex objectives into actionable\nprincess-level subtasks that can be executed by the three\nprincess hives: Development, Quality, and Coordination.\n\nEach subtask must have:\n- Clear princess assignment (princess-dev, princess-quality, princess-coordination)\n- Specific task type matching princess capabilities\n- Realistic time estimate (15-60 minutes)\n- Valid dependencies (no circular references)\n- Concrete, measurable description\n\nFollow the 26 prompt engineering principles:\n- Clarity: Use precise, unambiguous language\n- Reasoning: Show step-by-step decomposition logic\n- Constraints: Respect NASA Rule 10 (≤60 LOC functions)\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Task Description:",
+          "description": "Complex task requiring decomposition into subtasks"
+        },
+        {
+          "prefix": "Objective:",
+          "description": "Success criteria and constraints for the overall task"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Step-by-step decomposition reasoning explaining why each subtask is needed"
+        },
+        {
+          "prefix": "Subtasks:",
+          "description": "Ordered list of princess-level subtasks as JSON array. Each subtask must have: {'princess': str, 'task_type': str, 'description': str, 'dependencies': list[str], 'estimated_minutes': int}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

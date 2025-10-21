@@ -1,0 +1,141 @@
+Listing tests:
+  [chromium] › 3d-visualization-advanced.spec.ts:23:7 › Loop 1: Flower Garden 3D Visualization › should render flower garden canvas within 10s
+  [chromium] › 3d-visualization-advanced.spec.ts:39:7 › Loop 1: Flower Garden 3D Visualization › should initialize WebGL context successfully
+  [chromium] › 3d-visualization-advanced.spec.ts:57:7 › Loop 1: Flower Garden 3D Visualization › should render flowers with correct materials
+  [chromium] › 3d-visualization-advanced.spec.ts:90:7 › Loop 1: Flower Garden 3D Visualization › should maintain 30+ FPS during animation
+  [chromium] › 3d-visualization-advanced.spec.ts:129:7 › Loop 1: Flower Garden 3D Visualization › should support camera orbit controls
+  [chromium] › 3d-visualization-advanced.spec.ts:165:7 › Loop 2: Beehive Village 3D Visualization › should render beehive structures
+  [chromium] › 3d-visualization-advanced.spec.ts:182:7 › Loop 2: Beehive Village 3D Visualization › should animate bee agents moving between hives
+  [chromium] › 3d-visualization-advanced.spec.ts:219:7 › Loop 2: Beehive Village 3D Visualization › should handle window resize without breaking
+  [chromium] › 3d-visualization-advanced.spec.ts:259:7 › Loop 3: Honeycomb Layers 3D Visualization › should render honeycomb hexagonal grid
+  [chromium] › 3d-visualization-advanced.spec.ts:270:7 › Loop 3: Honeycomb Layers 3D Visualization › should display quality gate indicators in 3D space
+  [chromium] › 3d-visualization-advanced.spec.ts:289:7 › Loop 3: Honeycomb Layers 3D Visualization › should support clicking on honeycomb cells for details
+  [chromium] › 3d-visualization-advanced.spec.ts:313:7 › 3D Performance & Memory › should not leak memory after repeated navigation
+  [chromium] › 3d-visualization-advanced.spec.ts:354:7 › 3D Performance & Memory › should render all three loops without WebGL errors
+  [chromium] › 3d-visualization-advanced.spec.ts:382:7 › 3D Performance & Memory › should maintain stable FPS across all three loops
+  [chromium] › 3d-visualization-advanced.spec.ts:425:7 › 3D Accessibility Features › should provide alt text or ARIA labels for 3D visualizations
+  [chromium] › 3d-visualization-advanced.spec.ts:440:7 › 3D Accessibility Features › should provide keyboard alternatives to mouse controls
+  [chromium] › 3d-visualization-advanced.spec.ts:468:7 › 3D Accessibility Features › should offer reduced motion option for users with vestibular disorders
+  [chromium] › accessibility.spec.ts:16:7 › Accessibility - ARIA Labels › should have ARIA labels on all interactive elements
+  [chromium] › accessibility.spec.ts:70:7 › Accessibility - ARIA Labels › should have proper ARIA roles for custom components
+  [chromium] › accessibility.spec.ts:100:7 › Accessibility - Keyboard Navigation › should support Tab key navigation
+  [chromium] › accessibility.spec.ts:135:7 › Accessibility - Keyboard Navigation › should support Enter key for button activation
+  [chromium] › accessibility.spec.ts:160:7 › Accessibility - Keyboard Navigation › should support Escape key to close modals/dialogs
+  [chromium] › accessibility.spec.ts:187:7 › Accessibility - Focus Indicators › should show visible focus indicators on interactive elements
+  [chromium] › accessibility.spec.ts:224:7 › Accessibility - Color Contrast › should have sufficient color contrast for text
+  [chromium] › accessibility.spec.ts:255:7 › Accessibility - Semantic HTML › should have proper heading hierarchy (H1-H6)
+  [chromium] › accessibility.spec.ts:284:7 › Accessibility - Semantic HTML › should use semantic HTML5 elements
+  [chromium] › all-loops.spec.ts:15:7 › Loop 1 - Research & Pre-mortem › should load Loop 1 page successfully
+  [chromium] › all-loops.spec.ts:27:7 › Loop 1 - Research & Pre-mortem › should display 3 phase cards
+  [chromium] › all-loops.spec.ts:38:7 › Loop 1 - Research & Pre-mortem › should render 3D visualization if present
+  [chromium] › all-loops.spec.ts:54:7 › Loop 1 - Research & Pre-mortem › should capture Loop 1 screenshot with 3D support
+  [chromium] › all-loops.spec.ts:75:7 › Loop 2 - Execution Village › should load Loop 2 page successfully
+  [chromium] › all-loops.spec.ts:87:7 › Loop 2 - Execution Village › should display execution phases
+  [chromium] › all-loops.spec.ts:98:7 › Loop 2 - Execution Village › should render 3D village if present
+  [chromium] › all-loops.spec.ts:120:7 › Loop 2 - Execution Village › should display Princess Hive structure
+  [chromium] › all-loops.spec.ts:140:7 › Loop 2 - Execution Village › should capture Loop 2 screenshot with 3D village support
+  [chromium] › all-loops.spec.ts:160:7 › Loop 2 Audit - 3-Stage Pipeline › should load Loop 2 Audit page
+  [chromium] › all-loops.spec.ts:168:7 › Loop 2 Audit - 3-Stage Pipeline › should capture Loop 2 Audit screenshot
+  [chromium] › all-loops.spec.ts:179:7 › Loop 2 UI Review - Playwright Validation › should load Loop 2 UI Review page
+  [chromium] › all-loops.spec.ts:187:7 › Loop 2 UI Review - Playwright Validation › should capture Loop 2 UI Review screenshot
+  [chromium] › all-loops.spec.ts:203:7 › Loop 3 - Quality & Finalization › should load Loop 3 page successfully
+  [chromium] › all-loops.spec.ts:215:7 › Loop 3 - Quality & Finalization › should display quality gates
+  [chromium] › all-loops.spec.ts:226:7 › Loop 3 - Quality & Finalization › should render 3D concentric rings if present
+  [chromium] › all-loops.spec.ts:242:7 › Loop 3 - Quality & Finalization › should capture Loop 3 screenshot with 3D support
+  [chromium] › all-loops.spec.ts:258:7 › Dashboard - Overall Progress › should load dashboard page
+  [chromium] › all-loops.spec.ts:266:7 › Dashboard - Overall Progress › should capture dashboard screenshot
+  [chromium] › all-loops.spec.ts:282:7 › Project Pages › should load project select page
+  [chromium] › all-loops.spec.ts:290:7 › Project Pages › should load project new page
+  [chromium] › all-loops.spec.ts:298:7 › Project Pages › should capture project select screenshot
+  [chromium] › all-loops.spec.ts:307:7 › Project Pages › should capture project new screenshot
+  [chromium] › context-dna-integration.spec.ts:33:7 › Context DNA Integration › should persist agent context across execution
+  [chromium] › context-dna-integration.spec.ts:83:7 › Context DNA Integration › should share memories across agents
+  [chromium] › context-dna-integration.spec.ts:123:7 › Context DNA Integration › should retrieve artifact references efficiently
+  [chromium] › context-dna-integration.spec.ts:164:7 › Context DNA Integration › should maintain <200ms retrieval performance
+  [chromium] › context-dna-integration.spec.ts:220:7 › Context DNA Integration › should handle context inheritance in delegation chain
+  [chromium] › context-dna-integration.spec.ts:283:7 › Context DNA Integration › should enforce 30-day retention policy
+  [chromium] › context-dna-integration.spec.ts:333:7 › Context DNA Performance Benchmarks › should generate performance benchmark report
+  [chromium] › forms.spec.ts:17:7 › Form Interactions › should accept text input in Monarch Chat
+  [chromium] › forms.spec.ts:55:7 › Form Interactions › should filter projects in project selector
+  [chromium] › forms.spec.ts:84:7 › Form Interactions › should navigate through project creation wizard steps
+  [chromium] › forms.spec.ts:122:7 › Form Interactions › should show validation errors for invalid input
+  [chromium] › forms.spec.ts:154:7 › Form Interactions › should display success message after form submission
+  [chromium] › forms.spec.ts:200:7 › Form Interactions › should prevent double submission (disable button after click)
+  [chromium] › forms.spec.ts:224:7 › Settings Form › should load settings page with form controls
+  [chromium] › forms.spec.ts:255:7 › Settings Form › should save settings changes
+  [chromium] › homepage.spec.ts:16:7 › Homepage (Monarch Chat) › should load homepage successfully
+  [chromium] › homepage.spec.ts:37:7 › Homepage (Monarch Chat) › should have functional chat interface
+  [chromium] › homepage.spec.ts:49:7 › Homepage (Monarch Chat) › should navigate to Loop 1 page
+  [chromium] › homepage.spec.ts:62:7 › Homepage (Monarch Chat) › should capture homepage screenshot with retry
+  [chromium] › homepage.spec.ts:72:7 › Homepage (Monarch Chat) › should have responsive layout
+  [chromium] › loop-visualizers.spec.ts:9:7 › Loop 1 Visualizer › should render Loop 1 page
+  [chromium] › loop-visualizers.spec.ts:23:7 › Loop 1 Visualizer › should take Loop 1 screenshot
+  [chromium] › loop-visualizers.spec.ts:31:7 › Loop 2 Visualizer › should render Loop 2 page
+  [chromium] › loop-visualizers.spec.ts:45:7 › Loop 2 Visualizer › should take Loop 2 screenshot
+  [chromium] › loop-visualizers.spec.ts:53:7 › Loop 3 Visualizer › should render Loop 3 page
+  [chromium] › loop-visualizers.spec.ts:67:7 › Loop 3 Visualizer › should take Loop 3 screenshot
+  [chromium] › loop-visualizers.spec.ts:75:7 › Agent Status Monitor › should display agent status
+  [chromium] › navigation-advanced.spec.ts:17:7 › Advanced Keyboard Navigation › should support Tab key navigation through interactive elements
+  [chromium] › navigation-advanced.spec.ts:32:7 › Advanced Keyboard Navigation › should navigate using keyboard shortcuts (if implemented)
+  [chromium] › navigation-advanced.spec.ts:55:7 › Advanced Keyboard Navigation › should support escape key to close modals/dialogs
+  [chromium] › navigation-advanced.spec.ts:85:7 › Advanced Keyboard Navigation › should support arrow key navigation in lists/menus
+  [chromium] › navigation-advanced.spec.ts:114:7 › Hash Fragment Navigation › should navigate to hash fragments (#section)
+  [chromium] › navigation-advanced.spec.ts:130:7 › Hash Fragment Navigation › should update hash on scroll (if scroll spy implemented)
+  [chromium] › navigation-advanced.spec.ts:148:7 › Hash Fragment Navigation › should support smooth scrolling to hash targets
+  [chromium] › navigation-advanced.spec.ts:173:7 › Programmatic Navigation › should handle window.history.pushState navigation
+  [chromium] › navigation-advanced.spec.ts:189:7 › Programmatic Navigation › should handle window.location navigation
+  [chromium] › navigation-advanced.spec.ts:208:7 › Navigation Guards & Authentication › should redirect from protected routes if not authenticated
+  [chromium] › navigation-advanced.spec.ts:225:7 › Navigation Guards & Authentication › should preserve intended route after authentication
+  [chromium] › navigation-advanced.spec.ts:244:7 › External Link Handling › should open external links in new tab (target="_blank")
+  [chromium] › navigation-advanced.spec.ts:273:7 › External Link Handling › should not navigate away from app on external link click
+  [chromium] › navigation-advanced.spec.ts:292:7 › Navigation Error Handling › should handle navigation to deleted/moved pages gracefully
+  [chromium] › navigation-advanced.spec.ts:313:7 › Navigation Error Handling › should recover from navigation errors
+  [chromium] › navigation-advanced.spec.ts:330:7 › Navigation Performance › should prefetch link targets on hover (if implemented)
+  [chromium] › navigation-advanced.spec.ts:360:7 › Navigation Performance › should use client-side navigation for internal links
+  [chromium] › navigation.spec.ts:32:7 › Navigation & Routing › should navigate to all 9 pages successfully
+  [chromium] › navigation.spec.ts:46:7 › Navigation & Routing › should handle browser back/forward buttons correctly
+  [chromium] › navigation.spec.ts:72:7 › Navigation & Routing › should support deep linking to specific routes
+  [chromium] › navigation.spec.ts:86:7 › Navigation & Routing › should display 404 page for invalid routes
+  [chromium] › navigation.spec.ts:107:7 › Navigation & Routing › should preserve URL parameters across navigation
+  [chromium] › navigation.spec.ts:127:7 › Navigation & Routing › should load all pages within timeout (60s)
+  [chromium] › navigation.spec.ts:149:7 › Navigation & Routing › should maintain scroll position on back navigation
+  [chromium] › navigation.spec.ts:174:7 › Navigation Performance › should measure and log time to first byte (TTFB)
+  [chromium] › performance.spec.ts:15:7 › Performance - Page Load Time › should load homepage in under 3 seconds
+  [chromium] › performance.spec.ts:36:7 › Performance - Page Load Time › should load all pages in under 3 seconds
+  [chromium] › performance.spec.ts:74:7 › Performance - Page Load Time › should measure Core Web Vitals
+  [chromium] › performance.spec.ts:120:7 › Performance - 3D Rendering › should maintain 60 FPS on desktop for 3D scenes
+  [chromium] › performance.spec.ts:172:7 › Performance - 3D Rendering › should not leak memory during 3D rendering
+  [chromium] › performance.spec.ts:215:7 › Performance - 3D Rendering › should handle window resize without performance degradation
+  [chromium] › performance.spec.ts:253:7 › Performance - Bundle Size › should report bundle size (informational)
+  [chromium] › websocket-advanced.spec.ts:17:7 › WebSocket Connection Management › should establish WebSocket connection within 5s
+  [chromium] › websocket-advanced.spec.ts:39:7 › WebSocket Connection Management › should automatically reconnect after connection loss
+  [chromium] › websocket-advanced.spec.ts:77:7 › WebSocket Connection Management › should handle connection timeout gracefully
+  [chromium] › websocket-advanced.spec.ts:107:7 › WebSocket Message Handling › should receive and display real-time agent status updates
+  [chromium] › websocket-advanced.spec.ts:143:7 › WebSocket Message Handling › should send and receive chat messages through WebSocket
+  [chromium] › websocket-advanced.spec.ts:187:7 › WebSocket Message Handling › should handle large message payloads without errors
+  [chromium] › websocket-advanced.spec.ts:227:7 › WebSocket Performance & Reliability › should maintain stable connection during high-frequency updates
+  [chromium] › websocket-advanced.spec.ts:259:7 › WebSocket Performance & Reliability › should recover from server restart
+  [chromium] › websocket-advanced.spec.ts:288:7 › WebSocket Performance & Reliability › should measure WebSocket latency (<100ms target)
+  [chromium] › websocket.spec.ts:15:7 › WebSocket Integration › should establish WebSocket connection on page load
+  [chromium] › websocket.spec.ts:48:7 › WebSocket Integration › should receive agent thought messages
+  [chromium] › websocket.spec.ts:95:7 › WebSocket Integration › should reconnect after WebSocket disconnect
+  [chromium] › websocket.spec.ts:142:7 › WebSocket Integration › should synchronize state after reconnection
+  [chromium] › websocket.spec.ts:181:7 › WebSocket Error Handling › should handle WebSocket connection failure gracefully
+  [chromium] › week17-bee-theme.spec.ts:20:7 › Week 17 Bee Theme - Homepage › homepage loads successfully
+  [chromium] › week17-bee-theme.spec.ts:34:7 › Week 17 Bee Theme - Homepage › homepage displays Monarch chat interface
+  [chromium] › week17-bee-theme.spec.ts:51:7 › Week 17 Bee Theme - Loop 1 Flower Garden › loop 1 page loads and renders canvas
+  [chromium] › week17-bee-theme.spec.ts:68:7 › Week 17 Bee Theme - Loop 1 Flower Garden › loop 1 canvas renders Three.js scene
+  [chromium] › week17-bee-theme.spec.ts:95:7 › Week 17 Bee Theme - Loop 1 Flower Garden › loop 1 OrbitControls are functional
+  [chromium] › week17-bee-theme.spec.ts:135:7 › Week 17 Bee Theme - Loop 2 Beehive Village › loop 2 page loads and renders canvas
+  [chromium] › week17-bee-theme.spec.ts:150:7 › Week 17 Bee Theme - Loop 2 Beehive Village › loop 2 canvas renders Three.js scene
+  [chromium] › week17-bee-theme.spec.ts:174:7 › Week 17 Bee Theme - Loop 2 Beehive Village › loop 2 OrbitControls are functional
+  [chromium] › week17-bee-theme.spec.ts:208:7 › Week 17 Bee Theme - Loop 3 Honeycomb Layers › loop 3 page loads and renders canvas
+  [chromium] › week17-bee-theme.spec.ts:223:7 › Week 17 Bee Theme - Loop 3 Honeycomb Layers › loop 3 canvas renders Three.js scene
+  [chromium] › week17-bee-theme.spec.ts:247:7 › Week 17 Bee Theme - Loop 3 Honeycomb Layers › loop 3 OrbitControls are functional
+  [chromium] › week17-bee-theme.spec.ts:281:7 › Week 17 Bee Theme - Navigation › direct navigation to loop 1 works
+  [chromium] › week17-bee-theme.spec.ts:292:7 › Week 17 Bee Theme - Navigation › direct navigation to loop 2 works
+  [chromium] › week17-bee-theme.spec.ts:302:7 › Week 17 Bee Theme - Navigation › direct navigation to loop 3 works
+  [chromium] › week17-bee-theme.spec.ts:312:7 › Week 17 Bee Theme - Navigation › back button navigation from loop to homepage works
+  [chromium] › week17-bee-theme.spec.ts:336:7 › Week 17 Bee Theme - Performance › all pages load within acceptable time
+  [chromium] › week17-bee-theme.spec.ts:368:7 › Week 17 Bee Theme - Performance › canvas rendering does not freeze browser
+Total: 139 tests in 13 files

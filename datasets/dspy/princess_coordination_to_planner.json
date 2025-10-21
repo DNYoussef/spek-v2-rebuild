@@ -1,0 +1,1738 @@
+{
+  "communication_path": "princess-coordination→planner",
+  "description": "Princess-Coordination delegates task planning to Planner drone",
+  "examples": [
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement OAuth2 authentication",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$500"
+        },
+        "requirements": {
+          "security": "high",
+          "scalability": "medium",
+          "documentation": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan OAuth2 authentication implementation",
+        "specifications": {
+          "deliverables": ["OAuth2 server", "Client integration", "Security audit", "Documentation"],
+          "phases": [
+            {"name": "research", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "5 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]},
+            {"name": "document", "duration": "2 days", "agents": ["docs-writer"]}
+          ],
+          "resource_allocation": {
+            "researcher": "16h",
+            "architect": "24h",
+            "coder": "40h",
+            "tester": "16h",
+            "docs-writer": "16h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→[test,document]"],
+          "risk_factors": ["OAuth2 complexity", "security vulnerabilities", "integration challenges"]
+        },
+        "dependencies": ["requirements finalized", "team available"],
+        "estimated_minutes": 45,
+        "quality_gates": ["plan reviewed", "risks mitigated", "timeline realistic"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add real-time notifications",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$300"
+        },
+        "requirements": {
+          "latency": "<1s",
+          "reliability": "99.9%",
+          "scalability": "10k concurrent users"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan real-time notification system",
+        "specifications": {
+          "deliverables": ["WebSocket server", "Client library", "Load testing", "Monitoring"],
+          "phases": [
+            {"name": "research", "duration": "1 day", "agents": ["researcher"]},
+            {"name": "implement", "duration": "3 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]},
+            {"name": "deploy", "duration": "1 day", "agents": ["devops"]}
+          ],
+          "resource_allocation": {
+            "researcher": "8h",
+            "coder": "24h",
+            "tester": "16h",
+            "devops": "8h"
+          },
+          "dependencies": ["research→implement", "implement→test", "test→deploy"],
+          "risk_factors": ["WebSocket scaling", "connection management", "message delivery guarantees"]
+        },
+        "dependencies": ["infrastructure ready", "requirements approved"],
+        "estimated_minutes": 30,
+        "quality_gates": ["load testing passed", "monitoring configured", "deployment successful"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Refactor legacy authentication module",
+        "constraints": {
+          "deadline": "3 weeks",
+          "team_size": 4,
+          "budget": "$800"
+        },
+        "requirements": {
+          "backward_compatibility": "required",
+          "zero_downtime": "required",
+          "test_coverage": ">=90%"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan legacy authentication refactoring",
+        "specifications": {
+          "deliverables": ["Refactored module", "Migration guide", "Test suite", "Rollback plan"],
+          "phases": [
+            {"name": "audit", "duration": "3 days", "agents": ["reviewer"]},
+            {"name": "design", "duration": "4 days", "agents": ["architect"]},
+            {"name": "refactor", "duration": "8 days", "agents": ["coder"]},
+            {"name": "test", "duration": "4 days", "agents": ["tester"]},
+            {"name": "migrate", "duration": "2 days", "agents": ["devops"]}
+          ],
+          "resource_allocation": {
+            "reviewer": "24h",
+            "architect": "32h",
+            "coder": "64h",
+            "tester": "32h",
+            "devops": "16h"
+          },
+          "dependencies": ["audit→design", "design→refactor", "refactor→test", "test→migrate"],
+          "risk_factors": ["breaking changes", "data migration", "rollback complexity"]
+        },
+        "dependencies": ["audit complete", "stakeholders aligned"],
+        "estimated_minutes": 45,
+        "quality_gates": ["backward compatibility verified", "migration tested", "rollback validated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement caching layer",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "cache_hit_ratio": ">80%",
+          "invalidation": "automatic",
+          "distributed": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan distributed caching implementation",
+        "specifications": {
+          "deliverables": ["Cache service", "Invalidation logic", "Monitoring", "Documentation"],
+          "phases": [
+            {"name": "research", "duration": "1 day", "agents": ["researcher"]},
+            {"name": "design", "duration": "2 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "3 days", "agents": ["coder"]},
+            {"name": "benchmark", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "8h",
+            "architect": "16h",
+            "coder": "24h",
+            "tester": "8h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→benchmark"],
+          "risk_factors": ["cache stampede", "invalidation bugs", "memory limits"]
+        },
+        "dependencies": ["cache strategy selected", "infrastructure provisioned"],
+        "estimated_minutes": 25,
+        "quality_gates": ["hit ratio achieved", "invalidation working", "performance improved"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build CI/CD pipeline",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$600"
+        },
+        "requirements": {
+          "automated_testing": "required",
+          "deployment": "blue-green",
+          "rollback": "automatic"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan CI/CD pipeline development",
+        "specifications": {
+          "deliverables": ["Build pipeline", "Test automation", "Deployment scripts", "Monitoring"],
+          "phases": [
+            {"name": "design", "duration": "3 days", "agents": ["architect", "devops"]},
+            {"name": "build", "duration": "5 days", "agents": ["devops"]},
+            {"name": "test", "duration": "3 days", "agents": ["tester"]},
+            {"name": "deploy", "duration": "3 days", "agents": ["devops"]}
+          ],
+          "resource_allocation": {
+            "architect": "16h",
+            "devops": "56h",
+            "tester": "24h"
+          },
+          "dependencies": ["design→build", "build→test", "test→deploy"],
+          "risk_factors": ["pipeline complexity", "deployment failures", "rollback issues"]
+        },
+        "dependencies": ["infrastructure ready", "team trained"],
+        "estimated_minutes": 40,
+        "quality_gates": ["all tests automated", "deployment verified", "rollback tested"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Migrate to microservices",
+        "constraints": {
+          "deadline": "8 weeks",
+          "team_size": 6,
+          "budget": "$3000"
+        },
+        "requirements": {
+          "service_isolation": "required",
+          "data_consistency": "eventual",
+          "monitoring": "comprehensive"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan microservices migration",
+        "specifications": {
+          "deliverables": ["Service boundaries", "Migration strategy", "Infrastructure", "Monitoring"],
+          "phases": [
+            {"name": "analyze", "duration": "1 week", "agents": ["researcher", "architect"]},
+            {"name": "design", "duration": "2 weeks", "agents": ["architect"]},
+            {"name": "implement", "duration": "3 weeks", "agents": ["coder", "integration-engineer"]},
+            {"name": "test", "duration": "1 week", "agents": ["tester"]},
+            {"name": "migrate", "duration": "1 week", "agents": ["devops"]}
+          ],
+          "resource_allocation": {
+            "researcher": "40h",
+            "architect": "120h",
+            "coder": "160h",
+            "integration-engineer": "80h",
+            "tester": "40h",
+            "devops": "40h"
+          },
+          "dependencies": ["analyze→design", "design→implement", "implement→test", "test→migrate"],
+          "risk_factors": ["data migration", "service dependencies", "performance degradation"]
+        },
+        "dependencies": ["stakeholders aligned", "infrastructure budget approved"],
+        "estimated_minutes": 45,
+        "quality_gates": ["service boundaries clear", "migration plan validated", "rollback tested"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add GraphQL API",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$700"
+        },
+        "requirements": {
+          "schema_design": "required",
+          "query_optimization": "required",
+          "documentation": "auto-generated"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan GraphQL API development",
+        "specifications": {
+          "deliverables": ["GraphQL schema", "Resolvers", "Query optimization", "Documentation"],
+          "phases": [
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "6 days", "agents": ["coder"]},
+            {"name": "optimize", "duration": "2 days", "agents": ["coder"]},
+            {"name": "test", "duration": "3 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "24h",
+            "coder": "64h",
+            "tester": "24h"
+          },
+          "dependencies": ["design→implement", "implement→optimize", "optimize→test"],
+          "risk_factors": ["N+1 queries", "schema evolution", "caching complexity"]
+        },
+        "dependencies": ["schema approved", "REST API documented"],
+        "estimated_minutes": 35,
+        "quality_gates": ["schema validated", "queries optimized", "documentation generated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement rate limiting",
+        "constraints": {
+          "deadline": "4 days",
+          "team_size": 2,
+          "budget": "$250"
+        },
+        "requirements": {
+          "algorithm": "token bucket",
+          "distributed": "required",
+          "user_experience": "graceful degradation"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan rate limiting implementation",
+        "specifications": {
+          "deliverables": ["Rate limiter", "User feedback", "Monitoring", "Configuration"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "2 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "16h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["distributed synchronization", "clock skew", "false positives"]
+        },
+        "dependencies": ["rate limits defined", "Redis available"],
+        "estimated_minutes": 20,
+        "quality_gates": ["limits enforced", "user experience acceptable", "monitoring working"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build admin dashboard",
+        "constraints": {
+          "deadline": "3 weeks",
+          "team_size": 4,
+          "budget": "$1000"
+        },
+        "requirements": {
+          "real_time_updates": "required",
+          "role_based_access": "required",
+          "responsive": "mobile-friendly"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan admin dashboard development",
+        "specifications": {
+          "deliverables": ["Dashboard UI", "Backend API", "Authentication", "Documentation"],
+          "phases": [
+            {"name": "design", "duration": "4 days", "agents": ["architect"]},
+            {"name": "frontend", "duration": "8 days", "agents": ["coder"]},
+            {"name": "backend", "duration": "6 days", "agents": ["coder"]},
+            {"name": "integrate", "duration": "3 days", "agents": ["integration-engineer"]},
+            {"name": "test", "duration": "3 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "32h",
+            "coder": "112h",
+            "integration-engineer": "24h",
+            "tester": "24h"
+          },
+          "dependencies": ["design→[frontend,backend]", "[frontend,backend]→integrate", "integrate→test"],
+          "risk_factors": ["real-time sync", "permission complexity", "performance"]
+        },
+        "dependencies": ["design approved", "API documented"],
+        "estimated_minutes": 45,
+        "quality_gates": ["UI/UX approved", "permissions working", "responsive validated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Optimize database queries",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "performance_gain": "50%",
+          "no_schema_changes": "preferred",
+          "monitoring": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan database query optimization",
+        "specifications": {
+          "deliverables": ["Optimized queries", "Indexes", "Monitoring", "Documentation"],
+          "phases": [
+            {"name": "analyze", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "optimize", "duration": "3 days", "agents": ["coder"]},
+            {"name": "benchmark", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "16h",
+            "coder": "24h",
+            "tester": "16h"
+          },
+          "dependencies": ["analyze→optimize", "optimize→benchmark"],
+          "risk_factors": ["query regression", "index bloat", "locking issues"]
+        },
+        "dependencies": ["slow queries identified", "baseline metrics collected"],
+        "estimated_minutes": 25,
+        "quality_gates": ["50% improvement achieved", "no regressions", "monitoring configured"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add multi-language support",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$600"
+        },
+        "requirements": {
+          "languages": ["en", "es", "fr", "de"],
+          "rtl_support": "future",
+          "dynamic_switching": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan internationalization implementation",
+        "specifications": {
+          "deliverables": ["i18n framework", "Translation files", "Language switcher", "Documentation"],
+          "phases": [
+            {"name": "research", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "2 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "6 days", "agents": ["coder"]},
+            {"name": "translate", "duration": "3 days", "agents": ["docs-writer"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "16h",
+            "architect": "16h",
+            "coder": "48h",
+            "docs-writer": "24h",
+            "tester": "8h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→translate", "translate→test"],
+          "risk_factors": ["translation quality", "context issues", "pluralization complexity"]
+        },
+        "dependencies": ["i18n library selected", "translation service available"],
+        "estimated_minutes": 35,
+        "quality_gates": ["all strings localized", "switching works", "fallbacks configured"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement webhook system",
+        "constraints": {
+          "deadline": "10 days",
+          "team_size": 3,
+          "budget": "$500"
+        },
+        "requirements": {
+          "delivery_guarantee": "at-least-once",
+          "retry_logic": "exponential backoff",
+          "security": "HMAC signatures"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan webhook system development",
+        "specifications": {
+          "deliverables": ["Webhook dispatcher", "Retry logic", "Security", "Documentation"],
+          "phases": [
+            {"name": "design", "duration": "2 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "5 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]},
+            {"name": "document", "duration": "1 day", "agents": ["docs-writer"]}
+          ],
+          "resource_allocation": {
+            "architect": "16h",
+            "coder": "40h",
+            "tester": "16h",
+            "docs-writer": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test", "test→document"],
+          "risk_factors": ["delivery failures", "retry storms", "security vulnerabilities"]
+        },
+        "dependencies": ["event schema defined", "queue system ready"],
+        "estimated_minutes": 30,
+        "quality_gates": ["delivery reliable", "retries working", "signatures validated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build search functionality",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$700"
+        },
+        "requirements": {
+          "latency": "<200ms",
+          "relevance": "tunable",
+          "fuzzy_matching": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan search functionality implementation",
+        "specifications": {
+          "deliverables": ["Search service", "Indexing", "Ranking algorithm", "UI integration"],
+          "phases": [
+            {"name": "research", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "6 days", "agents": ["coder"]},
+            {"name": "tune", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "32h",
+            "architect": "24h",
+            "coder": "48h",
+            "tester": "8h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→tune", "tune→test"],
+          "risk_factors": ["indexing delay", "relevance tuning", "scaling issues"]
+        },
+        "dependencies": ["search engine selected", "data indexed"],
+        "estimated_minutes": 40,
+        "quality_gates": ["latency target met", "relevance acceptable", "fuzzy search working"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add file upload system",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "max_file_size": "100MB",
+          "virus_scanning": "required",
+          "cloud_storage": "S3"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan file upload system",
+        "specifications": {
+          "deliverables": ["Upload API", "Storage integration", "Virus scanning", "Progress tracking"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "32h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["large file handling", "virus scan delays", "storage costs"]
+        },
+        "dependencies": ["S3 bucket configured", "virus scanner selected"],
+        "estimated_minutes": 25,
+        "quality_gates": ["upload reliable", "scanning working", "progress tracking accurate"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement email notifications",
+        "constraints": {
+          "deadline": "5 days",
+          "team_size": 2,
+          "budget": "$300"
+        },
+        "requirements": {
+          "transactional": "required",
+          "templates": "customizable",
+          "unsubscribe": "one-click"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan email notification system",
+        "specifications": {
+          "deliverables": ["Email service", "Templates", "Unsubscribe system", "Tracking"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "3 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "24h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["deliverability", "spam filters", "template rendering"]
+        },
+        "dependencies": ["email provider selected", "templates designed"],
+        "estimated_minutes": 20,
+        "quality_gates": ["delivery reliable", "templates responsive", "unsubscribe working"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build analytics dashboard",
+        "constraints": {
+          "deadline": "3 weeks",
+          "team_size": 4,
+          "budget": "$900"
+        },
+        "requirements": {
+          "real_time": "required",
+          "customizable": "required",
+          "export": "CSV, PDF"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan analytics dashboard development",
+        "specifications": {
+          "deliverables": ["Dashboard UI", "Data pipeline", "Visualization", "Export functionality"],
+          "phases": [
+            {"name": "design", "duration": "4 days", "agents": ["architect"]},
+            {"name": "data_pipeline", "duration": "6 days", "agents": ["coder"]},
+            {"name": "ui", "duration": "8 days", "agents": ["coder"]},
+            {"name": "integrate", "duration": "3 days", "agents": ["integration-engineer"]},
+            {"name": "test", "duration": "3 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "32h",
+            "coder": "112h",
+            "integration-engineer": "24h",
+            "tester": "24h"
+          },
+          "dependencies": ["design→[data_pipeline,ui]", "[data_pipeline,ui]→integrate", "integrate→test"],
+          "risk_factors": ["data freshness", "visualization performance", "export generation time"]
+        },
+        "dependencies": ["data sources identified", "metrics defined"],
+        "estimated_minutes": 45,
+        "quality_gates": ["real-time updates working", "customization functional", "exports accurate"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add pagination to API",
+        "constraints": {
+          "deadline": "3 days",
+          "team_size": 2,
+          "budget": "$200"
+        },
+        "requirements": {
+          "strategy": "cursor-based",
+          "backward_compatible": "required",
+          "documentation": "OpenAPI"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan API pagination implementation",
+        "specifications": {
+          "deliverables": ["Pagination logic", "API updates", "Documentation", "Tests"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "1 day", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "8h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["backward compatibility", "cursor encoding", "performance"]
+        },
+        "dependencies": ["pagination strategy approved", "API versioning decided"],
+        "estimated_minutes": 15,
+        "quality_gates": ["backward compatible", "performance acceptable", "documentation updated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement feature flags",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$600"
+        },
+        "requirements": {
+          "targeting": "user-based",
+          "rollout": "percentage-based",
+          "audit_trail": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan feature flag system",
+        "specifications": {
+          "deliverables": ["Flag service", "Targeting engine", "Admin UI", "SDK"],
+          "phases": [
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "backend", "duration": "5 days", "agents": ["coder"]},
+            {"name": "ui", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "24h",
+            "coder": "72h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→[backend,ui]", "[backend,ui]→test"],
+          "risk_factors": ["flag consistency", "targeting complexity", "performance overhead"]
+        },
+        "dependencies": ["flag strategy defined", "rollout plan approved"],
+        "estimated_minutes": 35,
+        "quality_gates": ["targeting accurate", "rollout working", "audit trail complete"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Optimize frontend bundle",
+        "constraints": {
+          "deadline": "4 days",
+          "team_size": 2,
+          "budget": "$250"
+        },
+        "requirements": {
+          "size_reduction": "30%",
+          "lazy_loading": "required",
+          "no_functionality_loss": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan frontend bundle optimization",
+        "specifications": {
+          "deliverables": ["Optimized bundle", "Lazy loading", "Code splitting", "Performance report"],
+          "phases": [
+            {"name": "audit", "duration": "1 day", "agents": ["reviewer"]},
+            {"name": "optimize", "duration": "2 days", "agents": ["coder"]},
+            {"name": "verify", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "reviewer": "8h",
+            "coder": "16h",
+            "tester": "8h"
+          },
+          "dependencies": ["audit→optimize", "optimize→verify"],
+          "risk_factors": ["breaking changes", "lazy load delays", "SEO impact"]
+        },
+        "dependencies": ["baseline established", "optimization targets set"],
+        "estimated_minutes": 20,
+        "quality_gates": ["30% reduction achieved", "functionality intact", "load time improved"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add A/B testing framework",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$700"
+        },
+        "requirements": {
+          "statistical_significance": "required",
+          "segmentation": "user-based",
+          "reporting": "real-time"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan A/B testing framework",
+        "specifications": {
+          "deliverables": ["Testing framework", "Assignment logic", "Analytics integration", "Reporting"],
+          "phases": [
+            {"name": "research", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "6 days", "agents": ["coder"]},
+            {"name": "test", "duration": "3 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "16h",
+            "architect": "24h",
+            "coder": "48h",
+            "tester": "24h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→test"],
+          "risk_factors": ["sample size", "statistical validity", "user experience"]
+        },
+        "dependencies": ["statistical methods defined", "analytics ready"],
+        "estimated_minutes": 40,
+        "quality_gates": ["assignment consistent", "statistics valid", "reporting accurate"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build data export system",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "formats": ["CSV", "JSON", "Excel"],
+          "large_datasets": ">1M rows",
+          "async_processing": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan data export system",
+        "specifications": {
+          "deliverables": ["Export API", "Format converters", "Async processing", "Download UI"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "32h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["memory limits", "generation time", "format accuracy"]
+        },
+        "dependencies": ["export requirements defined", "queue system ready"],
+        "estimated_minutes": 25,
+        "quality_gates": ["all formats working", "large datasets handled", "async processing reliable"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement audit logging",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$350"
+        },
+        "requirements": {
+          "immutability": "required",
+          "compliance": "SOC2",
+          "retention": "7 years"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan audit logging system",
+        "specifications": {
+          "deliverables": ["Audit logger", "Storage", "Query interface", "Retention policy"],
+          "phases": [
+            {"name": "design", "duration": "2 days", "agents": ["architect", "security-manager"]},
+            {"name": "implement", "duration": "3 days", "agents": ["coder"]},
+            {"name": "validate", "duration": "2 days", "agents": ["security-manager"]}
+          ],
+          "resource_allocation": {
+            "architect": "12h",
+            "security-manager": "12h",
+            "coder": "24h"
+          },
+          "dependencies": ["design→implement", "implement→validate"],
+          "risk_factors": ["storage costs", "query performance", "immutability guarantees"]
+        },
+        "dependencies": ["compliance requirements defined", "storage solution selected"],
+        "estimated_minutes": 30,
+        "quality_gates": ["immutability verified", "compliance met", "queries performant"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add SSO integration",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$700"
+        },
+        "requirements": {
+          "protocol": "SAML 2.0",
+          "providers": ["Okta", "Azure AD"],
+          "just_in_time_provisioning": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan SSO integration",
+        "specifications": {
+          "deliverables": ["SAML integration", "Provider configs", "JIT provisioning", "Documentation"],
+          "phases": [
+            {"name": "research", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "6 days", "agents": ["coder"]},
+            {"name": "test", "duration": "3 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "16h",
+            "architect": "24h",
+            "coder": "48h",
+            "tester": "24h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→test"],
+          "risk_factors": ["SAML complexity", "provider variations", "account linking"]
+        },
+        "dependencies": ["SAML library selected", "test IdP configured"],
+        "estimated_minutes": 40,
+        "quality_gates": ["both providers working", "JIT provisioning tested", "security validated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build comment system",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "nested_replies": "3 levels",
+          "real_time_updates": "required",
+          "moderation": "basic"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan comment system implementation",
+        "specifications": {
+          "deliverables": ["Comment API", "UI components", "Real-time sync", "Moderation tools"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "32h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["nested structure complexity", "real-time sync", "spam"]
+        },
+        "dependencies": ["data model approved", "WebSocket ready"],
+        "estimated_minutes": 25,
+        "quality_gates": ["nesting working", "real-time updates reliable", "moderation functional"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement queue system",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$450"
+        },
+        "requirements": {
+          "reliability": "at-least-once",
+          "priority_queues": "required",
+          "dead_letter_queue": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan queue system implementation",
+        "specifications": {
+          "deliverables": ["Queue service", "Worker framework", "Monitoring", "Admin UI"],
+          "phases": [
+            {"name": "design", "duration": "2 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "16h",
+            "coder": "32h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["message loss", "ordering guarantees", "backpressure"]
+        },
+        "dependencies": ["queue technology selected", "infrastructure provisioned"],
+        "estimated_minutes": 30,
+        "quality_gates": ["reliability tested", "priority working", "DLQ functional"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add monitoring and alerting",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 3,
+          "budget": "$500"
+        },
+        "requirements": {
+          "metrics": "Prometheus",
+          "alerting": "PagerDuty",
+          "dashboards": "Grafana"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan monitoring and alerting system",
+        "specifications": {
+          "deliverables": ["Metrics collection", "Alert rules", "Dashboards", "Runbooks"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect", "devops"]},
+            {"name": "implement", "duration": "4 days", "agents": ["devops"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "devops": "40h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["alert fatigue", "metric cardinality", "dashboard complexity"]
+        },
+        "dependencies": ["infrastructure ready", "alert thresholds defined"],
+        "estimated_minutes": 30,
+        "quality_gates": ["metrics collecting", "alerts firing", "dashboards useful"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build user management system",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$700"
+        },
+        "requirements": {
+          "role_based_access": "required",
+          "team_hierarchy": "required",
+          "invitation_system": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan user management system",
+        "specifications": {
+          "deliverables": ["User API", "RBAC system", "Team management", "Invitation flow"],
+          "phases": [
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "backend", "duration": "6 days", "agents": ["coder"]},
+            {"name": "ui", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "24h",
+            "coder": "80h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→[backend,ui]", "[backend,ui]→test"],
+          "risk_factors": ["permission complexity", "hierarchy management", "invitation security"]
+        },
+        "dependencies": ["RBAC model defined", "team structure approved"],
+        "estimated_minutes": 40,
+        "quality_gates": ["permissions working", "hierarchy functional", "invitations secure"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement API versioning",
+        "constraints": {
+          "deadline": "5 days",
+          "team_size": 2,
+          "budget": "$300"
+        },
+        "requirements": {
+          "strategy": "URL-based",
+          "backward_compatibility": "2 versions",
+          "deprecation_notices": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan API versioning implementation",
+        "specifications": {
+          "deliverables": ["Versioning system", "Migration guide", "Deprecation notices", "Documentation"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "3 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "24h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["backward compatibility", "routing complexity", "documentation overhead"]
+        },
+        "dependencies": ["versioning strategy approved", "migration path defined"],
+        "estimated_minutes": 20,
+        "quality_gates": ["both versions working", "migration guide complete", "deprecation notices clear"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add payment processing",
+        "constraints": {
+          "deadline": "3 weeks",
+          "team_size": 4,
+          "budget": "$1200"
+        },
+        "requirements": {
+          "provider": "Stripe",
+          "subscriptions": "required",
+          "invoicing": "required",
+          "pci_compliance": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan payment processing integration",
+        "specifications": {
+          "deliverables": ["Stripe integration", "Subscription management", "Invoicing", "Compliance docs"],
+          "phases": [
+            {"name": "research", "duration": "2 days", "agents": ["researcher", "security-manager"]},
+            {"name": "design", "duration": "4 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "10 days", "agents": ["coder"]},
+            {"name": "test", "duration": "4 days", "agents": ["tester"]},
+            {"name": "audit", "duration": "1 day", "agents": ["security-manager"]}
+          ],
+          "resource_allocation": {
+            "researcher": "8h",
+            "security-manager": "16h",
+            "architect": "32h",
+            "coder": "80h",
+            "tester": "32h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→test", "test→audit"],
+          "risk_factors": ["payment failures", "webhook reliability", "compliance gaps"]
+        },
+        "dependencies": ["Stripe account configured", "compliance requirements understood"],
+        "estimated_minutes": 45,
+        "quality_gates": ["payments working", "subscriptions functional", "compliance validated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build notification preferences",
+        "constraints": {
+          "deadline": "4 days",
+          "team_size": 2,
+          "budget": "$250"
+        },
+        "requirements": {
+          "channels": ["email", "SMS", "push"],
+          "granular_control": "per-event-type",
+          "quiet_hours": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan notification preferences system",
+        "specifications": {
+          "deliverables": ["Preferences API", "UI", "Delivery logic", "Quiet hours"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "2 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "16h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["preference complexity", "delivery logic", "timezone handling"]
+        },
+        "dependencies": ["event types defined", "channels integrated"],
+        "estimated_minutes": 20,
+        "quality_gates": ["preferences saved", "delivery respects settings", "quiet hours working"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement content moderation",
+        "constraints": {
+          "deadline": "2 weeks",
+          "team_size": 3,
+          "budget": "$700"
+        },
+        "requirements": {
+          "automated_filtering": "ML-based",
+          "manual_review": "queue-based",
+          "appeal_process": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan content moderation system",
+        "specifications": {
+          "deliverables": ["Moderation service", "Review queue", "Appeal system", "Admin tools"],
+          "phases": [
+            {"name": "research", "duration": "2 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "3 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "6 days", "agents": ["coder"]},
+            {"name": "test", "duration": "3 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "16h",
+            "architect": "24h",
+            "coder": "48h",
+            "tester": "24h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→test"],
+          "risk_factors": ["ML accuracy", "false positives", "queue backlog"]
+        },
+        "dependencies": ["ML model selected", "moderation policy defined"],
+        "estimated_minutes": 40,
+        "quality_gates": ["filtering accurate", "queue working", "appeals functional"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add data retention policies",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "gdpr_compliance": "required",
+          "automated_deletion": "required",
+          "audit_trail": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan data retention system",
+        "specifications": {
+          "deliverables": ["Retention policies", "Deletion jobs", "Audit logging", "Admin UI"],
+          "phases": [
+            {"name": "design", "duration": "2 days", "agents": ["architect", "security-manager"]},
+            {"name": "implement", "duration": "3 days", "agents": ["coder"]},
+            {"name": "validate", "duration": "2 days", "agents": ["security-manager"]}
+          ],
+          "resource_allocation": {
+            "architect": "12h",
+            "security-manager": "12h",
+            "coder": "24h"
+          },
+          "dependencies": ["design→implement", "implement→validate"],
+          "risk_factors": ["accidental deletion", "compliance gaps", "performance impact"]
+        },
+        "dependencies": ["retention periods defined", "deletion strategy approved"],
+        "estimated_minutes": 30,
+        "quality_gates": ["policies enforced", "deletion verified", "compliance met"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build activity feed",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "real_time": "required",
+          "personalized": "user-specific",
+          "pagination": "cursor-based"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan activity feed implementation",
+        "specifications": {
+          "deliverables": ["Feed service", "Real-time updates", "Personalization", "UI components"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "32h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["fan-out complexity", "real-time scaling", "personalization accuracy"]
+        },
+        "dependencies": ["activity types defined", "WebSocket ready"],
+        "estimated_minutes": 25,
+        "quality_gates": ["real-time working", "personalization accurate", "performance acceptable"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement backup and restore",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$450"
+        },
+        "requirements": {
+          "automated_backups": "daily",
+          "point_in_time_restore": "required",
+          "testing": "quarterly"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan backup and restore system",
+        "specifications": {
+          "deliverables": ["Backup automation", "Restore procedures", "Testing framework", "Documentation"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect", "devops"]},
+            {"name": "implement", "duration": "4 days", "agents": ["devops"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "devops": "40h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["backup failures", "restore time", "data consistency"]
+        },
+        "dependencies": ["backup storage configured", "retention policy defined"],
+        "estimated_minutes": 30,
+        "quality_gates": ["backups running", "restore tested", "documentation complete"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add collaborative editing",
+        "constraints": {
+          "deadline": "3 weeks",
+          "team_size": 4,
+          "budget": "$1000"
+        },
+        "requirements": {
+          "real_time": "required",
+          "conflict_resolution": "operational transform",
+          "presence_indicators": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan collaborative editing system",
+        "specifications": {
+          "deliverables": ["OT algorithm", "WebSocket server", "Editor integration", "Presence system"],
+          "phases": [
+            {"name": "research", "duration": "3 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "4 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "10 days", "agents": ["coder"]},
+            {"name": "test", "duration": "4 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "24h",
+            "architect": "32h",
+            "coder": "80h",
+            "tester": "32h"
+          },
+          "dependencies": ["research→design", "design→implement", "implement→test"],
+          "risk_factors": ["OT complexity", "network latency", "conflict resolution"]
+        },
+        "dependencies": ["OT library selected", "editor chosen"],
+        "estimated_minutes": 45,
+        "quality_gates": ["conflicts resolved", "presence working", "latency acceptable"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build recommendation engine",
+        "constraints": {
+          "deadline": "3 weeks",
+          "team_size": 4,
+          "budget": "$1100"
+        },
+        "requirements": {
+          "algorithm": "collaborative filtering",
+          "real_time": "required",
+          "explainability": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan recommendation engine development",
+        "specifications": {
+          "deliverables": ["ML model", "Training pipeline", "Serving API", "Explainability"],
+          "phases": [
+            {"name": "research", "duration": "3 days", "agents": ["researcher"]},
+            {"name": "design", "duration": "4 days", "agents": ["architect"]},
+            {"name": "train", "duration": "6 days", "agents": ["coder"]},
+            {"name": "deploy", "duration": "4 days", "agents": ["devops"]},
+            {"name": "evaluate", "duration": "4 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "24h",
+            "architect": "32h",
+            "coder": "48h",
+            "devops": "32h",
+            "tester": "32h"
+          },
+          "dependencies": ["research→design", "design→train", "train→deploy", "deploy→evaluate"],
+          "risk_factors": ["cold start", "data quality", "model accuracy"]
+        },
+        "dependencies": ["training data available", "ML infrastructure ready"],
+        "estimated_minutes": 45,
+        "quality_gates": ["accuracy >70%", "latency <100ms", "explainability working"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement password reset flow",
+        "constraints": {
+          "deadline": "3 days",
+          "team_size": 2,
+          "budget": "$200"
+        },
+        "requirements": {
+          "token_expiry": "1 hour",
+          "rate_limiting": "required",
+          "email_delivery": "transactional"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan password reset implementation",
+        "specifications": {
+          "deliverables": ["Reset API", "Email templates", "UI pages", "Rate limiting"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "1 day", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "8h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["token security", "email deliverability", "rate limit bypass"]
+        },
+        "dependencies": ["email service ready", "templates designed"],
+        "estimated_minutes": 15,
+        "quality_gates": ["tokens secure", "emails delivered", "rate limiting working"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add image optimization",
+        "constraints": {
+          "deadline": "5 days",
+          "team_size": 2,
+          "budget": "$300"
+        },
+        "requirements": {
+          "formats": ["WebP", "AVIF"],
+          "responsive": "srcset",
+          "lazy_loading": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan image optimization implementation",
+        "specifications": {
+          "deliverables": ["Optimization service", "Format conversion", "Responsive images", "Lazy loading"],
+          "phases": [
+            {"name": "research", "duration": "1 day", "agents": ["researcher"]},
+            {"name": "implement", "duration": "3 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "researcher": "8h",
+            "coder": "24h",
+            "tester": "8h"
+          },
+          "dependencies": ["research→implement", "implement→test"],
+          "risk_factors": ["quality loss", "processing time", "browser support"]
+        },
+        "dependencies": ["image processing library selected", "CDN configured"],
+        "estimated_minutes": 20,
+        "quality_gates": ["quality acceptable", "loading faster", "all formats working"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build error tracking system",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$400"
+        },
+        "requirements": {
+          "source_maps": "required",
+          "grouping": "intelligent",
+          "notifications": "Slack"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan error tracking implementation",
+        "specifications": {
+          "deliverables": ["Error tracking service", "Source map upload", "Error grouping", "Slack integration"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "32h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["source map accuracy", "grouping quality", "noise"]
+        },
+        "dependencies": ["error tracking service selected", "Slack configured"],
+        "estimated_minutes": 25,
+        "quality_gates": ["errors captured", "grouping working", "notifications sent"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement GDPR compliance",
+        "constraints": {
+          "deadline": "3 weeks",
+          "team_size": 4,
+          "budget": "$1200"
+        },
+        "requirements": {
+          "data_portability": "required",
+          "right_to_deletion": "required",
+          "consent_management": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan GDPR compliance implementation",
+        "specifications": {
+          "deliverables": ["Export system", "Deletion system", "Consent UI", "Compliance docs"],
+          "phases": [
+            {"name": "audit", "duration": "3 days", "agents": ["researcher", "security-manager"]},
+            {"name": "design", "duration": "4 days", "agents": ["architect"]},
+            {"name": "implement", "duration": "10 days", "agents": ["coder"]},
+            {"name": "validate", "duration": "4 days", "agents": ["security-manager"]}
+          ],
+          "resource_allocation": {
+            "researcher": "16h",
+            "security-manager": "32h",
+            "architect": "32h",
+            "coder": "80h"
+          },
+          "dependencies": ["audit→design", "design→implement", "implement→validate"],
+          "risk_factors": ["compliance gaps", "data discovery", "cascading deletions"]
+        },
+        "dependencies": ["legal review complete", "data map available"],
+        "estimated_minutes": 45,
+        "quality_gates": ["export working", "deletion complete", "consent tracked"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Add health check endpoints",
+        "constraints": {
+          "deadline": "2 days",
+          "team_size": 1,
+          "budget": "$150"
+        },
+        "requirements": {
+          "liveness": "required",
+          "readiness": "required",
+          "dependency_checks": "database, cache"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan health check implementation",
+        "specifications": {
+          "deliverables": ["Liveness endpoint", "Readiness endpoint", "Dependency checks", "Monitoring integration"],
+          "phases": [
+            {"name": "design", "duration": "0.5 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "1 day", "agents": ["coder"]},
+            {"name": "test", "duration": "0.5 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "4h",
+            "coder": "8h",
+            "tester": "4h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["false negatives", "check overhead", "cascading failures"]
+        },
+        "dependencies": ["health check spec defined", "monitoring configured"],
+        "estimated_minutes": 15,
+        "quality_gates": ["endpoints responding", "dependencies checked", "monitoring integrated"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Build task scheduler",
+        "constraints": {
+          "deadline": "1 week",
+          "team_size": 2,
+          "budget": "$450"
+        },
+        "requirements": {
+          "cron_support": "required",
+          "distributed": "required",
+          "monitoring": "required"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan task scheduler implementation",
+        "specifications": {
+          "deliverables": ["Scheduler service", "Task definitions", "Monitoring", "Admin UI"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "4 days", "agents": ["coder"]},
+            {"name": "test", "duration": "2 days", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "32h",
+            "tester": "16h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["clock drift", "duplicate execution", "failure handling"]
+        },
+        "dependencies": ["scheduler library selected", "distributed lock available"],
+        "estimated_minutes": 30,
+        "quality_gates": ["cron working", "no duplicates", "monitoring active"]
+      }
+    },
+    {
+      "phase": "plan",
+      "context": {
+        "feature_request": "Implement session management",
+        "constraints": {
+          "deadline": "4 days",
+          "team_size": 2,
+          "budget": "$250"
+        },
+        "requirements": {
+          "storage": "Redis",
+          "expiry": "sliding window",
+          "security": "httpOnly, secure"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "planner",
+        "task_type": "create-implementation-plan",
+        "description": "Plan session management implementation",
+        "specifications": {
+          "deliverables": ["Session store", "Middleware", "Logout functionality", "Security headers"],
+          "phases": [
+            {"name": "design", "duration": "1 day", "agents": ["architect"]},
+            {"name": "implement", "duration": "2 days", "agents": ["coder"]},
+            {"name": "test", "duration": "1 day", "agents": ["tester"]}
+          ],
+          "resource_allocation": {
+            "architect": "8h",
+            "coder": "16h",
+            "tester": "8h"
+          },
+          "dependencies": ["design→implement", "implement→test"],
+          "risk_factors": ["session fixation", "CSRF", "XSS"]
+        },
+        "dependencies": ["Redis configured", "security requirements defined"],
+        "estimated_minutes": 20,
+        "quality_gates": ["sessions persist", "security headers set", "logout working"]
+      }
+    }
+  ]
+}

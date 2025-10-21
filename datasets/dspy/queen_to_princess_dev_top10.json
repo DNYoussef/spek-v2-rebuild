@@ -1,0 +1,615 @@
+{
+  "dataset_name": "queen_to_princess_dev_top10",
+  "description": "Top 10 examples selected for DSPy BootstrapFewShot demonstrations",
+  "selection_criteria": "Diversity (40%), Quality (25%), Real-world applicability (20%), Teaching value (10%), Completeness (5%)",
+  "total_examples": 10,
+  "coverage": {
+    "infrastructure": 2,
+    "backend_systems": 4,
+    "web_development": 3,
+    "security": 1
+  },
+  "examples": [
+    {
+      "id": 67,
+      "rank": 1,
+      "selection_reason": "Underrepresented infrastructure category, well-structured decomposition, real-world pattern",
+      "category": "infrastructure",
+      "task_description": "Implement CI/CD pipeline with GitHub Actions",
+      "objective": "Automated testing, building, and deployment workflow",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design pipeline stages and deployment strategy",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Create GitHub Actions workflows for test and build",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Add deployment jobs with approval gates",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test pipeline execution and failure scenarios",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Security review for secrets and permissions",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 20
+        }
+      ],
+      "score": 82.0,
+      "score_breakdown": {
+        "diversity": 40,
+        "quality": 25.0,
+        "real_world": 12,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 27,
+      "rank": 2,
+      "selection_reason": "Api integration: underrepresented backend_systems category, well-structured decomposition",
+      "category": "backend_systems",
+      "task_description": "Build Redis caching layer for API responses",
+      "objective": "Cache-aside pattern with TTL management and invalidation",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design cache key strategy and invalidation logic",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Implement Redis cache middleware with decorators",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Add cache warming and background refresh",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test cache hit rates and memory usage",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Performance comparison and cache strategy review",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 20
+        }
+      ],
+      "score": 81.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 1,
+      "rank": 3,
+      "selection_reason": "Underrepresented web_development category, well-structured decomposition",
+      "category": "web_development",
+      "task_description": "Implement user profile page with avatar upload",
+      "objective": "CRUD operations + S3 file upload with 80% test coverage",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design profile data model + S3 integration",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Implement profile API endpoints",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Implement avatar upload to S3",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Code review focusing on security and error handling",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 78.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 91,
+      "rank": 4,
+      "selection_reason": "Oauth2 authentication: underrepresented security category, well-structured decomposition",
+      "category": "security",
+      "task_description": "Implement OAuth2 PKCE flow for mobile apps",
+      "objective": "Secure authentication without client secrets",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design PKCE flow and code verifier generation",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Implement authorization server PKCE validation",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Build mobile client with AppAuth SDK",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test code challenge validation and replay attacks",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Security audit for authorization code interception",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 78.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 26,
+      "rank": 5,
+      "selection_reason": "Database migration: underrepresented backend_systems category, well-structured decomposition",
+      "category": "backend_systems",
+      "task_description": "Design and implement PostgreSQL database schema with migrations",
+      "objective": "Normalized schema with foreign keys, indexes, and migration system",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design ER diagram and normalization strategy",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Create Sequelize/TypeORM models and migrations",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 50
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Add indexes, constraints, and performance optimizations",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test migration rollback and data integrity",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Schema review for scalability and query performance",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 71.3,
+      "score_breakdown": {
+        "diversity": 33.3,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 76,
+      "rank": 6,
+      "selection_reason": "Backup/restore: good infrastructure coverage, well-structured decomposition",
+      "category": "infrastructure",
+      "task_description": "Implement disaster recovery plan with automated backups",
+      "objective": "RTO/RPO compliance with tested recovery procedures",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design backup strategy and recovery objectives",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Configure automated database and volume backups",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Build recovery automation scripts",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test full recovery in isolated environment",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 50
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "DR documentation and runbook validation",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 30
+        }
+      ],
+      "score": 71.0,
+      "score_breakdown": {
+        "diversity": 30.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 2,
+      "rank": 7,
+      "selection_reason": "Real-time messaging: underrepresented web_development category, well-structured decomposition",
+      "category": "web_development",
+      "task_description": "Build real-time notification system with WebSockets",
+      "objective": "Bidirectional WebSocket communication with React frontend",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design WebSocket message protocol and state management",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Implement WebSocket server with Socket.io",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Build React notification component with hooks",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test connection stability and reconnection logic",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Performance review for high-concurrency scenarios",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 20
+        }
+      ],
+      "score": 70.0,
+      "score_breakdown": {
+        "diversity": 32.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 31,
+      "rank": 8,
+      "selection_reason": "Api integration: good backend_systems coverage, well-structured decomposition",
+      "category": "backend_systems",
+      "task_description": "Build API gateway with rate limiting and authentication",
+      "objective": "Centralized gateway using Kong or Express Gateway",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design gateway routing and plugin architecture",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Configure Kong with JWT authentication plugin",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Add rate limiting and request transformation",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Load testing and failover verification",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Security review and monitoring setup",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 64.7,
+      "score_breakdown": {
+        "diversity": 26.7,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 10,
+      "rank": 9,
+      "selection_reason": "Oauth2 authentication: good web_development coverage, well-structured decomposition",
+      "category": "web_development",
+      "task_description": "Implement OAuth2 social login (Google, GitHub, Facebook)",
+      "objective": "Multi-provider authentication with Passport.js",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design OAuth callback flow and user account linking",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Implement Passport.js strategies for each provider",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 50
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Build login UI with provider buttons",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test OAuth flows and error handling",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Security review for token handling and CSRF",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 62.0,
+      "score_breakdown": {
+        "diversity": 24.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 34,
+      "rank": 10,
+      "selection_reason": "Oauth2 authentication: well-structured decomposition",
+      "category": "backend_systems",
+      "task_description": "Implement OAuth2 authorization server",
+      "objective": "Custom OAuth2 server with PKCE and refresh tokens",
+      "expected_subtasks": [
+        {
+          "princess": "princess-dev",
+          "task_type": "design",
+          "description": "Design OAuth2 flow and token storage strategy",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Implement authorization server with oauth2-server",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 55
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "code",
+          "description": "Build consent UI and client registration",
+          "dependencies": [
+            "design"
+          ],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "debug",
+          "description": "Test all OAuth2 grant types and edge cases",
+          "dependencies": [
+            "code"
+          ],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-dev",
+          "task_type": "review",
+          "description": "Security audit for token leakage and CSRF",
+          "dependencies": [
+            "debug"
+          ],
+          "estimated_minutes": 30
+        }
+      ],
+      "score": 58.0,
+      "score_breakdown": {
+        "diversity": 20.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 0,
+        "completeness": 5
+      }
+    }
+  ]
+}

@@ -1,0 +1,120 @@
+digraph ROLLBACK_PROCEDURE {
+    // TRIGGER: When deployment fails or critical issues detected
+    // USE WHEN:
+    //   - Critical errors affecting >5% of users
+    //   - Data corruption detected
+    //   - Security vulnerability exploited
+    //   - Performance degradation >50%
+    //   - Health checks failing
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_rollback {
+        label="TRIGGER: Critical Issues - Rollback Needed";
+        style="rounded,bold";
+        bgcolor="#ffebee";
+
+        // Entry - triggers
+        "Critical issue detected" [shape=ellipse];
+
+        // Immediate rollback triggers
+        "Should rollback?" [shape=diamond];
+        "Error rate >5%?" [shape=diamond];
+        "Data corruption?" [shape=diamond];
+        "Security exploited?" [shape=diamond];
+        "Performance degraded >50%?" [shape=diamond];
+
+        "IMMEDIATE ROLLBACK" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Monitor and evaluate" [shape=box];
+
+        // Rollback execution (Kubernetes)
+        "kubectl rollout history deployment/spek-platform" [shape=plaintext];
+        "kubectl rollout undo deployment/spek-platform" [shape=plaintext];
+        "kubectl rollout status deployment/spek-platform" [shape=plaintext];
+        "kubectl get pods" [shape=plaintext];
+
+        // Verification
+        "curl https://spek.platform/health" [shape=plaintext];
+        "Health check passing?" [shape=diamond];
+        "kubectl logs -f deployment/spek-platform" [shape=plaintext];
+        "Check logs for errors" [shape=box];
+
+        // Database rollback (if needed)
+        "Database changes?" [shape=diamond];
+        "npm run migrate:status" [shape=plaintext];
+        "npm run migrate:rollback" [shape=plaintext];
+        "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < backup.sql" [shape=plaintext];
+        "npm run migrate:verify" [shape=plaintext];
+
+        "Rollback complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "ESCALATE TO TEAM" [shape=octagon, style=filled, fillcolor=orange];
+
+        // Flow
+        "Critical issue detected" -> "Should rollback?";
+
+        "Should rollback?" -> "Error rate >5%?";
+        "Error rate >5%?" -> "IMMEDIATE ROLLBACK" [label="yes"];
+        "Error rate >5%?" -> "Data corruption?" [label="no"];
+
+        "Data corruption?" -> "IMMEDIATE ROLLBACK" [label="yes"];
+        "Data corruption?" -> "Security exploited?" [label="no"];
+
+        "Security exploited?" -> "IMMEDIATE ROLLBACK" [label="yes"];
+        "Security exploited?" -> "Performance degraded >50%?" [label="no"];
+
+        "Performance degraded >50%?" -> "IMMEDIATE ROLLBACK" [label="yes"];
+        "Performance degraded >50%?" -> "Monitor and evaluate" [label="no"];
+
+        // Kubernetes rollback
+        "IMMEDIATE ROLLBACK" -> "kubectl rollout history deployment/spek-platform";
+        "kubectl rollout history deployment/spek-platform" -> "kubectl rollout undo deployment/spek-platform";
+        "kubectl rollout undo deployment/spek-platform" -> "kubectl rollout status deployment/spek-platform";
+        "kubectl rollout status deployment/spek-platform" -> "kubectl get pods";
+        "kubectl get pods" -> "curl https://spek.platform/health";
+
+        "curl https://spek.platform/health" -> "Health check passing?";
+        "Health check passing?" -> "Database changes?" [label="yes"];
+        "Health check passing?" -> "kubectl logs -f deployment/spek-platform" [label="no"];
+
+        "kubectl logs -f deployment/spek-platform" -> "Check logs for errors";
+        "Check logs for errors" -> "ESCALATE TO TEAM";
+
+        // Database rollback
+        "Database changes?" -> "npm run migrate:status" [label="yes"];
+        "Database changes?" -> "Rollback complete" [label="no"];
+
+        "npm run migrate:status" -> "npm run migrate:rollback";
+        "npm run migrate:rollback" -> "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < backup.sql";
+        "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < backup.sql" -> "npm run migrate:verify";
+        "npm run migrate:verify" -> "Rollback complete";
+    }
+
+    // Communication procedure
+    subgraph cluster_communication {
+        label="Communication Procedure";
+        bgcolor="#fff3e0";
+
+        "Notify team on Slack #incidents" [shape=box];
+        "Create incident report" [shape=box];
+        "Document rollback decision" [shape=box];
+        "Post-mortem scheduled" [shape=box];
+
+        "IMMEDIATE ROLLBACK" -> "Notify team on Slack #incidents" [style=dotted];
+        "Notify team on Slack #incidents" -> "Create incident report";
+        "Create incident report" -> "Document rollback decision";
+        "Rollback complete" -> "Post-mortem scheduled" [style=dotted];
+    }
+
+    // Always visible warnings
+    subgraph cluster_warnings {
+        label="ROLLBACK TRIGGERS";
+        bgcolor="#ffcdd2";
+
+        "Error rate >5%" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Data corruption" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Security breach" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Health checks failing" [shape=octagon, style=filled, fillcolor=orange];
+        "Performance drop >50%" [shape=octagon, style=filled, fillcolor=orange];
+    }
+}

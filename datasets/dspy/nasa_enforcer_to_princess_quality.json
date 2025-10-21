@@ -1,0 +1,1926 @@
+{
+  "communication_path": "nasa-enforcer→princess-quality",
+  "description": "NASA-Enforcer reports compliance results to Princess-Quality",
+  "drone_id": "nasa-enforcer",
+  "princess_id": "princess-quality",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 42,
+    "failure": 8
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-1",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.7,
+        "functions_checked": 19,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 68
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 66
+          }
+        ],
+        "execution_time_ms": 4155
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.7%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.7,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 20
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-2",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 98.9,
+        "functions_checked": 17,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 79
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 80
+          }
+        ],
+        "execution_time_ms": 2023
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 98.9%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 98.9,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 14
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-3",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 94.7,
+        "functions_checked": 32,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 73
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 65
+          }
+        ],
+        "execution_time_ms": 4306
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 94.7%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 94.7,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 22
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-4",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 92.1,
+        "functions_checked": 17,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 2594
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 92.1%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 92.1,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 17
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-5",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.1,
+        "functions_checked": 22,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 66
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 82
+          }
+        ],
+        "execution_time_ms": 2537
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.1%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.1,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 36
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-6",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 98.4,
+        "functions_checked": 18,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 63
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 75
+          }
+        ],
+        "execution_time_ms": 3484
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 98.4%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 98.4,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 28
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-7",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.6,
+        "functions_checked": 21,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4234
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.6%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.6,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 27
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-8",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.3,
+        "functions_checked": 31,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 77
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 82
+          }
+        ],
+        "execution_time_ms": 4268
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.3%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.3,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 25
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-9",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 95.4,
+        "functions_checked": 21,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 61
+          }
+        ],
+        "execution_time_ms": 2088
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 95.4%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 95.4,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 16
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-10",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 96.0,
+        "functions_checked": 22,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 71
+          }
+        ],
+        "execution_time_ms": 4904
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 96.0%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 96.0,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 18
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-11",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 94.7,
+        "functions_checked": 17,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 82
+          }
+        ],
+        "execution_time_ms": 2493
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 94.7%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 94.7,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 37
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-12",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 94.7,
+        "functions_checked": 23,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 3482
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 94.7%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 94.7,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 23
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-13",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.2,
+        "functions_checked": 19,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 84
+          }
+        ],
+        "execution_time_ms": 2463
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.2%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.2,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 31
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-14",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 97.8,
+        "functions_checked": 29,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4759
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 97.8%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 97.8,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 37
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-15",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 99.3,
+        "functions_checked": 28,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 65
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 80
+          }
+        ],
+        "execution_time_ms": 4515
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 99.3%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 99.3,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 24
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-16",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 98.9,
+        "functions_checked": 38,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 3888
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 98.9%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 98.9,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 28
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-17",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 95.0,
+        "functions_checked": 24,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 64
+          }
+        ],
+        "execution_time_ms": 4505
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 95.0%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 95.0,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 32
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-18",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 92.9,
+        "functions_checked": 29,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4779
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 92.9%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 92.9,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 19
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-19",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.1,
+        "functions_checked": 22,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 72
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 70
+          }
+        ],
+        "execution_time_ms": 3817
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.1%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.1,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 14
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-20",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 95.2,
+        "functions_checked": 18,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 80
+          }
+        ],
+        "execution_time_ms": 3569
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 95.2%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 95.2,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 28
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-21",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 95.6,
+        "functions_checked": 31,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 2128
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 95.6%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 95.6,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 17
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-22",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.1,
+        "functions_checked": 32,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 3033
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.1%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.1,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 30
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-23",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 92.0,
+        "functions_checked": 16,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 2474
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 92.0%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 92.0,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 40
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-24",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 95.1,
+        "functions_checked": 23,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4951
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 95.1%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 95.1,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 28
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-25",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 92.2,
+        "functions_checked": 20,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4268
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 92.2%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 92.2,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 27
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-26",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 99.5,
+        "functions_checked": 40,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 68
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 72
+          }
+        ],
+        "execution_time_ms": 3675
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 99.5%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 99.5,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 34
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-27",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 94.9,
+        "functions_checked": 32,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 74
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 66
+          }
+        ],
+        "execution_time_ms": 3205
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 94.9%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 94.9,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 16
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-28",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 99.1,
+        "functions_checked": 36,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 66
+          }
+        ],
+        "execution_time_ms": 2317
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 99.1%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 99.1,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 24
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-29",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 95.0,
+        "functions_checked": 15,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4509
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 95.0%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 95.0,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 40
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-30",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 96.6,
+        "functions_checked": 35,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 2992
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 96.6%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 96.6,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 36
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-31",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 94.6,
+        "functions_checked": 29,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 2244
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 94.6%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 94.6,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 31
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-32",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 99.7,
+        "functions_checked": 18,
+        "violations_found": 1,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 84
+          }
+        ],
+        "execution_time_ms": 4373
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 99.7%. 1 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 99.7,
+          "target_compliance": 92.0,
+          "violations": 1,
+          "functions_compliant": 24
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-33",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 93.2,
+        "functions_checked": 40,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 2487
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 93.2%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 93.2,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 22
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-34",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 95.6,
+        "functions_checked": 15,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4113
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 95.6%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 95.6,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 32
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-35",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 94.9,
+        "functions_checked": 35,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 68
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 80
+          }
+        ],
+        "execution_time_ms": 4023
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 94.9%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 94.9,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 15
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-36",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 96.3,
+        "functions_checked": 16,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4114
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 96.3%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 96.3,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 30
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-37",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 96.7,
+        "functions_checked": 30,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 80
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 83
+          }
+        ],
+        "execution_time_ms": 3390
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 96.7%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 96.7,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 21
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-38",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 96.9,
+        "functions_checked": 19,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 75
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 72
+          }
+        ],
+        "execution_time_ms": 4257
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 96.9%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 96.9,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 20
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-39",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 99.0,
+        "functions_checked": 35,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 73
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 78
+          }
+        ],
+        "execution_time_ms": 2006
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 99.0%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 99.0,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 19
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-40",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 92.1,
+        "functions_checked": 17,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 62
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 72
+          }
+        ],
+        "execution_time_ms": 2453
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 92.1%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 92.1,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 35
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-41",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 97.2,
+        "functions_checked": 17,
+        "violations_found": 2,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 69
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 80
+          }
+        ],
+        "execution_time_ms": 4393
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 97.2%. 2 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 97.2,
+          "target_compliance": 92.0,
+          "violations": 2,
+          "functions_compliant": 18
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-42",
+      "drone_results": {
+        "success": true,
+        "compliance_percent": 96.1,
+        "functions_checked": 30,
+        "violations_found": 0,
+        "violations": [],
+        "execution_time_ms": 4324
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "pass",
+        "summary": "NASA Rule 10 compliance: 96.1%. 0 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 96.1,
+          "target_compliance": 92.0,
+          "violations": 0,
+          "functions_compliant": 39
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Excellent compliance"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-43",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 88.3,
+        "functions_checked": 27,
+        "violations_found": 6,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 68
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 76
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 66
+          },
+          {
+            "function": "func_3",
+            "rule": "max_function_loc",
+            "actual": 70
+          },
+          {
+            "function": "func_4",
+            "rule": "max_function_loc",
+            "actual": 81
+          },
+          {
+            "function": "func_5",
+            "rule": "max_function_loc",
+            "actual": 71
+          }
+        ],
+        "execution_time_ms": 3193
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 88.3%. 6 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 88.3,
+          "target_compliance": 92.0,
+          "violations": 6,
+          "functions_compliant": 18
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 6 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-44",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 75.4,
+        "functions_checked": 36,
+        "violations_found": 8,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 68
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 73
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 80
+          },
+          {
+            "function": "func_3",
+            "rule": "max_function_loc",
+            "actual": 64
+          },
+          {
+            "function": "func_4",
+            "rule": "max_function_loc",
+            "actual": 81
+          },
+          {
+            "function": "func_5",
+            "rule": "max_function_loc",
+            "actual": 65
+          },
+          {
+            "function": "func_6",
+            "rule": "max_function_loc",
+            "actual": 80
+          },
+          {
+            "function": "func_7",
+            "rule": "max_function_loc",
+            "actual": 76
+          }
+        ],
+        "execution_time_ms": 2169
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 75.4%. 8 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 75.4,
+          "target_compliance": 92.0,
+          "violations": 8,
+          "functions_compliant": 22
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 8 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-45",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 87.7,
+        "functions_checked": 29,
+        "violations_found": 3,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 83
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 68
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 61
+          }
+        ],
+        "execution_time_ms": 2287
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 87.7%. 3 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 87.7,
+          "target_compliance": 92.0,
+          "violations": 3,
+          "functions_compliant": 33
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-46",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 85.4,
+        "functions_checked": 21,
+        "violations_found": 5,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 85
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 85
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 64
+          },
+          {
+            "function": "func_3",
+            "rule": "max_function_loc",
+            "actual": 61
+          },
+          {
+            "function": "func_4",
+            "rule": "max_function_loc",
+            "actual": 80
+          }
+        ],
+        "execution_time_ms": 4668
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 85.4%. 5 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 85.4,
+          "target_compliance": 92.0,
+          "violations": 5,
+          "functions_compliant": 20
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 5 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-47",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 78.5,
+        "functions_checked": 39,
+        "violations_found": 3,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 67
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 68
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 83
+          }
+        ],
+        "execution_time_ms": 4637
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 78.5%. 3 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 78.5,
+          "target_compliance": 92.0,
+          "violations": 3,
+          "functions_compliant": 36
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 3 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-48",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 70.5,
+        "functions_checked": 37,
+        "violations_found": 6,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 80
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 63
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 73
+          },
+          {
+            "function": "func_3",
+            "rule": "max_function_loc",
+            "actual": 67
+          },
+          {
+            "function": "func_4",
+            "rule": "max_function_loc",
+            "actual": 78
+          },
+          {
+            "function": "func_5",
+            "rule": "max_function_loc",
+            "actual": 61
+          }
+        ],
+        "execution_time_ms": 3450
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 70.5%. 6 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 70.5,
+          "target_compliance": 92.0,
+          "violations": 6,
+          "functions_compliant": 20
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 6 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-49",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 84.7,
+        "functions_checked": 32,
+        "violations_found": 6,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 75
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 85
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 72
+          },
+          {
+            "function": "func_3",
+            "rule": "max_function_loc",
+            "actual": 72
+          },
+          {
+            "function": "func_4",
+            "rule": "max_function_loc",
+            "actual": 83
+          },
+          {
+            "function": "func_5",
+            "rule": "max_function_loc",
+            "actual": 74
+          }
+        ],
+        "execution_time_ms": 2910
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 84.7%. 6 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 84.7,
+          "target_compliance": 92.0,
+          "violations": 6,
+          "functions_compliant": 21
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 6 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "nasa-enforcer",
+      "task_completed": "nasa-check-50",
+      "drone_results": {
+        "success": false,
+        "compliance_percent": 86.2,
+        "functions_checked": 36,
+        "violations_found": 6,
+        "violations": [
+          {
+            "function": "func_0",
+            "rule": "max_function_loc",
+            "actual": 78
+          },
+          {
+            "function": "func_1",
+            "rule": "max_function_loc",
+            "actual": 85
+          },
+          {
+            "function": "func_2",
+            "rule": "max_function_loc",
+            "actual": 62
+          },
+          {
+            "function": "func_3",
+            "rule": "max_function_loc",
+            "actual": 70
+          },
+          {
+            "function": "func_4",
+            "rule": "max_function_loc",
+            "actual": 73
+          },
+          {
+            "function": "func_5",
+            "rule": "max_function_loc",
+            "actual": 66
+          }
+        ],
+        "execution_time_ms": 4861
+      },
+      "expected_aggregated_result": {
+        "phase": "nasa_compliance",
+        "status": "fail",
+        "summary": "NASA Rule 10 compliance: 86.2%. 6 violations found.",
+        "quality_metrics": {
+          "nasa_compliance": 86.2,
+          "target_compliance": 92.0,
+          "violations": 6,
+          "functions_compliant": 24
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Fix 6 NASA Rule 10 violations"
+        ],
+        "recommendations": [
+          "Refactor functions exceeding 60 LOC"
+        ]
+      }
+    }
+  ]
+}

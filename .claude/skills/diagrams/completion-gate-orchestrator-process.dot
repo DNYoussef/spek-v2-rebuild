@@ -1,0 +1,163 @@
+/**
+ * Completion Gate Orchestrator - Process Flow
+ *
+ * Composite skill that enforces 10-gate quality checklist before
+ * allowing work to be marked as complete. BLOCKS until ALL gates pass.
+ *
+ * VERSION: 1.0
+ * PRIORITY: P0 (Critical - Prevents incomplete work)
+ */
+
+digraph CompletionGateOrchestrator {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start and end
+    start [shape=ellipse, label="User Says:\n'done' or 'complete'", fillcolor=lightyellow];
+    blocked [shape=ellipse, label="BLOCKED:\nFix issues first", fillcolor=red, fontcolor=white];
+    allowed [shape=ellipse, label="ALLOWED:\nWork complete ✅", fillcolor=green, fontcolor=white];
+
+    // ========== IMMEDIATE BLOCK ==========
+    subgraph cluster_block {
+        label="Immediate Action";
+        fillcolor=orange;
+        style=filled;
+
+        detect [label="skill-cascade-orchestrator\ndetects 'done'"];
+        block_immediate [shape=octagon, label="BLOCK:\nDo not mark complete\nuntil gates pass", fillcolor=red, fontcolor=white];
+
+        detect -> block_immediate;
+    }
+
+    // ========== GATE 1-3: BUILD & TESTS ==========
+    subgraph cluster_gate_123 {
+        label="Gates 1-3: Build & Tests";
+        fillcolor=lightblue;
+        style=filled;
+
+        gate1 [label="Gate 1:\ntest-runner\n(npm test)"];
+        gate1_pass [shape=diamond, label="All tests\npass?", fillcolor=yellow];
+        gate2 [label="Gate 2:\nbuild-verifier\n(npm run build)"];
+        gate2_pass [shape=diamond, label="Build\nsuccessful?", fillcolor=yellow];
+        gate3 [label="Gate 3:\ntype-checker\n(npx tsc)"];
+        gate3_pass [shape=diamond, label="Zero type\nerrors?", fillcolor=yellow];
+
+        gate1 -> gate1_pass;
+        gate1_pass -> gate2 [label="yes", color=green];
+        gate2 -> gate2_pass;
+        gate2_pass -> gate3 [label="yes", color=green];
+        gate3 -> gate3_pass;
+    }
+
+    // ========== GATE 4-6: CODE QUALITY ==========
+    subgraph cluster_gate_456 {
+        label="Gates 4-6: Code Quality";
+        fillcolor=lightblue;
+        style=filled;
+
+        gate4 [label="Gate 4:\nlinter\n(npm run lint)"];
+        gate4_pass [shape=diamond, label="No lint\nerrors?", fillcolor=yellow];
+        gate5 [label="Gate 5:\nnasa-compliance-checker\n(≤60 LOC)"];
+        gate5_pass [shape=diamond, label="NASA\ncompliant?", fillcolor=yellow];
+        gate6 [label="Gate 6:\nstyle-matcher\n(code style)"];
+        gate6_pass [shape=diamond, label="Style\nmatches?", fillcolor=yellow];
+
+        gate4 -> gate4_pass;
+        gate4_pass -> gate5 [label="yes", color=green];
+        gate5 -> gate5_pass;
+        gate5_pass -> gate6 [label="yes", color=green];
+        gate6 -> gate6_pass;
+    }
+
+    // ========== GATE 7-8: CLEANLINESS ==========
+    subgraph cluster_gate_78 {
+        label="Gates 7-8: Cleanliness";
+        fillcolor=lightblue;
+        style=filled;
+
+        gate7 [label="Gate 7:\ndebug-output-cleaner\n(console.log)"];
+        gate7_pass [shape=diamond, label="Debug output\nremoved?", fillcolor=yellow];
+        gate8 [label="Gate 8:\ntheater-scanner\n(TODO/FIXME)"];
+        gate8_pass [shape=diamond, label="No theater\ncode?", fillcolor=yellow];
+
+        gate7 -> gate7_pass;
+        gate7_pass -> gate8 [label="yes", color=green];
+        gate8 -> gate8_pass;
+    }
+
+    // ========== GATE 9-10: DOCUMENTATION & GIT ==========
+    subgraph cluster_gate_910 {
+        label="Gates 9-10: Documentation & Git";
+        fillcolor=lightblue;
+        style=filled;
+
+        gate9 [label="Gate 9:\ndocstring-validator\n(docstrings)"];
+        gate9_pass [shape=diamond, label="All functions\ndocumented?", fillcolor=yellow];
+        gate10 [label="Gate 10:\ngit-status-checker\n(git status)"];
+        gate10_pass [shape=diamond, label="Only intended\nfiles changed?", fillcolor=yellow];
+
+        gate9 -> gate9_pass;
+        gate9_pass -> gate10 [label="yes", color=green];
+        gate10 -> gate10_pass;
+    }
+
+    // ========== AGGREGATION ==========
+    subgraph cluster_aggregate {
+        label="Aggregation";
+        fillcolor=lightyellow;
+        style=filled;
+
+        collect [label="Collect Results\nfrom all 10 gates"];
+        all_pass [shape=diamond, label="ALL gates\npass?", fillcolor=yellow];
+        show_failures [label="Show Failures:\n- Gate X: [error]\n- Gate Y: [error]\n- ...", fillcolor=orange];
+
+        collect -> all_pass;
+        all_pass -> allowed [label="yes", color=green];
+        all_pass -> show_failures [label="no", color=red];
+        show_failures -> blocked;
+    }
+
+    // ========== FLOW CONNECTIONS ==========
+    start -> detect;
+    block_immediate -> gate1;
+    gate1_pass -> blocked [label="no", color=red];
+    gate2_pass -> blocked [label="no", color=red];
+    gate3_pass -> gate4 [label="yes", color=green];
+    gate3_pass -> blocked [label="no", color=red];
+    gate4_pass -> blocked [label="no", color=red];
+    gate5_pass -> blocked [label="no", color=red];
+    gate6_pass -> gate7 [label="yes", color=green];
+    gate6_pass -> blocked [label="no", color=red];
+    gate7_pass -> blocked [label="no", color=red];
+    gate8_pass -> gate9 [label="yes", color=green];
+    gate8_pass -> blocked [label="no", color=red];
+    gate9_pass -> blocked [label="no", color=red];
+    gate10_pass -> collect [label="yes", color=green];
+    gate10_pass -> blocked [label="no", color=red];
+
+    // ========== RETRY LOOP ==========
+    blocked -> start [style=dashed, label="after fixes\nretry"];
+
+    // ========== EXTERNAL SKILLS ==========
+    commit_validator [shape=cylinder, label="commit-message-\nvalidator\n(after allowed)", fillcolor=lightcoral];
+    allowed -> commit_validator [style=dashed, label="next"];
+
+    // ========== CRITICAL WARNINGS ==========
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        fillcolor="#ffcdd2";
+        style=filled;
+
+        rule1 [shape=octagon, label="NEVER allow completion\nuntil ALL gates pass", fillcolor=red, fontcolor=white];
+        rule2 [shape=octagon, label="NEVER skip any gate\n(all are required)", fillcolor=red, fontcolor=white];
+        rule3 [shape=octagon, label="ALWAYS show specific\nfailures, not generic error", fillcolor=orange];
+    }
+
+    // ========== METADATA ==========
+    labelloc="t";
+    label="Completion Gate Orchestrator: 10-Gate Quality Checklist\n\nTriggers: 'done', 'finished', 'complete', 'ready'\nCalls: 10 atomic skills (tests, build, types, lint, NASA, style, debug, theater, docs, git)\nBlocks: Until ALL gates pass | Shows: Specific failures list";
+    fontsize=14;
+    fontname="Arial Bold";
+}

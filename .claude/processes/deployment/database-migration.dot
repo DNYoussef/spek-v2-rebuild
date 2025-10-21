@@ -1,0 +1,86 @@
+digraph DATABASE_MIGRATION {
+    // TRIGGER: When deployment includes database schema changes
+    // USE WHEN:
+    //   - New migrations to apply
+    //   - Schema updates needed
+    //   - Data transformations required
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_db_migration {
+        label="TRIGGER: Database Migration Required";
+        style="rounded,bold";
+        bgcolor="#fff3e0";
+
+        // Entry
+        "Migration needed" [shape=ellipse];
+
+        // Backup
+        "Create backup:\npg_dump -h $DB_HOST -U $DB_USER $DB_NAME > backup_$(date +%Y%m%d_%H%M%S).sql" [shape=plaintext];
+        "Backup successful?" [shape=diamond];
+        "Retry backup" [shape=box];
+
+        // Dry run
+        "npm run migrate:dry-run" [shape=plaintext];
+        "Review migration plan" [shape=box];
+        "cat migration-plan.txt" [shape=plaintext];
+        "Plan looks correct?" [shape=diamond];
+        "Fix migration scripts" [shape=box];
+
+        // Execute migration
+        "npm run migrate" [shape=plaintext];
+        "Migration successful?" [shape=diamond];
+
+        // Verify
+        "npm run migrate:status" [shape=plaintext];
+        "Verify data integrity" [shape=box];
+        "All checks passed?" [shape=diamond];
+
+        "Migration complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "ROLLBACK REQUIRED" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+        // Flow
+        "Migration needed" -> "Create backup:\npg_dump -h $DB_HOST -U $DB_USER $DB_NAME > backup_$(date +%Y%m%d_%H%M%S).sql";
+
+        "Create backup:\npg_dump -h $DB_HOST -U $DB_USER $DB_NAME > backup_$(date +%Y%m%d_%H%M%S).sql" -> "Backup successful?";
+        "Backup successful?" -> "npm run migrate:dry-run" [label="yes"];
+        "Backup successful?" -> "Retry backup" [label="no"];
+        "Retry backup" -> "Create backup:\npg_dump -h $DB_HOST -U $DB_USER $DB_NAME > backup_$(date +%Y%m%d_%H%M%S).sql";
+
+        "npm run migrate:dry-run" -> "Review migration plan";
+        "Review migration plan" -> "cat migration-plan.txt";
+        "cat migration-plan.txt" -> "Plan looks correct?";
+        "Plan looks correct?" -> "npm run migrate" [label="yes"];
+        "Plan looks correct?" -> "Fix migration scripts" [label="no"];
+        "Fix migration scripts" -> "npm run migrate:dry-run";
+
+        "npm run migrate" -> "Migration successful?";
+        "Migration successful?" -> "npm run migrate:status" [label="yes"];
+        "Migration successful?" -> "ROLLBACK REQUIRED" [label="no"];
+
+        "npm run migrate:status" -> "Verify data integrity";
+        "Verify data integrity" -> "All checks passed?";
+        "All checks passed?" -> "Migration complete" [label="yes"];
+        "All checks passed?" -> "ROLLBACK REQUIRED" [label="no"];
+    }
+
+    // Rollback procedure
+    subgraph cluster_rollback {
+        label="Rollback Procedure";
+        bgcolor="#ffcdd2";
+
+        "Check current migration" [shape=box];
+        "npm run migrate:rollback" [shape=plaintext];
+        "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < backup_file.sql" [shape=plaintext];
+        "npm run migrate:verify" [shape=plaintext];
+
+        "ROLLBACK REQUIRED" -> "Check current migration";
+        "Check current migration" -> "npm run migrate:rollback";
+        "npm run migrate:rollback" -> "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < backup_file.sql";
+        "Restore from backup:\npsql -h $DB_HOST -U $DB_USER $DB_NAME < backup_file.sql" -> "npm run migrate:verify";
+    }
+
+    // External connections
+    "Migration complete" -> post_deployment_verification [label="continue to", style=dotted];
+}

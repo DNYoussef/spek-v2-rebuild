@@ -1,0 +1,134 @@
+# SPEK Platform v2 + Atlantis UI - Docker Compose Configuration
+# Week 25 - Desktop Deployment with Docker Tools
+#
+# This configuration provides:
+# - PostgreSQL 15 database
+# - Redis 7 cache
+# - Persistent volumes for data
+# - Network isolation
+# - Health checks
+#
+# Usage:
+#   docker compose up -d       # Start services
+#   docker compose down        # Stop services
+#   docker compose logs -f     # View logs
+#   docker compose ps          # Check status
+
+version: '3.9'
+
+services:
+  # ============================================
+  # PostgreSQL Database
+  # ============================================
+  postgres:
+    image: postgres:15-alpine
+    container_name: spek-postgres
+    restart: unless-stopped
+
+    environment:
+      # Database configuration
+      POSTGRES_DB: spek_db
+      POSTGRES_USER: spek_user
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-spek_password_change_me}
+
+      # Performance tuning
+      POSTGRES_SHARED_BUFFERS: 256MB
+      POSTGRES_EFFECTIVE_CACHE_SIZE: 1GB
+      POSTGRES_MAX_CONNECTIONS: 100
+
+    ports:
+      - "5432:5432"
+
+    volumes:
+      # Persistent data storage
+      - postgres_data:/var/lib/postgresql/data
+
+      # Initialization scripts (optional)
+      - ./scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql:ro
+
+    networks:
+      - spek-network
+
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U spek_user -d spek_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+
+    # Resource limits (desktop-friendly)
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 512M
+        reservations:
+          cpus: '0.5'
+          memory: 256M
+
+  # ============================================
+  # Redis Cache
+  # ============================================
+  redis:
+    image: redis:7-alpine
+    container_name: spek-redis
+    restart: unless-stopped
+
+    command: >
+      redis-server
+      --appendonly yes
+      --appendfsync everysec
+      --maxmemory 256mb
+      --maxmemory-policy allkeys-lru
+      --save 60 1000
+      --tcp-backlog 511
+
+    ports:
+      - "6379:6379"
+
+    volumes:
+      # Persistent data storage
+      - redis_data:/data
+
+    networks:
+      - spek-network
+
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+
+    # Resource limits (desktop-friendly)
+    deploy:
+      resources:
+        limits:
+          cpus: '0.5'
+          memory: 256M
+        reservations:
+          cpus: '0.25'
+          memory: 128M
+
+# ============================================
+# Networks
+# ============================================
+networks:
+  spek-network:
+    driver: bridge
+    name: spek-network
+    ipam:
+      config:
+        - subnet: 172.28.0.0/16
+
+# ============================================
+# Volumes (Persistent Data)
+# ============================================
+volumes:
+  postgres_data:
+    driver: local
+    name: spek-postgres-data
+
+  redis_data:
+    driver: local
+    name: spek-redis-data

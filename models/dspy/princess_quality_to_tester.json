@@ -1,0 +1,107 @@
+{
+  "delegate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"OAuth2 authentication API\", \"code_files\": [\"src/auth/oauth.py\", \"src/auth/jwt.py\"], \"coverage_target\": 85}",
+        "reasoning": "For testing OAuth2 authentication, we need a specialized quality-focused drone that can verify both functionality and security aspects. The tester drone is best suited for this task as it can:\n1. Create comprehensive test scenarios covering OAuth2 flows\n2. Verify JWT token handling and validation\n3. Test security edge cases and potential vulnerabilities\n4. Ensure proper error handling and authentication flows\n5. Meet the required 85% coverage target\n\nThe task needs to be structured to cover all OAuth2 grant types, token management, and security considerations.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test OAuth2 authentication flows and JWT handling\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"security\"],\n        \"scenarios\": [\n            \"authorization_code_flow\",\n            \"client_credentials_flow\",\n            \"refresh_token_flow\",\n            \"jwt_validation\",\n            \"token_expiration\"\n        ],\n        \"coverage_target\": 85,\n        \"frameworks\": [\"pytest\", \"jose\", \"requests\"],\n        \"dependencies\": [\"mock OAuth server\", \"test certificates\"]\n    },\n    \"acceptance_criteria\": [\n        \"Minimum 85% test coverage achieved\",\n        \"All OAuth2 flows successfully tested\",\n        \"JWT token creation and validation verified\",\n        \"Security edge cases handled properly\",\n        \"Token refresh mechanism working\",\n        \"Error scenarios properly tested\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Database migration system\", \"code_files\": [\"src/db/migrator.py\", \"src/db/schema_validator.py\"], \"coverage_target\": 90}",
+        "reasoning": "For testing a database migration system, we need a specialized testing approach that ensures data integrity and schema validation. The tester drone is best suited for this task as it can handle both unit and integration testing scenarios. The testing needs to cover migration operations, rollbacks, and schema validation with a high coverage target of 90% given the critical nature of database operations.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test database migration system functionality\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"system\"],\n        \"scenarios\": [\n            \"forward migration\",\n            \"rollback migration\",\n            \"schema validation\",\n            \"data preservation\",\n            \"concurrent migrations\"\n        ],\n        \"coverage_target\": 90,\n        \"frameworks\": [\"pytest\", \"sqlalchemy\"],\n        \"test_databases\": [\"sqlite\", \"postgresql\"]\n    },\n    \"acceptance_criteria\": [\n        \"Achieve >=90% test coverage\",\n        \"All migrations successfully apply and rollback\",\n        \"Schema validation correctly identifies issues\",\n        \"Data integrity maintained during migrations\",\n        \"Concurrent migration handling verified\",\n        \"Error cases properly handled and logged\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Payment processing gateway\", \"code_files\": [\"src/payments/processor.py\", \"src/payments/stripe_adapter.py\"], \"coverage_target\": 95}",
+        "reasoning": "For testing a payment processing gateway, we need comprehensive testing due to the critical nature of financial transactions. The tester drone is best suited for this task as it specializes in thorough test coverage and can handle both unit and integration tests. The task requires high coverage (95%) and must verify payment processing flows, error handling, and integration with Stripe. Security and transaction integrity are paramount.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test payment processing gateway implementation\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"security\"],\n        \"scenarios\": [\n            \"successful payment flow\",\n            \"payment failure handling\",\n            \"stripe integration\",\n            \"transaction rollback\",\n            \"idempotency checks\"\n        ],\n        \"coverage_target\": 95,\n        \"frameworks\": [\"pytest\", \"stripe-mock\"],\n        \"dependencies\": [\"test payment data\", \"mock stripe responses\"]\n    },\n    \"acceptance_criteria\": [\n        \"Achieve >=95% test coverage\",\n        \"All payment flows properly tested\",\n        \"Stripe integration verified\",\n        \"Error handling confirmed\",\n        \"Security measures validated\",\n        \"Idempotency verified\",\n        \"Transaction integrity maintained\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"File upload handler\", \"code_files\": [\"src/uploads/handler.py\", \"src/uploads/validator.py\"], \"coverage_target\": 80}",
+        "reasoning": "For testing a file upload handler, we need comprehensive testing across multiple aspects including file validation, security, and edge cases. The tester drone is best suited for this task as it specializes in generating test suites and can handle both functional and security testing scenarios. The task should focus on validating file uploads, checking file type restrictions, testing size limits, and ensuring proper error handling.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test file upload functionality and validation\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"security\"],\n        \"scenarios\": [\n            \"valid file upload\",\n            \"invalid file types\",\n            \"size limit checks\",\n            \"concurrent uploads\",\n            \"malicious file detection\"\n        ],\n        \"coverage_target\": 80,\n        \"frameworks\": [\"pytest\", \"mock\"],\n        \"test_files\": {\n            \"valid\": [\"image.jpg\", \"document.pdf\"],\n            \"invalid\": [\"malicious.exe\", \"oversized.zip\"]\n        }\n    },\n    \"acceptance_criteria\": [\n        \"Achieve 80% code coverage\",\n        \"All file type validations pass\",\n        \"Size limit checks work correctly\",\n        \"Proper error handling for invalid uploads\",\n        \"Security checks prevent malicious files\",\n        \"Concurrent upload tests pass\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Cache invalidation system\", \"code_files\": [\"src/cache/invalidator.py\", \"src/cache/redis_client.py\"], \"coverage_target\": 85}",
+        "reasoning": "For testing a cache invalidation system, we need a specialized testing approach that covers both functional correctness and performance aspects. The tester drone is best suited for this task as it can verify cache behaviors, timing, and edge cases. The testing needs to cover various invalidation scenarios, concurrent access patterns, and integration with Redis. Given the critical nature of caching in system performance, we'll need comprehensive test coverage.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test cache invalidation mechanisms\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"performance\"],\n        \"scenarios\": [\n            \"single key invalidation\",\n            \"pattern-based invalidation\",\n            \"concurrent access\",\n            \"redis connection handling\",\n            \"cache miss handling\"\n        ],\n        \"coverage_target\": 85,\n        \"frameworks\": [\"pytest\", \"redis-mock\", \"fakeredis\"],\n        \"performance_metrics\": [\"invalidation latency\", \"memory usage\"]\n    },\n    \"acceptance_criteria\": [\n        \"Achieve minimum 85% test coverage\",\n        \"Verify correct invalidation patterns\",\n        \"Confirm thread-safe operations\",\n        \"Test Redis connection error handling\",\n        \"Measure invalidation performance metrics\",\n        \"Validate cache consistency after invalidation\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Email notification service\", \"code_files\": [\"src/notifications/email_sender.py\", \"src/notifications/template_engine.py\"], \"coverage_target\": 80}",
+        "reasoning": "For testing an email notification service, we need comprehensive testing of both the email sending functionality and template rendering. Given the critical nature of email communications and the need to ensure reliable delivery, template accuracy, and proper error handling, I'll assign this to our \"tester\" drone. The task will focus on both unit and integration testing, with particular attention to template rendering, email sending mechanics, and error scenarios. The coverage target of 80% is reasonable for this type of service.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test email notification system functionality\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\"],\n        \"scenarios\": [\n            \"email sending\",\n            \"template rendering\",\n            \"error handling\",\n            \"retry mechanism\",\n            \"template variables\"\n        ],\n        \"coverage_target\": 80,\n        \"frameworks\": [\"pytest\", \"mock\"],\n        \"test_data\": {\n            \"email_templates\": [\"welcome\", \"reset_password\", \"notification\"],\n            \"mock_smtp_responses\": [\"success\", \"timeout\", \"server_error\"]\n        }\n    },\n    \"acceptance_criteria\": [\n        \"Achieve minimum 80% test coverage\",\n        \"All template rendering scenarios tested\",\n        \"SMTP interaction properly mocked\",\n        \"Error handling and retry logic verified\",\n        \"Template variable substitution validated\",\n        \"Rate limiting tests implemented\",\n        \"Email queue handling tested\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"API rate limiter\", \"code_files\": [\"src/middleware/rate_limiter.py\", \"src/middleware/token_bucket.py\"], \"coverage_target\": 90}",
+        "reasoning": "For testing an API rate limiter, we need comprehensive testing across multiple scenarios including concurrent requests, token bucket algorithm verification, and edge cases. The tester drone is best suited for this task as it specializes in testing distributed systems components. The task requires high coverage (90%) and must verify both functional correctness and performance under load.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test API rate limiter implementation\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"performance\", \"concurrent\"],\n        \"scenarios\": [\n            \"single client throttling\",\n            \"multiple client handling\",\n            \"token bucket replenishment\",\n            \"burst handling\",\n            \"distributed rate limiting\"\n        ],\n        \"coverage_target\": 90,\n        \"frameworks\": [\"pytest\", \"asyncio\", \"locust\"],\n        \"test_files\": [\n            \"tests/middleware/test_rate_limiter.py\",\n            \"tests/middleware/test_token_bucket.py\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Achieve minimum 90% code coverage\",\n        \"Verify correct request throttling under load\",\n        \"Confirm token bucket algorithm accuracy\",\n        \"Test concurrent request handling\",\n        \"Validate rate limit configuration changes\",\n        \"Ensure proper error responses for exceeded limits\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"WebSocket connection manager\", \"code_files\": [\"src/websocket/manager.py\", \"src/websocket/broadcaster.py\"], \"coverage_target\": 85}",
+        "reasoning": "For testing WebSocket functionality, we need a comprehensive test suite that covers connection handling, message broadcasting, and error scenarios. The tester drone is best suited for this task as it specializes in testing distributed systems and network protocols. The task requires both unit and integration tests to verify individual components and their interactions. Given the real-time nature of WebSockets, we'll need specific focus on connection stability, message delivery, and concurrent operations.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test WebSocket connection management and broadcasting\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"load\"],\n        \"scenarios\": [\n            \"connection establishment\",\n            \"connection termination\",\n            \"message broadcasting\",\n            \"reconnection handling\",\n            \"concurrent connections\"\n        ],\n        \"coverage_target\": 85,\n        \"frameworks\": [\"pytest\", \"websockets\", \"asyncio\"],\n        \"test_environments\": [\"local\", \"distributed\"]\n    },\n    \"acceptance_criteria\": [\n        \"Achieve 85% code coverage\",\n        \"Successfully handle 1000+ concurrent connections\",\n        \"Message delivery verification\",\n        \"Graceful connection termination\",\n        \"Proper error handling for network issues\",\n        \"Memory leak checks for long-running connections\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Search indexing service\", \"code_files\": [\"src/search/indexer.py\", \"src/search/elasticsearch_client.py\"], \"coverage_target\": 80}",
+        "reasoning": "For testing a search indexing service, we need a comprehensive test suite that verifies both the indexing functionality and the Elasticsearch client integration. The tester drone is best suited for this task as it specializes in creating test suites and verifying functionality. The testing should cover document indexing, search queries, index management, and error handling. Given the integration with Elasticsearch, we'll need both unit tests with mocks and integration tests with a test Elasticsearch instance.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Create test suite for search indexing service\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\"],\n        \"scenarios\": [\n            \"document indexing\",\n            \"search queries\",\n            \"index management\",\n            \"error handling\",\n            \"bulk operations\"\n        ],\n        \"coverage_target\": 80,\n        \"frameworks\": [\"pytest\", \"elasticsearch-mock\"],\n        \"test_data\": \"sample documents and queries\",\n        \"environment\": \"test elasticsearch instance\"\n    },\n    \"acceptance_criteria\": [\n        \"Achieve 80% code coverage\",\n        \"All CRUD operations tested\",\n        \"Search query accuracy verified\",\n        \"Error scenarios handled gracefully\",\n        \"Bulk indexing performance tested\",\n        \"Mock and real ES tests pass\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "test",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Image processing pipeline\", \"code_files\": [\"src/images/processor.py\", \"src/images/resizer.py\"], \"coverage_target\": 85}",
+        "reasoning": "For testing an image processing pipeline, we need comprehensive testing of both the processor and resizer components. Given the visual nature of the output and the potential for complex transformations, we'll assign this to the \"tester\" drone with specific focus on image manipulation scenarios. The task requires both unit tests for individual functions and integration tests for the full pipeline, with particular attention to image quality preservation and performance metrics.",
+        "drone_task": "{\n    \"drone_id\": \"tester\",\n    \"task_type\": \"generate-tests\",\n    \"description\": \"Test image processing pipeline functionality\",\n    \"payload\": {\n        \"test_types\": [\"unit\", \"integration\", \"performance\"],\n        \"scenarios\": [\n            \"image resizing\",\n            \"format conversion\",\n            \"batch processing\",\n            \"error handling\",\n            \"memory management\"\n        ],\n        \"coverage_target\": 85,\n        \"frameworks\": [\"pytest\", \"Pillow\", \"numpy\"],\n        \"test_data\": \"sample_images/*\"\n    },\n    \"acceptance_criteria\": [\n        \"Achieve 85% code coverage\",\n        \"Verify image quality preservation\",\n        \"Confirm correct resizing dimensions\",\n        \"Test memory usage stays within bounds\",\n        \"Validate error handling for corrupt images\",\n        \"Performance tests under various load conditions\"\n    ]\n}"
+      }
+    ],
+    "signature": {
+      "instructions": "Delegate task to drone agent with clear instructions.\n\nYou are a Princess agent coordinating your specialized drone hive.\nYour role is to take high-level workflow phases and convert them\ninto specific, actionable tasks for your drone agents.\n\nPrincess-Dev drones: coder, reviewer, debugger, integration-engineer\nPrincess-Quality drones: tester, nasa-enforcer, theater-detector, fsm-analyzer\nPrincess-Coordination drones: orchestrator, planner, cost-tracker\n\nEach drone task must have:\n- Specific drone agent assignment\n- Task type matching drone capabilities\n- Clear context from previous phases\n- Concrete deliverables\n- Quality gates/acceptance criteria\n\nFollow the 26 prompt engineering principles:\n- Clarity: Unambiguous instructions\n- Context: Include relevant phase results\n- Constraints: Respect drone capabilities\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Phase:",
+          "description": "Development phase to execute (design, code, test, review, etc.)"
+        },
+        {
+          "prefix": "Context:",
+          "description": "Context and results from previous phases that this phase depends on"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Delegation reasoning explaining drone selection and task structure"
+        },
+        {
+          "prefix": "Drone Task:",
+          "description": "Structured task for drone agent as JSON object. Must have: {'drone_id': str, 'task_type': str, 'description': str, 'payload': dict, 'acceptance_criteria': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

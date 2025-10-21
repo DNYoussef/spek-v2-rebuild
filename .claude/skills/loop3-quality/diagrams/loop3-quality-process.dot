@@ -1,0 +1,160 @@
+digraph Loop3_Quality_Process {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start/End
+    start [shape=ellipse, label="Loop 3\nEntry\n(from Loop 2)", fillcolor=lightgreen];
+    end_success [shape=ellipse, label="PRODUCTION\nREADY", fillcolor=green, fontcolor=white];
+    end_escalate [shape=ellipse, label="Escalate to\nLoop 1", fillcolor=orange];
+
+    // Phase 1: Context Load
+    subgraph cluster_context {
+        label="Phase 1: Context Load";
+        fillcolor=lightyellow;
+        style=filled;
+
+        load_memory [shape=cylinder, label="Load from\nMemory", fillcolor=lightcoral];
+        load_artifacts [label="Load:\n- Code changes\n- Test results\n- Audit reports\n- Implementation log"];
+        load_plan [label="Load original:\n- Task plan\n- Success criteria\n- Risk assessment"];
+    }
+
+    // Phase 2: Comprehensive Audits
+    subgraph cluster_audits {
+        label="Phase 2: Comprehensive Audits";
+        fillcolor=lightyellow;
+        style=filled;
+
+        audit_backend [label="Backend Audit:\n- API tests (14)\n- Unit tests (115)\n- Coverage (>=80%)"];
+        audit_frontend [label="Frontend Audit:\n- Component tests\n- E2E tests (139)\n- Visual regression"];
+        audit_e2e [label="E2E Audit:\n- User flows\n- Integration tests\n- Performance tests"];
+        audit_env [label="Environment Audit:\n- Config validation\n- Secret management\n- Dependencies"];
+    }
+
+    // Phase 3: Integration Testing
+    subgraph cluster_integration {
+        label="Phase 3: Integration Testing";
+        fillcolor=lightyellow;
+        style=filled;
+
+        integration_test [label="Full System Test:\n- Backend + Frontend\n- Database + API\n- WebSocket events"];
+        integration_pass [shape=diamond, label="Integration\ntests pass?", fillcolor=yellow];
+    }
+
+    // Phase 4: Security Validation
+    subgraph cluster_security {
+        label="Phase 4: Security Validation";
+        fillcolor=lightyellow;
+        style=filled;
+
+        security_scan [label="Security Scan:\n- Bandit (Python)\n- ESLint security\n- Dependency audit"];
+        security_manual [label="Manual Review:\n- Auth/authz\n- Data validation\n- Secret handling"];
+        security_pass [shape=diamond, label="Security\nclear?", fillcolor=yellow];
+    }
+
+    // Phase 5: Complete Rewrite
+    subgraph cluster_rewrite {
+        label="Phase 5: Complete Rewrite";
+        fillcolor=lightyellow;
+        style=filled;
+
+        rewrite_decision [shape=diamond, label="Rewrite\nneeded?", fillcolor=yellow];
+        rewrite_spawn [shape=cylinder, label="Spawn coder\n(fresh rewrite)", fillcolor=lightcoral];
+        rewrite_execute [label="Rewrite from\nscratch with:\n- Loop 2 audit findings\n- Best practices\n- Clean architecture"];
+        rewrite_validate [label="Re-run Loop 3\nfrom start"];
+    }
+
+    // Phase 6: 47-Point Quality Gate
+    subgraph cluster_quality_gate {
+        label="Phase 6: 47-Point Quality Gate";
+        fillcolor=lightyellow;
+        style=filled;
+
+        checklist_run [shape=cylinder, label="Run 47-point\nchecklist", fillcolor=lightcoral];
+        checklist_score [label="Calculate score:\n- Backend (12)\n- Frontend (8)\n- E2E (7)\n- Environment (6)\n- Performance (5)\n- Security (4)\n- Quality (3)\n- Final (2)"];
+        checklist_decision [shape=diamond, label="Score?", fillcolor=yellow];
+    }
+
+    // Phase 7: GO/CAUTION/NO-GO Decision
+    subgraph cluster_decision {
+        label="Phase 7: Final Decision";
+        fillcolor=lightyellow;
+        style=filled;
+
+        decision_go [label="GO\n(47/47)\n\nProduction ready", fillcolor=green, fontcolor=white];
+        decision_caution [label="CAUTION\n(45-46/47)\n\nMinor fixes needed", fillcolor=yellow];
+        decision_nogo [label="NO-GO\n(<45/47)\n\nMajor issues", fillcolor=red, fontcolor=white];
+    }
+
+    // Phase 8: Escalation to Loop 1
+    subgraph cluster_escalation {
+        label="Phase 8: Escalation (Debug Route)";
+        fillcolor=lightyellow;
+        style=filled;
+
+        escalation_analyze [label="Analyze failures:\n- Root cause\n- Architectural issues\n- Planning gaps"];
+        escalation_memory [shape=cylinder, label="Update Memory\n(debug context)", fillcolor=lightcoral];
+        escalation_trigger [label="Trigger Loop 1\nwith debug route"];
+    }
+
+    // External References
+    memory_schema [shape=cylinder, label="Memory Schema\n(quality_state)", fillcolor=lightcoral];
+    checklist_ref [shape=cylinder, label="47-Point\nChecklist\n(see diagram)", fillcolor=lightcoral];
+
+    // Flow
+    start -> load_memory;
+    load_memory -> load_artifacts;
+    load_artifacts -> load_plan;
+    load_plan -> audit_backend;
+
+    audit_backend -> audit_frontend;
+    audit_frontend -> audit_e2e;
+    audit_e2e -> audit_env;
+    audit_env -> integration_test;
+
+    integration_test -> integration_pass;
+    integration_pass -> security_scan [label="yes", color=green];
+    integration_pass -> rewrite_decision [label="no", color=red];
+
+    security_scan -> security_manual;
+    security_manual -> security_pass;
+    security_pass -> checklist_run [label="yes", color=green];
+    security_pass -> rewrite_decision [label="no", color=red];
+
+    rewrite_decision -> checklist_run [label="no\n(fixable)", color=green];
+    rewrite_decision -> rewrite_spawn [label="yes\n(major issues)", color=red];
+    rewrite_spawn -> rewrite_execute;
+    rewrite_execute -> rewrite_validate;
+    rewrite_validate -> load_memory [style=dashed, label="restart"];
+
+    checklist_run -> checklist_score;
+    checklist_score -> checklist_decision;
+
+    checklist_decision -> decision_go [label="47/47", color=green];
+    checklist_decision -> decision_caution [label="45-46", color=yellow];
+    checklist_decision -> decision_nogo [label="<45", color=red];
+
+    decision_go -> end_success;
+    decision_caution -> end_success [label="accept\n(document issues)"];
+    decision_nogo -> escalation_analyze;
+
+    escalation_analyze -> escalation_memory;
+    escalation_memory -> escalation_trigger;
+    escalation_trigger -> end_escalate;
+
+    // External connections
+    load_memory -> memory_schema [style=dashed, label="read"];
+    escalation_memory -> memory_schema [style=dashed, label="write"];
+    checklist_run -> checklist_ref [style=dashed, label="uses"];
+
+    // Warning
+    warning_rewrite [shape=octagon, label="CRITICAL\nComplete rewrite is\nLAST RESORT only\nExhaust all fixes first", fillcolor=orange];
+    rewrite_decision -> warning_rewrite [style=dashed, color=red];
+
+    // Metadata
+    labelloc="t";
+    label="Loop 3: Quality Validation Process\n\nPhases: Context → Audits → Integration → Security → Rewrite (if needed) → 47-Point Gate → Decision → Escalation\nScoring: 47/47 = GO, 45-46 = CAUTION, <45 = NO-GO\nEscalation: Triggers Loop 1 debug route for re-planning";
+    fontsize=14;
+    fontname="Arial Bold";
+}

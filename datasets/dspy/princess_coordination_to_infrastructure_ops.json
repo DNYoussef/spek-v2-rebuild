@@ -1,0 +1,1144 @@
+{
+  "communication_path": "princess-coordination→infrastructure-ops",
+  "description": "Princess-Coordination delegates infrastructure/DevOps tasks to Infrastructure-Ops drone",
+  "examples": [
+    {
+      "phase": "deploy-infrastructure",
+      "context": {
+        "environment": "production",
+        "cloud_provider": "AWS",
+        "requirements": "Deploy microservices with auto-scaling and load balancing",
+        "current_state": "staging environment validated"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-k8s-cluster",
+        "description": "Deploy production Kubernetes cluster with 3 microservices on AWS EKS",
+        "specifications": {
+          "cluster": {
+            "provider": "AWS EKS",
+            "version": "1.27",
+            "nodes": 3,
+            "instance_type": "t3.medium"
+          },
+          "microservices": ["auth-service", "api-gateway", "user-service"],
+          "networking": "VPC with private subnets, ALB ingress",
+          "storage": "EBS volumes with encryption",
+          "monitoring": "CloudWatch + Prometheus",
+          "security": ["RBAC enabled", "Pod Security Standards", "Network Policies"]
+        },
+        "dependencies": ["AWS credentials configured", "Terraform state ready"],
+        "estimated_minutes": 55,
+        "quality_gates": ["health checks passing", "auto-scaling configured", "monitoring active", "security scan passed"]
+      }
+    },
+    {
+      "phase": "containerize",
+      "context": {
+        "application": "Python FastAPI microservice",
+        "requirements": "Multi-stage build, minimal image size",
+        "registry": "AWS ECR"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "create-docker-image",
+        "description": "Create optimized Docker image for FastAPI service",
+        "specifications": {
+          "base_image": "python:3.11-slim",
+          "stages": ["builder", "runtime"],
+          "optimizations": ["layer caching", "multi-stage build", "poetry for dependencies"],
+          "size_target": "<150MB",
+          "security": ["non-root user", "vulnerability scan", "secrets handling"]
+        },
+        "dependencies": ["source code available", "requirements.txt frozen"],
+        "estimated_minutes": 35,
+        "quality_gates": ["image builds successfully", "size <150MB", "security scan clean", "health check passes"]
+      }
+    },
+    {
+      "phase": "setup-cicd",
+      "context": {
+        "platform": "GitHub Actions",
+        "workflow": "Build, test, deploy on merge to main",
+        "environments": ["staging", "production"]
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "configure-cicd-pipeline",
+        "description": "Setup GitHub Actions CI/CD pipeline with staging and production deployments",
+        "specifications": {
+          "pipeline_stages": ["lint", "test", "build", "scan", "deploy-staging", "deploy-production"],
+          "triggers": ["push to main", "pull request", "manual dispatch"],
+          "secrets": ["AWS_ACCESS_KEY", "DOCKER_REGISTRY_TOKEN", "KUBECONFIG"],
+          "notifications": ["Slack on failure", "email on success"],
+          "rollback": "automatic on health check failure"
+        },
+        "dependencies": ["repository access", "cloud credentials", "cluster configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["pipeline runs successfully", "tests pass", "deployments automated", "rollback tested"]
+      }
+    },
+    {
+      "phase": "infrastructure-as-code",
+      "context": {
+        "tool": "Terraform",
+        "cloud": "GCP",
+        "resources": "VPC, GKE cluster, Cloud SQL, Redis"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "terraform-infrastructure",
+        "description": "Create Terraform modules for GCP infrastructure provisioning",
+        "specifications": {
+          "modules": ["networking", "compute", "database", "cache"],
+          "vpc": {"cidr": "10.0.0.0/16", "subnets": 3, "nat_gateway": true},
+          "gke": {"version": "1.28", "node_pools": 2, "auto_scaling": true},
+          "database": {"postgres": "14", "ha": true, "backup_retention": "7d"},
+          "state_backend": "GCS bucket with versioning"
+        },
+        "dependencies": ["GCP project created", "service account configured"],
+        "estimated_minutes": 50,
+        "quality_gates": ["terraform plan succeeds", "cost estimate <$500/month", "security best practices", "state management working"]
+      }
+    },
+    {
+      "phase": "monitoring-setup",
+      "context": {
+        "stack": "Prometheus + Grafana + Loki",
+        "cluster": "Kubernetes on Azure AKS",
+        "metrics": "Application and infrastructure metrics"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-monitoring-stack",
+        "description": "Deploy comprehensive monitoring and logging stack on AKS",
+        "specifications": {
+          "prometheus": {"retention": "30d", "scrape_interval": "15s", "alert_rules": true},
+          "grafana": {"dashboards": ["cluster overview", "pod metrics", "application metrics"], "alerts": "Slack integration"},
+          "loki": {"log_retention": "14d", "compression": true},
+          "exporters": ["node-exporter", "kube-state-metrics", "blackbox-exporter"]
+        },
+        "dependencies": ["cluster access", "persistent volumes", "ingress configured"],
+        "estimated_minutes": 40,
+        "quality_gates": ["metrics collecting", "dashboards accessible", "alerts firing correctly", "logs aggregating"]
+      }
+    },
+    {
+      "phase": "database-migration",
+      "context": {
+        "database": "PostgreSQL 12 to 14 upgrade",
+        "size": "500GB",
+        "downtime_window": "2 hours maintenance window"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "database-upgrade",
+        "description": "Zero-downtime PostgreSQL upgrade using blue-green deployment",
+        "specifications": {
+          "strategy": "blue-green with logical replication",
+          "steps": ["backup current", "provision new cluster", "replicate data", "cutover", "verify"],
+          "rollback_plan": "DNS switch back to original",
+          "verification": ["data integrity checks", "query performance", "application connectivity"]
+        },
+        "dependencies": ["backup verified", "new cluster provisioned", "replication tested"],
+        "estimated_minutes": 60,
+        "quality_gates": ["zero data loss", "downtime <5 minutes", "rollback tested", "performance maintained"]
+      }
+    },
+    {
+      "phase": "scaling-configuration",
+      "context": {
+        "application": "E-commerce platform",
+        "traffic_pattern": "Peak 10x during sales events",
+        "current": "3 replicas, manual scaling"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "configure-auto-scaling",
+        "description": "Implement HPA and cluster autoscaling for traffic spikes",
+        "specifications": {
+          "hpa": {"min_replicas": 3, "max_replicas": 20, "target_cpu": "70%", "target_memory": "80%"},
+          "cluster_autoscaler": {"min_nodes": 3, "max_nodes": 10, "scale_down_delay": "10m"},
+          "custom_metrics": ["requests_per_second", "queue_depth"],
+          "cost_optimization": "spot instances for non-critical workloads"
+        },
+        "dependencies": ["metrics server deployed", "node groups configured"],
+        "estimated_minutes": 35,
+        "quality_gates": ["scales up on load", "scales down when idle", "no pod evictions", "cost tracked"]
+      }
+    },
+    {
+      "phase": "disaster-recovery",
+      "context": {
+        "requirement": "RPO 1 hour, RTO 4 hours",
+        "infrastructure": "Multi-region AWS deployment",
+        "data": "PostgreSQL + S3 assets"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "implement-dr-strategy",
+        "description": "Setup multi-region disaster recovery with automated failover",
+        "specifications": {
+          "backup_strategy": {"database": "continuous WAL archiving", "files": "S3 cross-region replication"},
+          "standby_region": "us-west-2 (primary: us-east-1)",
+          "failover": "Route53 health checks + automated DNS failover",
+          "testing": "quarterly DR drills",
+          "documentation": "runbook for manual and automatic failover"
+        },
+        "dependencies": ["multi-region infrastructure", "networking setup", "IAM roles configured"],
+        "estimated_minutes": 55,
+        "quality_gates": ["backups verified", "failover tested", "RTO/RPO met", "documentation complete"]
+      }
+    },
+    {
+      "phase": "security-hardening",
+      "context": {
+        "cluster": "Production Kubernetes",
+        "compliance": "SOC2, HIPAA requirements",
+        "threat_model": "External and internal threats"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "harden-kubernetes-cluster",
+        "description": "Implement comprehensive Kubernetes security hardening",
+        "specifications": {
+          "network_policies": "deny-all default, explicit allow rules",
+          "pod_security": "restricted PSS, securityContext enforced",
+          "rbac": "least privilege, no cluster-admin in production",
+          "secrets": "sealed-secrets or external secrets operator",
+          "admission_control": "OPA Gatekeeper policies",
+          "scanning": ["Trivy for images", "Kube-bench for CIS compliance"]
+        },
+        "dependencies": ["cluster access", "policy requirements documented"],
+        "estimated_minutes": 50,
+        "quality_gates": ["CIS benchmark score >90%", "no critical vulnerabilities", "network policies enforced", "audit logging enabled"]
+      }
+    },
+    {
+      "phase": "service-mesh",
+      "context": {
+        "requirement": "Mutual TLS, traffic management, observability",
+        "cluster": "Kubernetes with 15 microservices",
+        "mesh": "Istio"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-service-mesh",
+        "description": "Install and configure Istio service mesh with mTLS",
+        "specifications": {
+          "istio_version": "1.19",
+          "features": ["automatic mTLS", "circuit breaking", "retry policies", "distributed tracing"],
+          "ingress_gateway": "single entry point with TLS termination",
+          "observability": ["Jaeger for tracing", "Kiali for visualization"],
+          "traffic_management": ["canary deployments", "A/B testing", "blue-green"]
+        },
+        "dependencies": ["Kubernetes 1.24+", "sufficient resources", "DNS configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["mTLS enforced", "zero trust networking", "telemetry collecting", "ingress working"]
+      }
+    },
+    {
+      "phase": "cost-optimization",
+      "context": {
+        "cloud": "AWS",
+        "current_spend": "$8,000/month",
+        "target": "Reduce by 30% without performance impact"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "optimize-cloud-costs",
+        "description": "Implement cost optimization strategies for AWS infrastructure",
+        "specifications": {
+          "compute": ["right-size instances", "spot instances for batch jobs", "reserved instances for steady-state"],
+          "storage": ["lifecycle policies for S3", "EBS volume cleanup", "gp3 instead of io1"],
+          "database": ["RDS reserved instances", "read replicas optimization"],
+          "monitoring": "Cost anomaly detection with AWS Cost Explorer",
+          "tagging": "enforce tagging for cost allocation"
+        },
+        "dependencies": ["cost analysis completed", "usage patterns documented"],
+        "estimated_minutes": 40,
+        "quality_gates": ["cost reduced by 30%", "no performance degradation", "tagging coverage >95%", "budget alerts configured"]
+      }
+    },
+    {
+      "phase": "load-balancing",
+      "context": {
+        "traffic": "Global users, latency-sensitive API",
+        "current": "Single region deployment",
+        "requirement": "Sub-100ms latency worldwide"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-global-lb",
+        "description": "Deploy global load balancing with CDN and anycast routing",
+        "specifications": {
+          "cdn": "CloudFlare with edge caching",
+          "load_balancer": "geo-proximity routing with health checks",
+          "regions": ["us-east-1", "eu-west-1", "ap-southeast-1"],
+          "caching": ["static assets at edge", "API responses (60s TTL)"],
+          "failover": "automatic region failover on health check failure"
+        },
+        "dependencies": ["multi-region deployments", "DNS management", "SSL certificates"],
+        "estimated_minutes": 45,
+        "quality_gates": ["latency <100ms globally", "cache hit ratio >80%", "failover tested", "SSL A+ rating"]
+      }
+    },
+    {
+      "phase": "secrets-management",
+      "context": {
+        "current": "Kubernetes secrets (base64 encoded)",
+        "requirement": "Encrypted at rest, audit trail, rotation",
+        "compliance": "PCI-DSS"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "implement-secrets-management",
+        "description": "Migrate to HashiCorp Vault for centralized secrets management",
+        "specifications": {
+          "vault": {"version": "1.14", "ha_mode": true, "auto_unseal": "AWS KMS"},
+          "integration": "Vault injector for Kubernetes",
+          "secret_engines": ["database credentials", "API keys", "TLS certificates"],
+          "policies": "least privilege access per application",
+          "rotation": "automatic rotation every 90 days",
+          "audit": "all access logged to SIEM"
+        },
+        "dependencies": ["Vault deployed", "KMS key created", "applications updated"],
+        "estimated_minutes": 50,
+        "quality_gates": ["secrets encrypted", "audit trail complete", "rotation working", "zero plaintext secrets"]
+      }
+    },
+    {
+      "phase": "networking",
+      "context": {
+        "requirement": "Private Kubernetes cluster with secure egress",
+        "cloud": "GCP",
+        "services": "Need to access third-party APIs"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "configure-private-cluster",
+        "description": "Setup private GKE cluster with Cloud NAT and Private Service Connect",
+        "specifications": {
+          "gke": {"private_cluster": true, "master_authorized_networks": ["VPN IP range"]},
+          "networking": {"vpc": "custom VPC", "subnets": "regional subnets with secondary ranges"},
+          "egress": "Cloud NAT for outbound internet",
+          "ingress": "Private Load Balancer behind Cloud Armor",
+          "connectivity": "VPN or Interconnect for on-prem access"
+        },
+        "dependencies": ["VPC designed", "IP ranges allocated", "firewall rules defined"],
+        "estimated_minutes": 45,
+        "quality_gates": ["no public IPs", "egress working", "ingress secured", "connectivity tested"]
+      }
+    },
+    {
+      "phase": "backup-restore",
+      "context": {
+        "workload": "Stateful applications on Kubernetes",
+        "data": "PostgreSQL, Redis, persistent volumes",
+        "requirement": "Daily backups, 30-day retention"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-backup-solution",
+        "description": "Implement Velero for Kubernetes backup and disaster recovery",
+        "specifications": {
+          "velero": {"version": "1.11", "storage": "S3 bucket with versioning"},
+          "schedule": {"full": "daily at 2 AM UTC", "incremental": "every 6 hours"},
+          "scope": ["all namespaces", "persistent volumes", "cluster resources"],
+          "retention": "30 days with lifecycle policy",
+          "testing": "monthly restore drills to staging"
+        },
+        "dependencies": ["S3 bucket created", "IAM roles configured", "Velero installed"],
+        "estimated_minutes": 35,
+        "quality_gates": ["backups successful", "restore tested", "monitoring alerts", "retention enforced"]
+      }
+    },
+    {
+      "phase": "container-registry",
+      "context": {
+        "requirement": "Private container registry with vulnerability scanning",
+        "scale": "500+ images, 100 GB storage",
+        "security": "Image signing and policy enforcement"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-container-registry",
+        "description": "Deploy Harbor private registry with Notary image signing",
+        "specifications": {
+          "harbor": {"version": "2.8", "ha": true, "replication": "multi-region"},
+          "storage": "S3-compatible object storage",
+          "scanning": ["Trivy integration", "scan on push", "block critical vulnerabilities"],
+          "signing": "Notary for content trust",
+          "rbac": "project-based access control",
+          "retention": "keep last 10 tags, auto-prune"
+        },
+        "dependencies": ["storage configured", "TLS certificates", "LDAP/SSO integration"],
+        "estimated_minutes": 40,
+        "quality_gates": ["images stored securely", "scanning active", "signing enforced", "access controlled"]
+      }
+    },
+    {
+      "phase": "database-replication",
+      "context": {
+        "database": "MySQL 8.0",
+        "topology": "Primary-replica with 2 read replicas",
+        "requirement": "Low replication lag, automatic failover"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "configure-db-replication",
+        "description": "Setup MySQL replication with ProxySQL and Orchestrator",
+        "specifications": {
+          "topology": {"primary": "r5.2xlarge", "replicas": 2, "lag_threshold": "5s"},
+          "proxysql": "query routing to replicas for reads",
+          "orchestrator": "automatic failover on primary failure",
+          "monitoring": "replication lag alerts",
+          "backups": "automated daily backups from replica"
+        },
+        "dependencies": ["MySQL instances provisioned", "networking configured", "monitoring setup"],
+        "estimated_minutes": 50,
+        "quality_gates": ["replication working", "lag <5s", "failover tested", "load balanced"]
+      }
+    },
+    {
+      "phase": "edge-computing",
+      "context": {
+        "requirement": "Deploy workloads to edge locations for low latency",
+        "use_case": "Real-time data processing",
+        "platform": "AWS Wavelength or Lambda@Edge"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-edge-workloads",
+        "description": "Setup edge computing infrastructure for ultra-low latency",
+        "specifications": {
+          "platform": "AWS Lambda@Edge + CloudFront",
+          "regions": ["15 edge locations covering major cities"],
+          "workloads": ["image optimization", "A/B testing logic", "authentication checks"],
+          "caching": "aggressive caching at edge with ESI",
+          "monitoring": "real user monitoring and synthetic checks"
+        },
+        "dependencies": ["CloudFront distribution", "Lambda functions", "monitoring setup"],
+        "estimated_minutes": 40,
+        "quality_gates": ["latency <20ms", "cache hit ratio >90%", "edge functions deployed", "cost optimized"]
+      }
+    },
+    {
+      "phase": "kafka-deployment",
+      "context": {
+        "requirement": "Event streaming platform for microservices",
+        "throughput": "10,000 messages/second",
+        "retention": "7 days"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-kafka-cluster",
+        "description": "Deploy production-grade Kafka cluster on Kubernetes with Strimzi",
+        "specifications": {
+          "kafka": {"version": "3.5", "brokers": 3, "replication_factor": 3},
+          "zookeeper": {"nodes": 3, "persistent_storage": true},
+          "topics": {"partitions": 12, "retention": "7d", "compression": "lz4"},
+          "monitoring": "Kafka exporter + Grafana dashboards",
+          "schema_registry": "Confluent Schema Registry for Avro"
+        },
+        "dependencies": ["storage provisioned", "networking configured", "resource quotas set"],
+        "estimated_minutes": 45,
+        "quality_gates": ["throughput met", "no data loss", "monitoring active", "schemas managed"]
+      }
+    },
+    {
+      "phase": "infrastructure-automation",
+      "context": {
+        "tool": "Ansible",
+        "target": "100 bare-metal servers",
+        "tasks": "Configuration management, patching, compliance"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "ansible-automation",
+        "description": "Create Ansible playbooks for infrastructure automation",
+        "specifications": {
+          "playbooks": ["initial setup", "security hardening", "patching", "monitoring agent"],
+          "inventory": "dynamic inventory from CMDB",
+          "vault": "Ansible Vault for sensitive data",
+          "idempotency": "all playbooks idempotent and rerunnable",
+          "testing": "Molecule for testing with Docker"
+        },
+        "dependencies": ["SSH access", "Ansible AWX deployed", "inventory updated"],
+        "estimated_minutes": 50,
+        "quality_gates": ["playbooks execute successfully", "idempotency verified", "documentation complete", "rollback tested"]
+      }
+    },
+    {
+      "phase": "zero-trust-networking",
+      "context": {
+        "requirement": "Implement zero-trust security model",
+        "infrastructure": "Multi-cloud Kubernetes",
+        "users": "300 engineers, 50 applications"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "implement-zero-trust",
+        "description": "Deploy zero-trust networking with identity-based access",
+        "specifications": {
+          "identity_provider": "Okta with OIDC",
+          "service_mesh": "Linkerd for mTLS between services",
+          "access_control": "OPA for policy enforcement",
+          "network_segmentation": "microsegmentation with network policies",
+          "least_privilege": "RBAC with temporary elevated access",
+          "audit": "all access logged and monitored"
+        },
+        "dependencies": ["identity provider configured", "mesh deployed", "policies defined"],
+        "estimated_minutes": 55,
+        "quality_gates": ["mTLS enforced", "zero implicit trust", "policy violations blocked", "audit trail complete"]
+      }
+    },
+    {
+      "phase": "gpu-workloads",
+      "context": {
+        "workload": "ML model training",
+        "requirements": "4x NVIDIA A100 GPUs",
+        "cluster": "Kubernetes on GKE"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-gpu-cluster",
+        "description": "Configure GPU-enabled Kubernetes nodes for ML workloads",
+        "specifications": {
+          "node_pool": {"machine_type": "a2-highgpu-4g", "gpus": 4, "auto_scaling": true},
+          "gpu_driver": "NVIDIA driver 525.x with CUDA 12.0",
+          "device_plugin": "NVIDIA device plugin for Kubernetes",
+          "scheduling": "GPU resource requests/limits, node affinity",
+          "monitoring": "GPU metrics in Prometheus"
+        },
+        "dependencies": ["GKE cluster ready", "GPU quota approved", "driver installed"],
+        "estimated_minutes": 40,
+        "quality_gates": ["GPUs detected", "workloads scheduled", "utilization monitored", "cost tracked"]
+      }
+    },
+    {
+      "phase": "blue-green-deployment",
+      "context": {
+        "application": "Customer-facing API",
+        "requirement": "Zero-downtime deployment with instant rollback",
+        "traffic": "10,000 req/s"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "configure-blue-green",
+        "description": "Implement blue-green deployment strategy with traffic switching",
+        "specifications": {
+          "environments": {"blue": "current production", "green": "new version"},
+          "traffic_management": "Istio virtual service for traffic split",
+          "validation": ["health checks", "smoke tests", "canary metrics"],
+          "rollback": "instant traffic switch back to blue",
+          "automation": "GitOps with ArgoCD"
+        },
+        "dependencies": ["Istio deployed", "monitoring configured", "tests automated"],
+        "estimated_minutes": 35,
+        "quality_gates": ["zero downtime", "rollback <30s", "smoke tests pass", "metrics validated"]
+      }
+    },
+    {
+      "phase": "multi-cluster",
+      "context": {
+        "requirement": "Manage 5 Kubernetes clusters across regions",
+        "workloads": "Distributed applications",
+        "management": "Centralized control plane"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-multi-cluster",
+        "description": "Deploy Cluster API and Rancher for multi-cluster management",
+        "specifications": {
+          "cluster_api": "manage cluster lifecycle",
+          "rancher": {"version": "2.7", "rbac": "unified authentication", "monitoring": "centralized logging"},
+          "networking": "Submariner for cross-cluster communication",
+          "gitops": "Flux for multi-cluster deployments",
+          "policy": "Kyverno for policy enforcement across clusters"
+        },
+        "dependencies": ["management cluster", "cluster API installed", "networking configured"],
+        "estimated_minutes": 50,
+        "quality_gates": ["all clusters managed", "cross-cluster networking", "unified monitoring", "policy enforced"]
+      }
+    },
+    {
+      "phase": "rate-limiting",
+      "context": {
+        "api": "Public REST API",
+        "requirement": "Protect against abuse, 1000 req/min per user",
+        "current": "No rate limiting"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "implement-rate-limiting",
+        "description": "Deploy API gateway with rate limiting and throttling",
+        "specifications": {
+          "gateway": "Kong Gateway with rate limiting plugin",
+          "limits": {"per_user": "1000/min", "per_ip": "5000/min", "burst": 100},
+          "backend": "Redis for distributed rate limit tracking",
+          "response": "429 status with Retry-After header",
+          "monitoring": "rate limit violations tracked"
+        },
+        "dependencies": ["Redis cluster", "Kong installed", "API routes configured"],
+        "estimated_minutes": 30,
+        "quality_gates": ["rate limiting enforced", "legitimate traffic unaffected", "abuse prevented", "metrics available"]
+      }
+    },
+    {
+      "phase": "compliance-automation",
+      "context": {
+        "standards": "CIS Kubernetes Benchmark, PCI-DSS",
+        "cluster": "Production Kubernetes",
+        "reporting": "Quarterly compliance reports"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "automate-compliance",
+        "description": "Implement continuous compliance monitoring and remediation",
+        "specifications": {
+          "scanning": ["kube-bench for CIS", "Aqua for container compliance"],
+          "policy_enforcement": "OPA Gatekeeper with compliance policies",
+          "remediation": "automatic remediation where possible",
+          "reporting": "compliance dashboard with trend analysis",
+          "alerts": "violations trigger incidents"
+        },
+        "dependencies": ["scanning tools deployed", "policies defined", "reporting configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["CIS score >90%", "violations auto-remediated", "reports generated", "audit ready"]
+      }
+    },
+    {
+      "phase": "serverless-platform",
+      "context": {
+        "requirement": "Deploy serverless functions on Kubernetes",
+        "framework": "Knative",
+        "scale": "Scale to zero, auto-scale on demand"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-knative",
+        "description": "Setup Knative Serving for serverless workloads on Kubernetes",
+        "specifications": {
+          "knative_serving": {"version": "1.11", "autoscaler": "KPA", "scale_to_zero": "60s"},
+          "networking": "Kourier as lightweight ingress",
+          "observability": "OpenTelemetry for distributed tracing",
+          "build": "Tekton pipelines for CI/CD",
+          "functions": "support multiple runtimes (Python, Node.js, Go)"
+        },
+        "dependencies": ["Kubernetes 1.26+", "Istio or Kourier", "monitoring stack"],
+        "estimated_minutes": 40,
+        "quality_gates": ["functions deploy successfully", "auto-scaling works", "scale-to-zero verified", "cold start <3s"]
+      }
+    },
+    {
+      "phase": "dns-management",
+      "context": {
+        "domains": "25 production domains",
+        "requirement": "Automated DNS management, split-horizon DNS",
+        "dns_provider": "AWS Route53"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "automate-dns",
+        "description": "Implement ExternalDNS for automatic DNS record management",
+        "specifications": {
+          "external_dns": {"version": "0.13", "provider": "Route53", "sync_interval": "1m"},
+          "policies": ["create/update records", "automatic cleanup on service deletion"],
+          "split_horizon": "internal and external DNS zones",
+          "health_checks": "Route53 health checks for failover",
+          "monitoring": "DNS query metrics and alerts"
+        },
+        "dependencies": ["Route53 hosted zones", "IAM permissions", "Kubernetes services annotated"],
+        "estimated_minutes": 30,
+        "quality_gates": ["DNS auto-updates", "failover working", "split-horizon functional", "zero manual DNS changes"]
+      }
+    },
+    {
+      "phase": "storage-orchestration",
+      "context": {
+        "requirement": "Dynamic storage provisioning for stateful apps",
+        "workloads": "Databases, caches, message queues",
+        "performance": "High IOPS, low latency"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "configure-storage",
+        "description": "Setup CSI drivers and storage classes for dynamic provisioning",
+        "specifications": {
+          "csi_drivers": {"aws_ebs": "gp3 with 16000 IOPS", "efs": "for shared storage"},
+          "storage_classes": ["fast (io2)", "standard (gp3)", "shared (EFS)", "backup (S3)"],
+          "volume_snapshots": "VolumeSnapshot API for backups",
+          "expansion": "allow volume expansion without downtime",
+          "encryption": "encryption at rest for all volumes"
+        },
+        "dependencies": ["CSI drivers installed", "IAM roles configured", "storage class definitions"],
+        "estimated_minutes": 35,
+        "quality_gates": ["dynamic provisioning working", "snapshots functional", "encryption verified", "performance targets met"]
+      }
+    },
+    {
+      "phase": "chaos-engineering",
+      "context": {
+        "requirement": "Validate resilience of production systems",
+        "scope": "Kubernetes cluster and applications",
+        "experiments": "Pod failures, network delays, resource exhaustion"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-chaos-engineering",
+        "description": "Deploy Chaos Mesh for controlled chaos experiments",
+        "specifications": {
+          "chaos_mesh": {"version": "2.6", "rbac": "scoped to test namespaces"},
+          "experiments": ["PodChaos", "NetworkChaos", "StressChaos", "IOChaos"],
+          "scheduling": "automated weekly experiments in staging",
+          "monitoring": "track error rates and latency during experiments",
+          "safety": "circuit breakers to stop experiments if thresholds exceeded"
+        },
+        "dependencies": ["Chaos Mesh installed", "monitoring configured", "runbooks documented"],
+        "estimated_minutes": 40,
+        "quality_gates": ["experiments run successfully", "resilience validated", "incidents documented", "recovery verified"]
+      }
+    },
+    {
+      "phase": "api-gateway",
+      "context": {
+        "requirement": "Centralized API management",
+        "features": "Authentication, rate limiting, transformation",
+        "scale": "50,000 req/s"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-api-gateway",
+        "description": "Deploy Kong API Gateway with enterprise features",
+        "specifications": {
+          "kong": {"version": "3.4", "deployment": "DB-backed with PostgreSQL", "ha": true},
+          "plugins": ["oauth2", "rate-limiting", "request-transformer", "response-transformer", "cors", "acl"],
+          "ingress": "Kong Ingress Controller for Kubernetes",
+          "monitoring": "Prometheus metrics + Grafana dashboards",
+          "dev_portal": "Kong Dev Portal for API documentation"
+        },
+        "dependencies": ["PostgreSQL deployed", "TLS certificates", "upstreams configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["gateway handling traffic", "plugins active", "rate limiting enforced", "monitoring working"]
+      }
+    },
+    {
+      "phase": "workflow-automation",
+      "context": {
+        "use_case": "Complex deployment workflows with approval gates",
+        "requirements": "DAG-based workflows, retries, rollback",
+        "tool": "Argo Workflows"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-workflow-engine",
+        "description": "Deploy Argo Workflows for complex orchestration tasks",
+        "specifications": {
+          "argo_workflows": {"version": "3.4", "executor": "emissary", "archive": "PostgreSQL"},
+          "workflow_types": ["CI/CD pipelines", "data processing", "infrastructure provisioning"],
+          "features": ["DAG workflows", "conditional execution", "loops", "suspensions for approvals"],
+          "integration": ["GitHub Actions", "Slack notifications", "artifact repository"],
+          "monitoring": "workflow metrics and execution history"
+        },
+        "dependencies": ["Argo installed", "PostgreSQL configured", "artifact storage (S3)"],
+        "estimated_minutes": 35,
+        "quality_gates": ["workflows execute successfully", "retries working", "artifacts stored", "approvals functional"]
+      }
+    },
+    {
+      "phase": "container-security",
+      "context": {
+        "requirement": "Runtime security for containers",
+        "threats": "Malicious containers, privilege escalation",
+        "compliance": "CIS benchmarks"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-runtime-security",
+        "description": "Implement Falco for container runtime security monitoring",
+        "specifications": {
+          "falco": {"version": "0.35", "deployment": "DaemonSet on all nodes"},
+          "rules": ["suspicious process execution", "unexpected network connections", "file access violations"],
+          "alerts": "critical alerts to PagerDuty, all events to SIEM",
+          "response": "automatic pod termination for high-severity violations",
+          "tuning": "custom rules for application-specific threats"
+        },
+        "dependencies": ["Falco deployed", "alert routing configured", "rules tested"],
+        "estimated_minutes": 40,
+        "quality_gates": ["runtime monitoring active", "alerts firing correctly", "false positives minimized", "incidents logged"]
+      }
+    },
+    {
+      "phase": "database-automation",
+      "context": {
+        "databases": "PostgreSQL, MySQL, MongoDB",
+        "tasks": "Provisioning, backup, monitoring",
+        "operator": "Kubernetes operators"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-db-operators",
+        "description": "Deploy database operators for automated management",
+        "specifications": {
+          "operators": ["CloudNativePG", "Percona Operator for MySQL", "MongoDB Community Operator"],
+          "features": ["automated backups", "point-in-time recovery", "connection pooling", "monitoring"],
+          "ha": "primary-replica with automatic failover",
+          "scaling": "read replicas for horizontal scaling",
+          "maintenance": "automated minor version upgrades"
+        },
+        "dependencies": ["storage configured", "monitoring stack", "backup storage (S3)"],
+        "estimated_minutes": 50,
+        "quality_gates": ["databases deployed", "backups working", "failover tested", "monitoring active"]
+      }
+    },
+    {
+      "phase": "ingress-controller",
+      "context": {
+        "requirement": "High-performance ingress with WAF",
+        "traffic": "100,000 req/s",
+        "security": "DDoS protection, WAF rules"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-ingress-controller",
+        "description": "Deploy NGINX Ingress Controller with ModSecurity WAF",
+        "specifications": {
+          "nginx_ingress": {"version": "1.8", "replicas": 3, "resources": "2 CPU, 4GB RAM each"},
+          "waf": "ModSecurity with OWASP Core Rule Set",
+          "features": ["SSL termination", "rate limiting", "IP whitelisting", "request buffering"],
+          "monitoring": "Prometheus metrics, access logs to ELK",
+          "performance": "tuned for high throughput (worker_processes, connections)"
+        },
+        "dependencies": ["TLS certificates", "DNS configured", "monitoring ready"],
+        "estimated_minutes": 40,
+        "quality_gates": ["throughput target met", "WAF blocking attacks", "SSL A+ rating", "monitoring active"]
+      }
+    },
+    {
+      "phase": "image-optimization",
+      "context": {
+        "problem": "Container images are 2GB+",
+        "target": "Reduce to <500MB",
+        "applications": "10 microservices"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "optimize-container-images",
+        "description": "Refactor Dockerfiles for minimal image sizes",
+        "specifications": {
+          "strategies": ["multi-stage builds", "distroless base images", "remove dev dependencies"],
+          "base_images": {"python": "python:3.11-slim or distroless", "node": "node:18-alpine", "go": "scratch with static binary"},
+          "tools": ["dive for layer analysis", "hadolint for Dockerfile linting"],
+          "caching": "optimize layer caching for faster builds",
+          "scanning": "verify no vulnerabilities introduced"
+        },
+        "dependencies": ["Dockerfiles analyzed", "CI/CD updated", "testing completed"],
+        "estimated_minutes": 45,
+        "quality_gates": ["image size <500MB", "functionality unchanged", "build time reduced", "vulnerability count decreased"]
+      }
+    },
+    {
+      "phase": "log-aggregation",
+      "context": {
+        "log_volume": "100GB/day",
+        "retention": "30 days",
+        "requirement": "Centralized logging with search"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-logging-stack",
+        "description": "Setup ELK stack (Elasticsearch, Logstash, Kibana) for log aggregation",
+        "specifications": {
+          "elasticsearch": {"version": "8.9", "nodes": 3, "storage": "3TB with hot-warm architecture"},
+          "logstash": "parse and transform logs before indexing",
+          "fluentd": "DaemonSet on all nodes for log collection",
+          "kibana": "visualization and dashboards",
+          "retention": "hot data 7 days, warm data 23 days, then delete"
+        },
+        "dependencies": ["storage provisioned", "networking configured", "ingress setup"],
+        "estimated_minutes": 50,
+        "quality_gates": ["logs ingesting", "search working", "dashboards created", "retention enforced"]
+      }
+    },
+    {
+      "phase": "certificate-management",
+      "context": {
+        "domains": "50 domains, 200 subdomains",
+        "requirement": "Automated certificate issuance and renewal",
+        "provider": "Let's Encrypt"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "automate-certificates",
+        "description": "Deploy cert-manager for automatic TLS certificate management",
+        "specifications": {
+          "cert_manager": {"version": "1.13", "issuers": ["Let's Encrypt prod", "Let's Encrypt staging"]},
+          "dns_challenge": "Route53 or Cloudflare for wildcard certificates",
+          "renewal": "automatic renewal 30 days before expiry",
+          "monitoring": "alerts for certificate expiry, issuance failures",
+          "trust": "distribute CA certificates to pods via init containers"
+        },
+        "dependencies": ["DNS access", "cert-manager installed", "ingress annotations"],
+        "estimated_minutes": 35,
+        "quality_gates": ["certificates issued", "auto-renewal working", "no expired certs", "monitoring active"]
+      }
+    },
+    {
+      "phase": "progressive-delivery",
+      "context": {
+        "requirement": "Gradual rollout with automated rollback",
+        "metrics": "Error rate, latency, business KPIs",
+        "tool": "Flagger"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-progressive-delivery",
+        "description": "Deploy Flagger for canary deployments with automated promotion/rollback",
+        "specifications": {
+          "flagger": {"version": "1.32", "mesh": "Istio", "metrics": "Prometheus"},
+          "canary_analysis": {"interval": "1m", "threshold": 5, "max_weight": 50, "step_weight": 10},
+          "metrics_check": ["error rate <1%", "latency p99 <500ms", "request success rate >99%"],
+          "webhooks": "Slack notifications on promotion/rollback",
+          "testing": "automated smoke tests before traffic increase"
+        },
+        "dependencies": ["Istio deployed", "Prometheus configured", "metrics defined"],
+        "estimated_minutes": 40,
+        "quality_gates": ["canary rollout successful", "rollback automated", "metrics validated", "zero production incidents"]
+      }
+    },
+    {
+      "phase": "node-maintenance",
+      "context": {
+        "cluster": "Kubernetes with 50 nodes",
+        "requirement": "Automated node upgrades and patching",
+        "downtime": "Zero downtime during maintenance"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "automate-node-maintenance",
+        "description": "Implement Kured for automated node reboots and Cluster API for upgrades",
+        "specifications": {
+          "kured": {"version": "1.14", "reboot_window": "02:00-04:00 UTC", "drain_grace_period": "300s"},
+          "cluster_api": "automated Kubernetes version upgrades",
+          "pdb": "Pod Disruption Budgets to ensure availability",
+          "cordon_drain": "automatic cordon and drain before maintenance",
+          "monitoring": "node health checks and upgrade progress"
+        },
+        "dependencies": ["Kured deployed", "PDBs configured", "monitoring setup"],
+        "estimated_minutes": 35,
+        "quality_gates": ["nodes patched automatically", "zero downtime", "workloads migrated safely", "upgrade completed"]
+      }
+    },
+    {
+      "phase": "config-management",
+      "context": {
+        "requirement": "Centralized configuration for 30 applications",
+        "environments": "Dev, staging, production",
+        "security": "Encrypted secrets, audit trail"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-config-management",
+        "description": "Setup Consul for service discovery and configuration management",
+        "specifications": {
+          "consul": {"version": "1.16", "ha": true, "tls": "enabled"},
+          "features": ["service discovery", "KV store for config", "health checks", "multi-datacenter support"],
+          "integration": "Consul Connect for service mesh",
+          "backup": "automated KV store backups",
+          "monitoring": "Consul exporter for Prometheus"
+        },
+        "dependencies": ["Consul deployed", "TLS certificates", "applications updated"],
+        "estimated_minutes": 45,
+        "quality_gates": ["service discovery working", "config centralized", "health checks active", "backups tested"]
+      }
+    },
+    {
+      "phase": "capacity-planning",
+      "context": {
+        "cluster": "Kubernetes production",
+        "current": "70% utilization",
+        "requirement": "Plan for 3x growth over 6 months"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "capacity-analysis",
+        "description": "Analyze current resource usage and plan for future growth",
+        "specifications": {
+          "analysis": ["CPU, memory, storage, network usage trends", "pod density per node", "resource requests vs limits"],
+          "forecasting": "predict resource needs for 3x growth",
+          "recommendations": ["node pool sizing", "resource quotas", "auto-scaling thresholds"],
+          "cost_modeling": "estimate costs for AWS, GCP, Azure",
+          "optimization": "identify over-provisioned resources"
+        },
+        "dependencies": ["monitoring data (3 months)", "growth projections", "cost data"],
+        "estimated_minutes": 50,
+        "quality_gates": ["capacity plan documented", "cost estimates provided", "resource optimization implemented", "auto-scaling configured"]
+      }
+    },
+    {
+      "phase": "gitops-implementation",
+      "context": {
+        "requirement": "Git as single source of truth",
+        "tool": "ArgoCD",
+        "repositories": "15 app repos, 1 infra repo"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "implement-gitops",
+        "description": "Deploy ArgoCD for GitOps-based application and infrastructure management",
+        "specifications": {
+          "argocd": {"version": "2.8", "ha": true, "sso": "GitHub OAuth"},
+          "app_of_apps": "manage all applications from single repo",
+          "sync_policy": {"automated": true, "prune": true, "self_heal": true},
+          "notifications": "Slack on sync failures",
+          "rbac": "role-based access aligned with GitHub teams",
+          "image_updater": "automatic image tag updates"
+        },
+        "dependencies": ["ArgoCD installed", "Git repos structured", "RBAC configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["GitOps operational", "deployments automated", "drift detection working", "RBAC enforced"]
+      }
+    },
+    {
+      "phase": "incident-response",
+      "context": {
+        "requirement": "Automated incident response",
+        "alerts": "500+ alerts/week",
+        "goal": "Reduce MTTI and MTTR"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "automate-incident-response",
+        "description": "Implement automated incident response with runbooks and escalation",
+        "specifications": {
+          "pagerduty": "incident management and on-call rotation",
+          "runbooks": "automated remediation for common issues",
+          "escalation": "tier 1 (auto-remediation) → tier 2 (on-call) → tier 3 (escalation)",
+          "postmortems": "automated postmortem creation from incidents",
+          "metrics": "MTTI, MTTR, incident trends"
+        },
+        "dependencies": ["PagerDuty configured", "runbooks created", "alerts tuned"],
+        "estimated_minutes": 40,
+        "quality_gates": ["MTTI <5 minutes", "MTTR reduced by 50%", "auto-remediation for common issues", "postmortems documented"]
+      }
+    },
+    {
+      "phase": "observability-platform",
+      "context": {
+        "requirement": "Unified observability (metrics, logs, traces)",
+        "scale": "50 microservices, 100 nodes",
+        "tools": "OpenTelemetry, Prometheus, Tempo, Loki"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "deploy-observability-stack",
+        "description": "Build comprehensive observability platform with metrics, logs, and traces",
+        "specifications": {
+          "opentelemetry": "collector and SDKs for instrumentation",
+          "prometheus": "metrics collection and alerting",
+          "tempo": "distributed tracing backend",
+          "loki": "log aggregation",
+          "grafana": "unified dashboards for all signals",
+          "correlation": "link traces to logs to metrics"
+        },
+        "dependencies": ["storage configured", "instrumentation added", "dashboards created"],
+        "estimated_minutes": 55,
+        "quality_gates": ["metrics collecting", "traces visible", "logs aggregated", "correlation working", "dashboards operational"]
+      }
+    },
+    {
+      "phase": "compliance-reporting",
+      "context": {
+        "standards": "SOC2, ISO27001, GDPR",
+        "requirement": "Automated evidence collection",
+        "audits": "Quarterly audits"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "automate-compliance-reporting",
+        "description": "Setup automated compliance evidence collection and reporting",
+        "specifications": {
+          "evidence_collection": ["access logs", "change logs", "security scans", "backup verifications"],
+          "tools": ["Vanta or Drata for automation", "custom scripts for infrastructure evidence"],
+          "reports": "automated quarterly compliance reports",
+          "retention": "7 years for audit evidence",
+          "continuous_monitoring": "real-time compliance posture"
+        },
+        "dependencies": ["compliance tool configured", "evidence sources integrated", "policies defined"],
+        "estimated_minutes": 45,
+        "quality_gates": ["evidence auto-collected", "reports generated", "compliance posture visible", "audit-ready"]
+      }
+    },
+    {
+      "phase": "multicloud-networking",
+      "context": {
+        "clouds": "AWS, GCP, Azure",
+        "requirement": "Interconnect clouds with low latency",
+        "use_case": "Disaster recovery, data replication"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-multicloud-networking",
+        "description": "Implement multi-cloud networking with VPN and direct connect",
+        "specifications": {
+          "aws": "Transit Gateway + Direct Connect",
+          "gcp": "Cloud Router + Cloud Interconnect",
+          "azure": "Azure Virtual WAN + ExpressRoute",
+          "vpn_backup": "IPSec VPN tunnels for redundancy",
+          "routing": "BGP for dynamic routing between clouds",
+          "monitoring": "latency and throughput monitoring"
+        },
+        "dependencies": ["accounts configured", "networking designed", "BGP configured"],
+        "estimated_minutes": 60,
+        "quality_gates": ["cross-cloud connectivity", "latency <20ms", "redundancy verified", "routing optimized"]
+      }
+    },
+    {
+      "phase": "windows-containers",
+      "context": {
+        "requirement": "Support .NET Framework apps on Kubernetes",
+        "cluster": "Mixed Linux and Windows nodes",
+        "applications": "5 legacy .NET apps"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "setup-windows-nodes",
+        "description": "Configure Windows Server nodes in Kubernetes cluster",
+        "specifications": {
+          "node_pool": {"os": "Windows Server 2022", "runtime": "containerd", "nodes": 3},
+          "networking": "Calico CNI for Windows",
+          "scheduling": "node affinity and taints to separate Windows workloads",
+          "monitoring": "Windows exporter for Prometheus",
+          "patching": "automated Windows updates with Kured equivalent"
+        },
+        "dependencies": ["cluster supports mixed OS", "networking configured", "Windows images available"],
+        "estimated_minutes": 50,
+        "quality_gates": ["Windows pods running", "networking functional", "monitoring active", "patching automated"]
+      }
+    },
+    {
+      "phase": "data-encryption",
+      "context": {
+        "requirement": "Encryption at rest and in transit",
+        "scope": "All data stores and network traffic",
+        "compliance": "HIPAA, PCI-DSS"
+      },
+      "expected_drone_task": {
+        "drone_id": "infrastructure-ops",
+        "task_type": "implement-encryption",
+        "description": "Enable comprehensive encryption for all data and communications",
+        "specifications": {
+          "at_rest": ["EBS encryption with KMS", "database encryption", "S3 bucket encryption"],
+          "in_transit": ["mTLS between services", "TLS 1.3 for external traffic", "IPSec for VPN"],
+          "key_management": "AWS KMS with automatic rotation",
+          "kubernetes": "encrypt etcd with EncryptionConfiguration",
+          "verification": "regular encryption audits"
+        },
+        "dependencies": ["KMS keys created", "certificates issued", "policies defined"],
+        "estimated_minutes": 45,
+        "quality_gates": ["all data encrypted", "key rotation automated", "compliance verified", "audit trail complete"]
+      }
+    }
+  ]
+}

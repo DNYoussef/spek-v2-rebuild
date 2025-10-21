@@ -1,0 +1,169 @@
+digraph WEEK26_PRODUCTION_LAUNCH {
+    // TRIGGER: Ready to launch SPEK Platform Week 26 production system
+    // USE WHEN:
+    //   - Week 26 backend integration complete
+    //   - All 398 tests passing
+    //   - Ready for production deployment
+    //   - Manual testing needed before launch
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_production_launch {
+        label="TRIGGER: Week 26 Production Launch";
+        style="rounded,bold";
+        bgcolor="#e8f5e9";
+
+        // Entry
+        "Week 26 Complete" [shape=ellipse];
+
+        // Phase 1: Verify Dependencies
+        "Install backend dependencies:\npip install flask flask-cors flask-socketio" [shape=plaintext];
+        "Install frontend dependencies:\ncd atlantis-ui && npm install" [shape=plaintext];
+        "Dependencies installed?" [shape=diamond];
+        "Fix dependencies" [shape=box];
+
+        // Phase 2: Start Services
+        "Option A: scripts\\start_spek_platform.bat" [shape=plaintext];
+        "Option B: Manual startup" [shape=box];
+        "Terminal 1: python claude_backend_server.py" [shape=plaintext];
+        "Terminal 2: cd atlantis-ui && npm run dev" [shape=plaintext];
+        "Services running?" [shape=diamond];
+
+        // Phase 3: Health Checks
+        "Check backend: http://localhost:5000/health" [shape=plaintext];
+        "Backend returns 200 OK?" [shape=diamond];
+        "Check UI: http://localhost:3000" [shape=plaintext];
+        "UI loads without errors?" [shape=diamond];
+        "Check logs for errors" [shape=box];
+
+        // Phase 4: Manual Testing
+        "Test New Project selection" [shape=box];
+        "Test Existing Project selection" [shape=box];
+        "Test folder picker" [shape=box];
+        "Test MonarchChat message send" [shape=box];
+        "Verify .claude_messages/ file created" [shape=box];
+        "All basic tests pass?" [shape=diamond];
+
+        // Phase 5: Queen Processing
+        "Run: python scripts/claude_message_monitor.py --once" [shape=plaintext];
+        "Monitor detects message?" [shape=diamond];
+        "Tell THIS Claude: Process task-[id]" [shape=box];
+        "Queen analyzes request" [shape=box];
+        "Queen selects Princess + Drones" [shape=box];
+        "Task tool instructions returned?" [shape=diamond];
+
+        // Phase 6: Agent Spawning
+        "Use Task tool to spawn Princess" [shape=box];
+        "Princess receives Drone list?" [shape=diamond];
+        "Princess spawns Drones via Task tool" [shape=box];
+        "WebSocket events broadcast?" [shape=diamond];
+        "Sidebar shows agent activity?" [shape=diamond];
+
+        // Phase 7: E2E Testing
+        "Run: python scripts/test_e2e_flow.py" [shape=plaintext];
+        "All 6 tests pass?" [shape=diamond];
+        "Document any failures" [shape=box];
+
+        // Phase 8: Production Deployment
+        "Deploy Flask backend to production" [shape=box];
+        "Deploy Atlantis UI to Vercel/Netlify" [shape=box];
+        "Configure environment variables" [shape=box];
+        "Set up monitoring" [shape=box];
+        "Production deployment successful" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "Week 26 Complete" -> "Install backend dependencies:\npip install flask flask-cors flask-socketio";
+        "Install backend dependencies:\npip install flask flask-cors flask-socketio" -> "Install frontend dependencies:\ncd atlantis-ui && npm install";
+        "Install frontend dependencies:\ncd atlantis-ui && npm install" -> "Dependencies installed?";
+        "Dependencies installed?" -> "Option A: scripts\\start_spek_platform.bat" [label="yes"];
+        "Dependencies installed?" -> "Fix dependencies" [label="no"];
+        "Fix dependencies" -> "Dependencies installed?";
+
+        "Option A: scripts\\start_spek_platform.bat" -> "Services running?";
+        "Option B: Manual startup" -> "Terminal 1: python claude_backend_server.py";
+        "Terminal 1: python claude_backend_server.py" -> "Terminal 2: cd atlantis-ui && npm run dev";
+        "Terminal 2: cd atlantis-ui && npm run dev" -> "Services running?";
+
+        "Services running?" -> "Check backend: http://localhost:5000/health" [label="yes"];
+        "Services running?" -> "Check logs for errors" [label="no"];
+        "Check logs for errors" -> "Services running?";
+
+        "Check backend: http://localhost:5000/health" -> "Backend returns 200 OK?";
+        "Backend returns 200 OK?" -> "Check UI: http://localhost:3000" [label="yes"];
+        "Backend returns 200 OK?" -> "Check logs for errors" [label="no"];
+
+        "Check UI: http://localhost:3000" -> "UI loads without errors?";
+        "UI loads without errors?" -> "Test New Project selection" [label="yes"];
+        "UI loads without errors?" -> "Check logs for errors" [label="no"];
+
+        "Test New Project selection" -> "Test Existing Project selection";
+        "Test Existing Project selection" -> "Test folder picker";
+        "Test folder picker" -> "Test MonarchChat message send";
+        "Test MonarchChat message send" -> "Verify .claude_messages/ file created";
+        "Verify .claude_messages/ file created" -> "All basic tests pass?";
+
+        "All basic tests pass?" -> "Run: python scripts/claude_message_monitor.py --once" [label="yes"];
+        "All basic tests pass?" -> "Document any failures" [label="no"];
+        "Document any failures" -> "All basic tests pass?";
+
+        "Run: python scripts/claude_message_monitor.py --once" -> "Monitor detects message?";
+        "Monitor detects message?" -> "Tell THIS Claude: Process task-[id]" [label="yes"];
+        "Monitor detects message?" -> "Check logs for errors" [label="no"];
+
+        "Tell THIS Claude: Process task-[id]" -> "Queen analyzes request";
+        "Queen analyzes request" -> "Queen selects Princess + Drones";
+        "Queen selects Princess + Drones" -> "Task tool instructions returned?";
+
+        "Task tool instructions returned?" -> "Use Task tool to spawn Princess" [label="yes"];
+        "Task tool instructions returned?" -> "Check logs for errors" [label="no"];
+
+        "Use Task tool to spawn Princess" -> "Princess receives Drone list?";
+        "Princess receives Drone list?" -> "Princess spawns Drones via Task tool" [label="yes"];
+        "Princess receives Drone list?" -> "Check logs for errors" [label="no"];
+
+        "Princess spawns Drones via Task tool" -> "WebSocket events broadcast?";
+        "WebSocket events broadcast?" -> "Sidebar shows agent activity?" [label="yes"];
+        "WebSocket events broadcast?" -> "Check logs for errors" [label="no"];
+
+        "Sidebar shows agent activity?" -> "Run: python scripts/test_e2e_flow.py" [label="yes"];
+        "Sidebar shows agent activity?" -> "Check logs for errors" [label="no"];
+
+        "Run: python scripts/test_e2e_flow.py" -> "All 6 tests pass?";
+        "All 6 tests pass?" -> "Deploy Flask backend to production" [label="yes"];
+        "All 6 tests pass?" -> "Document any failures" [label="no"];
+
+        "Deploy Flask backend to production" -> "Deploy Atlantis UI to Vercel/Netlify";
+        "Deploy Atlantis UI to Vercel/Netlify" -> "Configure environment variables";
+        "Configure environment variables" -> "Set up monitoring";
+        "Set up monitoring" -> "Production deployment successful";
+    }
+
+    // Key Statistics
+    subgraph cluster_stats {
+        label="Week 26 Statistics";
+        bgcolor="#fff3e0";
+
+        "39,252 LOC delivered" [shape=box];
+        "398 tests (100% passing)" [shape=box];
+        "54 UI components" [shape=box];
+        "28 agents (Queen + 3 Princesses + 24 Drones)" [shape=box];
+        "96% bundle reduction" [shape=box];
+        "Production-ready status" [shape=box, style=filled, fillcolor=lightgreen];
+    }
+
+    // Critical Rules
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        bgcolor="#ffcdd2";
+
+        "NEVER skip manual testing" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS verify WebSocket events" [shape=octagon, style=filled, fillcolor=orange];
+        "ALWAYS test with real project folder" [shape=octagon, style=filled, fillcolor=orange];
+        "ALWAYS check agent spawns work" [shape=octagon, style=filled, fillcolor=orange];
+    }
+
+    // External connections
+    "Document any failures" -> when_stuck [label="if blocked", style=dotted];
+    "Production deployment successful" -> post_deployment_verification [label="verify health", style=dotted];
+}

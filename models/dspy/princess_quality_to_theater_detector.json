@@ -1,0 +1,107 @@
+{
+  "delegate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"User authentication service\", \"code_files\": [\"src/auth/authenticator.py\", \"src/auth/password_hasher.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For a security-critical user authentication service, we need thorough theater detection to ensure no placeholder or mock implementations remain. I'll assign the theater-detector drone with strict criteria focused on authentication and password handling patterns. The threshold is set at 60 to maintain high standards for security code.\n\nKey areas to check:\n1. Authentication logic completeness\n2. Password hashing implementation\n3. Security-related imports\n4. No debug/test shortcuts",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Security-critical authentication theater detection\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"FIXME\",\n            \"mock auth\",\n            \"test password\",\n            \"return True # TODO\",\n            \"fake hash\",\n            \"stub authentication\",\n            \"password123\",\n            \"# temporary\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"security_imports\": [\n            \"bcrypt\",\n            \"hashlib\",\n            \"cryptography\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"No mock authentication patterns detected\",\n        \"Proper security library imports present\",\n        \"No hardcoded credentials or passwords\",\n        \"Complete password hashing implementation\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Payment processing gateway\", \"code_files\": [\"src/payments/processor.py\", \"src/payments/stripe_adapter.py\"], \"theater_threshold\": 50}",
+        "reasoning": "For a payment processing system, we need rigorous theater detection to ensure no placeholder or mock implementations exist in production code. This is critical financial infrastructure that must be fully implemented. I'll assign the theater-detector drone with strict criteria focused on payment processing patterns and a low threshold (50) given the financial nature of the code.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Critical payment system theater detection scan\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"FIXME\",\n            \"mock payment\",\n            \"fake transaction\",\n            \"test_card_number\",\n            \"return True # TODO\",\n            \"stub stripe\",\n            \"dummy_payment\"\n        ],\n        \"scoring_threshold\": 50,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"critical_files\": [\n            \"src/payments/processor.py\",\n            \"src/payments/stripe_adapter.py\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 50\",\n        \"No mock Stripe implementations found\",\n        \"All payment processing logic fully implemented\",\n        \"No placeholder payment handling code\",\n        \"Proper Stripe SDK import verification\",\n        \"Zero TODO/FIXME markers in payment flow\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Database migration system\", \"code_files\": [\"src/db/migrator.py\", \"src/db/schema_validator.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For database migration review, I'm selecting the theater-detector drone to ensure there are no mock/fake implementations in this critical system. Database migrations must be handled with real, production-ready code to prevent data corruption or schema inconsistencies. The theater detection patterns will focus on identifying any placeholder or incomplete migration logic. Given the critical nature of database operations, I'm setting strict acceptance criteria around actual schema validation and migration execution.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Scan database migration system for theatrical implementations\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"FIXME\",\n            \"mock migration\",\n            \"fake schema\",\n            \"// skip validation\",\n            \"pass # migrate\",\n            \"return True # temporary\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"focus_areas\": [\"schema validation\", \"migration rollback\", \"data integrity checks\"]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"No mock database connections found\",\n        \"Real schema validation implementation present\",\n        \"Actual migration execution logic implemented\",\n        \"Proper error handling and rollback mechanisms exist\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"API rate limiter\", \"code_files\": [\"src/middleware/rate_limiter.py\", \"src/middleware/token_bucket.py\"], \"theater_threshold\": 55}",
+        "reasoning": "For reviewing the API rate limiter implementation, I'll delegate to the theater-detector drone to ensure there are no placeholder or mock rate limiting implementations. This is critical infrastructure code that needs real rate limiting logic, not simulated behavior. The theater detection should focus on patterns that might indicate fake rate limiting or token bucket implementations.\n\nKey areas to check:\n- Actual rate calculation logic\n- Real token bucket implementation\n- Proper time-based throttling\n- No bypassed rate limits",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Verify rate limiter implementation authenticity\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"FIXME\",\n            \"mock limit\",\n            \"fake throttle\",\n            \"return True # bypass\",\n            \"# skip rate check\",\n            \"unlimited # temporary\"\n        ],\n        \"scoring_threshold\": 55,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"focus_areas\": [\n            \"rate calculation\",\n            \"token management\",\n            \"time tracking\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score below 55\",\n        \"No mock rate limiting implementations\",\n        \"Real token bucket calculations present\",\n        \"Proper time-based throttling logic exists\",\n        \"No rate limit bypasses found\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"File upload handler\", \"code_files\": [\"src/uploads/handler.py\", \"src/uploads/virus_scanner.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For reviewing file upload functionality, which is a security-critical component, I'll delegate to the theater-detector drone to ensure there are no mock implementations or placeholder security measures. The theater detection needs to focus specifically on file handling and virus scanning patterns, with a strict threshold of 60 to maintain security standards. The drone will scan for common patterns of theatrical code that might bypass actual security implementations.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Scan file upload system for security theater\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"FIXME\",\n            \"mock scan\",\n            \"fake upload\",\n            \"skip virus check\",\n            \"// temporary\",\n            \"pass # security check\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"focus_areas\": [\"file handling\", \"security checks\", \"virus scanning\"]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"No mock virus scanning implementations\",\n        \"Real file handling logic present\",\n        \"Proper security measure implementations\",\n        \"No placeholder upload handlers\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Cache invalidation system\", \"code_files\": [\"src/cache/invalidator.py\", \"src/cache/redis_client.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For a cache invalidation system review, I'll delegate to the theater-detector drone to ensure there are no placeholder/mock implementations. This is critical since cache invalidation is one of the hard problems in computer science and mock implementations could cause serious production issues. The theater detection should focus on:\n1. Real Redis client implementation vs mocks\n2. Actual invalidation logic vs stubs\n3. Proper error handling vs TODOs\n4. Complete cache key management",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Analyze cache invalidation system for theatrical code\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"FIXME\",\n            \"mock redis\",\n            \"fake cache\",\n            \"stub invalidate\",\n            \"pass # cache\",\n            \"return True # TODO\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"files\": [\n            \"src/cache/invalidator.py\",\n            \"src/cache/redis_client.py\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"No mock Redis client implementations found\",\n        \"Complete invalidation logic present\",\n        \"Proper error handling implemented\",\n        \"Real cache key management exists\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Email notification service\", \"code_files\": [\"src/notifications/email_sender.py\", \"src/notifications/smtp_client.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For reviewing email notification service implementation, I'll assign the theater-detector drone to scan for any mock/stub code. This is critical since email notifications are customer-facing and must be properly implemented. The theater detection should focus on SMTP integration, actual email sending, and proper error handling. Given the theater threshold of 60, we need moderate strictness in detecting placeholder code.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Analyze email notification system for mock implementations\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"mock smtp\",\n            \"fake email\",\n            \"stub sender\",\n            \"print('email sent')\",\n            \"pass # send later\",\n            \"NotImplementedError\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"focus_areas\": [\"smtp_connection\", \"email_sending\", \"error_handling\"]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"No mock SMTP implementations found\",\n        \"Verify real email sending logic exists\",\n        \"Confirm proper error handling implementation\",\n        \"Check for genuine SMTP library imports\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"WebSocket connection manager\", \"code_files\": [\"src/websocket/manager.py\", \"src/websocket/broadcaster.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For a WebSocket connection manager review, I'll delegate to the theater-detector drone to ensure there are no mock implementations or placeholder code. This is critical for real-time communication functionality. The theater detection should focus on connection handling, broadcasting, and socket lifecycle management patterns. Given the theater threshold of 60, we need moderate strictness in detecting theatrical implementations.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Analyze WebSocket manager for mock implementations\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"mock socket\",\n            \"fake connection\",\n            \"stub broadcast\",\n            \"print('connected')\",\n            \"pass # handle connection\",\n            \"dummy_socket\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"focus_areas\": [\n            \"connection handling\",\n            \"broadcast methods\",\n            \"socket lifecycle\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"No mock WebSocket implementations found\",\n        \"Real socket connection handling verified\",\n        \"Actual broadcasting mechanism present\",\n        \"Complete error handling implementation\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Search indexing service\", \"code_files\": [\"src/search/indexer.py\", \"src/search/elasticsearch_client.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For reviewing a search indexing service, I'll delegate to the theater-detector drone to ensure there are no placeholder/mock implementations. This is critical for search functionality as mock indexing could silently fail while appearing to work. The theater detection should focus on:\n1. Real Elasticsearch client implementation\n2. Actual indexing operations\n3. Complete error handling\n4. No stubbed search functions\n\nThe threshold of 60 indicates moderate strictness, appropriate for a core service component.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Analyze search indexing for implementation completeness\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"mock index\",\n            \"fake search\",\n            \"stub elasticsearch\",\n            \"return [] # temporary\",\n            \"pass # implement later\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"focus_areas\": [\"client initialization\", \"index operations\", \"error handling\"]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"Verify real Elasticsearch client import\",\n        \"Confirm actual index operations\",\n        \"Check complete error handling\",\n        \"No placeholder search implementations\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Task queue worker\", \"code_files\": [\"src/tasks/worker.py\", \"src/tasks/celery_config.py\"], \"theater_threshold\": 60}",
+        "reasoning": "For reviewing a task queue worker implementation, I'll delegate to the theater-detector drone to ensure there are no mock/stub implementations of critical queue processing functionality. This is especially important for worker code that needs to handle real tasks in production. The theater detection should focus on patterns that might indicate incomplete or simulated task processing, with particular attention to Celery configuration and actual task execution paths.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"detect-theater-code\",\n    \"description\": \"Analyze task queue worker for mock implementations\",\n    \"payload\": {\n        \"detection_patterns\": [\n            \"TODO\",\n            \"mock_task\",\n            \"fake_worker\",\n            \"stub_process\",\n            \"print('processed')\",\n            \"pass # process later\",\n            \"dummy_celery\"\n        ],\n        \"scoring_threshold\": 60,\n        \"report_suspicious\": true,\n        \"check_imports\": true,\n        \"focus_areas\": [\"task processing\", \"queue configuration\", \"worker lifecycle\"]\n    },\n    \"acceptance_criteria\": [\n        \"Theater detection score must be below 60\",\n        \"No mock/stub task processing implementations\",\n        \"Valid Celery configuration present\",\n        \"Real task execution paths implemented\",\n        \"Proper error handling exists\"\n    ]\n}"
+      }
+    ],
+    "signature": {
+      "instructions": "Delegate task to drone agent with clear instructions.\n\nYou are a Princess agent coordinating your specialized drone hive.\nYour role is to take high-level workflow phases and convert them\ninto specific, actionable tasks for your drone agents.\n\nPrincess-Dev drones: coder, reviewer, debugger, integration-engineer\nPrincess-Quality drones: tester, nasa-enforcer, theater-detector, fsm-analyzer\nPrincess-Coordination drones: orchestrator, planner, cost-tracker\n\nEach drone task must have:\n- Specific drone agent assignment\n- Task type matching drone capabilities\n- Clear context from previous phases\n- Concrete deliverables\n- Quality gates/acceptance criteria\n\nFollow the 26 prompt engineering principles:\n- Clarity: Unambiguous instructions\n- Context: Include relevant phase results\n- Constraints: Respect drone capabilities\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Phase:",
+          "description": "Development phase to execute (design, code, test, review, etc.)"
+        },
+        {
+          "prefix": "Context:",
+          "description": "Context and results from previous phases that this phase depends on"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Delegation reasoning explaining drone selection and task structure"
+        },
+        {
+          "prefix": "Drone Task:",
+          "description": "Structured task for drone agent as JSON object. Must have: {'drone_id': str, 'task_type': str, 'description': str, 'payload': dict, 'acceptance_criteria': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

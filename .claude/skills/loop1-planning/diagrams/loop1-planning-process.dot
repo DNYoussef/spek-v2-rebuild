@@ -1,0 +1,111 @@
+digraph Loop1_Planning_Process {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start/End
+    start [shape=ellipse, label="Loop 1\nEntry", fillcolor=lightgreen];
+    end [shape=ellipse, label="Handoff to\nLoop 2", fillcolor=green, fontcolor=white];
+    escalation_entry [shape=ellipse, label="Escalation from\nLoop 3", fillcolor=orange];
+
+    // Phase 1: Route Detection
+    subgraph cluster_route {
+        label="Phase 1: Route Detection";
+        fillcolor=lightyellow;
+        style=filled;
+
+        route_check [label="Analyze user\nrequest"];
+        route_decision [shape=diamond, label="Planning\nneeded?", fillcolor=yellow];
+        route_direct [label="Pass through\nto Loop 2"];
+    }
+
+    // Phase 2: Research
+    subgraph cluster_research {
+        label="Phase 2: Research";
+        fillcolor=lightyellow;
+        style=filled;
+
+        spawn_researcher [shape=cylinder, label="Spawn\nresearcher agent", fillcolor=lightcoral];
+        research_task [label="Research:\n- Requirements\n- Constraints\n- Prior art\n- Tech stack"];
+        research_memory [shape=cylinder, label="Store in\nMemory", fillcolor=lightcoral];
+    }
+
+    // Phase 3: Planning
+    subgraph cluster_planning {
+        label="Phase 3: Planning";
+        fillcolor=lightyellow;
+        style=filled;
+
+        spawn_planner [shape=cylinder, label="Spawn\nplanner agent", fillcolor=lightcoral];
+        planning_task [label="Create:\n- Task breakdown\n- Agent allocation\n- Timeline\n- Dependencies"];
+        planning_memory [shape=cylinder, label="Store plan\nin Memory", fillcolor=lightcoral];
+    }
+
+    // Phase 4: Pre-mortem
+    subgraph cluster_premortem {
+        label="Phase 4: Pre-mortem Analysis";
+        fillcolor=lightyellow;
+        style=filled;
+
+        premortem_task [label="Risk Analysis:\n- P0/P1/P2 risks\n- Mitigation plans\n- Cost estimation\n- Timeline validation"];
+        risk_score [label="Calculate\nrisk score"];
+        risk_decision [shape=diamond, label="Risk\nacceptable?", fillcolor=yellow];
+    }
+
+    // Phase 5: GO Decision
+    subgraph cluster_decision {
+        label="Phase 5: GO/NO-GO Decision";
+        fillcolor=lightyellow;
+        style=filled;
+
+        go_decision [shape=diamond, label="GO\nDecision?", fillcolor=yellow];
+        update_memory [label="Update Memory:\n- Plan state\n- Risk assessment\n- Agent allocations"];
+        no_go_action [shape=octagon, label="NO-GO\nRefine or abort", fillcolor=red, fontcolor=white];
+    }
+
+    // External References
+    memory_schema [shape=cylinder, label="Memory Schema\n(planning_state)", fillcolor=lightcoral];
+    agent_registry [shape=cylinder, label="Agent Registry\n(researcher, planner)", fillcolor=lightcoral];
+
+    // Flow
+    start -> route_check;
+    escalation_entry -> route_check [label="debug route", color=orange, style=dashed];
+
+    route_check -> route_decision;
+    route_decision -> route_direct [label="no\n(simple task)", color=green];
+    route_decision -> spawn_researcher [label="yes\n(complex task)", color=blue];
+    route_direct -> end;
+
+    spawn_researcher -> research_task;
+    research_task -> research_memory;
+    research_memory -> spawn_planner;
+
+    spawn_planner -> planning_task;
+    planning_task -> planning_memory;
+    planning_memory -> premortem_task;
+
+    premortem_task -> risk_score;
+    risk_score -> risk_decision;
+    risk_decision -> go_decision [label="yes\n(risk < 2000)", color=green];
+    risk_decision -> no_go_action [label="no\n(risk >= 2000)", color=red];
+
+    go_decision -> update_memory [label="yes\n(>=94% confidence)", color=green];
+    go_decision -> no_go_action [label="no\n(<94% confidence)", color=red];
+
+    update_memory -> end;
+    no_go_action -> route_check [label="refine", style=dashed];
+
+    // External connections
+    spawn_researcher -> agent_registry [style=dashed, label="lookup"];
+    spawn_planner -> agent_registry [style=dashed, label="lookup"];
+    research_memory -> memory_schema [style=dashed, label="write"];
+    planning_memory -> memory_schema [style=dashed, label="write"];
+    update_memory -> memory_schema [style=dashed, label="update"];
+
+    // Metadata
+    labelloc="t";
+    label="Loop 1: Planning Process\n\nPhases: Route Detection → Research → Planning → Pre-mortem → GO Decision\nOutputs: Task plan, agent allocations, risk assessment\nEscalation: Loop 3 debug route triggers re-planning";
+    fontsize=14;
+    fontname="Arial Bold";
+}

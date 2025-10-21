@@ -1,0 +1,727 @@
+digraph ATLANTIS_UI_IMPLEMENTATION {
+    // TRIGGER: Building Atlantis UI + 3-Loop System for SPEK Platform v2
+    // USE WHEN:
+    //   - Starting Weeks 7-18 implementation
+    //   - Need to understand complete Atlantis architecture
+    //   - Building Next.js + Three.js visual agent coordination
+    //   - Implementing 3-Loop quality refinement system
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_project_start {
+        label="TRIGGER: User Opens Atlantis UI (/)";
+        style="rounded,bold";
+        bgcolor="#e8f5e9";
+
+        // Entry
+        "User lands on /" [shape=ellipse];
+
+        // Components
+        "<MonarchChat /> (chat interface)" [shape=box];
+        "<SessionHistory /> (previous sessions)" [shape=box];
+
+        // APIs
+        "/api/monarch/chat (agent communication)" [shape=plaintext];
+
+        // Session management
+        "Restore previous session?" [shape=diamond];
+        "Load session state from Redis" [shape=box];
+
+        // Initial choice
+        "Project type?" [shape=diamond];
+        "NEW PROJECT" [shape=box, style=filled, fillcolor=lightblue];
+        "EXISTING PROJECT" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // Flow
+        "User lands on /" -> "<MonarchChat /> (chat interface)";
+        "<MonarchChat /> (chat interface)" -> "Restore previous session?";
+        "Restore previous session?" -> "Load session state from Redis" [label="yes"];
+        "Restore previous session?" -> "Project type?" [label="no"];
+        "Load session state from Redis" -> "Project type?";
+
+        "Project type?" -> "NEW PROJECT" [label="Create new"];
+        "Project type?" -> "EXISTING PROJECT" [label="Analyze existing"];
+
+        // API integration
+        "<MonarchChat /> (chat interface)" -> "/api/monarch/chat (agent communication)" [style=dotted, label="uses"];
+        "<SessionHistory /> (previous sessions)" -> "Load session state from Redis" [style=dotted, label="displays"];
+    }
+
+    subgraph cluster_existing_project {
+        label="Existing Project Flow (/project/select)";
+        bgcolor="#fff3e0";
+
+        // Components
+        "<FileSystemPicker />" [shape=box];
+        "<VectorizationProgress /> (ETA display)" [shape=box];
+        "<RefinementChoice /> (specific vs loop)" [shape=box];
+        "Select project folder" [shape=box];
+
+        // APIs
+        "/api/project/index (vectorization)" [shape=plaintext];
+        "/api/project/graph (structure analysis)" [shape=plaintext];
+
+        // Vectorization decision
+        "Check Redis cache (git commit hash)" [shape=box];
+        "Cache hit?" [shape=diamond];
+        "Load from Redis (<1s)" [shape=box, style=filled, fillcolor=lightgreen];
+
+        // Cache miss flow
+        "git diff (detect changes)" [shape=plaintext];
+        "Changed files >100?" [shape=diamond];
+        "Full vectorization (10K files, <60s)" [shape=box, style=filled, fillcolor=orange];
+        "Incremental vectorization (<10s)" [shape=box, style=filled, fillcolor=lightgreen];
+
+        // Parallel embedding
+        "Parallel OpenAI embedding (batch 64)" [shape=plaintext];
+        "Upsert to Pinecone" [shape=plaintext];
+        "Update Redis cache (30-day TTL)" [shape=plaintext];
+
+        // Graph generation
+        "AST + dependency graph (jscodeshift)" [shape=plaintext];
+        "File count >5K?" [shape=diamond];
+        "<ProjectGraph3D /> (LOD + instanced)" [shape=box, style=filled, fillcolor=lightblue];
+        "<ProjectGraph2D /> (fallback)" [shape=box, style=filled, fillcolor=lightyellow];
+
+        // User choice
+        "Display project structure" [shape=box];
+        "Next action?" [shape=diamond];
+        "Specific changes" [shape=box];
+        "Refinement loop (3-Loop)" [shape=box, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "<FileSystemPicker />" -> "Select project folder";
+        "Select project folder" -> "Check Redis cache (git commit hash)";
+        "Check Redis cache (git commit hash)" -> "Cache hit?";
+
+        "Cache hit?" -> "Load from Redis (<1s)" [label="yes"];
+        "Cache hit?" -> "git diff (detect changes)" [label="no"];
+
+        "git diff (detect changes)" -> "Changed files >100?";
+        "Changed files >100?" -> "Full vectorization (10K files, <60s)" [label="yes"];
+        "Changed files >100?" -> "Incremental vectorization (<10s)" [label="no"];
+
+        "Full vectorization (10K files, <60s)" -> "Parallel OpenAI embedding (batch 64)";
+        "Incremental vectorization (<10s)" -> "Parallel OpenAI embedding (batch 64)";
+        "Load from Redis (<1s)" -> "AST + dependency graph (jscodeshift)";
+
+        "Parallel OpenAI embedding (batch 64)" -> "Upsert to Pinecone";
+        "Upsert to Pinecone" -> "Update Redis cache (30-day TTL)";
+        "Update Redis cache (30-day TTL)" -> "AST + dependency graph (jscodeshift)";
+
+        "AST + dependency graph (jscodeshift)" -> "File count >5K?";
+        "File count >5K?" -> "<ProjectGraph3D /> (LOD + instanced)" [label="no"];
+        "File count >5K?" -> "<ProjectGraph2D /> (fallback)" [label="yes"];
+
+        "<ProjectGraph3D /> (LOD + instanced)" -> "Display project structure";
+        "<ProjectGraph2D /> (fallback)" -> "Display project structure";
+
+        "Display project structure" -> "Next action?";
+        "Next action?" -> "Specific changes" [label="manual"];
+        "Next action?" -> "Refinement loop (3-Loop)" [label="autonomous"];
+
+        // Component integrations
+        "<VectorizationProgress /> (ETA display)" -> "Parallel OpenAI embedding (batch 64)" [style=dotted, label="shows progress"];
+        "<RefinementChoice /> (specific vs loop)" -> "Next action?" [style=dotted, label="captures"];
+        "/api/project/index (vectorization)" -> "Parallel OpenAI embedding (batch 64)" [style=dotted, label="API"];
+        "/api/project/graph (structure analysis)" -> "AST + dependency graph (jscodeshift)" [style=dotted, label="API"];
+    }
+
+    subgraph cluster_new_project {
+        label="New Project Flow - Clarification Phase (/project/new)";
+        bgcolor="#e3f2fd";
+
+        // Entry
+        "User describes vision" [shape=ellipse];
+
+        // Components
+        "<ProjectWizard /> + <ClarificationChat />" [shape=box];
+        "<SPECPreview /> + <PLANPreview />" [shape=box];
+
+        // APIs
+        "/api/monarch/clarify (question generation)" [shape=plaintext];
+        "/api/spec/generate (SPEC document creation)" [shape=plaintext];
+        "/api/plan/generate (PLAN document creation)" [shape=plaintext];
+
+        // Monarch clarification
+        "Monarch asks questions" [shape=box];
+        "Technical complexity detected?" [shape=diamond];
+        "Either/or options (non-technical)" [shape=box];
+        "Technical questions (advanced)" [shape=box];
+
+        // Question categories
+        "Ask about: UX, stack, scale, security, budget" [shape=box];
+
+        // Document generation
+        "Progressive SPEC generation (streaming)" [shape=plaintext];
+        "Progressive PLAN generation (streaming)" [shape=plaintext];
+
+        // Session storage
+        "Store draft SPEC/PLAN in Redis session" [shape=box];
+
+        // User review
+        "User reviews docs?" [shape=diamond];
+        "Request clarification" [shape=box];
+        "Confirm and proceed" [shape=box, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "User describes vision" -> "<ProjectWizard /> + <ClarificationChat />";
+        "<ProjectWizard /> + <ClarificationChat />" -> "Monarch asks questions";
+        "Monarch asks questions" -> "Technical complexity detected?";
+
+        "Technical complexity detected?" -> "Either/or options (non-technical)" [label="low"];
+        "Technical complexity detected?" -> "Technical questions (advanced)" [label="high"];
+
+        "Either/or options (non-technical)" -> "Ask about: UX, stack, scale, security, budget";
+        "Technical questions (advanced)" -> "Ask about: UX, stack, scale, security, budget";
+
+        "Ask about: UX, stack, scale, security, budget" -> "Progressive SPEC generation (streaming)";
+        "Progressive SPEC generation (streaming)" -> "Progressive PLAN generation (streaming)";
+        "Progressive PLAN generation (streaming)" -> "Store draft SPEC/PLAN in Redis session";
+        "Store draft SPEC/PLAN in Redis session" -> "<SPECPreview /> + <PLANPreview />";
+
+        "<SPECPreview /> + <PLANPreview />" -> "User reviews docs?";
+        "User reviews docs?" -> "Request clarification" [label="needs changes"];
+        "User reviews docs?" -> "Confirm and proceed" [label="approved"];
+
+        "Request clarification" -> "Monarch asks questions";
+
+        // API integrations
+        "/api/monarch/clarify (question generation)" -> "Monarch asks questions" [style=dotted, label="API"];
+        "/api/spec/generate (SPEC document creation)" -> "Progressive SPEC generation (streaming)" [style=dotted, label="API"];
+        "/api/plan/generate (PLAN document creation)" -> "Progressive PLAN generation (streaming)" [style=dotted, label="API"];
+    }
+
+    subgraph cluster_loop1 {
+        label="Loop 1: Research & Pre-mortem (/loop1)";
+        bgcolor="#fff3e0";
+
+        // Entry
+        "SPEC + PLAN confirmed" [shape=ellipse];
+
+        // Components
+        "<Loop1Visualizer /> (3D orbital ring)" [shape=box];
+        "<AgentThoughts /> (throttled 10/sec)" [shape=box];
+        "<FailureRateGauge /> (color-coded)" [shape=box];
+        "<IterationCounter />" [shape=box];
+        "<ResearchArtifacts /> (GitHub repos, papers)" [shape=box];
+        "<PremortemReport /> (P0/P1/P2 breakdown)" [shape=box];
+        "<PauseOverlay /> - inject thoughts" [shape=box];
+
+        // APIs
+        "/api/loop1/research (GitHub + academic search)" [shape=plaintext];
+        "/api/loop1/premortem (multi-agent analysis)" [shape=plaintext];
+        "/api/loop1/remediate (plan updates)" [shape=plaintext];
+
+        // WebSocket integration
+        "WS: Real-time agent activity stream" [shape=plaintext];
+
+        // Loop 1 phases
+        "Phase 1: Research (GitHub + papers)" [shape=box];
+        "Phase 2: Pre-mortem (multi-agent)" [shape=box];
+        "Phase 3: Remediation (update SPEC/PLAN)" [shape=box];
+        "Phase 4: Re-research (additional)" [shape=box];
+        "Phase 5: Re-premortem (fresh eyes)" [shape=box];
+
+        // Failure rate check
+        "Calculate failure rate" [shape=box];
+        "Failure rate <5%?" [shape=diamond];
+        "Iteration count >10?" [shape=diamond];
+
+        // User pause option
+        "User clicked pause?" [shape=diamond];
+
+        // Exit
+        "Loop 1 complete (failure <5%)" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "ESCALATE: Manual review needed" [shape=octagon, style=filled, fillcolor=orange];
+
+        // Flow
+        "SPEC + PLAN confirmed" -> "Phase 1: Research (GitHub + papers)";
+        "Phase 1: Research (GitHub + papers)" -> "Phase 2: Pre-mortem (multi-agent)";
+        "Phase 2: Pre-mortem (multi-agent)" -> "Calculate failure rate";
+        "Calculate failure rate" -> "Failure rate <5%?";
+
+        "Failure rate <5%?" -> "Loop 1 complete (failure <5%)" [label="yes"];
+        "Failure rate <5%?" -> "Phase 3: Remediation (update SPEC/PLAN)" [label="no"];
+
+        "Phase 3: Remediation (update SPEC/PLAN)" -> "Phase 4: Re-research (additional)";
+        "Phase 4: Re-research (additional)" -> "Phase 5: Re-premortem (fresh eyes)";
+        "Phase 5: Re-premortem (fresh eyes)" -> "Calculate failure rate";
+
+        // Check iteration limit
+        "Calculate failure rate" -> "Iteration count >10?";
+        "Iteration count >10?" -> "ESCALATE: Manual review needed" [label="yes"];
+        "Iteration count >10?" -> "User clicked pause?" [label="no"];
+
+        // Pause handling
+        "User clicked pause?" -> "<PauseOverlay /> - inject thoughts" [label="yes"];
+        "User clicked pause?" -> "Failure rate <5%?" [label="no"];
+        "<PauseOverlay /> - inject thoughts" -> "Phase 3: Remediation (update SPEC/PLAN)";
+
+        // Components visualization
+        "<Loop1Visualizer /> (3D orbital ring)" -> "Phase 1: Research (GitHub + papers)" [style=dotted, label="displays"];
+        "<AgentThoughts /> (throttled 10/sec)" -> "Phase 2: Pre-mortem (multi-agent)" [style=dotted, label="streams"];
+        "<FailureRateGauge /> (color-coded)" -> "Calculate failure rate" [style=dotted, label="shows"];
+        "<IterationCounter />" -> "Iteration count >10?" [style=dotted, label="tracks"];
+        "<ResearchArtifacts /> (GitHub repos, papers)" -> "Phase 1: Research (GitHub + papers)" [style=dotted, label="displays"];
+        "<PremortemReport /> (P0/P1/P2 breakdown)" -> "Phase 2: Pre-mortem (multi-agent)" [style=dotted, label="shows"];
+
+        // API integrations
+        "/api/loop1/research (GitHub + academic search)" -> "Phase 1: Research (GitHub + papers)" [style=dotted, label="API"];
+        "/api/loop1/premortem (multi-agent analysis)" -> "Phase 2: Pre-mortem (multi-agent)" [style=dotted, label="API"];
+        "/api/loop1/remediate (plan updates)" -> "Phase 3: Remediation (update SPEC/PLAN)" [style=dotted, label="API"];
+        "WS: Real-time agent activity stream" -> "<AgentThoughts /> (throttled 10/sec)" [style=dotted, label="streams"];
+    }
+
+    subgraph cluster_loop2 {
+        label="Loop 2: Execution Village (/loop2)";
+        bgcolor="#e8f5e9";
+
+        // Entry
+        "Loop 1 complete" [shape=ellipse];
+
+        // Phase division
+        "MECE phase division" [shape=box];
+        "Identify dependencies" [shape=box];
+        "Detect bottlenecks" [shape=box];
+
+        // Princess hive structure
+        "Assign tasks to Princesses" [shape=box];
+        "Princess-Dev (coder, reviewer, debugger)" [shape=box, style=filled, fillcolor=lightblue];
+        "Princess-Quality (tester, nasa-enforcer, analyzer)" [shape=box, style=filled, fillcolor=lightblue];
+        "Princess-Coordination (orchestrator, task-tracker)" [shape=box, style=filled, fillcolor=lightblue];
+        "Princess-Documentation (docs-writer, spec-writer)" [shape=box, style=filled, fillcolor=lightblue];
+
+        // Components
+        "<ExecutionVillage3D /> (instanced drones)" [shape=box];
+        "<PhaseColumn /> (task flow)" [shape=box];
+        "<TaskFlow /> (animated delegation)" [shape=box];
+        "<AuditPipeline /> (3-stage visualizer)" [shape=box];
+        "<PhaseProgress /> (completion tracker)" [shape=box];
+        "<DependencyGraph /> (bottleneck visualization)" [shape=box];
+
+        // APIs
+        "/api/loop2/divide-phases (MECE phase division)" [shape=plaintext];
+        "/api/loop2/assign-tasks (princess allocation)" [shape=plaintext];
+        "/api/loop2/execute (drone execution)" [shape=plaintext];
+        "/api/audit/theater (mock detection)" [shape=plaintext];
+        "/api/audit/production (sandbox testing)" [shape=plaintext];
+        "/api/audit/quality (analyzer scan)" [shape=plaintext];
+        "/api/github/projects (project board sync)" [shape=plaintext];
+        "/api/phase/audit (full phase validation)" [shape=plaintext];
+
+        // WebSocket integration
+        "WS: Task status updates" [shape=plaintext];
+
+        // Drone execution
+        "Drones execute tasks" [shape=box];
+        "Task complete" [shape=box];
+
+        // 3-stage audit
+        "AUDIT STAGE 1: Theater Detection" [shape=box, style=filled, fillcolor=orange];
+        "Theater scan (AST analysis)" [shape=plaintext];
+        "Theater found?" [shape=diamond];
+        "Return to drone with notes" [shape=box, style=filled, fillcolor=red];
+
+        "AUDIT STAGE 2: Production Testing" [shape=box, style=filled, fillcolor=orange];
+        "Run in Docker sandbox (512MB, 30s)" [shape=plaintext];
+        "npm test" [shape=plaintext];
+        "Tests pass?" [shape=diamond];
+        "Attempt minimal debug" [shape=box];
+
+        "AUDIT STAGE 3: Quality Scan" [shape=box, style=filled, fillcolor=orange];
+        "Run analyzer (connascence, god objects, NASA)" [shape=plaintext];
+        "Quality score 100%?" [shape=diamond];
+        "Send to specialist drones for refactor" [shape=box];
+
+        // Phase completion
+        "All princess tasks complete?" [shape=diamond];
+        "Full phase audit (theater/production/quality)" [shape=box];
+        "Phase audit pass?" [shape=diamond];
+        "Mark phase COMPLETE in GitHub" [shape=box, style=filled, fillcolor=lightgreen];
+
+        // Next phase or UI validation
+        "More phases?" [shape=diamond];
+        "Has UI components?" [shape=diamond];
+
+        // Flow
+        "Loop 1 complete" -> "MECE phase division";
+        "MECE phase division" -> "Identify dependencies";
+        "Identify dependencies" -> "Detect bottlenecks";
+        "Detect bottlenecks" -> "Assign tasks to Princesses";
+
+        "Assign tasks to Princesses" -> "Princess-Dev (coder, reviewer, debugger)";
+        "Assign tasks to Princesses" -> "Princess-Quality (tester, nasa-enforcer, analyzer)";
+        "Assign tasks to Princesses" -> "Princess-Coordination (orchestrator, task-tracker)";
+        "Assign tasks to Princesses" -> "Princess-Documentation (docs-writer, spec-writer)";
+
+        "Princess-Dev (coder, reviewer, debugger)" -> "Drones execute tasks";
+        "Princess-Quality (tester, nasa-enforcer, analyzer)" -> "Drones execute tasks";
+        "Princess-Coordination (orchestrator, task-tracker)" -> "Drones execute tasks";
+        "Princess-Documentation (docs-writer, spec-writer)" -> "Drones execute tasks";
+
+        "Drones execute tasks" -> "Task complete";
+        "Task complete" -> "AUDIT STAGE 1: Theater Detection";
+
+        // Audit Stage 1
+        "AUDIT STAGE 1: Theater Detection" -> "Theater scan (AST analysis)";
+        "Theater scan (AST analysis)" -> "Theater found?";
+        "Theater found?" -> "Return to drone with notes" [label="yes"];
+        "Theater found?" -> "AUDIT STAGE 2: Production Testing" [label="no"];
+
+        "Return to drone with notes" -> "Drones execute tasks";
+
+        // Audit Stage 2
+        "AUDIT STAGE 2: Production Testing" -> "Run in Docker sandbox (512MB, 30s)";
+        "Run in Docker sandbox (512MB, 30s)" -> "npm test";
+        "npm test" -> "Tests pass?";
+        "Tests pass?" -> "AUDIT STAGE 3: Quality Scan" [label="yes"];
+        "Tests pass?" -> "Attempt minimal debug" [label="no"];
+
+        "Attempt minimal debug" -> "npm test";
+
+        // Audit Stage 3
+        "AUDIT STAGE 3: Quality Scan" -> "Run analyzer (connascence, god objects, NASA)";
+        "Run analyzer (connascence, god objects, NASA)" -> "Quality score 100%?";
+        "Quality score 100%?" -> "All princess tasks complete?" [label="yes"];
+        "Quality score 100%?" -> "Send to specialist drones for refactor" [label="no"];
+
+        "Send to specialist drones for refactor" -> "Run analyzer (connascence, god objects, NASA)";
+
+        // Phase completion
+        "All princess tasks complete?" -> "Full phase audit (theater/production/quality)" [label="yes"];
+        "All princess tasks complete?" -> "Drones execute tasks" [label="no"];
+
+        "Full phase audit (theater/production/quality)" -> "Phase audit pass?";
+        "Phase audit pass?" -> "Mark phase COMPLETE in GitHub" [label="yes"];
+        "Phase audit pass?" -> "ESCALATE: Fix phase issues" [label="no"];
+
+        "Mark phase COMPLETE in GitHub" -> "More phases?";
+        "More phases?" -> "MECE phase division" [label="yes"];
+        "More phases?" -> "Has UI components?" [label="no"];
+
+        // Component visualization
+        "<ExecutionVillage3D /> (instanced drones)" -> "Princess-Dev (coder, reviewer, debugger)" [style=dotted, label="displays"];
+        "<PhaseColumn /> (task flow)" -> "Drones execute tasks" [style=dotted, label="shows"];
+        "<TaskFlow /> (animated delegation)" -> "Assign tasks to Princesses" [style=dotted, label="animates"];
+        "<AuditPipeline /> (3-stage visualizer)" -> "AUDIT STAGE 1: Theater Detection" [style=dotted, label="displays"];
+        "<PhaseProgress /> (completion tracker)" -> "All princess tasks complete?" [style=dotted, label="tracks"];
+        "<DependencyGraph /> (bottleneck visualization)" -> "Detect bottlenecks" [style=dotted, label="shows"];
+
+        // API integrations
+        "/api/loop2/divide-phases (MECE phase division)" -> "MECE phase division" [style=dotted, label="API"];
+        "/api/loop2/assign-tasks (princess allocation)" -> "Assign tasks to Princesses" [style=dotted, label="API"];
+        "/api/loop2/execute (drone execution)" -> "Drones execute tasks" [style=dotted, label="API"];
+        "/api/audit/theater (mock detection)" -> "Theater scan (AST analysis)" [style=dotted, label="API"];
+        "/api/audit/production (sandbox testing)" -> "Run in Docker sandbox (512MB, 30s)" [style=dotted, label="API"];
+        "/api/audit/quality (analyzer scan)" -> "Run analyzer (connascence, god objects, NASA)" [style=dotted, label="API"];
+        "/api/github/projects (project board sync)" -> "Mark phase COMPLETE in GitHub" [style=dotted, label="API"];
+        "/api/phase/audit (full phase validation)" -> "Full phase audit (theater/production/quality)" [style=dotted, label="API"];
+        "WS: Task status updates" -> "<PhaseProgress /> (completion tracker)" [style=dotted, label="streams"];
+    }
+
+    subgraph cluster_ui_validation {
+        label="UI Validation (Playwright) (/loop2/ui-review)";
+        bgcolor="#fff3e0";
+
+        // Entry
+        "UI components detected" [shape=ellipse];
+
+        // Components
+        "<UIComparison /> (split view)" [shape=box];
+
+        // APIs
+        "/api/ui/screenshot (Playwright capture)" [shape=plaintext];
+        "/api/ui/compare (visual diff)" [shape=plaintext];
+
+        // MCP
+        "MCP: Chrome server (Playwright automation)" [shape=plaintext];
+
+        // Screenshot capture
+        "Take Playwright screenshot" [shape=plaintext];
+        "Generate visual diff" [shape=box];
+
+        // User approval
+        "User approves UI?" [shape=diamond];
+        "Debug UI component" [shape=box];
+        "Verify backend connection" [shape=box];
+        "UI approved" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "UI components detected" -> "Take Playwright screenshot";
+        "Take Playwright screenshot" -> "<UIComparison /> (split view)";
+        "<UIComparison /> (split view)" -> "Generate visual diff";
+        "Generate visual diff" -> "User approves UI?";
+
+        "User approves UI?" -> "UI approved" [label="yes"];
+        "User approves UI?" -> "Debug UI component" [label="no"];
+
+        "Debug UI component" -> "Verify backend connection";
+        "Verify backend connection" -> "Take Playwright screenshot";
+
+        // API integrations
+        "/api/ui/screenshot (Playwright capture)" -> "Take Playwright screenshot" [style=dotted, label="API"];
+        "/api/ui/compare (visual diff)" -> "Generate visual diff" [style=dotted, label="API"];
+        "MCP: Chrome server (Playwright automation)" -> "Take Playwright screenshot" [style=dotted, label="MCP"];
+    }
+
+    subgraph cluster_loop3 {
+        label="Loop 3: Quality & Finalization (/loop3)";
+        bgcolor="#e3f2fd";
+
+        // Entry
+        "All Loop 2 phases complete" [shape=ellipse];
+
+        // Components
+        "<Loop3Finalizer /> (3D concentric rings)" [shape=box];
+        "<RepoWizard />" [shape=box];
+        "<DocumentationCleanup />" [shape=box];
+
+        // APIs
+        "/api/loop3/scan (full project audit)" [shape=plaintext];
+        "/api/github/repo/create (new repo creation)" [shape=plaintext];
+        "/api/github/hooks/install (GitHub hooks)" [shape=plaintext];
+        "/api/cicd/setup (pipeline generation)" [shape=plaintext];
+        "/api/docs/organize (markdown cleanup)" [shape=plaintext];
+
+        // Phase 1: Full scan
+        "Full project scan" [shape=box];
+        "Theater: 100%?" [shape=diamond];
+        "Production: 100%?" [shape=diamond];
+        "Quality: 100%?" [shape=diamond];
+
+        // Phase 2: GitHub integration
+        "User wants GitHub repo?" [shape=diamond];
+        "Create new GitHub repo" [shape=plaintext];
+        "Install analyzer hooks" [shape=plaintext];
+        "Setup CI/CD (GitHub Actions)" [shape=plaintext];
+        "Configure quality gates" [shape=plaintext];
+
+        // Phase 3: Documentation cleanup
+        "List all markdown files" [shape=plaintext];
+        "Organize by code module" [shape=box];
+        "AST comparison (docs vs code)" [shape=plaintext];
+        "Delete outdated docs" [shape=box];
+        "Multi-agent LLM review" [shape=box];
+        "Add UI screenshots (if UI)" [shape=box];
+        "Human approval?" [shape=diamond];
+
+        // Phase 4: Export
+        "Export method?" [shape=diamond];
+        "Push to GitHub + setup complete" [shape=box, style=filled, fillcolor=lightgreen];
+        "Download folder + local hooks" [shape=box, style=filled, fillcolor=lightblue];
+
+        // Exit
+        "Project complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "All Loop 2 phases complete" -> "Full project scan";
+
+        // Full scan
+        "Full project scan" -> "Theater: 100%?";
+        "Theater: 100%?" -> "Production: 100%?" [label="yes"];
+        "Theater: 100%?" -> "Return to Loop 2 for fixes" [label="no"];
+
+        "Production: 100%?" -> "Quality: 100%?" [label="yes"];
+        "Production: 100%?" -> "Return to Loop 2 for fixes" [label="no"];
+
+        "Quality: 100%?" -> "User wants GitHub repo?" [label="yes"];
+        "Quality: 100%?" -> "Return to Loop 2 for fixes" [label="no"];
+
+        // GitHub integration
+        "User wants GitHub repo?" -> "Create new GitHub repo" [label="yes"];
+        "User wants GitHub repo?" -> "List all markdown files" [label="no"];
+
+        "Create new GitHub repo" -> "Install analyzer hooks";
+        "Install analyzer hooks" -> "Setup CI/CD (GitHub Actions)";
+        "Setup CI/CD (GitHub Actions)" -> "Configure quality gates";
+        "Configure quality gates" -> "List all markdown files";
+
+        // Documentation cleanup
+        "List all markdown files" -> "Organize by code module";
+        "Organize by code module" -> "AST comparison (docs vs code)";
+        "AST comparison (docs vs code)" -> "Delete outdated docs";
+        "Delete outdated docs" -> "Multi-agent LLM review";
+        "Multi-agent LLM review" -> "Add UI screenshots (if UI)";
+        "Add UI screenshots (if UI)" -> "Human approval?";
+
+        "Human approval?" -> "Export method?" [label="approved"];
+        "Human approval?" -> "Organize by code module" [label="needs changes"];
+
+        // Export
+        "Export method?" -> "Push to GitHub + setup complete" [label="GitHub"];
+        "Export method?" -> "Download folder + local hooks" [label="folder"];
+
+        "Push to GitHub + setup complete" -> "Project complete";
+        "Download folder + local hooks" -> "Project complete";
+
+        // Component visualization
+        "<Loop3Finalizer /> (3D concentric rings)" -> "Full project scan" [style=dotted, label="displays"];
+        "<RepoWizard />" -> "Create new GitHub repo" [style=dotted, label="guides"];
+        "<DocumentationCleanup />" -> "List all markdown files" [style=dotted, label="manages"];
+
+        // API integrations
+        "/api/loop3/scan (full project audit)" -> "Full project scan" [style=dotted, label="API"];
+        "/api/github/repo/create (new repo creation)" -> "Create new GitHub repo" [style=dotted, label="API"];
+        "/api/github/hooks/install (GitHub hooks)" -> "Install analyzer hooks" [style=dotted, label="API"];
+        "/api/cicd/setup (pipeline generation)" -> "Setup CI/CD (GitHub Actions)" [style=dotted, label="API"];
+        "/api/docs/organize (markdown cleanup)" -> "Organize by code module" [style=dotted, label="API"];
+    }
+
+    subgraph cluster_dashboard {
+        label="/dashboard - Overall Progress";
+        bgcolor="#fce4ec";
+
+        // Entry
+        "User navigates to /dashboard" [shape=ellipse];
+
+        // Components
+        "<ProgressOverview /> (overall status)" [shape=box];
+        "<PhaseTimeline /> (Week/Phase breakdown)" [shape=box];
+
+        // Tab navigation
+        "Tab: Overview / Phases / Agents" [shape=box];
+
+        // Overview tab content
+        "Show: Current loop, phase, completion %" [shape=box];
+        "Show: Active agents, task queue size" [shape=box];
+        "Show: Recent activity feed" [shape=box];
+
+        // Phases tab content
+        "Show: Phase list with status" [shape=box];
+        "Show: Dependency graph visualization" [shape=box];
+        "Show: Bottleneck indicators" [shape=box];
+
+        // Agents tab content
+        "Show: All 28 agents with status" [shape=box];
+        "Show: Agent thoughts stream (combined)" [shape=box];
+        "Show: Agent performance metrics" [shape=box];
+
+        // Flow
+        "User navigates to /dashboard" -> "<ProgressOverview /> (overall status)";
+        "<ProgressOverview /> (overall status)" -> "Tab: Overview / Phases / Agents";
+        "Tab: Overview / Phases / Agents" -> "Show: Current loop, phase, completion %" [label="Overview"];
+        "Tab: Overview / Phases / Agents" -> "Show: Phase list with status" [label="Phases"];
+        "Tab: Overview / Phases / Agents" -> "Show: All 28 agents with status" [label="Agents"];
+
+        // Overview tab
+        "Show: Current loop, phase, completion %" -> "Show: Active agents, task queue size";
+        "Show: Active agents, task queue size" -> "Show: Recent activity feed";
+
+        // Phases tab
+        "Show: Phase list with status" -> "Show: Dependency graph visualization";
+        "Show: Dependency graph visualization" -> "Show: Bottleneck indicators";
+
+        // Agents tab
+        "Show: All 28 agents with status" -> "Show: Agent thoughts stream (combined)";
+        "Show: Agent thoughts stream (combined)" -> "Show: Agent performance metrics";
+
+        // Component integrations
+        "<PhaseTimeline /> (Week/Phase breakdown)" -> "Show: Phase list with status" [style=dotted, label="displays"];
+    }
+
+    // External connections
+    "NEW PROJECT" -> new_project_start [label="route to /project/new", style=dotted];
+    "EXISTING PROJECT" -> existing_project_start [label="route to /project/select", style=dotted];
+    "Refinement loop (3-Loop)" -> loop1_start [label="route to /loop1", style=dotted];
+    "Confirm and proceed" -> loop1_start [label="route to /loop1", style=dotted];
+    "Loop 1 complete (failure <5%)" -> loop2_start [label="route to /loop2", style=dotted];
+    "Has UI components?" -> ui_validation_start [label="route to /loop2/ui-review (if yes)", style=dotted];
+    "Has UI components?" -> loop3_start [label="route to /loop3 (if no)", style=dotted];
+    "UI approved" -> loop3_start [label="route to /loop3", style=dotted];
+
+    // Reference nodes for connections
+    new_project_start [label="", shape=point];
+    existing_project_start [label="", shape=point];
+    loop1_start [label="", shape=point];
+    loop2_start [label="", shape=point];
+    ui_validation_start [label="", shape=point];
+    loop3_start [label="", shape=point];
+
+    new_project_start -> "User describes vision" [style=invis];
+    existing_project_start -> "<FileSystemPicker />" [style=invis];
+    loop1_start -> "SPEC + PLAN confirmed" [style=invis];
+    loop2_start -> "Loop 1 complete" [style=invis];
+    ui_validation_start -> "UI components detected" [style=invis];
+    loop3_start -> "All Loop 2 phases complete" [style=invis];
+
+    // Performance requirements
+    subgraph cluster_performance {
+        label="Performance Requirements (Research-Validated)";
+        bgcolor="#e0f2f1";
+
+        "✅ Vectorization: <60s (10K files)" [shape=box];
+        "✅ Incremental: <10s (100 files)" [shape=box];
+        "✅ Cache hit: <1s (Redis 30-day TTL)" [shape=box];
+        "✅ WebSocket: <50ms latency (Redis Pub/Sub)" [shape=box];
+        "✅ 3D rendering: 60 FPS desktop, 30 FPS mobile" [shape=box];
+        "✅ Draw calls: <500 (Loop 2), <100 (Loop 1), <50 (Loop 3)" [shape=box];
+        "✅ Docker sandbox: 512MB RAM, 30s timeout" [shape=box];
+        "✅ GPU fallback: 2D mode if >5K files or <400MB GPU" [shape=box];
+    }
+
+    // Critical reminders
+    subgraph cluster_critical {
+        label="CRITICAL IMPLEMENTATION RULES";
+        bgcolor="#ffcdd2";
+
+        "NEVER skip 3-stage audit (theater/production/quality)" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS use LOD + instanced rendering for 3D" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS implement 2D fallback mode" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS use Redis Pub/Sub for WebSocket scaling" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS use incremental vectorization (git diff)" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+    }
+
+    // MCP Servers Integration
+    subgraph cluster_mcp_servers {
+        label="MCP Server Integration";
+        bgcolor="#e8eaf6";
+
+        "MCP: GitHub (repo, projects, issues)" [shape=box];
+        "MCP: Chrome (Playwright screenshots)" [shape=box];
+        "MCP: Memory (cross-agent state)" [shape=box];
+        "MCP: Filesystem (project indexing)" [shape=box];
+    }
+
+    // WebSocket Architecture
+    subgraph cluster_websocket {
+        label="WebSocket Architecture (Socket.io + Redis Pub/Sub)";
+        bgcolor="#f1f8e9";
+
+        "Socket.io server (horizontal scaling)" [shape=box];
+        "Redis Pub/Sub adapter (200+ users)" [shape=box];
+        "Event throttling (10 events/sec)" [shape=box];
+        "State reconciliation (reconnection)" [shape=box];
+        "Message latency <50ms (p95)" [shape=box];
+    }
+
+    // API Endpoints Summary
+    subgraph cluster_api_summary {
+        label="API Endpoints Summary (27 total)";
+        bgcolor="#f3e5f5";
+
+        "Monarch: /api/monarch/chat, /api/monarch/clarify" [shape=box];
+        "Project: /api/project/index, /api/project/graph" [shape=box];
+        "Docs: /api/spec/generate, /api/plan/generate" [shape=box];
+        "Loop 1: /api/loop1/research, /api/loop1/premortem, /api/loop1/remediate" [shape=box];
+        "Loop 2: /api/loop2/divide-phases, /api/loop2/assign-tasks, /api/loop2/execute" [shape=box];
+        "Audit: /api/audit/theater, /api/audit/production, /api/audit/quality" [shape=box];
+        "Phase: /api/phase/audit, /api/github/projects" [shape=box];
+        "UI: /api/ui/screenshot, /api/ui/compare" [shape=box];
+        "Loop 3: /api/loop3/scan, /api/github/repo/create, /api/github/hooks/install, /api/cicd/setup, /api/docs/organize" [shape=box];
+    }
+
+    // Technology stack
+    subgraph cluster_tech_stack {
+        label="Technology Stack (v8-FINAL)";
+        bgcolor="#e8eaf6";
+
+        "Frontend: Next.js 14 + Three.js + shadcn/ui + Zustand + React Query" [shape=box];
+        "Backend: tRPC + BullMQ + Docker + Octokit" [shape=box];
+        "Real-time: Socket.io + Redis Pub/Sub (<50ms latency)" [shape=box];
+        "Storage: Pinecone (vectors) + Redis (cache) + SQLite (Context DNA)" [shape=box];
+        "Agents: 22 Phase 1 (28 with new additions), 50 Phase 2 (conditional)" [shape=box];
+        "Search: GitHub API + Semantic Scholar API" [shape=box];
+    }
+}

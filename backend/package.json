@@ -1,0 +1,46 @@
+{
+  "name": "@spek/backend",
+  "version": "8.0.0",
+  "description": "SPEK Platform v2 Backend - tRPC API Server",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsx watch src/index.ts",
+    "start": "node dist/index.js",
+    "type-check": "tsc --noEmit",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@octokit/rest": "^22.0.0",
+    "@trpc/server": "^11.6.0",
+    "@types/better-sqlite3": "^7.6.13",
+    "@types/dockerode": "^3.3.44",
+    "archiver": "^7.0.1",
+    "better-sqlite3": "^12.4.1",
+    "bullmq": "^5.34.2",
+    "dockerode": "^4.0.9",
+    "ioredis": "^5.4.2",
+    "socket.io": "^4.8.1",
+    "superjson": "^2.2.1",
+    "uuid": "^13.0.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@types/archiver": "^6.0.3",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^20.10.0",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3"
+  },
+  "keywords": [
+    "spek",
+    "trpc",
+    "api",
+    "backend"
+  ],
+  "author": "SPEK Team",
+  "license": "MIT"
+}

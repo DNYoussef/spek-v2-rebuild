@@ -1,0 +1,107 @@
+{
+  "delegate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"architecture\", \"implementation\": \"User authentication flow\", \"code_files\": [\"src/auth/auth_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For a user authentication flow, FSM usage is justified due to the complex state transitions and security requirements. I'll assign the fsm-analyzer drone to validate the state machine implementation. Key aspects to verify include proper state transitions for login attempts, lockout mechanisms, and session management. The task needs thorough validation of security-critical paths and audit requirements.",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Validate authentication flow FSM implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\",\n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 4,\n        \"expected_states\": [\n            \"unauthenticated\",\n            \"credentials_submitted\",\n            \"validating\",\n            \"authenticated\",\n            \"locked_out\",\n            \"password_reset_required\"\n        ],\n        \"expected_transitions\": 12,\n        \"check_xstate_usage\": true\n    },\n    \"acceptance_criteria\": [\n        \"All security-critical paths validated\",\n        \"Lockout mechanism properly implemented\",\n        \"Session management states clear\",\n        \"Audit logging present for all transitions\",\n        \"Rate limiting considered\",\n        \"Password reset flow integrated\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Payment processing workflow\", \"code_files\": [\"src/payments/payment_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For a payment processing workflow, FSM usage is highly justified due to the complex state transitions and critical nature of financial transactions. I'll assign the fsm-analyzer drone to validate the state machine implementation, focusing on:\n1. Payment lifecycle states and transitions\n2. Error handling and recovery paths\n3. Audit requirements for financial transactions\n4. Concurrent payment processing capabilities",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Validate payment processing FSM implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\", \n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 4,\n        \"expected_states\": [\n            \"initiated\",\n            \"validating\",\n            \"processing\",\n            \"authorizing\",\n            \"completed\",\n            \"failed\",\n            \"refunded\"\n        ],\n        \"expected_transitions\": 12,\n        \"check_xstate_usage\": true\n    },\n    \"acceptance_criteria\": [\n        \"All 5 decision matrix criteria satisfied\",\n        \"Payment lifecycle states properly defined\",\n        \"Error handling and recovery paths implemented\",\n        \"Transaction audit trail maintained\",\n        \"Concurrent payment processing supported\",\n        \"No dead-end states present\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Simple form validation\", \"code_files\": [\"src/forms/validator.py\"], \"fsm_justification_required\": false}",
+        "reasoning": "For a simple form validation implementation, I'll delegate to the theater-detector drone to ensure we're not over-engineering with unnecessary state machines. The context indicates FSM is not required, so we need to verify no accidental complexity is introduced. The theater-detector specializes in identifying unnecessary architectural patterns.",
+        "drone_task": "{\n    \"drone_id\": \"theater-detector\",\n    \"task_type\": \"complexity-audit\",\n    \"description\": \"Verify appropriate simplicity in form validation implementation\",\n    \"payload\": {\n        \"target_files\": [\"src/forms/validator.py\"],\n        \"complexity_metrics\": {\n            \"max_cyclomatic\": 5,\n            \"max_depth\": 2,\n            \"patterns_to_detect\": [\"state_machine\", \"complex_inheritance\", \"event_driven\"]\n        },\n        \"expected_approach\": \"direct_validation\"\n    },\n    \"acceptance_criteria\": [\n        \"No FSM patterns detected\",\n        \"Validation logic is straightforward and procedural\",\n        \"No over-engineered patterns present\",\n        \"Implementation matches complexity requirements\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"architecture\", \"implementation\": \"Order fulfillment workflow\", \"code_files\": [\"src/orders/fulfillment_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For an order fulfillment workflow, FSM usage is justified due to the complex state transitions and business rules involved. I'll assign the fsm-analyzer drone to validate the state machine implementation since this is a critical business process that requires proper state management. The task will focus on ensuring all necessary states for order processing are present, transitions are properly defined, and error handling paths are included.",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Validate order fulfillment FSM implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\", \n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 4,\n        \"expected_states\": [\n            \"created\",\n            \"validated\",\n            \"processing\",\n            \"picking\",\n            \"packing\",\n            \"shipping\",\n            \"delivered\",\n            \"cancelled\",\n            \"failed\"\n        ],\n        \"expected_transitions\": 12,\n        \"check_xstate_usage\": true\n    },\n    \"acceptance_criteria\": [\n        \"All order states properly defined\",\n        \"Error handling paths present for each state\",\n        \"State transitions follow business rules\",\n        \"Audit logging implemented for state changes\",\n        \"Concurrent order processing supported\",\n        \"No dead-end states except terminal states\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Session management\", \"code_files\": [\"src/sessions/session_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For session management review, I'll delegate to the fsm-analyzer drone since:\n1. FSM justification is explicitly required\n2. Session management typically involves multiple states and transitions\n3. We need to verify proper state handling for security\n4. The analyzer can validate concurrent session handling\n5. Complex error recovery paths need verification",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Validate session management FSM implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\", \n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 4,\n        \"expected_states\": [\n            \"initialized\",\n            \"active\",\n            \"idle\",\n            \"expired\",\n            \"terminated\"\n        ],\n        \"expected_transitions\": 8,\n        \"check_xstate_usage\": true,\n        \"security_focus\": true\n    },\n    \"acceptance_criteria\": [\n        \"Concurrent session handling verified\",\n        \"Timeout transitions present\",\n        \"Security state transitions validated\",\n        \"Session cleanup confirmed\",\n        \"Race conditions checked\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Document approval workflow\", \"code_files\": [\"src/documents/approval_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For a document approval workflow, FSM usage is justified due to the complex state transitions and multiple approval stages involved. I'll assign the fsm-analyzer drone to validate the state machine implementation since this is a critical workflow component that requires proper state management. The analyzer should verify proper handling of approval states, rejection paths, and audit requirements.",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Validate document approval workflow FSM\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\", \n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 4,\n        \"expected_states\": [\n            \"draft\",\n            \"submitted\",\n            \"under_review\",\n            \"changes_requested\",\n            \"approved\",\n            \"rejected\"\n        ],\n        \"expected_transitions\": 8,\n        \"check_xstate_usage\": true\n    },\n    \"acceptance_criteria\": [\n        \"All approval states properly defined\",\n        \"Rejection paths implemented\",\n        \"Audit trail for all transitions\",\n        \"No deadlock conditions\",\n        \"State history maintained\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Simple cache toggle\", \"code_files\": [\"src/cache/toggle.py\"], \"fsm_justification_required\": false}",
+        "reasoning": "For a simple cache toggle implementation, we need to verify that no unnecessary complexity like FSMs are introduced. This is a straightforward feature that should use simple boolean logic. I'll assign the fsm-analyzer drone to confirm the absence of over-engineering and ensure the implementation remains simple. The task will focus on validating that basic conditional statements are used instead of state machines.",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Verify no FSM usage in cache toggle implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\">=3 distinct states\", \">=5 transitions\", \"complex error recovery\", \"audit trail needed\", \"concurrent sessions\"],\n        \"minimum_criteria_met\": 0,\n        \"expected_states\": [],\n        \"expected_transitions\": 0,\n        \"check_xstate_usage\": false\n    },\n    \"acceptance_criteria\": [\n        \"No FSM implementation detected\",\n        \"Simple boolean toggle logic used\",\n        \"No unnecessary state tracking\",\n        \"Implementation uses straightforward if/else logic\",\n        \"No over-engineered solutions present\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"architecture\", \"implementation\": \"Multi-step onboarding flow\", \"code_files\": [\"src/onboarding/onboarding_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For a multi-step onboarding flow, FSM usage is justified due to the complex state transitions and need for clear progression tracking. I'll assign the fsm-analyzer drone to validate the state machine implementation since this is a critical user journey that requires proper state management. The task will focus on ensuring the FSM has appropriate states for onboarding steps, proper error handling, and clear audit trails.",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Validate onboarding flow FSM implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\",\n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 4,\n        \"expected_states\": [\n            \"initial\",\n            \"personal_info_collected\",\n            \"email_verified\",\n            \"documents_uploaded\",\n            \"review_pending\",\n            \"approved\",\n            \"rejected\"\n        ],\n        \"expected_transitions\": 12,\n        \"check_xstate_usage\": true\n    },\n    \"acceptance_criteria\": [\n        \"All expected states present and properly connected\",\n        \"Error handling paths defined for each step\",\n        \"Progress tracking mechanism implemented\",\n        \"Session management properly handled\",\n        \"State persistence strategy validated\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Circuit breaker\", \"code_files\": [\"src/resilience/circuit_breaker_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For reviewing a circuit breaker implementation, I'll assign the fsm-analyzer drone since:\n1. Circuit breakers are a classic use case for FSMs with clear states (closed, open, half-open)\n2. FSM usage is explicitly justified given the state transition requirements\n3. We need to verify proper state management and transition logic\n4. The analyzer can validate against established circuit breaker patterns",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Validate circuit breaker FSM implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\", \n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 3,\n        \"expected_states\": [\n            \"closed\",\n            \"open\",\n            \"half_open\"\n        ],\n        \"expected_transitions\": 6,\n        \"check_xstate_usage\": true,\n        \"verify_patterns\": [\n            \"failure threshold tracking\",\n            \"timeout mechanism\",\n            \"half-open test requests\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"All 3 core states present\",\n        \"Proper failure threshold handling\",\n        \"Timeout-based state transitions\",\n        \"Thread-safe state management\",\n        \"Clear failure recovery path\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Job scheduling workflow\", \"code_files\": [\"src/scheduler/job_fsm.py\"], \"fsm_justification_required\": true}",
+        "reasoning": "For a job scheduling workflow, FSM usage is justified due to the complex state transitions and concurrent job management requirements. I'll assign the fsm-analyzer drone to validate the state machine implementation since this is a critical workflow component that needs proper state management. The analyzer should verify proper handling of job lifecycle states, error conditions, and concurrent job execution scenarios.",
+        "drone_task": "{\n    \"drone_id\": \"fsm-analyzer\",\n    \"task_type\": \"validate-fsm-usage\",\n    \"description\": \"Analyze job scheduler FSM implementation\",\n    \"payload\": {\n        \"decision_matrix_criteria\": [\n            \">=3 distinct states\",\n            \">=5 transitions\", \n            \"complex error recovery\",\n            \"audit trail needed\",\n            \"concurrent sessions\"\n        ],\n        \"minimum_criteria_met\": 4,\n        \"expected_states\": [\n            \"pending\",\n            \"scheduled\",\n            \"running\",\n            \"paused\",\n            \"completed\",\n            \"failed\",\n            \"cancelled\"\n        ],\n        \"expected_transitions\": 12,\n        \"check_xstate_usage\": true\n    },\n    \"acceptance_criteria\": [\n        \"All job lifecycle states properly defined\",\n        \"Error handling transitions present\",\n        \"Concurrent job execution supported\",\n        \"Job recovery paths implemented\",\n        \"State persistence mechanism exists\",\n        \"No dead-end states\"\n    ]\n}"
+      }
+    ],
+    "signature": {
+      "instructions": "Delegate task to drone agent with clear instructions.\n\nYou are a Princess agent coordinating your specialized drone hive.\nYour role is to take high-level workflow phases and convert them\ninto specific, actionable tasks for your drone agents.\n\nPrincess-Dev drones: coder, reviewer, debugger, integration-engineer\nPrincess-Quality drones: tester, nasa-enforcer, theater-detector, fsm-analyzer\nPrincess-Coordination drones: orchestrator, planner, cost-tracker\n\nEach drone task must have:\n- Specific drone agent assignment\n- Task type matching drone capabilities\n- Clear context from previous phases\n- Concrete deliverables\n- Quality gates/acceptance criteria\n\nFollow the 26 prompt engineering principles:\n- Clarity: Unambiguous instructions\n- Context: Include relevant phase results\n- Constraints: Respect drone capabilities\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Phase:",
+          "description": "Development phase to execute (design, code, test, review, etc.)"
+        },
+        {
+          "prefix": "Context:",
+          "description": "Context and results from previous phases that this phase depends on"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Delegation reasoning explaining drone selection and task structure"
+        },
+        {
+          "prefix": "Drone Task:",
+          "description": "Structured task for drone agent as JSON object. Must have: {'drone_id': str, 'task_type': str, 'description': str, 'payload': dict, 'acceptance_criteria': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

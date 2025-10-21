@@ -1,0 +1,131 @@
+digraph PrincessSummoning {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start and end
+    start [shape=ellipse, label="Start:\nPrincess Needed", fillcolor=lightgreen];
+    end [shape=ellipse, label="Complete:\nPrincess Coordinating", fillcolor=green, fontcolor=white];
+
+    // Phase 1: Context Preparation
+    subgraph cluster_context {
+        label="Phase 1: Context Preparation";
+        fillcolor=lightyellow;
+        style=filled;
+
+        read_memory [label="Read memory[\n'current_loop']"];
+        load_loop1 [label="Load Loop 1\nOutputs\n(plans, specs, risks)"];
+        extract_task [label="Extract Task\nDescription & Type"];
+        determine_drones [label="Determine Drones\nNeeded (preliminary)"];
+
+        read_memory -> load_loop1;
+        load_loop1 -> extract_task;
+        extract_task -> determine_drones;
+    }
+
+    // Phase 2: Princess Selection
+    subgraph cluster_selection {
+        label="Phase 2: Princess Selection";
+        fillcolor=lightblue;
+        style=filled;
+
+        identify_loop [label="Identify Current Loop\n(loop1/loop2/loop3)"];
+        analyze_keywords [label="Analyze Task\nKeywords"];
+        select_princess_func [label="Call:\nget_princess_for_loop(loop)"];
+        verify_princess [label="Verify Princess\nAppropriate for Task"];
+
+        identify_loop -> analyze_keywords;
+        analyze_keywords -> select_princess_func;
+        select_princess_func -> verify_princess;
+    }
+
+    // Decision: Which Princess?
+    decision_princess [shape=diamond, label="Which\nPrincess?", fillcolor=yellow];
+
+    princess_coord [shape=cylinder, label="Princess-Coordination\n(Loop 1)", fillcolor=lightcoral];
+    princess_dev [shape=cylinder, label="Princess-Dev\n(Loop 2)", fillcolor=lightcoral];
+    princess_quality [shape=cylinder, label="Princess-Quality\n(Loop 3)", fillcolor=lightcoral];
+
+    // Phase 3: Delegation Prompt Construction
+    subgraph cluster_prompt {
+        label="Phase 3: Delegation Prompt Construction";
+        fillcolor=lightyellow;
+        style=filled;
+
+        load_template [label="Load Princess\nDelegation Template"];
+        insert_context [label="Insert Context:\n- Loop outputs\n- Task details\n- Agents needed"];
+        add_loop_specific [label="Add Loop-Specific:\n- Instructions\n- Deliverables\n- Quality standards"];
+        add_escalation [label="Add Escalation\nProtocol"];
+
+        load_template -> insert_context;
+        insert_context -> add_loop_specific;
+        add_loop_specific -> add_escalation;
+    }
+
+    // Phase 4: Princess Spawning
+    subgraph cluster_spawn {
+        label="Phase 4: Princess Spawning";
+        fillcolor=lightgreen;
+        style=filled;
+
+        build_prompt [label="Build Complete\nDelegation Prompt"];
+        spawn_princess [label="Task(\n  subagent_type=princess_id,\n  prompt=delegation_prompt\n)"];
+        update_memory [label="Update Memory:\nprincess_spawned"];
+
+        build_prompt -> spawn_princess;
+        spawn_princess -> update_memory;
+    }
+
+    // Phase 5: Monitoring
+    subgraph cluster_monitor {
+        label="Phase 5: Monitor & Coordinate";
+        fillcolor=lightyellow;
+        style=filled;
+
+        track_status [label="Track Princess Status\n(memory updates)"];
+        handle_escalations [label="Handle Princess\nEscalations"];
+        provide_guidance [label="Provide Queen\nGuidance"];
+
+        track_status -> handle_escalations;
+        handle_escalations -> provide_guidance;
+    }
+
+    // Warnings
+    warning_spawn_fail [shape=octagon, label="STOP:\nPrincess Spawn Failed", fillcolor=orange];
+    warning_wrong_princess [shape=octagon, label="WARNING:\nWrong Princess Selected", fillcolor=orange];
+
+    // Flow
+    start -> read_memory [lhead=cluster_context];
+    determine_drones -> identify_loop [lhead=cluster_selection];
+    verify_princess -> decision_princess;
+
+    decision_princess -> princess_coord [label="loop1"];
+    decision_princess -> princess_dev [label="loop2"];
+    decision_princess -> princess_quality [label="loop3"];
+
+    princess_coord -> load_template [lhead=cluster_prompt];
+    princess_dev -> load_template [lhead=cluster_prompt];
+    princess_quality -> load_template [lhead=cluster_prompt];
+
+    add_escalation -> build_prompt [lhead=cluster_spawn];
+    update_memory -> track_status [lhead=cluster_monitor];
+    provide_guidance -> end;
+
+    // Error flows
+    spawn_princess -> warning_spawn_fail [label="fails", color=red];
+    warning_spawn_fail -> spawn_princess [label="retry", style=dashed];
+    warning_spawn_fail -> start [label="3 failures:\nescalate to user", style=dashed, color=red];
+
+    verify_princess -> warning_wrong_princess [label="mismatch", color=orange, style=dashed];
+    warning_wrong_princess -> select_princess_func [label="reselect", style=dashed];
+
+    // External skill references
+    drone_selection [shape=folder, label="drone-selection skill\n(Princess uses next)", fillcolor=lightsalmon];
+    update_memory -> drone_selection [label="Princess invokes", style=dashed];
+
+    labelloc="t";
+    label="Princess Summoning: Queen Delegates to Princess Coordinators";
+    fontsize=16;
+    fontname="Arial Bold";
+}

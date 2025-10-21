@@ -1,0 +1,290 @@
+digraph DEPLOYMENT_READINESS_CHECKLIST {
+    // TRIGGER: Before deploying SPEK Platform to production
+    // USE WHEN:
+    //   - Ready for production deployment
+    //   - All development complete
+    //   - Need systematic validation checklist
+    //   - Week 26 backend integration done
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_readiness {
+        label="TRIGGER: Deployment Readiness Validation";
+        style="rounded,bold";
+        bgcolor="#e3f2fd";
+
+        // Entry
+        "Ready for deployment" [shape=ellipse];
+
+        // Phase 1: Backend Validation
+        "Test all 12 REST endpoints" [shape=box];
+        "python claude_backend_server.py" [shape=plaintext];
+        "Backend healthy?" [shape=diamond];
+        "WebSocket connection stable? (5 events)" [shape=diamond];
+        "Message queue working?" [shape=diamond];
+        "Queen orchestrator correct?" [shape=diamond];
+        "Agent registry returns Drones?" [shape=diamond];
+        "No project copying verified?" [shape=diamond];
+        "Error handling present?" [shape=diamond];
+        "Logging enabled?" [shape=diamond];
+
+        // Phase 2: Frontend Validation
+        "cd atlantis-ui && npm run build" [shape=plaintext];
+        "Build successful?" [shape=diamond];
+        "Zero TypeScript errors?" [shape=diamond];
+        "Bundle size < 10 MB?" [shape=diamond];
+        "All 54 components render?" [shape=diamond];
+        "MonarchChat WebSocket working?" [shape=diamond];
+        "Folder selection functional?" [shape=diamond];
+
+        // Phase 3: E2E Testing
+        "Test: Create new project" [shape=box];
+        "Success?" [shape=diamond];
+        "Test: Load existing project (no copying)" [shape=box];
+        "Success?" [shape=diamond];
+        "Test: Send chat message" [shape=box];
+        "Queen responds?" [shape=diamond];
+        "Test: Agent spawn → UI updates" [shape=box];
+        "Updates shown?" [shape=diamond];
+        "Test: Task progress" [shape=box];
+        "Progress shown?" [shape=diamond];
+        "Test: Task completion" [shape=box];
+        "Completion shown?" [shape=diamond];
+        "Test: Error handling" [shape=box];
+        "Errors shown?" [shape=diamond];
+
+        // Phase 4: Environment Configuration
+        "Create .env file:\nFLASK_PORT=5000\nFLASK_DEBUG=false\nCORS_ORIGINS=...\nCLAUDE_API_KEY=..." [shape=plaintext];
+        "Environment variables set?" [shape=diamond];
+        "Secrets not in git?" [shape=diamond];
+        "Production values configured?" [shape=diamond];
+
+        // Phase 5: Performance Validation
+        "Test: Message latency <50ms" [shape=box];
+        "Test: Queen response <2s" [shape=box];
+        "Test: WebSocket delay <100ms" [shape=box];
+        "Test: Bundle size" [shape=box];
+        "All performance targets met?" [shape=diamond];
+
+        // Phase 6: Security Validation
+        "npm audit" [shape=plaintext];
+        "pip check" [shape=plaintext];
+        "No secrets in codebase?" [shape=diamond];
+        "CORS configured?" [shape=diamond];
+        "Input validation present?" [shape=diamond];
+        "XSS prevention enabled?" [shape=diamond];
+        "Rate limiting enabled?" [shape=diamond];
+
+        // Phase 7: Deployment Execution
+        "Deploy backend: python claude_backend_server.py" [shape=plaintext];
+        "Backend deployed?" [shape=diamond];
+        "Check: http://localhost:5000/health" [shape=plaintext];
+        "Health check passing?" [shape=diamond];
+        "Deploy frontend: cd atlantis-ui && vercel deploy --prod" [shape=plaintext];
+        "Frontend deployed?" [shape=diamond];
+        "Site accessible?" [shape=diamond];
+
+        // Phase 8: Post-Deployment Validation
+        "Visit production URL" [shape=box];
+        "Select existing project" [shape=box];
+        "Send chat message" [shape=box];
+        "Verify agent spawns" [shape=box];
+        "Monitor logs for errors" [shape=box];
+        "All post-deployment checks pass?" [shape=diamond];
+
+        // Phase 9: Final Sign-Off
+        "All E2E tests passing?" [shape=diamond];
+        "Performance targets met?" [shape=diamond];
+        "Security scan passed?" [shape=diamond];
+        "Monitoring enabled?" [shape=diamond];
+        "Rollback tested?" [shape=diamond];
+        "Documentation updated?" [shape=diamond];
+
+        // Success
+        "Production deployment approved" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Failure handling
+        "Fix issues" [shape=box];
+        "Document blockers" [shape=box];
+
+        // Flow
+        "Ready for deployment" -> "Test all 12 REST endpoints";
+        "Test all 12 REST endpoints" -> "python claude_backend_server.py";
+        "python claude_backend_server.py" -> "Backend healthy?";
+        "Backend healthy?" -> "WebSocket connection stable? (5 events)" [label="yes"];
+        "Backend healthy?" -> "Fix issues" [label="no"];
+
+        "WebSocket connection stable? (5 events)" -> "Message queue working?" [label="yes"];
+        "WebSocket connection stable? (5 events)" -> "Fix issues" [label="no"];
+
+        "Message queue working?" -> "Queen orchestrator correct?" [label="yes"];
+        "Message queue working?" -> "Fix issues" [label="no"];
+
+        "Queen orchestrator correct?" -> "Agent registry returns Drones?" [label="yes"];
+        "Queen orchestrator correct?" -> "Fix issues" [label="no"];
+
+        "Agent registry returns Drones?" -> "No project copying verified?" [label="yes"];
+        "Agent registry returns Drones?" -> "Fix issues" [label="no"];
+
+        "No project copying verified?" -> "Error handling present?" [label="yes"];
+        "No project copying verified?" -> "Fix issues" [label="no"];
+
+        "Error handling present?" -> "Logging enabled?" [label="yes"];
+        "Error handling present?" -> "Fix issues" [label="no"];
+
+        "Logging enabled?" -> "cd atlantis-ui && npm run build" [label="yes"];
+        "Logging enabled?" -> "Fix issues" [label="no"];
+
+        "cd atlantis-ui && npm run build" -> "Build successful?";
+        "Build successful?" -> "Zero TypeScript errors?" [label="yes"];
+        "Build successful?" -> "Fix issues" [label="no"];
+
+        "Zero TypeScript errors?" -> "Bundle size < 10 MB?" [label="yes"];
+        "Zero TypeScript errors?" -> "Fix issues" [label="no"];
+
+        "Bundle size < 10 MB?" -> "All 54 components render?" [label="yes"];
+        "Bundle size < 10 MB?" -> "Fix issues" [label="no"];
+
+        "All 54 components render?" -> "MonarchChat WebSocket working?" [label="yes"];
+        "All 54 components render?" -> "Fix issues" [label="no"];
+
+        "MonarchChat WebSocket working?" -> "Folder selection functional?" [label="yes"];
+        "MonarchChat WebSocket working?" -> "Fix issues" [label="no"];
+
+        "Folder selection functional?" -> "Test: Create new project" [label="yes"];
+        "Folder selection functional?" -> "Fix issues" [label="no"];
+
+        "Test: Create new project" -> "Success?";
+        "Success?" -> "Test: Load existing project (no copying)" [label="yes"];
+        "Success?" -> "Fix issues" [label="no"];
+
+        "Test: Load existing project (no copying)" -> "Success?";
+        "Success?" -> "Test: Send chat message" [label="yes"];
+
+        "Test: Send chat message" -> "Queen responds?";
+        "Queen responds?" -> "Test: Agent spawn → UI updates" [label="yes"];
+        "Queen responds?" -> "Fix issues" [label="no"];
+
+        "Test: Agent spawn → UI updates" -> "Updates shown?";
+        "Updates shown?" -> "Test: Task progress" [label="yes"];
+        "Updates shown?" -> "Fix issues" [label="no"];
+
+        "Test: Task progress" -> "Progress shown?";
+        "Progress shown?" -> "Test: Task completion" [label="yes"];
+        "Progress shown?" -> "Fix issues" [label="no"];
+
+        "Test: Task completion" -> "Completion shown?";
+        "Completion shown?" -> "Test: Error handling" [label="yes"];
+        "Completion shown?" -> "Fix issues" [label="no"];
+
+        "Test: Error handling" -> "Errors shown?";
+        "Errors shown?" -> "Create .env file:\nFLASK_PORT=5000\nFLASK_DEBUG=false\nCORS_ORIGINS=...\nCLAUDE_API_KEY=..." [label="yes"];
+        "Errors shown?" -> "Fix issues" [label="no"];
+
+        "Create .env file:\nFLASK_PORT=5000\nFLASK_DEBUG=false\nCORS_ORIGINS=...\nCLAUDE_API_KEY=..." -> "Environment variables set?";
+        "Environment variables set?" -> "Secrets not in git?" [label="yes"];
+        "Environment variables set?" -> "Fix issues" [label="no"];
+
+        "Secrets not in git?" -> "Production values configured?" [label="yes"];
+        "Secrets not in git?" -> "Fix issues" [label="no"];
+
+        "Production values configured?" -> "Test: Message latency <50ms" [label="yes"];
+        "Production values configured?" -> "Fix issues" [label="no"];
+
+        "Test: Message latency <50ms" -> "Test: Queen response <2s";
+        "Test: Queen response <2s" -> "Test: WebSocket delay <100ms";
+        "Test: WebSocket delay <100ms" -> "Test: Bundle size";
+        "Test: Bundle size" -> "All performance targets met?";
+
+        "All performance targets met?" -> "npm audit" [label="yes"];
+        "All performance targets met?" -> "Document blockers" [label="no"];
+
+        "npm audit" -> "pip check";
+        "pip check" -> "No secrets in codebase?";
+        "No secrets in codebase?" -> "CORS configured?" [label="yes"];
+        "No secrets in codebase?" -> "Fix issues" [label="no"];
+
+        "CORS configured?" -> "Input validation present?" [label="yes"];
+        "CORS configured?" -> "Fix issues" [label="no"];
+
+        "Input validation present?" -> "XSS prevention enabled?" [label="yes"];
+        "Input validation present?" -> "Fix issues" [label="no"];
+
+        "XSS prevention enabled?" -> "Rate limiting enabled?" [label="yes"];
+        "XSS prevention enabled?" -> "Fix issues" [label="no"];
+
+        "Rate limiting enabled?" -> "Deploy backend: python claude_backend_server.py" [label="yes"];
+        "Rate limiting enabled?" -> "Fix issues" [label="no"];
+
+        "Deploy backend: python claude_backend_server.py" -> "Backend deployed?";
+        "Backend deployed?" -> "Check: http://localhost:5000/health" [label="yes"];
+        "Backend deployed?" -> "Fix issues" [label="no"];
+
+        "Check: http://localhost:5000/health" -> "Health check passing?";
+        "Health check passing?" -> "Deploy frontend: cd atlantis-ui && vercel deploy --prod" [label="yes"];
+        "Health check passing?" -> "Fix issues" [label="no"];
+
+        "Deploy frontend: cd atlantis-ui && vercel deploy --prod" -> "Frontend deployed?";
+        "Frontend deployed?" -> "Site accessible?" [label="yes"];
+        "Frontend deployed?" -> "Fix issues" [label="no"];
+
+        "Site accessible?" -> "Visit production URL" [label="yes"];
+        "Site accessible?" -> "Fix issues" [label="no"];
+
+        "Visit production URL" -> "Select existing project";
+        "Select existing project" -> "Send chat message";
+        "Send chat message" -> "Verify agent spawns";
+        "Verify agent spawns" -> "Monitor logs for errors";
+        "Monitor logs for errors" -> "All post-deployment checks pass?";
+
+        "All post-deployment checks pass?" -> "All E2E tests passing?" [label="yes"];
+        "All post-deployment checks pass?" -> "Fix issues" [label="no"];
+
+        "All E2E tests passing?" -> "Performance targets met?" [label="yes"];
+        "All E2E tests passing?" -> "Fix issues" [label="no"];
+
+        "Performance targets met?" -> "Security scan passed?" [label="yes"];
+        "Performance targets met?" -> "Document blockers" [label="no"];
+
+        "Security scan passed?" -> "Monitoring enabled?" [label="yes"];
+        "Security scan passed?" -> "Fix issues" [label="no"];
+
+        "Monitoring enabled?" -> "Rollback tested?" [label="yes"];
+        "Monitoring enabled?" -> "Fix issues" [label="no"];
+
+        "Rollback tested?" -> "Documentation updated?" [label="yes"];
+        "Rollback tested?" -> "Fix issues" [label="no"];
+
+        "Documentation updated?" -> "Production deployment approved" [label="yes"];
+        "Documentation updated?" -> "Document blockers" [label="no"];
+
+        "Fix issues" -> "Ready for deployment";
+        "Document blockers" -> "Ready for deployment";
+    }
+
+    // Rollback Plan
+    subgraph cluster_rollback {
+        label="Rollback Plan";
+        bgcolor="#fff3e0";
+
+        "git revert HEAD && git push" [shape=plaintext];
+        "sudo systemctl restart spek-backend" [shape=plaintext];
+        "vercel rollback" [shape=plaintext];
+    }
+
+    // Critical Rules
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        bgcolor="#ffcdd2";
+
+        "NEVER skip E2E tests" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "NEVER deploy with secrets in code" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS test rollback before production" [shape=octagon, style=filled, fillcolor=orange];
+        "ALWAYS validate performance targets" [shape=octagon, style=filled, fillcolor=orange];
+    }
+
+    // External connections
+    "Fix issues" -> when_stuck [label="if blocked >30min", style=dotted];
+    "Production deployment approved" -> post_deployment_verification [label="monitor 24h", style=dotted];
+}

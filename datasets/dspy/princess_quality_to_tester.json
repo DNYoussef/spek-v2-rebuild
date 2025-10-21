@@ -1,0 +1,1116 @@
+{
+  "communication_path": "princess-quality→tester",
+  "description": "Princess-Quality delegates test creation tasks to Tester drone",
+  "agent_context": {
+    "coordinator": "princess-quality",
+    "drone": "tester",
+    "relationship": "quality_validation_delegation",
+    "coordination_protocol": "EnhancedLightweightProtocol"
+  },
+  "examples": [
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "OAuth2 authentication API",
+        "code_files": ["src/auth/oauth.py", "src/auth/jwt.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Create comprehensive tests for OAuth2 authentication",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["valid login", "invalid credentials", "token expiration", "logout"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "unittest"]
+        },
+        "dependencies": ["implementation complete", "test fixtures ready"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=85% coverage", "all scenarios tested", "no flaky tests"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Database migration system",
+        "code_files": ["src/db/migrator.py", "src/db/schema_validator.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Create migration tests with rollback scenarios",
+        "specifications": {
+          "test_types": ["unit", "integration", "e2e"],
+          "scenarios": ["forward migration", "rollback", "schema validation", "data integrity"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "alembic"]
+        },
+        "dependencies": ["test database", "migration fixtures"],
+        "estimated_minutes": 45,
+        "quality_gates": [">=90% coverage", "rollback safety verified", "no data loss"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Payment processing gateway",
+        "code_files": ["src/payments/processor.py", "src/payments/stripe_adapter.py"],
+        "coverage_target": 95
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Create critical payment processing tests",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["successful payment", "declined card", "refund", "webhook handling", "PCI compliance"],
+          "coverage_target": 95,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["stripe test credentials", "mock payment gateway"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=95% coverage", "security tests pass", "idempotency verified"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "File upload handler",
+        "code_files": ["src/uploads/handler.py", "src/uploads/validator.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test file upload with various formats and sizes",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["valid upload", "size limit exceeded", "invalid format", "virus scan"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "tempfile"]
+        },
+        "dependencies": ["test files", "mock virus scanner"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=80% coverage", "edge cases handled", "cleanup verified"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Cache invalidation system",
+        "code_files": ["src/cache/invalidator.py", "src/cache/redis_client.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test cache invalidation patterns and race conditions",
+        "specifications": {
+          "test_types": ["unit", "integration", "concurrency"],
+          "scenarios": ["single key invalidation", "pattern invalidation", "race conditions", "connection failure"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "pytest-asyncio", "fakeredis"]
+        },
+        "dependencies": ["redis test instance", "async fixtures"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=85% coverage", "race conditions tested", "no cache leaks"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Email notification service",
+        "code_files": ["src/notifications/email_sender.py", "src/notifications/template_engine.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test email sending with template rendering",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["template rendering", "send success", "send failure", "retry logic"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["mock SMTP server", "email templates"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=80% coverage", "templates validated", "retry logic works"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API rate limiter",
+        "code_files": ["src/middleware/rate_limiter.py", "src/middleware/token_bucket.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test rate limiting with various algorithms",
+        "specifications": {
+          "test_types": ["unit", "integration", "performance"],
+          "scenarios": ["within limit", "exceed limit", "burst handling", "distributed limits"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "pytest-benchmark"]
+        },
+        "dependencies": ["redis test instance", "time mocking"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=90% coverage", "algorithms verified", "performance acceptable"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "WebSocket connection manager",
+        "code_files": ["src/websocket/manager.py", "src/websocket/broadcaster.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test WebSocket lifecycle and broadcasting",
+        "specifications": {
+          "test_types": ["unit", "integration", "concurrency"],
+          "scenarios": ["connection", "disconnection", "broadcast", "reconnection", "error handling"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "pytest-asyncio", "websockets"]
+        },
+        "dependencies": ["async test client", "mock websocket"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=85% coverage", "concurrency safe", "no memory leaks"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Search indexing service",
+        "code_files": ["src/search/indexer.py", "src/search/elasticsearch_client.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test search indexing and querying",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["index creation", "document indexing", "search queries", "bulk operations"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "elasticsearch-dsl"]
+        },
+        "dependencies": ["elasticsearch test instance", "test documents"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=80% coverage", "queries optimized", "bulk operations work"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Image processing pipeline",
+        "code_files": ["src/images/processor.py", "src/images/resizer.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test image processing operations",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["resize", "crop", "format conversion", "quality optimization", "EXIF handling"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "Pillow"]
+        },
+        "dependencies": ["test images", "temporary storage"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=85% coverage", "quality preserved", "formats supported"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Task queue worker",
+        "code_files": ["src/tasks/worker.py", "src/tasks/celery_config.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test async task execution and retry logic",
+        "specifications": {
+          "test_types": ["unit", "integration", "concurrency"],
+          "scenarios": ["task success", "task failure", "retry logic", "timeout", "dead letter queue"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "celery"]
+        },
+        "dependencies": ["celery test instance", "redis broker"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=90% coverage", "retry logic verified", "no task loss"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "GraphQL resolver",
+        "code_files": ["src/graphql/resolvers.py", "src/graphql/schema.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test GraphQL queries and mutations",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["simple query", "nested query", "mutation", "error handling", "N+1 prevention"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "graphene"]
+        },
+        "dependencies": ["test schema", "mock database"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=85% coverage", "N+1 prevented", "errors handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Audit logging system",
+        "code_files": ["src/audit/logger.py", "src/audit/event_store.py"],
+        "coverage_target": 95
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test audit trail creation and compliance",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["event logging", "tamper detection", "compliance reporting", "retention policy"],
+          "coverage_target": 95,
+          "frameworks": ["pytest", "cryptography"]
+        },
+        "dependencies": ["test database", "time mocking"],
+        "estimated_minutes": 45,
+        "quality_gates": [">=95% coverage", "tamper-proof", "compliance verified"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Configuration management",
+        "code_files": ["src/config/loader.py", "src/config/validator.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test configuration loading and validation",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["valid config", "invalid config", "environment overrides", "secrets handling"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "pydantic"]
+        },
+        "dependencies": ["test config files", "environment mocking"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=80% coverage", "validation works", "secrets protected"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Session management",
+        "code_files": ["src/sessions/manager.py", "src/sessions/redis_store.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test session lifecycle and security",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["session creation", "session validation", "expiration", "hijacking prevention"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "fakeredis"]
+        },
+        "dependencies": ["redis test instance", "mock requests"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=85% coverage", "security verified", "expiration works"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Data export service",
+        "code_files": ["src/export/exporter.py", "src/export/csv_generator.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test data export in multiple formats",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["CSV export", "JSON export", "large datasets", "encoding handling"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "pandas"]
+        },
+        "dependencies": ["test data", "temporary files"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=80% coverage", "formats valid", "large data handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Permission system",
+        "code_files": ["src/permissions/checker.py", "src/permissions/rbac.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test RBAC permission checks",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["role assignment", "permission check", "inheritance", "denial"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["test users", "test roles"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=90% coverage", "security verified", "inheritance works"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Notification preferences",
+        "code_files": ["src/notifications/preferences.py", "src/notifications/scheduler.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test user notification preferences",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["preference update", "channel selection", "quiet hours", "frequency limiting"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "freezegun"]
+        },
+        "dependencies": ["test users", "time mocking"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=80% coverage", "preferences respected", "timing correct"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API versioning middleware",
+        "code_files": ["src/middleware/versioning.py", "src/middleware/deprecation.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test API version routing and deprecation",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["version routing", "deprecation warnings", "fallback behavior", "sunset policy"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "fastapi"]
+        },
+        "dependencies": ["test API endpoints", "mock requests"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=85% coverage", "routing correct", "warnings sent"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Backup automation",
+        "code_files": ["src/backup/automator.py", "src/backup/s3_uploader.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test automated backup and restore",
+        "specifications": {
+          "test_types": ["unit", "integration", "e2e"],
+          "scenarios": ["backup creation", "upload to S3", "restore", "encryption", "verification"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "moto"]
+        },
+        "dependencies": ["mock S3", "test database"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=90% coverage", "restore verified", "encryption works"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Feature flag system",
+        "code_files": ["src/features/flags.py", "src/features/evaluator.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test feature flag evaluation",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["flag evaluation", "user targeting", "percentage rollout", "override"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["test users", "flag configurations"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=85% coverage", "targeting works", "rollout accurate"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Webhook delivery system",
+        "code_files": ["src/webhooks/dispatcher.py", "src/webhooks/retry_handler.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test webhook delivery with retries",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["successful delivery", "retry logic", "signature verification", "timeout"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "requests-mock"]
+        },
+        "dependencies": ["mock webhook endpoint", "signature keys"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=90% coverage", "retries work", "signatures valid"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "PDF generation service",
+        "code_files": ["src/pdf/generator.py", "src/pdf/template_renderer.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test PDF generation from templates",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["template rendering", "PDF creation", "watermarks", "headers/footers"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "reportlab"]
+        },
+        "dependencies": ["test templates", "test data"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=80% coverage", "PDFs valid", "templates work"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Geolocation service",
+        "code_files": ["src/geo/locator.py", "src/geo/distance_calculator.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test geolocation and distance calculations",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["IP geolocation", "distance calculation", "nearby search", "geocoding"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "geopy"]
+        },
+        "dependencies": ["mock geolocation API", "test coordinates"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=85% coverage", "calculations accurate", "API mocked"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Time series data aggregator",
+        "code_files": ["src/timeseries/aggregator.py", "src/timeseries/downsampler.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test time series aggregation",
+        "specifications": {
+          "test_types": ["unit", "integration", "performance"],
+          "scenarios": ["aggregation", "downsampling", "window functions", "interpolation"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "pandas"]
+        },
+        "dependencies": ["test time series data", "benchmark fixtures"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=85% coverage", "aggregations correct", "performance good"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Markdown parser",
+        "code_files": ["src/markdown/parser.py", "src/markdown/sanitizer.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test markdown parsing and sanitization",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["basic parsing", "XSS prevention", "custom extensions", "code blocks"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "markdown"]
+        },
+        "dependencies": ["test markdown files", "XSS test vectors"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=80% coverage", "XSS blocked", "extensions work"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Content recommendation engine",
+        "code_files": ["src/recommendations/engine.py", "src/recommendations/collaborative_filter.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test recommendation algorithm",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["collaborative filtering", "content-based filtering", "cold start", "diversity"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "numpy"]
+        },
+        "dependencies": ["test user data", "test item data"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=80% coverage", "recommendations relevant", "cold start handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Real-time analytics",
+        "code_files": ["src/analytics/realtime_processor.py", "src/analytics/event_aggregator.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test real-time event processing",
+        "specifications": {
+          "test_types": ["unit", "integration", "performance"],
+          "scenarios": ["event ingestion", "aggregation", "windowing", "late arrival"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "pytest-asyncio"]
+        },
+        "dependencies": ["test event stream", "timing fixtures"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=85% coverage", "low latency", "late events handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Circuit breaker",
+        "code_files": ["src/resilience/circuit_breaker.py", "src/resilience/failure_detector.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test circuit breaker pattern",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["closed state", "open state", "half-open state", "failure threshold", "recovery"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["mock external service", "time mocking"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=90% coverage", "states transition correctly", "recovery works"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Inventory management",
+        "code_files": ["src/inventory/stock_tracker.py", "src/inventory/reservation_system.py"],
+        "coverage_target": 95
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test inventory tracking and reservations",
+        "specifications": {
+          "test_types": ["unit", "integration", "concurrency"],
+          "scenarios": ["stock update", "reservation", "release", "race conditions", "overselling prevention"],
+          "coverage_target": 95,
+          "frameworks": ["pytest", "pytest-asyncio"]
+        },
+        "dependencies": ["test database", "concurrent fixtures"],
+        "estimated_minutes": 45,
+        "quality_gates": [">=95% coverage", "no overselling", "race conditions handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Batch job scheduler",
+        "code_files": ["src/scheduler/job_runner.py", "src/scheduler/cron_parser.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test cron-based job scheduling",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["cron parsing", "job execution", "overlap prevention", "failure handling"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "freezegun"]
+        },
+        "dependencies": ["time mocking", "test jobs"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=85% coverage", "cron correct", "no overlaps"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Multi-tenant isolation",
+        "code_files": ["src/tenancy/isolator.py", "src/tenancy/context_manager.py"],
+        "coverage_target": 95
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test tenant data isolation",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["tenant switching", "data isolation", "cross-tenant prevention", "context propagation"],
+          "coverage_target": 95,
+          "frameworks": ["pytest", "sqlalchemy"]
+        },
+        "dependencies": ["test tenants", "test database"],
+        "estimated_minutes": 45,
+        "quality_gates": [">=95% coverage", "isolation verified", "no leaks"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Code syntax highlighter",
+        "code_files": ["src/highlighting/lexer.py", "src/highlighting/theme_engine.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test syntax highlighting for multiple languages",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["Python highlighting", "JavaScript highlighting", "theme application", "edge cases"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "pygments"]
+        },
+        "dependencies": ["test code samples", "test themes"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=80% coverage", "languages supported", "themes apply"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "A/B test framework",
+        "code_files": ["src/experiments/variant_selector.py", "src/experiments/metrics_tracker.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test A/B testing variant assignment",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["variant assignment", "consistency", "metrics tracking", "statistical significance"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "scipy"]
+        },
+        "dependencies": ["test users", "experiment configs"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=85% coverage", "assignments consistent", "metrics accurate"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Chat message system",
+        "code_files": ["src/chat/message_handler.py", "src/chat/presence_tracker.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test chat messaging and presence",
+        "specifications": {
+          "test_types": ["unit", "integration", "concurrency"],
+          "scenarios": ["send message", "receive message", "presence updates", "typing indicators"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "pytest-asyncio"]
+        },
+        "dependencies": ["websocket test client", "test users"],
+        "estimated_minutes": 35,
+        "quality_gates": [">=85% coverage", "messages delivered", "presence accurate"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Comment moderation",
+        "code_files": ["src/moderation/filter.py", "src/moderation/ml_classifier.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test content moderation filters",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["spam detection", "profanity filtering", "ML classification", "false positive handling"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["test content", "mock ML model"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=90% coverage", "spam caught", "low false positives"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Invoice generation",
+        "code_files": ["src/billing/invoice_generator.py", "src/billing/tax_calculator.py"],
+        "coverage_target": 95
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test invoice generation with tax calculation",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["invoice creation", "tax calculation", "discount application", "multi-currency"],
+          "coverage_target": 95,
+          "frameworks": ["pytest", "decimal"]
+        },
+        "dependencies": ["test products", "tax rate data"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=95% coverage", "tax accurate", "currencies handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "URL shortener",
+        "code_files": ["src/shortener/encoder.py", "src/shortener/redirect_handler.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test URL shortening and redirection",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["URL encoding", "redirection", "analytics tracking", "expiration"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["test URLs", "mock analytics"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=80% coverage", "encoding unique", "redirects work"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API key rotation",
+        "code_files": ["src/security/key_rotator.py", "src/security/key_validator.py"],
+        "coverage_target": 95
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test API key rotation and validation",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["key generation", "rotation", "validation", "grace period", "revocation"],
+          "coverage_target": 95,
+          "frameworks": ["pytest", "cryptography"]
+        },
+        "dependencies": ["test keys", "time mocking"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=95% coverage", "keys secure", "rotation smooth"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Form builder",
+        "code_files": ["src/forms/builder.py", "src/forms/validator.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test dynamic form creation and validation",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["form creation", "field validation", "conditional fields", "submission"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "pydantic"]
+        },
+        "dependencies": ["test form configs", "test data"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=80% coverage", "validation works", "conditionals correct"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Changelog generator",
+        "code_files": ["src/changelog/parser.py", "src/changelog/formatter.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test changelog generation from commits",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["commit parsing", "categorization", "markdown generation", "version grouping"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "gitpython"]
+        },
+        "dependencies": ["test git repo", "commit fixtures"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=80% coverage", "parsing correct", "markdown valid"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Health check system",
+        "code_files": ["src/health/checker.py", "src/health/probe_manager.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test health check probes",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["liveness probe", "readiness probe", "dependency checks", "graceful degradation"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["mock dependencies", "test endpoints"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=85% coverage", "probes respond", "degradation handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Distributed lock manager",
+        "code_files": ["src/locks/manager.py", "src/locks/redis_backend.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test distributed locking mechanism",
+        "specifications": {
+          "test_types": ["unit", "integration", "concurrency"],
+          "scenarios": ["lock acquisition", "lock release", "timeout", "deadlock prevention", "race conditions"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "fakeredis", "pytest-asyncio"]
+        },
+        "dependencies": ["redis test instance", "concurrent fixtures"],
+        "estimated_minutes": 45,
+        "quality_gates": [">=90% coverage", "no deadlocks", "race conditions handled"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Tooltip rendering engine",
+        "code_files": ["src/ui/tooltip.py", "src/ui/position_calculator.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test tooltip positioning and rendering",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["positioning", "viewport collision", "trigger events", "accessibility"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "selenium"]
+        },
+        "dependencies": ["test DOM", "mock events"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=80% coverage", "positioning correct", "accessible"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Data anonymization",
+        "code_files": ["src/privacy/anonymizer.py", "src/privacy/k_anonymity.py"],
+        "coverage_target": 95
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test PII anonymization techniques",
+        "specifications": {
+          "test_types": ["unit", "integration", "security"],
+          "scenarios": ["k-anonymity", "differential privacy", "masking", "reversibility prevention"],
+          "coverage_target": 95,
+          "frameworks": ["pytest", "faker"]
+        },
+        "dependencies": ["test PII data", "privacy metrics"],
+        "estimated_minutes": 45,
+        "quality_gates": [">=95% coverage", "PII protected", "irreversible"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Query optimizer",
+        "code_files": ["src/database/query_optimizer.py", "src/database/index_advisor.py"],
+        "coverage_target": 85
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test SQL query optimization",
+        "specifications": {
+          "test_types": ["unit", "integration", "performance"],
+          "scenarios": ["query rewriting", "index suggestion", "execution plan analysis", "performance improvement"],
+          "coverage_target": 85,
+          "frameworks": ["pytest", "sqlalchemy"]
+        },
+        "dependencies": ["test database", "benchmark queries"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=85% coverage", "queries faster", "indexes suggested"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Internationalization engine",
+        "code_files": ["src/i18n/translator.py", "src/i18n/locale_detector.py"],
+        "coverage_target": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test i18n translation and locale detection",
+        "specifications": {
+          "test_types": ["unit", "integration"],
+          "scenarios": ["translation lookup", "locale detection", "pluralization", "fallback"],
+          "coverage_target": 80,
+          "frameworks": ["pytest", "babel"]
+        },
+        "dependencies": ["translation files", "test locales"],
+        "estimated_minutes": 30,
+        "quality_gates": [">=80% coverage", "translations work", "fallback correct"]
+      }
+    },
+    {
+      "phase": "test",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Load balancer",
+        "code_files": ["src/loadbalancer/distributor.py", "src/loadbalancer/health_monitor.py"],
+        "coverage_target": 90
+      },
+      "expected_drone_task": {
+        "drone_id": "tester",
+        "task_type": "generate-tests",
+        "description": "Test load balancing algorithms",
+        "specifications": {
+          "test_types": ["unit", "integration", "performance"],
+          "scenarios": ["round-robin", "least connections", "health checks", "failover"],
+          "coverage_target": 90,
+          "frameworks": ["pytest", "mock"]
+        },
+        "dependencies": ["mock backends", "health check fixtures"],
+        "estimated_minutes": 40,
+        "quality_gates": [">=90% coverage", "distribution even", "failover works"]
+      }
+    }
+  ]
+}

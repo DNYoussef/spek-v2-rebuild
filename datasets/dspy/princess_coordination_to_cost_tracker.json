@@ -1,0 +1,1636 @@
+{
+  "communication_path": "princess-coordination→cost-tracker",
+  "description": "Princess-Coordination delegates cost tracking to Cost-Tracker drone",
+  "examples": [
+    {
+      "phase": "track",
+      "context": {
+        "project": "OAuth2 implementation",
+        "budget": "$500",
+        "team": ["architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 20
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for OAuth2 implementation project",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$500",
+            "spent_to_date": "$200",
+            "remaining": "$300",
+            "burn_rate": "$100/week",
+            "projected_completion": "$400"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 10, "rate": "$40/h", "cost": "$400"},
+            "tester": {"hours": 4, "rate": "$35/h", "cost": "$140"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "60% budget consumed with 50% timeline elapsed"},
+            {"type": "info", "message": "On track to complete under budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["costs accurate", "projections reasonable", "alerts timely"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Real-time notifications",
+        "budget": "$300",
+        "team": ["researcher", "coder"],
+        "duration": "1 week",
+        "completed_hours": 30
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for real-time notification system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$300",
+            "spent_to_date": "$280",
+            "remaining": "$20",
+            "burn_rate": "$280/week",
+            "projected_completion": "$320"
+          },
+          "breakdown": {
+            "researcher": {"hours": 8, "rate": "$45/h", "cost": "$360"},
+            "coder": {"hours": 22, "rate": "$40/h", "cost": "$880"}
+          },
+          "alerts": [
+            {"type": "critical", "message": "Budget exceeded by $20"},
+            {"type": "warning", "message": "Projected 7% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["overrun identified", "stakeholders notified", "mitigation plan requested"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Legacy authentication refactor",
+        "budget": "$800",
+        "team": ["reviewer", "architect", "coder", "tester"],
+        "duration": "3 weeks",
+        "completed_hours": 50
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for legacy authentication refactoring",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$800",
+            "spent_to_date": "$450",
+            "remaining": "$350",
+            "burn_rate": "$150/week",
+            "projected_completion": "$750"
+          },
+          "breakdown": {
+            "reviewer": {"hours": 12, "rate": "$45/h", "cost": "$540"},
+            "architect": {"hours": 16, "rate": "$50/h", "cost": "$800"},
+            "coder": {"hours": 18, "rate": "$40/h", "cost": "$720"},
+            "tester": {"hours": 4, "rate": "$35/h", "cost": "$140"}
+          },
+          "alerts": [
+            {"type": "info", "message": "56% budget consumed with 50% timeline elapsed"},
+            {"type": "info", "message": "Projected to complete under budget by $50"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["costs accurate", "projections positive", "no immediate concerns"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Caching layer",
+        "budget": "$400",
+        "team": ["researcher", "architect", "coder"],
+        "duration": "1 week",
+        "completed_hours": 25
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for distributed caching implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$300",
+            "remaining": "$100",
+            "burn_rate": "$300/week",
+            "projected_completion": "$425"
+          },
+          "breakdown": {
+            "researcher": {"hours": 7, "rate": "$45/h", "cost": "$315"},
+            "architect": {"hours": 10, "rate": "$50/h", "cost": "$500"},
+            "coder": {"hours": 8, "rate": "$40/h", "cost": "$320"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "75% budget consumed with 70% timeline elapsed"},
+            {"type": "warning", "message": "Projected 6% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["overrun risk identified", "projection updated", "mitigation options prepared"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "CI/CD pipeline",
+        "budget": "$600",
+        "team": ["architect", "devops", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 40
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for CI/CD pipeline development",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$600",
+            "spent_to_date": "$400",
+            "remaining": "$200",
+            "burn_rate": "$200/week",
+            "projected_completion": "$600"
+          },
+          "breakdown": {
+            "architect": {"hours": 10, "rate": "$50/h", "cost": "$500"},
+            "devops": {"hours": 26, "rate": "$45/h", "cost": "$1170"},
+            "tester": {"hours": 4, "rate": "$35/h", "cost": "$140"}
+          },
+          "alerts": [
+            {"type": "info", "message": "67% budget consumed with 65% timeline elapsed"},
+            {"type": "info", "message": "On track to complete exactly at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["costs aligned", "projections accurate", "timeline tracking good"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "Microservices migration",
+        "budget": "$3000",
+        "team": ["researcher", "architect", "coder", "integration-engineer", "tester", "devops"],
+        "duration": "8 weeks",
+        "completed_hours": 80
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for microservices migration",
+        "specifications": {
+          "forecast": {
+            "phase_1_estimate": "$800",
+            "phase_2_estimate": "$1000",
+            "phase_3_estimate": "$800",
+            "phase_4_estimate": "$400",
+            "total_estimate": "$3000",
+            "confidence": "85%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 40, "rate": "$45/h", "cost": "$1800"},
+            "architect": {"estimated_hours": 120, "rate": "$50/h", "cost": "$6000"},
+            "coder": {"estimated_hours": 160, "rate": "$40/h", "cost": "$6400"},
+            "integration-engineer": {"estimated_hours": 80, "rate": "$45/h", "cost": "$3600"},
+            "tester": {"estimated_hours": 40, "rate": "$35/h", "cost": "$1400"},
+            "devops": {"estimated_hours": 40, "rate": "$45/h", "cost": "$1800"}
+          },
+          "risks": [
+            {"risk": "Integration complexity", "impact": "+$500"},
+            {"risk": "Data migration delays", "impact": "+$300"},
+            {"risk": "Service dependency issues", "impact": "+$200"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 35,
+        "quality_gates": ["estimates reasonable", "risks identified", "confidence level documented"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "GraphQL API",
+        "budget": "$700",
+        "team": ["architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 35
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for GraphQL API development",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$700",
+            "spent_to_date": "$500",
+            "remaining": "$200",
+            "burn_rate": "$250/week",
+            "projected_completion": "$700"
+          },
+          "breakdown": {
+            "architect": {"hours": 15, "rate": "$50/h", "cost": "$750"},
+            "coder": {"hours": 16, "rate": "$40/h", "cost": "$640"},
+            "tester": {"hours": 4, "rate": "$35/h", "cost": "$140"}
+          },
+          "alerts": [
+            {"type": "info", "message": "71% budget consumed with 70% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["costs tracking well", "no overrun risk", "projections accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Rate limiting",
+        "budget": "$250",
+        "team": ["architect", "coder"],
+        "duration": "4 days",
+        "completed_hours": 15
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for rate limiting implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$250",
+            "spent_to_date": "$150",
+            "remaining": "$100",
+            "burn_rate": "$187.50/week",
+            "projected_completion": "$240"
+          },
+          "breakdown": {
+            "architect": {"hours": 5, "rate": "$50/h", "cost": "$250"},
+            "coder": {"hours": 10, "rate": "$40/h", "cost": "$400"}
+          },
+          "alerts": [
+            {"type": "info", "message": "60% budget consumed with 60% timeline elapsed"},
+            {"type": "info", "message": "Projected to complete under budget by $10"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Admin dashboard",
+        "budget": "$1000",
+        "team": ["architect", "coder", "integration-engineer", "tester"],
+        "duration": "3 weeks",
+        "completed_hours": 60
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for admin dashboard development",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$1000",
+            "spent_to_date": "$700",
+            "remaining": "$300",
+            "burn_rate": "$233/week",
+            "projected_completion": "$1000"
+          },
+          "breakdown": {
+            "architect": {"hours": 18, "rate": "$50/h", "cost": "$900"},
+            "coder": {"hours": 34, "rate": "$40/h", "cost": "$1360"},
+            "integration-engineer": {"hours": 6, "rate": "$45/h", "cost": "$270"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "70% budget consumed with 67% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 30,
+        "quality_gates": ["costs tracking well", "projections accurate", "no overrun risk"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Database query optimization",
+        "budget": "$400",
+        "team": ["researcher", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 28
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for database query optimization",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$350",
+            "remaining": "$50",
+            "burn_rate": "$350/week",
+            "projected_completion": "$420"
+          },
+          "breakdown": {
+            "researcher": {"hours": 10, "rate": "$45/h", "cost": "$450"},
+            "coder": {"hours": 14, "rate": "$40/h", "cost": "$560"},
+            "tester": {"hours": 4, "rate": "$35/h", "cost": "$140"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "87.5% budget consumed with 85% timeline elapsed"},
+            {"type": "warning", "message": "Projected 5% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["overrun risk identified", "mitigation options prepared", "stakeholders notified"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "Internationalization",
+        "budget": "$600",
+        "team": ["researcher", "architect", "coder", "docs-writer", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for internationalization implementation",
+        "specifications": {
+          "forecast": {
+            "research_phase": "$150",
+            "design_phase": "$200",
+            "implementation_phase": "$400",
+            "translation_phase": "$300",
+            "testing_phase": "$100",
+            "total_estimate": "$1150",
+            "confidence": "75%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 16, "rate": "$45/h", "cost": "$720"},
+            "architect": {"estimated_hours": 16, "rate": "$50/h", "cost": "$800"},
+            "coder": {"estimated_hours": 48, "rate": "$40/h", "cost": "$1920"},
+            "docs-writer": {"estimated_hours": 24, "rate": "$35/h", "cost": "$840"},
+            "tester": {"estimated_hours": 8, "rate": "$35/h", "cost": "$280"}
+          },
+          "risks": [
+            {"risk": "Translation quality issues", "impact": "+$100"},
+            {"risk": "Complex pluralization", "impact": "+$50"},
+            {"risk": "Context issues", "impact": "+$50"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 30,
+        "quality_gates": ["budget increase needed", "estimates documented", "risks identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Webhook system",
+        "budget": "$500",
+        "team": ["architect", "coder", "tester", "docs-writer"],
+        "duration": "10 days",
+        "completed_hours": 32
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for webhook system development",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$500",
+            "spent_to_date": "$400",
+            "remaining": "$100",
+            "burn_rate": "$200/week",
+            "projected_completion": "$500"
+          },
+          "breakdown": {
+            "architect": {"hours": 10, "rate": "$50/h", "cost": "$500"},
+            "coder": {"hours": 18, "rate": "$40/h", "cost": "$720"},
+            "tester": {"hours": 3, "rate": "$35/h", "cost": "$105"},
+            "docs-writer": {"hours": 1, "rate": "$35/h", "cost": "$35"}
+          },
+          "alerts": [
+            {"type": "info", "message": "80% budget consumed with 75% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["costs aligned", "projections good", "timeline tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Search functionality",
+        "budget": "$700",
+        "team": ["researcher", "architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 45
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for search functionality implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$700",
+            "spent_to_date": "$550",
+            "remaining": "$150",
+            "burn_rate": "$275/week",
+            "projected_completion": "$720"
+          },
+          "breakdown": {
+            "researcher": {"hours": 18, "rate": "$45/h", "cost": "$810"},
+            "architect": {"hours": 12, "rate": "$50/h", "cost": "$600"},
+            "coder": {"hours": 14, "rate": "$40/h", "cost": "$560"},
+            "tester": {"hours": 1, "rate": "$35/h", "cost": "$35"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "79% budget consumed with 70% timeline elapsed"},
+            {"type": "warning", "message": "Projected 3% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["slight overrun projected", "mitigation being evaluated", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "File upload system",
+        "budget": "$400",
+        "team": ["architect", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 22
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for file upload system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$280",
+            "remaining": "$120",
+            "burn_rate": "$280/week",
+            "projected_completion": "$400"
+          },
+          "breakdown": {
+            "architect": {"hours": 5, "rate": "$50/h", "cost": "$250"},
+            "coder": {"hours": 14, "rate": "$40/h", "cost": "$560"},
+            "tester": {"hours": 3, "rate": "$35/h", "cost": "$105"}
+          },
+          "alerts": [
+            {"type": "info", "message": "70% budget consumed with 65% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Email notifications",
+        "budget": "$300",
+        "team": ["architect", "coder", "tester"],
+        "duration": "5 days",
+        "completed_hours": 18
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for email notification system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$300",
+            "spent_to_date": "$230",
+            "remaining": "$70",
+            "burn_rate": "$230/week",
+            "projected_completion": "$310"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 10, "rate": "$40/h", "cost": "$400"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "77% budget consumed with 70% timeline elapsed"},
+            {"type": "warning", "message": "Projected 3% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["slight overrun projected", "within acceptable range", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Analytics dashboard",
+        "budget": "$900",
+        "team": ["architect", "coder", "integration-engineer", "tester"],
+        "duration": "3 weeks",
+        "completed_hours": 55
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for analytics dashboard development",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$900",
+            "spent_to_date": "$650",
+            "remaining": "$250",
+            "burn_rate": "$217/week",
+            "projected_completion": "$900"
+          },
+          "breakdown": {
+            "architect": {"hours": 16, "rate": "$50/h", "cost": "$800"},
+            "coder": {"hours": 32, "rate": "$40/h", "cost": "$1280"},
+            "integration-engineer": {"hours": 5, "rate": "$45/h", "cost": "$225"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "72% budget consumed with 67% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 30,
+        "quality_gates": ["costs tracking well", "projections accurate", "no overrun risk"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "API pagination",
+        "budget": "$200",
+        "team": ["architect", "coder", "tester"],
+        "duration": "3 days",
+        "completed_hours": 12
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for API pagination implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$200",
+            "spent_to_date": "$150",
+            "remaining": "$50",
+            "burn_rate": "$175/week",
+            "projected_completion": "$200"
+          },
+          "breakdown": {
+            "architect": {"hours": 5, "rate": "$50/h", "cost": "$250"},
+            "coder": {"hours": 5, "rate": "$40/h", "cost": "$200"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "75% budget consumed with 75% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "Feature flags",
+        "budget": "$600",
+        "team": ["architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for feature flag system",
+        "specifications": {
+          "forecast": {
+            "design_phase": "$150",
+            "backend_phase": "$450",
+            "ui_phase": "$350",
+            "testing_phase": "$100",
+            "total_estimate": "$1050",
+            "confidence": "80%"
+          },
+          "breakdown": {
+            "architect": {"estimated_hours": 24, "rate": "$50/h", "cost": "$1200"},
+            "coder": {"estimated_hours": 72, "rate": "$40/h", "cost": "$2880"},
+            "tester": {"estimated_hours": 16, "rate": "$35/h", "cost": "$560"}
+          },
+          "risks": [
+            {"risk": "Targeting complexity", "impact": "+$150"},
+            {"risk": "UI complexity", "impact": "+$100"},
+            {"risk": "Performance overhead", "impact": "+$50"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 30,
+        "quality_gates": ["budget increase needed", "estimates documented", "risks identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Frontend bundle optimization",
+        "budget": "$250",
+        "team": ["reviewer", "coder", "tester"],
+        "duration": "4 days",
+        "completed_hours": 14
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for frontend bundle optimization",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$250",
+            "spent_to_date": "$180",
+            "remaining": "$70",
+            "burn_rate": "$157.50/week",
+            "projected_completion": "$250"
+          },
+          "breakdown": {
+            "reviewer": {"hours": 5, "rate": "$45/h", "cost": "$225"},
+            "coder": {"hours": 7, "rate": "$40/h", "cost": "$280"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "72% budget consumed with 70% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "A/B testing framework",
+        "budget": "$700",
+        "team": ["researcher", "architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for A/B testing framework",
+        "specifications": {
+          "forecast": {
+            "research_phase": "$150",
+            "design_phase": "$200",
+            "implementation_phase": "$400",
+            "testing_phase": "$150",
+            "total_estimate": "$900",
+            "confidence": "75%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 16, "rate": "$45/h", "cost": "$720"},
+            "architect": {"estimated_hours": 24, "rate": "$50/h", "cost": "$1200"},
+            "coder": {"estimated_hours": 48, "rate": "$40/h", "cost": "$1920"},
+            "tester": {"estimated_hours": 24, "rate": "$35/h", "cost": "$840"}
+          },
+          "risks": [
+            {"risk": "Statistical complexity", "impact": "+$100"},
+            {"risk": "Sample size issues", "impact": "+$50"},
+            {"risk": "User experience concerns", "impact": "+$50"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 35,
+        "quality_gates": ["budget increase needed", "estimates documented", "risks identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Data export system",
+        "budget": "$400",
+        "team": ["architect", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 24
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for data export system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$320",
+            "remaining": "$80",
+            "burn_rate": "$320/week",
+            "projected_completion": "$420"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 16, "rate": "$40/h", "cost": "$640"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "80% budget consumed with 75% timeline elapsed"},
+            {"type": "warning", "message": "Projected 5% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["overrun risk identified", "mitigation options prepared", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Audit logging",
+        "budget": "$350",
+        "team": ["architect", "security-manager", "coder"],
+        "duration": "1 week",
+        "completed_hours": 20
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for audit logging system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$350",
+            "spent_to_date": "$260",
+            "remaining": "$90",
+            "burn_rate": "$260/week",
+            "projected_completion": "$360"
+          },
+          "breakdown": {
+            "architect": {"hours": 8, "rate": "$50/h", "cost": "$400"},
+            "security-manager": {"hours": 8, "rate": "$50/h", "cost": "$400"},
+            "coder": {"hours": 4, "rate": "$40/h", "cost": "$160"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "74% budget consumed with 70% timeline elapsed"},
+            {"type": "warning", "message": "Projected 3% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["slight overrun projected", "within acceptable range", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "SSO integration",
+        "budget": "$700",
+        "team": ["researcher", "architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for SSO integration",
+        "specifications": {
+          "forecast": {
+            "research_phase": "$150",
+            "design_phase": "$250",
+            "implementation_phase": "$500",
+            "testing_phase": "$200",
+            "total_estimate": "$1100",
+            "confidence": "70%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 16, "rate": "$45/h", "cost": "$720"},
+            "architect": {"estimated_hours": 24, "rate": "$50/h", "cost": "$1200"},
+            "coder": {"estimated_hours": 48, "rate": "$40/h", "cost": "$1920"},
+            "tester": {"estimated_hours": 24, "rate": "$35/h", "cost": "$840"}
+          },
+          "risks": [
+            {"risk": "SAML complexity", "impact": "+$200"},
+            {"risk": "Provider variations", "impact": "+$150"},
+            {"risk": "Account linking issues", "impact": "+$100"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 35,
+        "quality_gates": ["budget increase needed", "estimates documented", "risks identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Comment system",
+        "budget": "$400",
+        "team": ["architect", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 22
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for comment system implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$290",
+            "remaining": "$110",
+            "burn_rate": "$290/week",
+            "projected_completion": "$400"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 14, "rate": "$40/h", "cost": "$560"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "72.5% budget consumed with 70% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Queue system",
+        "budget": "$450",
+        "team": ["architect", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 25
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for queue system implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$450",
+            "spent_to_date": "$350",
+            "remaining": "$100",
+            "burn_rate": "$350/week",
+            "projected_completion": "$460"
+          },
+          "breakdown": {
+            "architect": {"hours": 10, "rate": "$50/h", "cost": "$500"},
+            "coder": {"hours": 14, "rate": "$40/h", "cost": "$560"},
+            "tester": {"hours": 1, "rate": "$35/h", "cost": "$35"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "78% budget consumed with 75% timeline elapsed"},
+            {"type": "warning", "message": "Projected 2% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["slight overrun projected", "within acceptable range", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Monitoring and alerting",
+        "budget": "$500",
+        "team": ["architect", "devops", "tester"],
+        "duration": "1 week",
+        "completed_hours": 28
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for monitoring and alerting system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$500",
+            "spent_to_date": "$380",
+            "remaining": "$120",
+            "burn_rate": "$380/week",
+            "projected_completion": "$520"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "devops": {"hours": 18, "rate": "$45/h", "cost": "$810"},
+            "tester": {"hours": 4, "rate": "$35/h", "cost": "$140"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "76% budget consumed with 70% timeline elapsed"},
+            {"type": "warning", "message": "Projected 4% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["overrun risk identified", "mitigation being evaluated", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "User management system",
+        "budget": "$700",
+        "team": ["architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 38
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for user management system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$700",
+            "spent_to_date": "$520",
+            "remaining": "$180",
+            "burn_rate": "$260/week",
+            "projected_completion": "$700"
+          },
+          "breakdown": {
+            "architect": {"hours": 14, "rate": "$50/h", "cost": "$700"},
+            "coder": {"hours": 22, "rate": "$40/h", "cost": "$880"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "74% budget consumed with 70% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 30,
+        "quality_gates": ["costs tracking well", "projections accurate", "no overrun risk"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "API versioning",
+        "budget": "$300",
+        "team": ["architect", "coder", "tester"],
+        "duration": "5 days",
+        "completed_hours": 16
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for API versioning implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$300",
+            "spent_to_date": "$210",
+            "remaining": "$90",
+            "burn_rate": "$210/week",
+            "projected_completion": "$300"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 8, "rate": "$40/h", "cost": "$320"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "70% budget consumed with 65% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "Payment processing",
+        "budget": "$1200",
+        "team": ["researcher", "security-manager", "architect", "coder", "tester"],
+        "duration": "3 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for payment processing integration",
+        "specifications": {
+          "forecast": {
+            "research_phase": "$200",
+            "design_phase": "$300",
+            "implementation_phase": "$800",
+            "testing_phase": "$350",
+            "audit_phase": "$150",
+            "total_estimate": "$1800",
+            "confidence": "65%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 8, "rate": "$45/h", "cost": "$360"},
+            "security-manager": {"estimated_hours": 16, "rate": "$50/h", "cost": "$800"},
+            "architect": {"estimated_hours": 32, "rate": "$50/h", "cost": "$1600"},
+            "coder": {"estimated_hours": 80, "rate": "$40/h", "cost": "$3200"},
+            "tester": {"estimated_hours": 32, "rate": "$35/h", "cost": "$1120"}
+          },
+          "risks": [
+            {"risk": "Payment failures", "impact": "+$300"},
+            {"risk": "Webhook reliability", "impact": "+$200"},
+            {"risk": "Compliance gaps", "impact": "+$400"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 45,
+        "quality_gates": ["budget increase needed", "estimates documented", "high-risk factors identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Notification preferences",
+        "budget": "$250",
+        "team": ["architect", "coder", "tester"],
+        "duration": "4 days",
+        "completed_hours": 14
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for notification preferences system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$250",
+            "spent_to_date": "$180",
+            "remaining": "$70",
+            "burn_rate": "$157.50/week",
+            "projected_completion": "$250"
+          },
+          "breakdown": {
+            "architect": {"hours": 5, "rate": "$50/h", "cost": "$250"},
+            "coder": {"hours": 7, "rate": "$40/h", "cost": "$280"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "72% budget consumed with 70% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "Content moderation",
+        "budget": "$700",
+        "team": ["researcher", "architect", "coder", "tester"],
+        "duration": "2 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for content moderation system",
+        "specifications": {
+          "forecast": {
+            "research_phase": "$150",
+            "design_phase": "$250",
+            "implementation_phase": "$500",
+            "testing_phase": "$200",
+            "total_estimate": "$1100",
+            "confidence": "70%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 16, "rate": "$45/h", "cost": "$720"},
+            "architect": {"estimated_hours": 24, "rate": "$50/h", "cost": "$1200"},
+            "coder": {"estimated_hours": 48, "rate": "$40/h", "cost": "$1920"},
+            "tester": {"estimated_hours": 24, "rate": "$35/h", "cost": "$840"}
+          },
+          "risks": [
+            {"risk": "ML accuracy issues", "impact": "+$200"},
+            {"risk": "False positive rate", "impact": "+$150"},
+            {"risk": "Queue backlog", "impact": "+$100"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 35,
+        "quality_gates": ["budget increase needed", "estimates documented", "risks identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Data retention policies",
+        "budget": "$400",
+        "team": ["architect", "security-manager", "coder"],
+        "duration": "1 week",
+        "completed_hours": 22
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for data retention system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$310",
+            "remaining": "$90",
+            "burn_rate": "$310/week",
+            "projected_completion": "$420"
+          },
+          "breakdown": {
+            "architect": {"hours": 8, "rate": "$50/h", "cost": "$400"},
+            "security-manager": {"hours": 8, "rate": "$50/h", "cost": "$400"},
+            "coder": {"hours": 6, "rate": "$40/h", "cost": "$240"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "77.5% budget consumed with 75% timeline elapsed"},
+            {"type": "warning", "message": "Projected 5% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["overrun risk identified", "mitigation options prepared", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Activity feed",
+        "budget": "$400",
+        "team": ["architect", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 24
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for activity feed implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$330",
+            "remaining": "$70",
+            "burn_rate": "$330/week",
+            "projected_completion": "$430"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 16, "rate": "$40/h", "cost": "$640"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "82.5% budget consumed with 75% timeline elapsed"},
+            {"type": "warning", "message": "Projected 7.5% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["overrun risk identified", "mitigation being evaluated", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Backup and restore",
+        "budget": "$450",
+        "team": ["architect", "devops", "tester"],
+        "duration": "1 week",
+        "completed_hours": 26
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for backup and restore system",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$450",
+            "spent_to_date": "$370",
+            "remaining": "$80",
+            "burn_rate": "$370/week",
+            "projected_completion": "$480"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "devops": {"hours": 18, "rate": "$45/h", "cost": "$810"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "82% budget consumed with 75% timeline elapsed"},
+            {"type": "warning", "message": "Projected 7% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["overrun risk identified", "mitigation options prepared", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "Collaborative editing",
+        "budget": "$1000",
+        "team": ["researcher", "architect", "coder", "tester"],
+        "duration": "3 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for collaborative editing system",
+        "specifications": {
+          "forecast": {
+            "research_phase": "$250",
+            "design_phase": "$350",
+            "implementation_phase": "$800",
+            "testing_phase": "$350",
+            "total_estimate": "$1750",
+            "confidence": "60%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 24, "rate": "$45/h", "cost": "$1080"},
+            "architect": {"estimated_hours": 32, "rate": "$50/h", "cost": "$1600"},
+            "coder": {"estimated_hours": 80, "rate": "$40/h", "cost": "$3200"},
+            "tester": {"estimated_hours": 32, "rate": "$35/h", "cost": "$1120"}
+          },
+          "risks": [
+            {"risk": "OT algorithm complexity", "impact": "+$400"},
+            {"risk": "Network latency issues", "impact": "+$250"},
+            {"risk": "Conflict resolution bugs", "impact": "+$200"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates"],
+        "estimated_minutes": 45,
+        "quality_gates": ["budget increase needed", "estimates documented", "high-risk factors identified"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "Recommendation engine",
+        "budget": "$1100",
+        "team": ["researcher", "architect", "coder", "devops", "tester"],
+        "duration": "3 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for recommendation engine development",
+        "specifications": {
+          "forecast": {
+            "research_phase": "$250",
+            "design_phase": "$350",
+            "training_phase": "$500",
+            "deployment_phase": "$350",
+            "evaluation_phase": "$350",
+            "total_estimate": "$1800",
+            "confidence": "65%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 24, "rate": "$45/h", "cost": "$1080"},
+            "architect": {"estimated_hours": 32, "rate": "$50/h", "cost": "$1600"},
+            "coder": {"estimated_hours": 48, "rate": "$40/h", "cost": "$1920"},
+            "devops": {"estimated_hours": 32, "rate": "$45/h", "cost": "$1440"},
+            "tester": {"estimated_hours": 32, "rate": "$35/h", "cost": "$1120"}
+          },
+          "risks": [
+            {"risk": "Cold start problem", "impact": "+$300"},
+            {"risk": "Data quality issues", "impact": "+$250"},
+            {"risk": "Model accuracy below target", "impact": "+$300"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates", "ML infrastructure costs"],
+        "estimated_minutes": 45,
+        "quality_gates": ["budget increase needed", "estimates documented", "high-risk factors identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Password reset flow",
+        "budget": "$200",
+        "team": ["architect", "coder", "tester"],
+        "duration": "3 days",
+        "completed_hours": 12
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for password reset implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$200",
+            "spent_to_date": "$150",
+            "remaining": "$50",
+            "burn_rate": "$175/week",
+            "projected_completion": "$200"
+          },
+          "breakdown": {
+            "architect": {"hours": 5, "rate": "$50/h", "cost": "$250"},
+            "coder": {"hours": 5, "rate": "$40/h", "cost": "$200"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "75% budget consumed with 75% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Image optimization",
+        "budget": "$300",
+        "team": ["researcher", "coder", "tester"],
+        "duration": "5 days",
+        "completed_hours": 18
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for image optimization implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$300",
+            "spent_to_date": "$230",
+            "remaining": "$70",
+            "burn_rate": "$230/week",
+            "projected_completion": "$310"
+          },
+          "breakdown": {
+            "researcher": {"hours": 6, "rate": "$45/h", "cost": "$270"},
+            "coder": {"hours": 10, "rate": "$40/h", "cost": "$400"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "77% budget consumed with 70% timeline elapsed"},
+            {"type": "warning", "message": "Projected 3% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["slight overrun projected", "within acceptable range", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Error tracking system",
+        "budget": "$400",
+        "team": ["architect", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 23
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for error tracking implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$400",
+            "spent_to_date": "$310",
+            "remaining": "$90",
+            "burn_rate": "$310/week",
+            "projected_completion": "$420"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 15, "rate": "$40/h", "cost": "$600"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "77.5% budget consumed with 75% timeline elapsed"},
+            {"type": "warning", "message": "Projected 5% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 20,
+        "quality_gates": ["overrun risk identified", "mitigation options prepared", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "forecast",
+      "context": {
+        "project": "GDPR compliance",
+        "budget": "$1200",
+        "team": ["researcher", "security-manager", "architect", "coder"],
+        "duration": "3 weeks",
+        "completed_hours": 0
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "forecast-project-costs",
+        "description": "Forecast costs for GDPR compliance implementation",
+        "specifications": {
+          "forecast": {
+            "audit_phase": "$250",
+            "design_phase": "$350",
+            "implementation_phase": "$800",
+            "validation_phase": "$400",
+            "total_estimate": "$1800",
+            "confidence": "70%"
+          },
+          "breakdown": {
+            "researcher": {"estimated_hours": 16, "rate": "$45/h", "cost": "$720"},
+            "security-manager": {"estimated_hours": 32, "rate": "$50/h", "cost": "$1600"},
+            "architect": {"estimated_hours": 32, "rate": "$50/h", "cost": "$1600"},
+            "coder": {"estimated_hours": 80, "rate": "$40/h", "cost": "$3200"}
+          },
+          "risks": [
+            {"risk": "Compliance gaps", "impact": "+$400"},
+            {"risk": "Data discovery complexity", "impact": "+$300"},
+            {"risk": "Cascading deletion issues", "impact": "+$200"}
+          ]
+        },
+        "dependencies": ["project plan", "team rates", "legal review costs"],
+        "estimated_minutes": 45,
+        "quality_gates": ["budget increase needed", "estimates documented", "high-risk factors identified"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Health check endpoints",
+        "budget": "$150",
+        "team": ["architect", "coder", "tester"],
+        "duration": "2 days",
+        "completed_hours": 8
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for health check implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$150",
+            "spent_to_date": "$110",
+            "remaining": "$40",
+            "burn_rate": "$192.50/week",
+            "projected_completion": "$150"
+          },
+          "breakdown": {
+            "architect": {"hours": 3, "rate": "$50/h", "cost": "$150"},
+            "coder": {"hours": 4, "rate": "$40/h", "cost": "$160"},
+            "tester": {"hours": 1, "rate": "$35/h", "cost": "$35"}
+          },
+          "alerts": [
+            {"type": "info", "message": "73% budget consumed with 70% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Task scheduler",
+        "budget": "$450",
+        "team": ["architect", "coder", "tester"],
+        "duration": "1 week",
+        "completed_hours": 24
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for task scheduler implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$450",
+            "spent_to_date": "$340",
+            "remaining": "$110",
+            "burn_rate": "$340/week",
+            "projected_completion": "$470"
+          },
+          "breakdown": {
+            "architect": {"hours": 6, "rate": "$50/h", "cost": "$300"},
+            "coder": {"hours": 16, "rate": "$40/h", "cost": "$640"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "warning", "message": "76% budget consumed with 75% timeline elapsed"},
+            {"type": "warning", "message": "Projected 4% over budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 25,
+        "quality_gates": ["overrun risk identified", "mitigation being evaluated", "tracking accurate"]
+      }
+    },
+    {
+      "phase": "track",
+      "context": {
+        "project": "Session management",
+        "budget": "$250",
+        "team": ["architect", "coder", "tester"],
+        "duration": "4 days",
+        "completed_hours": 14
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "track-project-costs",
+        "description": "Track costs for session management implementation",
+        "specifications": {
+          "tracking": {
+            "budget_total": "$250",
+            "spent_to_date": "$180",
+            "remaining": "$70",
+            "burn_rate": "$157.50/week",
+            "projected_completion": "$250"
+          },
+          "breakdown": {
+            "architect": {"hours": 5, "rate": "$50/h", "cost": "$250"},
+            "coder": {"hours": 7, "rate": "$40/h", "cost": "$280"},
+            "tester": {"hours": 2, "rate": "$35/h", "cost": "$70"}
+          },
+          "alerts": [
+            {"type": "info", "message": "72% budget consumed with 70% timeline elapsed"},
+            {"type": "info", "message": "On track to complete at budget"}
+          ]
+        },
+        "dependencies": ["time tracking data", "rate cards"],
+        "estimated_minutes": 15,
+        "quality_gates": ["costs aligned", "timeline on track", "no concerns"]
+      }
+    },
+    {
+      "phase": "report",
+      "context": {
+        "project": "Q1 Development Summary",
+        "period": "Q1 2025",
+        "total_projects": 15,
+        "total_budget": "$8500",
+        "total_spent": "$8200"
+      },
+      "expected_drone_task": {
+        "drone_id": "cost-tracker",
+        "task_type": "generate-cost-report",
+        "description": "Generate Q1 2025 cost summary report",
+        "specifications": {
+          "summary": {
+            "total_budget": "$8500",
+            "total_spent": "$8200",
+            "remaining": "$300",
+            "variance": "-3.5%",
+            "projects_completed": 12,
+            "projects_in_progress": 3
+          },
+          "by_category": {
+            "infrastructure": {"budget": "$2000", "spent": "$1950", "variance": "-2.5%"},
+            "features": {"budget": "$4500", "spent": "$4300", "variance": "-4.4%"},
+            "optimization": {"budget": "$1500", "spent": "$1500", "variance": "0%"},
+            "security": {"budget": "$500", "spent": "$450", "variance": "-10%"}
+          },
+          "top_overruns": [
+            {"project": "Real-time notifications", "variance": "+7%", "amount": "$20"},
+            {"project": "Monitoring system", "variance": "+4%", "amount": "$20"}
+          ],
+          "cost_savings": [
+            {"project": "Rate limiting", "variance": "-4%", "amount": "$10"},
+            {"project": "Health checks", "variance": "0%", "amount": "$0"}
+          ]
+        },
+        "dependencies": ["project data", "financial records"],
+        "estimated_minutes": 30,
+        "quality_gates": ["report accurate", "insights actionable", "stakeholders informed"]
+      }
+    }
+  ]
+}

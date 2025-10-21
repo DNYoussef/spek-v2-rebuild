@@ -1,0 +1,1537 @@
+{
+  "communication_path": "debugger→princess-dev",
+  "description": "Debugger reports bug fix results to Princess-Dev",
+  "drone_id": "debugger",
+  "princess_id": "princess-dev",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 44,
+    "failure": 6
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-1",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 4,
+        "tests_added": 4,
+        "execution_time_ms": 19806
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 6
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-2",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 0,
+        "root_causes_identified": 3,
+        "files_modified": 4,
+        "tests_added": 5,
+        "execution_time_ms": 10842
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 3 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 3
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-3",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 1,
+        "tests_added": 5,
+        "execution_time_ms": 9964
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 5
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-4",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 3,
+        "tests_added": 5,
+        "execution_time_ms": 11435
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 5
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-5",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 1,
+        "bugs_remaining": 0,
+        "root_causes_identified": 1,
+        "files_modified": 4,
+        "tests_added": 3,
+        "execution_time_ms": 18114
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 1 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 1,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 2
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-6",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 2,
+        "tests_added": 5,
+        "execution_time_ms": 17347
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 7
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-7",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 1,
+        "bugs_remaining": 0,
+        "root_causes_identified": 1,
+        "files_modified": 4,
+        "tests_added": 2,
+        "execution_time_ms": 10893
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 1 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 1,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 3
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-8",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 1,
+        "tests_added": 4,
+        "execution_time_ms": 19123
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 2
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-9",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 2,
+        "tests_added": 5,
+        "execution_time_ms": 13685
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 6
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-10",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 2,
+        "tests_added": 2,
+        "execution_time_ms": 19921
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-11",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 4,
+        "tests_added": 4,
+        "execution_time_ms": 14454
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-12",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 3,
+        "tests_added": 6,
+        "execution_time_ms": 19459
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 6
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-13",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 1,
+        "tests_added": 4,
+        "execution_time_ms": 19956
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 2
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-14",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 4,
+        "tests_added": 3,
+        "execution_time_ms": 13614
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 2
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-15",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 4,
+        "tests_added": 6,
+        "execution_time_ms": 14041
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 7
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-16",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 1,
+        "tests_added": 6,
+        "execution_time_ms": 14067
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-17",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 0,
+        "root_causes_identified": 3,
+        "files_modified": 1,
+        "tests_added": 3,
+        "execution_time_ms": 11721
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 3 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-18",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 4,
+        "tests_added": 6,
+        "execution_time_ms": 15719
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 7
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-19",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 1,
+        "tests_added": 6,
+        "execution_time_ms": 16487
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 6
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-20",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 2,
+        "tests_added": 6,
+        "execution_time_ms": 10102
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 5
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-21",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 1,
+        "bugs_remaining": 0,
+        "root_causes_identified": 1,
+        "files_modified": 4,
+        "tests_added": 3,
+        "execution_time_ms": 13178
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 1 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 1,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 1
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-22",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 0,
+        "root_causes_identified": 3,
+        "files_modified": 4,
+        "tests_added": 5,
+        "execution_time_ms": 14461
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 3 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 5
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-23",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 3,
+        "tests_added": 5,
+        "execution_time_ms": 13256
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 5
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-24",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 3,
+        "tests_added": 3,
+        "execution_time_ms": 16866
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 3
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-25",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 0,
+        "root_causes_identified": 3,
+        "files_modified": 4,
+        "tests_added": 3,
+        "execution_time_ms": 19048
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 3 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-26",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 0,
+        "root_causes_identified": 3,
+        "files_modified": 1,
+        "tests_added": 4,
+        "execution_time_ms": 8570
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 3 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-27",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 2,
+        "tests_added": 3,
+        "execution_time_ms": 19242
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 3
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-28",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 2,
+        "tests_added": 4,
+        "execution_time_ms": 8127
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 3
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-29",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 0,
+        "root_causes_identified": 2,
+        "files_modified": 2,
+        "tests_added": 4,
+        "execution_time_ms": 9675
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 2 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-30",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 2,
+        "tests_added": 6,
+        "execution_time_ms": 8376
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-31",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 1,
+        "tests_added": 5,
+        "execution_time_ms": 14649
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 5
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-32",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 0,
+        "root_causes_identified": 4,
+        "files_modified": 3,
+        "tests_added": 6,
+        "execution_time_ms": 19073
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 4 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 4
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-33",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 3,
+        "tests_added": 7,
+        "execution_time_ms": 17168
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 7
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-34",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 1,
+        "tests_added": 6,
+        "execution_time_ms": 16851
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 7
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-35",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 0,
+        "root_causes_identified": 3,
+        "files_modified": 1,
+        "tests_added": 5,
+        "execution_time_ms": 9726
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 3 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 3
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-36",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 1,
+        "bugs_remaining": 0,
+        "root_causes_identified": 1,
+        "files_modified": 1,
+        "tests_added": 3,
+        "execution_time_ms": 8501
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 1 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 1,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 2
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-37",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 2,
+        "tests_added": 6,
+        "execution_time_ms": 12758
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 6
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-38",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 5,
+        "bugs_remaining": 0,
+        "root_causes_identified": 5,
+        "files_modified": 1,
+        "tests_added": 5,
+        "execution_time_ms": 12009
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "complete",
+        "summary": "Fixed 5 bugs, 0 remaining. All issues resolved.",
+        "quality_metrics": {
+          "bugs_fixed": 5,
+          "bugs_remaining": 0,
+          "fix_rate": 100.0,
+          "tests_added": 5
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Proceed to code review"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-39",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 1,
+        "root_causes_identified": 3,
+        "files_modified": 2,
+        "tests_added": 3,
+        "execution_time_ms": 16254
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "partial",
+        "summary": "Fixed 3 bugs, 1 remaining. 1 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 1,
+          "fix_rate": 75.0,
+          "tests_added": 4
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 1 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-40",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 1,
+        "root_causes_identified": 3,
+        "files_modified": 4,
+        "tests_added": 4,
+        "execution_time_ms": 18390
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "partial",
+        "summary": "Fixed 3 bugs, 1 remaining. 1 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 1,
+          "fix_rate": 75.0,
+          "tests_added": 5
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 1 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-41",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 1,
+        "root_causes_identified": 2,
+        "files_modified": 2,
+        "tests_added": 2,
+        "execution_time_ms": 11554
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "partial",
+        "summary": "Fixed 2 bugs, 1 remaining. 1 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 1,
+          "fix_rate": 66.7,
+          "tests_added": 3
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 1 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-42",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 4,
+        "bugs_remaining": 2,
+        "root_causes_identified": 4,
+        "files_modified": 1,
+        "tests_added": 4,
+        "execution_time_ms": 15500
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "partial",
+        "summary": "Fixed 4 bugs, 2 remaining. 2 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 4,
+          "bugs_remaining": 2,
+          "fix_rate": 66.7,
+          "tests_added": 5
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 2 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-43",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 2,
+        "bugs_remaining": 2,
+        "root_causes_identified": 2,
+        "files_modified": 1,
+        "tests_added": 4,
+        "execution_time_ms": 12140
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "partial",
+        "summary": "Fixed 2 bugs, 2 remaining. 2 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 2,
+          "bugs_remaining": 2,
+          "fix_rate": 50.0,
+          "tests_added": 3
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 2 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-44",
+      "drone_results": {
+        "success": true,
+        "bugs_fixed": 3,
+        "bugs_remaining": 1,
+        "root_causes_identified": 3,
+        "files_modified": 4,
+        "tests_added": 5,
+        "execution_time_ms": 11639
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "partial",
+        "summary": "Fixed 3 bugs, 1 remaining. 1 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 3,
+          "bugs_remaining": 1,
+          "fix_rate": 75.0,
+          "tests_added": 5
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 1 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-45",
+      "drone_results": {
+        "success": false,
+        "bugs_fixed": 1,
+        "bugs_remaining": 3,
+        "root_causes_identified": 1,
+        "files_modified": 1,
+        "tests_added": 1,
+        "execution_time_ms": 13710
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "blocked",
+        "summary": "Fixed 1 bugs, 3 remaining. 3 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 1,
+          "bugs_remaining": 3,
+          "fix_rate": 25.0,
+          "tests_added": 3
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 3 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-46",
+      "drone_results": {
+        "success": false,
+        "bugs_fixed": 0,
+        "bugs_remaining": 5,
+        "root_causes_identified": 0,
+        "files_modified": 3,
+        "tests_added": 2,
+        "execution_time_ms": 10742
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "blocked",
+        "summary": "Fixed 0 bugs, 5 remaining. 5 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 0,
+          "bugs_remaining": 5,
+          "fix_rate": 0.0,
+          "tests_added": 1
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 5 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-47",
+      "drone_results": {
+        "success": false,
+        "bugs_fixed": 0,
+        "bugs_remaining": 3,
+        "root_causes_identified": 0,
+        "files_modified": 3,
+        "tests_added": 2,
+        "execution_time_ms": 14109
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "blocked",
+        "summary": "Fixed 0 bugs, 3 remaining. 3 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 0,
+          "bugs_remaining": 3,
+          "fix_rate": 0.0,
+          "tests_added": 1
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 3 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-48",
+      "drone_results": {
+        "success": false,
+        "bugs_fixed": 1,
+        "bugs_remaining": 3,
+        "root_causes_identified": 1,
+        "files_modified": 1,
+        "tests_added": 3,
+        "execution_time_ms": 13823
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "blocked",
+        "summary": "Fixed 1 bugs, 3 remaining. 3 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 1,
+          "bugs_remaining": 3,
+          "fix_rate": 25.0,
+          "tests_added": 1
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 3 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-49",
+      "drone_results": {
+        "success": false,
+        "bugs_fixed": 0,
+        "bugs_remaining": 5,
+        "root_causes_identified": 0,
+        "files_modified": 2,
+        "tests_added": 1,
+        "execution_time_ms": 14512
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "blocked",
+        "summary": "Fixed 0 bugs, 5 remaining. 5 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 0,
+          "bugs_remaining": 5,
+          "fix_rate": 0.0,
+          "tests_added": 0
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 5 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "debugger",
+      "task_completed": "fix-bugs-50",
+      "drone_results": {
+        "success": false,
+        "bugs_fixed": 1,
+        "bugs_remaining": 5,
+        "root_causes_identified": 1,
+        "files_modified": 1,
+        "tests_added": 3,
+        "execution_time_ms": 14050
+      },
+      "expected_aggregated_result": {
+        "phase": "debug",
+        "status": "blocked",
+        "summary": "Fixed 1 bugs, 5 remaining. 5 issues need further investigation.",
+        "quality_metrics": {
+          "bugs_fixed": 1,
+          "bugs_remaining": 5,
+          "fix_rate": 16.7,
+          "tests_added": 3
+        },
+        "next_phase": "debug",
+        "blockers": [
+          "Debug 5 remaining issues"
+        ],
+        "recommendations": [
+          "Continue debugging session"
+        ]
+      }
+    }
+  ]
+}

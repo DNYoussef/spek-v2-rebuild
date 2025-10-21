@@ -1,0 +1,468 @@
+{
+  "agent_id": "reviewer",
+  "total_examples": 10,
+  "train_examples": 8,
+  "val_examples": 2,
+  "examples": [
+    {
+      "input_task": {
+        "id": "train-reviewer-001",
+        "type": "review",
+        "description": "Review authentication implementation",
+        "payload": {
+          "file_path": "src/auth/login.py",
+          "review_type": "quality",
+          "code_snippet": "def authenticate(email, pwd):\n    user = db.query(f'SELECT * FROM users WHERE email={email}')\n    return user.password == pwd"
+        },
+        "priority": 7
+      },
+      "expected_output": {
+        "review_summary": "Critical security vulnerabilities and poor practices found",
+        "issues": [
+          {
+            "severity": "critical",
+            "type": "security",
+            "description": "SQL injection vulnerability in query",
+            "line": 2,
+            "suggestion": "Use parameterized queries: db.query('SELECT * FROM users WHERE email=?', [email])"
+          },
+          {
+            "severity": "critical",
+            "type": "security",
+            "description": "Plain text password comparison",
+            "line": 3,
+            "suggestion": "Use bcrypt.checkpw(pwd.encode(), user.password_hash)"
+          },
+          {
+            "severity": "medium",
+            "type": "style",
+            "description": "Poor parameter naming (pwd instead of password)",
+            "line": 1,
+            "suggestion": "Use descriptive names: authenticate(email: str, password: str)"
+          }
+        ],
+        "quality_score": 15.0
+      },
+      "quality_label": 98.0,
+      "rationale": "Identified all critical security issues with actionable fixes",
+      "is_validation": true
+    },
+    {
+      "input_task": {
+        "id": "train-reviewer-002",
+        "type": "review",
+        "description": "Review NASA Rule 10 compliance",
+        "payload": {
+          "file_path": "src/utils/processor.py",
+          "review_type": "nasa_compliance",
+          "code_snippet": "def process_data(items):\n    results = []\n    for i in range(len(items)):\n        for j in range(len(items)):\n            if items[i] > items[j]:\n                results.append(items[i])\n    return results"
+        },
+        "priority": 8
+      },
+      "expected_output": {
+        "review_summary": "NASA violations: nested loops, inefficient algorithm, missing assertions",
+        "issues": [
+          {
+            "severity": "high",
+            "type": "nasa",
+            "description": "Nested loops violate performance best practices",
+            "line": 3,
+            "suggestion": "Use single pass algorithm or built-in sorted() function"
+          },
+          {
+            "severity": "medium",
+            "type": "quality",
+            "description": "Missing input validation assertions",
+            "line": 1,
+            "suggestion": "Add: assert items, 'Items cannot be empty'"
+          },
+          {
+            "severity": "medium",
+            "type": "quality",
+            "description": "Missing type hints",
+            "line": 1,
+            "suggestion": "Add type hints: def process_data(items: List[int]) -> List[int]"
+          }
+        ],
+        "quality_score": 45.0
+      },
+      "quality_label": 95.0,
+      "rationale": "Correctly identified NASA violations and performance issues"
+    },
+    {
+      "input_task": {
+        "id": "train-reviewer-003",
+        "type": "review",
+        "description": "Review file handling code",
+        "payload": {
+          "file_path": "src/io/file_reader.py",
+          "review_type": "quality",
+          "code_snippet": "def read_config(path):\n    f = open(path, 'r')\n    data = f.read()\n    return data"
+        },
+        "priority": 6
+      },
+      "expected_output": {
+        "review_summary": "Resource leak: file not properly closed",
+        "issues": [
+          {
+            "severity": "high",
+            "type": "bugs",
+            "description": "File handle not closed (resource leak)",
+            "line": 2,
+            "suggestion": "Use context manager: with open(path, 'r') as f:"
+          },
+          {
+            "severity": "medium",
+            "type": "quality",
+            "description": "Missing error handling for file not found",
+            "line": 2,
+            "suggestion": "Wrap in try/except and raise FileNotFoundError with helpful message"
+          },
+          {
+            "severity": "low",
+            "type": "quality",
+            "description": "Missing type hints and docstring",
+            "line": 1,
+            "suggestion": "Add: def read_config(path: str) -> str with docstring"
+          }
+        ],
+        "quality_score": 40.0
+      },
+      "quality_label": 96.0,
+      "rationale": "Identified critical resource leak and error handling gaps"
+    },
+    {
+      "input_task": {
+        "id": "train-reviewer-004",
+        "type": "review",
+        "description": "Review clean code example",
+        "payload": {
+          "file_path": "src/math/calculator.py",
+          "review_type": "quality",
+          "code_snippet": "def calculate_average(numbers: List[float]) -> float:\n    assert numbers, 'Numbers list cannot be empty'\n    assert all(isinstance(n, (int, float)) for n in numbers), 'All items must be numbers'\n    return sum(numbers) / len(numbers)"
+        },
+        "priority": 5
+      },
+      "expected_output": {
+        "review_summary": "High quality code with proper validation and type hints",
+        "issues": [
+          {
+            "severity": "low",
+            "type": "quality",
+            "description": "Could add docstring for better documentation",
+            "line": 1,
+            "suggestion": "Add docstring with Args, Returns sections"
+          }
+        ],
+        "quality_score": 92.0
+      },
+      "quality_label": 94.0,
+      "rationale": "Correctly recognized high quality code with only minor suggestion"
+    },
+    {
+      "input_task": {
+        "id": "train-reviewer-005",
+        "type": "review",
+        "description": "Review async code with race condition",
+        "payload": {
+          "file_path": "src/async/handler.py",
+          "review_type": "quality",
+          "code_snippet": "async def update_counter(self):\n    current = await self.get_count()\n    await asyncio.sleep(0.1)\n    await self.set_count(current + 1)"
+        },
+        "priority": 8
+      },
+      "expected_output": {
+        "review_summary": "Race condition in async counter update",
+        "issues": [
+          {
+            "severity": "high",
+            "type": "bugs",
+            "description": "Race condition between get_count and set_count",
+            "line": 2,
+            "suggestion": "Use atomic operation or lock: async with self.lock: ..."
+          },
+          {
+            "severity": "medium",
+            "type": "quality",
+            "description": "Missing type hints",
+            "line": 1,
+            "suggestion": "Add: async def update_counter(self) -> None"
+          }
+        ],
+        "quality_score": 35.0
+      },
+      "quality_label": 97.0,
+      "rationale": "Identified subtle race condition in async code"
+    },
+    {
+      "input_task": {
+        "id": "train-reviewer-006",
+        "type": "review",
+        "description": "Review hardcoded secrets",
+        "payload": {
+          "file_path": "src/api/client.py",
+          "review_type": "security",
+          "code_snippet": "API_KEY = 'sk-1234567890abcdef'\n\ndef call_api(endpoint):\n    headers = {'Authorization': f'Bearer {API_KEY}'}\n    return requests.get(endpoint, headers=headers)"
+        },
+        "priority": 9
+      },
+      "expected_output": {
+        "review_summary": "Critical: hardcoded API key in source code",
+        "issues": [
+          {
+            "severity": "critical",
+            "type": "security",
+            "description": "Hardcoded API key in source code",
+            "line": 1,
+            "suggestion": "Use environment variable: API_KEY = os.getenv('API_KEY')"
+          },
+          {
+            "severity": "high",
+            "type": "quality",
+            "description": "Missing error handling for missing API key",
+            "line": 3,
+            "suggestion": "Check if API_KEY exists and raise ValueError if not"
+          },
+          {
+            "severity": "medium",
+            "type": "quality",
+            "description": "Missing error handling for network failures",
+            "line": 4,
+            "suggestion": "Wrap requests.get in try/except requests.RequestException"
+          }
+        ],
+        "quality_score": 10.0
+      },
+      "quality_label": 98.0,
+      "rationale": "Identified critical hardcoded secret with comprehensive fix recommendations"
+    },
+    {
+      "task_description": "Review the following asynchronous file upload implementation for security, NASA Rule 10 compliance, and error handling best practices:\n\nFile: src/storage/upload_handler.py\n\n```python\nasync def upload_file(user_id, file_path, destination):\n    if not os.path.exists(file_path):\n        return False\n    \n    file_size = os.path.getsize(file_path)\n    \n    with open(file_path, 'rb') as f:\n        data = f.read()\n    \n    upload_url = f'https://storage.example.com/{destination}/{os.path.basename(file_path)}'\n    \n    response = await http_client.post(upload_url, data=data)\n    \n    if response.status == 200:\n        os.remove(file_path)\n        return True\n    return False\n```\n\nFocus on: path traversal vulnerabilities, resource cleanup, error handling, and type safety.",
+      "objective": "Comprehensive security audit with focus on file handling vulnerabilities (path traversal, directory traversal), proper async resource cleanup, and NASA Rule 10 compliance (type hints, assertions, error handling)",
+      "review_report": {
+        "overall_score": 25.0,
+        "nasa_compliance_pct": 40.0,
+        "security_score": 15.0,
+        "quality_score": 35.0,
+        "issues": [
+          {
+            "severity": "CRITICAL",
+            "category": "security",
+            "description": "Path traversal vulnerability: file_path not validated, allows access to arbitrary files via '../../../etc/passwd'",
+            "line_number": 2,
+            "recommendation": "Validate file_path against allowed directories: assert Path(file_path).resolve().is_relative_to(UPLOAD_DIR)"
+          },
+          {
+            "severity": "CRITICAL",
+            "category": "security",
+            "description": "Directory traversal in destination parameter allows writing to arbitrary paths",
+            "line_number": 10,
+            "recommendation": "Sanitize destination: destination = Path(destination).name  # Remove directory components"
+          },
+          {
+            "severity": "HIGH",
+            "category": "bugs",
+            "description": "File deleted even if upload fails (race condition: response check happens before os.remove)",
+            "line_number": 15,
+            "recommendation": "Only delete file after confirming successful upload AND server acknowledgment"
+          },
+          {
+            "severity": "HIGH",
+            "category": "nasa",
+            "description": "Missing type hints on all parameters and return type",
+            "line_number": 1,
+            "recommendation": "Add: async def upload_file(user_id: str, file_path: str, destination: str) -> bool"
+          },
+          {
+            "severity": "HIGH",
+            "category": "quality",
+            "description": "Synchronous file I/O (open, read) blocks event loop in async function",
+            "line_number": 7,
+            "recommendation": "Use async file I/O: async with aiofiles.open(file_path, 'rb') as f: data = await f.read()"
+          },
+          {
+            "severity": "MEDIUM",
+            "category": "nasa",
+            "description": "Missing input validation assertions (>=2 assertions required)",
+            "line_number": 1,
+            "recommendation": "Add: assert user_id and file_path and destination, 'Required parameters cannot be empty'"
+          },
+          {
+            "severity": "MEDIUM",
+            "category": "quality",
+            "description": "No error handling for network failures (http_client.post can raise)",
+            "line_number": 12,
+            "recommendation": "Wrap in try/except aiohttp.ClientError and handle retries/logging"
+          },
+          {
+            "severity": "LOW",
+            "category": "quality",
+            "description": "user_id parameter not used (dead parameter)",
+            "line_number": 1,
+            "recommendation": "Either use user_id for auth/logging or remove parameter"
+          }
+        ],
+        "summary": "Critical security vulnerabilities found: path traversal and directory traversal attacks possible. File deletion logic has race condition. Missing async file I/O causes event loop blocking. NASA Rule 10 violations: no type hints, insufficient assertions. Requires immediate security fixes before deployment."
+      },
+      "quality_label": 96.0,
+      "rationale": "High-quality review identifying 2 critical security vulnerabilities (path traversal, directory traversal), async anti-patterns (sync I/O in async function), race condition (premature file deletion), and comprehensive NASA Rule 10 gaps. Applies Principle 6 (Constraints & Boundaries) with specific security checks and Principle 8 (Error Prevention) with detailed remediation steps."
+    },
+    {
+      "task_description": "Review the following database migration function for NASA Rule 10 compliance, transaction safety, and error recovery:\n\nFile: src/db/migrations/migrator.py\n\n```python\ndef run_migration(db_conn, migration_sql):\n    cursor = db_conn.cursor()\n    statements = migration_sql.split(';')\n    \n    for stmt in statements:\n        if stmt.strip():\n            cursor.execute(stmt)\n    \n    db_conn.commit()\n    cursor.close()\n    \n    return len(statements)\n```\n\nAnalyze: transaction atomicity, error handling, SQL injection risks, and function complexity.",
+      "objective": "NASA Rule 10 compliance check (function length <=60 LOC, >=2 assertions, error handling) and database transaction safety audit (atomicity, rollback on failure, connection cleanup)",
+      "review_report": {
+        "overall_score": 30.0,
+        "nasa_compliance_pct": 50.0,
+        "security_score": 40.0,
+        "quality_score": 35.0,
+        "issues": [
+          {
+            "severity": "CRITICAL",
+            "category": "bugs",
+            "description": "No transaction rollback on error: partial migrations can corrupt database",
+            "line_number": 9,
+            "recommendation": "Wrap in try/except and call db_conn.rollback() on exception before re-raising"
+          },
+          {
+            "severity": "HIGH",
+            "category": "security",
+            "description": "SQL injection risk: migration_sql not validated, could contain malicious commands",
+            "line_number": 2,
+            "recommendation": "Validate migration_sql against schema (whitelist DDL commands), reject DML/DCL unless explicitly allowed"
+          },
+          {
+            "severity": "HIGH",
+            "category": "nasa",
+            "description": "Missing type hints on parameters and return value",
+            "line_number": 1,
+            "recommendation": "Add: def run_migration(db_conn: Connection, migration_sql: str) -> int"
+          },
+          {
+            "severity": "HIGH",
+            "category": "nasa",
+            "description": "Missing input validation assertions (0 assertions, need >=2)",
+            "line_number": 1,
+            "recommendation": "Add: assert db_conn and migration_sql, 'Database connection and SQL required'\nassert isinstance(migration_sql, str), 'migration_sql must be string'"
+          },
+          {
+            "severity": "MEDIUM",
+            "category": "bugs",
+            "description": "Cursor not closed if exception occurs before line 10",
+            "line_number": 10,
+            "recommendation": "Use context manager: with db_conn.cursor() as cursor: ... (auto-closes)"
+          },
+          {
+            "severity": "MEDIUM",
+            "category": "quality",
+            "description": "Return value misleading: returns total statements (including empty), not executed count",
+            "line_number": 12,
+            "recommendation": "Track executed_count separately: executed_count = 0; executed_count += 1 in loop; return executed_count"
+          },
+          {
+            "severity": "LOW",
+            "category": "quality",
+            "description": "No logging for migration progress or errors",
+            "line_number": 1,
+            "recommendation": "Add logging.info for each statement execution and logging.error on failures"
+          }
+        ],
+        "summary": "Critical bug: no transaction rollback on error allows partial migrations to corrupt database. High security risk: unvalidated SQL could execute malicious commands. NASA Rule 10 violations: missing type hints and assertions. Missing resource cleanup (cursor not closed on exception). Requires immediate fixes for production safety."
+      },
+      "quality_label": 97.0,
+      "rationale": "Excellent review identifying critical database safety issue (no rollback), security gap (unvalidated SQL), and NASA Rule 10 violations (missing type hints/assertions). Demonstrates Principle 13 (Address Edge Cases) by considering exception paths and Principle 8 (Error Prevention) with specific transaction safety patterns."
+    },
+    {
+      "task_description": "Review the following recursive directory cleanup function for NASA Rule 10 compliance and performance:\n\nFile: src/utils/cleanup.py\n\n```python\ndef delete_old_files(directory, days_old):\n    import os\n    import time\n    from datetime import datetime, timedelta\n    \n    cutoff = datetime.now() - timedelta(days=days_old)\n    cutoff_timestamp = cutoff.timestamp()\n    \n    def recursive_delete(path):\n        for entry in os.listdir(path):\n            full_path = os.path.join(path, entry)\n            \n            if os.path.isdir(full_path):\n                recursive_delete(full_path)\n            else:\n                if os.path.getmtime(full_path) < cutoff_timestamp:\n                    os.remove(full_path)\n    \n    recursive_delete(directory)\n    return True\n```\n\nFocus on: NASA Rule 10 recursion ban, performance implications, and error handling.",
+      "objective": "NASA Rule 10 compliance audit (no recursion allowed, use iteration) and quality review (error handling, path validation, performance for large directories)",
+      "review_report": {
+        "overall_score": 35.0,
+        "nasa_compliance_pct": 0.0,
+        "security_score": 50.0,
+        "quality_score": 60.0,
+        "issues": [
+          {
+            "severity": "CRITICAL",
+            "category": "nasa",
+            "description": "Recursion used (recursive_delete calls itself), violates NASA Rule 10",
+            "line_number": 14,
+            "recommendation": "Use iterative approach: stack = [directory]; while stack: path = stack.pop(); ... stack.extend(subdirs)"
+          },
+          {
+            "severity": "HIGH",
+            "category": "bugs",
+            "description": "Stack overflow risk for deeply nested directories (recursion depth unlimited)",
+            "line_number": 9,
+            "recommendation": "Replace recursion with iteration using collections.deque for BFS traversal"
+          },
+          {
+            "severity": "HIGH",
+            "category": "nasa",
+            "description": "Missing type hints on parameters and return value",
+            "line_number": 1,
+            "recommendation": "Add: def delete_old_files(directory: str, days_old: int) -> bool"
+          },
+          {
+            "severity": "HIGH",
+            "category": "nasa",
+            "description": "Missing input validation assertions (need >=2)",
+            "line_number": 1,
+            "recommendation": "Add: assert directory and days_old >= 0, 'Valid directory and non-negative days required'"
+          },
+          {
+            "severity": "MEDIUM",
+            "category": "bugs",
+            "description": "No error handling for permission errors (os.remove, os.listdir can fail)",
+            "line_number": 17,
+            "recommendation": "Wrap in try/except PermissionError and OSError, log failures, continue cleanup"
+          },
+          {
+            "severity": "MEDIUM",
+            "category": "security",
+            "description": "No validation of directory parameter (could delete system files if path manipulated)",
+            "line_number": 1,
+            "recommendation": "Validate directory is within allowed cleanup paths: assert Path(directory).resolve().is_relative_to(CLEANUP_ROOT)"
+          },
+          {
+            "severity": "LOW",
+            "category": "quality",
+            "description": "Imports inside function (anti-pattern, slower, non-standard)",
+            "line_number": 2,
+            "recommendation": "Move imports to module level (top of file)"
+          }
+        ],
+        "summary": "CRITICAL NASA Rule 10 violation: recursion used (banned in NASA Rule 10). Stack overflow risk for deep directory trees. Missing type hints and assertions. No error handling for permission errors. Security concern: directory path not validated. Must replace recursion with iterative solution before deployment."
+      },
+      "quality_label": 98.0,
+      "rationale": "Exceptional review identifying the most critical NASA Rule 10 violation (recursion ban) with clear explanation of both compliance failure and practical risk (stack overflow). Demonstrates deep understanding of Principle 23 (Regulatory Compliance) and provides specific iterative solution. Also identifies security gap (unvalidated path) and error handling issues."
+    },
+    {
+      "task_description": "Review the following high-quality implementation of a rate limiter for learning purposes:\n\nFile: src/middleware/rate_limiter.py\n\n```python\nfrom collections import deque\nfrom time import time\nfrom typing import Optional\n\nclass SlidingWindowRateLimiter:\n    \"\"\"Token bucket rate limiter with sliding window.\n    \n    Args:\n        max_requests: Maximum requests allowed in window\n        window_sec: Time window in seconds\n    \n    Raises:\n        ValueError: If max_requests or window_sec invalid\n    \"\"\"\n    \n    def __init__(self, max_requests: int, window_sec: int):\n        assert max_requests > 0, \"max_requests must be positive\"\n        assert window_sec > 0, \"window_sec must be positive\"\n        \n        self.max_requests = max_requests\n        self.window_sec = window_sec\n        self.requests: deque = deque()\n    \n    def is_allowed(self, client_id: str) -> bool:\n        \"\"\"Check if request is allowed under rate limit.\n        \n        Args:\n            client_id: Unique client identifier\n        \n        Returns:\n            True if request allowed, False if rate limited\n        \"\"\"\n        assert client_id, \"client_id cannot be empty\"\n        \n        now = time()\n        cutoff = now - self.window_sec\n        \n        # Remove expired entries\n        while self.requests and self.requests[0][1] < cutoff:\n            self.requests.popleft()\n        \n        # Check rate limit\n        client_count = sum(1 for cid, _ in self.requests if cid == client_id)\n        \n        if client_count >= self.max_requests:\n            return False\n        \n        # Record request\n        self.requests.append((client_id, now))\n        return True\n```\n\nThis is a reference implementation for training. Identify what makes it high quality.",
+      "objective": "Quality review to identify best practices demonstrated (for training dataset): NASA Rule 10 compliance, clean code principles, comprehensive documentation, proper error handling",
+      "review_report": {
+        "overall_score": 95.0,
+        "nasa_compliance_pct": 100.0,
+        "security_score": 90.0,
+        "quality_score": 95.0,
+        "issues": [
+          {
+            "severity": "LOW",
+            "category": "performance",
+            "description": "O(n) search for client_count could be optimized with dict tracking per-client requests",
+            "line_number": 43,
+            "recommendation": "Consider: self.client_requests: Dict[str, deque] = defaultdict(deque) for O(1) per-client lookup"
+          },
+          {
+            "severity": "LOW",
+            "category": "quality",
+            "description": "Could add thread safety with threading.Lock for concurrent access",
+            "line_number": 1,
+            "recommendation": "Add: self._lock = threading.Lock() and use with self._lock: in is_allowed()"
+          }
+        ],
+        "summary": "Excellent high-quality implementation demonstrating NASA Rule 10 best practices. Strengths: comprehensive type hints on all parameters/returns, >=2 assertions per function (input validation), detailed docstrings with Args/Returns/Raises, proper use of data structures (deque for O(1) popleft), clean separation of concerns (sliding window cleanup, rate check, record). Functions well under 60 LOC (init: 8 LOC, is_allowed: 19 LOC). Only minor optimization suggestions for high-traffic scenarios."
+      },
+      "quality_label": 95.0,
+      "rationale": "High-quality training example showing what excellent code looks like. Demonstrates all prompt engineering principles: Principle 1 (Clarity) with detailed docstrings, Principle 6 (Constraints) with assertions, Principle 14 (Consistency) with uniform error handling. Perfect for teaching reviewers to recognize quality implementations versus finding only flaws."
+    }
+  ]
+}

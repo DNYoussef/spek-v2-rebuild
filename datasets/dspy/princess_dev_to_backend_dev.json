@@ -1,0 +1,1358 @@
+{
+  "communication_path": "princess-dev→backend-dev",
+  "description": "Princess-Dev delegates API/database implementation tasks to Backend-Dev drone",
+  "version": "1.0",
+  "total_examples": 50,
+  "examples": [
+    {
+      "id": 1,
+      "phase": "implement-api",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "User authentication with JWT tokens",
+        "database": "PostgreSQL with Prisma ORM",
+        "framework": "Express.js + TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-api",
+        "description": "Implement POST /api/auth/login and /api/auth/logout endpoints",
+        "specifications": {
+          "endpoints": [
+            {
+              "method": "POST",
+              "path": "/api/auth/login",
+              "body": {"email": "string", "password": "string"},
+              "response": {"token": "string", "user": "User"}
+            },
+            {
+              "method": "POST",
+              "path": "/api/auth/logout",
+              "headers": {"Authorization": "Bearer <token>"},
+              "response": {"success": "boolean"}
+            }
+          ],
+          "database_operations": ["users.findUnique", "sessions.create", "sessions.delete"],
+          "validation": "Joi schema validation",
+          "security": ["bcrypt password hashing", "JWT signing", "rate limiting"],
+          "error_handling": ["401 Unauthorized", "400 Bad Request", "500 Server Error"]
+        },
+        "dependencies": ["database schema migrated", "auth middleware ready"],
+        "estimated_minutes": 50,
+        "quality_gates": ["100% type coverage", "input validation", "secure password handling", "proper error responses"]
+      }
+    },
+    {
+      "id": 2,
+      "phase": "implement-crud",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Product catalog CRUD with pagination",
+        "database": "MongoDB with Mongoose",
+        "framework": "NestJS + TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-crud",
+        "description": "Create RESTful CRUD endpoints for product management",
+        "specifications": {
+          "endpoints": [
+            {"method": "GET", "path": "/api/products", "query": ["page", "limit", "sort", "filter"]},
+            {"method": "GET", "path": "/api/products/:id"},
+            {"method": "POST", "path": "/api/products", "auth": "required"},
+            {"method": "PUT", "path": "/api/products/:id", "auth": "required"},
+            {"method": "DELETE", "path": "/api/products/:id", "auth": "required"}
+          ],
+          "features": ["pagination", "sorting", "filtering", "search"],
+          "validation": "class-validator DTOs",
+          "authorization": "admin role for create/update/delete",
+          "database": "Mongoose models with indexes"
+        },
+        "dependencies": ["product schema defined", "auth guards"],
+        "estimated_minutes": 55,
+        "quality_gates": ["all CRUD operations", "pagination works", "authorization enforced", "validation complete"]
+      }
+    },
+    {
+      "id": 3,
+      "phase": "implement-graphql",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "GraphQL API for blog platform",
+        "database": "PostgreSQL with TypeORM",
+        "framework": "Apollo Server + TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-graphql",
+        "description": "Implement GraphQL schema with queries and mutations for blog",
+        "specifications": {
+          "schema": {
+            "queries": ["posts(limit, offset)", "post(id)", "authors", "author(id)"],
+            "mutations": ["createPost", "updatePost", "deletePost", "publishPost"]
+          },
+          "resolvers": "type-safe resolvers with DataLoader",
+          "data_loaders": "prevent N+1 queries (posts.author)",
+          "authorization": "author can edit own posts, admin can edit all",
+          "validation": "GraphQL input types with validation",
+          "subscriptions": "real-time post published events"
+        },
+        "dependencies": ["GraphQL schema", "database entities"],
+        "estimated_minutes": 60,
+        "quality_gates": ["N+1 prevention", "authorization tested", "subscriptions work", "type safety"]
+      }
+    },
+    {
+      "id": 4,
+      "phase": "implement-file-upload",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "File upload to AWS S3 with presigned URLs",
+        "database": "PostgreSQL for metadata",
+        "framework": "Express.js + AWS SDK"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-file-upload",
+        "description": "Create file upload endpoints with S3 direct upload",
+        "specifications": {
+          "endpoints": [
+            {"method": "POST", "path": "/api/uploads/presigned-url", "response": {"url": "string", "key": "string"}},
+            {"method": "POST", "path": "/api/uploads/confirm", "body": {"key": "string", "metadata": "object"}}
+          ],
+          "flow": "client gets presigned URL → uploads to S3 → confirms to backend",
+          "validation": "file type, size limits (max 100MB)",
+          "security": "presigned URL expiry (5 min), CORS config",
+          "database": "save file metadata (url, size, type, user_id)",
+          "s3_config": "bucket policy, lifecycle rules"
+        },
+        "dependencies": ["AWS S3 bucket", "IAM credentials"],
+        "estimated_minutes": 50,
+        "quality_gates": ["presigned URLs work", "validation enforced", "metadata saved", "security tested"]
+      }
+    },
+    {
+      "id": 5,
+      "phase": "implement-real-time",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "WebSocket server for real-time notifications",
+        "database": "Redis for pub/sub",
+        "framework": "Socket.io + Express"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-real-time",
+        "description": "Build WebSocket server with Redis pub/sub for notifications",
+        "specifications": {
+          "events": ["connect", "disconnect", "subscribe", "notification"],
+          "channels": "user:{userId}:notifications",
+          "authentication": "JWT token on connection",
+          "pub_sub": "Redis adapter for horizontal scaling",
+          "features": ["room-based broadcasting", "presence tracking", "message acknowledgment"],
+          "error_handling": "reconnection logic, graceful shutdown"
+        },
+        "dependencies": ["Redis server", "Socket.io library"],
+        "estimated_minutes": 55,
+        "quality_gates": ["authentication works", "pub/sub functional", "horizontal scaling", "error handling"]
+      }
+    },
+    {
+      "id": 6,
+      "phase": "implement-search",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Full-text search with Elasticsearch",
+        "database": "Elasticsearch for search index",
+        "framework": "Express.js + Elasticsearch client"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-search",
+        "description": "Implement full-text search API with Elasticsearch",
+        "specifications": {
+          "endpoints": [
+            {"method": "GET", "path": "/api/search", "query": ["q", "filters", "page", "limit"]},
+            {"method": "POST", "path": "/api/search/reindex"}
+          ],
+          "features": ["fuzzy search", "filtering", "faceting", "highlighting", "autocomplete"],
+          "indexing": "sync database changes to Elasticsearch",
+          "relevance": "custom scoring with boosted fields",
+          "performance": "pagination with search_after"
+        },
+        "dependencies": ["Elasticsearch cluster", "index mappings"],
+        "estimated_minutes": 60,
+        "quality_gates": ["search accuracy", "performance <500ms", "faceting works", "sync functional"]
+      }
+    },
+    {
+      "id": 7,
+      "phase": "implement-caching",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Redis caching layer for API responses",
+        "database": "Redis for cache",
+        "framework": "Express.js with caching middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-caching",
+        "description": "Add Redis caching layer with cache invalidation",
+        "specifications": {
+          "strategy": "cache-aside pattern",
+          "ttl": "configurable per endpoint (5-60 min)",
+          "keys": "consistent key naming (resource:id:params)",
+          "invalidation": "event-driven on create/update/delete",
+          "middleware": "Express middleware for GET requests",
+          "features": ["cache warming", "cache busting", "cache stats"]
+        },
+        "dependencies": ["Redis cluster", "event emitter"],
+        "estimated_minutes": 45,
+        "quality_gates": ["cache hits >80%", "invalidation works", "TTL correct", "performance gain measured"]
+      }
+    },
+    {
+      "id": 8,
+      "phase": "implement-queue",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Background job processing with Bull",
+        "database": "Redis for Bull queue",
+        "framework": "Node.js + Bull"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-queue",
+        "description": "Set up Bull queue for background jobs (email, reports, etc.)",
+        "specifications": {
+          "queues": ["emails", "reports", "notifications", "data-sync"],
+          "jobs": "type-safe job definitions with Zod",
+          "processing": "concurrent workers (5 per queue)",
+          "retry": "exponential backoff, max 3 attempts",
+          "monitoring": "Bull Board dashboard",
+          "features": ["job priority", "delayed jobs", "repeat jobs", "job events"]
+        },
+        "dependencies": ["Redis server", "Bull library"],
+        "estimated_minutes": 50,
+        "quality_gates": ["jobs process correctly", "retry logic", "monitoring works", "performance tested"]
+      }
+    },
+    {
+      "id": 9,
+      "phase": "implement-webhook",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Webhook system for third-party integrations",
+        "database": "PostgreSQL for webhook subscriptions",
+        "framework": "Express.js + Bull for delivery"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-webhook",
+        "description": "Build webhook subscription and delivery system",
+        "specifications": {
+          "endpoints": [
+            {"method": "POST", "path": "/api/webhooks/subscribe"},
+            {"method": "DELETE", "path": "/api/webhooks/:id"},
+            {"method": "GET", "path": "/api/webhooks"}
+          ],
+          "events": ["user.created", "order.completed", "payment.succeeded"],
+          "delivery": "async with Bull queue, retry on failure",
+          "security": "HMAC signature for payload verification",
+          "features": ["delivery logs", "manual retry", "webhook testing endpoint"]
+        },
+        "dependencies": ["event emitter", "Bull queue"],
+        "estimated_minutes": 55,
+        "quality_gates": ["subscriptions work", "delivery reliable", "signature verification", "retry logic"]
+      }
+    },
+    {
+      "id": 10,
+      "phase": "implement-rate-limiting",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Rate limiting middleware with Redis",
+        "database": "Redis for rate limit counters",
+        "framework": "Express.js with express-rate-limit"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-rate-limiting",
+        "description": "Add rate limiting middleware with Redis store",
+        "specifications": {
+          "strategy": "token bucket algorithm",
+          "limits": ["10/min for auth", "100/min for API", "1000/hour global"],
+          "storage": "Redis for distributed rate limiting",
+          "response": "429 with Retry-After header",
+          "features": ["IP-based", "user-based", "endpoint-specific", "whitelist"],
+          "headers": "X-RateLimit-Limit, X-RateLimit-Remaining, X-RateLimit-Reset"
+        },
+        "dependencies": ["Redis cluster"],
+        "estimated_minutes": 40,
+        "quality_gates": ["limits enforced", "distributed works", "headers correct", "whitelist functional"]
+      }
+    },
+    {
+      "id": 11,
+      "phase": "implement-pagination",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Cursor-based pagination for large datasets",
+        "database": "PostgreSQL",
+        "framework": "Prisma + Express"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-pagination",
+        "description": "Implement cursor-based pagination for scalable list endpoints",
+        "specifications": {
+          "strategy": "cursor-based (not offset) for performance",
+          "response": {"data": "[]", "cursor": "string", "hasMore": "boolean"},
+          "sorting": "support multiple sort fields",
+          "performance": "index on cursor field (created_at, id)",
+          "limits": "max 100 items per page",
+          "backward": "support both forward and backward pagination"
+        },
+        "dependencies": ["database indexes"],
+        "estimated_minutes": 45,
+        "quality_gates": ["performance at scale", "cursor encoding", "bidirectional works", "edge cases handled"]
+      }
+    },
+    {
+      "id": 12,
+      "phase": "implement-email",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Transactional email service with templates",
+        "database": "PostgreSQL for email logs",
+        "framework": "Nodemailer + Handlebars"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-email",
+        "description": "Build email service with template rendering and delivery tracking",
+        "specifications": {
+          "provider": "SendGrid or AWS SES",
+          "templates": "Handlebars templates with variables",
+          "types": ["welcome", "password-reset", "order-confirmation", "notification"],
+          "features": ["template rendering", "inline CSS", "attachments", "delivery tracking"],
+          "queue": "Bull queue for async sending",
+          "logging": "save email logs (sent, failed, opened, clicked)"
+        },
+        "dependencies": ["email provider API key", "templates"],
+        "estimated_minutes": 50,
+        "quality_gates": ["templates render", "delivery works", "tracking functional", "queue processing"]
+      }
+    },
+    {
+      "id": 13,
+      "phase": "implement-oauth",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "OAuth2 social login (Google, GitHub)",
+        "database": "PostgreSQL for user accounts",
+        "framework": "Passport.js + Express"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-oauth",
+        "description": "Implement OAuth2 social login with account linking",
+        "specifications": {
+          "providers": ["Google", "GitHub", "Facebook"],
+          "flow": "authorization code flow with PKCE",
+          "endpoints": ["/api/auth/:provider", "/api/auth/:provider/callback"],
+          "features": ["account creation", "account linking", "profile sync"],
+          "security": "state parameter for CSRF protection",
+          "tokens": "exchange OAuth token for JWT"
+        },
+        "dependencies": ["OAuth app credentials", "callback URLs"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all providers work", "account linking", "CSRF protection", "token exchange"]
+      }
+    },
+    {
+      "id": 14,
+      "phase": "implement-permissions",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Role-based access control (RBAC)",
+        "database": "PostgreSQL with roles and permissions",
+        "framework": "Express.js with custom middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-permissions",
+        "description": "Build RBAC system with roles and permissions",
+        "specifications": {
+          "roles": ["admin", "editor", "viewer", "guest"],
+          "permissions": ["read", "write", "delete", "admin"],
+          "resources": "per-resource permissions (posts, users, etc.)",
+          "middleware": "authorize(resource, permission) decorator",
+          "database": "many-to-many roles-permissions",
+          "features": ["role inheritance", "permission checking", "audit logs"]
+        },
+        "dependencies": ["database schema", "auth context"],
+        "estimated_minutes": 55,
+        "quality_gates": ["middleware works", "inheritance correct", "performance acceptable", "audit logs"]
+      }
+    },
+    {
+      "id": 15,
+      "phase": "implement-multi-tenancy",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Multi-tenant architecture with row-level security",
+        "database": "PostgreSQL with tenant_id",
+        "framework": "Prisma + Express"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-multi-tenancy",
+        "description": "Implement multi-tenant data isolation with row-level security",
+        "specifications": {
+          "strategy": "shared database, tenant_id column",
+          "middleware": "extract tenant from JWT, set context",
+          "isolation": "Prisma middleware to auto-inject tenant_id",
+          "database": "PostgreSQL RLS policies",
+          "endpoints": "tenant-aware CRUD operations",
+          "features": ["tenant switching", "cross-tenant queries for admin", "tenant stats"]
+        },
+        "dependencies": ["database RLS setup", "tenant schema"],
+        "estimated_minutes": 60,
+        "quality_gates": ["isolation verified", "no data leaks", "performance acceptable", "admin cross-tenant"]
+      }
+    },
+    {
+      "id": 16,
+      "phase": "implement-versioning",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "API versioning with backwards compatibility",
+        "database": "Shared database",
+        "framework": "Express.js with version routing"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-versioning",
+        "description": "Add API versioning with deprecation strategy",
+        "specifications": {
+          "strategy": "URL versioning (/api/v1, /api/v2)",
+          "routing": "separate routers per version",
+          "deprecation": "deprecation headers, sunset dates",
+          "features": ["version detection", "default version", "version negotiation"],
+          "documentation": "OpenAPI spec per version",
+          "compatibility": "shared business logic, version-specific transformers"
+        },
+        "dependencies": ["API documentation"],
+        "estimated_minutes": 45,
+        "quality_gates": ["versions work", "deprecation headers", "backward compatibility", "docs updated"]
+      }
+    },
+    {
+      "id": 17,
+      "phase": "implement-audit-log",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Audit logging for all data changes",
+        "database": "PostgreSQL audit_logs table",
+        "framework": "Prisma middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-audit-log",
+        "description": "Build comprehensive audit logging system",
+        "specifications": {
+          "events": ["create", "update", "delete"],
+          "data": ["user_id", "action", "resource", "before", "after", "timestamp", "ip"],
+          "middleware": "Prisma middleware for automatic logging",
+          "storage": "separate audit_logs table with partitioning",
+          "features": ["diff tracking", "searchable logs", "export to CSV", "retention policy"],
+          "performance": "async logging to avoid blocking"
+        },
+        "dependencies": ["database schema", "user context"],
+        "estimated_minutes": 50,
+        "quality_gates": ["all changes logged", "diff accurate", "performance impact <5%", "searchable"]
+      }
+    },
+    {
+      "id": 18,
+      "phase": "implement-validation",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Input validation with Zod schemas",
+        "database": "N/A",
+        "framework": "Express.js + Zod"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-validation",
+        "description": "Add comprehensive input validation with Zod",
+        "specifications": {
+          "library": "Zod for schema validation",
+          "coverage": "body, query, params validation",
+          "middleware": "validateRequest(schema) middleware",
+          "error_format": "consistent error response format",
+          "features": ["custom error messages", "field-level errors", "sanitization"],
+          "async": "async validation for uniqueness checks"
+        },
+        "dependencies": ["Zod schemas defined"],
+        "estimated_minutes": 40,
+        "quality_gates": ["all endpoints validated", "error format consistent", "async validation", "sanitization"]
+      }
+    },
+    {
+      "id": 19,
+      "phase": "implement-monitoring",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Application monitoring with Prometheus",
+        "database": "N/A",
+        "framework": "Express.js + prom-client"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-monitoring",
+        "description": "Set up Prometheus metrics and health checks",
+        "specifications": {
+          "metrics": ["HTTP request duration", "request count", "error rate", "database query time"],
+          "endpoint": "/metrics for Prometheus scraping",
+          "health_checks": ["/health/liveness", "/health/readiness"],
+          "custom_metrics": "business metrics (user signups, orders)",
+          "labels": "endpoint, method, status_code",
+          "features": ["request tracing", "error tracking", "SLO monitoring"]
+        },
+        "dependencies": ["Prometheus server", "prom-client library"],
+        "estimated_minutes": 45,
+        "quality_gates": ["metrics collected", "health checks work", "dashboards created", "alerts configured"]
+      }
+    },
+    {
+      "id": 20,
+      "phase": "implement-logging",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Structured logging with Winston",
+        "database": "N/A",
+        "framework": "Express.js + Winston"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-logging",
+        "description": "Set up structured logging with log levels and transports",
+        "specifications": {
+          "library": "Winston for logging",
+          "format": "JSON structured logs",
+          "levels": "error, warn, info, debug",
+          "transports": ["console (dev)", "file (prod)", "CloudWatch (prod)"],
+          "context": "request_id, user_id, tenant_id",
+          "features": ["log rotation", "log aggregation", "PII masking"]
+        },
+        "dependencies": ["Winston library", "log aggregation service"],
+        "estimated_minutes": 35,
+        "quality_gates": ["consistent format", "levels correct", "PII masked", "searchable"]
+      }
+    },
+    {
+      "id": 21,
+      "phase": "implement-database-migration",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Database migration system",
+        "database": "PostgreSQL with Prisma Migrate",
+        "framework": "Prisma"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-database-migration",
+        "description": "Set up database migration workflow with Prisma Migrate",
+        "specifications": {
+          "tool": "Prisma Migrate",
+          "workflow": "dev migrations, production migrations",
+          "features": ["schema sync", "seed data", "rollback support"],
+          "naming": "descriptive migration names with timestamps",
+          "testing": "migration testing in CI/CD",
+          "documentation": "migration guide for team"
+        },
+        "dependencies": ["Prisma schema", "database access"],
+        "estimated_minutes": 40,
+        "quality_gates": ["migrations run successfully", "rollback works", "CI/CD integration", "docs complete"]
+      }
+    },
+    {
+      "id": 22,
+      "phase": "implement-seeding",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Database seeding for development and testing",
+        "database": "PostgreSQL",
+        "framework": "Prisma with seed script"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-seeding",
+        "description": "Create database seeding scripts for dev and test environments",
+        "specifications": {
+          "data": ["users", "roles", "products", "orders"],
+          "script": "TypeScript seed script with Prisma Client",
+          "features": ["idempotent seeding", "realistic data", "relationships"],
+          "execution": "npm run seed command",
+          "environments": "dev and test seeds (not production)",
+          "library": "Faker.js for realistic data generation"
+        },
+        "dependencies": ["Prisma schema", "Faker.js"],
+        "estimated_minutes": 35,
+        "quality_gates": ["idempotent", "relationships correct", "realistic data", "fast execution"]
+      }
+    },
+    {
+      "id": 23,
+      "phase": "implement-soft-delete",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Soft delete functionality",
+        "database": "PostgreSQL with deleted_at column",
+        "framework": "Prisma with middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-soft-delete",
+        "description": "Add soft delete with automatic filtering",
+        "specifications": {
+          "implementation": "deleted_at timestamp column",
+          "middleware": "Prisma middleware to auto-filter deleted records",
+          "operations": "update deleted_at instead of DELETE",
+          "features": ["restore endpoint", "permanent delete (admin)", "include deleted option"],
+          "cascade": "soft delete related records",
+          "audit": "log soft deletes and restores"
+        },
+        "dependencies": ["database schema update", "audit logging"],
+        "estimated_minutes": 45,
+        "quality_gates": ["auto-filtering works", "cascade correct", "restore functional", "audit logged"]
+      }
+    },
+    {
+      "id": 24,
+      "phase": "implement-api-docs",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "OpenAPI documentation generation",
+        "database": "N/A",
+        "framework": "Express + swagger-jsdoc"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-api-docs",
+        "description": "Generate interactive API documentation with Swagger",
+        "specifications": {
+          "tool": "swagger-jsdoc for OpenAPI 3.0",
+          "documentation": "JSDoc comments on endpoints",
+          "ui": "Swagger UI at /api-docs",
+          "features": ["request/response schemas", "authentication", "try it out", "examples"],
+          "validation": "OpenAPI spec validation",
+          "export": "download OpenAPI JSON/YAML"
+        },
+        "dependencies": ["swagger-jsdoc", "swagger-ui-express"],
+        "estimated_minutes": 50,
+        "quality_gates": ["all endpoints documented", "schemas accurate", "authentication works", "examples clear"]
+      }
+    },
+    {
+      "id": 25,
+      "phase": "implement-batch-operations",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Batch create/update/delete endpoints",
+        "database": "PostgreSQL with transactions",
+        "framework": "Prisma + Express"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-batch-operations",
+        "description": "Add batch endpoints for bulk operations",
+        "specifications": {
+          "endpoints": [
+            {"method": "POST", "path": "/api/resources/batch", "body": "array of items"},
+            {"method": "PUT", "path": "/api/resources/batch", "body": "array of updates"},
+            {"method": "DELETE", "path": "/api/resources/batch", "body": "array of ids"}
+          ],
+          "transactions": "all-or-nothing with database transactions",
+          "validation": "validate entire batch before processing",
+          "limits": "max 1000 items per batch",
+          "response": "partial success with error details",
+          "performance": "bulk operations (not n+1)"
+        },
+        "dependencies": ["database transaction support"],
+        "estimated_minutes": 55,
+        "quality_gates": ["transactions work", "partial errors handled", "performance optimized", "limits enforced"]
+      }
+    },
+    {
+      "id": 26,
+      "phase": "implement-export",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Data export endpoints (CSV, Excel, PDF)",
+        "database": "PostgreSQL",
+        "framework": "Express + export libraries"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-export",
+        "description": "Build data export endpoints with multiple formats",
+        "specifications": {
+          "formats": ["CSV", "Excel", "PDF"],
+          "endpoints": ["/api/resources/export?format=csv"],
+          "features": ["filtering", "sorting", "column selection", "streaming for large datasets"],
+          "libraries": ["csv-writer", "exceljs", "pdfkit"],
+          "performance": "streaming to avoid memory issues",
+          "security": "rate limiting, authentication required"
+        },
+        "dependencies": ["export libraries installed"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all formats work", "streaming functional", "performance at scale", "security enforced"]
+      }
+    },
+    {
+      "id": 27,
+      "phase": "implement-import",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Bulk data import from CSV/Excel",
+        "database": "PostgreSQL",
+        "framework": "Express + Bull queue"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-import",
+        "description": "Create async bulk import with validation and error reporting",
+        "specifications": {
+          "flow": "upload file → validate → queue job → process → notify completion",
+          "endpoints": [
+            {"method": "POST", "path": "/api/import/upload"},
+            {"method": "GET", "path": "/api/import/:id/status"}
+          ],
+          "validation": "schema validation with detailed errors",
+          "processing": "Bull queue for async processing",
+          "features": ["progress tracking", "error report", "rollback on failure", "duplicate detection"],
+          "limits": "max 10,000 rows per import"
+        },
+        "dependencies": ["file upload", "Bull queue", "validation schemas"],
+        "estimated_minutes": 60,
+        "quality_gates": ["async processing", "validation accurate", "progress tracking", "error report clear"]
+      }
+    },
+    {
+      "id": 28,
+      "phase": "implement-analytics",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Analytics aggregation endpoints",
+        "database": "PostgreSQL with materialized views",
+        "framework": "Express + SQL"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-analytics",
+        "description": "Build analytics endpoints with aggregations and time-series data",
+        "specifications": {
+          "endpoints": [
+            {"method": "GET", "path": "/api/analytics/dashboard"},
+            {"method": "GET", "path": "/api/analytics/revenue"},
+            {"method": "GET", "path": "/api/analytics/users"}
+          ],
+          "aggregations": ["daily/weekly/monthly", "sum/avg/count", "group by dimensions"],
+          "optimization": "materialized views for expensive queries",
+          "caching": "Redis cache with 15min TTL",
+          "features": ["date range filtering", "comparison periods", "export"]
+        },
+        "dependencies": ["materialized views created"],
+        "estimated_minutes": 55,
+        "quality_gates": ["query performance <500ms", "caching works", "aggregations accurate", "date ranges"]
+      }
+    },
+    {
+      "id": 29,
+      "phase": "implement-notification",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Push notification service (FCM, APNS)",
+        "database": "PostgreSQL for device tokens",
+        "framework": "Express + firebase-admin"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-notification",
+        "description": "Build push notification service for mobile apps",
+        "specifications": {
+          "providers": ["FCM (Firebase Cloud Messaging)", "APNS (Apple Push)"],
+          "endpoints": [
+            {"method": "POST", "path": "/api/notifications/register-device"},
+            {"method": "POST", "path": "/api/notifications/send"}
+          ],
+          "features": ["topic-based", "user-targeted", "scheduled", "batching"],
+          "queue": "Bull queue for async delivery",
+          "tracking": "delivery status, open rate"
+        },
+        "dependencies": ["FCM credentials", "APNS certificates"],
+        "estimated_minutes": 60,
+        "quality_gates": ["both platforms work", "batching efficient", "tracking accurate", "queue processing"]
+      }
+    },
+    {
+      "id": 30,
+      "phase": "implement-geolocation",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Geospatial queries with PostGIS",
+        "database": "PostgreSQL with PostGIS extension",
+        "framework": "Prisma + raw SQL"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-geolocation",
+        "description": "Add geospatial queries for location-based features",
+        "specifications": {
+          "extension": "PostGIS for geospatial functions",
+          "queries": ["nearby locations", "distance calculation", "bounding box search"],
+          "endpoints": ["/api/locations/nearby?lat=&lng=&radius="],
+          "indexing": "GiST index on geography column",
+          "performance": "optimized for <100ms response",
+          "features": ["distance sorting", "radius filtering", "polygon search"]
+        },
+        "dependencies": ["PostGIS extension enabled"],
+        "estimated_minutes": 50,
+        "quality_gates": ["queries accurate", "performance optimized", "index used", "distance calculation"]
+      }
+    },
+    {
+      "id": 31,
+      "phase": "implement-scheduled-tasks",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Scheduled background tasks with node-cron",
+        "database": "N/A",
+        "framework": "Node.js + node-cron"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-scheduled-tasks",
+        "description": "Set up scheduled tasks for recurring jobs",
+        "specifications": {
+          "library": "node-cron for scheduling",
+          "tasks": ["daily reports", "data cleanup", "subscription renewals", "cache warming"],
+          "schedules": "cron expressions (daily, weekly, monthly)",
+          "features": ["task locking (single instance)", "error handling", "logging", "manual trigger"],
+          "monitoring": "task execution history",
+          "distributed": "leader election for multi-instance"
+        },
+        "dependencies": ["node-cron library"],
+        "estimated_minutes": 45,
+        "quality_gates": ["schedules accurate", "locking works", "error handling", "monitoring functional"]
+      }
+    },
+    {
+      "id": 32,
+      "phase": "implement-idempotency",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Idempotency keys for safe retries",
+        "database": "Redis for idempotency cache",
+        "framework": "Express middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-idempotency",
+        "description": "Add idempotency key support for POST/PUT/DELETE endpoints",
+        "specifications": {
+          "header": "Idempotency-Key header",
+          "storage": "Redis cache with 24h TTL",
+          "middleware": "check key before processing, return cached response",
+          "endpoints": "POST, PUT, DELETE (not GET)",
+          "response": "return cached response with 200 for duplicate requests",
+          "cleanup": "automatic expiration after 24h"
+        },
+        "dependencies": ["Redis cache"],
+        "estimated_minutes": 40,
+        "quality_gates": ["duplicate prevention", "cached response correct", "TTL works", "performance <10ms"]
+      }
+    },
+    {
+      "id": 33,
+      "phase": "implement-feature-flags",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Feature flag system for gradual rollouts",
+        "database": "PostgreSQL for flag definitions",
+        "framework": "Express + custom middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-feature-flags",
+        "description": "Build feature flag system with targeting rules",
+        "specifications": {
+          "storage": "database for flag definitions",
+          "targeting": ["all users", "percentage rollout", "user attributes", "whitelist"],
+          "middleware": "checkFlag(flagName) function",
+          "api": "admin API for flag management",
+          "features": ["flag evaluation", "real-time updates", "analytics"],
+          "caching": "Redis cache for flag values (5 min TTL)"
+        },
+        "dependencies": ["database schema", "Redis cache"],
+        "estimated_minutes": 55,
+        "quality_gates": ["targeting works", "real-time updates", "performance <5ms", "admin UI functional"]
+      }
+    },
+    {
+      "id": 34,
+      "phase": "implement-billing",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Stripe billing integration",
+        "database": "PostgreSQL for subscriptions",
+        "framework": "Express + Stripe SDK"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-billing",
+        "description": "Integrate Stripe for subscription billing",
+        "specifications": {
+          "features": ["create subscription", "update plan", "cancel subscription", "invoice history"],
+          "webhooks": "handle Stripe webhooks (invoice.paid, subscription.updated)",
+          "endpoints": [
+            {"method": "POST", "path": "/api/billing/subscribe"},
+            {"method": "POST", "path": "/api/billing/portal"}
+          ],
+          "sync": "sync Stripe data to database",
+          "security": "webhook signature verification",
+          "idempotency": "use Stripe idempotency keys"
+        },
+        "dependencies": ["Stripe account", "webhook endpoint"],
+        "estimated_minutes": 60,
+        "quality_gates": ["subscriptions work", "webhooks processed", "security verified", "sync accurate"]
+      }
+    },
+    {
+      "id": 35,
+      "phase": "implement-media-processing",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Image processing (resize, crop, optimize)",
+        "database": "PostgreSQL for image metadata",
+        "framework": "Express + Sharp"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-media-processing",
+        "description": "Build image processing service with Sharp",
+        "specifications": {
+          "library": "Sharp for fast image processing",
+          "operations": ["resize", "crop", "format conversion", "optimization", "watermark"],
+          "endpoints": ["/api/images/process"],
+          "storage": "S3 for processed images",
+          "queue": "Bull queue for async processing",
+          "variants": "generate multiple sizes (thumbnail, medium, large)"
+        },
+        "dependencies": ["Sharp library", "S3 bucket"],
+        "estimated_minutes": 55,
+        "quality_gates": ["all operations work", "performance fast", "variants generated", "queue processing"]
+      }
+    },
+    {
+      "id": 36,
+      "phase": "implement-pdf-generation",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "PDF report generation",
+        "database": "N/A",
+        "framework": "Express + Puppeteer"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-pdf-generation",
+        "description": "Generate PDF reports from HTML templates",
+        "specifications": {
+          "library": "Puppeteer for PDF generation",
+          "templates": "HTML templates with dynamic data",
+          "endpoints": ["/api/reports/generate"],
+          "features": ["headers/footers", "page numbers", "styling", "charts"],
+          "queue": "Bull queue for async generation",
+          "storage": "S3 for generated PDFs with presigned URLs"
+        },
+        "dependencies": ["Puppeteer installed", "HTML templates"],
+        "estimated_minutes": 50,
+        "quality_gates": ["PDF generation works", "templates render", "async processing", "S3 storage"]
+      }
+    },
+    {
+      "id": 37,
+      "phase": "implement-two-factor-auth",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Two-factor authentication (TOTP)",
+        "database": "PostgreSQL for 2FA secrets",
+        "framework": "Express + speakeasy"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-two-factor-auth",
+        "description": "Add 2FA with TOTP (Google Authenticator)",
+        "specifications": {
+          "library": "speakeasy for TOTP generation",
+          "flow": "enable 2FA → scan QR → verify code → backup codes",
+          "endpoints": [
+            {"method": "POST", "path": "/api/auth/2fa/enable"},
+            {"method": "POST", "path": "/api/auth/2fa/verify"},
+            {"method": "POST", "path": "/api/auth/2fa/disable"}
+          ],
+          "features": ["QR code generation", "backup codes", "recovery"],
+          "security": "encrypted secret storage"
+        },
+        "dependencies": ["speakeasy library", "QR code library"],
+        "estimated_minutes": 55,
+        "quality_gates": ["TOTP works", "QR codes scan", "backup codes functional", "security tested"]
+      }
+    },
+    {
+      "id": 38,
+      "phase": "implement-session-management",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Session management with Redis",
+        "database": "Redis for session storage",
+        "framework": "Express + express-session"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-session-management",
+        "description": "Set up session management with Redis store",
+        "specifications": {
+          "storage": "Redis for distributed sessions",
+          "features": ["session creation", "session validation", "session destruction", "concurrent session limit"],
+          "security": "secure cookies, HttpOnly, SameSite",
+          "endpoints": ["/api/auth/sessions", "/api/auth/logout-all"],
+          "ttl": "configurable session expiry (default 7 days)",
+          "monitoring": "active session count"
+        },
+        "dependencies": ["Redis cluster", "express-session"],
+        "estimated_minutes": 45,
+        "quality_gates": ["distributed sessions", "security headers", "TTL works", "concurrent limits"]
+      }
+    },
+    {
+      "id": 39,
+      "phase": "implement-data-encryption",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Field-level encryption for sensitive data",
+        "database": "PostgreSQL",
+        "framework": "Prisma with encryption middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-data-encryption",
+        "description": "Add field-level encryption for PII data",
+        "specifications": {
+          "fields": ["SSN", "credit card", "address", "phone"],
+          "algorithm": "AES-256-GCM",
+          "key_management": "AWS KMS or environment variable",
+          "middleware": "Prisma middleware for auto encrypt/decrypt",
+          "features": ["transparent encryption", "key rotation support"],
+          "performance": "minimal impact (<10ms)"
+        },
+        "dependencies": ["encryption key", "crypto library"],
+        "estimated_minutes": 50,
+        "quality_gates": ["encryption works", "decryption automatic", "key management secure", "performance acceptable"]
+      }
+    },
+    {
+      "id": 40,
+      "phase": "implement-api-gateway",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "API Gateway with request routing",
+        "database": "N/A",
+        "framework": "Express + http-proxy-middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-api-gateway",
+        "description": "Build API Gateway for microservices routing",
+        "specifications": {
+          "routing": "route requests to backend services",
+          "services": ["auth", "users", "orders", "payments"],
+          "features": ["load balancing", "circuit breaker", "retry logic", "request/response transformation"],
+          "middleware": "authentication, rate limiting, logging",
+          "health_checks": "service health monitoring",
+          "caching": "response caching for GET requests"
+        },
+        "dependencies": ["backend services", "service discovery"],
+        "estimated_minutes": 60,
+        "quality_gates": ["routing works", "circuit breaker functional", "health checks", "caching effective"]
+      }
+    },
+    {
+      "id": 41,
+      "phase": "implement-time-series",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Time-series data storage and querying",
+        "database": "TimescaleDB (PostgreSQL extension)",
+        "framework": "Express + Prisma"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-time-series",
+        "description": "Set up time-series database for metrics and events",
+        "specifications": {
+          "database": "TimescaleDB hypertables",
+          "use_cases": ["metrics", "logs", "events", "sensor data"],
+          "features": ["continuous aggregates", "retention policies", "compression"],
+          "queries": ["time-bucket aggregations", "gap filling", "moving averages"],
+          "performance": "optimized for high-throughput writes",
+          "retention": "automatic data deletion after 90 days"
+        },
+        "dependencies": ["TimescaleDB extension"],
+        "estimated_minutes": 55,
+        "quality_gates": ["hypertables created", "aggregates work", "retention policies", "query performance"]
+      }
+    },
+    {
+      "id": 42,
+      "phase": "implement-content-moderation",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Content moderation with AI (OpenAI Moderation)",
+        "database": "PostgreSQL for moderation logs",
+        "framework": "Express + OpenAI API"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-content-moderation",
+        "description": "Add content moderation for user-generated content",
+        "specifications": {
+          "service": "OpenAI Moderation API",
+          "content_types": ["text", "images"],
+          "flow": "submit → moderate → flag/approve → notify",
+          "categories": ["hate", "violence", "sexual", "spam"],
+          "actions": ["auto-reject", "flag for review", "warn user"],
+          "features": ["moderation queue", "appeal system", "whitelist/blacklist"]
+        },
+        "dependencies": ["OpenAI API key", "moderation policies"],
+        "estimated_minutes": 55,
+        "quality_gates": ["moderation accurate", "queue functional", "actions work", "appeals process"]
+      }
+    },
+    {
+      "id": 43,
+      "phase": "implement-localization",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "API localization and i18n",
+        "database": "PostgreSQL for translations",
+        "framework": "Express + i18next"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-localization",
+        "description": "Add multi-language support for API responses",
+        "specifications": {
+          "library": "i18next for backend i18n",
+          "languages": ["en", "es", "fr", "de", "ja"],
+          "detection": "Accept-Language header",
+          "features": ["error messages", "validation messages", "email templates"],
+          "storage": "JSON translation files + database for dynamic content",
+          "fallback": "default to English if translation missing"
+        },
+        "dependencies": ["translation files", "i18next library"],
+        "estimated_minutes": 50,
+        "quality_gates": ["all languages work", "detection accurate", "fallback functional", "dynamic content"]
+      }
+    },
+    {
+      "id": 44,
+      "phase": "implement-recommendations",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Recommendation engine (collaborative filtering)",
+        "database": "PostgreSQL + Redis",
+        "framework": "Express + ML library"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-recommendations",
+        "description": "Build recommendation system for personalized suggestions",
+        "specifications": {
+          "algorithm": "collaborative filtering (user-based or item-based)",
+          "data": "user interactions (views, likes, purchases)",
+          "endpoints": ["/api/recommendations/for-you", "/api/recommendations/similar/:id"],
+          "features": ["real-time recommendations", "cold start handling", "diversity"],
+          "performance": "precompute recommendations, cache in Redis",
+          "quality": "A/B testing framework"
+        },
+        "dependencies": ["interaction data", "ML library or service"],
+        "estimated_minutes": 60,
+        "quality_gates": ["recommendations relevant", "performance <100ms", "cold start handled", "A/B testing"]
+      }
+    },
+    {
+      "id": 45,
+      "phase": "implement-graph-api",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Graph API for social network features",
+        "database": "Neo4j graph database",
+        "framework": "Express + Neo4j driver"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-graph-api",
+        "description": "Build graph API for relationships and connections",
+        "specifications": {
+          "database": "Neo4j for graph storage",
+          "queries": ["friends of friends", "shortest path", "mutual connections", "recommendations"],
+          "endpoints": [
+            {"method": "POST", "path": "/api/connections/add"},
+            {"method": "GET", "path": "/api/connections/suggestions"}
+          ],
+          "features": ["follow/unfollow", "connection degrees", "network visualization data"],
+          "performance": "indexed relationships, query optimization"
+        },
+        "dependencies": ["Neo4j database", "Neo4j driver"],
+        "estimated_minutes": 60,
+        "quality_gates": ["queries accurate", "performance <500ms", "indexing optimal", "relationship integrity"]
+      }
+    },
+    {
+      "id": 46,
+      "phase": "implement-blockchain-integration",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Blockchain integration (Ethereum)",
+        "database": "PostgreSQL for transaction logs",
+        "framework": "Express + ethers.js"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-blockchain-integration",
+        "description": "Integrate Ethereum blockchain for NFT minting",
+        "specifications": {
+          "library": "ethers.js for Ethereum interaction",
+          "contract": "ERC-721 smart contract",
+          "features": ["mint NFT", "transfer NFT", "query ownership", "listen to events"],
+          "endpoints": [
+            {"method": "POST", "path": "/api/nft/mint"},
+            {"method": "GET", "path": "/api/nft/:tokenId"}
+          ],
+          "wallet": "custodial wallet management",
+          "gas": "gas estimation and optimization"
+        },
+        "dependencies": ["smart contract deployed", "Infura/Alchemy API"],
+        "estimated_minutes": 60,
+        "quality_gates": ["minting works", "event listening", "gas optimization", "wallet security"]
+      }
+    },
+    {
+      "id": 47,
+      "phase": "implement-event-sourcing",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Event sourcing architecture",
+        "database": "PostgreSQL for event store",
+        "framework": "Express + event store"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-event-sourcing",
+        "description": "Implement event sourcing for audit and state reconstruction",
+        "specifications": {
+          "patterns": "event store, event handlers, projections",
+          "events": ["UserCreated", "OrderPlaced", "PaymentProcessed"],
+          "storage": "append-only event log in PostgreSQL",
+          "projections": "read models built from events",
+          "features": ["event replay", "snapshots", "time travel queries"],
+          "consistency": "eventual consistency for read models"
+        },
+        "dependencies": ["event store schema", "event handlers"],
+        "estimated_minutes": 60,
+        "quality_gates": ["events persisted", "projections accurate", "replay works", "snapshots functional"]
+      }
+    },
+    {
+      "id": 48,
+      "phase": "implement-api-testing",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Automated API testing suite",
+        "database": "Test database",
+        "framework": "Jest + Supertest"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-api-testing",
+        "description": "Create comprehensive API test suite",
+        "specifications": {
+          "framework": "Jest + Supertest for HTTP testing",
+          "coverage": ["unit tests", "integration tests", "e2e tests"],
+          "features": ["test database seeding", "request/response assertions", "auth testing"],
+          "organization": "tests organized by endpoint/feature",
+          "ci_cd": "run tests in CI/CD pipeline",
+          "target": ">=80% code coverage"
+        },
+        "dependencies": ["Jest configured", "test database"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all endpoints tested", "coverage >=80%", "CI/CD integration", "no flaky tests"]
+      }
+    },
+    {
+      "id": 49,
+      "phase": "implement-performance-optimization",
+      "context": {
+        "previous_phase": "design",
+        "api_spec": "Database query optimization",
+        "database": "PostgreSQL",
+        "framework": "Prisma + explain analyze"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-performance-optimization",
+        "description": "Optimize slow database queries and API endpoints",
+        "specifications": {
+          "tools": ["EXPLAIN ANALYZE", "pg_stat_statements", "Prisma query logs"],
+          "techniques": ["indexing", "query rewriting", "N+1 elimination", "connection pooling"],
+          "targets": ["API response <200ms", "database query <100ms"],
+          "features": ["query monitoring", "slow query alerts", "optimization documentation"],
+          "testing": "load testing with k6 or Artillery"
+        },
+        "dependencies": ["performance monitoring tools"],
+        "estimated_minutes": 60,
+        "quality_gates": ["targets met", "indexes optimal", "no N+1 queries", "load testing passed"]
+      }
+    },
+    {
+      "id": 50,
+      "phase": "implement-disaster-recovery",
+      "context": {
+        "previous_phase": "architecture",
+        "api_spec": "Database backup and recovery",
+        "database": "PostgreSQL",
+        "framework": "Automated backup scripts"
+      },
+      "expected_drone_task": {
+        "drone_id": "backend-dev",
+        "task_type": "implement-disaster-recovery",
+        "description": "Set up automated database backups and recovery procedures",
+        "specifications": {
+          "backups": "automated daily backups to S3",
+          "retention": "30 daily, 12 monthly backups",
+          "restoration": "documented restoration procedure",
+          "features": ["point-in-time recovery", "backup verification", "monitoring"],
+          "testing": "quarterly restore drills",
+          "tools": "pg_dump, pg_restore, or managed backup service"
+        },
+        "dependencies": ["S3 bucket", "backup scripts"],
+        "estimated_minutes": 50,
+        "quality_gates": ["backups automated", "restoration tested", "monitoring alerts", "documentation complete"]
+      }
+    }
+  ]
+}

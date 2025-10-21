@@ -1,0 +1,144 @@
+/**
+ * TDD Cycle Orchestrator - Process Flow
+ *
+ * Composite skill that enforces Test-Driven Development workflow.
+ * Ensures tests are written BEFORE implementation code.
+ *
+ * VERSION: 1.0
+ * PRIORITY: P0 (Critical - Most used composite skill)
+ */
+
+digraph TDDCycleOrchestrator {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start and end with semantic ellipse
+    start [shape=ellipse, label="User Request:\n'implement [feature]'", fillcolor=lightgreen];
+    end [shape=ellipse, label="Feature Complete:\nTDD-Compliant", fillcolor=green, fontcolor=white];
+
+    // ========== PHASE 1: DETECTION & ROUTING ==========
+    subgraph cluster_detection {
+        label="Phase 1: Detection & Routing";
+        fillcolor=lightyellow;
+        style=filled;
+
+        detect [label="skill-cascade-orchestrator\ndetects 'implement'"];
+        route [label="Routes to:\ntdd-cycle-orchestrator"];
+        consult_registry [shape=cylinder, label="agent_registry.py\nfind_drones_for_task()", fillcolor=lightcoral];
+
+        detect -> route;
+        route -> consult_registry [style=dashed, label="consults"];
+    }
+
+    // ========== PHASE 2: TEST-FIRST ENFORCEMENT ==========
+    subgraph cluster_test_first {
+        label="Phase 2: Test-First Enforcement";
+        fillcolor=lightblue;
+        style=filled;
+
+        block_write [shape=octagon, label="BLOCK:\nNo Write/Edit\nuntil test exists", fillcolor=orange];
+        spawn_tester [label="Spawn:\ntester Drone"];
+        test_exists [shape=diamond, label="Test file\nexists?", fillcolor=yellow];
+        write_test [label="Atomic Skill:\ntest-runner\n(write failing test)"];
+
+        block_write -> test_exists;
+        test_exists -> write_test [label="no", color=red];
+        write_test -> spawn_tester;
+        spawn_tester -> test_exists [label="retry"];
+    }
+
+    // ========== PHASE 3: IMPLEMENTATION ==========
+    subgraph cluster_implementation {
+        label="Phase 3: Implementation";
+        fillcolor=lightblue;
+        style=filled;
+
+        run_test_fail [label="Atomic Skill:\ntest-runner\n(expect FAIL)"];
+        test_fails [shape=diamond, label="Test fails\nas expected?", fillcolor=yellow];
+        fix_test [label="Fix test\n(wrong assertion)", fillcolor=orange];
+        spawn_coder [label="Spawn:\ncoder Drone"];
+        implement [label="Write MINIMAL code\nto pass test"];
+
+        run_test_fail -> test_fails;
+        test_fails -> spawn_coder [label="yes", color=green];
+        test_fails -> fix_test [label="no", color=red];
+        fix_test -> run_test_fail;
+        spawn_coder -> implement;
+    }
+
+    // ========== PHASE 4: VALIDATION ==========
+    subgraph cluster_validation {
+        label="Phase 4: Validation";
+        fillcolor=lightblue;
+        style=filled;
+
+        run_test_pass [label="Atomic Skill:\ntest-runner\n(expect PASS)"];
+        test_passes [shape=diamond, label="Test\npasses?", fillcolor=yellow];
+        debug [label="Debug:\nWhy not passing?"];
+        build [label="Atomic Skill:\nbuild-verifier"];
+        build_ok [shape=diamond, label="Build\nsuccessful?", fillcolor=yellow];
+
+        run_test_pass -> test_passes;
+        test_passes -> build [label="yes", color=green];
+        test_passes -> debug [label="no", color=red];
+        debug -> implement [label="retry"];
+        build -> build_ok;
+        build_ok -> end [label="yes", color=green, lhead=cluster_quality];
+    }
+
+    // ========== PHASE 5: QUALITY GATES ==========
+    subgraph cluster_quality {
+        label="Phase 5: Quality Gates";
+        fillcolor=lightgreen;
+        style=filled;
+
+        nasa [label="Atomic Skill:\nnasa-compliance-checker"];
+        nasa_ok [shape=diamond, label="≤60 LOC\nper function?", fillcolor=yellow];
+        refactor [label="Refactor:\nSplit large functions"];
+        style_match [label="Atomic Skill:\nstyle-matcher"];
+        style_ok [shape=diamond, label="Style\nmatches?", fillcolor=yellow];
+        docstring [label="Atomic Skill:\ndocstring-validator"];
+        review [label="Spawn:\nreviewer Drone"];
+
+        nasa -> nasa_ok;
+        nasa_ok -> style_match [label="yes", color=green];
+        nasa_ok -> refactor [label="no", color=red];
+        refactor -> nasa;
+        style_match -> style_ok;
+        style_ok -> docstring [label="yes", color=green];
+        style_ok -> style_match [label="no\n(auto-fix)", color=orange];
+        docstring -> review;
+        review -> end;
+    }
+
+    // ========== EXTERNAL SKILLS ==========
+    completion_gate [shape=cylinder, label="completion-gate-\norchestrator\n(if user says 'done')", fillcolor=lightcoral];
+    stuck_escalation [shape=cylinder, label="stuck-escalation-\norchestrator\n(if error 3x)", fillcolor=lightcoral];
+
+    // ========== FLOW CONNECTIONS ==========
+    start -> detect;
+    consult_registry -> block_write;
+    test_exists -> run_test_fail [label="yes", color=green];
+    build_ok -> nasa [label="no\n(fix build)", color=red];
+    end -> completion_gate [style=dashed, label="triggers"];
+    debug -> stuck_escalation [style=dashed, label="if stuck"];
+
+    // ========== CRITICAL WARNINGS ==========
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        fillcolor="#ffcdd2";
+        style=filled;
+
+        rule1 [shape=octagon, label="NEVER allow Write\nuntil test exists", fillcolor=red, fontcolor=white];
+        rule2 [shape=octagon, label="NEVER skip\nquality gates", fillcolor=red, fontcolor=white];
+        rule3 [shape=octagon, label="ALWAYS write\nminimal code first", fillcolor=orange];
+    }
+
+    // ========== METADATA ==========
+    labelloc="t";
+    label="TDD Cycle Orchestrator: Test-Driven Development Workflow\n\nTriggers: 'implement', 'add', 'create', 'build'\nCalls: test-runner, build-verifier, nasa-compliance-checker, style-matcher, docstring-validator\nSpawns: tester → coder → reviewer Drones";
+    fontsize=14;
+    fontname="Arial Bold";
+}

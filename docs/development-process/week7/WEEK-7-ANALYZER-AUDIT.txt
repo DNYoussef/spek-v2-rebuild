@@ -1,0 +1,66 @@
+================================================================================
+ATLANTIS UI ANALYZER AUDIT - Week 7 Day 1
+================================================================================
+
+[STATS] Overall Statistics:
+  Total Files: 32
+  Total LOC: 1,956
+  Avg LOC/File: 61
+
+[FILES] Files Analyzed:
+  [WARN] components\project\ProjectSelector.tsx: 222 LOC
+  [OK] lib\websocket\WebSocketManager.ts: 183 LOC
+  [WARN] components\chat\MonarchChat.tsx: 143 LOC
+  [WARN] app\help\page.tsx: 106 LOC
+  [WARN] components\agents\AgentStatusMonitor.tsx: 84 LOC
+  [WARN] app\settings\page.tsx: 83 LOC
+  [WARN] app\history\page.tsx: 82 LOC
+  [WARN] components\layout\Sidebar.tsx: 81 LOC
+  [OK] components\ui\Toast.tsx: 74 LOC
+  [OK] lib\trpc\server.ts: 71 LOC
+  [OK] components\dashboard\ProjectDashboard.tsx: 58 LOC
+  [OK] components\visualizations\Loop3Viz.tsx: 58 LOC
+  [OK] components\visualizations\Loop1Viz.tsx: 56 LOC
+  [OK] components\layout\Footer.tsx: 51 LOC
+  [OK] app\project\new\page.tsx: 50 LOC
+  [OK] lib\config.ts: 45 LOC
+  [OK] components\visualizations\Loop2Viz.tsx: 42 LOC
+  [OK] components\layout\Header.tsx: 41 LOC
+  [OK] app\page.tsx: 40 LOC
+  [OK] components\ui\LoadingSkeleton.tsx: 36 LOC
+  [OK] app\layout.tsx: 33 LOC
+  [OK] app\loop1\page.tsx: 33 LOC
+  [OK] app\loop2\page.tsx: 33 LOC
+  [OK] app\loop3\page.tsx: 33 LOC
+  [OK] components\ui\Button.tsx: 33 LOC
+  [OK] app\project\select\page.tsx: 32 LOC
+  [OK] components\ui\Badge.tsx: 32 LOC
+  [OK] components\ui\Card.tsx: 31 LOC
+  [OK] components\ui\Input.tsx: 31 LOC
+  [OK] lib\trpc\client.ts: 24 LOC
+  [OK] lib\trpc\Provider.tsx: 18 LOC
+  [OK] components\layout\RootLayout.tsx: 17 LOC
+
+[NASA] NASA Rule 10 Compliance (<=60 LOC per function):
+  Compliance Rate: 87.7%
+  Violations: 14
+
+[WARN] Violations Details:
+  - app\help\page.tsx:HelpPage = 104 LOC (+44 over limit)
+  - app\help\page.tsx:HelpPage = 104 LOC (+44 over limit)
+  - app\history\page.tsx:HistoryPage = 80 LOC (+20 over limit)
+  - app\history\page.tsx:HistoryPage = 80 LOC (+20 over limit)
+  - app\settings\page.tsx:SettingsPage = 81 LOC (+21 over limit)
+  - app\settings\page.tsx:SettingsPage = 81 LOC (+21 over limit)
+  - components\agents\AgentStatusMonitor.tsx:AgentStatusMonitor = 82 LOC (+22 over limit)
+  - components\agents\AgentStatusMonitor.tsx:AgentStatusMonitor = 82 LOC (+22 over limit)
+  - components\chat\MonarchChat.tsx:MonarchChat = 128 LOC (+68 over limit)
+  - components\chat\MonarchChat.tsx:MonarchChat = 128 LOC (+68 over limit)
+  - components\layout\Sidebar.tsx:Sidebar = 76 LOC (+16 over limit)
+  - components\layout\Sidebar.tsx:Sidebar = 76 LOC (+16 over limit)
+  - components\project\ProjectSelector.tsx:ProjectSelector = 150 LOC (+90 over limit)
+  - components\project\ProjectSelector.tsx:ProjectSelector = 150 LOC (+90 over limit)
+
+================================================================================
+[OK] AUDIT COMPLETE - Week 7 Day 1
+================================================================================

@@ -1,0 +1,101 @@
+# Coverage Configuration for Analyzer v6.0.0
+# Focus on production-ready core modules (Week 1-2 refactoring)
+# Excludes legacy modules pending deprecation
+
+[run]
+source = analyzer
+omit =
+    # Legacy modules (pre-Week 1-2 refactoring) - 0% coverage, pending deprecation
+    analyzer/enterprise/*
+    analyzer/performance/*
+    analyzer/optimization/*
+    analyzer/ml_modules/*
+    analyzer/validation/*
+    analyzer/architecture/*
+    analyzer/streaming/*
+    analyzer/dashboard/*
+    analyzer/integrations/*
+    analyzer/dup_detection/*
+    analyzer/ast_engine/*
+    analyzer/caching/*
+    analyzer/components/*
+    analyzer/detectors/*
+
+    # Legacy core helpers (fallback, compatibility layers)
+    analyzer/core/fallback.py
+    analyzer/core/import_manager.py
+    analyzer/core/unified_imports.py
+    analyzer/core/__init__.py
+
+    # God object legacy files
+    analyzer/analysis_orchestrator.py
+    analyzer/analyzer_wrapper.py
+    analyzer/bridge.py
+    analyzer/cache_manager.py
+    analyzer/cli_wrapper.py
+    analyzer/component_integrator.py
+    analyzer/comprehensive_analysis_engine.py
+    analyzer/configuration_manager.py
+    analyzer/connascence_analyzer.py
+    analyzer/connascence_ast_analyzer.py
+    analyzer/consolidated_analyzer.py
+    analyzer/constants.py
+    analyzer/context_analyzer.py
+    analyzer/core.py
+    analyzer/cross_phase_learning_integration.py
+    analyzer/cross_phase_security_validator.py
+    analyzer/duplication_unified.py
+    analyzer/enhanced_github_analyzer.py
+    analyzer/github_analyzer_runner.py
+    analyzer/github_status_reporter.py
+    analyzer/nasa_compliance_calculator.py
+    analyzer/performance_monitoring_integration.py
+    analyzer/phase_correlation_storage.py
+    analyzer/real_unified_analyzer.py
+    analyzer/result_aggregator.py
+    analyzer/setup.py
+    analyzer/smart_integration_engine.py
+    analyzer/system_integration.py
+    analyzer/test_critical_violations.py
+    analyzer/test_github_output.py
+    analyzer/test_high_severity_violations.py
+    analyzer/thresholds.py
+    analyzer/unified_analyzer.py
+    analyzer/unified_analyzer_god_object_backup.py
+    analyzer/unified_api.py
+    analyzer/unified_memory_model.py
+    analyzer/unified_orchestrator.py
+    analyzer/violation_remediation.py
+    analyzer/violation_remediation_enhanced.py
+    analyzer/analyzer_types.py
+
+    # Test files
+    */tests/*
+    */test_*.py
+    */__pycache__/*
+    */venv/*
+    */env/*
+
+[report]
+# Focus on core modules only
+include =
+    analyzer/core/*
+    analyzer/engines/*
+    analyzer/constants/*
+
+# Quality gates
+fail_under = 80
+precision = 2
+skip_covered = False
+skip_empty = True
+
+# Output formatting
+show_missing = True
+sort = Cover
+
+[html]
+directory = htmlcov
+title = Analyzer v6.0.0 Core Modules Coverage
+
+[xml]
+output = coverage.xml

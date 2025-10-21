@@ -1,0 +1,423 @@
+{
+  "dataset_name": "queen_to_princess_quality_top10",
+  "description": "Top 10 examples selected for DSPy BootstrapFewShot demonstrations",
+  "selection_criteria": "Diversity (40%), Quality (25%), Real-world applicability (20%), Teaching value (10%), Completeness (5%)",
+  "total_examples": 10,
+  "coverage": {
+    "security": 2,
+    "unit_testing": 2,
+    "compliance": 1,
+    "integration_testing": 3,
+    "performance": 2
+  },
+  "examples": [
+    {
+      "id": 11,
+      "rank": 1,
+      "selection_reason": "Security audit: underrepresented security category, well-structured decomposition, real-world pattern, strong teaching value",
+      "category": "security",
+      "task_description": "API authentication security audit",
+      "objective": "JWT validation, rate limiting, CSRF protection",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test JWT token expiration handling",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate rate limiting enforcement",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test CSRF token validation",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for security theater patterns",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ],
+      "score": 86.0,
+      "score_breakdown": {
+        "diversity": 40,
+        "quality": 23.0,
+        "real_world": 12,
+        "teaching": 6,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 2,
+      "rank": 2,
+      "selection_reason": "Payment processing: underrepresented unit_testing category, well-structured decomposition, strong teaching value",
+      "category": "unit_testing",
+      "task_description": "Test payment processing module",
+      "objective": "90% coverage, all edge cases, error handling",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Create unit tests for payment calculations",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test error handling for failed transactions",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify function length compliance",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ],
+      "score": 82.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 23.0,
+        "real_world": 8,
+        "teaching": 6,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 80,
+      "rank": 3,
+      "selection_reason": "Security audit: underrepresented compliance category, well-structured decomposition, strong teaching value",
+      "category": "compliance",
+      "task_description": "Third-party integration security audit",
+      "objective": "API key security, webhook validation, rate limits",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test API key storage security",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test webhook signature validation",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate third-party rate limiting",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 82.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 23.0,
+        "real_world": 8,
+        "teaching": 6,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 7,
+      "rank": 4,
+      "selection_reason": "Database migration: underrepresented integration_testing category, well-structured decomposition",
+      "category": "integration_testing",
+      "task_description": "Validate database migration system",
+      "objective": "Zero data loss, rollback support",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test forward migration execution",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test rollback scenarios",
+          "dependencies": [
+            "test_forward_migration"
+          ],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate data integrity post-migration",
+          "dependencies": [
+            "test_forward_migration"
+          ],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 81.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 25.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 4,
+      "rank": 5,
+      "selection_reason": "Performance testing: underrepresented performance category, well-structured decomposition, real-world pattern",
+      "category": "performance",
+      "task_description": "Performance test API endpoints",
+      "objective": "<200ms response time, 1000 RPS capacity",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Create load tests for user endpoints",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Stress test authentication flow",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify no unbounded loops in hot paths",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ],
+      "score": 80.0,
+      "score_breakdown": {
+        "diversity": 40.0,
+        "quality": 23.0,
+        "real_world": 12,
+        "teaching": 0,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 34,
+      "rank": 6,
+      "selection_reason": "Security audit: underrepresented security category, well-structured decomposition",
+      "category": "security",
+      "task_description": "Input sanitization security audit",
+      "objective": "XSS prevention, SQL escaping, command injection",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test HTML entity encoding",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test SQL parameterization",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test command injection prevention",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ],
+      "score": 72.3,
+      "score_breakdown": {
+        "diversity": 33.3,
+        "quality": 23.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 14,
+      "rank": 7,
+      "selection_reason": "Underrepresented unit_testing category, well-structured decomposition",
+      "category": "unit_testing",
+      "task_description": "Test file upload handling",
+      "objective": "Support 10MB files, virus scanning, type validation",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test file size limit enforcement",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test file type validation",
+          "dependencies": [],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test malicious file detection",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify upload handler ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ],
+      "score": 71.0,
+      "score_breakdown": {
+        "diversity": 32.0,
+        "quality": 23.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 15,
+      "rank": 8,
+      "selection_reason": "Performance testing: underrepresented performance category, well-structured decomposition",
+      "category": "performance",
+      "task_description": "Cache layer performance validation",
+      "objective": "95% hit rate, <10ms cache lookup",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure cache hit/miss ratios",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test cache invalidation logic",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile cache lookup latency",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ],
+      "score": 71.0,
+      "score_breakdown": {
+        "diversity": 32.0,
+        "quality": 23.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 1,
+      "rank": 9,
+      "selection_reason": "Oauth2 authentication: good integration_testing coverage, well-structured decomposition",
+      "category": "integration_testing",
+      "task_description": "Validate OAuth2 implementation quality",
+      "objective": "80% coverage, NASA compliant, zero mock code",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Create auth integration tests with edge cases",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Validate NASA Rule 10 for auth functions (≤60 LOC)",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for TODO comments and mock code",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ],
+      "score": 69.0,
+      "score_breakdown": {
+        "diversity": 30.0,
+        "quality": 23.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    },
+    {
+      "id": 27,
+      "rank": 10,
+      "selection_reason": "Good integration_testing coverage, well-structured decomposition",
+      "category": "integration_testing",
+      "task_description": "Validate CI/CD pipeline integration",
+      "objective": "Auto-deploy on merge, rollback support",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test automated deployment workflow",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test rollback mechanism",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate health check integration",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ],
+      "score": 63.0,
+      "score_breakdown": {
+        "diversity": 24.0,
+        "quality": 23.0,
+        "real_world": 8,
+        "teaching": 3,
+        "completeness": 5
+      }
+    }
+  ]
+}

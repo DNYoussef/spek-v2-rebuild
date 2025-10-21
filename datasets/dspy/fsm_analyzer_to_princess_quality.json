@@ -1,0 +1,1477 @@
+{
+  "communication_path": "fsm-analyzer→princess-quality",
+  "description": "FSM-Analyzer reports state machine validation to Princess-Quality",
+  "drone_id": "fsm-analyzer",
+  "princess_id": "princess-quality",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 43,
+    "failure": 7
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-1",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 9,
+        "criteria_met": 3,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2832
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 9 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 36,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-2",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 5,
+        "transitions_count": 12,
+        "criteria_met": 4,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2017
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 5 states, 12 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 60,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-3",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 6,
+        "criteria_met": 3,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2315
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 6 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 24,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-4",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 8,
+        "transitions_count": 14,
+        "criteria_met": 5,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1946
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 8 states, 14 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 112,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-5",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 5,
+        "transitions_count": 9,
+        "criteria_met": 4,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 1772
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 5 states, 9 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 45,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-6",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 5,
+        "transitions_count": 11,
+        "criteria_met": 4,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2355
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 5 states, 11 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 55,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-7",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 11,
+        "criteria_met": 3,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1092
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 11 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 77,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-8",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 5,
+        "transitions_count": 5,
+        "criteria_met": 4,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2987
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 5 states, 5 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 25,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-9",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 8,
+        "criteria_met": 5,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 1204
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 8 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 32,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-10",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 6,
+        "transitions_count": 9,
+        "criteria_met": 5,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 2215
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 6 states, 9 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 54,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-11",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 3,
+        "transitions_count": 6,
+        "criteria_met": 5,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2963
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 3 states, 6 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 18,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-12",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 8,
+        "transitions_count": 7,
+        "criteria_met": 5,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 1729
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 8 states, 7 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 56,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-13",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 14,
+        "criteria_met": 5,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1090
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 14 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 98,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-14",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 3,
+        "transitions_count": 14,
+        "criteria_met": 4,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2503
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 3 states, 14 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 42,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-15",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 5,
+        "transitions_count": 15,
+        "criteria_met": 3,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 2837
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 5 states, 15 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 75,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-16",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 6,
+        "transitions_count": 5,
+        "criteria_met": 3,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 1670
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 6 states, 5 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 30,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-17",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 8,
+        "transitions_count": 10,
+        "criteria_met": 5,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 1884
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 8 states, 10 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 80,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-18",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 6,
+        "transitions_count": 9,
+        "criteria_met": 3,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 2512
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 6 states, 9 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 54,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-19",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 3,
+        "transitions_count": 7,
+        "criteria_met": 3,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1298
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 3 states, 7 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 21,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-20",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 7,
+        "criteria_met": 4,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2906
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 7 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 49,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-21",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 6,
+        "criteria_met": 5,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 1202
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 6 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 42,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-22",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 6,
+        "transitions_count": 6,
+        "criteria_met": 3,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2509
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 6 states, 6 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 36,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-23",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 8,
+        "transitions_count": 11,
+        "criteria_met": 4,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2151
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 8 states, 11 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 88,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-24",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 5,
+        "criteria_met": 5,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2673
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 5 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 35,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-25",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 3,
+        "transitions_count": 13,
+        "criteria_met": 4,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1143
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 3 states, 13 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 39,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-26",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 8,
+        "transitions_count": 9,
+        "criteria_met": 3,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 1339
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 8 states, 9 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 72,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-27",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 3,
+        "transitions_count": 14,
+        "criteria_met": 3,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2977
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 3 states, 14 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 42,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-28",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 12,
+        "criteria_met": 4,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 1104
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 12 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 48,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-29",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 5,
+        "transitions_count": 13,
+        "criteria_met": 5,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1650
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 5 states, 13 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 65,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-30",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 13,
+        "criteria_met": 5,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2646
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 13 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 52,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-31",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 6,
+        "transitions_count": 12,
+        "criteria_met": 5,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 1849
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 6 states, 12 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 72,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-32",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 15,
+        "criteria_met": 3,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1036
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 15 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 60,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-33",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 5,
+        "transitions_count": 8,
+        "criteria_met": 5,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2496
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 5 states, 8 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 40,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-34",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 12,
+        "criteria_met": 5,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1427
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 12 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 48,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-35",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 6,
+        "transitions_count": 5,
+        "criteria_met": 5,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2874
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 6 states, 5 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 30,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-36",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 3,
+        "transitions_count": 13,
+        "criteria_met": 3,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2682
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 3 states, 13 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 39,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-37",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 8,
+        "transitions_count": 6,
+        "criteria_met": 3,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 1871
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 8 states, 6 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 48,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-38",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 15,
+        "criteria_met": 5,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2895
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 15 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 105,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-39",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 4,
+        "transitions_count": 15,
+        "criteria_met": 5,
+        "decision_matrix_score": 4,
+        "execution_time_ms": 1210
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 4 states, 15 transitions, 5/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 60,
+          "criteria_met": 5,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-40",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 15,
+        "criteria_met": 4,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 1149
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 15 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 105,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-41",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 15,
+        "criteria_met": 4,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 2818
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 15 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 105,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-42",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 6,
+        "transitions_count": 13,
+        "criteria_met": 4,
+        "decision_matrix_score": 3,
+        "execution_time_ms": 2446
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 6 states, 13 transitions, 4/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 78,
+          "criteria_met": 4,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-43",
+      "drone_results": {
+        "success": true,
+        "fsm_justified": true,
+        "states_count": 7,
+        "transitions_count": 6,
+        "criteria_met": 3,
+        "decision_matrix_score": 5,
+        "execution_time_ms": 1655
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "justified",
+        "summary": "FSM justified: 7 states, 6 transitions, 3/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 42,
+          "criteria_met": 3,
+          "threshold": 3
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "FSM appropriately used"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-44",
+      "drone_results": {
+        "success": false,
+        "fsm_justified": false,
+        "states_count": 1,
+        "transitions_count": 1,
+        "criteria_met": 2,
+        "decision_matrix_score": 0,
+        "execution_time_ms": 2541
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "unjustified",
+        "summary": "FSM not justified: 1 states, 1 transitions, 2/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 1,
+          "criteria_met": 2,
+          "threshold": 3
+        },
+        "next_phase": "code",
+        "blockers": [
+          "FSM does not meet ≥3 decision matrix criteria"
+        ],
+        "recommendations": [
+          "Replace with simple if/else logic"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-45",
+      "drone_results": {
+        "success": false,
+        "fsm_justified": false,
+        "states_count": 2,
+        "transitions_count": 1,
+        "criteria_met": 2,
+        "decision_matrix_score": 1,
+        "execution_time_ms": 2054
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "unjustified",
+        "summary": "FSM not justified: 2 states, 1 transitions, 2/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 2,
+          "criteria_met": 2,
+          "threshold": 3
+        },
+        "next_phase": "code",
+        "blockers": [
+          "FSM does not meet ≥3 decision matrix criteria"
+        ],
+        "recommendations": [
+          "Replace with simple if/else logic"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-46",
+      "drone_results": {
+        "success": false,
+        "fsm_justified": false,
+        "states_count": 2,
+        "transitions_count": 2,
+        "criteria_met": 1,
+        "decision_matrix_score": 2,
+        "execution_time_ms": 1778
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "unjustified",
+        "summary": "FSM not justified: 2 states, 2 transitions, 1/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 4,
+          "criteria_met": 1,
+          "threshold": 3
+        },
+        "next_phase": "code",
+        "blockers": [
+          "FSM does not meet ≥3 decision matrix criteria"
+        ],
+        "recommendations": [
+          "Replace with simple if/else logic"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-47",
+      "drone_results": {
+        "success": false,
+        "fsm_justified": false,
+        "states_count": 1,
+        "transitions_count": 2,
+        "criteria_met": 1,
+        "decision_matrix_score": 2,
+        "execution_time_ms": 1184
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "unjustified",
+        "summary": "FSM not justified: 1 states, 2 transitions, 1/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 2,
+          "criteria_met": 1,
+          "threshold": 3
+        },
+        "next_phase": "code",
+        "blockers": [
+          "FSM does not meet ≥3 decision matrix criteria"
+        ],
+        "recommendations": [
+          "Replace with simple if/else logic"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-48",
+      "drone_results": {
+        "success": false,
+        "fsm_justified": false,
+        "states_count": 1,
+        "transitions_count": 1,
+        "criteria_met": 1,
+        "decision_matrix_score": 0,
+        "execution_time_ms": 2652
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "unjustified",
+        "summary": "FSM not justified: 1 states, 1 transitions, 1/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 1,
+          "criteria_met": 1,
+          "threshold": 3
+        },
+        "next_phase": "code",
+        "blockers": [
+          "FSM does not meet ≥3 decision matrix criteria"
+        ],
+        "recommendations": [
+          "Replace with simple if/else logic"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-49",
+      "drone_results": {
+        "success": false,
+        "fsm_justified": false,
+        "states_count": 2,
+        "transitions_count": 1,
+        "criteria_met": 0,
+        "decision_matrix_score": 0,
+        "execution_time_ms": 1247
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "unjustified",
+        "summary": "FSM not justified: 2 states, 1 transitions, 0/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 2,
+          "criteria_met": 0,
+          "threshold": 3
+        },
+        "next_phase": "code",
+        "blockers": [
+          "FSM does not meet ≥3 decision matrix criteria"
+        ],
+        "recommendations": [
+          "Replace with simple if/else logic"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "fsm-analyzer",
+      "task_completed": "fsm-check-50",
+      "drone_results": {
+        "success": false,
+        "fsm_justified": false,
+        "states_count": 1,
+        "transitions_count": 3,
+        "criteria_met": 1,
+        "decision_matrix_score": 1,
+        "execution_time_ms": 1640
+      },
+      "expected_aggregated_result": {
+        "phase": "fsm_validation",
+        "status": "unjustified",
+        "summary": "FSM not justified: 1 states, 3 transitions, 1/5 criteria met.",
+        "quality_metrics": {
+          "fsm_complexity": 3,
+          "criteria_met": 1,
+          "threshold": 3
+        },
+        "next_phase": "code",
+        "blockers": [
+          "FSM does not meet ≥3 decision matrix criteria"
+        ],
+        "recommendations": [
+          "Replace with simple if/else logic"
+        ]
+      }
+    }
+  ]
+}

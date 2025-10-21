@@ -1,0 +1,107 @@
+{
+  "delegate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"implementation\", \"files\": [\"src/auth/oauth.py\", \"src/auth/jwt.py\"], \"analysis_type\": \"comprehensive\", \"language\": \"Python\"}",
+        "reasoning": "For analyzing authentication-related Python code, I'll delegate to the code-analyzer drone with security expertise. The task requires comprehensive analysis focusing on:\n1. Security vulnerabilities in OAuth and JWT implementations\n2. Code quality and best practices\n3. Authentication flow correctness\n4. Cryptographic implementation security\n\nThe analyzer should use Python-specific security tools and authentication-focused checks. Given the critical nature of auth code, acceptance criteria will be strict.",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-code\",\n    \"description\": \"Comprehensive security and quality analysis of authentication modules\",\n    \"payload\": {\n        \"tools\": [\"bandit\", \"pylint\", \"mypy\", \"safety\", \"jwt-analyzer\"],\n        \"checks\": [\n            \"security vulnerabilities\",\n            \"token validation\",\n            \"cryptographic implementations\",\n            \"session management\",\n            \"error handling\",\n            \"input validation\",\n            \"logging practices\"\n        ],\n        \"thresholds\": {\n            \"security_score\": 95,\n            \"code_quality\": 85,\n            \"test_coverage\": 90,\n            \"vulnerability_count\": 0\n        }\n    },\n    \"acceptance_criteria\": [\n        \"No security vulnerabilities detected\",\n        \"Proper JWT secret management\",\n        \"Secure OAuth implementation\",\n        \"Complete error handling\",\n        \"Type safety verification\",\n        \"PEP 8 compliance\",\n        \"Documentation coverage >90%\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"refactoring\", \"files\": [\"src/api/handlers.ts\", \"src/api/middleware.ts\"], \"analysis_type\": \"complexity\", \"language\": \"TypeScript\"}",
+        "reasoning": "For analyzing code complexity in TypeScript API handlers and middleware, I'll delegate to the code-analyzer drone. This drone specializes in static analysis and can effectively measure cyclomatic complexity, cognitive complexity, and maintainability metrics. The task requires TypeScript-specific tooling and complexity analysis capabilities. The acceptance criteria will focus on maintaining reasonable complexity thresholds and identifying potential refactoring opportunities.",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-complexity\",\n    \"description\": \"Analyze complexity metrics for API handlers and middleware\",\n    \"payload\": {\n        \"tools\": [\"sonarqube\", \"eslint\", \"typescript-metrics\", \"cognitive-complexity-ts\"],\n        \"metrics\": [\n            \"cyclomatic complexity\",\n            \"cognitive complexity\",\n            \"method length\",\n            \"dependency chains\",\n            \"nesting depth\"\n        ],\n        \"thresholds\": {\n            \"max_cyclomatic\": 10,\n            \"max_cognitive\": 15,\n            \"max_method_length\": 30,\n            \"max_nesting\": 3\n        },\n        \"files\": [\"src/api/handlers.ts\", \"src/api/middleware.ts\"]\n    },\n    \"acceptance_criteria\": [\n        \"All methods have cyclomatic complexity <= 10\",\n        \"Cognitive complexity per function <= 15\",\n        \"Method length <= 30 lines\",\n        \"Nesting depth <= 3 levels\",\n        \"Generated complexity report in SonarQube format\",\n        \"Identified refactoring candidates marked in report\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"implementation\", \"files\": [\"src/services/payment.java\", \"src/services/billing.java\"], \"analysis_type\": \"security\", \"language\": \"Java\"}",
+        "reasoning": "For analyzing security aspects of payment and billing services in Java, I'll delegate to the nasa-enforcer drone from the Princess-Quality group. This drone specializes in security compliance and code analysis with emphasis on NASA's security standards. The task requires deep security analysis focusing on payment processing, data protection, and secure coding practices. The drone will use multiple security analysis tools and check against common vulnerabilities specific to financial systems.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"security-audit\",\n    \"description\": \"Perform comprehensive security analysis of payment and billing services\",\n    \"payload\": {\n        \"files\": [\"src/services/payment.java\", \"src/services/billing.java\"],\n        \"tools\": [\"sonarqube\", \"fortify\", \"findbugs\", \"owasp-dependency-check\"],\n        \"security_checks\": [\n            \"sql-injection\",\n            \"xss-vulnerabilities\",\n            \"authentication-validation\",\n            \"encryption-methods\",\n            \"secure-communication\",\n            \"input-validation\",\n            \"sensitive-data-exposure\"\n        ],\n        \"focus_areas\": [\n            \"payment-processing-security\",\n            \"pci-dss-compliance\",\n            \"data-encryption\",\n            \"access-control\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"No critical or high security vulnerabilities detected\",\n        \"All sensitive data properly encrypted\",\n        \"Input validation implemented for all payment fields\",\n        \"Secure session management verified\",\n        \"PCI-DSS compliance requirements met\",\n        \"No hardcoded credentials or secrets\",\n        \"Proper error handling without information leakage\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"code_review\", \"files\": [\"cmd/server/main.go\", \"internal/api/router.go\"], \"analysis_type\": \"performance\", \"language\": \"Go\"}",
+        "reasoning": "For analyzing Go server performance, I'll delegate to the code-analyzer drone which specializes in static and dynamic code analysis. The task requires focus on performance-critical aspects of a Go server including goroutine management, memory allocation patterns, and HTTP router efficiency. Given the files are core server components, we need comprehensive performance profiling and benchmarking.",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-performance\",\n    \"description\": \"Perform comprehensive performance analysis of Go server components\",\n    \"payload\": {\n        \"tools\": [\"pprof\", \"benchstat\", \"golangci-lint\", \"go-critic\"],\n        \"metrics\": [\n            \"goroutine leaks\",\n            \"memory allocation patterns\",\n            \"HTTP router performance\",\n            \"request latency\",\n            \"resource utilization\"\n        ],\n        \"thresholds\": {\n            \"latency_p95_ms\": 100,\n            \"memory_leaks\": 0,\n            \"goroutine_leaks\": 0,\n            \"cpu_usage_percent\": 70\n        },\n        \"benchmark_scenarios\": [\n            \"high concurrent requests\",\n            \"large payload handling\",\n            \"long-running connections\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"No goroutine leaks detected\",\n        \"Memory usage within acceptable bounds\",\n        \"Router performance meets latency requirements\",\n        \"Clean resource cleanup on shutdown\",\n        \"Benchmark results show consistent performance\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"implementation\", \"files\": [\"src/utils/validators.py\", \"src/utils/sanitizers.py\"], \"analysis_type\": \"duplicate_detection\", \"language\": \"Python\"}",
+        "reasoning": "For duplicate code detection in Python utility files, I'll assign the code-analyzer drone with specialized duplicate detection capabilities. The task requires thorough analysis of potential code duplication in validator and sanitizer utilities, which often have similar patterns. The analyzer should use multiple detection algorithms and consider both exact and semantic duplicates. Given these are utility functions, special attention to function signatures and implementation patterns is crucial.",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-code\",\n    \"description\": \"Detect code duplication in Python utility functions\",\n    \"payload\": {\n        \"tools\": [\"pylint\", \"radon\", \"cpd\", \"sourcemeter\"],\n        \"checks\": [\n            \"exact code duplicates\",\n            \"semantic duplicates\",\n            \"similar function signatures\",\n            \"repeated validation patterns\",\n            \"common sanitization logic\"\n        ],\n        \"thresholds\": {\n            \"duplication_percentage\": 5,\n            \"minimum_tokens\": 50,\n            \"similarity_threshold\": 0.8\n        }\n    },\n    \"acceptance_criteria\": [\n        \"Identify all code blocks with >80% similarity\",\n        \"Generate report of duplicate function signatures\",\n        \"Flag potential consolidation opportunities\",\n        \"Provide refactoring suggestions for duplicates\",\n        \"Calculate overall duplication percentage\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"dependency_update\", \"files\": [\"src/\"], \"analysis_type\": \"dependency_analysis\", \"language\": \"Python\"}",
+        "reasoning": "For Python dependency analysis, I'll delegate to the code-analyzer drone which specializes in static analysis and dependency checking. The task requires comprehensive dependency analysis including security vulnerabilities, outdated packages, and compatibility issues. Given the Python ecosystem, we'll utilize tools like safety, pip-audit, and pipdeptree for thorough analysis. The acceptance criteria will focus on security, maintenance, and compatibility aspects.",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-dependencies\",\n    \"description\": \"Comprehensive Python dependency analysis and security audit\",\n    \"payload\": {\n        \"tools\": [\"safety\", \"pip-audit\", \"pipdeptree\", \"bandit\"],\n        \"checks\": [\n            \"security vulnerabilities\",\n            \"outdated packages\",\n            \"dependency conflicts\",\n            \"transitive dependencies\",\n            \"license compliance\"\n        ],\n        \"thresholds\": {\n            \"critical_vulnerabilities\": 0,\n            \"high_vulnerabilities\": 0,\n            \"outdated_packages_max\": 5,\n            \"dependency_depth_max\": 7\n        }\n    },\n    \"acceptance_criteria\": [\n        \"No critical or high severity vulnerabilities detected\",\n        \"All direct dependencies are up to date\",\n        \"No conflicting dependencies identified\",\n        \"All packages have compatible licenses\",\n        \"Dependency tree depth within acceptable limits\",\n        \"Generated comprehensive dependency report\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"implementation\", \"files\": [\"src/database/models.py\", \"src/database/repositories.py\"], \"analysis_type\": \"comprehensive\", \"language\": \"Python\"}",
+        "reasoning": "For a comprehensive analysis of Python database models and repositories, I'll delegate to the code-analyzer drone. This requires deep inspection of database interaction patterns, SQL injection vulnerabilities, connection handling, and ORM usage. The analyzer should focus on both security and performance aspects while ensuring proper database access patterns are followed.\n\nKey focus areas:\n1. Security vulnerabilities in database access\n2. Connection pooling and resource management\n3. SQL query optimization\n4. ORM usage patterns\n5. Error handling and transaction management",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-code\",\n    \"description\": \"Comprehensive analysis of Python database layer\",\n    \"payload\": {\n        \"tools\": [\"pylint\", \"bandit\", \"sqlalchemy-analyze\", \"mypy\"],\n        \"checks\": [\n            \"SQL injection vulnerabilities\",\n            \"connection handling\",\n            \"transaction patterns\",\n            \"ORM anti-patterns\",\n            \"type safety\",\n            \"resource leaks\"\n        ],\n        \"thresholds\": {\n            \"security_score\": 95,\n            \"maintainability\": 80,\n            \"type_coverage\": 90,\n            \"cyclomatic_complexity\": 10\n        }\n    },\n    \"acceptance_criteria\": [\n        \"No critical security vulnerabilities detected\",\n        \"Database connections properly managed and closed\",\n        \"Type hints properly implemented and checked\",\n        \"No N+1 query problems identified\",\n        \"Proper transaction boundary management\",\n        \"Resource cleanup mechanisms verified\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"implementation\", \"files\": [\"src/components/\", \"src/hooks/\"], \"analysis_type\": \"react_analysis\", \"language\": \"TypeScript\"}",
+        "reasoning": "For React component and hooks analysis in TypeScript, I'll delegate to the code-analyzer drone with specialized React expertise. The analysis needs to focus on:\n1. React best practices and patterns\n2. Custom hooks implementation\n3. Component lifecycle and performance\n4. TypeScript type safety\n5. State management patterns\n\nThe task requires both static analysis and runtime performance checks, with specific React-oriented tools and metrics.",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-code\",\n    \"description\": \"React components and custom hooks analysis\",\n    \"payload\": {\n        \"tools\": [\n            \"eslint-plugin-react\",\n            \"react-hooks-linter\",\n            \"typescript-eslint\",\n            \"react-performance-analyzer\"\n        ],\n        \"checks\": [\n            \"hooks rules compliance\",\n            \"component re-renders\",\n            \"prop drilling depth\",\n            \"type safety\",\n            \"memory leaks\",\n            \"accessibility\"\n        ],\n        \"thresholds\": {\n            \"unnecessary_renders\": 0,\n            \"hook_violations\": 0,\n            \"type_coverage\": 95,\n            \"complexity_score\": 15\n        }\n    },\n    \"acceptance_criteria\": [\n        \"All React hooks follow rules of hooks\",\n        \"No unnecessary re-renders detected\",\n        \"TypeScript types properly defined and used\",\n        \"Component complexity within threshold\",\n        \"No memory leaks in cleanup functions\",\n        \"WCAG 2.1 compliance verified\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"implementation\", \"files\": [\"lib/api/client.rb\", \"lib/api/endpoints.rb\"], \"analysis_type\": \"comprehensive\", \"language\": \"Ruby\"}",
+        "reasoning": "For a comprehensive analysis of Ruby API client code, I'll delegate to the code-analyzer drone. This requires deep inspection of API implementation patterns, code quality, and security aspects. The analyzer should focus on API client best practices, error handling, HTTP security, and overall code maintainability. Given the critical nature of API code, we need thorough static analysis and multiple quality gates.",
+        "drone_task": "{\n  \"drone_id\": \"code-analyzer\",\n  \"task_type\": \"analyze-code\",\n  \"description\": \"Comprehensive analysis of Ruby API client implementation\",\n  \"payload\": {\n    \"tools\": [\"rubocop\", \"brakeman\", \"reek\", \"flog\"],\n    \"checks\": [\n      \"API error handling\",\n      \"HTTP security headers\",\n      \"request/response validation\",\n      \"authentication mechanisms\",\n      \"rate limiting implementation\",\n      \"code complexity\",\n      \"method organization\"\n    ],\n    \"thresholds\": {\n      \"complexity_score\": 25,\n      \"security_issues\": 0,\n      \"code_smells\": 15,\n      \"test_coverage\": 90\n    }\n  },\n  \"acceptance_criteria\": [\n    \"No security vulnerabilities detected\",\n    \"Code complexity below threshold\",\n    \"Proper error handling implementation\",\n    \"RESTful conventions followed\",\n    \"Authentication properly implemented\",\n    \"Logging and monitoring hooks present\"\n  ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "analyze-code",
+        "context": "{\"previous_phase\": \"implementation\", \"files\": [\"src/core/engine.cpp\", \"src/core/renderer.cpp\"], \"analysis_type\": \"cpp_analysis\", \"language\": \"C++\"}",
+        "reasoning": "For analyzing C++ core engine and renderer code, we need specialized static analysis focused on performance, memory safety, and system-level concerns. The code-analyzer drone is best suited with C++-specific tooling. Key areas to examine include memory management, threading issues, and performance bottlenecks. Given the critical nature of engine and renderer components, thorough analysis is required.",
+        "drone_task": "{\n    \"drone_id\": \"code-analyzer\",\n    \"task_type\": \"analyze-code\",\n    \"description\": \"Static analysis of C++ engine and renderer components\",\n    \"payload\": {\n        \"tools\": [\"clang-tidy\", \"cppcheck\", \"valgrind\", \"sanitizers\"],\n        \"checks\": [\n            \"memory leaks\",\n            \"thread safety\",\n            \"undefined behavior\",\n            \"performance anti-patterns\",\n            \"RAII compliance\"\n        ],\n        \"thresholds\": {\n            \"memory_leaks\": 0,\n            \"critical_issues\": 0,\n            \"performance_score\": 85\n        }\n    },\n    \"acceptance_criteria\": [\n        \"No memory leaks detected\",\n        \"Thread-safety violations addressed\",\n        \"No undefined behavior detected\",\n        \"Performance metrics within acceptable range\",\n        \"RAII principles properly followed\",\n        \"All critical and high-severity issues resolved\"\n    ]\n}"
+      }
+    ],
+    "signature": {
+      "instructions": "Delegate task to drone agent with clear instructions.\n\nYou are a Princess agent coordinating your specialized drone hive.\nYour role is to take high-level workflow phases and convert them\ninto specific, actionable tasks for your drone agents.\n\nPrincess-Dev drones: coder, reviewer, debugger, integration-engineer\nPrincess-Quality drones: tester, nasa-enforcer, theater-detector, fsm-analyzer\nPrincess-Coordination drones: orchestrator, planner, cost-tracker\n\nEach drone task must have:\n- Specific drone agent assignment\n- Task type matching drone capabilities\n- Clear context from previous phases\n- Concrete deliverables\n- Quality gates/acceptance criteria\n\nFollow the 26 prompt engineering principles:\n- Clarity: Unambiguous instructions\n- Context: Include relevant phase results\n- Constraints: Respect drone capabilities\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Phase:",
+          "description": "Development phase to execute (design, code, test, review, etc.)"
+        },
+        {
+          "prefix": "Context:",
+          "description": "Context and results from previous phases that this phase depends on"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Delegation reasoning explaining drone selection and task structure"
+        },
+        {
+          "prefix": "Drone Task:",
+          "description": "Structured task for drone agent as JSON object. Must have: {'drone_id': str, 'task_type': str, 'description': str, 'payload': dict, 'acceptance_criteria': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

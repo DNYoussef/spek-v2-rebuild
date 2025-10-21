@@ -1,0 +1,1503 @@
+{
+  "communication_path": "orchestrator→princess-coordination",
+  "description": "Orchestrator reports workflow status to Princess-Coordination",
+  "drone_id": "orchestrator",
+  "princess_id": "princess-coordination",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 40,
+    "failure": 10
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-1",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-1",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 58568,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 7524
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-2",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-2",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 23560,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 5,
+          "average_phase_time_ms": 7595
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-3",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-3",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 47125,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 3905
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-4",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-4",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 53645,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 4402
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-5",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-5",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 8,
+        "total_execution_time_ms": 57603,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 7454
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-6",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-6",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 8,
+        "total_execution_time_ms": 21935,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 6406
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-7",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-7",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 45023,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 4323
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-8",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-8",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 29365,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 7,
+          "average_phase_time_ms": 7330
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-9",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-9",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 54779,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 7,
+          "average_phase_time_ms": 3507
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-10",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-10",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 31411,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 5,
+          "average_phase_time_ms": 4890
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-11",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-11",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 21190,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 7980
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-12",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-12",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 48887,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 6102
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-13",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-13",
+        "phases_completed": 6,
+        "phases_total": 6,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 40084,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 6/6 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 5,
+          "average_phase_time_ms": 6905
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-14",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-14",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 30953,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 7799
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-15",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-15",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 46013,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 7882
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-16",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-16",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 26903,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 6328
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-17",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-17",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 49456,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 5309
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-18",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-18",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 56120,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 4585
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-19",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-19",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 42144,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 5,
+          "average_phase_time_ms": 5652
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-20",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-20",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 46760,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 6691
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-21",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-21",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 4,
+        "total_execution_time_ms": 43906,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 5035
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-22",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-22",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 23422,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 6228
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-23",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-23",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 42669,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 4204
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-24",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-24",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 21340,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 3141
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-25",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-25",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 37035,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 3351
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-26",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-26",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 4,
+        "total_execution_time_ms": 59272,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 6130
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-27",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-27",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 40417,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 4381
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-28",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-28",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 47555,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 4883
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-29",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-29",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 37819,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 6777
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-30",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-30",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 33772,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 6178
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-31",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-31",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 56419,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 5200
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-32",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-32",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 49843,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 6552
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-33",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-33",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 55651,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 6699
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-34",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-34",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 22683,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 7,
+          "average_phase_time_ms": 7789
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-35",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-35",
+        "phases_completed": 6,
+        "phases_total": 6,
+        "agents_coordinated": 4,
+        "total_execution_time_ms": 56331,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 6/6 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 5431
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-36",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-36",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 8,
+        "total_execution_time_ms": 55487,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 7,
+          "average_phase_time_ms": 7217
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-37",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-37",
+        "phases_completed": 4,
+        "phases_total": 4,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 28834,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 4/4 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 5,
+          "average_phase_time_ms": 7737
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-38",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-38",
+        "phases_completed": 5,
+        "phases_total": 5,
+        "agents_coordinated": 4,
+        "total_execution_time_ms": 45289,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 5/5 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 3094
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-39",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-39",
+        "phases_completed": 7,
+        "phases_total": 7,
+        "agents_coordinated": 4,
+        "total_execution_time_ms": 45653,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 7/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 4387
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-40",
+      "drone_results": {
+        "success": true,
+        "workflow_id": "wf-40",
+        "phases_completed": 8,
+        "phases_total": 8,
+        "agents_coordinated": 4,
+        "total_execution_time_ms": 23982,
+        "bottlenecks": []
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "complete",
+        "summary": "Workflow completed: 8/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 100.0,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 5370
+        },
+        "next_phase": "complete",
+        "blockers": [],
+        "recommendations": [
+          "Workflow successful"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-41",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-41",
+        "phases_completed": 4,
+        "phases_total": 9,
+        "agents_coordinated": 8,
+        "total_execution_time_ms": 37859,
+        "bottlenecks": [
+          "Phase 3 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 4/9 phases.",
+        "quality_metrics": {
+          "completion_rate": 44.4,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 7916
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 5 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-42",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-42",
+        "phases_completed": 4,
+        "phases_total": 7,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 50495,
+        "bottlenecks": [
+          "Phase 1 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 4/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 57.1,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 3596
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 3 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-43",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-43",
+        "phases_completed": 5,
+        "phases_total": 9,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 39452,
+        "bottlenecks": [
+          "Phase 2 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 5/9 phases.",
+        "quality_metrics": {
+          "completion_rate": 55.6,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 6864
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 4 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-44",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-44",
+        "phases_completed": 4,
+        "phases_total": 7,
+        "agents_coordinated": 5,
+        "total_execution_time_ms": 29056,
+        "bottlenecks": [
+          "Phase 4 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 4/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 57.1,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 5781
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 3 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-45",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-45",
+        "phases_completed": 4,
+        "phases_total": 7,
+        "agents_coordinated": 4,
+        "total_execution_time_ms": 54273,
+        "bottlenecks": [
+          "Phase 2 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 4/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 57.1,
+          "agents_utilized": 3,
+          "average_phase_time_ms": 7839
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 3 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-46",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-46",
+        "phases_completed": 4,
+        "phases_total": 7,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 37566,
+        "bottlenecks": [
+          "Phase 4 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 4/7 phases.",
+        "quality_metrics": {
+          "completion_rate": 57.1,
+          "agents_utilized": 4,
+          "average_phase_time_ms": 3375
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 3 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-47",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-47",
+        "phases_completed": 2,
+        "phases_total": 9,
+        "agents_coordinated": 7,
+        "total_execution_time_ms": 50582,
+        "bottlenecks": [
+          "Phase 2 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 2/9 phases.",
+        "quality_metrics": {
+          "completion_rate": 22.2,
+          "agents_utilized": 7,
+          "average_phase_time_ms": 7535
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 7 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-48",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-48",
+        "phases_completed": 3,
+        "phases_total": 8,
+        "agents_coordinated": 8,
+        "total_execution_time_ms": 26520,
+        "bottlenecks": [
+          "Phase 3 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 3/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 37.5,
+          "agents_utilized": 6,
+          "average_phase_time_ms": 4720
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 5 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-49",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-49",
+        "phases_completed": 3,
+        "phases_total": 8,
+        "agents_coordinated": 6,
+        "total_execution_time_ms": 29732,
+        "bottlenecks": [
+          "Phase 2 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 3/8 phases.",
+        "quality_metrics": {
+          "completion_rate": 37.5,
+          "agents_utilized": 8,
+          "average_phase_time_ms": 4969
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 5 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "orchestrator",
+      "task_completed": "workflow-50",
+      "drone_results": {
+        "success": false,
+        "workflow_id": "wf-50",
+        "phases_completed": 5,
+        "phases_total": 10,
+        "agents_coordinated": 3,
+        "total_execution_time_ms": 59158,
+        "bottlenecks": [
+          "Phase 1 delayed"
+        ]
+      },
+      "expected_aggregated_result": {
+        "phase": "orchestration",
+        "status": "partial",
+        "summary": "Workflow partially completed: 5/10 phases.",
+        "quality_metrics": {
+          "completion_rate": 50.0,
+          "agents_utilized": 7,
+          "average_phase_time_ms": 7262
+        },
+        "next_phase": "orchestrate",
+        "blockers": [
+          "Complete remaining 5 phases"
+        ],
+        "recommendations": [
+          "Review bottleneck phases"
+        ]
+      }
+    }
+  ]
+}

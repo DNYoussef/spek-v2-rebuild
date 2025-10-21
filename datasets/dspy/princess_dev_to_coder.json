@@ -1,0 +1,1160 @@
+{
+  "communication_path": "princess-dev→coder",
+  "description": "Princess-Dev delegates code implementation tasks to Coder drone",
+  "version": "1.0",
+  "total_examples": 50,
+  "examples": [
+    {
+      "id": 1,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "REST API with PostgreSQL",
+        "requirements": "OAuth2 login endpoints"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement OAuth2 login and logout endpoints",
+        "specifications": {
+          "endpoints": ["/api/auth/login", "/api/auth/logout"],
+          "authentication": "JWT tokens",
+          "database": "users table with password hashing",
+          "libraries": ["bcrypt", "jsonwebtoken"]
+        },
+        "dependencies": ["design phase complete", "database schema ready"],
+        "estimated_minutes": 45,
+        "quality_gates": ["tests pass", "type safety", "<=60 LOC per function", "no hardcoded secrets"]
+      }
+    },
+    {
+      "id": 2,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "React component library",
+        "requirements": "Reusable button component with variants"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create Button component with primary, secondary, and danger variants",
+        "specifications": {
+          "component_name": "Button",
+          "variants": ["primary", "secondary", "danger", "ghost"],
+          "props": ["onClick", "disabled", "loading", "size"],
+          "styling": "Tailwind CSS",
+          "accessibility": "ARIA labels, keyboard navigation"
+        },
+        "dependencies": ["design system tokens defined"],
+        "estimated_minutes": 30,
+        "quality_gates": ["TypeScript strict mode", "100% prop types", "accessibility audit pass"]
+      }
+    },
+    {
+      "id": 3,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Microservices with RabbitMQ",
+        "requirements": "Message queue consumer service"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement RabbitMQ consumer for order processing",
+        "specifications": {
+          "queue_name": "orders.processing",
+          "message_format": "JSON with order_id, items, total",
+          "error_handling": "Dead letter queue for failures",
+          "concurrency": "5 concurrent consumers",
+          "acknowledgment": "Manual ack after processing"
+        },
+        "dependencies": ["RabbitMQ server running", "order database schema"],
+        "estimated_minutes": 50,
+        "quality_gates": ["error handling tested", "message deduplication", "<=60 LOC per function"]
+      }
+    },
+    {
+      "id": 4,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "GraphQL API with Apollo Server",
+        "requirements": "User profile queries and mutations"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement GraphQL resolvers for user profile management",
+        "specifications": {
+          "queries": ["getUser", "searchUsers"],
+          "mutations": ["updateProfile", "uploadAvatar"],
+          "data_loaders": "Batching for N+1 prevention",
+          "authorization": "User can only update own profile"
+        },
+        "dependencies": ["GraphQL schema defined", "database models ready"],
+        "estimated_minutes": 55,
+        "quality_gates": ["authorization tested", "data loader efficiency", "type safety"]
+      }
+    },
+    {
+      "id": 5,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Mobile app with React Native",
+        "requirements": "Offline-first data sync"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement offline-first sync mechanism using WatermelonDB",
+        "specifications": {
+          "storage": "WatermelonDB with SQLite",
+          "sync_strategy": "Last-write-wins with conflict resolution",
+          "sync_trigger": "App foreground + manual refresh",
+          "entities": ["tasks", "projects", "comments"]
+        },
+        "dependencies": ["API sync endpoints ready", "database schema"],
+        "estimated_minutes": 60,
+        "quality_gates": ["conflict resolution tested", "offline mode functional", "sync errors handled"]
+      }
+    },
+    {
+      "id": 6,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Python CLI tool",
+        "requirements": "File processing with progress tracking"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create CLI command for batch file conversion with progress bar",
+        "specifications": {
+          "command": "convert --input <dir> --output <dir> --format <format>",
+          "formats": ["json", "yaml", "csv"],
+          "progress": "Rich library progress bar",
+          "parallel": "Process files in parallel (4 workers)"
+        },
+        "dependencies": ["file parsing libraries installed"],
+        "estimated_minutes": 40,
+        "quality_gates": ["error handling for invalid files", "<=60 LOC per function", "help documentation"]
+      }
+    },
+    {
+      "id": 7,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Serverless functions on AWS Lambda",
+        "requirements": "Image upload and thumbnail generation"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement Lambda function for S3 image upload with thumbnail generation",
+        "specifications": {
+          "trigger": "S3 PUT event",
+          "processing": "Sharp library for resizing",
+          "thumbnails": ["small: 150x150", "medium: 300x300", "large: 600x600"],
+          "storage": "Thumbnails in /thumbnails prefix"
+        },
+        "dependencies": ["S3 bucket configured", "IAM permissions set"],
+        "estimated_minutes": 45,
+        "quality_gates": ["memory optimization", "timeout handling", "error notifications"]
+      }
+    },
+    {
+      "id": 8,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "WebSocket real-time service",
+        "requirements": "Chat room with presence tracking"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement WebSocket server for real-time chat with presence",
+        "specifications": {
+          "protocol": "Socket.io",
+          "events": ["message", "typing", "user_joined", "user_left"],
+          "presence": "Redis-backed user tracking",
+          "persistence": "Message history in PostgreSQL"
+        },
+        "dependencies": ["Redis server", "WebSocket infrastructure"],
+        "estimated_minutes": 60,
+        "quality_gates": ["connection handling", "message ordering", "scalability tested"]
+      }
+    },
+    {
+      "id": 9,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Data pipeline with Apache Airflow",
+        "requirements": "ETL pipeline for analytics"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create Airflow DAG for daily ETL from PostgreSQL to BigQuery",
+        "specifications": {
+          "schedule": "Daily at 2 AM UTC",
+          "extract": "PostgreSQL full table scan",
+          "transform": "Clean nulls, normalize dates, aggregate metrics",
+          "load": "BigQuery append with deduplication"
+        },
+        "dependencies": ["Airflow setup", "database connections configured"],
+        "estimated_minutes": 50,
+        "quality_gates": ["idempotent tasks", "error alerting", "data validation"]
+      }
+    },
+    {
+      "id": 10,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Vue.js SPA with Vuex",
+        "requirements": "Shopping cart state management"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement Vuex store for shopping cart with persistence",
+        "specifications": {
+          "state": ["items", "total", "discount_code"],
+          "mutations": ["ADD_ITEM", "REMOVE_ITEM", "UPDATE_QUANTITY", "APPLY_DISCOUNT"],
+          "actions": ["addToCart", "checkout"],
+          "persistence": "localStorage with versioning"
+        },
+        "dependencies": ["product catalog API"],
+        "estimated_minutes": 35,
+        "quality_gates": ["type safety with TypeScript", "localStorage migration", "<=60 LOC per action"]
+      }
+    },
+    {
+      "id": 11,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Django REST API",
+        "requirements": "Pagination and filtering for large datasets"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Add pagination, filtering, and sorting to products API",
+        "specifications": {
+          "pagination": "Cursor-based for performance",
+          "filters": ["category", "price_range", "in_stock"],
+          "sorting": ["price", "name", "created_at"],
+          "search": "Full-text search on name and description"
+        },
+        "dependencies": ["Django REST framework installed"],
+        "estimated_minutes": 40,
+        "quality_gates": ["N+1 query prevention", "index optimization", "API documentation"]
+      }
+    },
+    {
+      "id": 12,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Kubernetes operator in Go",
+        "requirements": "Custom resource controller"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement Kubernetes controller for custom Database resource",
+        "specifications": {
+          "crd": "Database with spec (replicas, version, storage)",
+          "reconciliation": "Create StatefulSet, Service, PVC",
+          "status_updates": "Ready condition, connection string",
+          "cleanup": "Finalize on deletion"
+        },
+        "dependencies": ["Kubebuilder scaffolding", "k8s cluster access"],
+        "estimated_minutes": 60,
+        "quality_gates": ["error recovery", "status accuracy", "resource cleanup"]
+      }
+    },
+    {
+      "id": 13,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Next.js with SSR and API routes",
+        "requirements": "Server-side rendered blog with MDX"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create SSR blog pages with MDX support and syntax highlighting",
+        "specifications": {
+          "pages": ["[slug].tsx for posts", "index.tsx for listing"],
+          "mdx": "MDX v2 with remark and rehype plugins",
+          "syntax": "Prism.js for code highlighting",
+          "seo": "Meta tags, Open Graph, JSON-LD"
+        },
+        "dependencies": ["MDX content in /content directory"],
+        "estimated_minutes": 50,
+        "quality_gates": ["SSR performance", "accessibility", "SEO validation"]
+      }
+    },
+    {
+      "id": 14,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Rust CLI with async I/O",
+        "requirements": "Concurrent file downloader"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Build concurrent file downloader with retry logic and progress",
+        "specifications": {
+          "concurrency": "10 parallel downloads",
+          "retry": "Exponential backoff, 3 attempts",
+          "progress": "Per-file and total progress bars",
+          "resume": "Support partial downloads"
+        },
+        "dependencies": ["tokio runtime", "reqwest HTTP client"],
+        "estimated_minutes": 55,
+        "quality_gates": ["error handling", "memory efficiency", "cancellation support"]
+      }
+    },
+    {
+      "id": 15,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Flutter mobile app",
+        "requirements": "Biometric authentication"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement biometric login with fallback to PIN",
+        "specifications": {
+          "biometrics": "local_auth package (fingerprint, Face ID)",
+          "fallback": "4-digit PIN stored securely",
+          "storage": "flutter_secure_storage for credentials",
+          "platforms": ["iOS", "Android"]
+        },
+        "dependencies": ["local_auth package configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["platform-specific testing", "error messaging", "accessibility"]
+      }
+    },
+    {
+      "id": 16,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Express.js with TypeScript",
+        "requirements": "Rate limiting middleware"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create configurable rate limiting middleware with Redis",
+        "specifications": {
+          "strategy": "Token bucket algorithm",
+          "storage": "Redis for distributed rate limiting",
+          "config": "Per-endpoint limits (10/min login, 100/min API)",
+          "response": "429 with Retry-After header"
+        },
+        "dependencies": ["Redis connection established"],
+        "estimated_minutes": 40,
+        "quality_gates": ["concurrent request handling", "Redis failover", "<=60 LOC per function"]
+      }
+    },
+    {
+      "id": 17,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Electron desktop app",
+        "requirements": "Auto-update mechanism"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement auto-update using electron-updater",
+        "specifications": {
+          "provider": "GitHub Releases",
+          "check_frequency": "On app launch + every 6 hours",
+          "notification": "Native notification with download progress",
+          "installation": "Silent install on next launch"
+        },
+        "dependencies": ["code signing certificates"],
+        "estimated_minutes": 50,
+        "quality_gates": ["signature verification", "rollback on failure", "user notifications"]
+      }
+    },
+    {
+      "id": 18,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "gRPC microservice in Go",
+        "requirements": "User service with streaming"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement gRPC user service with bidirectional streaming",
+        "specifications": {
+          "rpcs": ["GetUser", "UpdateUser", "StreamNotifications"],
+          "streaming": "Bidirectional for real-time notifications",
+          "validation": "Protobuf validation plugin",
+          "interceptors": "Logging, auth, metrics"
+        },
+        "dependencies": ["protobuf definitions compiled"],
+        "estimated_minutes": 60,
+        "quality_gates": ["error codes", "streaming cancellation", "context propagation"]
+      }
+    },
+    {
+      "id": 19,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Angular with NgRx",
+        "requirements": "Feature module with state management"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create products feature module with NgRx state management",
+        "specifications": {
+          "actions": ["Load", "LoadSuccess", "LoadFailure", "Select"],
+          "reducer": "Immutable state updates",
+          "effects": "HTTP calls with error handling",
+          "selectors": "Memoized selectors for derived state"
+        },
+        "dependencies": ["NgRx installed", "product API endpoints"],
+        "estimated_minutes": 55,
+        "quality_gates": ["type safety", "selector efficiency", "effect testing"]
+      }
+    },
+    {
+      "id": 20,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "FastAPI with async SQLAlchemy",
+        "requirements": "CRUD endpoints for multi-tenant system"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement multi-tenant CRUD endpoints with row-level security",
+        "specifications": {
+          "endpoints": ["GET /items", "POST /items", "PUT /items/{id}", "DELETE /items/{id}"],
+          "tenant_isolation": "Filter by tenant_id from JWT token",
+          "validation": "Pydantic models for request/response",
+          "async": "Async SQLAlchemy for non-blocking I/O"
+        },
+        "dependencies": ["database schema with tenant_id", "JWT auth middleware"],
+        "estimated_minutes": 50,
+        "quality_gates": ["tenant isolation verified", "input validation", "async performance"]
+      }
+    },
+    {
+      "id": 21,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Redis caching layer",
+        "requirements": "Cache-aside pattern implementation"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement cache-aside pattern for product catalog",
+        "specifications": {
+          "pattern": "Check cache → miss → DB → write cache",
+          "ttl": "15 minutes for products, 5 minutes for prices",
+          "invalidation": "Event-driven on product updates",
+          "serialization": "MessagePack for efficiency"
+        },
+        "dependencies": ["Redis cluster", "event bus for invalidation"],
+        "estimated_minutes": 40,
+        "quality_gates": ["cache stampede prevention", "serialization performance", "error fallback"]
+      }
+    },
+    {
+      "id": 22,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Svelte SPA with stores",
+        "requirements": "Form validation with reactive stores"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create reactive form validation using Svelte stores",
+        "specifications": {
+          "stores": ["formData", "errors", "touched", "isValid"],
+          "validation": "Real-time validation on blur",
+          "rules": ["required", "email", "min/max length", "custom async"],
+          "accessibility": "ARIA error announcements"
+        },
+        "dependencies": ["validation schema defined"],
+        "estimated_minutes": 35,
+        "quality_gates": ["accessibility tested", "async validation debounced", "type safety"]
+      }
+    },
+    {
+      "id": 23,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Terraform infrastructure as code",
+        "requirements": "AWS ECS cluster with auto-scaling"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create Terraform modules for ECS cluster with auto-scaling",
+        "specifications": {
+          "resources": ["ECS cluster", "task definitions", "service", "auto-scaling"],
+          "scaling": "CPU-based (target 70%) and request-based",
+          "networking": "VPC with public/private subnets",
+          "monitoring": "CloudWatch alarms for scaling triggers"
+        },
+        "dependencies": ["AWS provider configured", "ECR image repository"],
+        "estimated_minutes": 60,
+        "quality_gates": ["state management", "variable validation", "output documentation"]
+      }
+    },
+    {
+      "id": 24,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Spring Boot microservice",
+        "requirements": "Event sourcing with Kafka"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement event sourcing for order service using Kafka",
+        "specifications": {
+          "events": ["OrderCreated", "OrderPaid", "OrderShipped", "OrderCancelled"],
+          "aggregate": "Order aggregate with event replay",
+          "projection": "Read model in PostgreSQL",
+          "topics": "orders.events partitioned by order_id"
+        },
+        "dependencies": ["Kafka cluster", "event schema registry"],
+        "estimated_minutes": 60,
+        "quality_gates": ["event ordering", "idempotency", "snapshot strategy"]
+      }
+    },
+    {
+      "id": 25,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Unity game with C#",
+        "requirements": "Inventory system with drag-drop"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create inventory system with drag-and-drop UI",
+        "specifications": {
+          "grid": "10x5 slot grid with item stacking",
+          "drag_drop": "Visual feedback during drag, snap to grid",
+          "persistence": "Save to PlayerPrefs as JSON",
+          "item_types": ["consumable", "equipment", "quest"]
+        },
+        "dependencies": ["item data ScriptableObjects"],
+        "estimated_minutes": 55,
+        "quality_gates": ["mobile touch support", "performance (60 FPS)", "save/load tested"]
+      }
+    },
+    {
+      "id": 26,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "MongoDB aggregation pipeline",
+        "requirements": "Analytics dashboard queries"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Build aggregation pipelines for analytics dashboard",
+        "specifications": {
+          "pipelines": ["daily revenue", "top products", "user cohorts", "conversion funnel"],
+          "optimization": "Indexes on aggregation fields",
+          "caching": "Materialized views for expensive queries",
+          "date_ranges": "Support custom date ranges"
+        },
+        "dependencies": ["MongoDB 5.0+", "sample data for testing"],
+        "estimated_minutes": 50,
+        "quality_gates": ["query performance (<500ms)", "index coverage", "result accuracy"]
+      }
+    },
+    {
+      "id": 27,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "React Native with Expo",
+        "requirements": "Push notification handling"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement push notifications with Expo Notifications API",
+        "specifications": {
+          "registration": "Get push token on app launch",
+          "foreground": "Show in-app notification banner",
+          "background": "Update badge count, navigate on tap",
+          "types": ["message", "reminder", "promotion"]
+        },
+        "dependencies": ["Expo push notification service", "backend /register-token endpoint"],
+        "estimated_minutes": 45,
+        "quality_gates": ["permission handling", "notification categories", "deep linking"]
+      }
+    },
+    {
+      "id": 28,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Elixir Phoenix API",
+        "requirements": "WebSocket channels for collaboration"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create Phoenix channels for real-time document collaboration",
+        "specifications": {
+          "channels": ["document:*", "presence"],
+          "events": ["edit", "cursor_move", "user_joined", "user_left"],
+          "ot_algorithm": "Operational transformation for conflict resolution",
+          "presence": "Track active users per document"
+        },
+        "dependencies": ["Phoenix framework", "operational transformation library"],
+        "estimated_minutes": 60,
+        "quality_gates": ["conflict resolution tested", "scalability (1000+ users)", "connection recovery"]
+      }
+    },
+    {
+      "id": 29,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Nest.js with TypeORM",
+        "requirements": "Soft delete and audit logging"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Add soft delete and comprehensive audit logging",
+        "specifications": {
+          "soft_delete": "deleted_at timestamp, filter in queries",
+          "audit": "created_by, updated_by, created_at, updated_at",
+          "interceptor": "Automatic user tracking from request context",
+          "restore": "Endpoint to restore soft-deleted records"
+        },
+        "dependencies": ["TypeORM entities", "authentication context"],
+        "estimated_minutes": 40,
+        "quality_gates": ["query filtering", "cascade behavior", "audit completeness"]
+      }
+    },
+    {
+      "id": 30,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Docker multi-stage build",
+        "requirements": "Optimized production image"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create multi-stage Dockerfile for Node.js app with minimal image size",
+        "specifications": {
+          "stages": ["dependencies", "build", "production"],
+          "base_image": "node:20-alpine",
+          "optimizations": ["layer caching", "node_modules pruning", "non-root user"],
+          "target_size": "<200MB"
+        },
+        "dependencies": ["package.json", "build scripts"],
+        "estimated_minutes": 30,
+        "quality_gates": ["image size", "security scan pass", "startup time"]
+      }
+    },
+    {
+      "id": 31,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Pandas data processing",
+        "requirements": "ETL pipeline for CSV imports"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Build ETL pipeline for processing large CSV files with Pandas",
+        "specifications": {
+          "input": "CSV files up to 1GB",
+          "transformations": ["date parsing", "null handling", "type casting", "deduplication"],
+          "output": "Chunked inserts to PostgreSQL",
+          "chunking": "Process in 10,000 row chunks"
+        },
+        "dependencies": ["pandas", "sqlalchemy", "sample CSV"],
+        "estimated_minutes": 45,
+        "quality_gates": ["memory efficiency", "error handling", "progress logging"]
+      }
+    },
+    {
+      "id": 32,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Stripe payment integration",
+        "requirements": "Checkout session with webhooks"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement Stripe checkout with webhook handling",
+        "specifications": {
+          "checkout": "Create session, redirect to Stripe hosted page",
+          "webhooks": ["checkout.session.completed", "payment_intent.succeeded", "payment_intent.failed"],
+          "security": "Webhook signature verification",
+          "idempotency": "Handle duplicate webhook events"
+        },
+        "dependencies": ["Stripe SDK", "webhook endpoint exposed"],
+        "estimated_minutes": 50,
+        "quality_gates": ["webhook verification", "idempotency keys", "error handling"]
+      }
+    },
+    {
+      "id": 33,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Three.js 3D visualization",
+        "requirements": "Interactive 3D graph visualization"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create 3D force-directed graph using Three.js",
+        "specifications": {
+          "nodes": "Spheres with labels, color-coded by type",
+          "edges": "Lines with directional arrows",
+          "physics": "D3-force simulation for layout",
+          "interaction": ["camera orbit", "node click", "zoom", "pan"]
+        },
+        "dependencies": ["Three.js", "d3-force", "graph data structure"],
+        "estimated_minutes": 60,
+        "quality_gates": ["60 FPS performance", "WebGL fallback", "responsive canvas"]
+      }
+    },
+    {
+      "id": 34,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Celery distributed task queue",
+        "requirements": "Background job processing"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Set up Celery task queue for email and report generation",
+        "specifications": {
+          "broker": "RabbitMQ",
+          "tasks": ["send_email", "generate_pdf_report", "process_upload"],
+          "routing": "Priority queues (high, normal, low)",
+          "monitoring": "Flower for task monitoring"
+        },
+        "dependencies": ["RabbitMQ server", "Redis for results"],
+        "estimated_minutes": 45,
+        "quality_gates": ["task retry logic", "result expiration", "error logging"]
+      }
+    },
+    {
+      "id": 35,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "SwiftUI iOS app",
+        "requirements": "Core Data persistence layer"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement Core Data stack with SwiftUI integration",
+        "specifications": {
+          "entities": ["Task", "Project", "Tag"],
+          "relationships": "One-to-many (Project-Tasks), many-to-many (Tasks-Tags)",
+          "fetching": "FetchRequest with predicates and sorting",
+          "migration": "Lightweight migration support"
+        },
+        "dependencies": ["Core Data model defined"],
+        "estimated_minutes": 50,
+        "quality_gates": ["thread safety", "migration tested", "iCloud sync ready"]
+      }
+    },
+    {
+      "id": 36,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "GitHub Actions CI/CD",
+        "requirements": "Automated deployment pipeline"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create GitHub Actions workflow for CI/CD to AWS ECS",
+        "specifications": {
+          "triggers": "Push to main, PR creation",
+          "jobs": ["test", "lint", "build", "deploy-staging", "deploy-prod"],
+          "environments": "Staging auto-deploy, production manual approval",
+          "secrets": "AWS credentials, Docker registry"
+        },
+        "dependencies": ["AWS credentials", "ECS task definitions"],
+        "estimated_minutes": 55,
+        "quality_gates": ["parallel jobs", "caching strategy", "rollback capability"]
+      }
+    },
+    {
+      "id": 37,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Plotly data visualization",
+        "requirements": "Interactive dashboard charts"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Build interactive dashboard with Plotly.js charts",
+        "specifications": {
+          "charts": ["time series line", "bar chart", "pie chart", "scatter plot"],
+          "interactivity": ["zoom", "pan", "hover tooltips", "cross-filtering"],
+          "responsiveness": "Resize on window change",
+          "export": "Download as PNG/SVG"
+        },
+        "dependencies": ["Plotly.js", "data API endpoints"],
+        "estimated_minutes": 45,
+        "quality_gates": ["performance with large data", "mobile responsive", "accessibility"]
+      }
+    },
+    {
+      "id": 38,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Prisma ORM with PostgreSQL",
+        "requirements": "Database schema with migrations"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Define Prisma schema and create initial migration",
+        "specifications": {
+          "models": ["User", "Post", "Comment", "Category"],
+          "relations": "One-to-many and many-to-many",
+          "indexes": "Unique constraints, compound indexes",
+          "enums": "PostStatus, UserRole"
+        },
+        "dependencies": ["Prisma CLI", "PostgreSQL database"],
+        "estimated_minutes": 40,
+        "quality_gates": ["migration reversibility", "type generation", "seed data"]
+      }
+    },
+    {
+      "id": 39,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Nginx reverse proxy",
+        "requirements": "Load balancing and SSL termination"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Configure Nginx for load balancing with SSL/TLS",
+        "specifications": {
+          "upstream": "3 backend servers with health checks",
+          "balancing": "Least connections algorithm",
+          "ssl": "Let's Encrypt certificates with auto-renewal",
+          "caching": "Static assets cached for 1 year"
+        },
+        "dependencies": ["SSL certificates", "backend server IPs"],
+        "estimated_minutes": 35,
+        "quality_gates": ["health check tested", "SSL rating A+", "cache hit rate"]
+      }
+    },
+    {
+      "id": 40,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Jest test suite",
+        "requirements": "Unit and integration tests"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Write comprehensive test suite for authentication module",
+        "specifications": {
+          "unit_tests": "Login, logout, token refresh, password reset",
+          "integration_tests": "Full authentication flow with database",
+          "mocks": "External services (email, SMS)",
+          "coverage": ">=90% code coverage"
+        },
+        "dependencies": ["Jest configured", "test database"],
+        "estimated_minutes": 60,
+        "quality_gates": ["all tests pass", "coverage threshold", "no test pollution"]
+      }
+    },
+    {
+      "id": 41,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Tailwind CSS utility-first",
+        "requirements": "Responsive landing page"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Build responsive landing page with Tailwind CSS",
+        "specifications": {
+          "sections": ["hero", "features", "pricing", "testimonials", "CTA", "footer"],
+          "responsive": "Mobile-first, breakpoints for tablet and desktop",
+          "animations": "Scroll-triggered fade-ins with Intersection Observer",
+          "dark_mode": "Toggle between light and dark themes"
+        },
+        "dependencies": ["Tailwind configured", "design mockups"],
+        "estimated_minutes": 55,
+        "quality_gates": ["responsive tested", "accessibility audit", "Lighthouse score >90"]
+      }
+    },
+    {
+      "id": 42,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Apache Spark data processing",
+        "requirements": "Large-scale data aggregation"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create Spark job for daily user activity aggregation",
+        "specifications": {
+          "input": "Parquet files in S3 (100GB+ daily)",
+          "transformations": ["filter invalid events", "sessionization", "aggregations"],
+          "output": "Daily summary tables in Redshift",
+          "optimization": "Partition pruning, broadcast joins"
+        },
+        "dependencies": ["Spark cluster", "S3 access", "Redshift connection"],
+        "estimated_minutes": 60,
+        "quality_gates": ["job completion time <30min", "data quality checks", "idempotency"]
+      }
+    },
+    {
+      "id": 43,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Firebase real-time database",
+        "requirements": "Live chat application"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Build real-time chat with Firebase Realtime Database",
+        "specifications": {
+          "structure": "/chats/{chatId}/messages/{messageId}",
+          "listeners": "Real-time updates on new messages",
+          "security": "Firebase rules for user authentication",
+          "features": ["typing indicators", "read receipts", "message deletion"]
+        },
+        "dependencies": ["Firebase project", "authentication setup"],
+        "estimated_minutes": 50,
+        "quality_gates": ["security rules tested", "offline support", "performance monitoring"]
+      }
+    },
+    {
+      "id": 44,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Vite bundler with React",
+        "requirements": "Optimized production build"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Configure Vite for optimized production builds",
+        "specifications": {
+          "code_splitting": "Route-based and vendor chunk splitting",
+          "minification": "Terser for JS, cssnano for CSS",
+          "assets": "Image optimization with imagemin",
+          "env_vars": "Environment-specific configurations"
+        },
+        "dependencies": ["Vite installed", "production environment"],
+        "estimated_minutes": 35,
+        "quality_gates": ["bundle size <500KB", "build time <30s", "tree shaking verified"]
+      }
+    },
+    {
+      "id": 45,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Redis Pub/Sub messaging",
+        "requirements": "Real-time notification system"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement Redis Pub/Sub for real-time notifications",
+        "specifications": {
+          "channels": "user:{userId}:notifications",
+          "publisher": "Notification service publishes events",
+          "subscribers": "WebSocket servers subscribe and push to clients",
+          "message_format": "JSON with type, payload, timestamp"
+        },
+        "dependencies": ["Redis cluster", "WebSocket infrastructure"],
+        "estimated_minutes": 40,
+        "quality_gates": ["message delivery", "subscriber reconnection", "message ordering"]
+      }
+    },
+    {
+      "id": 46,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Electron with React",
+        "requirements": "Native file system access"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Implement file system operations using Electron APIs",
+        "specifications": {
+          "operations": ["open file dialog", "read file", "write file", "watch directory"],
+          "ipc": "Main process handles file operations, renderer requests",
+          "security": "Context isolation enabled, no Node.js in renderer",
+          "progress": "Progress updates for large file operations"
+        },
+        "dependencies": ["Electron configured", "security policies"],
+        "estimated_minutes": 45,
+        "quality_gates": ["security audit", "error handling", "performance with large files"]
+      }
+    },
+    {
+      "id": 47,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "OAuth 2.0 authorization server",
+        "requirements": "Third-party integrations"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Build OAuth 2.0 authorization server for API access",
+        "specifications": {
+          "grant_types": ["authorization_code", "client_credentials", "refresh_token"],
+          "scopes": "Fine-grained permissions (read:users, write:posts)",
+          "token_storage": "Redis with TTL",
+          "pkce": "Support PKCE for public clients"
+        },
+        "dependencies": ["OAuth library", "client registration UI"],
+        "estimated_minutes": 60,
+        "quality_gates": ["security audit", "token rotation", "scope enforcement"]
+      }
+    },
+    {
+      "id": 48,
+      "phase": "code",
+      "context": {
+        "previous_phase": "specification",
+        "architecture": "Deno HTTP server",
+        "requirements": "Lightweight API server"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Create REST API server using Deno with Oak framework",
+        "specifications": {
+          "framework": "Oak middleware",
+          "routes": ["/api/health", "/api/users", "/api/products"],
+          "middleware": ["logging", "CORS", "authentication", "error handling"],
+          "validation": "Zod for request validation"
+        },
+        "dependencies": ["Deno runtime", "Oak framework"],
+        "estimated_minutes": 40,
+        "quality_gates": ["TypeScript strict mode", "error handling", "API documentation"]
+      }
+    },
+    {
+      "id": 49,
+      "phase": "code",
+      "context": {
+        "previous_phase": "design",
+        "architecture": "Blockchain smart contract",
+        "requirements": "NFT minting contract"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Develop ERC-721 NFT minting smart contract in Solidity",
+        "specifications": {
+          "standard": "ERC-721 with metadata extension",
+          "features": ["minting with whitelist", "max supply", "royalties", "pause/unpause"],
+          "security": "OpenZeppelin contracts, reentrancy guards",
+          "gas_optimization": "Batch minting, efficient storage"
+        },
+        "dependencies": ["Hardhat environment", "OpenZeppelin contracts"],
+        "estimated_minutes": 60,
+        "quality_gates": ["security audit", "gas estimation", "test coverage >95%"]
+      }
+    },
+    {
+      "id": 50,
+      "phase": "code",
+      "context": {
+        "previous_phase": "architecture",
+        "architecture": "Storybook component library",
+        "requirements": "Component documentation"
+      },
+      "expected_drone_task": {
+        "drone_id": "coder",
+        "task_type": "implement",
+        "description": "Set up Storybook with stories for design system components",
+        "specifications": {
+          "components": ["Button", "Input", "Card", "Modal", "Dropdown"],
+          "stories": "All variants, states, and sizes documented",
+          "addons": ["Controls", "Actions", "Accessibility", "Docs"],
+          "theming": "Light and dark theme support"
+        },
+        "dependencies": ["React components", "Storybook installed"],
+        "estimated_minutes": 50,
+        "quality_gates": ["all variants documented", "accessibility checks", "visual regression tests"]
+      }
+    }
+  ]
+}

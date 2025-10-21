@@ -1,0 +1,984 @@
+digraph SpecV8Final {
+  // GraphViz workflow for SPEC-v8-FINAL.md
+  // SPEK Platform v2 - SPECIFICATION v8.0-FINAL
+  // Research-backed production specification with 9 UI pages, 3-loop system, Princess Hive model
+
+  label="SPEK Platform v2: SPECIFICATION v8.0-FINAL (UPDATED Week 24)\nResearch-Backed Production Specification - 92.3% Complete\nVersion: 8.1.0 | Date: 2025-10-11 | Status: PRODUCTION-READY";
+  fontsize=20;
+  fontname="Arial Bold";
+  compound=true;
+  rankdir=TB;
+
+  // Color scheme
+  node [fontname="Arial", fontsize=10];
+  edge [fontname="Arial", fontsize=9];
+
+  // ENTRY POINT
+  start [label="User Initiates\nSPEK Platform", shape=ellipse, style=filled, fillcolor=lightgreen];
+
+  // ============================================
+  // CLUSTER: EXECUTIVE SUMMARY
+  // ============================================
+  subgraph cluster_executive {
+    label="Executive Summary";
+    style=filled;
+    fillcolor=lightyellow;
+
+    system_overview [label="System Overview:\n- Loop 1: Research & Planning\n- Loop 2: Execution & Audit\n- Loop 3: Quality & Finalization", shape=box];
+
+    tech_stack [label="Technology Stack:\n- Frontend: Next.js 14, Three.js\n- Backend: tRPC, BullMQ, Docker\n- Real-time: Socket.io + Redis\n- Storage: Pinecone, Redis, SQLite", shape=box];
+
+    phase1_metrics [label="Phase 1 Metrics (Week 24 Achieved):\n- Bundle Reduction: 96% (Loop3: 5.21 KB)\n- Build Time: 6.0s → 4.1s (35% faster)\n- ESLint: 110 → 43 (61% reduction)\n- E2E Tests: 139/139 passing\n- Cost: $270/month ON TARGET\n- Progress: 92.3% (24/26 weeks)", shape=box, style=filled, fillcolor=lightgreen];
+
+    phase2_metrics [label="Phase 2 Metrics (Conditional):\n- Performance: 0.75-0.76\n- Cost: $381/month\n- UI Performance: <100ms\n- WebSocket: <50ms (200+ users)", shape=box];
+
+    v8_updates [label="v8 Critical Updates (Week 24 Complete):\n✅ 3D rendering (LOD, instanced meshes, 60 FPS)\n✅ WebSocket scaling (Redis Pub/Sub, 200+ users)\n✅ Incremental vectorization (git diff, 15x speedup)\n✅ Playwright timeout (30s + backoff, <10% false positives)\n✅ 3-stage audit (AST + Docker + Analyzer, <35s)\n✅ Princess Hive (A2A + MCP protocols, <100ms)\n✅ Doc cleanup (AST validation + human approval)\n✅ Performance optimization (96% bundle reduction)", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: NAVIGATION DECISION
+  // ============================================
+  subgraph cluster_navigation {
+    label="User Navigation Decision";
+    style=filled;
+    fillcolor=lightblue;
+
+    home_page_trigger [label="TRIGGER:\nUser lands on /\n(Home page)", shape=plaintext, style=filled, fillcolor=yellow];
+
+    home_decision [label="User Choice:\nNew project OR\nExisting project?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    route_new [label="Route to /project/new\n(New project wizard)", shape=box];
+    route_select [label="Route to /project/select\n(Existing project)", shape=box];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 1 - HOME (MONARCH CHAT)
+  // ============================================
+  subgraph cluster_home {
+    label="PAGE 1: / (Home/Monarch Chat)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    home_trigger [label="TRIGGER:\nUser on home page", shape=plaintext, style=filled, fillcolor=yellow];
+
+    home_monarch_chat [label="MonarchChat Component:\nUser greets Monarch agent", shape=box];
+    home_project_selector [label="ProjectSelector Component:\nNew vs Existing choice", shape=box];
+    home_session_history [label="SessionHistory Component:\nPrevious sessions", shape=box];
+
+    home_choice [label="User Choice:\nNew OR Existing?", shape=diamond, style=filled, fillcolor=lightblue];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 2 - PROJECT/SELECT (EXISTING)
+  // ============================================
+  subgraph cluster_project_select {
+    label="PAGE 2: /project/select (Existing Project)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    select_trigger [label="TRIGGER:\nUser selects existing project", shape=plaintext, style=filled, fillcolor=yellow];
+
+    select_filesystem [label="FileSystemPicker:\nFile explorer (Electron OR upload)", shape=box];
+    select_vectorization_start [label="Start Vectorization:\nIncremental indexing", shape=box];
+
+    select_cache_check [label="Cache Check:\nGit commit hash\nin Redis?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    select_cache_hit [label="Cache Hit (<1s):\nLoad vectors from Redis", shape=box, style=filled, fillcolor=lightgreen];
+    select_cache_miss [label="Cache Miss:\nDetect changed files (git diff)", shape=box];
+
+    select_changed_check [label="Changed Files\nDetected?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    select_incremental [label="Incremental Vectorization:\n<10s (100 changed files)", shape=box, style=filled, fillcolor=lightgreen];
+    select_full [label="Full Vectorization:\n<60s (10K files, parallel)", shape=box, style=filled, fillcolor=orange];
+
+    select_progress [label="VectorizationProgress:\nReal-time ETA display", shape=box];
+    select_cache_update [label="Update Redis Cache:\n30-day TTL with git hash", shape=box];
+    select_graph [label="ProjectGraph:\n3D structure visualization (LOD)", shape=box];
+
+    select_fallback_check [label="File Count:\n>5K files OR\nGPU <400MB?", shape=diamond, style=filled, fillcolor=orange];
+
+    select_3d [label="Display 3D Graph:\nForce-directed layout", shape=box, style=filled, fillcolor=lightgreen];
+    select_2d [label="Display 2D Graph:\nGraceful fallback", shape=box, style=filled, fillcolor=orange];
+
+    select_refinement [label="RefinementChoice:\nSpecific changes OR\nRefinement loop?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    select_specific [label="Route to specific changes\n(Not refinement)", shape=box];
+    select_loop1 [label="Route to /loop1\n(Refinement selected)", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 3 - PROJECT/NEW (NEW PROJECT)
+  // ============================================
+  subgraph cluster_project_new {
+    label="PAGE 3: /project/new (New Project Wizard)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    new_trigger [label="TRIGGER:\nUser creates new project", shape=plaintext, style=filled, fillcolor=yellow];
+
+    new_wizard [label="ProjectWizard:\nMulti-step form", shape=box];
+    new_vision [label="User describes project vision\n(free-form text)", shape=box];
+    new_clarification [label="ClarificationChat:\nMonarch asks questions", shape=box];
+    new_translation [label="Technical ↔ Experience\nLanguage Translation", shape=box];
+    new_spec_preview [label="SPECPreview:\nLive document streaming", shape=box];
+    new_plan_preview [label="PLANPreview:\nLive document streaming", shape=box];
+    new_review [label="User reviews\ndraft documents", shape=box];
+
+    new_confirm [label="User confirms\nSPEC/PLAN?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    new_revise [label="Revise documents\n(more questions)", shape=box];
+    new_proceed [label="Proceed to Loop 1", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 4 - LOOP1 (RESEARCH & PRE-MORTEM)
+  // ============================================
+  subgraph cluster_loop1 {
+    label="PAGE 4: /loop1 (Research & Pre-mortem)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    loop1_trigger [label="TRIGGER:\nSPEC/PLAN created\nOR refinement selected", shape=plaintext, style=filled, fillcolor=yellow];
+
+    loop1_viz [label="Loop1Visualizer:\n3D orbital ring (<100 draw calls)", shape=box];
+    loop1_thoughts [label="AgentThoughts:\nReal-time stream (throttled 10/sec)", shape=box];
+    loop1_gauge [label="FailureRateGauge:\nPercentage display (color-coded)", shape=box];
+    loop1_counter [label="IterationCounter:\nCurrent/max iteration badge", shape=box];
+
+    // Research Phase
+    loop1_research_start [label="Research Phase:\nGitHub + Papers", shape=box, style=filled, fillcolor=lightblue];
+    loop1_github [label="GitHub Code Search:\nTop 100 repos (Octokit API)", shape=box];
+    loop1_papers [label="Semantic Scholar:\nTop 50 papers", shape=box];
+    loop1_artifacts [label="ResearchArtifacts:\nCollect repos, papers, examples", shape=box];
+
+    loop1_research_criteria [label="Research Success:\n≥5 repos, ≥3 papers?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    // Pre-mortem Phase
+    loop1_premortem_start [label="Pre-mortem Phase:\nMulti-agent failure analysis", shape=box, style=filled, fillcolor=lightblue];
+    loop1_scenarios [label="Generate Failure Scenarios:\n≥20 scenarios (LLM-assisted)", shape=box];
+    loop1_risk [label="Calculate Risk Scores:\nP0×3 + P1×2 + P2×1", shape=box];
+    loop1_failure_rate [label="Calculate Failure Rate:\nWeighted risk scoring", shape=box];
+    loop1_report [label="PremortemReport:\nP0/P1/P2 breakdown", shape=box];
+
+    loop1_failure_check [label="Failure Rate:\n<5%?", shape=diamond, style=filled, fillcolor=red];
+
+    // Remediation Phase
+    loop1_remediation [label="Remediation Phase:\nUpdate SPEC/PLAN", shape=box, style=filled, fillcolor=orange];
+    loop1_mitigations [label="Add Mitigations:\n≥10 preventions", shape=box];
+    loop1_update [label="Update SPEC/PLAN:\nPreventions added", shape=box];
+
+    // Re-research Phase
+    loop1_reres [label="Re-research Phase:\nGather additional components", shape=box];
+    loop1_validate [label="Validate Mitigations:\nCheck implementations exist", shape=box];
+
+    // Re-premortem Phase
+    loop1_repre [label="Re-premortem Phase:\nFresh eyes analysis", shape=box];
+    loop1_recalc [label="Recalculate Failure Rate:\nIndependent validation", shape=box];
+
+    // Iteration Control
+    loop1_iteration_check [label="Iteration Count:\n<20?", shape=diamond, style=filled, fillcolor=orange];
+
+    loop1_iterate [label="Increment Iteration:\nRepeat loop", shape=box];
+    loop1_max_exceeded [label="Max Iterations Exceeded:\nFail project", shape=octagon, style=filled, fillcolor=red];
+
+    // Pause
+    loop1_pause [label="PauseOverlay:\nUser injects thoughts (optional)", shape=box];
+
+    // Success
+    loop1_success [label="Loop 1 Complete:\n<5% failure rate achieved", shape=box, style=filled, fillcolor=lightgreen];
+    loop1_route_loop2 [label="Route to /loop2", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 5 - LOOP2 (EXECUTION VILLAGE)
+  // ============================================
+  subgraph cluster_loop2 {
+    label="PAGE 5: /loop2 (Execution Village)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    loop2_trigger [label="TRIGGER:\nLoop 1 complete\n(<5% failure rate)", shape=plaintext, style=filled, fillcolor=yellow];
+
+    loop2_viz [label="ExecutionVillage:\n3D isometric village\n(instanced drones + LOD buildings)", shape=box];
+
+    // Phase Division
+    loop2_phase_division [label="Phase Division (automatic MECE):\nDependency graph analysis", shape=box, style=filled, fillcolor=lightblue];
+    loop2_topology [label="Topological Sort:\nTask dependencies", shape=box];
+    loop2_bottlenecks [label="Identify Bottlenecks:\nTasks blocking ≥3 others", shape=box];
+    loop2_phases [label="Assign Phases:\n4-6 phases (MECE)", shape=box];
+    loop2_column [label="PhaseColumn:\nDisplay phases", shape=box];
+
+    // Princess Assignment
+    loop2_assignment [label="Princess Assignment:\nDelegate to princesses", shape=box, style=filled, fillcolor=lightblue];
+    loop2_princess_dev [label="Princess-Dev:\ncoder, reviewer, debugger,\nintegration-engineer", shape=box];
+    loop2_princess_quality [label="Princess-Quality:\ntester, nasa-enforcer,\ntheater-detector, fsm-analyzer", shape=box];
+    loop2_princess_coord [label="Princess-Coordination:\norchestrator, planner,\ncost-tracker", shape=box];
+    loop2_princess_docs [label="Princess-Documentation:\ndocs-writer, spec-writer,\npseudocode-writer", shape=box];
+    loop2_card [label="PrincessCard:\nDisplay princess + drones", shape=box];
+
+    // Task Execution
+    loop2_execution [label="Task Execution:\nQueen → Princess → Drone", shape=box, style=filled, fillcolor=lightblue];
+    loop2_a2a [label="A2A Protocol:\nHigh-level delegation", shape=box];
+    loop2_mcp [label="MCP Protocol:\nAgent → Tools", shape=box];
+    loop2_context [label="Context DNA:\n30-day retention (SQLite)", shape=box];
+    loop2_flow [label="TaskFlow:\nAnimated task delegation", shape=box];
+    loop2_task_card [label="TaskCard:\nTask details, status, audit", shape=box];
+
+    // Real-time Updates
+    loop2_websocket [label="WebSocket Updates (Redis adapter):\n- Task status changes\n- Audit progress\n- Phase progress", shape=box];
+    loop2_throttle [label="Event Throttling:\n10 updates/sec per user", shape=box];
+    loop2_latency [label="Target Latency:\n<50ms (p95)", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Audit
+    loop2_audit_route [label="Route to /loop2/audit\n(Audit details)", shape=box];
+
+    // UI Validation
+    loop2_ui_check [label="UI Task\nCompleted?", shape=diamond, style=filled, fillcolor=lightblue];
+    loop2_ui_route [label="Route to /loop2/ui-review\n(UI validation)", shape=box];
+
+    // Completion
+    loop2_complete_check [label="All Phases\nComplete?", shape=diamond, style=filled, fillcolor=lightblue];
+    loop2_route_loop3 [label="Route to /loop3", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 6 - LOOP2/AUDIT (3-STAGE AUDIT)
+  // ============================================
+  subgraph cluster_audit {
+    label="PAGE 6: /loop2/audit (Audit Detail View)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    audit_trigger [label="TRIGGER:\nDrone completes task", shape=plaintext, style=filled, fillcolor=yellow];
+
+    audit_pipeline [label="AuditPipeline:\n3-stage progress bar\n🎭 → ⚙️ → ✅", shape=box];
+
+    // Stage 1: Theater Detection
+    audit_theater_start [label="Stage 1: Theater Detection\n(AST-based, <5s)", shape=box, style=filled, fillcolor=orange];
+    audit_theater_patterns [label="Scan for 6 Patterns:\n1. Mock code (severity: 20)\n2. TODO comments (10)\n3. NotImplementedError (25)\n4. Fake data generators (15)\n5. Empty implementations (15)\n6. Trivial assertions (10)", shape=box];
+    audit_theater_score [label="Calculate Score:\nSum of severity scores", shape=box];
+    audit_theater_check [label="Theater Score:\n<10?", shape=diamond, style=filled, fillcolor=red];
+    audit_theater_retry [label="Return to Drone:\nRetry with notes", shape=box, style=filled, fillcolor=orange];
+    audit_theater_pass [label="Theater Passed:\nScore <10", shape=box, style=filled, fillcolor=lightgreen];
+    audit_theater_results [label="TheaterResults:\nDisplay patterns detected", shape=box];
+
+    // Stage 2: Production Testing
+    audit_production_start [label="Stage 2: Production Testing\n(Docker sandbox, <20s)", shape=box, style=filled, fillcolor=orange];
+    audit_docker_run [label="Run in Docker Sandbox:\n- 512MB RAM\n- 30s timeout\n- Network isolated\n- Non-root user", shape=box];
+    audit_tests [label="Execute Test Suite:\nRun all tests", shape=box];
+    audit_production_check [label="All Tests\nPassed?", shape=diamond, style=filled, fillcolor=red];
+    audit_debug [label="LLM-Assisted Debug:\nSmallest possible fix", shape=box];
+    audit_retry_check [label="Retries:\n<3?", shape=diamond, style=filled, fillcolor=orange];
+    audit_retry_backoff [label="Exponential Backoff:\n1s, 2s, 4s", shape=box];
+    audit_production_pass [label="Production Passed:\nAll tests pass", shape=box, style=filled, fillcolor=lightgreen];
+    audit_production_results [label="ProductionResults:\nDocker logs", shape=box];
+
+    // Stage 3: Quality Scan
+    audit_quality_start [label="Stage 3: Quality Scan\n(Analyzer, <10s)", shape=box, style=filled, fillcolor=orange];
+    audit_analyzer_checks [label="Analyzer Checks:\n- Connascence (9 detectors)\n- NASA POT10 (≤60 LOC, ≥2 assertions)\n- Duplications (Jaccard ≥0.7)\n- Linting", shape=box];
+    audit_quality_check [label="Quality Score:\n100%?\n(NASA ≥92%, zero god objects)", shape=diamond, style=filled, fillcolor=red];
+    audit_refactor [label="Send to Specialist Drones:\nRefactor with JSON error report", shape=box];
+    audit_rescan [label="Re-scan:\nValidate refactor", shape=box];
+    audit_quality_pass [label="Quality Passed:\n100% score", shape=box, style=filled, fillcolor=lightgreen];
+    audit_quality_results [label="QualityResults:\nJSON viewer", shape=box];
+
+    // Completion
+    audit_complete [label="Task COMPLETE:\nAll 3 stages passed", shape=box, style=filled, fillcolor=lightgreen];
+    audit_return [label="Return to /loop2\n(village view)", shape=box];
+
+    // Error Report
+    audit_error_report [label="ErrorReport:\nJSON viewer with details", shape=box];
+    audit_retry_counter [label="RetryCounter:\nNumber of retries per task", shape=box];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 7 - LOOP2/UI-REVIEW (UI VALIDATION)
+  // ============================================
+  subgraph cluster_ui_review {
+    label="PAGE 7: /loop2/ui-review (UI Validation)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    ui_trigger [label="TRIGGER:\nDrone completes UI task", shape=plaintext, style=filled, fillcolor=yellow];
+
+    ui_comparison [label="UIComparison:\nSplit view (expected vs actual)", shape=box];
+
+    // Playwright Screenshot
+    ui_playwright_start [label="Playwright Screenshot Capture\n(30s timeout + retry)", shape=box, style=filled, fillcolor=orange];
+    ui_page_load [label="Wait for Page Load:\nnetworkidle state", shape=box];
+    ui_webgl_wait [label="Wait for WebGL:\nIf 3D canvas present", shape=box];
+    ui_disable_animations [label="Disable Animations:\nGlobal CSS injection", shape=box];
+    ui_mask_dynamic [label="Mask Dynamic Content:\ntimestamps, avatars", shape=box];
+    ui_capture [label="Capture Screenshot:\nFull page", shape=box];
+
+    ui_screenshot_success [label="Screenshot\nCaptured?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    ui_retry [label="Exponential Backoff Retry:\n3 attempts (5s, 10s, 20s)", shape=box];
+    ui_manual_fallback [label="Manual Approval Fallback:\nUser reviews manually", shape=box, style=filled, fillcolor=orange];
+
+    // Visual Diff
+    ui_visual_diff [label="VisualDiff:\nPixel diff (1% tolerance)", shape=box];
+    ui_highlight [label="Highlight Differences:\npixelmatch library", shape=box];
+    ui_split_view [label="Display Side-by-Side:\nExpected vs Actual", shape=box];
+
+    // User Review
+    ui_user_review [label="User Reviews\nUI Design", shape=box];
+    ui_approval [label="User Approves?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    ui_approve [label="Approve:\nMark task complete", shape=box, style=filled, fillcolor=lightgreen];
+    ui_request_changes [label="Request Changes:\nProvide feedback", shape=box, style=filled, fillcolor=orange];
+    ui_change_input [label="ChangeRequest:\nText input for feedback", shape=box];
+    ui_return_drone [label="Return to Drone:\nTargeted fix", shape=box];
+
+    // Integration Test
+    ui_integration [label="Verify UI Backend Integration:\nIntegration test", shape=box];
+
+    // Completion
+    ui_complete [label="UI Validation Complete", shape=box, style=filled, fillcolor=lightgreen];
+    ui_return_loop2 [label="Return to /loop2\n(village view)", shape=box];
+
+    // Logs
+    ui_playwright_log [label="PlaywrightLog:\nDebugging info", shape=box];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 8 - LOOP3 (FINALIZATION)
+  // ============================================
+  subgraph cluster_loop3 {
+    label="PAGE 8: /loop3 (Finalization)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    loop3_trigger [label="TRIGGER:\nLoop 2 complete\n(all phases done)", shape=plaintext, style=filled, fillcolor=yellow];
+
+    loop3_viz [label="Loop3Finalizer:\n3 concentric rings (<50 draw calls)", shape=box];
+
+    // Full Project Scan
+    loop3_scan_start [label="Full Project Scan:\nFinal validation", shape=box, style=filled, fillcolor=lightblue];
+    loop3_theater [label="Theater: 100% pass\n(score <10)", shape=box];
+    loop3_production [label="Production: 100% pass\n(full test suite)", shape=box];
+    loop3_quality [label="Quality: 100% pass\n(Analyzer scan, NASA ≥92%)", shape=box];
+    loop3_scan_display [label="FullProjectScan:\nDisplay results", shape=box];
+
+    loop3_scan_check [label="All Scans\nPassed?", shape=diamond, style=filled, fillcolor=red];
+
+    loop3_scan_fail [label="Display Remaining Issues:\nHighlight failures", shape=box, style=filled, fillcolor=orange];
+    loop3_scan_pass [label="All Scans Passed:\nProceeding to export", shape=box, style=filled, fillcolor=lightgreen];
+
+    // GitHub Integration
+    loop3_github_optional [label="GitHub Integration\n(Optional)", shape=box, style=filled, fillcolor=lightblue];
+    loop3_repo_wizard [label="RepoWizard:\nEnter repo name, description", shape=box];
+    loop3_private_default [label="Visibility:\nPrivate by default", shape=box, style=filled, fillcolor=orange];
+
+    // Secret Scan
+    loop3_secret_scan [label="Pre-flight Secret Scan:\nBlock if secrets detected", shape=box, style=filled, fillcolor=red];
+    loop3_secrets_found [label="Secrets\nDetected?", shape=diamond, style=filled, fillcolor=red];
+    loop3_block_repo [label="Block Repo Creation:\nAlert user to remove secrets", shape=octagon, style=filled, fillcolor=red];
+
+    // Repo Creation
+    loop3_create_repo [label="Create GitHub Repo:\nPrivate by default", shape=box];
+    loop3_hooks [label="Install Analyzer Hooks:\nGitHub Actions", shape=box];
+    loop3_cicd [label="Setup CI/CD Pipeline:\nAutomated testing", shape=box];
+    loop3_quality_gates [label="Configure Quality Gates:\nPull request checks", shape=box];
+    loop3_push [label="Push Code to Repo", shape=box];
+
+    // Documentation Cleanup
+    loop3_docs_cleanup [label="Documentation Cleanup:\nAST validation + human approval", shape=box, style=filled, fillcolor=orange];
+    loop3_docs_list [label="List All Markdown Files", shape=box];
+
+    // AST Comparison
+    loop3_ast_validation [label="AST Comparison:\nValidate accuracy", shape=box];
+    loop3_extract_refs [label="Extract Code References:\nRegex + markdown parsing", shape=box];
+    loop3_parse_code [label="Parse Code Files:\nAST analysis", shape=box];
+    loop3_compare [label="Compare Refs vs Actual Code:\nFind mismatches", shape=box];
+    loop3_mismatches [label="Mismatches\nFound?", shape=diamond, style=filled, fillcolor=orange];
+
+    // Multi-Agent LLM Review
+    loop3_llm_review [label="Multi-Agent LLM Review:\nHallucination prevention", shape=box];
+    loop3_agent1 [label="Agent 1:\nIdentify outdated sections", shape=box];
+    loop3_agent2 [label="Agent 2:\nGenerate updated content", shape=box];
+    loop3_agent3 [label="Agent 3:\nValidate generated content", shape=box];
+
+    // Human-in-the-Loop
+    loop3_human_approval [label="Human-in-the-Loop Approval:\nShow diff, require confirmation", shape=box, style=filled, fillcolor=red];
+    loop3_diff [label="Generate Diff:\nOld vs new content", shape=box];
+    loop3_prompt_user [label="Prompt User:\n'Apply these updates?'", shape=box];
+    loop3_user_approves [label="User Approves?", shape=diamond, style=filled, fillcolor=red];
+
+    loop3_approve_docs [label="Apply Updates:\nUpdate docs", shape=box, style=filled, fillcolor=lightgreen];
+    loop3_reject_docs [label="Reject Updates:\nNEVER apply without approval", shape=octagon, style=filled, fillcolor=red];
+
+    loop3_organize [label="Organize by Code Module:\nAuto-categorize via LLM", shape=box];
+    loop3_screenshots [label="Add UI Screenshots:\nIf applicable", shape=box];
+    loop3_docs_component [label="DocumentationCleanup:\nDisplay organized docs", shape=box];
+
+    // Export
+    loop3_export [label="ExportOptions:\nGitHub OR Folder", shape=box];
+    loop3_export_choice [label="Export Method?", shape=diamond, style=filled, fillcolor=lightblue];
+
+    loop3_export_github [label="GitHub:\nRepo URL + clone instructions", shape=box, style=filled, fillcolor=lightgreen];
+    loop3_export_folder [label="Folder:\nDownload ZIP with analyzer", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Completion
+    loop3_celebration [label="CompletionCelebration:\nSuccess animation", shape=box, style=filled, fillcolor=lightgreen];
+    loop3_new_project [label="Option to Start New Project", shape=box];
+  }
+
+  // ============================================
+  // CLUSTER: PAGE 9 - DASHBOARD (OVERALL PROGRESS)
+  // ============================================
+  subgraph cluster_dashboard {
+    label="PAGE 9: /dashboard (Overall Progress)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    dashboard_trigger [label="TRIGGER:\nUser navigates to dashboard\n(any time during project)", shape=plaintext, style=filled, fillcolor=yellow];
+
+    dashboard_overview [label="ProgressOverview:\nOverall progress wheel (0-100%)", shape=box];
+    dashboard_timeline [label="PhaseTimeline:\nLoop 1/2/3 status", shape=box];
+    dashboard_metrics [label="MetricCards:\n- Agents active\n- Tasks complete\n- Cost tracking", shape=box];
+    dashboard_feed [label="AgentActivityFeed:\nRecent agent actions\n(real-time, throttled 10/sec)", shape=box];
+    dashboard_cost [label="CostTracker:\nBudget usage (v6 integration)", shape=box];
+    dashboard_navigate [label="Navigate to Specific Loop/Phase:\nClick timeline", shape=box];
+  }
+
+  // ============================================
+  // CLUSTER: 3-STAGE AUDIT SYSTEM
+  // ============================================
+  subgraph cluster_audit_system {
+    label="3-Stage Audit System (Research-Backed)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    audit_system_overview [label="Audit Stages:\n1. Theater Detection (AST, <5s)\n2. Production Testing (Docker, <20s)\n3. Quality Scan (Analyzer, <10s)", shape=box];
+
+    // Stage 1 Details
+    audit_system_theater [label="Stage 1: Theater Detection\n- Tool: Analyzer AST module\n- 6 patterns (severity scores)\n- Pass: score <10\n- Action: Retry with notes", shape=box];
+
+    // Stage 2 Details
+    audit_system_production [label="Stage 2: Production Testing\n- Tool: Docker sandbox\n- Security: 512MB RAM, 30s timeout, network isolated\n- Debug: LLM-assisted targeted fix\n- Pass: All tests pass", shape=box];
+
+    // Stage 3 Details
+    audit_system_quality [label="Stage 3: Quality Scan\n- Tool: Analyzer (v6)\n- Checks: Connascence, NASA POT10, Duplications, Linting\n- Pass: 100% score (NASA ≥92%, zero god objects)\n- Action: Refactor with specialist drones", shape=box];
+
+    audit_system_total_time [label="Total Audit Time:\n<35s per task\n(5s + 20s + 10s)", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: REAL-TIME COMMUNICATION
+  // ============================================
+  subgraph cluster_realtime {
+    label="Real-time Communication (Research-Optimized)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    realtime_websocket [label="WebSocket Architecture:\nSocket.io + Redis Adapter", shape=box, style=filled, fillcolor=orange];
+
+    realtime_redis_adapter [label="Redis Pub/Sub Adapter:\nNON-NEGOTIABLE Week 4", shape=box, style=filled, fillcolor=red];
+    realtime_horizontal [label="Horizontal Scaling:\nAdd servers as needed", shape=box];
+    realtime_sticky [label="Sticky Sessions:\nNginX ip_hash load balancer", shape=box];
+
+    realtime_events [label="Events (Throttled):\n- agent-thought (10/sec)\n- task-update (status changes)\n- audit-progress (stage completion)\n- phase-complete (Loop 2)\n- loop-complete (Loop 1/2/3)", shape=box];
+
+    realtime_throttle_detail [label="Event Throttling:\n100ms debounce (max 10/sec per user)", shape=box];
+
+    realtime_state_recon [label="State Reconciliation:\nOn reconnect, fetch missed events", shape=box];
+
+    realtime_targets [label="Performance Targets:\n- Latency: <50ms (p95)\n- Concurrent: 100+ Phase 1, 200+ Phase 2\n- Reliability: 99% uptime", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: PRINCESS HIVE DELEGATION
+  // ============================================
+  subgraph cluster_princess_hive {
+    label="Princess Hive Delegation (Research-Backed)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    princess_hierarchy [label="Delegation Hierarchy:\nQueen → Princess → Drone", shape=box];
+
+    // Queen Agent
+    princess_queen [label="Queen Agent:\n- Analyze task complexity\n- Divide into MECE phases\n- Assign to princesses (A2A)\n- Monitor execution", shape=box];
+
+    // Princess Agents
+    princess_agent_dev [label="Princess-Dev:\nBreakdown into sub-tasks\nAssign to drones (coder, reviewer, debugger)\nAggregate results", shape=box];
+    princess_agent_quality [label="Princess-Quality:\nBreakdown into sub-tasks\nAssign to drones (tester, nasa-enforcer, theater-detector)\nAggregate results", shape=box];
+    princess_agent_coord [label="Princess-Coordination:\nBreakdown into sub-tasks\nAssign to drones (orchestrator, planner, cost-tracker)\nAggregate results", shape=box];
+    princess_agent_docs [label="Princess-Documentation:\nBreakdown into sub-tasks\nAssign to drones (docs-writer, spec-writer, pseudocode-writer)\nAggregate results", shape=box];
+
+    // Protocols
+    princess_a2a [label="A2A Protocol:\nHigh-level coordination\n(Queen → Princess → Drone)", shape=box, style=filled, fillcolor=lightblue];
+    princess_mcp [label="MCP Protocol:\nLow-level tool calls\n(Agent → Docker, GitHub, Analyzer)", shape=box, style=filled, fillcolor=lightblue];
+
+    // Context DNA
+    princess_context_dna [label="Context DNA:\n30-day retention (SQLite)\nFull session preservation\nS3 artifact references", shape=box];
+
+    // Performance
+    princess_perf [label="Performance Targets:\n- Queen → Princess: <10ms\n- Princess → Drone: <25ms\n- Context retrieval: <200ms", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: RESEARCH-BACKED ENHANCEMENTS
+  // ============================================
+  subgraph cluster_enhancements {
+    label="Research-Backed Enhancements (NEW for v8)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    // 3D Rendering Performance
+    enh_3d [label="Enhancement 1: 3D Rendering Performance\n(P1 Risk Mitigation)", shape=box, style=filled, fillcolor=orange];
+    enh_3d_problem [label="Problem:\n>5K files → browser freeze\n(3 FPS, 680MB GPU)", shape=box];
+    enh_3d_lod [label="Solution 1: LOD Rendering\n(3 detail levels: 100%, 50%, 25%)", shape=box];
+    enh_3d_instanced [label="Solution 2: Instanced Rendering\n(10x draw call reduction)", shape=box];
+    enh_3d_ondemand [label="Solution 3: On-Demand Rendering\n(50% battery savings)", shape=box];
+    enh_3d_fallback [label="Solution 4: 2D Fallback\n(Graceful degradation)", shape=box];
+    enh_3d_target [label="Target: 60 FPS desktop, 30 FPS mobile\nGPU <500MB, Draw calls <500", shape=box, style=filled, fillcolor=lightgreen];
+
+    // WebSocket Scaling
+    enh_websocket [label="Enhancement 2: WebSocket Scaling\n(P1 Risk Mitigation)", shape=box, style=filled, fillcolor=orange];
+    enh_websocket_problem [label="Problem:\n150+ users → cascade failure\n(80% timeouts, 3.5s latency)", shape=box];
+    enh_websocket_redis [label="Solution 1: Redis Pub/Sub Adapter\n(Week 4, Non-Negotiable)", shape=box, style=filled, fillcolor=red];
+    enh_websocket_sticky [label="Solution 2: Sticky Sessions\n(NginX ip_hash)", shape=box];
+    enh_websocket_throttle [label="Solution 3: Event Throttling\n(100ms debounce)", shape=box];
+    enh_websocket_recon [label="Solution 4: State Reconciliation\n(On reconnect)", shape=box];
+    enh_websocket_target [label="Target: 200+ users, <50ms latency\n99% reliability", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Vectorization Performance
+    enh_vectorization [label="Enhancement 3: Vectorization Performance\n(P1 Risk Mitigation)", shape=box, style=filled, fillcolor=orange];
+    enh_vectorization_problem [label="Problem:\n12K files → 15 minutes\n(95% user abandonment)", shape=box];
+    enh_vectorization_incremental [label="Solution 1: Incremental Indexing\n(Git hash diff)", shape=box];
+    enh_vectorization_parallel [label="Solution 2: Parallel Embedding\n(Batch size 64)", shape=box];
+    enh_vectorization_cache [label="Solution 3: Redis 30-Day Cache\n(Git commit hash key)", shape=box];
+    enh_vectorization_progress [label="Solution 4: Progress Indicator\n(<10s perceived load)", shape=box];
+    enh_vectorization_target [label="Target: Full <60s, Incremental <10s\nCache hit <1s, Abandonment <5%", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Playwright Timeout
+    enh_playwright [label="Enhancement 4: Playwright Timeout\n(P1 Risk Mitigation)", shape=box, style=filled, fillcolor=orange];
+    enh_playwright_problem [label="Problem:\nComplex pages timeout\n(5s default, 40% manual intervention)", shape=box];
+    enh_playwright_30s [label="Solution 1: 30s Timeout\n(6x increase from 5s)", shape=box];
+    enh_playwright_retry [label="Solution 2: Exponential Backoff\n(3 attempts: 5s, 10s, 20s)", shape=box];
+    enh_playwright_masking [label="Solution 3: Dynamic Content Masking\n(Timestamps, avatars)", shape=box];
+    enh_playwright_webgl [label="Solution 4: WebGL Wait\n(If 3D canvas present)", shape=box];
+    enh_playwright_target [label="Target: <10% false positives\n90% automated, <10% manual fallback", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: BACKEND ARCHITECTURE
+  // ============================================
+  subgraph cluster_backend {
+    label="Backend Architecture (Research-Optimized)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    backend_trpc [label="API Layer: tRPC\nType-safe API with end-to-end TypeScript", shape=box];
+    backend_routers [label="Router Composition:\n- project (CRUD, vectorize, status)\n- loop1 (research, pre-mortem)\n- loop2 (phase division, execution)\n- loop3 (scan, GitHub, export)\n- agent (health, metadata)\n- audit (theater, production, quality)", shape=box];
+
+    backend_bullmq [label="Task Queue: BullMQ\nPriority queue with retry logic", shape=box];
+    backend_priorities [label="Job Priorities:\n- Critical: Loop 1/3 (priority: 1)\n- High: Loop 2 execution (priority: 5)\n- Medium: Audit stages (priority: 10)\n- Low: Doc cleanup (priority: 20)", shape=box];
+
+    backend_vectorization [label="Vectorization Service:\nIncremental indexing with git diff\nParallel embedding (batch 64)\n30-day Redis cache", shape=box];
+    backend_vectorization_perf [label="Performance:\n- Full: <60s (10K files)\n- Incremental: <10s (100 files)\n- Cache hit: <1s", shape=box, style=filled, fillcolor=lightgreen];
+
+    backend_sandbox [label="Sandbox Service:\nDocker with security best practices\n- 512MB RAM, 50% CPU, 30s timeout\n- Network isolated, non-root user\n- Read-only filesystem, capability dropping", shape=box];
+    backend_sandbox_perf [label="Performance:\n<20s validation time", shape=box, style=filled, fillcolor=lightgreen];
+  }
+
+  // ============================================
+  // CLUSTER: AGENT INTEGRATION
+  // ============================================
+  subgraph cluster_agents {
+    label="Agent Integration (v6 Core Preserved)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    agents_contract [label="AgentContract (Unchanged from v6):\n- agentId, agentType, capabilities\n- initialize(), shutdown()\n- validate(), execute()\n- getMetadata(), getHealthStatus()", shape=box];
+
+    agents_v8_integration [label="v8 UI Integration Points:\n- execute() emits WebSocket events\n- getHealthStatus() in /dashboard\n- Task results in SQLite (Loop 2)", shape=box];
+
+    agents_22_phase1 [label="Phase 1: 22 Agents\n(v6 agent roster)", shape=box];
+    agents_50_phase2 [label="Phase 2: 50 Agents (Conditional)\n(v6 expanded roster)", shape=box];
+  }
+
+  // ============================================
+  // CLUSTER: TECHNICAL REQUIREMENTS
+  // ============================================
+  subgraph cluster_technical {
+    label="Technical Requirements (Research-Validated)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    tech_frontend [label="Frontend Performance:\n- 3D optimization (LOD, instanced, on-demand)\n- Code splitting (dynamic imports)\n- Image optimization (WebP, lazy load)\n- Target: 60fps desktop, 30fps mobile", shape=box];
+
+    tech_backend_scale [label="Backend Scalability:\n- Stateless API servers (horizontal)\n- Redis session storage (shared state)\n- Socket.io with Redis adapter (distributed)\n- NginX load balancer (sticky sessions)", shape=box];
+
+    tech_resources [label="Resource Limits:\n- API rate: 100 req/min per user\n- WebSocket: 1,000 concurrent per server\n- Task queue: 50 jobs parallel", shape=box];
+
+    tech_storage_phase1 [label="Storage Phase 1 (22 agents):\n- SQLite: 500 MB\n- Redis: 2 GB\n- Pinecone: 1 GB (free tier)\n- S3: 5 GB\n- Total: ~8.5 GB", shape=box];
+
+    tech_storage_phase2 [label="Storage Phase 2 (50 agents):\n- SQLite: 2 GB\n- Redis: 8 GB\n- Pinecone: 5 GB\n- S3: 20 GB\n- Total: ~35 GB", shape=box];
+  }
+
+  // ============================================
+  // EXIT POINT
+  // ============================================
+  end [label="Project Complete\n(Exported to GitHub OR Folder)", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+  // ============================================
+  // EDGE CONNECTIONS
+  // ============================================
+
+  // Entry
+  start -> system_overview;
+  system_overview -> tech_stack;
+  tech_stack -> phase1_metrics;
+  phase1_metrics -> phase2_metrics;
+  phase2_metrics -> v8_updates;
+  v8_updates -> home_page_trigger;
+
+  // Home Navigation
+  home_page_trigger -> home_monarch_chat;
+  home_monarch_chat -> home_project_selector;
+  home_project_selector -> home_session_history;
+  home_session_history -> home_choice;
+  home_choice -> route_new [label="New"];
+  home_choice -> route_select [label="Existing"];
+
+  // Page 2: Existing Project
+  route_select -> select_trigger;
+  select_trigger -> select_filesystem;
+  select_filesystem -> select_vectorization_start;
+  select_vectorization_start -> select_cache_check;
+
+  // Cache logic
+  select_cache_check -> select_cache_hit [label="Cache Hit"];
+  select_cache_check -> select_cache_miss [label="Cache Miss"];
+  select_cache_hit -> select_graph;
+  select_cache_miss -> select_changed_check;
+
+  // Changed files logic
+  select_changed_check -> select_incremental [label="Changed Files"];
+  select_changed_check -> select_full [label="New Project"];
+  select_incremental -> select_progress;
+  select_full -> select_progress;
+  select_progress -> select_cache_update;
+  select_cache_update -> select_graph;
+
+  // 3D/2D fallback
+  select_graph -> select_fallback_check;
+  select_fallback_check -> select_3d [label="Viable (≤5K files, ≥400MB GPU)"];
+  select_fallback_check -> select_2d [label="Fallback (>5K OR <400MB)"];
+  select_3d -> select_refinement;
+  select_2d -> select_refinement;
+
+  // Refinement choice
+  select_refinement -> select_specific [label="Specific Changes"];
+  select_refinement -> select_loop1 [label="Refinement Loop"];
+
+  // Page 3: New Project
+  route_new -> new_trigger;
+  new_trigger -> new_wizard;
+  new_wizard -> new_vision;
+  new_vision -> new_clarification;
+  new_clarification -> new_translation;
+  new_translation -> new_spec_preview;
+  new_spec_preview -> new_plan_preview;
+  new_plan_preview -> new_review;
+  new_review -> new_confirm;
+  new_confirm -> new_revise [label="Revise"];
+  new_confirm -> new_proceed [label="Confirm"];
+  new_revise -> new_clarification;
+  new_proceed -> select_loop1;
+
+  // Page 4: Loop 1
+  select_loop1 -> loop1_trigger;
+  loop1_trigger -> loop1_viz;
+  loop1_viz -> loop1_thoughts;
+  loop1_thoughts -> loop1_gauge;
+  loop1_gauge -> loop1_counter;
+  loop1_counter -> loop1_research_start;
+
+  // Research Phase
+  loop1_research_start -> loop1_github;
+  loop1_github -> loop1_papers;
+  loop1_papers -> loop1_artifacts;
+  loop1_artifacts -> loop1_research_criteria;
+  loop1_research_criteria -> loop1_premortem_start [label="Success (≥5 repos, ≥3 papers)"];
+  loop1_research_criteria -> loop1_github [label="Retry", style=dashed];
+
+  // Pre-mortem Phase
+  loop1_premortem_start -> loop1_scenarios;
+  loop1_scenarios -> loop1_risk;
+  loop1_risk -> loop1_failure_rate;
+  loop1_failure_rate -> loop1_report;
+  loop1_report -> loop1_failure_check;
+
+  // Failure check
+  loop1_failure_check -> loop1_success [label="<5% Failure Rate"];
+  loop1_failure_check -> loop1_remediation [label="≥5% Failure Rate"];
+
+  // Remediation
+  loop1_remediation -> loop1_mitigations;
+  loop1_mitigations -> loop1_update;
+  loop1_update -> loop1_reres;
+  loop1_reres -> loop1_validate;
+  loop1_validate -> loop1_repre;
+  loop1_repre -> loop1_recalc;
+  loop1_recalc -> loop1_iteration_check;
+
+  // Iteration control
+  loop1_iteration_check -> loop1_iterate [label="<20 Iterations"];
+  loop1_iteration_check -> loop1_max_exceeded [label="≥20 Iterations"];
+  loop1_iterate -> loop1_research_start;
+
+  // Success path
+  loop1_success -> loop1_route_loop2;
+
+  // Optional pause
+  loop1_pause -> loop1_gauge [label="User resumes", style=dashed];
+
+  // Page 5: Loop 2
+  loop1_route_loop2 -> loop2_trigger;
+  loop2_trigger -> loop2_viz;
+  loop2_viz -> loop2_phase_division;
+
+  // Phase Division
+  loop2_phase_division -> loop2_topology;
+  loop2_topology -> loop2_bottlenecks;
+  loop2_bottlenecks -> loop2_phases;
+  loop2_phases -> loop2_column;
+  loop2_column -> loop2_assignment;
+
+  // Princess Assignment
+  loop2_assignment -> loop2_princess_dev;
+  loop2_assignment -> loop2_princess_quality;
+  loop2_assignment -> loop2_princess_coord;
+  loop2_assignment -> loop2_princess_docs;
+  loop2_princess_dev -> loop2_card;
+  loop2_princess_quality -> loop2_card;
+  loop2_princess_coord -> loop2_card;
+  loop2_princess_docs -> loop2_card;
+  loop2_card -> loop2_execution;
+
+  // Task Execution
+  loop2_execution -> loop2_a2a;
+  loop2_a2a -> loop2_mcp;
+  loop2_mcp -> loop2_context;
+  loop2_context -> loop2_flow;
+  loop2_flow -> loop2_task_card;
+
+  // Real-time updates
+  loop2_task_card -> loop2_websocket;
+  loop2_websocket -> loop2_throttle;
+  loop2_throttle -> loop2_latency;
+
+  // Audit routing
+  loop2_latency -> loop2_audit_route;
+
+  // UI validation routing
+  loop2_audit_route -> loop2_ui_check;
+  loop2_ui_check -> loop2_ui_route [label="UI Task"];
+  loop2_ui_check -> loop2_complete_check [label="Non-UI Task"];
+
+  // Completion check
+  loop2_complete_check -> loop2_route_loop3 [label="All Complete"];
+  loop2_complete_check -> loop2_execution [label="More Tasks", style=dashed];
+
+  // Page 6: Audit
+  loop2_audit_route -> audit_trigger;
+  audit_trigger -> audit_pipeline;
+  audit_pipeline -> audit_theater_start;
+
+  // Stage 1: Theater
+  audit_theater_start -> audit_theater_patterns;
+  audit_theater_patterns -> audit_theater_score;
+  audit_theater_score -> audit_theater_check;
+  audit_theater_check -> audit_theater_pass [label="Score <10"];
+  audit_theater_check -> audit_theater_retry [label="Score ≥10"];
+  audit_theater_retry -> audit_theater_start [style=dashed];
+  audit_theater_pass -> audit_theater_results;
+  audit_theater_results -> audit_production_start;
+
+  // Stage 2: Production
+  audit_production_start -> audit_docker_run;
+  audit_docker_run -> audit_tests;
+  audit_tests -> audit_production_check;
+  audit_production_check -> audit_production_pass [label="All Passed"];
+  audit_production_check -> audit_debug [label="Tests Failed"];
+  audit_debug -> audit_retry_check;
+  audit_retry_check -> audit_retry_backoff [label="Retries <3"];
+  audit_retry_check -> audit_production_pass [label="Retries ≥3 (Give Up)"];
+  audit_retry_backoff -> audit_tests [style=dashed];
+  audit_production_pass -> audit_production_results;
+  audit_production_results -> audit_quality_start;
+
+  // Stage 3: Quality
+  audit_quality_start -> audit_analyzer_checks;
+  audit_analyzer_checks -> audit_quality_check;
+  audit_quality_check -> audit_quality_pass [label="100% Score"];
+  audit_quality_check -> audit_refactor [label="<100% Score"];
+  audit_refactor -> audit_rescan;
+  audit_rescan -> audit_quality_check [style=dashed];
+  audit_quality_pass -> audit_quality_results;
+  audit_quality_results -> audit_complete;
+
+  // Completion
+  audit_complete -> audit_return;
+  audit_return -> loop2_ui_check;
+
+  // Error reporting
+  audit_error_report -> audit_quality_results [style=dashed];
+  audit_retry_counter -> audit_production_results [style=dashed];
+
+  // Page 7: UI Review
+  loop2_ui_route -> ui_trigger;
+  ui_trigger -> ui_comparison;
+  ui_comparison -> ui_playwright_start;
+
+  // Playwright capture
+  ui_playwright_start -> ui_page_load;
+  ui_page_load -> ui_webgl_wait;
+  ui_webgl_wait -> ui_disable_animations;
+  ui_disable_animations -> ui_mask_dynamic;
+  ui_mask_dynamic -> ui_capture;
+  ui_capture -> ui_screenshot_success;
+  ui_screenshot_success -> ui_visual_diff [label="Success"];
+  ui_screenshot_success -> ui_retry [label="Failure"];
+  ui_retry -> ui_manual_fallback [label="Max Retries Exceeded"];
+  ui_manual_fallback -> ui_visual_diff;
+
+  // Visual diff
+  ui_visual_diff -> ui_highlight;
+  ui_highlight -> ui_split_view;
+  ui_split_view -> ui_user_review;
+  ui_user_review -> ui_approval;
+
+  // User approval
+  ui_approval -> ui_approve [label="Approve"];
+  ui_approval -> ui_request_changes [label="Request Changes"];
+  ui_approve -> ui_integration;
+  ui_request_changes -> ui_change_input;
+  ui_change_input -> ui_return_drone;
+  ui_return_drone -> ui_playwright_start [style=dashed];
+
+  // Integration test
+  ui_integration -> ui_complete;
+  ui_complete -> ui_return_loop2;
+  ui_return_loop2 -> loop2_complete_check;
+
+  // Logs
+  ui_playwright_log -> ui_comparison [style=dashed];
+
+  // Page 8: Loop 3
+  loop2_route_loop3 -> loop3_trigger;
+  loop3_trigger -> loop3_viz;
+  loop3_viz -> loop3_scan_start;
+
+  // Full scan
+  loop3_scan_start -> loop3_theater;
+  loop3_theater -> loop3_production;
+  loop3_production -> loop3_quality;
+  loop3_quality -> loop3_scan_display;
+  loop3_scan_display -> loop3_scan_check;
+  loop3_scan_check -> loop3_scan_pass [label="All Passed"];
+  loop3_scan_check -> loop3_scan_fail [label="Any Failed"];
+  loop3_scan_fail -> loop3_github_optional;
+  loop3_scan_pass -> loop3_github_optional;
+
+  // GitHub integration
+  loop3_github_optional -> loop3_repo_wizard;
+  loop3_repo_wizard -> loop3_private_default;
+  loop3_private_default -> loop3_secret_scan;
+  loop3_secret_scan -> loop3_secrets_found;
+  loop3_secrets_found -> loop3_block_repo [label="Secrets Found"];
+  loop3_secrets_found -> loop3_create_repo [label="No Secrets"];
+  loop3_create_repo -> loop3_hooks;
+  loop3_hooks -> loop3_cicd;
+  loop3_cicd -> loop3_quality_gates;
+  loop3_quality_gates -> loop3_push;
+  loop3_push -> loop3_docs_cleanup;
+
+  // Documentation cleanup
+  loop3_github_optional -> loop3_docs_cleanup [label="Skip GitHub"];
+  loop3_docs_cleanup -> loop3_docs_list;
+  loop3_docs_list -> loop3_ast_validation;
+
+  // AST validation
+  loop3_ast_validation -> loop3_extract_refs;
+  loop3_extract_refs -> loop3_parse_code;
+  loop3_parse_code -> loop3_compare;
+  loop3_compare -> loop3_mismatches;
+  loop3_mismatches -> loop3_llm_review [label="Mismatches Found"];
+  loop3_mismatches -> loop3_organize [label="No Mismatches"];
+
+  // Multi-agent LLM review
+  loop3_llm_review -> loop3_agent1;
+  loop3_agent1 -> loop3_agent2;
+  loop3_agent2 -> loop3_agent3;
+  loop3_agent3 -> loop3_human_approval;
+
+  // Human-in-the-loop
+  loop3_human_approval -> loop3_diff;
+  loop3_diff -> loop3_prompt_user;
+  loop3_prompt_user -> loop3_user_approves;
+  loop3_user_approves -> loop3_approve_docs [label="Approve"];
+  loop3_user_approves -> loop3_reject_docs [label="Reject"];
+  loop3_approve_docs -> loop3_organize;
+
+  // Organize docs
+  loop3_organize -> loop3_screenshots;
+  loop3_screenshots -> loop3_docs_component;
+  loop3_docs_component -> loop3_export;
+
+  // Export
+  loop3_export -> loop3_export_choice;
+  loop3_export_choice -> loop3_export_github [label="GitHub"];
+  loop3_export_choice -> loop3_export_folder [label="Folder"];
+  loop3_export_github -> loop3_celebration;
+  loop3_export_folder -> loop3_celebration;
+
+  // Completion
+  loop3_celebration -> loop3_new_project;
+  loop3_new_project -> end;
+
+  // Page 9: Dashboard (anytime access)
+  dashboard_trigger -> dashboard_overview;
+  dashboard_overview -> dashboard_timeline;
+  dashboard_timeline -> dashboard_metrics;
+  dashboard_metrics -> dashboard_feed;
+  dashboard_feed -> dashboard_cost;
+  dashboard_cost -> dashboard_navigate;
+
+  // Cross-references to supporting systems
+  audit_system_overview -> audit_theater_start [style=dashed, color=blue];
+  audit_system_theater -> audit_theater_patterns [style=dashed, color=blue];
+  audit_system_production -> audit_docker_run [style=dashed, color=blue];
+  audit_system_quality -> audit_analyzer_checks [style=dashed, color=blue];
+  audit_system_total_time -> audit_complete [style=dashed, color=green];
+
+  realtime_websocket -> loop2_websocket [style=dashed, color=blue];
+  realtime_redis_adapter -> loop2_latency [style=dashed, color=red];
+  realtime_targets -> loop2_latency [style=dashed, color=green];
+
+  princess_hierarchy -> loop2_execution [style=dashed, color=blue];
+  princess_queen -> loop2_assignment [style=dashed, color=blue];
+  princess_a2a -> loop2_a2a [style=dashed, color=blue];
+  princess_mcp -> loop2_mcp [style=dashed, color=blue];
+  princess_context_dna -> loop2_context [style=dashed, color=blue];
+  princess_perf -> loop2_latency [style=dashed, color=green];
+
+  enh_3d -> select_fallback_check [style=dashed, color=orange];
+  enh_websocket -> realtime_redis_adapter [style=dashed, color=orange];
+  enh_vectorization -> select_cache_check [style=dashed, color=orange];
+  enh_playwright -> ui_playwright_start [style=dashed, color=orange];
+
+  backend_trpc -> loop2_execution [style=dashed, color=blue];
+  backend_bullmq -> loop2_execution [style=dashed, color=blue];
+  backend_vectorization -> select_vectorization_start [style=dashed, color=blue];
+  backend_sandbox -> audit_docker_run [style=dashed, color=blue];
+
+  agents_contract -> loop2_execution [style=dashed, color=blue];
+  agents_v8_integration -> loop2_websocket [style=dashed, color=blue];
+
+  tech_frontend -> select_3d [style=dashed, color=blue];
+  tech_backend_scale -> realtime_horizontal [style=dashed, color=blue];
+}

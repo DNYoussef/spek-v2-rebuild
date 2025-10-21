@@ -1,0 +1,107 @@
+{
+  "delegate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"code\", \"issue_type\": \"runtime_error\", \"error_message\": \"TypeError: Cannot read property 'id' of undefined\", \"affected_file\": \"src/components/UserProfile.tsx\"}",
+        "reasoning": "For this debugging task, I'll assign the debugger drone since we're dealing with a classic TypeError in React component. The issue appears to be a null check problem where we're trying to access properties on an undefined object, likely due to async data loading or improper initialization. The debugger drone is best equipped to handle runtime errors and can implement proper null checks and loading states.",
+        "drone_task": "{\n  \"drone_id\": \"debugger\",\n  \"task_type\": \"debug\",\n  \"description\": \"Fix TypeError in UserProfile component caused by undefined object access\",\n  \"payload\": {\n    \"investigation_steps\": [\n      \"Trace data flow to UserProfile component\",\n      \"Review component lifecycle\",\n      \"Check data initialization\",\n      \"Verify prop types\"\n    ],\n    \"root_cause_hypothesis\": \"Missing null check or accessing data before it's available\",\n    \"fix_approach\": \"Implement proper null checks and loading states\",\n    \"test_scenarios\": [\n      \"Component initial render\",\n      \"Data loading states\",\n      \"Empty/null data cases\"\n    ]\n  },\n  \"acceptance_criteria\": [\n    \"No TypeError when data is undefined\",\n    \"Loading state shown when data not ready\",\n    \"Proper error boundaries implemented\",\n    \"TypeScript types properly defined\",\n    \"All edge cases covered with tests\"\n  ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"deployment\", \"issue_type\": \"performance\", \"error_message\": \"API endpoint /products taking 5+ seconds\", \"affected_file\": \"src/api/products.ts\"}",
+        "reasoning": "For this performance debugging task, I'll assign the debugger drone who specializes in identifying and resolving performance bottlenecks. The issue appears to be a slow API endpoint, which requires investigation of database queries, caching, and potential N+1 problems. The debugger drone has the necessary tools and expertise to profile the API performance and implement optimizations.",
+        "drone_task": "{\n  \"drone_id\": \"debugger\",\n  \"task_type\": \"debug\",\n  \"description\": \"Optimize slow-performing products API endpoint\",\n  \"payload\": {\n    \"investigation_steps\": [\n      \"Profile API endpoint execution\",\n      \"Analyze database query patterns\",\n      \"Check for N+1 queries\",\n      \"Review caching strategy\",\n      \"Identify bottlenecks in data processing\"\n    ],\n    \"root_cause_hypothesis\": \"Inefficient database queries or missing caching\",\n    \"fix_approach\": \"Implement query optimization and caching strategy\",\n    \"test_scenarios\": [\n      \"Large dataset performance\",\n      \"Concurrent requests\",\n      \"Cache hit/miss scenarios\"\n    ]\n  },\n  \"acceptance_criteria\": [\n    \"Response time under 500ms for 95th percentile\",\n    \"Query execution plan optimized\",\n    \"Proper caching implemented\",\n    \"No regression in data accuracy\",\n    \"Load test results documented\"\n  ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"testing\", \"issue_type\": \"memory_leak\", \"error_message\": \"Memory usage grows continuously, OOM after 2 hours\", \"affected_file\": \"src/services/websocket-manager.ts\"}",
+        "reasoning": "For this memory leak investigation, I'll assign the debugger drone as it specializes in performance issues and memory management. The task requires deep analysis of websocket connection lifecycle and memory profiling. Given the severity (OOM crash) and complexity (websocket state management), we need a systematic debugging approach with clear acceptance criteria.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Investigate and fix websocket memory leak causing OOM crash\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Profile memory usage over time\",\n            \"Analyze websocket connection lifecycle\",\n            \"Check event listener cleanup\",\n            \"Review message queue handling\",\n            \"Monitor resource cleanup on disconnect\"\n        ],\n        \"root_cause_hypothesis\": \"Websocket connections or message handlers not properly cleaned up\",\n        \"fix_approach\": \"Implement proper connection cleanup, verify message handler disposal\",\n        \"test_scenarios\": [\n            \"Long-running connection\",\n            \"Reconnection scenarios\",\n            \"High message volume\",\n            \"Connection interrupts\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Memory usage remains stable over 24h period\",\n        \"No detached event listeners found\",\n        \"All resources properly cleaned on disconnect\",\n        \"Heap snapshots show no memory leaks\",\n        \"Websocket connections close properly\",\n        \"Performance metrics within acceptable range\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"production\", \"issue_type\": \"race_condition\", \"error_message\": \"Order total sometimes incorrect (intermittent)\", \"affected_file\": \"src/cart/checkout.ts\"}",
+        "reasoning": "For this critical race condition in the checkout process, I'm selecting the debugger drone due to their specialized skills in:\n1. Analyzing concurrent operations\n2. Debugging timing-sensitive issues\n3. Understanding transaction patterns\n4. Implementing thread-safe solutions\n\nThe task requires careful investigation of the order calculation flow, with emphasis on synchronization and atomic operations. Given the financial implications, thorough testing and verification are essential.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Investigate and fix race condition in order total calculation\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Add detailed logging of calculation steps\",\n            \"Reproduce issue with concurrent operations\",\n            \"Review transaction boundaries\",\n            \"Analyze cart item mutation patterns\"\n        ],\n        \"root_cause_hypothesis\": \"Cart updates conflicting during total calculation\",\n        \"fix_approach\": [\n            \"Implement transaction isolation\",\n            \"Add mutex/locking mechanism\",\n            \"Ensure atomic updates\",\n            \"Validate totals before confirmation\"\n        ],\n        \"test_scenarios\": [\n            \"Concurrent cart updates\",\n            \"High-load simulation\",\n            \"Network latency variations\",\n            \"Multiple device synchronization\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Order totals consistent across all scenarios\",\n        \"No race conditions under load testing\",\n        \"Transaction rollback working correctly\",\n        \"Audit log shows correct calculation flow\",\n        \"Performance impact within acceptable range\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"code\", \"issue_type\": \"authentication_failure\", \"error_message\": \"JWT token validation fails with 'invalid signature'\", \"affected_file\": \"src/middleware/auth.ts\"}",
+        "reasoning": "For this authentication-related debugging task, I'll assign the debugger drone due to the security-critical nature and need for systematic investigation. The task requires careful analysis of JWT validation logic, secret management, and potential environment misconfigurations. The debugger drone has the necessary capabilities to trace token flow, verify cryptographic operations, and ensure secure authentication implementation.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Investigate and fix JWT token validation failures\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Verify JWT secret consistency across environments\",\n            \"Check token signing algorithm\",\n            \"Trace token generation and validation flow\",\n            \"Review environment variables\",\n            \"Inspect token structure and claims\"\n        ],\n        \"root_cause_hypothesis\": \"Mismatch between signing and validation secrets or incorrect algorithm usage\",\n        \"fix_approach\": \"Ensure consistent secret management and correct JWT configuration\",\n        \"test_scenarios\": [\n            \"Token generation\",\n            \"Token validation\",\n            \"Environment transitions\",\n            \"Invalid token handling\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"JWT tokens validate successfully\",\n        \"Secret management is secure and consistent\",\n        \"Error handling is appropriate\",\n        \"All authentication tests pass\",\n        \"No security vulnerabilities introduced\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"deployment\", \"issue_type\": \"database_connection\", \"error_message\": \"Connection pool exhausted, max connections reached\", \"affected_file\": \"src/db/connection.ts\"}",
+        "reasoning": "For this database connection pool exhaustion issue, I'll assign the debugger drone as it requires deep investigation of connection handling patterns and potential resource leaks. The task requires analyzing connection lifecycle, pool configuration, and connection release patterns. The debugger drone has the necessary capabilities to profile database connections, analyze connection patterns, and implement proper connection management.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Investigate and fix database connection pool exhaustion\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Monitor active connections over time\",\n            \"Profile connection acquisition/release patterns\",\n            \"Review connection pool configuration\",\n            \"Check for unreleased connections\",\n            \"Analyze connection lifecycle in transactions\"\n        ],\n        \"root_cause_hypothesis\": \"Connections not properly released or transaction boundaries incorrect\",\n        \"fix_approach\": \"Implement proper connection release, optimize pool settings, add monitoring\",\n        \"test_scenarios\": [\n            \"High concurrent load\",\n            \"Long-running transactions\",\n            \"Error scenarios\",\n            \"Connection timeout cases\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Connection pool stays within limits under load\",\n        \"No connection leaks detected\",\n        \"Proper error handling for pool exhaustion\",\n        \"Connection metrics and monitoring in place\",\n        \"Load test passes with concurrent users\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"testing\", \"issue_type\": \"flaky_test\", \"error_message\": \"Test 'user login flow' fails intermittently (30% failure rate)\", \"affected_file\": \"tests/integration/auth.test.ts\"}",
+        "reasoning": "For this flaky test debugging task, I'll assign the debugger drone as it specializes in investigating inconsistent behaviors and test reliability issues. The task requires systematic investigation of timing, state management, and test environment factors that could cause intermittent failures. The debugger drone will need to implement test stabilization techniques and verify the fix through multiple test runs.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Investigate and fix flaky user login flow test\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Add detailed logging to test steps\",\n            \"Check for race conditions\",\n            \"Verify test cleanup\",\n            \"Monitor async operations\",\n            \"Review test environment consistency\"\n        ],\n        \"root_cause_hypothesis\": \"Race condition or timing issue in auth flow\",\n        \"fix_approach\": \"Implement proper wait conditions and state synchronization\",\n        \"test_scenarios\": [\n            \"Slow network simulation\",\n            \"Rapid test iterations\",\n            \"Parallel test execution\",\n            \"Different environment configs\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Test passes 100 consecutive runs\",\n        \"No false positives/negatives\",\n        \"Clear documentation of found issues\",\n        \"Implementation of test stability patterns\",\n        \"Verification in CI pipeline\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"production\", \"issue_type\": \"cors_error\", \"error_message\": \"CORS policy blocks requests from frontend domain\", \"affected_file\": \"src/server.ts\"}",
+        "reasoning": "I'm selecting the debugger drone for this CORS issue since it requires careful investigation of server configuration and cross-origin request handling. The task requires both backend and network debugging expertise to properly diagnose and fix CORS policy issues. The debugger drone is equipped to handle security-related configurations and can verify the fix across different environments.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Resolve CORS policy blocking in production environment\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Verify allowed origins configuration\",\n            \"Check request headers\",\n            \"Compare dev vs prod settings\",\n            \"Test preflight requests\"\n        ],\n        \"root_cause_hypothesis\": \"Misconfigured CORS allowed origins in production\",\n        \"fix_approach\": \"Update CORS middleware configuration with correct origins\",\n        \"test_scenarios\": [\n            \"Different origin requests\",\n            \"Various HTTP methods\",\n            \"Preflight OPTIONS requests\",\n            \"Credential handling\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Frontend successfully connects to backend\",\n        \"CORS headers properly set in responses\",\n        \"Preflight requests handled correctly\",\n        \"Security not compromised by CORS config\",\n        \"All HTTP methods working as expected\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"code\", \"issue_type\": \"infinite_loop\", \"error_message\": \"Browser tab freezes when opening settings page\", \"affected_file\": \"src/components/Settings.tsx\"}",
+        "reasoning": "I'm selecting the debugger drone for this task since we're dealing with a critical performance issue causing browser freezes. The infinite loop bug requires careful investigation of component lifecycle and state management. The debugger drone specializes in performance debugging and React component analysis. The task will be structured to systematically identify the loop condition and implement proper termination checks.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Fix infinite loop causing browser freeze in Settings component\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Profile component render cycles\",\n            \"Check useEffect dependencies\",\n            \"Review state update logic\",\n            \"Analyze component re-render triggers\"\n        ],\n        \"root_cause_hypothesis\": \"Circular dependency in state updates or effect hooks\",\n        \"fix_approach\": \"Identify and break infinite update cycle, implement proper dependency checks\",\n        \"test_scenarios\": [\n            \"Settings page load\",\n            \"State modifications\",\n            \"Component mount/unmount\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Component renders without freezing\",\n        \"No unnecessary re-renders detected\",\n        \"React DevTools shows normal update pattern\",\n        \"Performance metrics within acceptable range\",\n        \"All settings functionality working correctly\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "debug",
+        "context": "{\"previous_phase\": \"deployment\", \"issue_type\": \"data_inconsistency\", \"error_message\": \"User sees old data after update (cache stale)\", \"affected_file\": \"src/cache/user-cache.ts\"}",
+        "reasoning": "For this cache staleness issue, I'm selecting the debugger drone as it requires deep investigation of cache invalidation logic and data flow. The task needs systematic debugging of cache mechanisms, timing of updates, and validation of cache coherence. The debugger drone's expertise in tracing data flows and timing issues makes it ideal for this task.",
+        "drone_task": "{\n    \"drone_id\": \"debugger\",\n    \"task_type\": \"debug\",\n    \"description\": \"Investigate and fix cache staleness in user data updates\",\n    \"payload\": {\n        \"investigation_steps\": [\n            \"Trace cache update flow\",\n            \"Review cache invalidation triggers\",\n            \"Check TTL settings\",\n            \"Analyze update race conditions\",\n            \"Monitor cache hit/miss patterns\"\n        ],\n        \"root_cause_hypothesis\": \"Cache invalidation not triggered on all update paths\",\n        \"fix_approach\": \"Implement proper cache invalidation strategy and versioning\",\n        \"test_scenarios\": [\n            \"Concurrent updates\",\n            \"Multiple device sync\",\n            \"Network interruptions\",\n            \"Cache expiry cases\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \"Cache updates immediately after data changes\",\n        \"No stale data visible to users\",\n        \"Cache invalidation verified across all update paths\",\n        \"Performance metrics within acceptable range\",\n        \"Cache coherence maintained across distributed system\"\n    ]\n}"
+      }
+    ],
+    "signature": {
+      "instructions": "Delegate task to drone agent with clear instructions.\n\nYou are a Princess agent coordinating your specialized drone hive.\nYour role is to take high-level workflow phases and convert them\ninto specific, actionable tasks for your drone agents.\n\nPrincess-Dev drones: coder, reviewer, debugger, integration-engineer\nPrincess-Quality drones: tester, nasa-enforcer, theater-detector, fsm-analyzer\nPrincess-Coordination drones: orchestrator, planner, cost-tracker\n\nEach drone task must have:\n- Specific drone agent assignment\n- Task type matching drone capabilities\n- Clear context from previous phases\n- Concrete deliverables\n- Quality gates/acceptance criteria\n\nFollow the 26 prompt engineering principles:\n- Clarity: Unambiguous instructions\n- Context: Include relevant phase results\n- Constraints: Respect drone capabilities\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Phase:",
+          "description": "Development phase to execute (design, code, test, review, etc.)"
+        },
+        {
+          "prefix": "Context:",
+          "description": "Context and results from previous phases that this phase depends on"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Delegation reasoning explaining drone selection and task structure"
+        },
+        {
+          "prefix": "Drone Task:",
+          "description": "Structured task for drone agent as JSON object. Must have: {'drone_id': str, 'task_type': str, 'description': str, 'payload': dict, 'acceptance_criteria': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

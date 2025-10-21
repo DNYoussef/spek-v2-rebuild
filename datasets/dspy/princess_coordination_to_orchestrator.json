@@ -1,0 +1,1632 @@
+{
+  "communication_path": "princess-coordination→orchestrator",
+  "description": "Princess-Coordination delegates workflow orchestration to Orchestrator drone",
+  "examples": [
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "test", "deploy"],
+          "estimated_hours": 12,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["coder", "tester", "reviewer"],
+          "budget": "$500"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate OAuth2 feature implementation across agents",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "review", "agent": "reviewer", "parallel": true}
+            ],
+            "dependencies": ["design→implement", "implement→[test,review]"],
+            "resource_allocation": {"coder": "6h", "tester": "3h", "reviewer": "2h"}
+          }
+        },
+        "dependencies": ["plan approved", "resources available"],
+        "estimated_minutes": 30,
+        "quality_gates": ["all phases complete", "no resource conflicts", "budget not exceeded"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "prototype", "validate"],
+          "estimated_hours": 8,
+          "team_size": 2
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder"],
+          "budget": "$300"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate AI model evaluation workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "prototype", "agent": "coder", "parallel": false},
+              {"name": "validate", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["research→prototype", "prototype→validate"],
+            "resource_allocation": {"researcher": "4h", "coder": "3h", "tester": "1h"}
+          }
+        },
+        "dependencies": ["research complete"],
+        "estimated_minutes": 25,
+        "quality_gates": ["validation passed", "research documented"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["audit", "refactor", "test", "document"],
+          "estimated_hours": 16,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["reviewer", "coder", "tester", "docs-writer"],
+          "budget": "$800"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate legacy codebase refactoring workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "audit", "agent": "reviewer", "parallel": false},
+              {"name": "refactor", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "document", "agent": "docs-writer", "parallel": true}
+            ],
+            "dependencies": ["audit→refactor", "refactor→[test,document]"],
+            "resource_allocation": {"reviewer": "4h", "coder": "8h", "tester": "2h", "docs-writer": "2h"}
+          }
+        },
+        "dependencies": ["audit completed", "refactor plan approved"],
+        "estimated_minutes": 40,
+        "quality_gates": ["100% test coverage", "documentation complete", "no regressions"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["secure", "deploy", "monitor"],
+          "estimated_hours": 6,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["security-manager", "devops", "cost-tracker"],
+          "budget": "$400"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate secure production deployment",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "secure", "agent": "security-manager", "parallel": false},
+              {"name": "deploy", "agent": "devops", "parallel": false},
+              {"name": "monitor", "agent": "cost-tracker", "parallel": false}
+            ],
+            "dependencies": ["secure→deploy", "deploy→monitor"],
+            "resource_allocation": {"security-manager": "2h", "devops": "3h", "cost-tracker": "1h"}
+          }
+        },
+        "dependencies": ["security audit passed", "deployment approved"],
+        "estimated_minutes": 20,
+        "quality_gates": ["zero vulnerabilities", "deployment successful", "monitoring active"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "optimize", "benchmark"],
+          "estimated_hours": 10,
+          "team_size": 2
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder"],
+          "budget": "$600"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate performance optimization workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "optimize", "agent": "coder", "parallel": false},
+              {"name": "benchmark", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["analyze→optimize", "optimize→benchmark"],
+            "resource_allocation": {"researcher": "3h", "coder": "5h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["baseline metrics collected"],
+        "estimated_minutes": 35,
+        "quality_gates": ["20% performance improvement", "no regressions"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["spec", "design", "implement", "integrate"],
+          "estimated_hours": 20,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["spec-writer", "architect", "coder", "integration-engineer"],
+          "budget": "$1000"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate new microservice development",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "spec", "agent": "spec-writer", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "integrate", "agent": "integration-engineer", "parallel": false}
+            ],
+            "dependencies": ["spec→design", "design→implement", "implement→integrate"],
+            "resource_allocation": {"spec-writer": "4h", "architect": "6h", "coder": "8h", "integration-engineer": "2h"}
+          }
+        },
+        "dependencies": ["requirements approved", "architecture review passed"],
+        "estimated_minutes": 45,
+        "quality_gates": ["spec complete", "design approved", "integration tests passed"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["debug", "fix", "verify"],
+          "estimated_hours": 5,
+          "team_size": 2
+        },
+        "resources": {
+          "available_agents": ["debugger", "tester"],
+          "budget": "$250"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate critical bug fix workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "debug", "agent": "debugger", "parallel": false},
+              {"name": "fix", "agent": "coder", "parallel": false},
+              {"name": "verify", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["debug→fix", "fix→verify"],
+            "resource_allocation": {"debugger": "2h", "coder": "2h", "tester": "1h"}
+          }
+        },
+        "dependencies": ["bug reproduced", "root cause identified"],
+        "estimated_minutes": 15,
+        "quality_gates": ["bug fixed", "regression tests passed", "no new bugs introduced"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "design", "prototype", "evaluate"],
+          "estimated_hours": 14,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder"],
+          "budget": "$700"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate ML model integration workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "prototype", "agent": "coder", "parallel": false},
+              {"name": "evaluate", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["research→design", "design→prototype", "prototype→evaluate"],
+            "resource_allocation": {"researcher": "4h", "architect": "4h", "coder": "4h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["model selected", "training data ready"],
+        "estimated_minutes": 40,
+        "quality_gates": ["accuracy >90%", "latency <100ms", "integration successful"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["review", "refactor", "test"],
+          "estimated_hours": 8,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["reviewer", "coder", "tester"],
+          "budget": "$400"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate code quality improvement workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "review", "agent": "reviewer", "parallel": false},
+              {"name": "refactor", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["review→refactor", "refactor→test"],
+            "resource_allocation": {"reviewer": "2h", "coder": "4h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["review complete", "refactor plan approved"],
+        "estimated_minutes": 25,
+        "quality_gates": ["code quality score >85%", "test coverage >90%"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "document", "deploy"],
+          "estimated_hours": 18,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "docs-writer", "devops"],
+          "budget": "$900"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate API endpoint development workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "document", "agent": "docs-writer", "parallel": true},
+              {"name": "deploy", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→[document,deploy]"],
+            "resource_allocation": {"architect": "4h", "coder": "8h", "docs-writer": "3h", "devops": "3h"}
+          }
+        },
+        "dependencies": ["API spec approved", "security review passed"],
+        "estimated_minutes": 35,
+        "quality_gates": ["OpenAPI spec complete", "documentation published", "deployment successful"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "migrate", "validate"],
+          "estimated_hours": 12,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "tester"],
+          "budget": "$600"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate database migration workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "migrate", "agent": "coder", "parallel": false},
+              {"name": "validate", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["analyze→migrate", "migrate→validate"],
+            "resource_allocation": {"researcher": "3h", "coder": "6h", "tester": "3h"}
+          }
+        },
+        "dependencies": ["backup complete", "migration plan approved"],
+        "estimated_minutes": 30,
+        "quality_gates": ["zero data loss", "validation tests passed", "rollback plan ready"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["audit", "remediate", "verify"],
+          "estimated_hours": 7,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["security-manager", "coder", "tester"],
+          "budget": "$350"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate security vulnerability remediation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "audit", "agent": "security-manager", "parallel": false},
+              {"name": "remediate", "agent": "coder", "parallel": false},
+              {"name": "verify", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["audit→remediate", "remediate→verify"],
+            "resource_allocation": {"security-manager": "2h", "coder": "4h", "tester": "1h"}
+          }
+        },
+        "dependencies": ["vulnerabilities identified", "remediation plan approved"],
+        "estimated_minutes": 20,
+        "quality_gates": ["zero critical vulnerabilities", "security scan passed"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "build", "test", "release"],
+          "estimated_hours": 24,
+          "team_size": 5
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester", "devops", "docs-writer"],
+          "budget": "$1200"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate major feature release workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "build", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "document", "agent": "docs-writer", "parallel": true},
+              {"name": "release", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["design→build", "build→[test,document]", "[test,document]→release"],
+            "resource_allocation": {"architect": "6h", "coder": "10h", "tester": "4h", "docs-writer": "2h", "devops": "2h"}
+          }
+        },
+        "dependencies": ["requirements finalized", "stakeholders approved"],
+        "estimated_minutes": 45,
+        "quality_gates": ["all tests passed", "documentation complete", "release notes published"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["prototype", "evaluate", "iterate"],
+          "estimated_hours": 9,
+          "team_size": 2
+        },
+        "resources": {
+          "available_agents": ["coder", "tester"],
+          "budget": "$450"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate rapid prototyping workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "prototype", "agent": "coder", "parallel": false},
+              {"name": "evaluate", "agent": "tester", "parallel": false},
+              {"name": "iterate", "agent": "coder", "parallel": false}
+            ],
+            "dependencies": ["prototype→evaluate", "evaluate→iterate"],
+            "resource_allocation": {"coder": "6h", "tester": "3h"}
+          }
+        },
+        "dependencies": ["requirements defined", "feedback loop established"],
+        "estimated_minutes": 25,
+        "quality_gates": ["prototype functional", "user feedback collected", "iteration complete"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["spec", "implement", "review", "merge"],
+          "estimated_hours": 10,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["spec-writer", "coder", "reviewer"],
+          "budget": "$500"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate feature branch workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "spec", "agent": "spec-writer", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "review", "agent": "reviewer", "parallel": false},
+              {"name": "merge", "agent": "integration-engineer", "parallel": false}
+            ],
+            "dependencies": ["spec→implement", "implement→review", "review→merge"],
+            "resource_allocation": {"spec-writer": "2h", "coder": "5h", "reviewer": "2h", "integration-engineer": "1h"}
+          }
+        },
+        "dependencies": ["spec approved", "tests written"],
+        "estimated_minutes": 30,
+        "quality_gates": ["code review passed", "CI/CD green", "conflicts resolved"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "architect", "prototype"],
+          "estimated_hours": 11,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder"],
+          "budget": "$550"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate proof-of-concept development",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "architect", "agent": "architect", "parallel": false},
+              {"name": "prototype", "agent": "coder", "parallel": false}
+            ],
+            "dependencies": ["research→architect", "architect→prototype"],
+            "resource_allocation": {"researcher": "4h", "architect": "3h", "coder": "4h"}
+          }
+        },
+        "dependencies": ["hypothesis defined", "success criteria established"],
+        "estimated_minutes": 35,
+        "quality_gates": ["research documented", "architecture viable", "prototype demonstrates feasibility"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["lint", "format", "commit"],
+          "estimated_hours": 2,
+          "team_size": 1
+        },
+        "resources": {
+          "available_agents": ["reviewer"],
+          "budget": "$100"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate code cleanup workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "lint", "agent": "reviewer", "parallel": false},
+              {"name": "format", "agent": "reviewer", "parallel": false},
+              {"name": "commit", "agent": "reviewer", "parallel": false}
+            ],
+            "dependencies": ["lint→format", "format→commit"],
+            "resource_allocation": {"reviewer": "2h"}
+          }
+        },
+        "dependencies": ["code complete", "tests passing"],
+        "estimated_minutes": 15,
+        "quality_gates": ["zero lint errors", "formatting consistent", "commit message clear"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "integrate", "deploy"],
+          "estimated_hours": 15,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "integration-engineer", "devops"],
+          "budget": "$750"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate third-party integration workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "integrate", "agent": "integration-engineer", "parallel": false},
+              {"name": "deploy", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→integrate", "integrate→deploy"],
+            "resource_allocation": {"architect": "3h", "coder": "6h", "integration-engineer": "4h", "devops": "2h"}
+          }
+        },
+        "dependencies": ["API credentials obtained", "integration plan approved"],
+        "estimated_minutes": 40,
+        "quality_gates": ["integration tests passed", "error handling complete", "deployment successful"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "optimize", "document"],
+          "estimated_hours": 7,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "docs-writer"],
+          "budget": "$350"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate database query optimization",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "optimize", "agent": "coder", "parallel": false},
+              {"name": "document", "agent": "docs-writer", "parallel": false}
+            ],
+            "dependencies": ["analyze→optimize", "optimize→document"],
+            "resource_allocation": {"researcher": "2h", "coder": "4h", "docs-writer": "1h"}
+          }
+        },
+        "dependencies": ["slow queries identified", "baseline metrics collected"],
+        "estimated_minutes": 20,
+        "quality_gates": ["50% performance improvement", "indexes optimized", "optimization documented"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "design", "implement", "test", "document"],
+          "estimated_hours": 22,
+          "team_size": 5
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder", "tester", "docs-writer"],
+          "budget": "$1100"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate complex feature development",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "document", "agent": "docs-writer", "parallel": true}
+            ],
+            "dependencies": ["research→design", "design→implement", "implement→[test,document]"],
+            "resource_allocation": {"researcher": "4h", "architect": "6h", "coder": "8h", "tester": "2h", "docs-writer": "2h"}
+          }
+        },
+        "dependencies": ["requirements approved", "architecture reviewed"],
+        "estimated_minutes": 45,
+        "quality_gates": ["all acceptance criteria met", "test coverage >90%", "documentation complete"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["backup", "upgrade", "verify"],
+          "estimated_hours": 5,
+          "team_size": 2
+        },
+        "resources": {
+          "available_agents": ["devops", "tester"],
+          "budget": "$250"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate system upgrade workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "backup", "agent": "devops", "parallel": false},
+              {"name": "upgrade", "agent": "devops", "parallel": false},
+              {"name": "verify", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["backup→upgrade", "upgrade→verify"],
+            "resource_allocation": {"devops": "3h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["backup verified", "upgrade plan approved"],
+        "estimated_minutes": 15,
+        "quality_gates": ["backup successful", "upgrade complete", "verification tests passed"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "test", "review", "deploy"],
+          "estimated_hours": 18,
+          "team_size": 5
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester", "reviewer", "devops"],
+          "budget": "$900"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate CI/CD pipeline enhancement",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "review", "agent": "reviewer", "parallel": true},
+              {"name": "deploy", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→[test,review]", "[test,review]→deploy"],
+            "resource_allocation": {"architect": "4h", "coder": "6h", "tester": "3h", "reviewer": "2h", "devops": "3h"}
+          }
+        },
+        "dependencies": ["pipeline requirements defined", "infrastructure ready"],
+        "estimated_minutes": 40,
+        "quality_gates": ["pipeline tests passed", "deployment automated", "rollback tested"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "refactor", "test"],
+          "estimated_hours": 9,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["reviewer", "coder", "tester"],
+          "budget": "$450"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate technical debt reduction",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "reviewer", "parallel": false},
+              {"name": "refactor", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["analyze→refactor", "refactor→test"],
+            "resource_allocation": {"reviewer": "2h", "coder": "5h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["debt identified", "refactor plan approved"],
+        "estimated_minutes": 25,
+        "quality_gates": ["code quality improved", "test coverage maintained", "no regressions"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "validate"],
+          "estimated_hours": 8,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "security-manager"],
+          "budget": "$400"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate authentication system implementation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "validate", "agent": "security-manager", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→validate"],
+            "resource_allocation": {"architect": "3h", "coder": "4h", "security-manager": "1h"}
+          }
+        },
+        "dependencies": ["security requirements defined", "auth provider selected"],
+        "estimated_minutes": 30,
+        "quality_gates": ["auth flow complete", "security audit passed", "session management secure"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "prototype", "evaluate", "integrate"],
+          "estimated_hours": 16,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "tester", "integration-engineer"],
+          "budget": "$800"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate experimental feature evaluation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "prototype", "agent": "coder", "parallel": false},
+              {"name": "evaluate", "agent": "tester", "parallel": false},
+              {"name": "integrate", "agent": "integration-engineer", "parallel": false}
+            ],
+            "dependencies": ["research→prototype", "prototype→evaluate", "evaluate→integrate"],
+            "resource_allocation": {"researcher": "4h", "coder": "6h", "tester": "3h", "integration-engineer": "3h"}
+          }
+        },
+        "dependencies": ["experiment defined", "success metrics established"],
+        "estimated_minutes": 40,
+        "quality_gates": ["prototype functional", "evaluation complete", "integration decision made"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["audit", "patch", "verify"],
+          "estimated_hours": 4,
+          "team_size": 2
+        },
+        "resources": {
+          "available_agents": ["security-manager", "devops"],
+          "budget": "$200"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate emergency security patch",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "audit", "agent": "security-manager", "parallel": false},
+              {"name": "patch", "agent": "devops", "parallel": false},
+              {"name": "verify", "agent": "security-manager", "parallel": false}
+            ],
+            "dependencies": ["audit→patch", "patch→verify"],
+            "resource_allocation": {"security-manager": "2h", "devops": "2h"}
+          }
+        },
+        "dependencies": ["vulnerability confirmed", "patch available"],
+        "estimated_minutes": 15,
+        "quality_gates": ["vulnerability patched", "no side effects", "verification passed"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "build", "test", "document"],
+          "estimated_hours": 14,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester", "docs-writer"],
+          "budget": "$700"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate REST API versioning",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "build", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "document", "agent": "docs-writer", "parallel": true}
+            ],
+            "dependencies": ["design→build", "build→[test,document]"],
+            "resource_allocation": {"architect": "3h", "coder": "6h", "tester": "3h", "docs-writer": "2h"}
+          }
+        },
+        "dependencies": ["versioning strategy defined", "backward compatibility planned"],
+        "estimated_minutes": 35,
+        "quality_gates": ["backward compatibility maintained", "migration guide complete", "tests cover both versions"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "implement", "benchmark"],
+          "estimated_hours": 10,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "tester"],
+          "budget": "$500"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate caching layer implementation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "benchmark", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["research→implement", "implement→benchmark"],
+            "resource_allocation": {"researcher": "3h", "coder": "5h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["caching strategy defined", "cache invalidation planned"],
+        "estimated_minutes": 30,
+        "quality_gates": ["cache hit ratio >80%", "performance improved", "invalidation working"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "design", "implement", "deploy"],
+          "estimated_hours": 12,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder", "devops"],
+          "budget": "$600"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate logging infrastructure upgrade",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "deploy", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["analyze→design", "design→implement", "implement→deploy"],
+            "resource_allocation": {"researcher": "2h", "architect": "3h", "coder": "5h", "devops": "2h"}
+          }
+        },
+        "dependencies": ["current logging analyzed", "new solution selected"],
+        "estimated_minutes": 35,
+        "quality_gates": ["structured logging implemented", "log aggregation working", "retention policy configured"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["spec", "implement", "test", "integrate"],
+          "estimated_hours": 13,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["spec-writer", "coder", "tester", "integration-engineer"],
+          "budget": "$650"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate webhook system implementation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "spec", "agent": "spec-writer", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": false},
+              {"name": "integrate", "agent": "integration-engineer", "parallel": false}
+            ],
+            "dependencies": ["spec→implement", "implement→test", "test→integrate"],
+            "resource_allocation": {"spec-writer": "2h", "coder": "6h", "tester": "3h", "integration-engineer": "2h"}
+          }
+        },
+        "dependencies": ["webhook events defined", "retry strategy planned"],
+        "estimated_minutes": 35,
+        "quality_gates": ["webhook delivery reliable", "retry logic working", "error handling complete"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "validate"],
+          "estimated_hours": 7,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester"],
+          "budget": "$350"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate rate limiting implementation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "validate", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→validate"],
+            "resource_allocation": {"architect": "2h", "coder": "3h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["rate limits defined", "algorithm selected"],
+        "estimated_minutes": 20,
+        "quality_gates": ["rate limiting enforced", "user experience acceptable", "abuse prevented"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "design", "implement", "test", "deploy"],
+          "estimated_hours": 20,
+          "team_size": 5
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder", "tester", "devops"],
+          "budget": "$1000"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate real-time notification system",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "deploy", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["research→design", "design→implement", "implement→test", "test→deploy"],
+            "resource_allocation": {"researcher": "3h", "architect": "5h", "coder": "8h", "tester": "2h", "devops": "2h"}
+          }
+        },
+        "dependencies": ["notification requirements defined", "delivery channels selected"],
+        "estimated_minutes": 45,
+        "quality_gates": ["real-time delivery <1s", "delivery guaranteed", "scalability tested"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "migrate", "verify"],
+          "estimated_hours": 9,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "tester"],
+          "budget": "$450"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate cloud provider migration",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "migrate", "agent": "coder", "parallel": false},
+              {"name": "verify", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["analyze→migrate", "migrate→verify"],
+            "resource_allocation": {"researcher": "3h", "coder": "4h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["migration plan approved", "target provider configured"],
+        "estimated_minutes": 30,
+        "quality_gates": ["zero downtime", "data integrity verified", "cost optimized"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "test", "document"],
+          "estimated_hours": 11,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester", "docs-writer"],
+          "budget": "$550"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate pagination system implementation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "document", "agent": "docs-writer", "parallel": true}
+            ],
+            "dependencies": ["design→implement", "implement→[test,document]"],
+            "resource_allocation": {"architect": "2h", "coder": "5h", "tester": "2h", "docs-writer": "2h"}
+          }
+        },
+        "dependencies": ["pagination strategy defined", "cursor vs offset decided"],
+        "estimated_minutes": 30,
+        "quality_gates": ["performance acceptable", "API consistent", "documentation clear"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["audit", "refactor", "validate"],
+          "estimated_hours": 8,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["reviewer", "coder", "tester"],
+          "budget": "$400"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate error handling standardization",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "audit", "agent": "reviewer", "parallel": false},
+              {"name": "refactor", "agent": "coder", "parallel": false},
+              {"name": "validate", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["audit→refactor", "refactor→validate"],
+            "resource_allocation": {"reviewer": "2h", "coder": "4h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["error handling patterns defined", "refactor plan approved"],
+        "estimated_minutes": 25,
+        "quality_gates": ["consistent error format", "all errors handled", "user messages clear"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "implement", "optimize"],
+          "estimated_hours": 10,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "tester"],
+          "budget": "$500"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate search functionality optimization",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "optimize", "agent": "coder", "parallel": false}
+            ],
+            "dependencies": ["research→implement", "implement→optimize"],
+            "resource_allocation": {"researcher": "3h", "coder": "7h"}
+          }
+        },
+        "dependencies": ["search requirements defined", "indexing strategy selected"],
+        "estimated_minutes": 30,
+        "quality_gates": ["search latency <200ms", "relevance scoring accurate", "pagination working"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "test", "deploy"],
+          "estimated_hours": 15,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester", "devops"],
+          "budget": "$750"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate async job processing system",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": false},
+              {"name": "deploy", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→test", "test→deploy"],
+            "resource_allocation": {"architect": "4h", "coder": "6h", "tester": "3h", "devops": "2h"}
+          }
+        },
+        "dependencies": ["queue system selected", "worker strategy defined"],
+        "estimated_minutes": 40,
+        "quality_gates": ["job processing reliable", "retry logic working", "monitoring in place"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "implement", "validate"],
+          "estimated_hours": 6,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "security-manager"],
+          "budget": "$300"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate input validation enhancement",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "validate", "agent": "security-manager", "parallel": false}
+            ],
+            "dependencies": ["analyze→implement", "implement→validate"],
+            "resource_allocation": {"researcher": "2h", "coder": "3h", "security-manager": "1h"}
+          }
+        },
+        "dependencies": ["validation rules defined", "schema validation selected"],
+        "estimated_minutes": 20,
+        "quality_gates": ["all inputs validated", "injection attacks prevented", "error messages helpful"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "build", "test", "release"],
+          "estimated_hours": 17,
+          "team_size": 5
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester", "docs-writer", "devops"],
+          "budget": "$850"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate GraphQL API development",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "build", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "document", "agent": "docs-writer", "parallel": true},
+              {"name": "release", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["design→build", "build→[test,document]", "[test,document]→release"],
+            "resource_allocation": {"architect": "4h", "coder": "7h", "tester": "3h", "docs-writer": "2h", "devops": "1h"}
+          }
+        },
+        "dependencies": ["schema designed", "resolvers planned"],
+        "estimated_minutes": 45,
+        "quality_gates": ["schema validated", "queries optimized", "documentation complete"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "implement", "benchmark"],
+          "estimated_hours": 9,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "tester"],
+          "budget": "$450"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate image processing pipeline",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "benchmark", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["research→implement", "implement→benchmark"],
+            "resource_allocation": {"researcher": "2h", "coder": "5h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["image formats defined", "processing requirements specified"],
+        "estimated_minutes": 25,
+        "quality_gates": ["processing time <2s", "quality maintained", "formats supported"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "design", "implement", "test"],
+          "estimated_hours": 13,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder", "tester"],
+          "budget": "$650"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate data export system development",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["analyze→design", "design→implement", "implement→test"],
+            "resource_allocation": {"researcher": "2h", "architect": "3h", "coder": "6h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["export formats defined", "data privacy reviewed"],
+        "estimated_minutes": 35,
+        "quality_gates": ["formats supported", "large datasets handled", "privacy maintained"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "integrate"],
+          "estimated_hours": 8,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "integration-engineer"],
+          "budget": "$400"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate email notification system",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "integrate", "agent": "integration-engineer", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→integrate"],
+            "resource_allocation": {"architect": "2h", "coder": "4h", "integration-engineer": "2h"}
+          }
+        },
+        "dependencies": ["email provider selected", "templates designed"],
+        "estimated_minutes": 25,
+        "quality_gates": ["delivery reliable", "templates responsive", "unsubscribe working"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "design", "implement", "validate"],
+          "estimated_hours": 14,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder", "tester"],
+          "budget": "$700"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate multi-tenancy implementation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "validate", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["research→design", "design→implement", "implement→validate"],
+            "resource_allocation": {"researcher": "3h", "architect": "4h", "coder": "5h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["isolation strategy defined", "tenant model designed"],
+        "estimated_minutes": 40,
+        "quality_gates": ["data isolation verified", "performance acceptable", "tenant management working"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["analyze", "implement", "test"],
+          "estimated_hours": 7,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["researcher", "coder", "tester"],
+          "budget": "$350"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate localization system enhancement",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "analyze", "agent": "researcher", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["analyze→implement", "implement→test"],
+            "resource_allocation": {"researcher": "2h", "coder": "3h", "tester": "2h"}
+          }
+        },
+        "dependencies": ["languages identified", "translation keys defined"],
+        "estimated_minutes": 20,
+        "quality_gates": ["all strings localized", "locale switching working", "fallbacks configured"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["design", "implement", "test", "deploy"],
+          "estimated_hours": 16,
+          "team_size": 4
+        },
+        "resources": {
+          "available_agents": ["architect", "coder", "tester", "devops"],
+          "budget": "$800"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate feature flag system implementation",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": false},
+              {"name": "deploy", "agent": "devops", "parallel": false}
+            ],
+            "dependencies": ["design→implement", "implement→test", "test→deploy"],
+            "resource_allocation": {"architect": "3h", "coder": "8h", "tester": "3h", "devops": "2h"}
+          }
+        },
+        "dependencies": ["flag strategy defined", "rollout plan approved"],
+        "estimated_minutes": 40,
+        "quality_gates": ["flags toggleable", "targeting working", "audit trail complete"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["audit", "optimize", "verify"],
+          "estimated_hours": 6,
+          "team_size": 3
+        },
+        "resources": {
+          "available_agents": ["reviewer", "coder", "tester"],
+          "budget": "$300"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate bundle size optimization",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "audit", "agent": "reviewer", "parallel": false},
+              {"name": "optimize", "agent": "coder", "parallel": false},
+              {"name": "verify", "agent": "tester", "parallel": false}
+            ],
+            "dependencies": ["audit→optimize", "optimize→verify"],
+            "resource_allocation": {"reviewer": "2h", "coder": "3h", "tester": "1h"}
+          }
+        },
+        "dependencies": ["baseline established", "optimization targets set"],
+        "estimated_minutes": 20,
+        "quality_gates": ["30% size reduction", "no functionality lost", "load time improved"]
+      }
+    },
+    {
+      "phase": "orchestrate",
+      "context": {
+        "previous_phase": "plan",
+        "plan": {
+          "phases": ["research", "design", "implement", "test", "document"],
+          "estimated_hours": 19,
+          "team_size": 5
+        },
+        "resources": {
+          "available_agents": ["researcher", "architect", "coder", "tester", "docs-writer"],
+          "budget": "$950"
+        }
+      },
+      "expected_drone_task": {
+        "drone_id": "orchestrator",
+        "task_type": "orchestrate-workflow",
+        "description": "Orchestrate analytics integration workflow",
+        "specifications": {
+          "workflow": {
+            "phases": [
+              {"name": "research", "agent": "researcher", "parallel": false},
+              {"name": "design", "agent": "architect", "parallel": false},
+              {"name": "implement", "agent": "coder", "parallel": false},
+              {"name": "test", "agent": "tester", "parallel": true},
+              {"name": "document", "agent": "docs-writer", "parallel": true}
+            ],
+            "dependencies": ["research→design", "design→implement", "implement→[test,document]"],
+            "resource_allocation": {"researcher": "3h", "architect": "4h", "coder": "8h", "tester": "2h", "docs-writer": "2h"}
+          }
+        },
+        "dependencies": ["analytics provider selected", "events defined"],
+        "estimated_minutes": 45,
+        "quality_gates": ["tracking accurate", "privacy compliant", "dashboards working"]
+      }
+    }
+  ]
+}

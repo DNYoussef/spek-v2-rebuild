@@ -1,0 +1,62 @@
+{
+  "aggregate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "drone_results": "{\"success\": true, \"files_created\": [\"src/storage/upload.py\"], \"lines_of_code\": 178, \"functions_implemented\": 6, \"nasa_compliance\": 92.5, \"type_coverage\": 100, \"execution_time_ms\": 6800, \"issues_found\": []}",
+        "quality_gates": "{\"nasa_compliance\": 92.5, \"type_coverage\": 100, \"loc_per_function_avg\": 30, \"total_loc\": 178}",
+        "aggregated_result": "{\"phase\": \"code\", \"status\": \"complete\", \"summary\": \"File upload service implemented with 6 functions. Meets NASA compliance target (92.5%) with full type coverage.\", \"quality_metrics\": {\"nasa_compliance\": 92.5, \"type_coverage\": 100, \"loc_per_function_avg\": 30, \"total_loc\": 178}, \"artifacts\": [\"src/storage/upload.py\"], \"next_phase\": \"review\", \"blockers\": [], \"recommendations\": [\"Add file type validation tests\", \"Proceed to review\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"files_created\": [\"src/docs/openapi.py\"], \"lines_of_code\": 289, \"functions_implemented\": 10, \"nasa_compliance\": 94.2, \"type_coverage\": 95, \"execution_time_ms\": 8800, \"issues_found\": []}",
+        "quality_gates": "{\"nasa_compliance\": 94.2, \"type_coverage\": 95, \"loc_per_function_avg\": 29, \"total_loc\": 289}",
+        "aggregated_result": "{\"phase\": \"code\", \"status\": \"complete\", \"summary\": \"OpenAPI documentation generator with 10 schema functions. Meets quality standards.\", \"quality_metrics\": {\"nasa_compliance\": 94.2, \"type_coverage\": 95, \"loc_per_function_avg\": 29, \"total_loc\": 289}, \"artifacts\": [\"src/docs/openapi.py\"], \"next_phase\": \"review\", \"blockers\": [], \"recommendations\": [\"Add example generation\", \"Proceed to review\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"files_created\": [\"src/i18n/translator.py\"], \"lines_of_code\": 212, \"functions_implemented\": 8, \"nasa_compliance\": 94.8, \"type_coverage\": 97, \"execution_time_ms\": 7200, \"issues_found\": []}",
+        "quality_gates": "{\"nasa_compliance\": 94.8, \"type_coverage\": 97, \"loc_per_function_avg\": 27, \"total_loc\": 212}",
+        "aggregated_result": "{\"phase\": \"code\", \"status\": \"complete\", \"summary\": \"Localization system with translation support implemented. 8 functions meet quality standards.\", \"quality_metrics\": {\"nasa_compliance\": 94.8, \"type_coverage\": 97, \"loc_per_function_avg\": 27, \"total_loc\": 212}, \"artifacts\": [\"src/i18n/translator.py\"], \"next_phase\": \"review\", \"blockers\": [], \"recommendations\": [\"Add pluralization support\", \"Proceed to review\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"files_created\": [\"src/features/flags.py\"], \"lines_of_code\": 178, \"functions_implemented\": 6, \"nasa_compliance\": 96.5, \"type_coverage\": 100, \"execution_time_ms\": 6000, \"issues_found\": []}",
+        "quality_gates": "{\"nasa_compliance\": 96.5, \"type_coverage\": 100, \"loc_per_function_avg\": 30, \"total_loc\": 178}",
+        "aggregated_result": "{\"phase\": \"code\", \"status\": \"complete\", \"summary\": \"Feature flag system with 6 management functions. Excellent quality (96.5% NASA, 100% type coverage).\", \"quality_metrics\": {\"nasa_compliance\": 96.5, \"type_coverage\": 100, \"loc_per_function_avg\": 30, \"total_loc\": 178}, \"artifacts\": [\"src/features/flags.py\"], \"next_phase\": \"review\", \"blockers\": [], \"recommendations\": [\"Add percentage-based rollout support\", \"Proceed to review\"]}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"files_created\": [\"src/search/api.py\", \"src/search/indexer.py\"], \"lines_of_code\": 324, \"functions_implemented\": 10, \"classes_implemented\": 3, \"nasa_compliance\": 95.8, \"type_coverage\": 98, \"execution_time_ms\": 9200, \"issues_found\": []}",
+        "quality_gates": "{\"nasa_compliance\": 95.8, \"type_coverage\": 98, \"loc_per_function_avg\": 32, \"total_loc\": 324}",
+        "aggregated_result": "{\"phase\": \"code\", \"status\": \"complete\", \"summary\": \"Search API with indexing implemented across 10 functions. High quality standards met (95.8% NASA compliance).\", \"quality_metrics\": {\"nasa_compliance\": 95.8, \"type_coverage\": 98, \"loc_per_function_avg\": 32, \"total_loc\": 324}, \"artifacts\": [\"src/search/api.py\", \"src/search/indexer.py\"], \"next_phase\": \"review\", \"blockers\": [], \"recommendations\": [\"Test search performance with large datasets\", \"Proceed to review phase\"]}"
+      }
+    ],
+    "signature": {
+      "instructions": "Aggregate drone results into coherent princess-level output.\n\nYou are a Princess agent receiving results from multiple drone agents\nthat executed tasks in parallel or sequence. Your role is to combine\ntheir individual results into a unified, comprehensive result that\ncan be reported to the Queen.\n\nAggregation must include:\n- Success/failure status of overall workflow\n- Quality metrics from all drones\n- Validation against quality gates\n- Artifacts produced by drones\n- Recommendations or next steps\n\nFollow the 26 prompt engineering principles:\n- Completeness: Include all relevant drone outputs\n- Quality: Validate against gates (test coverage, NASA compliance, etc.)\n- Clarity: Summarize complex results clearly\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Drone Results:",
+          "description": "List of results from drone agents (each with success, data, metrics)"
+        },
+        {
+          "prefix": "Quality Gates:",
+          "description": "Quality gates to validate against (e.g., test_coverage >= 80%)"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Aggregation reasoning explaining how results were combined and validated"
+        },
+        {
+          "prefix": "Aggregated Result:",
+          "description": "Aggregated result as JSON object. Must have: {'success': bool, 'overall_score': float, 'gates_passed': int, 'gates_failed': int, 'artifacts': list[str], 'recommendations': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

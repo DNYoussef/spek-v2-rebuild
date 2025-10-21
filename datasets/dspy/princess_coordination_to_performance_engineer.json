@@ -1,0 +1,1014 @@
+{
+  "communication_path": "princess-coordination→performance-engineer",
+  "description": "Princess-Coordination delegates performance optimization to Performance-Engineer drone",
+  "examples": [
+    {
+      "phase": "performance-baseline",
+      "context": {
+        "application": "E-commerce platform",
+        "metrics": "response time, throughput, resource usage",
+        "goal": "establish performance baseline"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "establish-performance-baseline",
+        "description": "Measure and document current performance metrics as baseline",
+        "specifications": {
+          "metrics_to_measure": ["response time (p50, p95, p99)", "throughput (req/s)", "error rate", "CPU/memory usage", "database query time"],
+          "load_scenarios": ["normal load (1000 users)", "peak load (5000 users)", "stress test (10000 users)"],
+          "tools": ["JMeter for load testing", "Prometheus for metrics", "Grafana for visualization"],
+          "duration": "run tests for 30 minutes each",
+          "documentation": "baseline report with graphs and recommendations"
+        },
+        "dependencies": ["test environment ready", "load testing tools configured", "monitoring in place"],
+        "estimated_minutes": 45,
+        "quality_gates": ["baseline established", "all metrics collected", "report documented", "recommendations provided"]
+      }
+    },
+    {
+      "phase": "load-testing",
+      "context": {
+        "event": "Black Friday sale",
+        "expected_traffic": "10x normal load",
+        "requirement": "validate system handles load"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "execute-load-testing",
+        "description": "Run comprehensive load tests to validate Black Friday capacity",
+        "specifications": {
+          "scenarios": ["gradual ramp-up to 10x load", "spike test (instant 10x)", "soak test (sustained 5x for 2 hours)"],
+          "tools": "k6 for scripting, distributed load generation",
+          "monitoring": ["application metrics", "database metrics", "infrastructure metrics"],
+          "success_criteria": ["p95 latency <500ms at 10x load", "error rate <0.1%", "no memory leaks"],
+          "reporting": "load test report with bottlenecks identified"
+        },
+        "dependencies": ["load test scripts written", "staging environment with production data", "monitoring configured"],
+        "estimated_minutes": 50,
+        "quality_gates": ["load tests executed", "success criteria met", "bottlenecks identified", "report delivered"]
+      }
+    },
+    {
+      "phase": "database-optimization",
+      "context": {
+        "database": "PostgreSQL",
+        "issue": "slow queries degrading performance",
+        "goal": "optimize top 10 slowest queries"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-database-performance",
+        "description": "Analyze and optimize slow database queries",
+        "specifications": {
+          "analysis": ["identify slow queries with pg_stat_statements", "explain analyze for query plans", "index analysis"],
+          "optimizations": ["add missing indexes", "rewrite inefficient queries", "optimize table statistics", "tune connection pool"],
+          "testing": "verify query performance improvements",
+          "monitoring": "set up slow query alerts",
+          "target": "reduce p95 query time by 50%"
+        },
+        "dependencies": ["database access", "query logs available", "test environment"],
+        "estimated_minutes": 55,
+        "quality_gates": ["queries optimized", "indexes added", "performance improved 50%", "monitoring configured"]
+      }
+    },
+    {
+      "phase": "caching-strategy",
+      "context": {
+        "application": "API with high read traffic",
+        "current": "no caching",
+        "goal": "implement multi-layer caching"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-caching-strategy",
+        "description": "Design and implement multi-layer caching for API",
+        "specifications": {
+          "layers": ["browser caching (Cache-Control headers)", "CDN caching (CloudFlare)", "application caching (Redis)", "database query caching"],
+          "cache_keys": "design cache key strategy",
+          "ttl": "define TTL for each layer (60s to 1h)",
+          "invalidation": "cache invalidation strategy on data updates",
+          "metrics": "cache hit ratio, response time improvement",
+          "target": "80% cache hit ratio, 5x latency reduction"
+        },
+        "dependencies": ["Redis deployed", "CDN configured", "cache logic implemented"],
+        "estimated_minutes": 50,
+        "quality_gates": ["caching implemented", "hit ratio >80%", "latency reduced 5x", "invalidation working"]
+      }
+    },
+    {
+      "phase": "frontend-optimization",
+      "context": {
+        "application": "React SPA",
+        "metrics": "Core Web Vitals failing",
+        "goal": "optimize LCP, FID, CLS"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-frontend-performance",
+        "description": "Optimize React application for Core Web Vitals",
+        "specifications": {
+          "lcp": ["optimize image loading (lazy load, WebP)", "reduce render-blocking resources", "improve server response time"],
+          "fid": ["code splitting", "reduce JavaScript execution time", "web workers for heavy tasks"],
+          "cls": ["reserve space for dynamic content", "avoid layout shifts", "optimize font loading"],
+          "tools": ["Lighthouse CI", "WebPageTest", "Chrome DevTools"],
+          "target": "all Core Web Vitals in green zone"
+        },
+        "dependencies": ["codebase access", "build pipeline", "performance budget defined"],
+        "estimated_minutes": 55,
+        "quality_gates": ["LCP <2.5s", "FID <100ms", "CLS <0.1", "Lighthouse score >90"]
+      }
+    },
+    {
+      "phase": "api-optimization",
+      "context": {
+        "api": "REST API with GraphQL",
+        "issue": "N+1 query problem, slow response times",
+        "goal": "optimize API performance"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-api-performance",
+        "description": "Resolve N+1 queries and optimize API response times",
+        "specifications": {
+          "n_plus_one": "implement DataLoader for batching",
+          "pagination": "implement cursor-based pagination",
+          "field_selection": "only fetch requested fields",
+          "compression": "enable gzip compression",
+          "rate_limiting": "implement rate limiting to prevent abuse",
+          "monitoring": "APM tool for API performance tracking",
+          "target": "p95 API response time <200ms"
+        },
+        "dependencies": ["API codebase access", "DataLoader library", "monitoring tools"],
+        "estimated_minutes": 50,
+        "quality_gates": ["N+1 queries eliminated", "response time <200ms", "compression enabled", "monitoring active"]
+      }
+    },
+    {
+      "phase": "memory-leak-investigation",
+      "context": {
+        "application": "Node.js microservice",
+        "symptom": "memory usage growing over time, OOM crashes",
+        "goal": "identify and fix memory leaks"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "investigate-memory-leaks",
+        "description": "Profile application to identify and fix memory leaks",
+        "specifications": {
+          "profiling": ["heap snapshots at intervals", "allocation timeline", "memory usage tracking"],
+          "tools": ["Chrome DevTools for Node.js", "clinic.js", "heapdump module"],
+          "analysis": ["identify growing objects", "find retained references", "analyze closure leaks"],
+          "fixes": ["remove event listener leaks", "fix closure issues", "implement proper cleanup"],
+          "validation": "run soak test to verify fix"
+        },
+        "dependencies": ["profiling tools installed", "test environment with leak", "production heap dumps"],
+        "estimated_minutes": 55,
+        "quality_gates": ["leaks identified", "fixes implemented", "memory stable", "soak test passed"]
+      }
+    },
+    {
+      "phase": "cdn-optimization",
+      "context": {
+        "assets": "images, videos, static files",
+        "bandwidth": "high bandwidth costs",
+        "goal": "optimize CDN usage and costs"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-cdn-usage",
+        "description": "Optimize CDN configuration for performance and cost savings",
+        "specifications": {
+          "image_optimization": ["WebP format", "responsive images (srcset)", "lazy loading", "compression"],
+          "video_optimization": ["adaptive bitrate streaming", "video compression", "thumbnail sprites"],
+          "cache_headers": "optimize cache-control headers for each asset type",
+          "compression": "Brotli compression for text assets",
+          "costs": "analyze CDN usage and optimize cache hit ratio",
+          "target": "reduce bandwidth by 40%, improve load time by 30%"
+        },
+        "dependencies": ["CDN access", "image processing pipeline", "video transcoding"],
+        "estimated_minutes": 50,
+        "quality_gates": ["images optimized", "videos compressed", "cache hit ratio >90%", "bandwidth reduced 40%"]
+      }
+    },
+    {
+      "phase": "query-profiling",
+      "context": {
+        "database": "MongoDB",
+        "collection": "1B documents",
+        "issue": "slow aggregation queries"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "profile-mongodb-queries",
+        "description": "Profile and optimize slow MongoDB aggregation pipelines",
+        "specifications": {
+          "profiling": ["enable database profiler", "analyze slow query logs", "explain plans for aggregations"],
+          "optimizations": ["add compound indexes", "optimize pipeline stages", "use $match early", "limit document scanning"],
+          "sharding": "evaluate sharding strategy for scale",
+          "monitoring": "MongoDB Atlas metrics and alerts",
+          "target": "aggregation queries <1s for p95"
+        },
+        "dependencies": ["database access", "profiling enabled", "test dataset"],
+        "estimated_minutes": 50,
+        "quality_gates": ["queries profiled", "indexes optimized", "aggregations <1s", "monitoring configured"]
+      }
+    },
+    {
+      "phase": "microservices-latency",
+      "context": {
+        "architecture": "15 microservices with REST calls",
+        "issue": "cascading latency, slow end-to-end response",
+        "goal": "reduce inter-service latency"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-microservices-latency",
+        "description": "Reduce inter-service communication latency in microservices architecture",
+        "specifications": {
+          "tracing": "distributed tracing with Jaeger to identify bottlenecks",
+          "optimizations": ["implement gRPC instead of REST", "circuit breakers to prevent cascading failures", "parallel requests where possible", "service mesh for traffic optimization"],
+          "connection_pooling": "optimize HTTP connection pooling",
+          "timeouts": "tune timeouts and retries",
+          "target": "reduce p95 end-to-end latency by 50%"
+        },
+        "dependencies": ["distributed tracing configured", "service mesh deployed", "monitoring in place"],
+        "estimated_minutes": 55,
+        "quality_gates": ["bottlenecks identified", "gRPC implemented", "latency reduced 50%", "circuit breakers working"]
+      }
+    },
+    {
+      "phase": "profiling-cpu",
+      "context": {
+        "application": "Python Django API",
+        "symptom": "high CPU usage, slow response times",
+        "goal": "identify CPU hotspots"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "profile-cpu-usage",
+        "description": "Profile application to identify and optimize CPU hotspots",
+        "specifications": {
+          "profiling": ["cProfile for function-level profiling", "py-spy for live profiling", "flame graphs for visualization"],
+          "analysis": ["identify expensive functions", "find algorithmic inefficiencies", "analyze serialization overhead"],
+          "optimizations": ["optimize hot paths", "cache expensive computations", "use compiled extensions (Cython)", "async processing for I/O"],
+          "validation": "benchmark before and after optimizations"
+        },
+        "dependencies": ["profiling tools installed", "representative workload", "staging environment"],
+        "estimated_minutes": 50,
+        "quality_gates": ["hotspots identified", "optimizations implemented", "CPU usage reduced 40%", "benchmarks improved"]
+      }
+    },
+    {
+      "phase": "resource-rightsizing",
+      "context": {
+        "infrastructure": "Kubernetes cluster",
+        "issue": "over-provisioned resources, high costs",
+        "goal": "right-size resource requests and limits"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "rightsize-kubernetes-resources",
+        "description": "Analyze and optimize Kubernetes resource requests and limits",
+        "specifications": {
+          "analysis": ["analyze actual CPU and memory usage", "identify over-provisioned pods", "find resource contention"],
+          "recommendations": "right-size requests/limits per pod",
+          "vpa": "implement Vertical Pod Autoscaler for automation",
+          "hpa": "tune Horizontal Pod Autoscaler thresholds",
+          "cost_savings": "estimate cost savings from rightsizing",
+          "target": "reduce resource waste by 30%"
+        },
+        "dependencies": ["metrics server deployed", "historical usage data", "VPA installed"],
+        "estimated_minutes": 45,
+        "quality_gates": ["usage analyzed", "resources rightsized", "VPA configured", "costs reduced 30%"]
+      }
+    },
+    {
+      "phase": "soak-testing",
+      "context": {
+        "application": "long-running service",
+        "duration": "72 hours",
+        "goal": "validate stability under sustained load"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "execute-soak-test",
+        "description": "Run 72-hour soak test to validate long-term stability",
+        "specifications": {
+          "test_plan": ["constant load at 70% capacity", "monitor for memory leaks, degradation", "simulate realistic user behavior"],
+          "monitoring": ["memory usage trends", "response time degradation", "error rate", "connection pool exhaustion", "disk usage"],
+          "alerts": "alert on degradation or anomalies",
+          "analysis": "identify issues that only appear over time",
+          "report": "soak test report with time-series graphs"
+        },
+        "dependencies": ["load test scripts", "monitoring configured", "staging environment"],
+        "estimated_minutes": 50,
+        "quality_gates": ["72-hour test completed", "no memory leaks", "performance stable", "report delivered"]
+      }
+    },
+    {
+      "phase": "stress-testing",
+      "context": {
+        "application": "payment processing system",
+        "goal": "find breaking point",
+        "safety": "test in isolated environment"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "execute-stress-test",
+        "description": "Stress test to identify system breaking point and failure modes",
+        "specifications": {
+          "methodology": ["gradually increase load until failure", "identify bottleneck (CPU, memory, database connections, etc.)", "observe failure modes"],
+          "monitoring": "comprehensive monitoring of all components",
+          "safety": "circuit breakers and rate limiting in place",
+          "recovery": "test system recovery after stress",
+          "documentation": "document breaking point and failure modes",
+          "recommendations": "capacity planning and scaling recommendations"
+        },
+        "dependencies": ["isolated test environment", "monitoring configured", "rollback plan"],
+        "estimated_minutes": 55,
+        "quality_gates": ["breaking point identified", "failure modes documented", "recovery validated", "recommendations provided"]
+      }
+    },
+    {
+      "phase": "bundle-optimization",
+      "context": {
+        "application": "React app",
+        "bundle_size": "3.5 MB (too large)",
+        "goal": "reduce to <1 MB"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-bundle-size",
+        "description": "Analyze and reduce JavaScript bundle size for faster load times",
+        "specifications": {
+          "analysis": ["webpack-bundle-analyzer to visualize bundle", "identify large dependencies", "find duplicate dependencies"],
+          "optimizations": ["code splitting by route", "lazy load components", "tree shaking", "replace large libraries with smaller alternatives"],
+          "compression": ["Brotli compression", "gzip fallback"],
+          "monitoring": "bundle size budget in CI/CD",
+          "target": "reduce bundle to <1 MB, initial load <500 KB"
+        },
+        "dependencies": ["webpack config access", "bundle analyzer installed", "build pipeline"],
+        "estimated_minutes": 50,
+        "quality_gates": ["bundle analyzed", "optimizations applied", "size <1 MB", "load time improved"]
+      }
+    },
+    {
+      "phase": "connection-pooling",
+      "context": {
+        "application": "API connecting to database",
+        "issue": "connection exhaustion during peak load",
+        "goal": "optimize connection pool settings"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-connection-pooling",
+        "description": "Tune database connection pool for optimal performance",
+        "specifications": {
+          "analysis": ["current connection pool usage", "peak connections during load", "connection wait times"],
+          "tuning": ["increase pool size if needed", "optimize connection timeout", "implement connection health checks", "tune idle connection management"],
+          "monitoring": "connection pool metrics and alerts",
+          "load_testing": "validate pool settings under load",
+          "documentation": "document optimal pool settings"
+        },
+        "dependencies": ["database access", "monitoring configured", "load testing tools"],
+        "estimated_minutes": 40,
+        "quality_gates": ["pool optimized", "no connection exhaustion", "wait times minimized", "monitoring configured"]
+      }
+    },
+    {
+      "phase": "serialization-optimization",
+      "context": {
+        "application": "API with large JSON payloads",
+        "issue": "slow JSON serialization/deserialization",
+        "goal": "optimize data serialization"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-serialization",
+        "description": "Optimize JSON serialization for faster API responses",
+        "specifications": {
+          "analysis": ["profile serialization overhead", "identify large payloads", "measure serialization time"],
+          "optimizations": ["use faster JSON libraries (orjson for Python, simdjson)", "reduce payload size (field selection)", "implement pagination", "use binary formats (MessagePack, Protocol Buffers) for internal APIs"],
+          "caching": "cache serialized responses",
+          "benchmarking": "benchmark serialization improvements",
+          "target": "reduce serialization time by 60%"
+        },
+        "dependencies": ["profiling tools", "test payloads", "benchmarking harness"],
+        "estimated_minutes": 45,
+        "quality_gates": ["serialization profiled", "optimizations applied", "time reduced 60%", "compatibility maintained"]
+      }
+    },
+    {
+      "phase": "http2-migration",
+      "context": {
+        "application": "web application on HTTP/1.1",
+        "goal": "migrate to HTTP/2 for performance gains",
+        "benefit": "multiplexing, header compression"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "migrate-to-http2",
+        "description": "Migrate application to HTTP/2 for performance improvements",
+        "specifications": {
+          "server_config": "enable HTTP/2 on nginx/Apache",
+          "tls": "ensure TLS 1.2+ (required for HTTP/2)",
+          "optimizations": ["remove domain sharding", "remove sprite sheets (with caution)", "leverage server push (carefully)"],
+          "testing": ["test in all browsers", "verify performance improvements", "check for regressions"],
+          "monitoring": "HTTP/2 adoption metrics",
+          "target": "20% load time improvement"
+        },
+        "dependencies": ["TLS certificates", "server support", "browser compatibility tested"],
+        "estimated_minutes": 40,
+        "quality_gates": ["HTTP/2 enabled", "TLS configured", "performance improved 20%", "no regressions"]
+      }
+    },
+    {
+      "phase": "async-processing",
+      "context": {
+        "application": "request processing with slow external APIs",
+        "issue": "blocking calls increase response time",
+        "goal": "implement async processing"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-async-processing",
+        "description": "Refactor synchronous blocking calls to asynchronous processing",
+        "specifications": {
+          "analysis": "identify blocking I/O operations",
+          "refactoring": ["implement async/await pattern", "use async HTTP client", "background job queue for long tasks"],
+          "job_queue": "Celery/RQ for background processing",
+          "monitoring": "track async job completion and failures",
+          "fallback": "implement timeout and fallback strategies",
+          "target": "reduce API response time by 70%"
+        },
+        "dependencies": ["async framework (asyncio, aiohttp)", "job queue deployed", "monitoring configured"],
+        "estimated_minutes": 55,
+        "quality_gates": ["async implemented", "response time reduced 70%", "job queue working", "error handling robust"]
+      }
+    },
+    {
+      "phase": "indexing-strategy",
+      "context": {
+        "database": "Elasticsearch",
+        "data_volume": "500GB, 100M documents",
+        "issue": "slow search queries"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-elasticsearch-indexing",
+        "description": "Optimize Elasticsearch indexing and search performance",
+        "specifications": {
+          "analysis": ["query patterns and slow logs", "index settings and mappings", "shard allocation"],
+          "optimizations": ["optimize mapping (disable unnecessary fields)", "tune refresh interval", "optimize shard count", "implement index lifecycle management"],
+          "queries": "optimize query DSL and aggregations",
+          "caching": "leverage query cache and field data cache",
+          "target": "search queries <100ms for p95"
+        },
+        "dependencies": ["Elasticsearch access", "query logs", "test dataset"],
+        "estimated_minutes": 50,
+        "quality_gates": ["indexes optimized", "queries <100ms", "caching effective", "monitoring configured"]
+      }
+    },
+    {
+      "phase": "rendering-optimization",
+      "context": {
+        "application": "server-side rendered (SSR) React app",
+        "issue": "slow time to first byte (TTFB)",
+        "goal": "optimize SSR performance"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-ssr-performance",
+        "description": "Optimize server-side rendering for faster TTFB",
+        "specifications": {
+          "analysis": ["profile SSR rendering time", "identify expensive components", "measure data fetching time"],
+          "optimizations": ["implement component-level caching", "optimize data fetching (parallel, batching)", "streaming SSR", "selective hydration"],
+          "caching": "cache rendered HTML with edge CDN",
+          "monitoring": "TTFB metrics and SSR timing",
+          "target": "TTFB <300ms"
+        },
+        "dependencies": ["SSR framework knowledge", "caching layer", "profiling tools"],
+        "estimated_minutes": 55,
+        "quality_gates": ["SSR optimized", "TTFB <300ms", "caching working", "hydration fast"]
+      }
+    },
+    {
+      "phase": "rate-limiting-optimization",
+      "context": {
+        "api": "public API with rate limiting",
+        "issue": "rate limiting causing false positives",
+        "goal": "optimize rate limiting algorithm"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-rate-limiting",
+        "description": "Optimize rate limiting algorithm to balance protection and usability",
+        "specifications": {
+          "current": "fixed window rate limiting",
+          "analysis": "analyze rate limit violations and false positives",
+          "algorithm": "implement token bucket or sliding window algorithm",
+          "granularity": "per-user, per-IP, per-endpoint limits",
+          "burst_handling": "allow burst traffic within limits",
+          "monitoring": "track rate limit metrics and violations",
+          "user_experience": "provide clear rate limit headers and errors"
+        },
+        "dependencies": ["rate limiter (Redis-based)", "analytics on current usage", "testing"],
+        "estimated_minutes": 45,
+        "quality_gates": ["algorithm optimized", "false positives reduced", "burst handling working", "UX improved"]
+      }
+    },
+    {
+      "phase": "websocket-optimization",
+      "context": {
+        "application": "real-time chat application",
+        "connections": "50,000 concurrent WebSocket connections",
+        "issue": "high memory usage, connection drops"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-websocket-performance",
+        "description": "Optimize WebSocket server for high concurrent connections",
+        "specifications": {
+          "server_tuning": ["increase file descriptor limits", "optimize TCP settings", "tune WebSocket ping/pong intervals"],
+          "connection_management": ["implement connection pooling", "load balancing across servers", "graceful connection draining"],
+          "memory_optimization": "reduce per-connection memory overhead",
+          "monitoring": "WebSocket connection metrics, message latency",
+          "scaling": "horizontal scaling with Redis pub/sub",
+          "target": "support 100k concurrent connections"
+        },
+        "dependencies": ["WebSocket server access", "load balancer configured", "Redis deployed"],
+        "estimated_minutes": 50,
+        "quality_gates": ["connections scaled to 100k", "memory optimized", "latency <50ms", "no connection drops"]
+      }
+    },
+    {
+      "phase": "query-caching",
+      "context": {
+        "application": "GraphQL API",
+        "issue": "repeated expensive queries",
+        "goal": "implement query-level caching"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-query-caching",
+        "description": "Implement GraphQL query caching with automatic invalidation",
+        "specifications": {
+          "caching_layer": "Redis for query result caching",
+          "cache_key": "hash of query + variables",
+          "ttl": "adaptive TTL based on query type",
+          "invalidation": ["manual invalidation on mutations", "automatic invalidation based on data changes", "cache tags for granular invalidation"],
+          "monitoring": "cache hit ratio, response time improvement",
+          "target": "70% cache hit ratio, 5x response time improvement"
+        },
+        "dependencies": ["Redis deployed", "GraphQL schema analysis", "invalidation logic"],
+        "estimated_minutes": 50,
+        "quality_gates": ["caching implemented", "hit ratio >70%", "invalidation working", "response time 5x faster"]
+      }
+    },
+    {
+      "phase": "compression-optimization",
+      "context": {
+        "api": "REST API with large JSON responses",
+        "bandwidth": "high bandwidth costs",
+        "goal": "optimize response compression"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-compression",
+        "description": "Implement optimal compression strategy for API responses",
+        "specifications": {
+          "algorithms": ["Brotli for modern browsers (better compression)", "gzip for legacy browsers", "content negotiation based on Accept-Encoding"],
+          "compression_level": "balance compression ratio vs CPU usage",
+          "selective_compression": "compress only responses >1KB",
+          "monitoring": "bandwidth savings, compression ratio, CPU impact",
+          "target": "reduce bandwidth by 60%"
+        },
+        "dependencies": ["server support for Brotli", "compression benchmarking", "monitoring"],
+        "estimated_minutes": 40,
+        "quality_gates": ["Brotli enabled", "compression optimized", "bandwidth reduced 60%", "CPU impact acceptable"]
+      }
+    },
+    {
+      "phase": "cold-start-optimization",
+      "context": {
+        "application": "AWS Lambda functions",
+        "issue": "high cold start latency (>3s)",
+        "goal": "reduce cold starts"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-lambda-cold-starts",
+        "description": "Reduce AWS Lambda cold start latency",
+        "specifications": {
+          "analysis": ["measure cold start duration", "identify initialization bottlenecks", "analyze package size"],
+          "optimizations": ["reduce package size (remove unused dependencies)", "lazy load dependencies", "optimize initialization code", "use provisioned concurrency for critical functions"],
+          "runtime": "consider compiled runtimes (Go, Rust) vs interpreted (Python, Node.js)",
+          "monitoring": "track cold start percentage and duration",
+          "target": "cold start <1s, <5% of invocations"
+        },
+        "dependencies": ["Lambda access", "CloudWatch logs", "benchmarking tools"],
+        "estimated_minutes": 50,
+        "quality_gates": ["cold starts <1s", "frequency <5%", "package size reduced", "provisioned concurrency configured"]
+      }
+    },
+    {
+      "phase": "garbage-collection-tuning",
+      "context": {
+        "application": "Java microservice",
+        "issue": "GC pauses causing latency spikes",
+        "goal": "tune JVM GC for low latency"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "tune-jvm-garbage-collection",
+        "description": "Optimize JVM garbage collection to reduce latency spikes",
+        "specifications": {
+          "analysis": ["GC logs analysis", "heap dump analysis", "identify GC pause patterns"],
+          "gc_selection": ["evaluate G1GC, ZGC, Shenandoah", "choose based on latency requirements"],
+          "tuning": ["heap size tuning", "young/old generation ratios", "GC thread count", "pause time goals"],
+          "monitoring": "GC pause time, frequency, throughput",
+          "target": "GC pauses <100ms, no major GC during peak traffic"
+        },
+        "dependencies": ["JVM access", "GC logs enabled", "heap dumps available"],
+        "estimated_minutes": 55,
+        "quality_gates": ["GC tuned", "pauses <100ms", "latency spikes eliminated", "throughput maintained"]
+      }
+    },
+    {
+      "phase": "prefetching-strategy",
+      "context": {
+        "application": "content-heavy website",
+        "goal": "implement intelligent prefetching",
+        "technique": "predictive prefetching"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-prefetching",
+        "description": "Implement intelligent resource prefetching for faster navigation",
+        "specifications": {
+          "techniques": ["link prefetching on hover", "predictive prefetching based on user behavior", "service worker for offline caching"],
+          "priority": "prioritize likely next pages",
+          "bandwidth_awareness": "respect user bandwidth constraints",
+          "monitoring": "prefetch hit rate, bandwidth usage",
+          "fallback": "graceful degradation if prefetch fails",
+          "target": "50% faster perceived navigation"
+        },
+        "dependencies": ["analytics data for prediction", "service worker implemented", "caching strategy"],
+        "estimated_minutes": 50,
+        "quality_gates": ["prefetching implemented", "hit rate >60%", "navigation 50% faster", "bandwidth optimized"]
+      }
+    },
+    {
+      "phase": "throttling-strategy",
+      "context": {
+        "application": "background job processor",
+        "issue": "jobs overwhelming database",
+        "goal": "implement intelligent throttling"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-job-throttling",
+        "description": "Implement adaptive throttling for background job processing",
+        "specifications": {
+          "throttling": ["rate limiting based on database load", "adaptive concurrency (increase/decrease based on success rate)", "circuit breaker for database protection"],
+          "queue_management": ["priority queues for critical jobs", "fair queuing across tenants"],
+          "monitoring": ["job throughput", "queue depth", "database load", "job failure rate"],
+          "backpressure": "implement backpressure propagation",
+          "target": "maximize throughput without overwhelming database"
+        },
+        "dependencies": ["job queue system", "database monitoring", "throttling library"],
+        "estimated_minutes": 50,
+        "quality_gates": ["throttling implemented", "database protected", "throughput optimized", "monitoring active"]
+      }
+    },
+    {
+      "phase": "content-delivery",
+      "context": {
+        "application": "global SaaS application",
+        "users": "worldwide user base",
+        "goal": "optimize global content delivery"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-global-cdn",
+        "description": "Optimize CDN strategy for global content delivery",
+        "specifications": {
+          "cdn_selection": "multi-CDN strategy (CloudFlare + Fastly for redundancy)",
+          "edge_caching": ["aggressive caching at edge", "dynamic content caching with ESI", "stale-while-revalidate"],
+          "geo_routing": "intelligent geo-routing based on latency",
+          "edge_compute": "edge workers for personalization",
+          "monitoring": ["CDN hit ratio by region", "origin shield effectiveness", "edge latency"],
+          "target": "p95 latency <100ms globally"
+        },
+        "dependencies": ["multi-CDN setup", "edge workers deployed", "monitoring configured"],
+        "estimated_minutes": 55,
+        "quality_gates": ["multi-CDN active", "edge caching optimized", "latency <100ms globally", "redundancy tested"]
+      }
+    },
+    {
+      "phase": "lazy-loading",
+      "context": {
+        "application": "image-heavy e-commerce site",
+        "issue": "slow initial page load due to images",
+        "goal": "implement lazy loading"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-lazy-loading",
+        "description": "Implement lazy loading for images and videos",
+        "specifications": {
+          "images": ["native lazy loading (loading='lazy')", "Intersection Observer API for custom logic", "responsive images with srcset"],
+          "videos": "lazy load videos, autoplay only when visible",
+          "placeholders": "low-quality image placeholders (LQIP) or blur-up technique",
+          "priority": "eager load above-the-fold images",
+          "monitoring": "track load time improvement, LCP impact",
+          "target": "50% faster initial page load"
+        },
+        "dependencies": ["image CDN", "responsive image generation", "Intersection Observer polyfill"],
+        "estimated_minutes": 45,
+        "quality_gates": ["lazy loading implemented", "above-fold optimized", "load time 50% faster", "LCP improved"]
+      }
+    },
+    {
+      "phase": "worker-threads",
+      "context": {
+        "application": "Node.js API with CPU-intensive tasks",
+        "issue": "CPU-bound operations blocking event loop",
+        "goal": "offload to worker threads"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-worker-threads",
+        "description": "Offload CPU-intensive tasks to worker threads in Node.js",
+        "specifications": {
+          "identification": "identify CPU-bound operations (image processing, data transformation, crypto)",
+          "implementation": ["Node.js worker threads for CPU tasks", "thread pool management", "message passing between main and worker threads"],
+          "monitoring": "event loop lag, worker thread utilization",
+          "fallback": "graceful fallback if worker threads unavailable",
+          "target": "eliminate event loop blocking, 5x throughput improvement"
+        },
+        "dependencies": ["Node.js 12+ with worker threads", "CPU-bound code identified", "testing"],
+        "estimated_minutes": 50,
+        "quality_gates": ["worker threads implemented", "event loop unblocked", "throughput 5x", "error handling robust"]
+      }
+    },
+    {
+      "phase": "regex-optimization",
+      "context": {
+        "application": "text processing service",
+        "issue": "slow regex patterns causing high CPU",
+        "goal": "optimize or replace regex"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-regex-patterns",
+        "description": "Optimize or replace slow regex patterns for better performance",
+        "specifications": {
+          "analysis": ["profile regex execution time", "identify catastrophic backtracking", "analyze pattern complexity"],
+          "optimizations": ["simplify patterns", "avoid nested quantifiers", "use atomic groups", "compile regex once"],
+          "alternatives": "replace regex with string methods where possible",
+          "testing": "validate regex correctness after optimization",
+          "target": "reduce regex processing time by 80%"
+        },
+        "dependencies": ["regex profiling tools", "test cases for validation", "regex knowledge"],
+        "estimated_minutes": 45,
+        "quality_gates": ["slow patterns identified", "optimizations applied", "processing time reduced 80%", "correctness validated"]
+      }
+    },
+    {
+      "phase": "object-pooling",
+      "context": {
+        "application": "game server",
+        "issue": "frequent object allocation causing GC pressure",
+        "goal": "implement object pooling"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-object-pooling",
+        "description": "Implement object pooling to reduce garbage collection pressure",
+        "specifications": {
+          "candidates": "identify frequently allocated short-lived objects",
+          "implementation": ["object pool for reusable objects", "pool size tuning", "object reset logic"],
+          "monitoring": ["GC frequency and duration", "pool hit rate", "object allocation rate"],
+          "trade_offs": "balance memory usage vs GC reduction",
+          "target": "reduce GC frequency by 70%"
+        },
+        "dependencies": ["profiling data", "object pool library", "GC monitoring"],
+        "estimated_minutes": 50,
+        "quality_gates": ["object pooling implemented", "GC frequency reduced 70%", "memory usage acceptable", "performance improved"]
+      }
+    },
+    {
+      "phase": "network-optimization",
+      "context": {
+        "application": "distributed system with inter-service communication",
+        "issue": "high network latency between services",
+        "goal": "optimize network performance"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-network-performance",
+        "description": "Optimize network configuration for low-latency inter-service communication",
+        "specifications": {
+          "analysis": ["measure inter-service latency", "analyze network topology", "identify network bottlenecks"],
+          "optimizations": ["TCP tuning (window size, congestion control)", "enable TCP Fast Open", "use HTTP/2 or gRPC", "connection pooling and keep-alive"],
+          "placement": "collocate frequently communicating services",
+          "monitoring": "network latency, bandwidth utilization, packet loss",
+          "target": "reduce inter-service latency by 40%"
+        },
+        "dependencies": ["network access", "service mesh for tracing", "monitoring tools"],
+        "estimated_minutes": 50,
+        "quality_gates": ["network tuned", "latency reduced 40%", "throughput improved", "monitoring configured"]
+      }
+    },
+    {
+      "phase": "concurrency-optimization",
+      "context": {
+        "application": "Python web scraper",
+        "issue": "slow sequential processing",
+        "goal": "implement concurrent processing"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-concurrent-processing",
+        "description": "Refactor sequential code to use concurrency for faster processing",
+        "specifications": {
+          "analysis": "identify parallelizable operations (I/O-bound vs CPU-bound)",
+          "approach": ["asyncio for I/O-bound tasks", "multiprocessing for CPU-bound tasks", "thread pool for mixed workloads"],
+          "implementation": ["concurrent HTTP requests", "parallel data processing", "rate limiting to avoid overwhelming targets"],
+          "monitoring": "throughput, resource utilization, error rates",
+          "target": "10x throughput improvement"
+        },
+        "dependencies": ["async library (aiohttp)", "multiprocessing module", "rate limiter"],
+        "estimated_minutes": 55,
+        "quality_gates": ["concurrency implemented", "throughput 10x", "error handling robust", "rate limiting working"]
+      }
+    },
+    {
+      "phase": "performance-monitoring",
+      "context": {
+        "application": "production system",
+        "requirement": "comprehensive performance monitoring",
+        "goal": "implement APM and RUM"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-performance-monitoring",
+        "description": "Setup comprehensive performance monitoring with APM and RUM",
+        "specifications": {
+          "apm": "Application Performance Monitoring (New Relic, Datadog, or Elastic APM)",
+          "rum": "Real User Monitoring for frontend (SpeedCurve, LUX)",
+          "metrics": ["response time (p50, p95, p99)", "error rate", "throughput", "apdex score", "Core Web Vitals"],
+          "alerting": "alert on performance degradation",
+          "dashboards": "executive dashboards and engineering dashboards",
+          "integration": "integrate with incident management (PagerDuty)"
+        },
+        "dependencies": ["APM tool selected", "RUM script deployed", "alerting configured"],
+        "estimated_minutes": 50,
+        "quality_gates": ["APM deployed", "RUM active", "dashboards created", "alerts configured", "integration working"]
+      }
+    },
+    {
+      "phase": "capacity-planning",
+      "context": {
+        "application": "SaaS platform",
+        "growth": "expecting 5x user growth in 6 months",
+        "goal": "capacity planning and scaling strategy"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "perform-capacity-planning",
+        "description": "Analyze current capacity and plan for 5x growth",
+        "specifications": {
+          "current_analysis": ["resource utilization trends", "bottleneck identification", "scalability limits"],
+          "growth_modeling": "project resource needs for 5x users",
+          "scaling_strategy": ["vertical vs horizontal scaling", "database scaling (read replicas, sharding)", "caching strategy", "CDN scaling"],
+          "cost_estimation": "estimate infrastructure costs at scale",
+          "recommendations": "phased scaling plan with milestones",
+          "load_testing": "validate scalability with load tests at target scale"
+        },
+        "dependencies": ["historical usage data", "growth projections", "cost models"],
+        "estimated_minutes": 55,
+        "quality_gates": ["capacity analyzed", "scaling plan documented", "costs estimated", "load tests validate plan", "stakeholders aligned"]
+      }
+    },
+    {
+      "phase": "cache-invalidation",
+      "context": {
+        "application": "content management system",
+        "issue": "stale cache causing incorrect data",
+        "goal": "implement smart cache invalidation"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-cache-invalidation",
+        "description": "Implement intelligent cache invalidation strategy",
+        "specifications": {
+          "strategies": ["time-based expiration (TTL)", "event-based invalidation (on data update)", "tag-based invalidation (invalidate related caches)"],
+          "implementation": ["publish-subscribe pattern for invalidation events", "cache versioning", "soft purge vs hard purge"],
+          "consistency": "balance between cache hit ratio and data freshness",
+          "monitoring": "track cache invalidation frequency and impact",
+          "target": "maintain >80% cache hit ratio with fresh data"
+        },
+        "dependencies": ["cache system (Redis, Memcached)", "event bus (Kafka, RabbitMQ)", "monitoring"],
+        "estimated_minutes": 50,
+        "quality_gates": ["invalidation implemented", "data freshness ensured", "hit ratio >80%", "no stale data issues"]
+      }
+    },
+    {
+      "phase": "batch-optimization",
+      "context": {
+        "application": "ETL pipeline",
+        "issue": "slow batch processing of large datasets",
+        "goal": "optimize batch job performance"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-batch-processing",
+        "description": "Optimize batch job processing for faster ETL pipeline",
+        "specifications": {
+          "analysis": ["identify bottlenecks (I/O, CPU, memory)", "analyze data flow", "measure stage durations"],
+          "optimizations": ["parallel processing", "batch size tuning", "pipeline parallelism (overlap stages)", "data partitioning"],
+          "storage": "optimize data storage format (Parquet vs CSV)",
+          "monitoring": "track job duration, throughput, resource usage",
+          "target": "reduce batch processing time by 60%"
+        },
+        "dependencies": ["batch job access", "compute resources", "profiling tools"],
+        "estimated_minutes": 55,
+        "quality_gates": ["bottlenecks identified", "optimizations applied", "processing time reduced 60%", "monitoring active"]
+      }
+    },
+    {
+      "phase": "client-side-caching",
+      "context": {
+        "application": "mobile app",
+        "issue": "redundant API calls on every app open",
+        "goal": "implement client-side caching"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-client-caching",
+        "description": "Implement client-side caching to reduce API calls and improve responsiveness",
+        "specifications": {
+          "storage": ["localStorage/sessionStorage for web", "CoreData/SQLite for mobile"],
+          "strategy": ["cache-first with background refresh", "stale-while-revalidate", "offline-first for critical data"],
+          "invalidation": "respect server cache headers (ETag, Last-Modified)",
+          "encryption": "encrypt sensitive cached data",
+          "monitoring": "track cache hit rate, data staleness",
+          "target": "reduce API calls by 70%, improve load time by 60%"
+        },
+        "dependencies": ["storage API", "network library with caching support", "encryption library"],
+        "estimated_minutes": 50,
+        "quality_gates": ["caching implemented", "API calls reduced 70%", "load time improved 60%", "offline mode working"]
+      }
+    },
+    {
+      "phase": "performance-budget",
+      "context": {
+        "application": "web application",
+        "requirement": "enforce performance standards",
+        "goal": "implement performance budget"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "implement-performance-budget",
+        "description": "Define and enforce performance budgets in CI/CD",
+        "specifications": {
+          "budgets": ["bundle size <1MB", "LCP <2.5s", "FID <100ms", "CLS <0.1", "TTI <3.5s"],
+          "enforcement": "fail CI/CD build if budgets exceeded",
+          "tooling": "Lighthouse CI, WebPageTest API, bundle size analysis",
+          "monitoring": "track budget compliance over time",
+          "alerting": "alert team when approaching budget limits",
+          "documentation": "document budgets and rationale"
+        },
+        "dependencies": ["CI/CD integration", "Lighthouse CI configured", "monitoring dashboard"],
+        "estimated_minutes": 45,
+        "quality_gates": ["budgets defined", "enforcement automated", "CI/CD integrated", "monitoring active", "team aligned"]
+      }
+    },
+    {
+      "phase": "streaming-optimization",
+      "context": {
+        "application": "video streaming service",
+        "issue": "buffering and slow video start times",
+        "goal": "optimize video streaming performance"
+      },
+      "expected_drone_task": {
+        "drone_id": "performance-engineer",
+        "task_type": "optimize-video-streaming",
+        "description": "Optimize video streaming for fast start times and smooth playback",
+        "specifications": {
+          "adaptive_bitrate": "HLS or DASH with multiple quality levels",
+          "cdn": "multi-CDN strategy with edge caching",
+          "preloading": "intelligent preloading based on user behavior",
+          "buffering": "optimize buffer size and prefetch strategy",
+          "monitoring": ["video start time", "buffering ratio", "quality switches", "rebuffer rate"],
+          "target": "video start time <2s, rebuffer rate <1%"
+        },
+        "dependencies": ["video transcoding pipeline", "CDN configured", "player SDK"],
+        "estimated_minutes": 55,
+        "quality_gates": ["ABR working", "start time <2s", "rebuffering <1%", "CDN optimized", "monitoring active"]
+      }
+    }
+  ]
+}

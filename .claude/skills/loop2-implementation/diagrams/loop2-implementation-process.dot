@@ -1,0 +1,133 @@
+digraph Loop2_Implementation_Process {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start/End
+    start [shape=ellipse, label="Loop 2\nEntry\n(from Loop 1)", fillcolor=lightgreen];
+    end [shape=ellipse, label="Handoff to\nLoop 3", fillcolor=green, fontcolor=white];
+
+    // Phase 1: Queen Initialization
+    subgraph cluster_queen {
+        label="Phase 1: Queen Initialization";
+        fillcolor=lightyellow;
+        style=filled;
+
+        queen_load [label="Queen loads:\n- Task plan\n- Agent allocations\n- Risk assessment"];
+        queen_memory [shape=cylinder, label="Read from\nMemory", fillcolor=lightcoral];
+        queen_decision [shape=diamond, label="Complex\ntask?", fillcolor=yellow];
+    }
+
+    // Phase 2: Princess Selection
+    subgraph cluster_princess {
+        label="Phase 2: Princess Selection";
+        fillcolor=lightyellow;
+        style=filled;
+
+        select_princess [label="Select Princess:\n- Dev (features)\n- Quality (testing)\n- Coordination (orchestration)"];
+        spawn_princess [shape=cylinder, label="Spawn via\nTask tool", fillcolor=lightcoral];
+        princess_init [label="Princess receives:\n- Subtask plan\n- Drone list\n- Success criteria"];
+    }
+
+    // Phase 3: Drone Spawning
+    subgraph cluster_drones {
+        label="Phase 3: Drone Spawning";
+        fillcolor=lightyellow;
+        style=filled;
+
+        drone_strategy [shape=diamond, label="Parallel\nor Sequential?", fillcolor=yellow];
+        spawn_parallel [label="Spawn drones\nin parallel\n(independent tasks)"];
+        spawn_sequential [label="Spawn drones\nsequentially\n(dependent tasks)"];
+        drones_work [label="Drones execute:\n- Code generation\n- Testing\n- Documentation"];
+    }
+
+    // Phase 4: Continuous 3-Part Audit
+    subgraph cluster_audit {
+        label="Phase 4: Continuous Audit (3-Part System)";
+        fillcolor=lightyellow;
+        style=filled;
+
+        audit_functionality [label="Audit 1:\nFunctionality\n(sandbox testing)"];
+        audit_style [label="Audit 2:\nStyle\n(linting, formatting)"];
+        audit_theater [label="Audit 3:\nTheater Detection\n(TODOs, mocks)"];
+        audit_fix [label="Auto-fix\nissues"];
+        audit_pass [shape=diamond, label="All audits\npass?", fillcolor=yellow];
+    }
+
+    // Phase 5: Milestone Validation
+    subgraph cluster_milestone {
+        label="Phase 5: Milestone Validation";
+        fillcolor=lightyellow;
+        style=filled;
+
+        milestone_check [label="Validate:\n- Tests passing\n- Code coverage\n- NASA compliance\n- No theater"];
+        milestone_decision [shape=diamond, label="Milestone\ncomplete?", fillcolor=yellow];
+        milestone_memory [shape=cylinder, label="Update Memory\n(progress)", fillcolor=lightcoral];
+    }
+
+    // Phase 6: Handoff to Loop 3
+    subgraph cluster_handoff {
+        label="Phase 6: Handoff to Loop 3";
+        fillcolor=lightyellow;
+        style=filled;
+
+        prepare_handoff [label="Package:\n- All code changes\n- Test results\n- Audit reports\n- Memory snapshot"];
+        handoff_memory [shape=cylinder, label="Write to\nMemory", fillcolor=lightcoral];
+    }
+
+    // External References
+    agent_registry [shape=cylinder, label="Agent Registry\n(28 agents)", fillcolor=lightcoral];
+    memory_schema [shape=cylinder, label="Memory Schema\n(implementation_state)", fillcolor=lightcoral];
+
+    // Warnings
+    warning_spawn [shape=octagon, label="WARNING\nNever spawn agents\noutside Task tool", fillcolor=orange];
+
+    // Flow
+    start -> queen_load;
+    queen_load -> queen_memory;
+    queen_memory -> queen_decision;
+
+    queen_decision -> end [label="no\n(simple, direct)", color=green];
+    queen_decision -> select_princess [label="yes\n(needs coordination)", color=blue];
+
+    select_princess -> spawn_princess;
+    spawn_princess -> princess_init;
+    princess_init -> drone_strategy;
+
+    drone_strategy -> spawn_parallel [label="parallel", color=green];
+    drone_strategy -> spawn_sequential [label="sequential", color=blue];
+    spawn_parallel -> drones_work;
+    spawn_sequential -> drones_work;
+
+    drones_work -> audit_functionality;
+    audit_functionality -> audit_style;
+    audit_style -> audit_theater;
+    audit_theater -> audit_pass;
+    audit_pass -> audit_fix [label="no", color=red];
+    audit_fix -> audit_functionality [style=dashed];
+    audit_pass -> milestone_check [label="yes", color=green];
+
+    milestone_check -> milestone_decision;
+    milestone_decision -> milestone_memory [label="yes", color=green];
+    milestone_decision -> drone_strategy [label="no\n(spawn more)", color=orange, style=dashed];
+    milestone_memory -> prepare_handoff;
+
+    prepare_handoff -> handoff_memory;
+    handoff_memory -> end;
+
+    // External connections
+    select_princess -> agent_registry [style=dashed, label="lookup"];
+    spawn_princess -> agent_registry [style=dashed, label="lookup"];
+    drone_strategy -> agent_registry [style=dashed, label="lookup"];
+    queen_memory -> memory_schema [style=dashed, label="read"];
+    milestone_memory -> memory_schema [style=dashed, label="update"];
+    handoff_memory -> memory_schema [style=dashed, label="write"];
+    spawn_princess -> warning_spawn [style=dashed, color=red];
+
+    // Metadata
+    labelloc="t";
+    label="Loop 2: Implementation Process\n\nPhases: Queen Init → Princess Selection → Drone Spawning → Continuous Audit → Milestone Validation → Handoff\nHierarchy: Queen (Claude Code) → Princess (3) → Drones (24)\nAudits: Functionality → Style → Theater Detection";
+    fontsize=14;
+    fontname="Arial Bold";
+}

@@ -1,0 +1,155 @@
+digraph DSPY_TROUBLESHOOTING {
+    // TRIGGER: DSPy training failed or results poor
+    // USE WHEN:
+    //   - Training crashes
+    //   - Optimized score worse than baseline
+    //   - "ModuleNotFoundError" or "API key not configured"
+    //   - Improvement <10%
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_troubleshooting {
+        label="TRIGGER: DSPy Training Issues";
+        style="rounded,bold";
+        bgcolor="#fff3e0";
+
+        // Entry
+        "DSPy issue encountered" [shape=ellipse];
+
+        // Issue classification
+        "What type of issue?" [shape=diamond];
+
+        // Issue 1: ModuleNotFoundError
+        "ModuleNotFoundError: No module named 'dspy'" [shape=ellipse];
+        "pip install -U dspy" [shape=plaintext];
+        "python -c \"import dspy; print(dspy.__version__)\"" [shape=plaintext];
+
+        // Issue 2: API key issues
+        "API key not configured" [shape=ellipse];
+        "export GOOGLE_API_KEY=\"your-key\"" [shape=plaintext];
+        "echo $GOOGLE_API_KEY" [shape=plaintext];
+        "API key set?" [shape=diamond];
+
+        // Issue 3: Training crashes
+        "Training crashes" [shape=ellipse];
+        "Check: Missing .with_inputs()?" [shape=diamond];
+        "Add .with_inputs() to examples:\nexample.with_inputs('task_description', 'objective')" [shape=box];
+        "Check: Input structure inconsistent?" [shape=diamond];
+        "Fix input consistency:\nEnsure ALL examples use same keys" [shape=box];
+
+        // Issue 4: Poor quality (optimized < baseline)
+        "Optimized worse than baseline" [shape=ellipse];
+        "Inspect optimized prompts:\ninspect_prompts.py" [shape=plaintext];
+        "Review training data quality" [shape=box];
+        "Metrics align with quality?" [shape=diamond];
+        "Simplify metrics (3-7 criteria)" [shape=box];
+        "Training data representative?" [shape=diamond];
+        "Expand dataset with edge cases" [shape=box];
+
+        // Issue 5: No improvement
+        "Improvement <10%" [shape=ellipse];
+        "Insufficient training data?" [shape=diamond];
+        "Expand to 10-20 examples" [shape=box];
+        "Metrics too complex?" [shape=diamond];
+        "Simplify to 3-5 criteria" [shape=box];
+        "Wrong optimizer?" [shape=diamond];
+        "Try different optimizer:\n- BootstrapFewShot → MIPRO\n- Reduce max_rounds" [shape=box];
+
+        // Issue 6: Training too slow
+        "Training takes >1 hour" [shape=ellipse];
+        "Too many examples?" [shape=diamond];
+        "Reduce to 20-50 examples" [shape=box];
+        "Too many rounds?" [shape=diamond];
+        "Reduce max_rounds from 3 to 2" [shape=box];
+        "Use faster model:\ndspy.LM(\"gemini/gemini-1.5-flash\")" [shape=plaintext];
+
+        "Issue resolved" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "ESCALATE: Ask for help" [shape=octagon, style=filled, fillcolor=orange];
+
+        // Flow
+        "DSPy issue encountered" -> "What type of issue?";
+
+        // Route to specific issues
+        "What type of issue?" -> "ModuleNotFoundError: No module named 'dspy'" [label="installation"];
+        "What type of issue?" -> "API key not configured" [label="api key"];
+        "What type of issue?" -> "Training crashes" [label="crash"];
+        "What type of issue?" -> "Optimized worse than baseline" [label="poor quality"];
+        "What type of issue?" -> "Improvement <10%" [label="no improvement"];
+        "What type of issue?" -> "Training takes >1 hour" [label="too slow"];
+
+        // Installation fix
+        "ModuleNotFoundError: No module named 'dspy'" -> "pip install -U dspy";
+        "pip install -U dspy" -> "python -c \"import dspy; print(dspy.__version__)\"";
+        "python -c \"import dspy; print(dspy.__version__)\"" -> "Issue resolved";
+
+        // API key fix
+        "API key not configured" -> "export GOOGLE_API_KEY=\"your-key\"";
+        "export GOOGLE_API_KEY=\"your-key\"" -> "echo $GOOGLE_API_KEY";
+        "echo $GOOGLE_API_KEY" -> "API key set?";
+        "API key set?" -> "Issue resolved" [label="yes"];
+        "API key set?" -> "ESCALATE: Ask for help" [label="no"];
+
+        // Training crash fix
+        "Training crashes" -> "Check: Missing .with_inputs()?";
+        "Check: Missing .with_inputs()?" -> "Add .with_inputs() to examples:\nexample.with_inputs('task_description', 'objective')" [label="yes"];
+        "Check: Missing .with_inputs()?" -> "Check: Input structure inconsistent?" [label="no"];
+        "Add .with_inputs() to examples:\nexample.with_inputs('task_description', 'objective')" -> "Issue resolved";
+
+        "Check: Input structure inconsistent?" -> "Fix input consistency:\nEnsure ALL examples use same keys" [label="yes"];
+        "Check: Input structure inconsistent?" -> "ESCALATE: Ask for help" [label="no"];
+        "Fix input consistency:\nEnsure ALL examples use same keys" -> "Issue resolved";
+
+        // Poor quality fix
+        "Optimized worse than baseline" -> "Inspect optimized prompts:\ninspect_prompts.py";
+        "Inspect optimized prompts:\ninspect_prompts.py" -> "Review training data quality";
+        "Review training data quality" -> "Metrics align with quality?";
+        "Metrics align with quality?" -> "Training data representative?" [label="yes"];
+        "Metrics align with quality?" -> "Simplify metrics (3-7 criteria)" [label="no"];
+        "Simplify metrics (3-7 criteria)" -> "Issue resolved";
+
+        "Training data representative?" -> "Issue resolved" [label="yes"];
+        "Training data representative?" -> "Expand dataset with edge cases" [label="no"];
+        "Expand dataset with edge cases" -> "Issue resolved";
+
+        // No improvement fix
+        "Improvement <10%" -> "Insufficient training data?";
+        "Insufficient training data?" -> "Expand to 10-20 examples" [label="yes"];
+        "Insufficient training data?" -> "Metrics too complex?" [label="no"];
+        "Expand to 10-20 examples" -> "Issue resolved";
+
+        "Metrics too complex?" -> "Simplify to 3-5 criteria" [label="yes"];
+        "Metrics too complex?" -> "Wrong optimizer?" [label="no"];
+        "Simplify to 3-5 criteria" -> "Issue resolved";
+
+        "Wrong optimizer?" -> "Try different optimizer:\n- BootstrapFewShot → MIPRO\n- Reduce max_rounds" [label="yes"];
+        "Wrong optimizer?" -> "ESCALATE: Ask for help" [label="no"];
+        "Try different optimizer:\n- BootstrapFewShot → MIPRO\n- Reduce max_rounds" -> "Issue resolved";
+
+        // Slow training fix
+        "Training takes >1 hour" -> "Too many examples?";
+        "Too many examples?" -> "Reduce to 20-50 examples" [label="yes"];
+        "Too many examples?" -> "Too many rounds?" [label="no"];
+        "Reduce to 20-50 examples" -> "Issue resolved";
+
+        "Too many rounds?" -> "Reduce max_rounds from 3 to 2" [label="yes"];
+        "Too many rounds?" -> "Use faster model:\ndspy.LM(\"gemini/gemini-1.5-flash\")" [label="no"];
+        "Reduce max_rounds from 3 to 2" -> "Issue resolved";
+        "Use faster model:\ndspy.LM(\"gemini/gemini-1.5-flash\")" -> "Issue resolved";
+    }
+
+    // Common failures reference
+    subgraph cluster_common_failures {
+        label="Common Failure Patterns";
+        bgcolor="#ffcdd2";
+
+        "Input inconsistency:\nSome use 'task', others 'description'" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Missing .with_inputs():\nForget to mark input fields" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Low quality data:\nOutputs only 70% correct" [shape=octagon, style=filled, fillcolor=orange];
+        "Too many metrics:\n>10 criteria = overfitting" [shape=octagon, style=filled, fillcolor=orange];
+        "Wrong optimizer:\nMIPRO with <20 examples" [shape=octagon, style=filled, fillcolor=yellow];
+    }
+
+    // External connections
+    "Issue resolved" -> dspy_training_workflow [label="retry training", style=dotted];
+}

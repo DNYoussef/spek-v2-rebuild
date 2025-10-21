@@ -1,0 +1,107 @@
+{
+  "delegate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"src/auth/login.ts\", \"src/auth/logout.ts\"], \"pr_number\": 123, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing authentication-related code changes, I'll assign the reviewer drone as the primary agent. Authentication is a critical security component requiring thorough review of security practices, token handling, and session management. The review should focus on security vulnerabilities, compliance with authentication best practices, and proper error handling. Given the security-critical nature, I'm setting a strict severity threshold and comprehensive acceptance criteria.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review authentication system implementation\",\n    \"payload\": {\n        \"review_focus\": [\n            \"security vulnerabilities\",\n            \"token management\",\n            \"session handling\"\n        ],\n        \"checklist\": [\n            \"OWASP security guidelines followed\",\n            \"Secure token storage implemented\",\n            \"Session timeout configured\",\n            \"Rate limiting present\",\n            \"Password policies enforced\",\n            \"Proper error handling\",\n            \"Logging sufficient but not excessive\"\n        ],\n        \"severity_threshold\": \"block on any security concerns\"\n    },\n    \"acceptance_criteria\": [\n        \"No security vulnerabilities detected\",\n        \"Token management follows best practices\",\n        \"Session handling properly implemented\",\n        \"Error scenarios properly handled\",\n        \"Logging doesn't expose sensitive data\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"components/Button.tsx\", \"components/Button.stories.tsx\"], \"pr_number\": 124, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing React component changes, particularly UI components like buttons, we need a reviewer drone that specializes in both technical implementation and visual consistency. The review should focus on component reusability, accessibility standards, and Storybook integration. Given the scope involves both component implementation and stories, we'll need thorough testing of variants and states.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review React Button component and Storybook stories\",\n    \"payload\": {\n        \"review_focus\": [\n            \"component architecture\",\n            \"accessibility\",\n            \"storybook documentation\"\n        ],\n        \"checklist\": [\n            \"Props properly typed\",\n            \"ARIA attributes present\",\n            \"Color contrast meets WCAG\",\n            \"Stories cover all variants\",\n            \"Component properly tested\",\n            \"Responsive behavior correct\"\n        ],\n        \"severity_threshold\": \"block on accessibility issues\"\n    },\n    \"acceptance_criteria\": [\n        \"All button states documented in stories\",\n        \"Accessibility compliance verified\",\n        \"Component properly handles keyboard events\",\n        \"Props interface is complete and documented\",\n        \"Visual regression tests pass\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"services/queue/consumer.ts\", \"services/queue/processor.ts\"], \"pr_number\": 125, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing queue processing services, we need a thorough technical review focusing on distributed systems aspects. The reviewer drone is best suited for this task given their expertise in asynchronous processing patterns. Key areas of focus should be message handling, error recovery, and scalability considerations. The task needs strict acceptance criteria around message delivery guarantees and system resilience.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review message queue consumer and processor implementation\",\n    \"payload\": {\n        \"review_focus\": [\n            \"message handling patterns\",\n            \"error recovery\",\n            \"scalability\",\n            \"monitoring\"\n        ],\n        \"checklist\": [\n            \"Dead letter queue implemented\",\n            \"Retry logic appropriate\",\n            \"Concurrent processing safe\",\n            \"Memory management efficient\",\n            \"Logging comprehensive\",\n            \"Metrics instrumented\"\n        ],\n        \"severity_threshold\": \"block on reliability issues\"\n    },\n    \"acceptance_criteria\": [\n        \"Message ordering guarantees verified\",\n        \"Error handling paths tested\",\n        \"Race conditions analyzed\",\n        \"Performance impact assessed\",\n        \"Monitoring coverage confirmed\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"resolvers/user.ts\", \"schema/user.graphql\"], \"pr_number\": 126, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing GraphQL resolver and schema changes, I'll assign the reviewer drone with specific focus on API design, performance, and security. The review needs to verify proper field resolution, authorization checks, and schema best practices. Given the user-related changes, security aspects are critical. The task will include checking for N+1 query problems, proper error handling, and schema documentation.",
+        "drone_task": "{\n  \"drone_id\": \"reviewer\",\n  \"task_type\": \"review\",\n  \"description\": \"Review GraphQL user resolver and schema implementation\",\n  \"payload\": {\n    \"review_focus\": [\n      \"API design\",\n      \"authorization\",\n      \"performance\"\n    ],\n    \"checklist\": [\n      \"Authorization checks present\",\n      \"N+1 query prevention\",\n      \"Input validation complete\",\n      \"Error handling robust\",\n      \"Schema documentation clear\",\n      \"Field resolvers optimized\"\n    ],\n    \"severity_threshold\": \"block on security/auth issues\"\n  },\n  \"acceptance_criteria\": [\n    \"All authorization checks verified\",\n    \"No N+1 query issues found\",\n    \"Schema follows naming conventions\",\n    \"Error handling covers edge cases\",\n    \"Documentation meets standards\"\n  ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"sync/watermelon.ts\", \"models/task.ts\", \"models/project.ts\"], \"pr_number\": 127, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing database synchronization code involving WatermelonDB, I'll assign this to our reviewer drone. The review needs to focus heavily on data consistency, offline capabilities, and conflict resolution since these are critical aspects of sync implementations. The reviewer drone has expertise in database operations and data integrity patterns.\n\nThe task requires careful examination of the sync protocol implementation, model definitions, and conflict handling strategies. Given the files changed involve both sync logic and model definitions, we need comprehensive validation of the data flow and model relationships.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review WatermelonDB sync implementation and data models\",\n    \"payload\": {\n        \"review_focus\": [\n            \"sync protocol correctness\",\n            \"offline capabilities\",\n            \"conflict resolution\",\n            \"model relationships\"\n        ],\n        \"checklist\": [\n            \"Sync protocol follows WatermelonDB best practices\",\n            \"Offline-first approach implemented\",\n            \"Conflict resolution strategy sound\",\n            \"Model relationships properly defined\",\n            \"Indexes optimized for queries\",\n            \"Migration handling present\"\n        ],\n        \"severity_threshold\": \"block on data consistency issues\"\n    },\n    \"acceptance_criteria\": [\n        \"Sync protocol verified against WatermelonDB documentation\",\n        \"Offline operations tested and working\",\n        \"Conflict resolution scenarios documented and tested\",\n        \"Model relationships validated with test data\",\n        \"Performance impact assessed for large datasets\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"cli/convert.py\", \"parsers/json.py\", \"parsers/yaml.py\"], \"pr_number\": 128, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing file format conversion code, we need a reviewer drone with expertise in Python, CLI tools, and data parsing. The review should focus on data integrity, error handling, and CLI usability. Given the file changes involve both JSON and YAML parsers along with CLI interface, we need thorough validation of format conversions and edge cases. The reviewer drone will be tasked with ensuring robust error handling, proper data validation, and maintaining CLI best practices.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review Python CLI tool for JSON/YAML conversion\",\n    \"payload\": {\n        \"review_focus\": [\n            \"data integrity\",\n            \"error handling\",\n            \"CLI usability\"\n        ],\n        \"checklist\": [\n            \"Input validation complete\",\n            \"Error messages clear and helpful\",\n            \"Edge cases handled\",\n            \"CLI arguments well-documented\",\n            \"Bidirectional conversion tested\"\n        ],\n        \"severity_threshold\": \"block on data corruption risks\"\n    },\n    \"acceptance_criteria\": [\n        \"All format conversions preserve data structure\",\n        \"Error handling covers invalid inputs\",\n        \"CLI interface follows POSIX standards\",\n        \"Documentation includes examples\",\n        \"Test coverage > 90%\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"lambda/image-processor.ts\", \"lib/sharp-utils.ts\"], \"pr_number\": 129, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing image processing Lambda code, we need a reviewer drone with expertise in serverless architecture and image manipulation. The review should focus on memory management, processing efficiency, and error handling since these are critical for Lambda functions. Given the use of Sharp library and serverless context, we'll prioritize checking resource cleanup, timeout handling, and image processing validation.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review AWS Lambda image processing implementation\",\n    \"payload\": {\n        \"review_focus\": [\n            \"memory management\",\n            \"processing efficiency\",\n            \"error handling\"\n        ],\n        \"checklist\": [\n            \"Memory usage within Lambda limits\",\n            \"Sharp resources properly disposed\",\n            \"Timeout scenarios handled\",\n            \"Input validation complete\",\n            \"Error responses standardized\"\n        ],\n        \"severity_threshold\": \"block on resource leaks\"\n    },\n    \"acceptance_criteria\": [\n        \"Memory profile validated\",\n        \"Resource cleanup verified\",\n        \"Error cases tested\",\n        \"Performance metrics acceptable\",\n        \"Input validation comprehensive\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"websocket/chat.ts\", \"services/presence.ts\"], \"pr_number\": 130, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing WebSocket chat and presence service implementation, I'll assign the reviewer drone with specific focus on real-time communication aspects. The review needs to ensure proper connection handling, presence status management, and scalability considerations. Given the critical nature of real-time features, we'll emphasize connection stability, reconnection strategies, and proper state management in the acceptance criteria.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review WebSocket chat and presence service implementation\",\n    \"payload\": {\n        \"review_focus\": [\n            \"connection management\",\n            \"presence tracking\",\n            \"scalability\"\n        ],\n        \"checklist\": [\n            \"Heartbeat mechanism implemented\",\n            \"Reconnection strategy robust\",\n            \"Presence state consistency\",\n            \"Memory leaks prevented\",\n            \"Connection cleanup proper\"\n        ],\n        \"severity_threshold\": \"block on stability issues\"\n    },\n    \"acceptance_criteria\": [\n        \"Connection handling verified under network issues\",\n        \"Presence updates propagate correctly\",\n        \"Memory usage stable under load\",\n        \"Reconnection works automatically\",\n        \"State consistency maintained across disconnects\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"airflow/dags/etl_daily.py\", \"operators/custom.py\"], \"pr_number\": 131, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing Airflow DAG and custom operator changes, I'll assign the reviewer drone with expertise in data pipeline architecture. The review needs to focus on DAG structure, idempotency, and error handling since ETL pipelines require robust failure recovery. The reviewer should verify scheduling logic, operator dependencies, and retry mechanisms. Given the critical nature of ETL processes, thorough validation of the custom operator implementation is essential.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review Airflow ETL DAG and custom operator implementation\",\n    \"payload\": {\n        \"review_focus\": [\n            \"DAG structure\",\n            \"idempotency\",\n            \"error handling\",\n            \"scheduling logic\"\n        ],\n        \"checklist\": [\n            \"Task dependencies correct\",\n            \"Retry policy configured\",\n            \"Custom operator inherits BaseOperator\",\n            \"Proper logging implemented\",\n            \"Idempotency guaranteed\",\n            \"Timeout settings appropriate\"\n        ],\n        \"severity_threshold\": \"block on data integrity issues\"\n    },\n    \"acceptance_criteria\": [\n        \"DAG successfully test executed\",\n        \"Custom operator unit tested\",\n        \"Error scenarios documented\",\n        \"Idempotency verified\",\n        \"Logging comprehensive\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"files_changed\": [\"store/cart.ts\", \"store/cart.spec.ts\"], \"pr_number\": 132, \"author\": \"coder-drone\"}",
+        "reasoning": "For reviewing Redux cart store implementation, I'll assign the reviewer drone since this requires careful examination of state management patterns, test coverage, and potential race conditions. The review should focus on:\n1. State immutability practices\n2. Action creator implementations\n3. Test coverage completeness\n4. Performance considerations\n5. Type safety (TypeScript)\n\nThe task needs strict acceptance criteria around state management best practices and comprehensive test coverage.",
+        "drone_task": "{\n    \"drone_id\": \"reviewer\",\n    \"task_type\": \"review\",\n    \"description\": \"Review Redux cart store implementation and tests\",\n    \"payload\": {\n        \"review_focus\": [\n            \"state immutability\",\n            \"action patterns\",\n            \"test coverage\",\n            \"typescript types\"\n        ],\n        \"checklist\": [\n            \"Immutable state updates\",\n            \"Action creators properly typed\",\n            \"Selectors memoized\",\n            \"Edge cases covered in tests\",\n            \"Async actions handled correctly\"\n        ],\n        \"severity_threshold\": \"block on state management issues\"\n    },\n    \"acceptance_criteria\": [\n        \"100% test coverage verified\",\n        \"No mutation of state detected\",\n        \"TypeScript strict mode passes\",\n        \"Performance impact assessed\",\n        \"Cart edge cases handled\"\n    ]\n}"
+      }
+    ],
+    "signature": {
+      "instructions": "Delegate task to drone agent with clear instructions.\n\nYou are a Princess agent coordinating your specialized drone hive.\nYour role is to take high-level workflow phases and convert them\ninto specific, actionable tasks for your drone agents.\n\nPrincess-Dev drones: coder, reviewer, debugger, integration-engineer\nPrincess-Quality drones: tester, nasa-enforcer, theater-detector, fsm-analyzer\nPrincess-Coordination drones: orchestrator, planner, cost-tracker\n\nEach drone task must have:\n- Specific drone agent assignment\n- Task type matching drone capabilities\n- Clear context from previous phases\n- Concrete deliverables\n- Quality gates/acceptance criteria\n\nFollow the 26 prompt engineering principles:\n- Clarity: Unambiguous instructions\n- Context: Include relevant phase results\n- Constraints: Respect drone capabilities\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Phase:",
+          "description": "Development phase to execute (design, code, test, review, etc.)"
+        },
+        {
+          "prefix": "Context:",
+          "description": "Context and results from previous phases that this phase depends on"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Delegation reasoning explaining drone selection and task structure"
+        },
+        {
+          "prefix": "Drone Task:",
+          "description": "Structured task for drone agent as JSON object. Must have: {'drone_id': str, 'task_type': str, 'description': str, 'payload': dict, 'acceptance_criteria': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

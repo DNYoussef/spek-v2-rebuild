@@ -1,0 +1,25 @@
+{
+  "default": [
+    {
+      "key": "spek/skills/global-count",
+      "value": "16",
+      "namespace": "default",
+      "timestamp": 1760749712865,
+      "redacted": false
+    },
+    {
+      "key": "spek/skills/project-count",
+      "value": "55",
+      "namespace": "default",
+      "timestamp": 1760749715796,
+      "redacted": false
+    },
+    {
+      "key": "spek/skills/total-count",
+      "value": "71",
+      "namespace": "default",
+      "timestamp": 1760749718706,
+      "redacted": false
+    }
+  ]
+}

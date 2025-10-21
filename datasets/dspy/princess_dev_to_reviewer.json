@@ -1,0 +1,1458 @@
+{
+  "communication_path": "princess-dev→reviewer",
+  "description": "Princess-Dev delegates code review tasks to Reviewer drone",
+  "version": "1.0",
+  "total_examples": 50,
+  "examples": [
+    {
+      "id": 1,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["src/auth/login.ts", "src/auth/logout.ts"],
+        "pr_number": 123,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review OAuth2 authentication implementation",
+        "specifications": {
+          "review_focus": ["security vulnerabilities", "error handling", "NASA compliance"],
+          "checklist": [
+            "JWT tokens stored securely",
+            "Password hashing uses bcrypt",
+            "No hardcoded secrets",
+            "Function length <=60 LOC",
+            "Type safety enforced"
+          ],
+          "severity_threshold": "block on P0/P1 issues"
+        },
+        "dependencies": ["PR #123 created", "CI checks passing"],
+        "estimated_minutes": 30,
+        "quality_gates": ["security audit complete", "code quality score >=8/10", "no blocking issues"]
+      }
+    },
+    {
+      "id": 2,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["components/Button.tsx", "components/Button.stories.tsx"],
+        "pr_number": 124,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review React Button component implementation",
+        "specifications": {
+          "review_focus": ["accessibility", "type safety", "prop API design"],
+          "checklist": [
+            "ARIA labels present",
+            "Keyboard navigation works",
+            "All props typed with TypeScript",
+            "Variants properly documented",
+            "No console.log statements"
+          ],
+          "severity_threshold": "block on accessibility violations"
+        },
+        "dependencies": ["Storybook stories visible"],
+        "estimated_minutes": 20,
+        "quality_gates": ["accessibility audit pass", "TypeScript strict mode", "prop documentation complete"]
+      }
+    },
+    {
+      "id": 3,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["services/queue/consumer.ts", "services/queue/processor.ts"],
+        "pr_number": 125,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review RabbitMQ consumer service implementation",
+        "specifications": {
+          "review_focus": ["error handling", "message acknowledgment", "concurrency safety"],
+          "checklist": [
+            "Dead letter queue configured",
+            "Manual acknowledgment implemented",
+            "Graceful shutdown handling",
+            "No message loss scenarios",
+            "Concurrency limits enforced"
+          ],
+          "severity_threshold": "block on data loss risks"
+        },
+        "dependencies": ["integration tests passing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["error scenarios tested", "no race conditions", "idempotency verified"]
+      }
+    },
+    {
+      "id": 4,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["resolvers/user.ts", "schema/user.graphql"],
+        "pr_number": 126,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review GraphQL user resolvers and schema",
+        "specifications": {
+          "review_focus": ["authorization", "N+1 queries", "data loader usage"],
+          "checklist": [
+            "Authorization checks on mutations",
+            "DataLoaders prevent N+1",
+            "Input validation present",
+            "Error handling returns proper codes",
+            "Schema follows conventions"
+          ],
+          "severity_threshold": "block on authorization bypasses"
+        },
+        "dependencies": ["GraphQL schema validated"],
+        "estimated_minutes": 35,
+        "quality_gates": ["auth tests pass", "no N+1 queries", "error handling complete"]
+      }
+    },
+    {
+      "id": 5,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["sync/watermelon.ts", "models/task.ts", "models/project.ts"],
+        "pr_number": 127,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review offline-first sync implementation",
+        "specifications": {
+          "review_focus": ["conflict resolution", "data integrity", "offline behavior"],
+          "checklist": [
+            "Conflict resolution strategy defined",
+            "Sync errors handled gracefully",
+            "Offline queue persists",
+            "Data migrations tested",
+            "Performance with large datasets"
+          ],
+          "severity_threshold": "block on data corruption risks"
+        },
+        "dependencies": ["sync tests passing"],
+        "estimated_minutes": 45,
+        "quality_gates": ["conflict scenarios tested", "no data loss", "performance acceptable"]
+      }
+    },
+    {
+      "id": 6,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["cli/convert.py", "parsers/json.py", "parsers/yaml.py"],
+        "pr_number": 128,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review CLI file conversion tool",
+        "specifications": {
+          "review_focus": ["error handling", "file validation", "progress reporting"],
+          "checklist": [
+            "Invalid file handling",
+            "Progress bar updates correctly",
+            "Parallel processing safe",
+            "Help documentation clear",
+            "Exit codes appropriate"
+          ],
+          "severity_threshold": "block on file corruption risks"
+        },
+        "dependencies": ["CLI tests passing"],
+        "estimated_minutes": 25,
+        "quality_gates": ["error handling tested", "help text complete", "edge cases covered"]
+      }
+    },
+    {
+      "id": 7,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["lambda/image-processor.ts", "lib/sharp-utils.ts"],
+        "pr_number": 129,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Lambda image processing function",
+        "specifications": {
+          "review_focus": ["memory usage", "timeout handling", "error notifications"],
+          "checklist": [
+            "Memory limits appropriate",
+            "Timeout set correctly",
+            "Failed uploads logged",
+            "S3 permissions minimal",
+            "Cold start optimized"
+          ],
+          "severity_threshold": "block on memory leaks"
+        },
+        "dependencies": ["Lambda deployed to staging"],
+        "estimated_minutes": 30,
+        "quality_gates": ["memory profiled", "timeout tested", "error alerting works"]
+      }
+    },
+    {
+      "id": 8,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["websocket/chat.ts", "services/presence.ts"],
+        "pr_number": 130,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review WebSocket chat server implementation",
+        "specifications": {
+          "review_focus": ["connection handling", "message ordering", "scalability"],
+          "checklist": [
+            "Reconnection logic robust",
+            "Message order preserved",
+            "Presence tracking accurate",
+            "Room isolation enforced",
+            "Load testing performed"
+          ],
+          "severity_threshold": "block on message loss"
+        },
+        "dependencies": ["WebSocket tests passing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["connection recovery tested", "message ordering verified", "scalability validated"]
+      }
+    },
+    {
+      "id": 9,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["airflow/dags/etl_daily.py", "operators/custom.py"],
+        "pr_number": 131,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Airflow ETL DAG implementation",
+        "specifications": {
+          "review_focus": ["idempotency", "error handling", "data validation"],
+          "checklist": [
+            "Tasks are idempotent",
+            "Retries configured properly",
+            "Data validation present",
+            "Alerting on failures",
+            "Dependencies correct"
+          ],
+          "severity_threshold": "block on non-idempotent tasks"
+        },
+        "dependencies": ["DAG validated in Airflow"],
+        "estimated_minutes": 35,
+        "quality_gates": ["idempotency verified", "failure scenarios tested", "validation complete"]
+      }
+    },
+    {
+      "id": 10,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["store/cart.ts", "store/cart.spec.ts"],
+        "pr_number": 132,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Vuex shopping cart store",
+        "specifications": {
+          "review_focus": ["state immutability", "localStorage migration", "type safety"],
+          "checklist": [
+            "Mutations don't mutate state directly",
+            "localStorage versioning works",
+            "Types fully defined",
+            "Edge cases tested",
+            "Performance acceptable"
+          ],
+          "severity_threshold": "block on state mutation bugs"
+        },
+        "dependencies": ["unit tests passing"],
+        "estimated_minutes": 25,
+        "quality_gates": ["immutability verified", "migration tested", "types complete"]
+      }
+    },
+    {
+      "id": 11,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["api/products.py", "filters/products.py"],
+        "pr_number": 133,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Django REST API pagination and filtering",
+        "specifications": {
+          "review_focus": ["query performance", "N+1 prevention", "API documentation"],
+          "checklist": [
+            "Cursor pagination implemented",
+            "Database indexes present",
+            "select_related/prefetch_related used",
+            "Filter validation present",
+            "API docs auto-generated"
+          ],
+          "severity_threshold": "block on N+1 queries"
+        },
+        "dependencies": ["performance tests run"],
+        "estimated_minutes": 30,
+        "quality_gates": ["query count acceptable", "indexes verified", "docs complete"]
+      }
+    },
+    {
+      "id": 12,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["controllers/database_controller.go", "api/v1/database_types.go"],
+        "pr_number": 134,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Kubernetes operator controller",
+        "specifications": {
+          "review_focus": ["reconciliation logic", "error recovery", "status updates"],
+          "checklist": [
+            "Reconciliation idempotent",
+            "Finalizers implemented",
+            "Status conditions accurate",
+            "Error backoff appropriate",
+            "RBAC permissions minimal"
+          ],
+          "severity_threshold": "block on resource leaks"
+        },
+        "dependencies": ["operator tests passing"],
+        "estimated_minutes": 50,
+        "quality_gates": ["reconciliation tested", "cleanup verified", "status accuracy validated"]
+      }
+    },
+    {
+      "id": 13,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["pages/[slug].tsx", "lib/mdx.ts"],
+        "pr_number": 135,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Next.js SSR blog implementation",
+        "specifications": {
+          "review_focus": ["SSR performance", "SEO completeness", "accessibility"],
+          "checklist": [
+            "getStaticProps optimized",
+            "Meta tags complete",
+            "Semantic HTML used",
+            "Code highlighting works",
+            "Mobile responsive"
+          ],
+          "severity_threshold": "block on SEO critical issues"
+        },
+        "dependencies": ["Lighthouse audit run"],
+        "estimated_minutes": 35,
+        "quality_gates": ["SSR working", "SEO score >90", "accessibility compliant"]
+      }
+    },
+    {
+      "id": 14,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["src/downloader.rs", "src/progress.rs"],
+        "pr_number": 136,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Rust concurrent file downloader",
+        "specifications": {
+          "review_focus": ["memory safety", "error handling", "cancellation"],
+          "checklist": [
+            "No unsafe code or justified",
+            "Errors properly propagated",
+            "Graceful cancellation",
+            "Resource cleanup guaranteed",
+            "Tests cover edge cases"
+          ],
+          "severity_threshold": "block on memory safety issues"
+        },
+        "dependencies": ["cargo test passing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["clippy warnings resolved", "unsafe code justified", "error handling complete"]
+      }
+    },
+    {
+      "id": 15,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["lib/biometric_auth.dart", "screens/login.dart"],
+        "pr_number": 137,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Flutter biometric authentication",
+        "specifications": {
+          "review_focus": ["platform compatibility", "security", "UX"],
+          "checklist": [
+            "iOS and Android tested",
+            "Secure storage for credentials",
+            "Fallback to PIN works",
+            "Error messages clear",
+            "Accessibility labels present"
+          ],
+          "severity_threshold": "block on security vulnerabilities"
+        },
+        "dependencies": ["tested on both platforms"],
+        "estimated_minutes": 30,
+        "quality_gates": ["both platforms work", "credentials secure", "UX validated"]
+      }
+    },
+    {
+      "id": 16,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["middleware/rate-limit.ts", "config/rate-limits.ts"],
+        "pr_number": 138,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Express rate limiting middleware",
+        "specifications": {
+          "review_focus": ["distributed consistency", "Redis failover", "HTTP headers"],
+          "checklist": [
+            "Token bucket correct",
+            "Redis errors handled",
+            "Retry-After header set",
+            "Per-endpoint config works",
+            "Load tested"
+          ],
+          "severity_threshold": "block on race conditions"
+        },
+        "dependencies": ["Redis failover tested"],
+        "estimated_minutes": 35,
+        "quality_gates": ["concurrency safe", "failover works", "headers correct"]
+      }
+    },
+    {
+      "id": 17,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["main/auto-updater.ts", "renderer/update-notification.tsx"],
+        "pr_number": 139,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Electron auto-update implementation",
+        "specifications": {
+          "review_focus": ["signature verification", "rollback strategy", "user experience"],
+          "checklist": [
+            "Code signatures verified",
+            "Failed updates rollback",
+            "User notifications clear",
+            "Silent install works",
+            "Update frequency appropriate"
+          ],
+          "severity_threshold": "block on security issues"
+        },
+        "dependencies": ["signed builds available"],
+        "estimated_minutes": 35,
+        "quality_gates": ["signatures verified", "rollback tested", "UX acceptable"]
+      }
+    },
+    {
+      "id": 18,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["grpc/user_service.go", "interceptors/auth.go"],
+        "pr_number": 140,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review gRPC user service with streaming",
+        "specifications": {
+          "review_focus": ["streaming lifecycle", "error codes", "context handling"],
+          "checklist": [
+            "Stream cleanup on errors",
+            "gRPC error codes proper",
+            "Context cancellation handled",
+            "Interceptors order correct",
+            "Bidirectional stream tested"
+          ],
+          "severity_threshold": "block on resource leaks"
+        },
+        "dependencies": ["gRPC tests passing"],
+        "estimated_minutes": 45,
+        "quality_gates": ["streaming robust", "error codes correct", "context propagation works"]
+      }
+    },
+    {
+      "id": 19,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["store/products.actions.ts", "store/products.reducer.ts", "store/products.effects.ts"],
+        "pr_number": 141,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review NgRx products feature module",
+        "specifications": {
+          "review_focus": ["immutability", "effect handling", "selector performance"],
+          "checklist": [
+            "Reducer pure functions",
+            "Effects handle errors",
+            "Selectors memoized",
+            "Actions typed properly",
+            "Tests cover state transitions"
+          ],
+          "severity_threshold": "block on state mutation"
+        },
+        "dependencies": ["NgRx tests passing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["immutability verified", "effects tested", "selectors optimized"]
+      }
+    },
+    {
+      "id": 20,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["routers/items.py", "middleware/tenant.py"],
+        "pr_number": 142,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review FastAPI multi-tenant CRUD endpoints",
+        "specifications": {
+          "review_focus": ["tenant isolation", "async performance", "validation"],
+          "checklist": [
+            "Tenant ID from JWT enforced",
+            "No cross-tenant data leaks",
+            "Async operations correct",
+            "Pydantic validation complete",
+            "SQL injection prevented"
+          ],
+          "severity_threshold": "block on tenant leaks"
+        },
+        "dependencies": ["security tests passing"],
+        "estimated_minutes": 45,
+        "quality_gates": ["tenant isolation verified", "async working", "validation complete"]
+      }
+    },
+    {
+      "id": 21,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["cache/product.ts", "events/invalidation.ts"],
+        "pr_number": 143,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Redis cache-aside implementation",
+        "specifications": {
+          "review_focus": ["cache stampede", "invalidation strategy", "serialization"],
+          "checklist": [
+            "Stampede prevention implemented",
+            "Invalidation events handled",
+            "TTL values appropriate",
+            "Serialization efficient",
+            "Fallback to DB works"
+          ],
+          "severity_threshold": "block on cache stampede"
+        },
+        "dependencies": ["load tests run"],
+        "estimated_minutes": 30,
+        "quality_gates": ["stampede prevented", "invalidation works", "performance acceptable"]
+      }
+    },
+    {
+      "id": 22,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["stores/form.ts", "components/Form.svelte"],
+        "pr_number": 144,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Svelte reactive form validation",
+        "specifications": {
+          "review_focus": ["reactivity", "async validation", "accessibility"],
+          "checklist": [
+            "Stores reactive properly",
+            "Async validation debounced",
+            "ARIA announcements work",
+            "Validation rules complete",
+            "UX polished"
+          ],
+          "severity_threshold": "block on accessibility violations"
+        },
+        "dependencies": ["accessibility audit done"],
+        "estimated_minutes": 25,
+        "quality_gates": ["reactivity works", "async validation tested", "accessibility pass"]
+      }
+    },
+    {
+      "id": 23,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["terraform/ecs.tf", "terraform/autoscaling.tf"],
+        "pr_number": 145,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Terraform ECS infrastructure",
+        "specifications": {
+          "review_focus": ["state management", "variable validation", "security"],
+          "checklist": [
+            "Remote state configured",
+            "Variables typed and validated",
+            "Security groups minimal",
+            "Auto-scaling policies correct",
+            "Outputs documented"
+          ],
+          "severity_threshold": "block on security misconfigurations"
+        },
+        "dependencies": ["terraform plan successful"],
+        "estimated_minutes": 40,
+        "quality_gates": ["state setup correct", "security validated", "documentation complete"]
+      }
+    },
+    {
+      "id": 24,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["events/order_events.java", "aggregates/Order.java"],
+        "pr_number": 146,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Spring Boot event sourcing implementation",
+        "specifications": {
+          "review_focus": ["event ordering", "idempotency", "snapshots"],
+          "checklist": [
+            "Events ordered correctly",
+            "Idempotent event handlers",
+            "Snapshot strategy defined",
+            "Projections updated correctly",
+            "Event versioning handled"
+          ],
+          "severity_threshold": "block on event ordering issues"
+        },
+        "dependencies": ["event sourcing tests passing"],
+        "estimated_minutes": 50,
+        "quality_gates": ["ordering verified", "idempotency tested", "snapshots work"]
+      }
+    },
+    {
+      "id": 25,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["Scripts/InventorySystem.cs", "UI/InventoryUI.cs"],
+        "pr_number": 147,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Unity inventory system",
+        "specifications": {
+          "review_focus": ["performance", "mobile support", "persistence"],
+          "checklist": [
+            "60 FPS maintained",
+            "Touch input works",
+            "Save/load reliable",
+            "Memory management good",
+            "UI responsive"
+          ],
+          "severity_threshold": "block on performance issues"
+        },
+        "dependencies": ["tested on mobile devices"],
+        "estimated_minutes": 35,
+        "quality_gates": ["60 FPS verified", "mobile tested", "save/load works"]
+      }
+    },
+    {
+      "id": 26,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["aggregations/revenue.js", "aggregations/funnel.js"],
+        "pr_number": 148,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review MongoDB aggregation pipelines",
+        "specifications": {
+          "review_focus": ["query performance", "index usage", "result accuracy"],
+          "checklist": [
+            "Indexes cover aggregations",
+            "Query time <500ms",
+            "Results validated",
+            "Pipeline stages optimal",
+            "Memory usage acceptable"
+          ],
+          "severity_threshold": "block on performance issues"
+        },
+        "dependencies": ["performance tests run"],
+        "estimated_minutes": 35,
+        "quality_gates": ["indexes verified", "performance acceptable", "accuracy validated"]
+      }
+    },
+    {
+      "id": 27,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["services/notifications.ts", "screens/Notifications.tsx"],
+        "pr_number": 149,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review React Native push notifications",
+        "specifications": {
+          "review_focus": ["permission handling", "deep linking", "notification categories"],
+          "checklist": [
+            "Permissions requested properly",
+            "Deep links work",
+            "Categories configured",
+            "Foreground handling correct",
+            "iOS and Android tested"
+          ],
+          "severity_threshold": "block on UX issues"
+        },
+        "dependencies": ["tested on physical devices"],
+        "estimated_minutes": 30,
+        "quality_gates": ["permissions work", "deep links tested", "both platforms validated"]
+      }
+    },
+    {
+      "id": 28,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["channels/document_channel.ex", "lib/ot.ex"],
+        "pr_number": 150,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Phoenix channels collaboration system",
+        "specifications": {
+          "review_focus": ["conflict resolution", "scalability", "presence tracking"],
+          "checklist": [
+            "OT algorithm correct",
+            "Conflicts resolved properly",
+            "Presence accurate",
+            "Channel recovery works",
+            "Load tested at scale"
+          ],
+          "severity_threshold": "block on data corruption"
+        },
+        "dependencies": ["OT tests passing"],
+        "estimated_minutes": 50,
+        "quality_gates": ["conflicts resolved", "presence accurate", "scalability validated"]
+      }
+    },
+    {
+      "id": 29,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["entities/user.entity.ts", "interceptors/audit.interceptor.ts"],
+        "pr_number": 151,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review NestJS audit logging system",
+        "specifications": {
+          "review_focus": ["audit completeness", "query filtering", "cascade behavior"],
+          "checklist": [
+            "All fields tracked",
+            "Soft delete filters work",
+            "Cascades configured correctly",
+            "User context captured",
+            "Restore functionality works"
+          ],
+          "severity_threshold": "block on audit gaps"
+        },
+        "dependencies": ["audit tests passing"],
+        "estimated_minutes": 30,
+        "quality_gates": ["audit complete", "filtering works", "cascades correct"]
+      }
+    },
+    {
+      "id": 30,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["Dockerfile", ".dockerignore"],
+        "pr_number": 152,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review multi-stage Dockerfile optimization",
+        "specifications": {
+          "review_focus": ["image size", "security", "build time"],
+          "checklist": [
+            "Image size <200MB",
+            "Non-root user used",
+            "Secrets not in layers",
+            "Build cache optimized",
+            "Security scan clean"
+          ],
+          "severity_threshold": "block on security issues"
+        },
+        "dependencies": ["image built and scanned"],
+        "estimated_minutes": 25,
+        "quality_gates": ["size target met", "security pass", "build optimized"]
+      }
+    },
+    {
+      "id": 31,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["etl/csv_processor.py", "db/bulk_insert.py"],
+        "pr_number": 153,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Pandas ETL pipeline",
+        "specifications": {
+          "review_focus": ["memory efficiency", "error handling", "data quality"],
+          "checklist": [
+            "Chunking prevents OOM",
+            "Bad data handled gracefully",
+            "Types validated",
+            "Progress logged",
+            "Rollback on errors"
+          ],
+          "severity_threshold": "block on memory issues"
+        },
+        "dependencies": ["tested with 1GB CSV"],
+        "estimated_minutes": 35,
+        "quality_gates": ["memory acceptable", "errors handled", "quality validated"]
+      }
+    },
+    {
+      "id": 32,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["routes/checkout.ts", "webhooks/stripe.ts"],
+        "pr_number": 154,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Stripe payment integration",
+        "specifications": {
+          "review_focus": ["webhook security", "idempotency", "error handling"],
+          "checklist": [
+            "Webhook signatures verified",
+            "Idempotency keys used",
+            "Duplicate events handled",
+            "PCI compliance maintained",
+            "Error states tested"
+          ],
+          "severity_threshold": "block on security issues"
+        },
+        "dependencies": ["webhook tests passing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["security verified", "idempotency works", "errors handled"]
+      }
+    },
+    {
+      "id": 33,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["visualization/graph.ts", "physics/force.ts"],
+        "pr_number": 155,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Three.js 3D graph visualization",
+        "specifications": {
+          "review_focus": ["performance", "WebGL compatibility", "interaction"],
+          "checklist": [
+            "60 FPS maintained",
+            "WebGL fallback exists",
+            "Controls intuitive",
+            "Memory leaks prevented",
+            "Canvas responsive"
+          ],
+          "severity_threshold": "block on performance issues"
+        },
+        "dependencies": ["performance profiled"],
+        "estimated_minutes": 40,
+        "quality_gates": ["60 FPS verified", "fallback works", "UX validated"]
+      }
+    },
+    {
+      "id": 34,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["tasks/email.py", "tasks/reports.py"],
+        "pr_number": 156,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Celery background task implementation",
+        "specifications": {
+          "review_focus": ["retry logic", "error handling", "monitoring"],
+          "checklist": [
+            "Retries configured properly",
+            "Errors logged",
+            "Results expire appropriately",
+            "Priority routing works",
+            "Flower monitoring setup"
+          ],
+          "severity_threshold": "block on error handling gaps"
+        },
+        "dependencies": ["Celery tests passing"],
+        "estimated_minutes": 30,
+        "quality_gates": ["retries work", "errors logged", "monitoring active"]
+      }
+    },
+    {
+      "id": 35,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["Models/Task.swift", "ViewModels/TaskListViewModel.swift"],
+        "pr_number": 157,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review SwiftUI Core Data implementation",
+        "specifications": {
+          "review_focus": ["thread safety", "migration strategy", "iCloud sync"],
+          "checklist": [
+            "Core Data on background thread",
+            "Migration tested",
+            "iCloud conflicts handled",
+            "FetchRequest predicates correct",
+            "Memory management good"
+          ],
+          "severity_threshold": "block on data corruption"
+        },
+        "dependencies": ["migration tests passing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["thread safety verified", "migration works", "sync tested"]
+      }
+    },
+    {
+      "id": 36,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": [".github/workflows/deploy.yml"],
+        "pr_number": 158,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review GitHub Actions CI/CD workflow",
+        "specifications": {
+          "review_focus": ["parallelization", "caching", "security"],
+          "checklist": [
+            "Jobs run in parallel",
+            "Dependencies cached",
+            "Secrets not exposed",
+            "Manual approval for prod",
+            "Rollback strategy exists"
+          ],
+          "severity_threshold": "block on security issues"
+        },
+        "dependencies": ["workflow test run successful"],
+        "estimated_minutes": 35,
+        "quality_gates": ["parallelization verified", "caching works", "security pass"]
+      }
+    },
+    {
+      "id": 37,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["charts/timeseries.ts", "charts/bar.ts"],
+        "pr_number": 159,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Plotly dashboard charts",
+        "specifications": {
+          "review_focus": ["performance with data", "responsiveness", "accessibility"],
+          "checklist": [
+            "Large datasets performant",
+            "Charts resize correctly",
+            "Color contrast sufficient",
+            "Export functionality works",
+            "Mobile usable"
+          ],
+          "severity_threshold": "block on performance issues"
+        },
+        "dependencies": ["tested with production data"],
+        "estimated_minutes": 30,
+        "quality_gates": ["performance acceptable", "responsive works", "accessibility pass"]
+      }
+    },
+    {
+      "id": 38,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["prisma/schema.prisma", "prisma/migrations/001_init.sql"],
+        "pr_number": 160,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Prisma schema and migration",
+        "specifications": {
+          "review_focus": ["data modeling", "indexes", "migration safety"],
+          "checklist": [
+            "Relations modeled correctly",
+            "Indexes on foreign keys",
+            "Migration reversible",
+            "Enums used appropriately",
+            "Seed data provided"
+          ],
+          "severity_threshold": "block on data model issues"
+        },
+        "dependencies": ["migration applied successfully"],
+        "estimated_minutes": 30,
+        "quality_gates": ["model correct", "indexes optimal", "migration safe"]
+      }
+    },
+    {
+      "id": 39,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["nginx.conf", "ssl/certificates.conf"],
+        "pr_number": 161,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Nginx configuration",
+        "specifications": {
+          "review_focus": ["security", "performance", "health checks"],
+          "checklist": [
+            "SSL config secure",
+            "Health checks working",
+            "Load balancing correct",
+            "Cache headers set",
+            "Rate limiting configured"
+          ],
+          "severity_threshold": "block on security misconfigurations"
+        },
+        "dependencies": ["SSL test passed"],
+        "estimated_minutes": 30,
+        "quality_gates": ["SSL A+ rating", "health checks work", "performance optimized"]
+      }
+    },
+    {
+      "id": 40,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["tests/auth.test.ts", "tests/integration/auth-flow.test.ts"],
+        "pr_number": 162,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Jest test suite for authentication",
+        "specifications": {
+          "review_focus": ["coverage", "test quality", "isolation"],
+          "checklist": [
+            "Coverage >=90%",
+            "Edge cases covered",
+            "Tests isolated",
+            "Mocks appropriate",
+            "No flaky tests"
+          ],
+          "severity_threshold": "block on low coverage"
+        },
+        "dependencies": ["tests all passing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["coverage threshold met", "quality high", "no flakiness"]
+      }
+    },
+    {
+      "id": 41,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["landing.html", "styles/landing.css"],
+        "pr_number": 163,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Tailwind CSS landing page",
+        "specifications": {
+          "review_focus": ["responsiveness", "accessibility", "performance"],
+          "checklist": [
+            "Mobile-first design",
+            "ARIA labels present",
+            "Lighthouse score >90",
+            "Animations smooth",
+            "Dark mode works"
+          ],
+          "severity_threshold": "block on accessibility violations"
+        },
+        "dependencies": ["Lighthouse audit run"],
+        "estimated_minutes": 35,
+        "quality_gates": ["responsive validated", "accessibility pass", "performance score met"]
+      }
+    },
+    {
+      "id": 42,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["jobs/daily_aggregation.py"],
+        "pr_number": 164,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Spark data aggregation job",
+        "specifications": {
+          "review_focus": ["performance", "data quality", "idempotency"],
+          "checklist": [
+            "Job completes <30min",
+            "Data quality checks present",
+            "Idempotent execution",
+            "Partition pruning used",
+            "Broadcast joins optimized"
+          ],
+          "severity_threshold": "block on performance issues"
+        },
+        "dependencies": ["tested with production data"],
+        "estimated_minutes": 45,
+        "quality_gates": ["performance target met", "quality validated", "idempotency verified"]
+      }
+    },
+    {
+      "id": 43,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["firebase/chat.ts", "firebase.rules"],
+        "pr_number": 165,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Firebase real-time chat",
+        "specifications": {
+          "review_focus": ["security rules", "offline support", "performance"],
+          "checklist": [
+            "Security rules tested",
+            "Offline queue works",
+            "Performance monitored",
+            "Data structure optimal",
+            "Typing indicators work"
+          ],
+          "severity_threshold": "block on security rule bypasses"
+        },
+        "dependencies": ["security rules tested"],
+        "estimated_minutes": 35,
+        "quality_gates": ["security verified", "offline works", "performance acceptable"]
+      }
+    },
+    {
+      "id": 44,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["vite.config.ts", "build/chunks.ts"],
+        "pr_number": 166,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Vite production build configuration",
+        "specifications": {
+          "review_focus": ["bundle size", "build time", "optimization"],
+          "checklist": [
+            "Bundle size <500KB",
+            "Build time <30s",
+            "Code splitting optimal",
+            "Assets optimized",
+            "Tree shaking working"
+          ],
+          "severity_threshold": "block on bundle size exceeds"
+        },
+        "dependencies": ["production build successful"],
+        "estimated_minutes": 25,
+        "quality_gates": ["size target met", "build fast", "optimizations verified"]
+      }
+    },
+    {
+      "id": 45,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["pubsub/notifications.ts", "subscribers/websocket.ts"],
+        "pr_number": 167,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Redis Pub/Sub notification system",
+        "specifications": {
+          "review_focus": ["message delivery", "subscriber health", "message ordering"],
+          "checklist": [
+            "Messages delivered reliably",
+            "Subscriber reconnection works",
+            "Message order preserved",
+            "No message loss",
+            "Performance acceptable"
+          ],
+          "severity_threshold": "block on message loss"
+        },
+        "dependencies": ["load tested"],
+        "estimated_minutes": 30,
+        "quality_gates": ["delivery verified", "reconnection works", "ordering correct"]
+      }
+    },
+    {
+      "id": 46,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["main/filesystem.ts", "preload.ts"],
+        "pr_number": 168,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Electron file system implementation",
+        "specifications": {
+          "review_focus": ["security", "IPC communication", "error handling"],
+          "checklist": [
+            "Context isolation enabled",
+            "IPC validation present",
+            "File operation errors handled",
+            "Progress updates work",
+            "Security audit passed"
+          ],
+          "severity_threshold": "block on security issues"
+        },
+        "dependencies": ["security audit completed"],
+        "estimated_minutes": 35,
+        "quality_gates": ["security pass", "IPC safe", "errors handled"]
+      }
+    },
+    {
+      "id": 47,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["oauth/server.ts", "oauth/tokens.ts"],
+        "pr_number": 169,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review OAuth 2.0 authorization server",
+        "specifications": {
+          "review_focus": ["security", "token management", "scope enforcement"],
+          "checklist": [
+            "PKCE implemented",
+            "Token rotation works",
+            "Scopes enforced",
+            "Refresh tokens secure",
+            "Security audit passed"
+          ],
+          "severity_threshold": "block on security vulnerabilities"
+        },
+        "dependencies": ["OAuth security audit done"],
+        "estimated_minutes": 50,
+        "quality_gates": ["security verified", "token management correct", "scopes enforced"]
+      }
+    },
+    {
+      "id": 48,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["server.ts", "routes/users.ts"],
+        "pr_number": 170,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Deno Oak API server",
+        "specifications": {
+          "review_focus": ["type safety", "middleware order", "error handling"],
+          "checklist": [
+            "TypeScript strict mode",
+            "Middleware order correct",
+            "Validation with Zod",
+            "Error responses consistent",
+            "API docs generated"
+          ],
+          "severity_threshold": "block on type safety issues"
+        },
+        "dependencies": ["Deno check passed"],
+        "estimated_minutes": 30,
+        "quality_gates": ["types correct", "middleware works", "errors handled"]
+      }
+    },
+    {
+      "id": 49,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["contracts/NFT.sol", "test/NFT.test.js"],
+        "pr_number": 171,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Solidity NFT minting contract",
+        "specifications": {
+          "review_focus": ["security", "gas optimization", "test coverage"],
+          "checklist": [
+            "Reentrancy guards present",
+            "Gas optimized",
+            "Test coverage >95%",
+            "Access control correct",
+            "Events emitted properly"
+          ],
+          "severity_threshold": "block on security vulnerabilities"
+        },
+        "dependencies": ["security audit completed"],
+        "estimated_minutes": 60,
+        "quality_gates": ["security pass", "gas acceptable", "coverage met"]
+      }
+    },
+    {
+      "id": 50,
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "files_changed": ["stories/Button.stories.tsx", "stories/Modal.stories.tsx"],
+        "pr_number": 172,
+        "author": "coder-drone"
+      },
+      "expected_drone_task": {
+        "drone_id": "reviewer",
+        "task_type": "review",
+        "description": "Review Storybook component documentation",
+        "specifications": {
+          "review_focus": ["documentation completeness", "accessibility", "visual regression"],
+          "checklist": [
+            "All variants documented",
+            "Accessibility addon passing",
+            "Visual regression tests set up",
+            "Controls working",
+            "Dark mode stories present"
+          ],
+          "severity_threshold": "block on incomplete documentation"
+        },
+        "dependencies": ["Storybook builds successfully"],
+        "estimated_minutes": 35,
+        "quality_gates": ["all variants covered", "accessibility pass", "visual tests setup"]
+      }
+    }
+  ]
+}

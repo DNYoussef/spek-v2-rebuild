@@ -1,0 +1,90 @@
+digraph PRE_DEPLOYMENT_VERIFICATION {
+    // TRIGGER: Before deploying to production
+    // USE WHEN:
+    //   - Ready to deploy new version
+    //   - All development complete
+    //   - Need to validate readiness
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_pre_deploy {
+        label="TRIGGER: Before Deploying to Production";
+        style="rounded,bold";
+        bgcolor="#e3f2fd";
+
+        // Entry
+        "Deployment requested" [shape=ellipse];
+
+        // Code Quality & Testing
+        "git status" [shape=plaintext];
+        "git log -1" [shape=plaintext];
+        "All CI/CD checks passing?" [shape=diamond];
+        "Fix CI/CD failures" [shape=box];
+
+        // Build verification
+        "npm run build" [shape=plaintext];
+        "Build successful?" [shape=diamond];
+        "Fix build errors" [shape=box];
+
+        // Security scanning
+        "npm audit --production" [shape=plaintext];
+        "bandit -r src/" [shape=plaintext];
+        "No critical vulnerabilities?" [shape=diamond];
+        "Fix security issues" [shape=box];
+
+        // Environment verification
+        "env | grep -E \"(NODE_ENV|DATABASE_URL|REDIS_URL)\"" [shape=plaintext];
+        "All env vars set?" [shape=diamond];
+        "Configure environment" [shape=box];
+
+        // Final checks
+        "Database backup created?" [shape=diamond];
+        "pg_dump -h $DB_HOST -U $DB_USER $DB_NAME > backup.sql" [shape=plaintext];
+
+        "Ready to deploy" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+        // Flow
+        "Deployment requested" -> "git status";
+        "git status" -> "git log -1";
+        "git log -1" -> "All CI/CD checks passing?";
+
+        "All CI/CD checks passing?" -> "npm run build" [label="yes"];
+        "All CI/CD checks passing?" -> "Fix CI/CD failures" [label="no"];
+        "Fix CI/CD failures" -> "All CI/CD checks passing?";
+
+        "npm run build" -> "Build successful?";
+        "Build successful?" -> "npm audit --production" [label="yes"];
+        "Build successful?" -> "Fix build errors" [label="no"];
+        "Fix build errors" -> "npm run build";
+
+        "npm audit --production" -> "bandit -r src/";
+        "bandit -r src/" -> "No critical vulnerabilities?";
+        "No critical vulnerabilities?" -> "env | grep -E \"(NODE_ENV|DATABASE_URL|REDIS_URL)\"" [label="yes"];
+        "No critical vulnerabilities?" -> "Fix security issues" [label="no"];
+        "Fix security issues" -> "npm audit --production";
+
+        "env | grep -E \"(NODE_ENV|DATABASE_URL|REDIS_URL)\"" -> "All env vars set?";
+        "All env vars set?" -> "Database backup created?" [label="yes"];
+        "All env vars set?" -> "Configure environment" [label="no"];
+        "Configure environment" -> "All env vars set?";
+
+        "Database backup created?" -> "Ready to deploy" [label="yes"];
+        "Database backup created?" -> "pg_dump -h $DB_HOST -U $DB_USER $DB_NAME > backup.sql" [label="no"];
+        "pg_dump -h $DB_HOST -U $DB_USER $DB_NAME > backup.sql" -> "Ready to deploy";
+    }
+
+    // Warnings (always visible)
+    subgraph cluster_warnings {
+        label="CRITICAL WARNINGS";
+        style=filled;
+        bgcolor="#ffebee";
+
+        "NEVER skip tests" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "NEVER deploy without backup" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "ALWAYS verify environment vars" [shape=octagon, style=filled, fillcolor=orange];
+    }
+
+    // External connections
+    "Ready to deploy" -> deployment_execution [label="proceed to", style=dotted];
+}

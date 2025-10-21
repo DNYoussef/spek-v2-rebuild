@@ -1,0 +1,1709 @@
+{
+  "communication_path": "princess-quality→code-analyzer",
+  "description": "Princess-Quality delegates static code analysis tasks to Code-Analyzer drone",
+  "agent_context": {
+    "coordinator": "princess-quality",
+    "drone": "code-analyzer",
+    "relationship": "quality_validation_delegation",
+    "coordination_protocol": "EnhancedLightweightProtocol"
+  },
+  "examples": [
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/auth/oauth.py", "src/auth/jwt.py"],
+        "analysis_type": "comprehensive",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Perform comprehensive static analysis on authentication module",
+        "specifications": {
+          "tools": ["pylint", "mypy", "bandit", "radon"],
+          "checks": [
+            "type coverage >=95%",
+            "cyclomatic complexity <10",
+            "security vulnerabilities",
+            "code smells",
+            "duplicate code",
+            "maintainability index"
+          ],
+          "thresholds": {
+            "type_coverage": 95,
+            "complexity": 10,
+            "maintainability": 65,
+            "duplication": 5
+          }
+        },
+        "dependencies": ["code committed", "virtual environment ready"],
+        "estimated_minutes": 15,
+        "quality_gates": ["zero critical issues", "type coverage >=95%", "no security vulnerabilities"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "refactoring",
+        "files": ["src/api/handlers.ts", "src/api/middleware.ts"],
+        "analysis_type": "complexity",
+        "language": "TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "detect-complexity",
+        "description": "Analyze cyclomatic complexity of API handlers",
+        "specifications": {
+          "tools": ["eslint", "tsc", "complexity-report"],
+          "checks": [
+            "cyclomatic complexity <15",
+            "cognitive complexity <20",
+            "function length <60 lines",
+            "nesting depth <4"
+          ],
+          "thresholds": {
+            "cyclomatic": 15,
+            "cognitive": 20,
+            "function_lines": 60,
+            "nesting": 4
+          }
+        },
+        "dependencies": ["node_modules installed", "tsconfig valid"],
+        "estimated_minutes": 12,
+        "quality_gates": ["all functions <60 lines", "complexity within bounds"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/services/payment.java", "src/services/billing.java"],
+        "analysis_type": "security",
+        "language": "Java"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Security-focused analysis of payment services",
+        "specifications": {
+          "tools": ["spotbugs", "pmd", "checkstyle", "sonarqube"],
+          "checks": [
+            "SQL injection vulnerabilities",
+            "hardcoded secrets",
+            "insecure cryptography",
+            "input validation",
+            "error handling"
+          ],
+          "thresholds": {
+            "security_issues": 0,
+            "code_smells": 10,
+            "maintainability": 70
+          }
+        },
+        "dependencies": ["maven dependencies", "test database"],
+        "estimated_minutes": 20,
+        "quality_gates": ["zero security vulnerabilities", "PCI compliance checks pass"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "code_review",
+        "files": ["cmd/server/main.go", "internal/api/router.go"],
+        "analysis_type": "performance",
+        "language": "Go"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Performance and concurrency analysis of Go server",
+        "specifications": {
+          "tools": ["golint", "go vet", "staticcheck", "gosec"],
+          "checks": [
+            "goroutine leaks",
+            "race conditions",
+            "inefficient algorithms",
+            "memory allocations",
+            "error handling patterns"
+          ],
+          "thresholds": {
+            "concurrency_issues": 0,
+            "performance_warnings": 5,
+            "code_quality": 85
+          }
+        },
+        "dependencies": ["go modules", "test environment"],
+        "estimated_minutes": 18,
+        "quality_gates": ["no goroutine leaks", "race detector clean", "benchmarks acceptable"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/utils/validators.py", "src/utils/sanitizers.py"],
+        "analysis_type": "duplicate_detection",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "detect-duplicates",
+        "description": "Detect code duplication in utility modules",
+        "specifications": {
+          "tools": ["pylint", "radon", "jscpd"],
+          "checks": [
+            "duplicate code blocks >10 lines",
+            "similar function signatures",
+            "copy-paste patterns",
+            "refactoring opportunities"
+          ],
+          "thresholds": {
+            "duplication_percent": 5,
+            "min_duplicate_lines": 10,
+            "similarity_threshold": 80
+          }
+        },
+        "dependencies": ["all modules available"],
+        "estimated_minutes": 10,
+        "quality_gates": ["<5% code duplication", "actionable refactoring suggestions"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "dependency_update",
+        "files": ["src/"],
+        "analysis_type": "dependency_analysis",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-dependencies",
+        "description": "Analyze dependency graph and import structure",
+        "specifications": {
+          "tools": ["pipdeptree", "pydeps", "import-linter"],
+          "checks": [
+            "circular dependencies",
+            "unused imports",
+            "import organization",
+            "dependency depth",
+            "architectural boundaries"
+          ],
+          "thresholds": {
+            "circular_deps": 0,
+            "unused_imports": 0,
+            "max_depth": 5
+          }
+        },
+        "dependencies": ["requirements.txt", "virtual environment"],
+        "estimated_minutes": 15,
+        "quality_gates": ["no circular dependencies", "clean architecture maintained"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/database/models.py", "src/database/repositories.py"],
+        "analysis_type": "comprehensive",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Comprehensive analysis of database layer",
+        "specifications": {
+          "tools": ["pylint", "mypy", "bandit", "sqlfluff"],
+          "checks": [
+            "SQL injection prevention",
+            "type safety on ORM models",
+            "transaction handling",
+            "N+1 query patterns",
+            "indexing hints"
+          ],
+          "thresholds": {
+            "type_coverage": 90,
+            "security_score": 95,
+            "performance_issues": 3
+          }
+        },
+        "dependencies": ["database schema", "test data"],
+        "estimated_minutes": 22,
+        "quality_gates": ["SQL injection safe", "type coverage >=90%", "query performance acceptable"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/components/", "src/hooks/"],
+        "analysis_type": "react_analysis",
+        "language": "TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "React component and hooks analysis",
+        "specifications": {
+          "tools": ["eslint", "tsc", "react-scanner", "bundle-analyzer"],
+          "checks": [
+            "hook dependency arrays",
+            "unnecessary re-renders",
+            "prop types validation",
+            "accessibility issues",
+            "bundle size impact"
+          ],
+          "thresholds": {
+            "bundle_size_kb": 500,
+            "accessibility_score": 90,
+            "performance_budget": 100
+          }
+        },
+        "dependencies": ["npm install", "webpack config"],
+        "estimated_minutes": 18,
+        "quality_gates": ["no hook violations", "a11y compliant", "bundle size acceptable"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["lib/api/client.rb", "lib/api/endpoints.rb"],
+        "analysis_type": "comprehensive",
+        "language": "Ruby"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Ruby API client quality analysis",
+        "specifications": {
+          "tools": ["rubocop", "brakeman", "reek", "flog"],
+          "checks": [
+            "style violations",
+            "security vulnerabilities",
+            "code smells",
+            "complexity metrics",
+            "documentation coverage"
+          ],
+          "thresholds": {
+            "style_score": 85,
+            "security_warnings": 0,
+            "complexity": 12
+          }
+        },
+        "dependencies": ["bundle install", "ruby version"],
+        "estimated_minutes": 14,
+        "quality_gates": ["rubocop passes", "brakeman clean", "complexity acceptable"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/core/engine.cpp", "src/core/renderer.cpp"],
+        "analysis_type": "cpp_analysis",
+        "language": "C++"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "C++ engine code analysis for memory safety",
+        "specifications": {
+          "tools": ["clang-tidy", "cppcheck", "cpplint", "valgrind"],
+          "checks": [
+            "memory leaks",
+            "use after free",
+            "buffer overflows",
+            "null pointer dereferences",
+            "RAII patterns"
+          ],
+          "thresholds": {
+            "memory_issues": 0,
+            "style_score": 80,
+            "warnings": 10
+          }
+        },
+        "dependencies": ["cmake build", "test suite"],
+        "estimated_minutes": 25,
+        "quality_gates": ["valgrind clean", "no memory leaks", "RAII compliant"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["app/controllers/", "app/models/"],
+        "analysis_type": "rails_analysis",
+        "language": "Ruby"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Rails MVC pattern compliance analysis",
+        "specifications": {
+          "tools": ["rubocop", "rails_best_practices", "bullet"],
+          "checks": [
+            "N+1 queries",
+            "fat controllers",
+            "business logic in views",
+            "RESTful routing",
+            "security best practices"
+          ],
+          "thresholds": {
+            "controller_lines": 100,
+            "n_plus_one_queries": 0,
+            "security_score": 95
+          }
+        },
+        "dependencies": ["rails environment", "test database"],
+        "estimated_minutes": 20,
+        "quality_gates": ["no N+1 queries", "controllers lean", "security best practices followed"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/middleware/", "src/routes/"],
+        "analysis_type": "express_analysis",
+        "language": "JavaScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Express.js middleware and routing analysis",
+        "specifications": {
+          "tools": ["eslint", "jshint", "snyk", "npm-audit"],
+          "checks": [
+            "middleware order",
+            "error handling",
+            "async/await patterns",
+            "dependency vulnerabilities",
+            "route organization"
+          ],
+          "thresholds": {
+            "vulnerabilities": 0,
+            "code_quality": 85,
+            "async_issues": 5
+          }
+        },
+        "dependencies": ["node_modules", "env config"],
+        "estimated_minutes": 16,
+        "quality_gates": ["zero high-severity vulnerabilities", "proper error handling", "async patterns correct"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["pkg/handlers/", "pkg/services/"],
+        "analysis_type": "go_patterns",
+        "language": "Go"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Go idiomatic patterns and best practices check",
+        "specifications": {
+          "tools": ["golangci-lint", "go vet", "staticcheck", "errcheck"],
+          "checks": [
+            "error handling",
+            "context usage",
+            "interface design",
+            "package organization",
+            "exported API design"
+          ],
+          "thresholds": {
+            "unchecked_errors": 0,
+            "linter_score": 90,
+            "test_coverage": 80
+          }
+        },
+        "dependencies": ["go mod", "test suite"],
+        "estimated_minutes": 17,
+        "quality_gates": ["all errors checked", "idiomatic Go", "proper context usage"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/store/", "src/actions/", "src/reducers/"],
+        "analysis_type": "redux_analysis",
+        "language": "TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Redux state management pattern analysis",
+        "specifications": {
+          "tools": ["eslint", "tsc", "redux-immutable-state-invariant"],
+          "checks": [
+            "immutability violations",
+            "action creator patterns",
+            "reducer purity",
+            "selector efficiency",
+            "state normalization"
+          ],
+          "thresholds": {
+            "immutability_violations": 0,
+            "type_safety": 100,
+            "selector_issues": 3
+          }
+        },
+        "dependencies": ["redux devtools", "test store"],
+        "estimated_minutes": 19,
+        "quality_gates": ["pure reducers", "immutable state", "normalized state structure"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/graphql/schema.graphql", "src/graphql/resolvers.ts"],
+        "analysis_type": "graphql_analysis",
+        "language": "TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "GraphQL schema and resolver quality analysis",
+        "specifications": {
+          "tools": ["graphql-eslint", "tsc", "graphql-schema-linter"],
+          "checks": [
+            "schema design patterns",
+            "N+1 query prevention",
+            "resolver complexity",
+            "nullable vs required fields",
+            "deprecation strategy"
+          ],
+          "thresholds": {
+            "schema_violations": 0,
+            "resolver_depth": 5,
+            "n_plus_one_issues": 0
+          }
+        },
+        "dependencies": ["graphql server", "test client"],
+        "estimated_minutes": 20,
+        "quality_gates": ["schema best practices", "no N+1 queries", "proper error handling"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/workers/", "src/jobs/"],
+        "analysis_type": "background_jobs",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Background job and worker pattern analysis",
+        "specifications": {
+          "tools": ["pylint", "celery-beat-inspector", "bandit"],
+          "checks": [
+            "idempotency",
+            "retry logic",
+            "timeout handling",
+            "task priority",
+            "resource cleanup"
+          ],
+          "thresholds": {
+            "timeout_issues": 0,
+            "retry_pattern_score": 90,
+            "resource_leaks": 0
+          }
+        },
+        "dependencies": ["celery broker", "task queue"],
+        "estimated_minutes": 18,
+        "quality_gates": ["tasks idempotent", "proper retry logic", "timeouts configured"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/test/", "src/spec/"],
+        "analysis_type": "test_quality",
+        "language": "TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Test code quality and coverage analysis",
+        "specifications": {
+          "tools": ["jest", "eslint", "istanbul", "test-smell-detector"],
+          "checks": [
+            "test coverage >80%",
+            "flaky tests",
+            "test smells",
+            "assertion quality",
+            "test organization"
+          ],
+          "thresholds": {
+            "coverage": 80,
+            "flaky_tests": 0,
+            "test_smells": 5
+          }
+        },
+        "dependencies": ["jest config", "test database"],
+        "estimated_minutes": 16,
+        "quality_gates": ["coverage >=80%", "no flaky tests", "meaningful assertions"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/ml/models.py", "src/ml/training.py"],
+        "analysis_type": "ml_code_analysis",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Machine learning code quality analysis",
+        "specifications": {
+          "tools": ["pylint", "mypy", "bandit", "mllint"],
+          "checks": [
+            "data leakage prevention",
+            "reproducibility",
+            "model versioning",
+            "experiment tracking",
+            "resource management"
+          ],
+          "thresholds": {
+            "data_leakage_risk": 0,
+            "reproducibility_score": 95,
+            "type_coverage": 85
+          }
+        },
+        "dependencies": ["model artifacts", "training data"],
+        "estimated_minutes": 22,
+        "quality_gates": ["no data leakage", "reproducible experiments", "proper versioning"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["terraform/", "ansible/"],
+        "analysis_type": "iac_analysis",
+        "language": "HCL"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Infrastructure as Code security and best practices",
+        "specifications": {
+          "tools": ["tflint", "checkov", "terraform-compliance", "ansible-lint"],
+          "checks": [
+            "security misconfigurations",
+            "resource naming",
+            "state management",
+            "secret exposure",
+            "compliance policies"
+          ],
+          "thresholds": {
+            "security_issues": 0,
+            "compliance_score": 95,
+            "best_practice_violations": 5
+          }
+        },
+        "dependencies": ["terraform init", "ansible inventory"],
+        "estimated_minutes": 24,
+        "quality_gates": ["no security misconfigurations", "compliance policies met", "secrets not exposed"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["Dockerfile", "docker-compose.yml", ".dockerignore"],
+        "analysis_type": "docker_analysis",
+        "language": "Dockerfile"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Docker configuration security and optimization",
+        "specifications": {
+          "tools": ["hadolint", "docker-bench-security", "trivy"],
+          "checks": [
+            "image size optimization",
+            "layer caching",
+            "security vulnerabilities",
+            "base image versions",
+            "build efficiency"
+          ],
+          "thresholds": {
+            "image_size_mb": 500,
+            "vulnerabilities": 0,
+            "layer_count": 20
+          }
+        },
+        "dependencies": ["docker daemon", "base images"],
+        "estimated_minutes": 12,
+        "quality_gates": ["image size optimized", "no critical CVEs", "multi-stage builds used"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": [".github/workflows/"],
+        "analysis_type": "cicd_analysis",
+        "language": "YAML"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "CI/CD pipeline security and efficiency analysis",
+        "specifications": {
+          "tools": ["actionlint", "yamllint", "github-actions-security"],
+          "checks": [
+            "secret management",
+            "pinned versions",
+            "job dependencies",
+            "caching strategy",
+            "security scanning"
+          ],
+          "thresholds": {
+            "security_issues": 0,
+            "unpinned_actions": 0,
+            "pipeline_efficiency": 85
+          }
+        },
+        "dependencies": ["github token", "workflow history"],
+        "estimated_minutes": 14,
+        "quality_gates": ["secrets not exposed", "actions pinned", "efficient caching"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/config/", "config/"],
+        "analysis_type": "config_analysis",
+        "language": "YAML"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Configuration file validation and security",
+        "specifications": {
+          "tools": ["yamllint", "config-lint", "secret-scanner"],
+          "checks": [
+            "schema validation",
+            "secret exposure",
+            "environment separation",
+            "default values",
+            "documentation"
+          ],
+          "thresholds": {
+            "schema_violations": 0,
+            "secrets_found": 0,
+            "undocumented_configs": 5
+          }
+        },
+        "dependencies": ["config schemas", "environment files"],
+        "estimated_minutes": 10,
+        "quality_gates": ["valid schemas", "no secrets", "proper env separation"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/api/openapi.yaml", "docs/swagger.json"],
+        "analysis_type": "api_spec_analysis",
+        "language": "OpenAPI"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "API specification quality and completeness",
+        "specifications": {
+          "tools": ["spectral", "openapi-validator", "redocly-cli"],
+          "checks": [
+            "spec completeness",
+            "security schemes",
+            "example quality",
+            "response codes",
+            "schema consistency"
+          ],
+          "thresholds": {
+            "spec_errors": 0,
+            "completeness_score": 90,
+            "security_score": 95
+          }
+        },
+        "dependencies": ["spec files", "API server"],
+        "estimated_minutes": 15,
+        "quality_gates": ["spec valid", "security defined", "examples provided"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/database/migrations/"],
+        "analysis_type": "migration_analysis",
+        "language": "SQL"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Database migration safety and best practices",
+        "specifications": {
+          "tools": ["sqlfluff", "migration-linter", "strong-migrations"],
+          "checks": [
+            "destructive changes",
+            "rollback safety",
+            "index creation",
+            "data loss risks",
+            "performance impact"
+          ],
+          "thresholds": {
+            "destructive_operations": 0,
+            "rollback_issues": 0,
+            "safety_score": 95
+          }
+        },
+        "dependencies": ["database schema", "test database"],
+        "estimated_minutes": 18,
+        "quality_gates": ["safe rollback", "no data loss", "indexes created concurrently"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["package.json", "package-lock.json", "yarn.lock"],
+        "analysis_type": "dependency_security",
+        "language": "JSON"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-dependencies",
+        "description": "JavaScript dependency security audit",
+        "specifications": {
+          "tools": ["npm-audit", "snyk", "retire.js", "audit-ci"],
+          "checks": [
+            "known vulnerabilities",
+            "outdated packages",
+            "license compliance",
+            "dependency depth",
+            "transitive dependencies"
+          ],
+          "thresholds": {
+            "high_severity_vulns": 0,
+            "outdated_packages": 10,
+            "dependency_depth": 5
+          }
+        },
+        "dependencies": ["npm registry", "lock files"],
+        "estimated_minutes": 12,
+        "quality_gates": ["no high-severity vulnerabilities", "license compliance", "reasonable dependency tree"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["requirements.txt", "Pipfile", "poetry.lock"],
+        "analysis_type": "python_deps",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-dependencies",
+        "description": "Python dependency security and compatibility",
+        "specifications": {
+          "tools": ["safety", "pip-audit", "bandit", "pipdeptree"],
+          "checks": [
+            "CVE vulnerabilities",
+            "outdated packages",
+            "conflicts",
+            "license issues",
+            "Python version compatibility"
+          ],
+          "thresholds": {
+            "vulnerabilities": 0,
+            "conflicts": 0,
+            "python_compatibility": "3.8+"
+          }
+        },
+        "dependencies": ["pypi index", "virtual environment"],
+        "estimated_minutes": 13,
+        "quality_gates": ["zero CVEs", "no conflicts", "compatible with Python 3.8+"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/styles/", "src/scss/"],
+        "analysis_type": "css_analysis",
+        "language": "CSS"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "CSS/SCSS quality and performance analysis",
+        "specifications": {
+          "tools": ["stylelint", "csslint", "purge-css", "css-stats"],
+          "checks": [
+            "unused styles",
+            "specificity issues",
+            "vendor prefixes",
+            "naming conventions",
+            "bundle size"
+          ],
+          "thresholds": {
+            "bundle_size_kb": 150,
+            "unused_percent": 20,
+            "specificity_score": 50
+          }
+        },
+        "dependencies": ["sass compiler", "postcss"],
+        "estimated_minutes": 11,
+        "quality_gates": ["bundle size acceptable", "unused styles removed", "naming consistent"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/services/cache.rs", "src/services/queue.rs"],
+        "analysis_type": "rust_analysis",
+        "language": "Rust"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Rust code safety and idiom analysis",
+        "specifications": {
+          "tools": ["clippy", "rustfmt", "cargo-audit", "cargo-geiger"],
+          "checks": [
+            "unsafe code blocks",
+            "memory safety",
+            "borrowing patterns",
+            "error handling",
+            "idiomatic Rust"
+          ],
+          "thresholds": {
+            "unsafe_blocks": 5,
+            "clippy_warnings": 10,
+            "safety_score": 95
+          }
+        },
+        "dependencies": ["cargo build", "test suite"],
+        "estimated_minutes": 19,
+        "quality_gates": ["minimal unsafe code", "clippy clean", "idiomatic patterns"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/main/scala/", "src/test/scala/"],
+        "analysis_type": "scala_analysis",
+        "language": "Scala"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Scala functional programming patterns analysis",
+        "specifications": {
+          "tools": ["scalastyle", "scalafix", "wartremover"],
+          "checks": [
+            "immutability",
+            "side effects",
+            "null usage",
+            "Option/Either patterns",
+            "for-comprehensions"
+          ],
+          "thresholds": {
+            "mutable_vars": 10,
+            "null_usage": 0,
+            "functional_score": 85
+          }
+        },
+        "dependencies": ["sbt compile", "scala version"],
+        "estimated_minutes": 17,
+        "quality_gates": ["immutable by default", "no nulls", "proper error handling"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["lib/", "test/"],
+        "analysis_type": "elixir_analysis",
+        "language": "Elixir"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Elixir OTP patterns and best practices",
+        "specifications": {
+          "tools": ["credo", "dialyzer", "sobelow"],
+          "checks": [
+            "supervisor trees",
+            "genserver patterns",
+            "pattern matching",
+            "typespecs",
+            "security issues"
+          ],
+          "thresholds": {
+            "credo_score": 85,
+            "dialyzer_warnings": 5,
+            "security_issues": 0
+          }
+        },
+        "dependencies": ["mix deps", "plt files"],
+        "estimated_minutes": 16,
+        "quality_gates": ["proper OTP design", "typespecs complete", "security clean"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/main/kotlin/", "src/test/kotlin/"],
+        "analysis_type": "kotlin_analysis",
+        "language": "Kotlin"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Kotlin null safety and coroutines analysis",
+        "specifications": {
+          "tools": ["ktlint", "detekt", "android-lint"],
+          "checks": [
+            "null safety",
+            "coroutine usage",
+            "data class patterns",
+            "extension functions",
+            "Android best practices"
+          ],
+          "thresholds": {
+            "null_safety_violations": 0,
+            "coroutine_issues": 5,
+            "code_quality": 85
+          }
+        },
+        "dependencies": ["gradle build", "kotlin version"],
+        "estimated_minutes": 15,
+        "quality_gates": ["null-safe code", "proper coroutine usage", "idiomatic Kotlin"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["Sources/", "Tests/"],
+        "analysis_type": "swift_analysis",
+        "language": "Swift"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Swift memory management and protocol usage",
+        "specifications": {
+          "tools": ["swiftlint", "swiftformat", "periphery"],
+          "checks": [
+            "retain cycles",
+            "forced unwrapping",
+            "protocol extensions",
+            "access control",
+            "memory management"
+          ],
+          "thresholds": {
+            "forced_unwraps": 10,
+            "retain_cycles": 0,
+            "code_quality": 90
+          }
+        },
+        "dependencies": ["xcode build", "swift package"],
+        "estimated_minutes": 18,
+        "quality_gates": ["no retain cycles", "minimal forced unwrapping", "proper protocols"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/"],
+        "analysis_type": "performance_profiling",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Performance hotspot and optimization opportunities",
+        "specifications": {
+          "tools": ["py-spy", "memory-profiler", "line-profiler", "scalene"],
+          "checks": [
+            "CPU hotspots",
+            "memory allocations",
+            "I/O bottlenecks",
+            "algorithmic complexity",
+            "caching opportunities"
+          ],
+          "thresholds": {
+            "cpu_hotspots": 5,
+            "memory_leaks": 0,
+            "optimization_score": 80
+          }
+        },
+        "dependencies": ["profiling data", "benchmark suite"],
+        "estimated_minutes": 25,
+        "quality_gates": ["no memory leaks", "hotspots identified", "optimization recommendations"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["docs/"],
+        "analysis_type": "documentation_quality",
+        "language": "Markdown"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Documentation completeness and quality check",
+        "specifications": {
+          "tools": ["markdownlint", "vale", "alex", "doc-detective"],
+          "checks": [
+            "broken links",
+            "spelling/grammar",
+            "inclusive language",
+            "code examples validity",
+            "API coverage"
+          ],
+          "thresholds": {
+            "broken_links": 0,
+            "spelling_errors": 10,
+            "coverage_percent": 85
+          }
+        },
+        "dependencies": ["doc renderer", "spell checker"],
+        "estimated_minutes": 12,
+        "quality_gates": ["no broken links", "minimal errors", "comprehensive coverage"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/async/", "src/concurrent/"],
+        "analysis_type": "concurrency_analysis",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Concurrency patterns and race condition detection",
+        "specifications": {
+          "tools": ["thread-sanitizer", "pylint", "bandit"],
+          "checks": [
+            "race conditions",
+            "deadlock risks",
+            "async/await patterns",
+            "thread safety",
+            "resource locking"
+          ],
+          "thresholds": {
+            "race_conditions": 0,
+            "deadlock_risks": 0,
+            "thread_safety_score": 95
+          }
+        },
+        "dependencies": ["threading tests", "race detector"],
+        "estimated_minutes": 22,
+        "quality_gates": ["no race conditions", "deadlock-free", "proper locking"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/lambda/", "serverless.yml"],
+        "analysis_type": "serverless_analysis",
+        "language": "JavaScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Serverless function optimization and security",
+        "specifications": {
+          "tools": ["eslint", "serverless-offline", "aws-lambda-power-tuning"],
+          "checks": [
+            "cold start optimization",
+            "memory allocation",
+            "timeout configuration",
+            "IAM permissions",
+            "bundle size"
+          ],
+          "thresholds": {
+            "bundle_size_mb": 50,
+            "cold_start_ms": 1000,
+            "security_score": 90
+          }
+        },
+        "dependencies": ["serverless framework", "AWS credentials"],
+        "estimated_minutes": 20,
+        "quality_gates": ["optimized cold start", "minimal IAM permissions", "efficient bundles"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/mobile/", "ios/", "android/"],
+        "analysis_type": "mobile_analysis",
+        "language": "React Native"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Mobile app performance and platform compliance",
+        "specifications": {
+          "tools": ["eslint", "flipper", "react-native-performance"],
+          "checks": [
+            "render performance",
+            "memory usage",
+            "battery impact",
+            "platform-specific code",
+            "accessibility"
+          ],
+          "thresholds": {
+            "js_thread_utilization": 70,
+            "memory_mb": 200,
+            "accessibility_score": 85
+          }
+        },
+        "dependencies": ["metro bundler", "simulators"],
+        "estimated_minutes": 24,
+        "quality_gates": ["60fps maintained", "memory efficient", "accessible"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/microservices/"],
+        "analysis_type": "microservice_patterns",
+        "language": "Java"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Microservice architecture patterns and anti-patterns",
+        "specifications": {
+          "tools": ["archunit", "spotbugs", "checkstyle"],
+          "checks": [
+            "service boundaries",
+            "distributed tracing",
+            "circuit breakers",
+            "bulkhead patterns",
+            "service mesh integration"
+          ],
+          "thresholds": {
+            "boundary_violations": 0,
+            "resilience_score": 90,
+            "observability_score": 85
+          }
+        },
+        "dependencies": ["spring boot", "service registry"],
+        "estimated_minutes": 26,
+        "quality_gates": ["clear boundaries", "resilient design", "observable services"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/blockchain/", "contracts/"],
+        "analysis_type": "smart_contract_analysis",
+        "language": "Solidity"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Smart contract security and gas optimization",
+        "specifications": {
+          "tools": ["slither", "mythril", "solhint", "echidna"],
+          "checks": [
+            "reentrancy vulnerabilities",
+            "integer overflow/underflow",
+            "gas optimization",
+            "access control",
+            "upgrade safety"
+          ],
+          "thresholds": {
+            "critical_vulnerabilities": 0,
+            "gas_optimization_score": 85,
+            "security_score": 95
+          }
+        },
+        "dependencies": ["hardhat", "test network"],
+        "estimated_minutes": 30,
+        "quality_gates": ["zero critical vulnerabilities", "gas optimized", "proper access control"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["notebooks/", "experiments/"],
+        "analysis_type": "jupyter_analysis",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Jupyter notebook quality and reproducibility",
+        "specifications": {
+          "tools": ["nbqa", "nbval", "jupytext"],
+          "checks": [
+            "execution order",
+            "reproducibility",
+            "code quality",
+            "output saved",
+            "version control friendliness"
+          ],
+          "thresholds": {
+            "out_of_order_cells": 0,
+            "code_quality_score": 75,
+            "reproducibility_score": 90
+          }
+        },
+        "dependencies": ["jupyter kernel", "dependencies installed"],
+        "estimated_minutes": 14,
+        "quality_gates": ["cells in order", "reproducible results", "clean code"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["proto/"],
+        "analysis_type": "protobuf_analysis",
+        "language": "Protobuf"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Protocol buffer schema quality and compatibility",
+        "specifications": {
+          "tools": ["buf", "protolint", "prototool"],
+          "checks": [
+            "breaking changes",
+            "naming conventions",
+            "field numbering",
+            "backward compatibility",
+            "deprecation strategy"
+          ],
+          "thresholds": {
+            "breaking_changes": 0,
+            "lint_errors": 0,
+            "compatibility_score": 100
+          }
+        },
+        "dependencies": ["protoc compiler", "proto definitions"],
+        "estimated_minutes": 11,
+        "quality_gates": ["no breaking changes", "conventions followed", "backward compatible"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/security/"],
+        "analysis_type": "security_comprehensive",
+        "language": "Multiple"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Comprehensive security vulnerability scan",
+        "specifications": {
+          "tools": ["snyk", "semgrep", "sonarqube", "gitleaks"],
+          "checks": [
+            "OWASP Top 10",
+            "secret scanning",
+            "dependency vulnerabilities",
+            "code injection",
+            "security misconfigurations"
+          ],
+          "thresholds": {
+            "critical_vulns": 0,
+            "high_severity_vulns": 0,
+            "security_score": 95
+          }
+        },
+        "dependencies": ["security policies", "CVE database"],
+        "estimated_minutes": 28,
+        "quality_gates": ["zero critical vulnerabilities", "no secrets exposed", "OWASP compliant"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/api/versioning/"],
+        "analysis_type": "api_versioning",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "API versioning strategy and backward compatibility",
+        "specifications": {
+          "tools": ["pylint", "openapi-diff", "api-spec-converter"],
+          "checks": [
+            "breaking changes",
+            "version isolation",
+            "deprecation warnings",
+            "migration paths",
+            "semantic versioning"
+          ],
+          "thresholds": {
+            "breaking_changes": 0,
+            "deprecation_coverage": 100,
+            "compatibility_score": 95
+          }
+        },
+        "dependencies": ["API specs", "version history"],
+        "estimated_minutes": 16,
+        "quality_gates": ["no unexpected breaking changes", "clear migration paths", "proper versioning"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/logging/", "src/monitoring/"],
+        "analysis_type": "observability_analysis",
+        "language": "Go"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Observability patterns and structured logging",
+        "specifications": {
+          "tools": ["golangci-lint", "revive", "structlog-lint"],
+          "checks": [
+            "structured logging",
+            "trace context propagation",
+            "metric instrumentation",
+            "error tracking",
+            "log levels"
+          ],
+          "thresholds": {
+            "unstructured_logs": 5,
+            "missing_traces": 10,
+            "observability_score": 85
+          }
+        },
+        "dependencies": ["logging framework", "tracing setup"],
+        "estimated_minutes": 17,
+        "quality_gates": ["structured logging", "proper instrumentation", "trace context maintained"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/caching/"],
+        "analysis_type": "cache_patterns",
+        "language": "TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Cache invalidation and consistency patterns",
+        "specifications": {
+          "tools": ["eslint", "tsc", "cache-lint"],
+          "checks": [
+            "invalidation strategy",
+            "TTL configuration",
+            "cache stampede prevention",
+            "consistency guarantees",
+            "cache key design"
+          ],
+          "thresholds": {
+            "invalidation_issues": 0,
+            "stampede_risks": 0,
+            "consistency_score": 90
+          }
+        },
+        "dependencies": ["cache server", "test suite"],
+        "estimated_minutes": 15,
+        "quality_gates": ["proper invalidation", "stampede prevented", "consistent behavior"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/queue/"],
+        "analysis_type": "message_queue_patterns",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Message queue reliability and ordering analysis",
+        "specifications": {
+          "tools": ["pylint", "mypy", "celery-lint"],
+          "checks": [
+            "message ordering",
+            "exactly-once delivery",
+            "dead letter queues",
+            "retry strategies",
+            "poison message handling"
+          ],
+          "thresholds": {
+            "ordering_violations": 0,
+            "reliability_score": 95,
+            "retry_issues": 0
+          }
+        },
+        "dependencies": ["queue broker", "test harness"],
+        "estimated_minutes": 19,
+        "quality_gates": ["ordering guaranteed", "reliable delivery", "proper error handling"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/auth/"],
+        "analysis_type": "authentication_security",
+        "language": "Java"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Authentication and authorization security analysis",
+        "specifications": {
+          "tools": ["spotbugs", "findsecbugs", "owasp-dependency-check"],
+          "checks": [
+            "password hashing",
+            "session management",
+            "JWT validation",
+            "OAuth2 flows",
+            "RBAC implementation"
+          ],
+          "thresholds": {
+            "auth_vulnerabilities": 0,
+            "session_security": 95,
+            "token_validation_score": 100
+          }
+        },
+        "dependencies": ["security policies", "test credentials"],
+        "estimated_minutes": 23,
+        "quality_gates": ["secure password storage", "proper session handling", "token validation complete"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/data/", "src/etl/"],
+        "analysis_type": "data_pipeline_quality",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Data pipeline quality and data quality checks",
+        "specifications": {
+          "tools": ["great-expectations", "pylint", "mypy"],
+          "checks": [
+            "data validation",
+            "schema evolution",
+            "idempotency",
+            "error handling",
+            "data quality metrics"
+          ],
+          "thresholds": {
+            "validation_coverage": 90,
+            "data_quality_score": 95,
+            "idempotency_violations": 0
+          }
+        },
+        "dependencies": ["data sources", "validation rules"],
+        "estimated_minutes": 21,
+        "quality_gates": ["data validated", "idempotent pipelines", "quality metrics tracked"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/realtime/"],
+        "analysis_type": "websocket_patterns",
+        "language": "TypeScript"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "WebSocket connection management and reliability",
+        "specifications": {
+          "tools": ["eslint", "tsc", "websocket-lint"],
+          "checks": [
+            "reconnection logic",
+            "heartbeat mechanism",
+            "message ordering",
+            "backpressure handling",
+            "resource cleanup"
+          ],
+          "thresholds": {
+            "connection_issues": 0,
+            "memory_leaks": 0,
+            "reliability_score": 90
+          }
+        },
+        "dependencies": ["websocket server", "load testing"],
+        "estimated_minutes": 18,
+        "quality_gates": ["proper reconnection", "no memory leaks", "message ordering maintained"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/feature-flags/"],
+        "analysis_type": "feature_flag_management",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Feature flag usage and technical debt tracking",
+        "specifications": {
+          "tools": ["pylint", "feature-flag-lint", "dead-code-detector"],
+          "checks": [
+            "flag cleanup tracking",
+            "default values",
+            "evaluation performance",
+            "stale flags",
+            "flag dependencies"
+          ],
+          "thresholds": {
+            "stale_flags": 5,
+            "cleanup_coverage": 100,
+            "performance_impact": 5
+          }
+        },
+        "dependencies": ["flag configurations", "usage analytics"],
+        "estimated_minutes": 13,
+        "quality_gates": ["flags tracked", "cleanup planned", "minimal performance impact"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/"],
+        "analysis_type": "license_compliance",
+        "language": "Multiple"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-dependencies",
+        "description": "License compliance and attribution checking",
+        "specifications": {
+          "tools": ["licensee", "fossa", "scancode"],
+          "checks": [
+            "license compatibility",
+            "copyleft obligations",
+            "attribution requirements",
+            "commercial restrictions",
+            "license file presence"
+          ],
+          "thresholds": {
+            "license_violations": 0,
+            "missing_attributions": 0,
+            "compliance_score": 100
+          }
+        },
+        "dependencies": ["dependency lists", "license policies"],
+        "estimated_minutes": 16,
+        "quality_gates": ["licenses compatible", "attributions complete", "compliant with policies"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/search/"],
+        "analysis_type": "search_optimization",
+        "language": "Python"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Search index design and query optimization",
+        "specifications": {
+          "tools": ["elasticsearch-lint", "pylint", "query-analyzer"],
+          "checks": [
+            "index mapping design",
+            "query performance",
+            "scoring relevance",
+            "faceting efficiency",
+            "aggregation patterns"
+          ],
+          "thresholds": {
+            "slow_queries": 5,
+            "relevance_score": 85,
+            "index_efficiency": 90
+          }
+        },
+        "dependencies": ["elasticsearch cluster", "sample queries"],
+        "estimated_minutes": 20,
+        "quality_gates": ["queries optimized", "relevant results", "efficient indexes"]
+      }
+    },
+    {
+      "phase": "analyze-code",
+      "context": {
+        "previous_phase": "implementation",
+        "files": ["src/rate-limiting/"],
+        "analysis_type": "rate_limiter_patterns",
+        "language": "Go"
+      },
+      "expected_drone_task": {
+        "drone_id": "code-analyzer",
+        "task_type": "analyze-code",
+        "description": "Rate limiting algorithm and fairness analysis",
+        "specifications": {
+          "tools": ["golangci-lint", "rate-limiter-test"],
+          "checks": [
+            "algorithm correctness",
+            "distributed consistency",
+            "fairness guarantees",
+            "burst handling",
+            "resource usage"
+          ],
+          "thresholds": {
+            "algorithm_violations": 0,
+            "consistency_score": 95,
+            "fairness_score": 85
+          }
+        },
+        "dependencies": ["redis cluster", "test harness"],
+        "estimated_minutes": 17,
+        "quality_gates": ["algorithm correct", "distributed consistent", "fair allocation"]
+      }
+    }
+  ]
+}

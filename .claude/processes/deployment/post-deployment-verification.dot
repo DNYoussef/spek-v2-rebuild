@@ -1,0 +1,105 @@
+digraph POST_DEPLOYMENT_VERIFICATION {
+    // TRIGGER: Immediately after deployment completes
+    // USE WHEN:
+    //   - Deployment just finished
+    //   - Need to verify system health
+    //   - Validating production readiness
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_post_deploy {
+        label="TRIGGER: After Deployment Completes";
+        style="rounded,bold";
+        bgcolor="#e8f5e9";
+
+        // Entry
+        "Deployment complete" [shape=ellipse];
+
+        // Health check
+        "curl https://spek.platform/health" [shape=plaintext];
+        "Health response:\n{\"status\": \"ok\", \"version\": \"X.X.X\"}" [shape=box, style=filled, fillcolor=lightyellow];
+        "Health check passing?" [shape=diamond];
+
+        // Smoke tests
+        "npm run test:smoke" [shape=plaintext];
+        "Smoke tests passing?" [shape=diamond];
+
+        // Performance check
+        "curl -o /dev/null -s -w \"%{time_total}\\n\" https://spek.platform" [shape=plaintext];
+        "Response time <2s?" [shape=diamond];
+
+        // Error logs check
+        "kubectl logs -f deployment/spek-platform | grep -i error" [shape=plaintext];
+        "No critical errors?" [shape=diamond];
+
+        // Monitoring dashboards
+        "Check monitoring dashboards:\n- Application errors: 0\n- Response time: <500ms\n- CPU usage: <50%\n- Memory usage: <70%" [shape=box];
+        "All metrics green?" [shape=diamond];
+
+        // Traffic validation
+        "Monitor first 15 minutes" [shape=box];
+        "kubectl get pods" [shape=plaintext];
+        "watch -n 10 kubectl get pods" [shape=plaintext];
+
+        "Deployment verified" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "ROLLBACK NEEDED" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+        // Flow
+        "Deployment complete" -> "curl https://spek.platform/health";
+        "curl https://spek.platform/health" -> "Health response:\n{\"status\": \"ok\", \"version\": \"X.X.X\"}";
+        "Health response:\n{\"status\": \"ok\", \"version\": \"X.X.X\"}" -> "Health check passing?";
+
+        "Health check passing?" -> "npm run test:smoke" [label="yes"];
+        "Health check passing?" -> "ROLLBACK NEEDED" [label="no"];
+
+        "npm run test:smoke" -> "Smoke tests passing?";
+        "Smoke tests passing?" -> "curl -o /dev/null -s -w \"%{time_total}\\n\" https://spek.platform" [label="yes"];
+        "Smoke tests passing?" -> "ROLLBACK NEEDED" [label="no"];
+
+        "curl -o /dev/null -s -w \"%{time_total}\\n\" https://spek.platform" -> "Response time <2s?";
+        "Response time <2s?" -> "kubectl logs -f deployment/spek-platform | grep -i error" [label="yes"];
+        "Response time <2s?" -> "ROLLBACK NEEDED" [label="no"];
+
+        "kubectl logs -f deployment/spek-platform | grep -i error" -> "No critical errors?";
+        "No critical errors?" -> "Check monitoring dashboards:\n- Application errors: 0\n- Response time: <500ms\n- CPU usage: <50%\n- Memory usage: <70%" [label="yes"];
+        "No critical errors?" -> "ROLLBACK NEEDED" [label="no"];
+
+        "Check monitoring dashboards:\n- Application errors: 0\n- Response time: <500ms\n- CPU usage: <50%\n- Memory usage: <70%" -> "All metrics green?";
+        "All metrics green?" -> "Monitor first 15 minutes" [label="yes"];
+        "All metrics green?" -> "ROLLBACK NEEDED" [label="no"];
+
+        "Monitor first 15 minutes" -> "kubectl get pods";
+        "kubectl get pods" -> "watch -n 10 kubectl get pods";
+        "watch -n 10 kubectl get pods" -> "Deployment verified";
+    }
+
+    // Monitoring windows
+    subgraph cluster_monitoring {
+        label="Monitoring Windows";
+        bgcolor="#fff3e0";
+
+        "First 1 hour:\nMonitor every 5 minutes\nCheck error logs continuously" [shape=box];
+        "First 24 hours:\nMonitor every 30 minutes\nCheck performance metrics" [shape=box];
+        "First week:\nDaily health check\nReview weekly metrics" [shape=box];
+
+        "Deployment verified" -> "First 1 hour:\nMonitor every 5 minutes\nCheck error logs continuously" [style=dotted];
+        "First 1 hour:\nMonitor every 5 minutes\nCheck error logs continuously" -> "First 24 hours:\nMonitor every 30 minutes\nCheck performance metrics";
+        "First 24 hours:\nMonitor every 30 minutes\nCheck performance metrics" -> "First week:\nDaily health check\nReview weekly metrics";
+    }
+
+    // Communication
+    subgraph cluster_communication {
+        label="Communication";
+        bgcolor="#e3f2fd";
+
+        "Send deployment notification:\n[DEPLOYED] SPEK Platform vX.X.X" [shape=box];
+        "Include:\n- Changes summary\n- Monitoring status\n- Next steps" [shape=box];
+
+        "Deployment verified" -> "Send deployment notification:\n[DEPLOYED] SPEK Platform vX.X.X" [style=dotted];
+        "Send deployment notification:\n[DEPLOYED] SPEK Platform vX.X.X" -> "Include:\n- Changes summary\n- Monitoring status\n- Next steps";
+    }
+
+    // External connections
+    "ROLLBACK NEEDED" -> rollback_procedure [label="trigger", style=dotted];
+}

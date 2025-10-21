@@ -1,0 +1,228 @@
+/**
+ * Pre-Deploy Gate Orchestrator - Process Flow
+ *
+ * Composite skill that enforces 47-point deployment checklist.
+ * BLOCKS production deployment until ALL validations pass.
+ *
+ * VERSION: 1.0
+ * PRIORITY: P0 (Critical - Prevents unsafe deployments)
+ */
+
+digraph PreDeployGateOrchestrator {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Start and end
+    start [shape=ellipse, label="User Says:\n'deploy to production'", fillcolor=lightyellow];
+    blocked [shape=ellipse, label="DEPLOYMENT BLOCKED:\nFix critical issues", fillcolor=red, fontcolor=white];
+    allowed [shape=ellipse, label="DEPLOYMENT APPROVED:\nProceed safely ✅", fillcolor=green, fontcolor=white];
+
+    // ========== IMMEDIATE BLOCK ==========
+    subgraph cluster_block {
+        label="Immediate Action";
+        fillcolor=red;
+        style=filled;
+
+        detect [label="skill-cascade-orchestrator\ndetects 'deploy'"];
+        block_deploy [shape=octagon, label="BLOCK:\nNo deployment\nuntil 47 checks pass", fillcolor=red, fontcolor=white];
+
+        detect -> block_deploy;
+    }
+
+    // ========== PHASE 1: BACKEND VALIDATION (8 checks) ==========
+    subgraph cluster_backend {
+        label="Phase 1: Backend Validation (8 checks)";
+        fillcolor=lightblue;
+        style=filled;
+
+        check_endpoints [label="Check:\n12 REST endpoints"];
+        check_websocket [label="Check:\n5 WebSocket events"];
+        check_queue [label="Check:\nMessage queue"];
+        check_queen [label="Check:\nQueen orchestrator"];
+        check_registry [label="Check:\nAgent registry"];
+        check_no_copy [label="Check:\nNo project copying"];
+        check_errors [label="Check:\nError handling"];
+        check_logging [label="Check:\nLogging enabled"];
+        backend_ok [shape=diamond, label="All backend\nchecks pass?", fillcolor=yellow];
+
+        check_endpoints -> check_websocket -> check_queue -> check_queen;
+        check_queen -> check_registry -> check_no_copy -> check_errors;
+        check_errors -> check_logging -> backend_ok;
+    }
+
+    // ========== PHASE 2: FRONTEND VALIDATION (6 checks) ==========
+    subgraph cluster_frontend {
+        label="Phase 2: Frontend Validation (6 checks)";
+        fillcolor=lightblue;
+        style=filled;
+
+        build_frontend [label="Atomic Skill:\nbuild-verifier\n(npm run build)"];
+        check_ts [label="Atomic Skill:\ntype-checker\n(zero errors)"];
+        check_bundle [label="Atomic Skill:\nperformance-validator\n(<10MB bundle)"];
+        check_components [label="Check:\n54 components render"];
+        check_websocket_ui [label="Check:\nMonarchChat WebSocket"];
+        check_folder [label="Check:\nFolder selection"];
+        frontend_ok [shape=diamond, label="All frontend\nchecks pass?", fillcolor=yellow];
+
+        build_frontend -> check_ts -> check_bundle -> check_components;
+        check_components -> check_websocket_ui -> check_folder -> frontend_ok;
+    }
+
+    // ========== PHASE 3: E2E TESTING (7 checks) ==========
+    subgraph cluster_e2e {
+        label="Phase 3: E2E Testing (7 checks)";
+        fillcolor=lightblue;
+        style=filled;
+
+        e2e [label="Atomic Skill:\ne2e-test-runner\n(Playwright)"];
+        test_create [label="Test:\nCreate new project"];
+        test_load [label="Test:\nLoad existing (no copy)"];
+        test_chat [label="Test:\nSend chat message"];
+        test_spawn [label="Test:\nAgent spawn → UI update"];
+        test_progress [label="Test:\nTask progress"];
+        test_complete [label="Test:\nTask completion"];
+        e2e_ok [shape=diamond, label="All E2E\ntests pass?", fillcolor=yellow];
+
+        e2e -> test_create -> test_load -> test_chat;
+        test_chat -> test_spawn -> test_progress -> test_complete -> e2e_ok;
+    }
+
+    // ========== PHASE 4: ENVIRONMENT (3 checks) ==========
+    subgraph cluster_environment {
+        label="Phase 4: Environment (3 checks)";
+        fillcolor=lightblue;
+        style=filled;
+
+        env [label="Atomic Skill:\nenvironment-validator\n(.env validation)"];
+        env_vars [label="Check:\nAll required vars set"];
+        no_secrets [label="Atomic Skill:\nsecrets-detector\n(no secrets in git)"];
+        prod_values [label="Check:\nProduction values"];
+        env_ok [shape=diamond, label="Environment\nconfigured?", fillcolor=yellow];
+
+        env -> env_vars -> no_secrets -> prod_values -> env_ok;
+    }
+
+    // ========== PHASE 5: PERFORMANCE (4 checks) ==========
+    subgraph cluster_performance {
+        label="Phase 5: Performance (4 checks)";
+        fillcolor=lightblue;
+        style=filled;
+
+        perf [label="Atomic Skill:\nperformance-validator"];
+        latency [label="Check:\nMessage latency <50ms"];
+        queen_response [label="Check:\nQueen response <2s"];
+        websocket_delay [label="Check:\nWebSocket <100ms"];
+        perf_ok [shape=diamond, label="Performance\ntargets met?", fillcolor=yellow];
+
+        perf -> latency -> queen_response -> websocket_delay -> perf_ok;
+    }
+
+    // ========== PHASE 6: SECURITY (7 checks) ==========
+    subgraph cluster_security {
+        label="Phase 6: Security (7 checks)";
+        fillcolor=lightblue;
+        style=filled;
+
+        audit [label="Atomic Skill:\nsecurity-scanner\n(npm audit, pip check)"];
+        secrets [label="Atomic Skill:\nsecrets-detector\n(scan codebase)"];
+        cors [label="Atomic Skill:\ncors-configurator"];
+        input_val [label="Check:\nInput validation"];
+        xss [label="Check:\nXSS prevention"];
+        rate_limit [label="Check:\nRate limiting"];
+        sec_ok [shape=diamond, label="Security\naudit pass?", fillcolor=yellow];
+
+        audit -> secrets -> cors -> input_val -> xss -> rate_limit -> sec_ok;
+    }
+
+    // ========== PHASE 7: QUALITY (6 checks) ==========
+    subgraph cluster_quality {
+        label="Phase 7: Quality (6 checks)";
+        fillcolor=lightblue;
+        style=filled;
+
+        tests [label="Atomic Skill:\ntest-runner\n(ALL tests)"];
+        build [label="Atomic Skill:\nbuild-verifier"];
+        nasa [label="Atomic Skill:\nnasa-compliance-checker"];
+        theater [label="Atomic Skill:\ntheater-scanner"];
+        docs [label="Atomic Skill:\ndocstring-validator"];
+        qual_ok [shape=diamond, label="Quality gates\npass?", fillcolor=yellow];
+
+        tests -> build -> nasa -> theater -> docs -> qual_ok;
+    }
+
+    // ========== PHASE 8: FINAL CHECKS (6 checks) ==========
+    subgraph cluster_final {
+        label="Phase 8: Final Checks (6 checks)";
+        fillcolor=lightyellow;
+        style=filled;
+
+        rollback_test [label="Check:\nRollback procedure tested"];
+        monitoring [label="Check:\nMonitoring enabled"];
+        health [label="Atomic Skill:\nhealth-check-monitor"];
+        docs_updated [label="Check:\nDocs updated"];
+        changelog [label="Check:\nChangelog entry"];
+        final_ok [shape=diamond, label="Final checks\ncomplete?", fillcolor=yellow];
+
+        rollback_test -> monitoring -> health -> docs_updated -> changelog -> final_ok;
+    }
+
+    // ========== AGGREGATION ==========
+    subgraph cluster_aggregate {
+        label="Aggregation (47 Points Total)";
+        fillcolor=lightyellow;
+        style=filled;
+
+        collect [label="Collect:\n8 backend + 6 frontend +\n7 E2E + 3 env +\n4 perf + 7 security +\n6 quality + 6 final\n= 47 total checks"];
+        all_47_pass [shape=diamond, label="ALL 47\nchecks pass?", fillcolor=yellow];
+        show_failures [label="Show Critical Failures:\n[List of blocking issues]", fillcolor=orange];
+
+        collect -> all_47_pass;
+        all_47_pass -> allowed [label="yes", color=green];
+        all_47_pass -> show_failures [label="no", color=red];
+        show_failures -> blocked;
+    }
+
+    // ========== FLOW CONNECTIONS ==========
+    start -> detect;
+    block_deploy -> check_endpoints;
+    backend_ok -> build_frontend [label="yes", color=green];
+    backend_ok -> blocked [label="no", color=red];
+    frontend_ok -> e2e [label="yes", color=green];
+    frontend_ok -> blocked [label="no", color=red];
+    e2e_ok -> env [label="yes", color=green];
+    e2e_ok -> blocked [label="no", color=red];
+    env_ok -> perf [label="yes", color=green];
+    env_ok -> blocked [label="no", color=red];
+    perf_ok -> audit [label="yes", color=green];
+    perf_ok -> blocked [label="no", color=red];
+    sec_ok -> tests [label="yes", color=green];
+    sec_ok -> blocked [label="no", color=red];
+    qual_ok -> rollback_test [label="yes", color=green];
+    qual_ok -> blocked [label="no", color=red];
+    final_ok -> collect [label="yes", color=green];
+    final_ok -> blocked [label="no", color=red];
+
+    // ========== RETRY & ROLLBACK ==========
+    blocked -> start [style=dashed, label="after fixes\nretry"];
+    rollback [shape=cylinder, label="rollback-\norchestrator\n(if deployment fails)", fillcolor=lightcoral];
+    allowed -> rollback [style=dashed, label="if errors\nafter deploy"];
+
+    // ========== CRITICAL WARNINGS ==========
+    subgraph cluster_rules {
+        label="CRITICAL RULES";
+        fillcolor="#ffcdd2";
+        style=filled;
+
+        rule1 [shape=octagon, label="NEVER deploy\nwithout ALL 47 checks", fillcolor=red, fontcolor=white];
+        rule2 [shape=octagon, label="NEVER skip\nsecurity validation", fillcolor=red, fontcolor=white];
+        rule3 [shape=octagon, label="ALWAYS test\nrollback procedure first", fillcolor=orange];
+    }
+
+    // ========== METADATA ==========
+    labelloc="t";
+    label="Pre-Deploy Gate Orchestrator: 47-Point Deployment Checklist\n\nTriggers: 'deploy', 'production', 'release'\nPhases: Backend (8) + Frontend (6) + E2E (7) + Env (3) + Perf (4) + Security (7) + Quality (6) + Final (6) = 47 checks\nBlocks: Until ALL pass | Result: Zero unvalidated deployments";
+    fontsize=14;
+    fontname="Arial Bold";
+}

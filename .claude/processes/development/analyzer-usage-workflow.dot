@@ -1,0 +1,194 @@
+digraph AnalyzerUsageWorkflow {
+    rankdir=TB;
+    node [shape=box, style=rounded];
+
+    // Title
+    label="SPEK Analyzer Usage Workflow\nHow to Use the Analyzer for Code Quality Validation";
+    labelloc=t;
+    fontsize=16;
+    fontname="Arial Bold";
+
+    // Entry point
+    start [label="Need to validate\ncode quality?", shape=ellipse, style=filled, fillcolor=lightblue];
+
+    // Decision: New vs Legacy code
+    decision_new_legacy [label="Is this NEW code\n(greenfield) or\nLEGACY code?", shape=diamond, style=filled, fillcolor=lightyellow];
+
+    // NEW CODE path
+    new_code [label="NEW CODE PATH\n(Manual Validation)", style=filled, fillcolor=lightgreen];
+
+    new_step1 [label="1. Count LOC\npython -c \"with open('file.py') as f:\n  print(len([l for l in f if l.strip()]))\"\n\nTrack progress", style=filled, fillcolor="#E8F5E9"];
+
+    new_step2 [label="2. NASA Compliance Check\npython -c \"import ast; ...\"\n\nVerify <=60 LOC per function", style=filled, fillcolor="#E8F5E9"];
+
+    new_step3 [label="3. Run Tests\npytest tests/unit/\npytest tests/integration/\n\nValidate functionality", style=filled, fillcolor="#E8F5E9"];
+
+    new_step4 [label="4. Type Safety\nmypy src/\n\nCheck type hints", style=filled, fillcolor="#E8F5E9"];
+
+    new_done [label="NEW CODE VALIDATED\n✅ Quality built-in", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // LEGACY CODE path
+    legacy_code [label="LEGACY CODE PATH\n(Full Analyzer)", style=filled, fillcolor=orange];
+
+    // Decision: What to analyze
+    decision_scope [label="What scope to\nanalyze?", shape=diamond, style=filled, fillcolor=lightyellow];
+
+    scope_single [label="Single File", style=filled, fillcolor="#FFF3E0"];
+    scope_module [label="Module/Directory", style=filled, fillcolor="#FFF3E0"];
+    scope_full [label="Full Codebase", style=filled, fillcolor="#FFF3E0"];
+
+    // Single file analysis
+    single_basic [label="Basic Analysis\npython -m analyzer.api analyze \\\n  --source file.py \\\n  --format summary\n\nQuick overview", style=filled, fillcolor="#FFF3E0"];
+
+    single_detailed [label="Detailed Analysis\npython -m analyzer.api analyze \\\n  --source file.py \\\n  --format json > report.json\n\nFull metrics", style=filled, fillcolor="#FFF3E0"];
+
+    single_linters [label="Run Specific Linters\npython -c \"from analyzer.linters import linter_registry;\nresults = linter_registry.run_all_linters('file.py')\"\n\nRadon + Pylint", style=filled, fillcolor="#FFF3E0"];
+
+    // Module analysis
+    module_analysis [label="Module Analysis\npython -m analyzer.api analyze \\\n  --source src/module/ \\\n  --format summary\n\nAll files in module", style=filled, fillcolor="#FFF3E0"];
+
+    // Full codebase analysis
+    full_analysis [label="Full Codebase Analysis\npython -m analyzer.api analyze \\\n  --source src/ \\\n  --format json > full_report.json\n\nComplete audit", style=filled, fillcolor="#FFF3E0"];
+
+    // Linter-specific commands
+    decision_linter [label="Which linter?", shape=diamond, style=filled, fillcolor=lightyellow];
+
+    radon_cc [label="Radon: Complexity\npython -m radon cc src/ -j\n\nCyclomatic complexity", style=filled, fillcolor="#E1F5FE"];
+
+    radon_mi [label="Radon: Maintainability\npython -m radon mi src/ -j\n\nMaintainability index", style=filled, fillcolor="#E1F5FE"];
+
+    pylint_check [label="Pylint: Logic/Style\npython -m pylint src/ \\\n  --output-format=json\n\nCode quality checks", style=filled, fillcolor="#E1F5FE"];
+
+    registry_all [label="Registry: All Linters\npython -c \"from analyzer.linters import linter_registry;\nlinter_registry.run_all_linters('file.py')\"\n\nRun all available", style=filled, fillcolor="#E1F5FE"];
+
+    // Results interpretation
+    interpret_results [label="Interpret Results", shape=box, style=filled, fillcolor=lightcyan];
+
+    check_violations [label="Check Violations\n\nSeverity levels:\n- critical: CC>15 or rank D/E\n- high: Logic errors\n- medium: CC 11-15 or rank C\n- low: Style issues, rank B", style=filled, fillcolor="#E0F7FA"];
+
+    check_metrics [label="Check Metrics\n\nMaintainability Index:\n- 100: Perfect\n- 80-100: Rank A (excellent)\n- 60-80: Rank B (good)\n- 40-60: Rank C (fair)\n- 20-40: Rank D (poor)\n- <20: Rank E (critical)\n\nComplexity:\n- 1-5: Rank A (simple)\n- 6-10: Rank B (moderate)\n- 11-20: Rank C (complex)\n- 21-30: Rank D (very complex)\n- >30: Rank E (critical)", style=filled, fillcolor="#E0F7FA"];
+
+    decision_action [label="What to do\nwith results?", shape=diamond, style=filled, fillcolor=lightyellow];
+
+    action_refactor [label="Refactor Code\n\nFocus on:\n- Critical violations first\n- High-complexity functions\n- Low MI scores", style=filled, fillcolor="#FFEBEE"];
+
+    action_document [label="Document Issues\n\nCreate tickets:\n- Track technical debt\n- Prioritize fixes\n- Monitor progress", style=filled, fillcolor="#FFF9C4"];
+
+    action_accept [label="Accept As-Is\n\nIf violations are:\n- Low severity only\n- Intentional complexity\n- Worth the trade-off", style=filled, fillcolor="#E8F5E9"];
+
+    done [label="ANALYSIS COMPLETE\n✅ Quality validated", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+    // Common workflows
+    workflow_ci [label="CI/CD Integration\n\n# In .github/workflows/ci.yml\n- name: Run Analyzer\n  run: |\n    python -m analyzer.api analyze \\\n      --source src/ \\\n      --format json > report.json\n    # Fail if critical violations\n    python scripts/check_violations.py", style=filled, fillcolor="#F3E5F5"];
+
+    workflow_precommit [label="Pre-commit Hook\n\n# In .git/hooks/pre-commit\npython -m analyzer.linters.radon_bridge \\\n  --file $(git diff --cached --name-only)\n# Block commit if CC > 15", style=filled, fillcolor="#F3E5F5"];
+
+    // Advanced usage
+    advanced [label="Advanced Usage", shape=box, style=filled, fillcolor=pink];
+
+    advanced_custom [label="Custom Thresholds\n\nfrom analyzer.constants.thresholds import *\n# Override in your script\nCYCLOMATIC_COMPLEXITY_THRESHOLD = 10", style=filled, fillcolor="#FCE4EC"];
+
+    advanced_registry [label="Custom Linter Registry\n\nfrom analyzer.linters import LinterRegistry\nregistry = LinterRegistry()\nregistry.register_linter('custom', MyLinter())\nresults = registry.run_all_linters('file.py')", style=filled, fillcolor="#FCE4EC"];
+
+    advanced_filters [label="Filter Violations\n\nviolations = [v for v in all_violations\n             if v.severity in ['critical', 'high']]\n# Focus on important issues", style=filled, fillcolor="#FCE4EC"];
+
+    // Troubleshooting
+    troubleshoot [label="Troubleshooting", shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+    trouble_not_found [label="Linter not found?\n\n1. Check installation:\n   python -m pip show radon pylint\n\n2. Verify availability:\n   python -c \"from analyzer.linters import linter_registry;\n   print(linter_registry.get_available_linters())\"\n\n3. Use python -m pattern:\n   python -m radon --version", style=filled, fillcolor="#FFCDD2"];
+
+    trouble_slow [label="Analysis too slow?\n\n1. Analyze subset first\n2. Use parallel execution (future)\n3. Filter by file patterns\n4. Run only needed linters", style=filled, fillcolor="#FFCDD2"];
+
+    trouble_errors [label="Import errors?\n\n1. Check Python path:\n   export PYTHONPATH=$PWD:$PYTHONPATH\n\n2. Install dependencies:\n   pip install -r requirements.txt\n\n3. Verify module structure:\n   python -m analyzer.api --help", style=filled, fillcolor="#FFCDD2"];
+
+    // Flow connections
+    start -> decision_new_legacy;
+
+    // New code path
+    decision_new_legacy -> new_code [label="New/Greenfield"];
+    new_code -> new_step1;
+    new_step1 -> new_step2;
+    new_step2 -> new_step3;
+    new_step3 -> new_step4;
+    new_step4 -> new_done;
+
+    // Legacy code path
+    decision_new_legacy -> legacy_code [label="Legacy/Existing"];
+    legacy_code -> decision_scope;
+
+    decision_scope -> scope_single [label="Single file"];
+    decision_scope -> scope_module [label="Module"];
+    decision_scope -> scope_full [label="Full codebase"];
+
+    scope_single -> single_basic;
+    single_basic -> single_detailed [label="Need details?"];
+    single_detailed -> single_linters [label="Linter-specific?"];
+
+    scope_module -> module_analysis;
+    scope_full -> full_analysis;
+
+    single_linters -> decision_linter;
+    module_analysis -> decision_linter;
+    full_analysis -> decision_linter;
+
+    decision_linter -> radon_cc [label="Complexity"];
+    decision_linter -> radon_mi [label="Maintainability"];
+    decision_linter -> pylint_check [label="Logic/Style"];
+    decision_linter -> registry_all [label="All"];
+
+    radon_cc -> interpret_results;
+    radon_mi -> interpret_results;
+    pylint_check -> interpret_results;
+    registry_all -> interpret_results;
+
+    interpret_results -> check_violations;
+    interpret_results -> check_metrics;
+
+    check_violations -> decision_action;
+    check_metrics -> decision_action;
+
+    decision_action -> action_refactor [label="Fix issues"];
+    decision_action -> action_document [label="Track debt"];
+    decision_action -> action_accept [label="Accept"];
+
+    action_refactor -> done;
+    action_document -> done;
+    action_accept -> done;
+
+    // Common workflows (separate branch)
+    legacy_code -> workflow_ci [label="Automate?", style=dotted];
+    legacy_code -> workflow_precommit [label="Git hooks?", style=dotted];
+    workflow_ci -> done [style=dotted];
+    workflow_precommit -> done [style=dotted];
+
+    // Advanced usage (separate branch)
+    interpret_results -> advanced [label="Customize?", style=dotted];
+    advanced -> advanced_custom;
+    advanced -> advanced_registry;
+    advanced -> advanced_filters;
+    advanced_custom -> done [style=dotted];
+    advanced_registry -> done [style=dotted];
+    advanced_filters -> done [style=dotted];
+
+    // Troubleshooting (error paths)
+    single_linters -> troubleshoot [label="Errors?", style=dashed, color=red];
+    decision_linter -> troubleshoot [label="Errors?", style=dashed, color=red];
+    troubleshoot -> trouble_not_found;
+    troubleshoot -> trouble_slow;
+    troubleshoot -> trouble_errors;
+    trouble_not_found -> decision_linter [label="Fixed", style=dashed, color=green];
+    trouble_slow -> decision_linter [label="Fixed", style=dashed, color=green];
+    trouble_errors -> decision_linter [label="Fixed", style=dashed, color=green];
+
+    // Legend
+    subgraph cluster_legend {
+        label="Legend";
+        style=filled;
+        fillcolor=white;
+
+        legend_decision [label="Decision Point", shape=diamond, fillcolor=lightyellow, style=filled];
+        legend_action [label="Action to Take", shape=box, fillcolor=lightblue, style="filled,rounded"];
+        legend_result [label="Completion", shape=doublecircle, fillcolor=lightgreen, style=filled];
+        legend_warning [label="Warning/Error", shape=octagon, fillcolor=red, fontcolor=white, style=filled];
+    }
+}

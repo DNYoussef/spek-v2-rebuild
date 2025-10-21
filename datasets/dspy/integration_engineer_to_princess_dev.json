@@ -1,0 +1,1493 @@
+{
+  "communication_path": "integration-engineer→princess-dev",
+  "description": "Integration-Engineer reports merge results to Princess-Dev",
+  "drone_id": "integration-engineer",
+  "princess_id": "princess-dev",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 40,
+    "failure": 10
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-1",
+      "drone_results": {
+        "success": true,
+        "files_merged": 3,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 18,
+        "execution_time_ms": 9267
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-2",
+      "drone_results": {
+        "success": true,
+        "files_merged": 7,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 24,
+        "execution_time_ms": 12965
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-3",
+      "drone_results": {
+        "success": true,
+        "files_merged": 5,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 24,
+        "execution_time_ms": 10267
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 4,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-4",
+      "drone_results": {
+        "success": true,
+        "files_merged": 4,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 20,
+        "execution_time_ms": 7487
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-5",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 10,
+        "execution_time_ms": 8340
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 6,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-6",
+      "drone_results": {
+        "success": true,
+        "files_merged": 3,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 16,
+        "execution_time_ms": 9150
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 11,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-7",
+      "drone_results": {
+        "success": true,
+        "files_merged": 8,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 22,
+        "execution_time_ms": 14722
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-8",
+      "drone_results": {
+        "success": true,
+        "files_merged": 12,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 15,
+        "execution_time_ms": 15133
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-9",
+      "drone_results": {
+        "success": true,
+        "files_merged": 3,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 21,
+        "execution_time_ms": 14100
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 11,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-10",
+      "drone_results": {
+        "success": true,
+        "files_merged": 9,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 24,
+        "execution_time_ms": 17512
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 8,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-11",
+      "drone_results": {
+        "success": true,
+        "files_merged": 8,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 18,
+        "execution_time_ms": 12830
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 11,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-12",
+      "drone_results": {
+        "success": true,
+        "files_merged": 5,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 10,
+        "execution_time_ms": 6349
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 10,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-13",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 20,
+        "execution_time_ms": 9554
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 9,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-14",
+      "drone_results": {
+        "success": true,
+        "files_merged": 7,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 20,
+        "execution_time_ms": 14484
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-15",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 18,
+        "execution_time_ms": 16886
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-16",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 20,
+        "execution_time_ms": 11816
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 11,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-17",
+      "drone_results": {
+        "success": true,
+        "files_merged": 9,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 18,
+        "execution_time_ms": 12754
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 8,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-18",
+      "drone_results": {
+        "success": true,
+        "files_merged": 9,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 12,
+        "execution_time_ms": 6728
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 8,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-19",
+      "drone_results": {
+        "success": true,
+        "files_merged": 9,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 25,
+        "execution_time_ms": 8537
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 4,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-20",
+      "drone_results": {
+        "success": true,
+        "files_merged": 4,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 18,
+        "execution_time_ms": 10888
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 9,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-21",
+      "drone_results": {
+        "success": true,
+        "files_merged": 7,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 20,
+        "execution_time_ms": 7460
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 3,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-22",
+      "drone_results": {
+        "success": true,
+        "files_merged": 5,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 14,
+        "execution_time_ms": 17797
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-23",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 12,
+        "execution_time_ms": 7679
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 10,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-24",
+      "drone_results": {
+        "success": true,
+        "files_merged": 12,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 12,
+        "execution_time_ms": 17627
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 3,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-25",
+      "drone_results": {
+        "success": true,
+        "files_merged": 12,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 10,
+        "execution_time_ms": 6116
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-26",
+      "drone_results": {
+        "success": true,
+        "files_merged": 3,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 18,
+        "execution_time_ms": 6073
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 10,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-27",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 11,
+        "execution_time_ms": 13795
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 9,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-28",
+      "drone_results": {
+        "success": true,
+        "files_merged": 7,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 24,
+        "execution_time_ms": 7108
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-29",
+      "drone_results": {
+        "success": true,
+        "files_merged": 12,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 13,
+        "execution_time_ms": 8251
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 8,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-30",
+      "drone_results": {
+        "success": true,
+        "files_merged": 5,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 17,
+        "execution_time_ms": 9346
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 10,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-31",
+      "drone_results": {
+        "success": true,
+        "files_merged": 4,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 12,
+        "execution_time_ms": 14612
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 9,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-32",
+      "drone_results": {
+        "success": true,
+        "files_merged": 12,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 14,
+        "execution_time_ms": 16088
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 4,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-33",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 21,
+        "execution_time_ms": 12757
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-34",
+      "drone_results": {
+        "success": true,
+        "files_merged": 3,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 25,
+        "execution_time_ms": 13967
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 7,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-35",
+      "drone_results": {
+        "success": true,
+        "files_merged": 12,
+        "merge_conflicts": 1,
+        "conflicts_resolved": 1,
+        "tests_passed": true,
+        "integration_tests_run": 10,
+        "execution_time_ms": 7996
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 1 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 6,
+          "conflicts_resolved": 1,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-36",
+      "drone_results": {
+        "success": true,
+        "files_merged": 5,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 21,
+        "execution_time_ms": 12412
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-37",
+      "drone_results": {
+        "success": true,
+        "files_merged": 9,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 17,
+        "execution_time_ms": 7231
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 11,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-38",
+      "drone_results": {
+        "success": true,
+        "files_merged": 9,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 22,
+        "execution_time_ms": 10134
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 10,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-39",
+      "drone_results": {
+        "success": true,
+        "files_merged": 6,
+        "merge_conflicts": 0,
+        "conflicts_resolved": 0,
+        "tests_passed": true,
+        "integration_tests_run": 18,
+        "execution_time_ms": 10572
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 0 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 3,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-40",
+      "drone_results": {
+        "success": true,
+        "files_merged": 10,
+        "merge_conflicts": 2,
+        "conflicts_resolved": 2,
+        "tests_passed": true,
+        "integration_tests_run": 10,
+        "execution_time_ms": 16043
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "complete",
+        "summary": "Integration successful. 2 conflicts resolved.",
+        "quality_metrics": {
+          "files_integrated": 3,
+          "conflicts_resolved": 2,
+          "integration_test_pass_rate": 100
+        },
+        "next_phase": "deploy",
+        "blockers": [],
+        "recommendations": [
+          "Deploy to staging"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-41",
+      "drone_results": {
+        "success": false,
+        "files_merged": 9,
+        "merge_conflicts": 3,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 19,
+        "execution_time_ms": 16562
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 3 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 8,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 81
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 3 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-42",
+      "drone_results": {
+        "success": false,
+        "files_merged": 3,
+        "merge_conflicts": 6,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 18,
+        "execution_time_ms": 16638
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 6 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 9,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 76
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 6 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-43",
+      "drone_results": {
+        "success": false,
+        "files_merged": 6,
+        "merge_conflicts": 5,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 12,
+        "execution_time_ms": 16171
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 5 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 85
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 5 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-44",
+      "drone_results": {
+        "success": false,
+        "files_merged": 4,
+        "merge_conflicts": 7,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 24,
+        "execution_time_ms": 8344
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 7 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 11,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 78
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 7 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-45",
+      "drone_results": {
+        "success": false,
+        "files_merged": 8,
+        "merge_conflicts": 3,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 22,
+        "execution_time_ms": 11620
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 3 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 8,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 76
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 3 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-46",
+      "drone_results": {
+        "success": false,
+        "files_merged": 8,
+        "merge_conflicts": 8,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 16,
+        "execution_time_ms": 11261
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 8 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 83
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 8 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-47",
+      "drone_results": {
+        "success": false,
+        "files_merged": 9,
+        "merge_conflicts": 5,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 12,
+        "execution_time_ms": 17743
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 5 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 66
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 5 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-48",
+      "drone_results": {
+        "success": false,
+        "files_merged": 10,
+        "merge_conflicts": 5,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 12,
+        "execution_time_ms": 17102
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 5 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 63
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 5 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-49",
+      "drone_results": {
+        "success": false,
+        "files_merged": 7,
+        "merge_conflicts": 3,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 11,
+        "execution_time_ms": 13316
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 3 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 5,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 84
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 3 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "integration-engineer",
+      "task_completed": "integrate-feature-50",
+      "drone_results": {
+        "success": false,
+        "files_merged": 12,
+        "merge_conflicts": 6,
+        "conflicts_resolved": 0,
+        "tests_passed": false,
+        "integration_tests_run": 23,
+        "execution_time_ms": 15565
+      },
+      "expected_aggregated_result": {
+        "phase": "integrate",
+        "status": "blocked",
+        "summary": "Integration blocked. 6 conflicts detected.",
+        "quality_metrics": {
+          "files_integrated": 10,
+          "conflicts_resolved": 0,
+          "integration_test_pass_rate": 82
+        },
+        "next_phase": "code",
+        "blockers": [
+          "Resolve 6 merge conflicts",
+          "Fix failing integration tests"
+        ],
+        "recommendations": [
+          "Coordinate with feature branch owner"
+        ]
+      }
+    }
+  ]
+}

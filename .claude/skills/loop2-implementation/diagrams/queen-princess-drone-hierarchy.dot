@@ -1,0 +1,133 @@
+digraph Queen_Princess_Drone_Hierarchy {
+    rankdir=TB;
+    compound=true;
+    node [shape=box, style=filled, fontname="Arial"];
+    edge [fontname="Arial"];
+
+    // Queen Tier
+    subgraph cluster_queen {
+        label="Tier 1: Queen (Claude Code Instance)";
+        fillcolor=lightblue;
+        style=filled;
+
+        queen [shape=box, label="QUEEN\n(Claude Code)\n\nRole: Top-level orchestrator\nResponsibilities:\n- Task decomposition\n- Princess selection\n- Cross-loop coordination\n- Memory management", fillcolor=dodgerblue, fontcolor=white];
+    }
+
+    // Princess Tier
+    subgraph cluster_princess {
+        label="Tier 2: Princesses (3 Coordinators)";
+        fillcolor=lightyellow;
+        style=filled;
+
+        princess_dev [label="Princess Dev\n\nCoordinates:\n- Feature development\n- Code generation\n- Architecture", fillcolor=gold];
+        princess_quality [label="Princess Quality\n\nCoordinates:\n- Testing\n- Review\n- Validation", fillcolor=gold];
+        princess_coord [label="Princess Coordination\n\nCoordinates:\n- Orchestration\n- Planning\n- Integration", fillcolor=gold];
+    }
+
+    // Drone Tier - Development Drones
+    subgraph cluster_drones_dev {
+        label="Tier 3A: Development Drones (9)";
+        fillcolor=lightgreen;
+        style=filled;
+
+        drone_coder [label="coder\n(code generation)"];
+        drone_architect [label="architect\n(system design)"];
+        drone_researcher [label="researcher\n(analysis)"];
+        drone_frontend [label="frontend-dev\n(UI/UX)"];
+        drone_backend [label="backend-dev\n(API/services)"];
+        drone_pseudocode [label="pseudocode-writer\n(algorithm design)"];
+        drone_spec [label="spec-writer\n(requirements)"];
+        drone_docs [label="docs-writer\n(documentation)"];
+        drone_planner [label="planner\n(task planning)"];
+    }
+
+    // Drone Tier - Quality Drones
+    subgraph cluster_drones_quality {
+        label="Tier 3B: Quality Drones (6)";
+        fillcolor=lightgreen;
+        style=filled;
+
+        drone_tester [label="tester\n(test creation)"];
+        drone_reviewer [label="reviewer\n(code review)"];
+        drone_debugger [label="debugger\n(bug fixing)"];
+        drone_analyzer [label="code-analyzer\n(static analysis)"];
+        drone_theater [label="theater-detector\n(mock detection)"];
+        drone_nasa [label="nasa-enforcer\n(compliance)"];
+    }
+
+    // Drone Tier - Infrastructure Drones
+    subgraph cluster_drones_infra {
+        label="Tier 3C: Infrastructure Drones (5)";
+        fillcolor=lightgreen;
+        style=filled;
+
+        drone_devops [label="devops\n(deployment)"];
+        drone_security [label="security-manager\n(security audit)"];
+        drone_infra [label="infrastructure-ops\n(K8s/Docker)"];
+        drone_release [label="release-manager\n(releases)"];
+        drone_perf [label="performance-engineer\n(optimization)"];
+    }
+
+    // Drone Tier - Coordination Drones
+    subgraph cluster_drones_coord {
+        label="Tier 3D: Coordination Drones (4)";
+        fillcolor=lightgreen;
+        style=filled;
+
+        drone_integration [label="integration-engineer\n(system integration)"];
+        drone_orchestrator [label="orchestrator\n(workflow)"];
+        drone_cost [label="cost-tracker\n(budget monitoring)"];
+        drone_fsm [label="fsm-analyzer\n(FSM validation)"];
+    }
+
+    // Communication Flow
+    queen -> princess_dev [label="Spawn via\nTask tool", color=blue];
+    queen -> princess_quality [label="Spawn via\nTask tool", color=blue];
+    queen -> princess_coord [label="Spawn via\nTask tool", color=blue];
+
+    princess_dev -> drone_coder [label="Spawn", color=green];
+    princess_dev -> drone_architect [label="Spawn", color=green];
+    princess_dev -> drone_researcher [label="Spawn", color=green];
+    princess_dev -> drone_frontend [label="Spawn", color=green];
+    princess_dev -> drone_backend [label="Spawn", color=green];
+    princess_dev -> drone_pseudocode [label="Spawn", color=green];
+    princess_dev -> drone_spec [label="Spawn", color=green];
+    princess_dev -> drone_docs [label="Spawn", color=green];
+    princess_dev -> drone_planner [label="Spawn", color=green];
+
+    princess_quality -> drone_tester [label="Spawn", color=green];
+    princess_quality -> drone_reviewer [label="Spawn", color=green];
+    princess_quality -> drone_debugger [label="Spawn", color=green];
+    princess_quality -> drone_analyzer [label="Spawn", color=green];
+    princess_quality -> drone_theater [label="Spawn", color=green];
+    princess_quality -> drone_nasa [label="Spawn", color=green];
+
+    princess_coord -> drone_orchestrator [label="Spawn", color=green];
+    princess_coord -> drone_cost [label="Spawn", color=green];
+    princess_coord -> drone_fsm [label="Spawn", color=green];
+    princess_coord -> drone_devops [label="Spawn", color=green];
+    princess_coord -> drone_security [label="Spawn", color=green];
+    princess_coord -> drone_infra [label="Spawn", color=green];
+    princess_coord -> drone_release [label="Spawn", color=green];
+    princess_coord -> drone_perf [label="Spawn", color=green];
+    princess_coord -> drone_integration [label="Spawn", color=green];
+
+    // External references
+    agent_registry [shape=cylinder, label="Agent Registry\n(agent_registry.py)\n\n28 agents total:\n- 1 Queen\n- 3 Princesses\n- 24 Drones", fillcolor=lightcoral];
+    task_tool [shape=cylinder, label="Task Tool\n(communication)", fillcolor=lightcoral];
+
+    queen -> agent_registry [style=dashed, label="lookup"];
+    princess_dev -> agent_registry [style=dashed, label="lookup"];
+    princess_quality -> agent_registry [style=dashed, label="lookup"];
+    princess_coord -> agent_registry [style=dashed, label="lookup"];
+    queen -> task_tool [style=dashed, label="uses"];
+
+    // Key principle
+    principle [shape=octagon, label="KEY PRINCIPLE\n\nQueen = Claude Code instance\nPrincesses = Coordination layer\nDrones = Specialized workers\n\nCommunication: Task tool only\nMemory: Shared state management", fillcolor=orange];
+
+    // Metadata
+    labelloc="t";
+    label="Queen-Princess-Drone Hierarchy\n\n3-Tier Architecture: 1 Queen → 3 Princesses → 24 Drones\nTotal: 28 agents in registry\nCommunication: Task tool (spawning), Memory (state sharing)";
+    fontsize=14;
+    fontname="Arial Bold";
+}

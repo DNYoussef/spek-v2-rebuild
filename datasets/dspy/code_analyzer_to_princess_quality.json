@@ -1,0 +1,2800 @@
+{
+  "communication_path": "code-analyzer→princess-quality",
+  "description": "Code-Analyzer reports analysis results to Princess-Quality",
+  "drone_id": "code-analyzer",
+  "princess_id": "princess-quality",
+  "total_examples": 50,
+  "success_ratio": {
+    "success": 40,
+    "issues_found": 10
+  },
+  "examples": [
+    {
+      "example_id": 1,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-1",
+      "drone_results": {
+        "success": true,
+        "path": "src/auth/oauth.py",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 10,
+          "lines_of_code": 342,
+          "comment_ratio": 0.15,
+          "function_count": 12,
+          "class_count": 3
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "long_function",
+            "severity": 6,
+            "location": "authenticate:45",
+            "description": "Function too long (68 lines)",
+            "suggestion": "Refactor into smaller functions"
+          },
+          {
+            "smell_type": "magic_numbers",
+            "severity": 4,
+            "location": "various",
+            "description": "Magic numbers found in validation",
+            "suggestion": "Extract to named constants"
+          }
+        ],
+        "quality_score": 85.5,
+        "type_coverage": 96,
+        "security_issues": 0,
+        "execution_time_ms": 12450
+      },
+      "expected_aggregated_result": {
+        "phase": "static-analysis",
+        "status": "complete",
+        "summary": "Code analysis complete: Quality score 85.5/100, 2 code smells detected (minor severity).",
+        "quality_metrics": {
+          "overall_score": 85.5,
+          "complexity": 8,
+          "maintainability": 85,
+          "security_score": 100,
+          "type_coverage": 96
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Refactor authenticate function (68 lines → <60 lines)",
+          "Extract magic numbers to constants"
+        ]
+      }
+    },
+    {
+      "example_id": 2,
+      "drone_id": "code-analyzer",
+      "task_completed": "detect-complexity-2",
+      "drone_results": {
+        "success": true,
+        "file_path": "src/api/handlers.ts",
+        "function_count": 18,
+        "average_complexity": 6.2,
+        "max_complexity": 14,
+        "function_complexity": {
+          "handleUserRequest": 14,
+          "processPayment": 12,
+          "validateInput": 8,
+          "formatResponse": 4
+        },
+        "execution_time_ms": 9876
+      },
+      "expected_aggregated_result": {
+        "phase": "complexity-analysis",
+        "status": "complete",
+        "summary": "Complexity analysis complete: Average 6.2, max 14 (within threshold).",
+        "quality_metrics": {
+          "average_complexity": 6.2,
+          "max_complexity": 14,
+          "functions_over_threshold": 1,
+          "complexity_score": 88
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Consider refactoring handleUserRequest (complexity: 14)"
+        ]
+      }
+    },
+    {
+      "example_id": 3,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-3",
+      "drone_results": {
+        "success": true,
+        "path": "src/services/payment.java",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 15,
+          "cognitive_complexity": 18,
+          "lines_of_code": 456,
+          "comment_ratio": 0.22,
+          "function_count": 15,
+          "class_count": 4
+        },
+        "smells_detected": 0,
+        "smells": [],
+        "quality_score": 92.0,
+        "security_issues": 0,
+        "pci_compliance": true,
+        "execution_time_ms": 18234
+      },
+      "expected_aggregated_result": {
+        "phase": "security-analysis",
+        "status": "complete",
+        "summary": "Security analysis passed: Zero vulnerabilities, PCI compliant, quality score 92/100.",
+        "quality_metrics": {
+          "overall_score": 92.0,
+          "security_score": 100,
+          "pci_compliance": true,
+          "code_smells": 0
+        },
+        "next_phase": "deployment",
+        "blockers": [],
+        "recommendations": [
+          "Code meets security standards",
+          "Ready for production deployment"
+        ]
+      }
+    },
+    {
+      "example_id": 4,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-4",
+      "drone_results": {
+        "success": true,
+        "path": "cmd/server/main.go",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 6,
+          "cognitive_complexity": 7,
+          "lines_of_code": 234,
+          "comment_ratio": 0.18,
+          "function_count": 8,
+          "class_count": 0
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "goroutine_leak",
+            "severity": 7,
+            "location": "startWorker:102",
+            "description": "Potential goroutine leak detected",
+            "suggestion": "Add proper context cancellation"
+          }
+        ],
+        "quality_score": 82.0,
+        "concurrency_issues": 1,
+        "race_conditions": 0,
+        "execution_time_ms": 15678
+      },
+      "expected_aggregated_result": {
+        "phase": "concurrency-analysis",
+        "status": "complete",
+        "summary": "Analysis complete: 1 concurrency issue detected (goroutine leak risk).",
+        "quality_metrics": {
+          "overall_score": 82.0,
+          "concurrency_safety": 85,
+          "issues_found": 1
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Add context cancellation to startWorker function",
+          "Review goroutine lifecycle management"
+        ]
+      }
+    },
+    {
+      "example_id": 5,
+      "drone_id": "code-analyzer",
+      "task_completed": "detect-duplicates-5",
+      "drone_results": {
+        "success": true,
+        "directory": "src/utils/",
+        "files_analyzed": 12,
+        "duplicates_found": 2,
+        "duplicates": [
+          {
+            "file1": "src/utils/validators.py",
+            "file2": "src/utils/sanitizers.py",
+            "duplicate_lines": 23,
+            "similarity_score": 0.78
+          },
+          {
+            "file1": "src/utils/formatters.py",
+            "file2": "src/utils/converters.py",
+            "duplicate_lines": 15,
+            "similarity_score": 0.72
+          }
+        ],
+        "duplication_percent": 4.2,
+        "execution_time_ms": 8234
+      },
+      "expected_aggregated_result": {
+        "phase": "duplication-analysis",
+        "status": "complete",
+        "summary": "Duplication analysis complete: 4.2% duplication (within 5% threshold), 2 instances.",
+        "quality_metrics": {
+          "duplication_percent": 4.2,
+          "duplicates_found": 2,
+          "refactoring_opportunities": 2
+        },
+        "next_phase": "refactor",
+        "blockers": [],
+        "recommendations": [
+          "Extract common validation logic to shared module",
+          "Consider creating base class for formatters/converters"
+        ]
+      }
+    },
+    {
+      "example_id": 6,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-dependencies-6",
+      "drone_results": {
+        "success": true,
+        "file_path": "src/",
+        "total_imports": 47,
+        "stdlib_count": 18,
+        "third_party_count": 22,
+        "local_count": 7,
+        "imports": {
+          "stdlib": ["os", "sys", "json", "typing", "pathlib"],
+          "third_party": ["fastapi", "pydantic", "redis", "celery"],
+          "local": ["src.models", "src.services", "src.utils"]
+        },
+        "circular_dependencies": 0,
+        "unused_imports": 3,
+        "execution_time_ms": 11234
+      },
+      "expected_aggregated_result": {
+        "phase": "dependency-analysis",
+        "status": "complete",
+        "summary": "Dependency analysis clean: No circular dependencies, 3 unused imports detected.",
+        "quality_metrics": {
+          "dependency_health": 95,
+          "circular_deps": 0,
+          "unused_imports": 3,
+          "architecture_score": 92
+        },
+        "next_phase": "cleanup",
+        "blockers": [],
+        "recommendations": [
+          "Remove 3 unused imports",
+          "Dependency structure is healthy"
+        ]
+      }
+    },
+    {
+      "example_id": 7,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-7",
+      "drone_results": {
+        "success": true,
+        "path": "src/database/models.py",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 12,
+          "cognitive_complexity": 14,
+          "lines_of_code": 523,
+          "comment_ratio": 0.19,
+          "function_count": 22,
+          "class_count": 8
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "n_plus_one_query",
+            "severity": 8,
+            "location": "get_user_posts:156",
+            "description": "Potential N+1 query pattern",
+            "suggestion": "Use eager loading with joinedload"
+          },
+          {
+            "smell_type": "missing_index",
+            "severity": 6,
+            "location": "User.email",
+            "description": "Frequently queried field lacks index",
+            "suggestion": "Add database index on email field"
+          },
+          {
+            "smell_type": "long_function",
+            "severity": 5,
+            "location": "migrate_data:234",
+            "description": "Function too long (72 lines)",
+            "suggestion": "Break into smaller migration steps"
+          }
+        ],
+        "quality_score": 78.5,
+        "sql_injection_safe": true,
+        "type_coverage": 91,
+        "execution_time_ms": 19876
+      },
+      "expected_aggregated_result": {
+        "phase": "database-analysis",
+        "status": "complete",
+        "summary": "Database layer analysis: 3 issues found (N+1 query, missing index, long function).",
+        "quality_metrics": {
+          "overall_score": 78.5,
+          "security_score": 100,
+          "performance_score": 72,
+          "type_coverage": 91
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Fix N+1 query in get_user_posts with eager loading",
+          "Add index on User.email field",
+          "Refactor migrate_data function"
+        ]
+      }
+    },
+    {
+      "example_id": 8,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-8",
+      "drone_results": {
+        "success": true,
+        "path": "src/components/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 9,
+          "cognitive_complexity": 11,
+          "lines_of_code": 1234,
+          "comment_ratio": 0.12,
+          "function_count": 34,
+          "class_count": 0
+        },
+        "smells_detected": 4,
+        "smells": [
+          {
+            "smell_type": "missing_deps_array",
+            "severity": 7,
+            "location": "useEffect hook:45",
+            "description": "useEffect missing dependencies",
+            "suggestion": "Add all dependencies or use useCallback"
+          },
+          {
+            "smell_type": "unnecessary_rerender",
+            "severity": 6,
+            "location": "UserList:89",
+            "description": "Component rerenders unnecessarily",
+            "suggestion": "Wrap with React.memo"
+          },
+          {
+            "smell_type": "accessibility",
+            "severity": 5,
+            "location": "Button:123",
+            "description": "Missing ARIA label",
+            "suggestion": "Add aria-label attribute"
+          },
+          {
+            "smell_type": "bundle_size",
+            "severity": 4,
+            "location": "UserDashboard",
+            "description": "Large component not code-split",
+            "suggestion": "Use React.lazy for code splitting"
+          }
+        ],
+        "quality_score": 82.0,
+        "bundle_size_kb": 487,
+        "accessibility_score": 88,
+        "execution_time_ms": 16543
+      },
+      "expected_aggregated_result": {
+        "phase": "react-analysis",
+        "status": "complete",
+        "summary": "React analysis: 4 optimization opportunities found (hooks, performance, a11y).",
+        "quality_metrics": {
+          "overall_score": 82.0,
+          "bundle_size_kb": 487,
+          "accessibility_score": 88,
+          "performance_score": 80
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Fix useEffect dependency arrays",
+          "Optimize UserList with React.memo",
+          "Improve accessibility (add ARIA labels)",
+          "Code-split UserDashboard component"
+        ]
+      }
+    },
+    {
+      "example_id": 9,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-9",
+      "drone_results": {
+        "success": true,
+        "path": "lib/api/client.rb",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 7,
+          "cognitive_complexity": 9,
+          "lines_of_code": 298,
+          "comment_ratio": 0.21,
+          "function_count": 11,
+          "class_count": 2
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "style_violation",
+            "severity": 3,
+            "location": "various",
+            "description": "Minor Rubocop style violations",
+            "suggestion": "Run rubocop --auto-correct"
+          }
+        ],
+        "quality_score": 91.0,
+        "style_score": 87,
+        "security_warnings": 0,
+        "execution_time_ms": 10234
+      },
+      "expected_aggregated_result": {
+        "phase": "ruby-analysis",
+        "status": "complete",
+        "summary": "Ruby analysis passed: Quality score 91/100, minor style violations only.",
+        "quality_metrics": {
+          "overall_score": 91.0,
+          "style_score": 87,
+          "security_score": 100,
+          "complexity": 7
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Run rubocop --auto-correct for style fixes",
+          "Code quality is excellent"
+        ]
+      }
+    },
+    {
+      "example_id": 10,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-10",
+      "drone_results": {
+        "success": true,
+        "path": "src/core/engine.cpp",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 11,
+          "cognitive_complexity": 13,
+          "lines_of_code": 678,
+          "comment_ratio": 0.16,
+          "function_count": 18,
+          "class_count": 5
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "memory_leak",
+            "severity": 9,
+            "location": "initializeBuffer:234",
+            "description": "Potential memory leak detected",
+            "suggestion": "Use unique_ptr or ensure manual deletion"
+          },
+          {
+            "smell_type": "raw_pointer",
+            "severity": 6,
+            "location": "various",
+            "description": "Raw pointers used instead of smart pointers",
+            "suggestion": "Prefer unique_ptr/shared_ptr"
+          }
+        ],
+        "quality_score": 73.0,
+        "memory_issues": 1,
+        "valgrind_clean": false,
+        "execution_time_ms": 22456
+      },
+      "expected_aggregated_result": {
+        "phase": "cpp-memory-analysis",
+        "status": "blocked",
+        "summary": "C++ analysis: Memory leak detected, requires immediate fix.",
+        "quality_metrics": {
+          "overall_score": 73.0,
+          "memory_safety": 65,
+          "issues_found": 2
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Fix memory leak in initializeBuffer",
+          "Run valgrind to confirm"
+        ],
+        "recommendations": [
+          "Replace raw pointers with smart pointers",
+          "Implement RAII pattern for resource management",
+          "Run valgrind memcheck"
+        ]
+      }
+    },
+    {
+      "example_id": 11,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-11",
+      "drone_results": {
+        "success": true,
+        "path": "app/controllers/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 10,
+          "lines_of_code": 789,
+          "comment_ratio": 0.14,
+          "function_count": 24,
+          "class_count": 6
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "fat_controller",
+            "severity": 7,
+            "location": "UsersController",
+            "description": "Controller has 156 lines (>100)",
+            "suggestion": "Extract business logic to service objects"
+          },
+          {
+            "smell_type": "n_plus_one",
+            "severity": 8,
+            "location": "index action:45",
+            "description": "N+1 query detected",
+            "suggestion": "Use includes or eager loading"
+          },
+          {
+            "smell_type": "missing_validation",
+            "severity": 5,
+            "location": "create action:89",
+            "description": "Missing input validation",
+            "suggestion": "Add strong parameters validation"
+          }
+        ],
+        "quality_score": 76.0,
+        "n_plus_one_queries": 1,
+        "security_score": 92,
+        "execution_time_ms": 17234
+      },
+      "expected_aggregated_result": {
+        "phase": "rails-analysis",
+        "status": "complete",
+        "summary": "Rails analysis: 3 issues found (fat controller, N+1 query, validation).",
+        "quality_metrics": {
+          "overall_score": 76.0,
+          "mvc_compliance": 70,
+          "security_score": 92,
+          "performance_score": 68
+        },
+        "next_phase": "refactor",
+        "blockers": [],
+        "recommendations": [
+          "Refactor UsersController (extract to service objects)",
+          "Fix N+1 query with eager loading",
+          "Add strong parameters validation"
+        ]
+      }
+    },
+    {
+      "example_id": 12,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-12",
+      "drone_results": {
+        "success": true,
+        "path": "src/middleware/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 5,
+          "cognitive_complexity": 6,
+          "lines_of_code": 234,
+          "comment_ratio": 0.19,
+          "function_count": 9,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "async_error",
+            "severity": 7,
+            "location": "authMiddleware:23",
+            "description": "Async function without try-catch",
+            "suggestion": "Add error handling wrapper"
+          },
+          {
+            "smell_type": "vulnerability",
+            "severity": 9,
+            "location": "package-lock.json",
+            "description": "High-severity vulnerability in lodash",
+            "suggestion": "Update lodash to >=4.17.21"
+          }
+        ],
+        "quality_score": 79.0,
+        "vulnerabilities": 1,
+        "async_issues": 1,
+        "execution_time_ms": 14567
+      },
+      "expected_aggregated_result": {
+        "phase": "express-analysis",
+        "status": "blocked",
+        "summary": "Express analysis: High-severity vulnerability detected, requires immediate update.",
+        "quality_metrics": {
+          "overall_score": 79.0,
+          "security_score": 70,
+          "error_handling": 75
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Update lodash dependency (high-severity CVE)"
+        ],
+        "recommendations": [
+          "Update lodash to version >=4.17.21",
+          "Add error handling to async middleware",
+          "Run npm audit fix"
+        ]
+      }
+    },
+    {
+      "example_id": 13,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-13",
+      "drone_results": {
+        "success": true,
+        "path": "pkg/handlers/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 7,
+          "cognitive_complexity": 8,
+          "lines_of_code": 456,
+          "comment_ratio": 0.17,
+          "function_count": 14,
+          "class_count": 0
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "unchecked_error",
+            "severity": 8,
+            "location": "ProcessRequest:78",
+            "description": "Error return value not checked",
+            "suggestion": "Check and handle error properly"
+          }
+        ],
+        "quality_score": 84.0,
+        "unchecked_errors": 1,
+        "linter_score": 92,
+        "test_coverage": 83,
+        "execution_time_ms": 15234
+      },
+      "expected_aggregated_result": {
+        "phase": "go-analysis",
+        "status": "complete",
+        "summary": "Go analysis: 1 unchecked error found, otherwise idiomatic code.",
+        "quality_metrics": {
+          "overall_score": 84.0,
+          "error_handling": 75,
+          "idiomatic_score": 92,
+          "test_coverage": 83
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Check error in ProcessRequest function",
+          "Code is mostly idiomatic",
+          "Good test coverage"
+        ]
+      }
+    },
+    {
+      "example_id": 14,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-14",
+      "drone_results": {
+        "success": true,
+        "path": "src/store/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 6,
+          "cognitive_complexity": 7,
+          "lines_of_code": 567,
+          "comment_ratio": 0.13,
+          "function_count": 19,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "immutability_violation",
+            "severity": 8,
+            "location": "userReducer:34",
+            "description": "Direct state mutation detected",
+            "suggestion": "Use spread operator or Immer"
+          },
+          {
+            "smell_type": "selector_inefficiency",
+            "severity": 5,
+            "location": "getUserPosts:89",
+            "description": "Selector recomputes unnecessarily",
+            "suggestion": "Use reselect createSelector"
+          }
+        ],
+        "quality_score": 81.0,
+        "immutability_violations": 1,
+        "type_safety": 100,
+        "execution_time_ms": 13456
+      },
+      "expected_aggregated_result": {
+        "phase": "redux-analysis",
+        "status": "complete",
+        "summary": "Redux analysis: Immutability violation found, selector optimization needed.",
+        "quality_metrics": {
+          "overall_score": 81.0,
+          "immutability_score": 75,
+          "type_safety": 100,
+          "selector_efficiency": 78
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Fix state mutation in userReducer",
+          "Optimize getUserPosts selector with reselect",
+          "Consider using Redux Toolkit"
+        ]
+      }
+    },
+    {
+      "example_id": 15,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-15",
+      "drone_results": {
+        "success": true,
+        "path": "src/graphql/resolvers.ts",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 9,
+          "cognitive_complexity": 11,
+          "lines_of_code": 678,
+          "comment_ratio": 0.16,
+          "function_count": 23,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "n_plus_one",
+            "severity": 9,
+            "location": "posts resolver:45",
+            "description": "N+1 query in nested resolver",
+            "suggestion": "Use DataLoader for batching"
+          },
+          {
+            "smell_type": "complexity",
+            "severity": 6,
+            "location": "searchUsers:123",
+            "description": "Resolver too complex (depth: 6)",
+            "suggestion": "Limit query depth or complexity"
+          }
+        ],
+        "quality_score": 77.0,
+        "n_plus_one_issues": 1,
+        "resolver_depth": 6,
+        "schema_violations": 0,
+        "execution_time_ms": 18234
+      },
+      "expected_aggregated_result": {
+        "phase": "graphql-analysis",
+        "status": "complete",
+        "summary": "GraphQL analysis: N+1 query detected, implement DataLoader batching.",
+        "quality_metrics": {
+          "overall_score": 77.0,
+          "performance_score": 68,
+          "schema_quality": 95,
+          "resolver_efficiency": 72
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Implement DataLoader for posts resolver",
+          "Add query depth limiting",
+          "Consider query complexity analysis"
+        ]
+      }
+    },
+    {
+      "example_id": 16,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-16",
+      "drone_results": {
+        "success": true,
+        "path": "src/workers/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 9,
+          "lines_of_code": 345,
+          "comment_ratio": 0.18,
+          "function_count": 12,
+          "class_count": 4
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "missing_retry",
+            "severity": 7,
+            "location": "processEmail:34",
+            "description": "No retry logic on failure",
+            "suggestion": "Add @retry decorator with exponential backoff"
+          },
+          {
+            "smell_type": "resource_leak",
+            "severity": 6,
+            "location": "uploadFile:89",
+            "description": "File handle not properly closed",
+            "suggestion": "Use context manager (with statement)"
+          }
+        ],
+        "quality_score": 83.0,
+        "timeout_issues": 0,
+        "retry_pattern_score": 75,
+        "resource_leaks": 1,
+        "execution_time_ms": 14234
+      },
+      "expected_aggregated_result": {
+        "phase": "worker-analysis",
+        "status": "complete",
+        "summary": "Worker analysis: Missing retry logic and resource leak detected.",
+        "quality_metrics": {
+          "overall_score": 83.0,
+          "reliability_score": 75,
+          "resource_management": 78
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Add retry logic to processEmail task",
+          "Use context manager for file operations",
+          "Ensure idempotency for all tasks"
+        ]
+      }
+    },
+    {
+      "example_id": 17,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-17",
+      "drone_results": {
+        "success": true,
+        "path": "src/test/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 4,
+          "cognitive_complexity": 5,
+          "lines_of_code": 1234,
+          "comment_ratio": 0.08,
+          "function_count": 67,
+          "class_count": 0
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "flaky_test",
+            "severity": 8,
+            "location": "testUserLogin",
+            "description": "Test has timing dependency",
+            "suggestion": "Use proper async/await or mocking"
+          },
+          {
+            "smell_type": "weak_assertion",
+            "severity": 5,
+            "location": "testDataProcessing",
+            "description": "Generic assertion (toEqual(true))",
+            "suggestion": "Use specific matchers"
+          },
+          {
+            "smell_type": "test_duplication",
+            "severity": 4,
+            "location": "multiple",
+            "description": "Repeated test setup code",
+            "suggestion": "Extract to beforeEach hook"
+          }
+        ],
+        "quality_score": 79.0,
+        "coverage": 84,
+        "flaky_tests": 1,
+        "test_smells": 3,
+        "execution_time_ms": 12345
+      },
+      "expected_aggregated_result": {
+        "phase": "test-analysis",
+        "status": "complete",
+        "summary": "Test analysis: 1 flaky test detected, coverage at 84%.",
+        "quality_metrics": {
+          "overall_score": 79.0,
+          "coverage": 84,
+          "test_quality": 75,
+          "flaky_tests": 1
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Fix flaky testUserLogin (remove timing dependency)",
+          "Improve assertion specificity",
+          "Extract common setup to hooks",
+          "Increase coverage to >=85%"
+        ]
+      }
+    },
+    {
+      "example_id": 18,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-18",
+      "drone_results": {
+        "success": true,
+        "path": "src/ml/models.py",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 10,
+          "cognitive_complexity": 12,
+          "lines_of_code": 567,
+          "comment_ratio": 0.20,
+          "function_count": 15,
+          "class_count": 3
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "data_leakage",
+            "severity": 10,
+            "location": "prepare_features:45",
+            "description": "Feature scaling on full dataset",
+            "suggestion": "Fit scaler on train set only"
+          },
+          {
+            "smell_type": "missing_seed",
+            "severity": 6,
+            "location": "train_model:89",
+            "description": "Random operations without seed",
+            "suggestion": "Set random seed for reproducibility"
+          }
+        ],
+        "quality_score": 74.0,
+        "data_leakage_risk": 1,
+        "reproducibility_score": 70,
+        "type_coverage": 87,
+        "execution_time_ms": 19876
+      },
+      "expected_aggregated_result": {
+        "phase": "ml-analysis",
+        "status": "blocked",
+        "summary": "ML analysis: Critical data leakage detected, must fix before training.",
+        "quality_metrics": {
+          "overall_score": 74.0,
+          "data_integrity": 60,
+          "reproducibility": 70,
+          "type_coverage": 87
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Fix data leakage in feature preparation"
+        ],
+        "recommendations": [
+          "Fit scaler on training data only",
+          "Set random seeds for reproducibility",
+          "Document data preprocessing pipeline"
+        ]
+      }
+    },
+    {
+      "example_id": 19,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-19",
+      "drone_results": {
+        "success": true,
+        "path": "terraform/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 456,
+          "comment_ratio": 0.12,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "security_group_open",
+            "severity": 9,
+            "location": "security_groups.tf:23",
+            "description": "Security group allows 0.0.0.0/0",
+            "suggestion": "Restrict to specific IP ranges"
+          },
+          {
+            "smell_type": "unencrypted_storage",
+            "severity": 8,
+            "location": "s3.tf:45",
+            "description": "S3 bucket encryption not enabled",
+            "suggestion": "Enable server-side encryption"
+          },
+          {
+            "smell_type": "hardcoded_value",
+            "severity": 5,
+            "location": "ec2.tf:78",
+            "description": "Hardcoded instance type",
+            "suggestion": "Use variable for flexibility"
+          }
+        ],
+        "quality_score": 68.0,
+        "security_issues": 2,
+        "compliance_score": 75,
+        "execution_time_ms": 21234
+      },
+      "expected_aggregated_result": {
+        "phase": "iac-analysis",
+        "status": "blocked",
+        "summary": "IaC analysis: Critical security issues found (open security group, unencrypted S3).",
+        "quality_metrics": {
+          "overall_score": 68.0,
+          "security_score": 60,
+          "compliance_score": 75,
+          "best_practices": 72
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Restrict security group ingress",
+          "Enable S3 bucket encryption"
+        ],
+        "recommendations": [
+          "Restrict security group to specific IPs",
+          "Enable S3 server-side encryption",
+          "Parameterize hardcoded values",
+          "Run checkov for compliance scan"
+        ]
+      }
+    },
+    {
+      "example_id": 20,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-20",
+      "drone_results": {
+        "success": true,
+        "path": "Dockerfile",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 45,
+          "comment_ratio": 0.11,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "base_image_version",
+            "severity": 6,
+            "location": "line 1",
+            "description": "Using 'latest' tag for base image",
+            "suggestion": "Pin to specific version"
+          },
+          {
+            "smell_type": "layer_optimization",
+            "severity": 5,
+            "location": "lines 15-25",
+            "description": "Multiple RUN commands can be combined",
+            "suggestion": "Combine RUN commands to reduce layers"
+          }
+        ],
+        "quality_score": 85.0,
+        "image_size_mb": 432,
+        "vulnerabilities": 0,
+        "layer_count": 18,
+        "execution_time_ms": 9876
+      },
+      "expected_aggregated_result": {
+        "phase": "docker-analysis",
+        "status": "complete",
+        "summary": "Docker analysis: Image could be optimized (pin versions, reduce layers).",
+        "quality_metrics": {
+          "overall_score": 85.0,
+          "image_size_mb": 432,
+          "security_score": 95,
+          "optimization_score": 78
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Pin base image to specific version",
+          "Combine RUN commands to reduce layers",
+          "Consider multi-stage build",
+          "Target image size: <400MB"
+        ]
+      }
+    },
+    {
+      "example_id": 21,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-21",
+      "drone_results": {
+        "success": true,
+        "path": ".github/workflows/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 234,
+          "comment_ratio": 0.14,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "unpinned_action",
+            "severity": 7,
+            "location": "ci.yml:23",
+            "description": "Action not pinned to SHA",
+            "suggestion": "Pin to commit SHA for security"
+          },
+          {
+            "smell_type": "missing_cache",
+            "severity": 4,
+            "location": "build job",
+            "description": "No dependency caching",
+            "suggestion": "Add actions/cache for node_modules"
+          }
+        ],
+        "quality_score": 82.0,
+        "security_issues": 0,
+        "unpinned_actions": 1,
+        "pipeline_efficiency": 78,
+        "execution_time_ms": 11234
+      },
+      "expected_aggregated_result": {
+        "phase": "cicd-analysis",
+        "status": "complete",
+        "summary": "CI/CD analysis: Action version pinning and caching improvements needed.",
+        "quality_metrics": {
+          "overall_score": 82.0,
+          "security_score": 90,
+          "efficiency_score": 78
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Pin GitHub Actions to commit SHA",
+          "Add dependency caching",
+          "Consider workflow parallelization"
+        ]
+      }
+    },
+    {
+      "example_id": 22,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-22",
+      "drone_results": {
+        "success": true,
+        "path": "src/config/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 123,
+          "comment_ratio": 0.16,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "exposed_secret",
+            "severity": 10,
+            "location": "database.yml:12",
+            "description": "Database password in plain text",
+            "suggestion": "Use environment variables or secrets manager"
+          }
+        ],
+        "quality_score": 55.0,
+        "schema_violations": 0,
+        "secrets_found": 1,
+        "execution_time_ms": 7234
+      },
+      "expected_aggregated_result": {
+        "phase": "config-analysis",
+        "status": "blocked",
+        "summary": "Config analysis: CRITICAL - Secret exposed in configuration file.",
+        "quality_metrics": {
+          "overall_score": 55.0,
+          "security_score": 20,
+          "schema_validity": 100
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Remove exposed database password"
+        ],
+        "recommendations": [
+          "Move password to environment variable",
+          "Use secrets management service",
+          "Rotate exposed credentials immediately",
+          "Add pre-commit hook for secret detection"
+        ]
+      }
+    },
+    {
+      "example_id": 23,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-23",
+      "drone_results": {
+        "success": true,
+        "path": "src/api/openapi.yaml",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 567,
+          "comment_ratio": 0.22,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "missing_examples",
+            "severity": 5,
+            "location": "User schema",
+            "description": "Schema lacks examples",
+            "suggestion": "Add example values for clarity"
+          },
+          {
+            "smell_type": "incomplete_responses",
+            "severity": 6,
+            "location": "POST /users:234",
+            "description": "Missing 400/500 response definitions",
+            "suggestion": "Document all possible responses"
+          }
+        ],
+        "quality_score": 87.0,
+        "spec_errors": 0,
+        "completeness_score": 88,
+        "security_score": 95,
+        "execution_time_ms": 13456
+      },
+      "expected_aggregated_result": {
+        "phase": "api-spec-analysis",
+        "status": "complete",
+        "summary": "API spec analysis: Minor improvements needed (examples, error responses).",
+        "quality_metrics": {
+          "overall_score": 87.0,
+          "completeness": 88,
+          "security_score": 95,
+          "spec_validity": 100
+        },
+        "next_phase": "documentation",
+        "blockers": [],
+        "recommendations": [
+          "Add examples to schemas",
+          "Document all error responses",
+          "Spec is valid and mostly complete"
+        ]
+      }
+    },
+    {
+      "example_id": 24,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-24",
+      "drone_results": {
+        "success": true,
+        "path": "src/database/migrations/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 234,
+          "comment_ratio": 0.18,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "destructive_change",
+            "severity": 9,
+            "location": "20230615_drop_column.sql",
+            "description": "Column drop without backup",
+            "suggestion": "Add data migration before dropping"
+          },
+          {
+            "smell_type": "blocking_index",
+            "severity": 7,
+            "location": "20230618_add_index.sql",
+            "description": "Index created without CONCURRENTLY",
+            "suggestion": "Use CREATE INDEX CONCURRENTLY"
+          }
+        ],
+        "quality_score": 72.0,
+        "destructive_operations": 1,
+        "rollback_issues": 0,
+        "safety_score": 70,
+        "execution_time_ms": 16234
+      },
+      "expected_aggregated_result": {
+        "phase": "migration-analysis",
+        "status": "blocked",
+        "summary": "Migration analysis: Destructive change detected, data loss risk.",
+        "quality_metrics": {
+          "overall_score": 72.0,
+          "safety_score": 70,
+          "rollback_safety": 85
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Add data migration before column drop"
+        ],
+        "recommendations": [
+          "Backup data before dropping column",
+          "Use CREATE INDEX CONCURRENTLY",
+          "Add rollback script",
+          "Test on staging first"
+        ]
+      }
+    },
+    {
+      "example_id": 25,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-dependencies-25",
+      "drone_results": {
+        "success": true,
+        "total_imports": 67,
+        "stdlib_count": 23,
+        "third_party_count": 35,
+        "local_count": 9,
+        "vulnerabilities": {
+          "critical": 0,
+          "high": 2,
+          "medium": 5,
+          "low": 12
+        },
+        "outdated_packages": 8,
+        "license_issues": 0,
+        "execution_time_ms": 14567
+      },
+      "expected_aggregated_result": {
+        "phase": "dependency-audit",
+        "status": "complete",
+        "summary": "Dependency audit: 2 high-severity vulnerabilities, 8 outdated packages.",
+        "quality_metrics": {
+          "security_score": 75,
+          "maintenance_score": 70,
+          "license_compliance": 100
+        },
+        "next_phase": "update",
+        "blockers": [],
+        "recommendations": [
+          "Update 2 packages with high-severity vulnerabilities",
+          "Consider updating 8 outdated packages",
+          "License compliance is good"
+        ]
+      }
+    },
+    {
+      "example_id": 26,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-dependencies-26",
+      "drone_results": {
+        "success": true,
+        "total_imports": 89,
+        "stdlib_count": 34,
+        "third_party_count": 45,
+        "local_count": 10,
+        "vulnerabilities": {
+          "critical": 0,
+          "high": 0,
+          "medium": 0,
+          "low": 3
+        },
+        "outdated_packages": 4,
+        "python_compatibility": "3.8+",
+        "conflicts": 0,
+        "execution_time_ms": 11234
+      },
+      "expected_aggregated_result": {
+        "phase": "python-deps-analysis",
+        "status": "complete",
+        "summary": "Python dependencies healthy: No critical vulnerabilities, compatible with Python 3.8+.",
+        "quality_metrics": {
+          "security_score": 95,
+          "compatibility": 100,
+          "maintenance_score": 88
+        },
+        "next_phase": "deployment",
+        "blockers": [],
+        "recommendations": [
+          "Dependencies are secure",
+          "Consider updating 4 outdated packages",
+          "Python 3.8+ compatibility confirmed"
+        ]
+      }
+    },
+    {
+      "example_id": 27,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-27",
+      "drone_results": {
+        "success": true,
+        "path": "src/styles/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 2345,
+          "comment_ratio": 0.08,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "unused_styles",
+            "severity": 5,
+            "location": "various",
+            "description": "23% of styles unused",
+            "suggestion": "Run PurgeCSS to remove unused styles"
+          },
+          {
+            "smell_type": "specificity_issue",
+            "severity": 6,
+            "location": ".user-profile",
+            "description": "High specificity (0,4,2)",
+            "suggestion": "Simplify selectors"
+          },
+          {
+            "smell_type": "bundle_size",
+            "severity": 7,
+            "location": "main.css",
+            "description": "Bundle size 178KB (>150KB)",
+            "suggestion": "Split CSS or purge unused"
+          }
+        ],
+        "quality_score": 74.0,
+        "bundle_size_kb": 178,
+        "unused_percent": 23,
+        "execution_time_ms": 10234
+      },
+      "expected_aggregated_result": {
+        "phase": "css-analysis",
+        "status": "complete",
+        "summary": "CSS analysis: Bundle size exceeds threshold, 23% unused styles.",
+        "quality_metrics": {
+          "overall_score": 74.0,
+          "bundle_size_kb": 178,
+          "optimization_score": 68
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Run PurgeCSS to remove 23% unused styles",
+          "Reduce bundle size to <150KB",
+          "Simplify high-specificity selectors"
+        ]
+      }
+    },
+    {
+      "example_id": 28,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-28",
+      "drone_results": {
+        "success": true,
+        "path": "src/services/cache.rs",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 7,
+          "cognitive_complexity": 8,
+          "lines_of_code": 456,
+          "comment_ratio": 0.19,
+          "function_count": 14,
+          "class_count": 0
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "unsafe_block",
+            "severity": 7,
+            "location": "direct_memory_access:123",
+            "description": "Unsafe block for performance",
+            "suggestion": "Document safety invariants"
+          }
+        ],
+        "quality_score": 88.0,
+        "unsafe_blocks": 1,
+        "clippy_warnings": 3,
+        "safety_score": 92,
+        "execution_time_ms": 17234
+      },
+      "expected_aggregated_result": {
+        "phase": "rust-analysis",
+        "status": "complete",
+        "summary": "Rust analysis: Minimal unsafe code, good safety score 92/100.",
+        "quality_metrics": {
+          "overall_score": 88.0,
+          "safety_score": 92,
+          "idiomatic_score": 90
+        },
+        "next_phase": "review",
+        "blockers": [],
+        "recommendations": [
+          "Document safety invariants for unsafe block",
+          "Address 3 clippy warnings",
+          "Code is idiomatic and safe"
+        ]
+      }
+    },
+    {
+      "example_id": 29,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-29",
+      "drone_results": {
+        "success": true,
+        "path": "src/main/scala/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 6,
+          "cognitive_complexity": 7,
+          "lines_of_code": 567,
+          "comment_ratio": 0.17,
+          "function_count": 18,
+          "class_count": 5
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "mutable_var",
+            "severity": 6,
+            "location": "ProcessData:45",
+            "description": "Using var instead of val",
+            "suggestion": "Prefer immutable val"
+          },
+          {
+            "smell_type": "null_usage",
+            "severity": 8,
+            "location": "getUserName:78",
+            "description": "Returning null instead of Option",
+            "suggestion": "Use Option[String]"
+          }
+        ],
+        "quality_score": 81.0,
+        "mutable_vars": 3,
+        "null_usage": 1,
+        "functional_score": 82,
+        "execution_time_ms": 14567
+      },
+      "expected_aggregated_result": {
+        "phase": "scala-analysis",
+        "status": "complete",
+        "summary": "Scala analysis: Null usage and mutable vars detected, prefer functional patterns.",
+        "quality_metrics": {
+          "overall_score": 81.0,
+          "functional_score": 82,
+          "immutability_score": 75
+        },
+        "next_phase": "refactor",
+        "blockers": [],
+        "recommendations": [
+          "Replace null with Option type",
+          "Prefer val over var for immutability",
+          "Good functional programming patterns overall"
+        ]
+      }
+    },
+    {
+      "example_id": 30,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-30",
+      "drone_results": {
+        "success": true,
+        "path": "lib/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 9,
+          "lines_of_code": 678,
+          "comment_ratio": 0.21,
+          "function_count": 23,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "supervisor_issue",
+            "severity": 7,
+            "location": "MyApp.Supervisor",
+            "description": "Supervisor without restart strategy",
+            "suggestion": "Define :one_for_one or :rest_for_one"
+          },
+          {
+            "smell_type": "missing_typespec",
+            "severity": 5,
+            "location": "process_data/2",
+            "description": "Function lacks typespec",
+            "suggestion": "Add @spec annotation"
+          }
+        ],
+        "quality_score": 84.0,
+        "credo_score": 87,
+        "dialyzer_warnings": 2,
+        "security_issues": 0,
+        "execution_time_ms": 15234
+      },
+      "expected_aggregated_result": {
+        "phase": "elixir-analysis",
+        "status": "complete",
+        "summary": "Elixir analysis: Supervisor needs restart strategy, add typespecs.",
+        "quality_metrics": {
+          "overall_score": 84.0,
+          "otp_design": 78,
+          "type_coverage": 82,
+          "credo_score": 87
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Add restart strategy to supervisor",
+          "Complete typespecs for better tooling",
+          "OTP design is mostly correct"
+        ]
+      }
+    },
+    {
+      "example_id": 31,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-31",
+      "drone_results": {
+        "success": true,
+        "path": "src/main/kotlin/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 7,
+          "cognitive_complexity": 8,
+          "lines_of_code": 456,
+          "comment_ratio": 0.16,
+          "function_count": 15,
+          "class_count": 4
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "force_cast",
+            "severity": 7,
+            "location": "processUser:34",
+            "description": "Forced cast (as) without safety",
+            "suggestion": "Use safe cast (as?) with null check"
+          }
+        ],
+        "quality_score": 86.0,
+        "null_safety_violations": 0,
+        "coroutine_issues": 0,
+        "code_quality": 88,
+        "execution_time_ms": 13456
+      },
+      "expected_aggregated_result": {
+        "phase": "kotlin-analysis",
+        "status": "complete",
+        "summary": "Kotlin analysis: Good null safety, one unsafe cast detected.",
+        "quality_metrics": {
+          "overall_score": 86.0,
+          "null_safety": 95,
+          "coroutine_usage": 90,
+          "idiomatic_score": 88
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Replace forced cast with safe cast",
+          "Null safety is excellent",
+          "Idiomatic Kotlin code"
+        ]
+      }
+    },
+    {
+      "example_id": 32,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-32",
+      "drone_results": {
+        "success": true,
+        "path": "Sources/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 9,
+          "lines_of_code": 567,
+          "comment_ratio": 0.18,
+          "function_count": 19,
+          "class_count": 6
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "forced_unwrap",
+            "severity": 8,
+            "location": "loadUser:45",
+            "description": "Forced unwrapping with !",
+            "suggestion": "Use optional binding or guard"
+          },
+          {
+            "smell_type": "retain_cycle",
+            "severity": 9,
+            "location": "ViewController:123",
+            "description": "Strong reference cycle detected",
+            "suggestion": "Use [weak self] in closure"
+          }
+        ],
+        "quality_score": 76.0,
+        "forced_unwraps": 5,
+        "retain_cycles": 1,
+        "code_quality": 82,
+        "execution_time_ms": 16234
+      },
+      "expected_aggregated_result": {
+        "phase": "swift-analysis",
+        "status": "blocked",
+        "summary": "Swift analysis: Retain cycle detected, multiple forced unwraps.",
+        "quality_metrics": {
+          "overall_score": 76.0,
+          "memory_safety": 70,
+          "optional_handling": 72
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Fix retain cycle in ViewController"
+        ],
+        "recommendations": [
+          "Use [weak self] to fix retain cycle",
+          "Replace forced unwraps with safe unwrapping",
+          "Consider using guard statements"
+        ]
+      }
+    },
+    {
+      "example_id": 33,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-33",
+      "drone_results": {
+        "success": true,
+        "path": "src/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 9,
+          "cognitive_complexity": 11,
+          "lines_of_code": 1234,
+          "comment_ratio": 0.14,
+          "function_count": 34,
+          "class_count": 8
+        },
+        "profiling": {
+          "cpu_hotspots": [
+            {"function": "process_data", "cpu_percent": 34.5},
+            {"function": "validate_input", "cpu_percent": 18.2}
+          ],
+          "memory_hotspots": [
+            {"function": "load_dataset", "memory_mb": 245}
+          ],
+          "io_bottlenecks": [
+            {"function": "save_results", "io_time_ms": 1234}
+          ]
+        },
+        "quality_score": 79.0,
+        "memory_leaks": 0,
+        "optimization_score": 72,
+        "execution_time_ms": 23456
+      },
+      "expected_aggregated_result": {
+        "phase": "performance-profiling",
+        "status": "complete",
+        "summary": "Performance analysis: CPU hotspots identified, optimization opportunities found.",
+        "quality_metrics": {
+          "overall_score": 79.0,
+          "performance_score": 72,
+          "memory_efficiency": 75
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Optimize process_data function (34.5% CPU)",
+          "Consider caching in validate_input",
+          "Stream large datasets instead of loading all at once",
+          "Batch writes in save_results"
+        ]
+      }
+    },
+    {
+      "example_id": 34,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-34",
+      "drone_results": {
+        "success": true,
+        "path": "docs/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 3456,
+          "comment_ratio": 0.95,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "documentation_issues": {
+          "broken_links": 3,
+          "spelling_errors": 12,
+          "grammar_issues": 8,
+          "code_examples_invalid": 2,
+          "api_coverage": 87
+        },
+        "quality_score": 82.0,
+        "execution_time_ms": 11234
+      },
+      "expected_aggregated_result": {
+        "phase": "documentation-analysis",
+        "status": "complete",
+        "summary": "Documentation analysis: 3 broken links, 2 invalid code examples, 87% API coverage.",
+        "quality_metrics": {
+          "overall_score": 82.0,
+          "completeness": 87,
+          "accuracy": 75
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Fix 3 broken links",
+          "Update 2 invalid code examples",
+          "Correct spelling/grammar errors",
+          "Improve API coverage to >=90%"
+        ]
+      }
+    },
+    {
+      "example_id": 35,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-35",
+      "drone_results": {
+        "success": true,
+        "path": "src/async/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 10,
+          "cognitive_complexity": 12,
+          "lines_of_code": 456,
+          "comment_ratio": 0.17,
+          "function_count": 15,
+          "class_count": 4
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "race_condition",
+            "severity": 10,
+            "location": "update_counter:45",
+            "description": "Unsynchronized access to shared state",
+            "suggestion": "Add lock or use atomic operations"
+          },
+          {
+            "smell_type": "deadlock_risk",
+            "severity": 9,
+            "location": "process_queue:89",
+            "description": "Potential deadlock from nested locks",
+            "suggestion": "Restructure locking order"
+          }
+        ],
+        "quality_score": 65.0,
+        "race_conditions": 1,
+        "deadlock_risks": 1,
+        "thread_safety_score": 60,
+        "execution_time_ms": 19876
+      },
+      "expected_aggregated_result": {
+        "phase": "concurrency-analysis",
+        "status": "blocked",
+        "summary": "Concurrency analysis: CRITICAL - Race condition and deadlock risk detected.",
+        "quality_metrics": {
+          "overall_score": 65.0,
+          "thread_safety": 60,
+          "correctness": 65
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Fix race condition in update_counter",
+          "Resolve deadlock risk in process_queue"
+        ],
+        "recommendations": [
+          "Add proper synchronization to shared state",
+          "Restructure locking to prevent deadlock",
+          "Run thread sanitizer tests",
+          "Consider using higher-level concurrency primitives"
+        ]
+      }
+    },
+    {
+      "example_id": 36,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-36",
+      "drone_results": {
+        "success": true,
+        "path": "src/lambda/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 6,
+          "cognitive_complexity": 7,
+          "lines_of_code": 234,
+          "comment_ratio": 0.15,
+          "function_count": 8,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "cold_start",
+            "severity": 7,
+            "location": "handler.js",
+            "description": "Large bundle causing slow cold starts",
+            "suggestion": "Use layer for dependencies"
+          },
+          {
+            "smell_type": "iam_overpermission",
+            "severity": 8,
+            "location": "serverless.yml",
+            "description": "Lambda has full S3 access",
+            "suggestion": "Restrict to specific bucket/actions"
+          }
+        ],
+        "quality_score": 78.0,
+        "bundle_size_mb": 48,
+        "cold_start_ms": 1234,
+        "security_score": 75,
+        "execution_time_ms": 18234
+      },
+      "expected_aggregated_result": {
+        "phase": "serverless-analysis",
+        "status": "complete",
+        "summary": "Serverless analysis: Cold start optimization needed, IAM overpermissive.",
+        "quality_metrics": {
+          "overall_score": 78.0,
+          "performance_score": 72,
+          "security_score": 75
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Move dependencies to Lambda layer",
+          "Restrict IAM permissions to specific resources",
+          "Consider provisioned concurrency for critical paths",
+          "Target cold start <1000ms"
+        ]
+      }
+    },
+    {
+      "example_id": 37,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-37",
+      "drone_results": {
+        "success": true,
+        "path": "src/mobile/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 10,
+          "lines_of_code": 2345,
+          "comment_ratio": 0.11,
+          "function_count": 67,
+          "class_count": 0
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "performance",
+            "severity": 8,
+            "location": "UserList:45",
+            "description": "Rendering drops below 60fps",
+            "suggestion": "Use FlatList virtualization"
+          },
+          {
+            "smell_type": "memory_leak",
+            "severity": 7,
+            "location": "ScreenNavigator:89",
+            "description": "Event listeners not cleaned up",
+            "suggestion": "Add cleanup in useEffect"
+          },
+          {
+            "smell_type": "accessibility",
+            "severity": 6,
+            "location": "CustomButton",
+            "description": "Missing accessibility labels",
+            "suggestion": "Add accessibilityLabel prop"
+          }
+        ],
+        "quality_score": 74.0,
+        "js_thread_utilization": 78,
+        "memory_mb": 187,
+        "accessibility_score": 72,
+        "execution_time_ms": 21234
+      },
+      "expected_aggregated_result": {
+        "phase": "mobile-analysis",
+        "status": "complete",
+        "summary": "Mobile analysis: Performance issues, memory leak, accessibility gaps.",
+        "quality_metrics": {
+          "overall_score": 74.0,
+          "performance_score": 70,
+          "memory_efficiency": 82,
+          "accessibility": 72
+        },
+        "next_phase": "optimization",
+        "blockers": [],
+        "recommendations": [
+          "Optimize UserList with FlatList",
+          "Fix event listener cleanup",
+          "Add accessibility labels",
+          "Target 60fps sustained"
+        ]
+      }
+    },
+    {
+      "example_id": 38,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-38",
+      "drone_results": {
+        "success": true,
+        "path": "src/microservices/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 9,
+          "cognitive_complexity": 11,
+          "lines_of_code": 1567,
+          "comment_ratio": 0.16,
+          "function_count": 45,
+          "class_count": 12
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "boundary_violation",
+            "severity": 9,
+            "location": "OrderService",
+            "description": "Direct database access from multiple services",
+            "suggestion": "Implement database per service pattern"
+          },
+          {
+            "smell_type": "missing_circuit_breaker",
+            "severity": 8,
+            "location": "PaymentClient:45",
+            "description": "No circuit breaker for external calls",
+            "suggestion": "Add Resilience4j circuit breaker"
+          },
+          {
+            "smell_type": "observability",
+            "severity": 6,
+            "location": "various",
+            "description": "Missing distributed tracing",
+            "suggestion": "Add OpenTelemetry instrumentation"
+          }
+        ],
+        "quality_score": 72.0,
+        "boundary_violations": 1,
+        "resilience_score": 68,
+        "observability_score": 70,
+        "execution_time_ms": 24567
+      },
+      "expected_aggregated_result": {
+        "phase": "microservice-analysis",
+        "status": "complete",
+        "summary": "Microservice analysis: Boundary violation, missing resilience patterns.",
+        "quality_metrics": {
+          "overall_score": 72.0,
+          "architecture_score": 65,
+          "resilience_score": 68,
+          "observability": 70
+        },
+        "next_phase": "refactor",
+        "blockers": [],
+        "recommendations": [
+          "Enforce service boundaries (database per service)",
+          "Add circuit breakers for external calls",
+          "Implement distributed tracing",
+          "Add health checks and readiness probes"
+        ]
+      }
+    },
+    {
+      "example_id": 39,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-39",
+      "drone_results": {
+        "success": true,
+        "path": "src/blockchain/contracts/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 12,
+          "cognitive_complexity": 15,
+          "lines_of_code": 456,
+          "comment_ratio": 0.24,
+          "function_count": 15,
+          "class_count": 3
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "reentrancy",
+            "severity": 10,
+            "location": "withdraw:45",
+            "description": "Reentrancy vulnerability detected",
+            "suggestion": "Use checks-effects-interactions pattern"
+          },
+          {
+            "smell_type": "gas_optimization",
+            "severity": 6,
+            "location": "processArray:89",
+            "description": "Inefficient loop over storage array",
+            "suggestion": "Cache array length, use memory"
+          }
+        ],
+        "quality_score": 68.0,
+        "critical_vulnerabilities": 1,
+        "gas_optimization_score": 75,
+        "security_score": 65,
+        "execution_time_ms": 28234
+      },
+      "expected_aggregated_result": {
+        "phase": "smart-contract-analysis",
+        "status": "blocked",
+        "summary": "Smart contract analysis: CRITICAL - Reentrancy vulnerability detected.",
+        "quality_metrics": {
+          "overall_score": 68.0,
+          "security_score": 65,
+          "gas_efficiency": 75
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Fix reentrancy vulnerability in withdraw function"
+        ],
+        "recommendations": [
+          "Implement checks-effects-interactions pattern",
+          "Add ReentrancyGuard modifier",
+          "Optimize gas usage in loops",
+          "Run security audit before deployment",
+          "Add comprehensive test coverage for attack vectors"
+        ]
+      }
+    },
+    {
+      "example_id": 40,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-40",
+      "drone_results": {
+        "success": true,
+        "path": "notebooks/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 5,
+          "cognitive_complexity": 6,
+          "lines_of_code": 567,
+          "comment_ratio": 0.28,
+          "function_count": 23,
+          "class_count": 0
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "out_of_order",
+            "severity": 7,
+            "location": "analysis.ipynb",
+            "description": "Cells executed out of order",
+            "suggestion": "Restart kernel and run all"
+          },
+          {
+            "smell_type": "code_quality",
+            "severity": 5,
+            "location": "various cells",
+            "description": "Duplicate code across cells",
+            "suggestion": "Extract to functions"
+          }
+        ],
+        "quality_score": 76.0,
+        "out_of_order_cells": 3,
+        "code_quality_score": 72,
+        "reproducibility_score": 70,
+        "execution_time_ms": 13456
+      },
+      "expected_aggregated_result": {
+        "phase": "jupyter-analysis",
+        "status": "complete",
+        "summary": "Jupyter analysis: Cells out of order, code duplication found.",
+        "quality_metrics": {
+          "overall_score": 76.0,
+          "reproducibility": 70,
+          "code_quality": 72
+        },
+        "next_phase": "cleanup",
+        "blockers": [],
+        "recommendations": [
+          "Restart kernel and run all cells in order",
+          "Extract repeated code to functions",
+          "Use jupytext for version control",
+          "Add requirements.txt for dependencies"
+        ]
+      }
+    },
+    {
+      "example_id": 41,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-41",
+      "drone_results": {
+        "success": true,
+        "path": "proto/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 0,
+          "cognitive_complexity": 0,
+          "lines_of_code": 234,
+          "comment_ratio": 0.19,
+          "function_count": 0,
+          "class_count": 0
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "breaking_change",
+            "severity": 9,
+            "location": "user.proto:23",
+            "description": "Field number changed (breaking)",
+            "suggestion": "Use new field number for new field"
+          }
+        ],
+        "quality_score": 75.0,
+        "breaking_changes": 1,
+        "lint_errors": 0,
+        "compatibility_score": 70,
+        "execution_time_ms": 9876
+      },
+      "expected_aggregated_result": {
+        "phase": "protobuf-analysis",
+        "status": "blocked",
+        "summary": "Protobuf analysis: Breaking change detected (field number changed).",
+        "quality_metrics": {
+          "overall_score": 75.0,
+          "compatibility": 70,
+          "conventions": 100
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Revert breaking field number change"
+        ],
+        "recommendations": [
+          "Restore original field number",
+          "Add new field with new number",
+          "Mark old field as deprecated if needed",
+          "Run backward compatibility tests"
+        ]
+      }
+    },
+    {
+      "example_id": 42,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-42",
+      "drone_results": {
+        "success": true,
+        "path": "src/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 11,
+          "cognitive_complexity": 14,
+          "lines_of_code": 3456,
+          "comment_ratio": 0.13,
+          "function_count": 89,
+          "class_count": 23
+        },
+        "security_scan": {
+          "critical_vulns": 1,
+          "high_severity_vulns": 2,
+          "medium_severity_vulns": 5,
+          "low_severity_vulns": 12,
+          "secrets_exposed": 0,
+          "owasp_top_10": {
+            "sql_injection": 0,
+            "xss": 1,
+            "csrf": 0,
+            "insecure_deserialization": 1
+          }
+        },
+        "quality_score": 62.0,
+        "security_score": 65,
+        "execution_time_ms": 26789
+      },
+      "expected_aggregated_result": {
+        "phase": "security-scan",
+        "status": "blocked",
+        "summary": "Security scan: 1 critical, 2 high-severity vulnerabilities detected.",
+        "quality_metrics": {
+          "overall_score": 62.0,
+          "security_score": 65,
+          "owasp_compliance": 70
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Fix critical vulnerability",
+          "Fix 2 high-severity vulnerabilities"
+        ],
+        "recommendations": [
+          "Fix XSS vulnerability immediately",
+          "Address insecure deserialization",
+          "Remediate high-severity issues",
+          "Run penetration testing after fixes"
+        ]
+      }
+    },
+    {
+      "example_id": 43,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-43",
+      "drone_results": {
+        "success": true,
+        "path": "src/api/versioning/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 7,
+          "cognitive_complexity": 8,
+          "lines_of_code": 456,
+          "comment_ratio": 0.17,
+          "function_count": 15,
+          "class_count": 4
+        },
+        "smells_detected": 1,
+        "smells": [
+          {
+            "smell_type": "breaking_change",
+            "severity": 8,
+            "location": "v2/users.py",
+            "description": "Response format changed without version bump",
+            "suggestion": "Bump to v3 or maintain v2 compatibility"
+          }
+        ],
+        "quality_score": 78.0,
+        "breaking_changes": 1,
+        "deprecation_coverage": 100,
+        "compatibility_score": 75,
+        "execution_time_ms": 14234
+      },
+      "expected_aggregated_result": {
+        "phase": "api-versioning-analysis",
+        "status": "complete",
+        "summary": "API versioning: Breaking change in v2, should be v3.",
+        "quality_metrics": {
+          "overall_score": 78.0,
+          "compatibility": 75,
+          "versioning_strategy": 80
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Create v3 endpoint for breaking change",
+          "Maintain v2 backward compatibility",
+          "Document migration path",
+          "Add deprecation warnings to v2"
+        ]
+      }
+    },
+    {
+      "example_id": 44,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-44",
+      "drone_results": {
+        "success": true,
+        "path": "src/logging/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 6,
+          "cognitive_complexity": 7,
+          "lines_of_code": 345,
+          "comment_ratio": 0.16,
+          "function_count": 12,
+          "class_count": 3
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "unstructured_log",
+            "severity": 6,
+            "location": "processRequest:45",
+            "description": "String formatting instead of structured",
+            "suggestion": "Use structured logging with fields"
+          },
+          {
+            "smell_type": "missing_trace",
+            "severity": 7,
+            "location": "various",
+            "description": "Trace context not propagated",
+            "suggestion": "Add trace ID to all log entries"
+          }
+        ],
+        "quality_score": 81.0,
+        "unstructured_logs": 12,
+        "missing_traces": 8,
+        "observability_score": 78,
+        "execution_time_ms": 15234
+      },
+      "expected_aggregated_result": {
+        "phase": "observability-analysis",
+        "status": "complete",
+        "summary": "Observability analysis: Unstructured logs, trace context gaps.",
+        "quality_metrics": {
+          "overall_score": 81.0,
+          "observability": 78,
+          "structured_logging": 70
+        },
+        "next_phase": "improvement",
+        "blockers": [],
+        "recommendations": [
+          "Convert to structured logging",
+          "Propagate trace context throughout",
+          "Add consistent log levels",
+          "Implement correlation IDs"
+        ]
+      }
+    },
+    {
+      "example_id": 45,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-45",
+      "drone_results": {
+        "success": true,
+        "path": "src/caching/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 9,
+          "lines_of_code": 456,
+          "comment_ratio": 0.15,
+          "function_count": 14,
+          "class_count": 3
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "invalidation",
+            "severity": 8,
+            "location": "updateUser:34",
+            "description": "Cache updated without invalidation",
+            "suggestion": "Invalidate related cache entries"
+          },
+          {
+            "smell_type": "stampede_risk",
+            "severity": 7,
+            "location": "getPopularPosts:78",
+            "description": "No cache stampede protection",
+            "suggestion": "Use locking or probabilistic early expiration"
+          }
+        ],
+        "quality_score": 77.0,
+        "invalidation_issues": 1,
+        "stampede_risks": 1,
+        "consistency_score": 75,
+        "execution_time_ms": 13456
+      },
+      "expected_aggregated_result": {
+        "phase": "cache-analysis",
+        "status": "complete",
+        "summary": "Cache analysis: Invalidation issue and stampede risk detected.",
+        "quality_metrics": {
+          "overall_score": 77.0,
+          "consistency": 75,
+          "reliability": 78
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Add cache invalidation on updates",
+          "Implement stampede prevention",
+          "Consider cache-aside pattern",
+          "Add cache hit/miss metrics"
+        ]
+      }
+    },
+    {
+      "example_id": 46,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-46",
+      "drone_results": {
+        "success": true,
+        "path": "src/queue/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 9,
+          "cognitive_complexity": 11,
+          "lines_of_code": 567,
+          "comment_ratio": 0.18,
+          "function_count": 16,
+          "class_count": 4
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "ordering_violation",
+            "severity": 9,
+            "location": "processMessages:45",
+            "description": "Message ordering not guaranteed",
+            "suggestion": "Use FIFO queue or partition key"
+          },
+          {
+            "smell_type": "poison_message",
+            "severity": 7,
+            "location": "handleMessage:89",
+            "description": "No dead letter queue for failed messages",
+            "suggestion": "Configure DLQ after max retries"
+          }
+        ],
+        "quality_score": 74.0,
+        "ordering_violations": 1,
+        "reliability_score": 72,
+        "execution_time_ms": 16234
+      },
+      "expected_aggregated_result": {
+        "phase": "queue-analysis",
+        "status": "complete",
+        "summary": "Queue analysis: Message ordering issue, missing DLQ.",
+        "quality_metrics": {
+          "overall_score": 74.0,
+          "reliability": 72,
+          "ordering_guarantee": 65
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Use FIFO queue for ordering guarantees",
+          "Configure dead letter queue",
+          "Add message deduplication",
+          "Implement retry with exponential backoff"
+        ]
+      }
+    },
+    {
+      "example_id": 47,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-47",
+      "drone_results": {
+        "success": true,
+        "path": "src/auth/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 10,
+          "cognitive_complexity": 12,
+          "lines_of_code": 678,
+          "comment_ratio": 0.19,
+          "function_count": 21,
+          "class_count": 5
+        },
+        "smells_detected": 3,
+        "smells": [
+          {
+            "smell_type": "weak_hashing",
+            "severity": 10,
+            "location": "hashPassword:23",
+            "description": "Using MD5 for password hashing",
+            "suggestion": "Use bcrypt or Argon2"
+          },
+          {
+            "smell_type": "session_fixation",
+            "severity": 9,
+            "location": "login:67",
+            "description": "Session ID not regenerated on login",
+            "suggestion": "Regenerate session after authentication"
+          },
+          {
+            "smell_type": "jwt_weak_secret",
+            "severity": 8,
+            "location": "generateToken:89",
+            "description": "JWT secret is too short",
+            "suggestion": "Use at least 256-bit secret"
+          }
+        ],
+        "quality_score": 58.0,
+        "auth_vulnerabilities": 3,
+        "session_security": 55,
+        "token_validation_score": 70,
+        "execution_time_ms": 20123
+      },
+      "expected_aggregated_result": {
+        "phase": "auth-security-analysis",
+        "status": "blocked",
+        "summary": "Auth security: CRITICAL - Weak hashing, session fixation, weak JWT secret.",
+        "quality_metrics": {
+          "overall_score": 58.0,
+          "security_score": 50,
+          "auth_implementation": 55
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Replace MD5 with bcrypt/Argon2",
+          "Fix session fixation vulnerability",
+          "Strengthen JWT secret"
+        ],
+        "recommendations": [
+          "Immediately migrate to bcrypt or Argon2 for password hashing",
+          "Regenerate session IDs on authentication",
+          "Generate strong JWT secret (>=256 bits)",
+          "Implement rate limiting on auth endpoints",
+          "Add MFA support"
+        ]
+      }
+    },
+    {
+      "example_id": 48,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-48",
+      "drone_results": {
+        "success": true,
+        "path": "src/data/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 9,
+          "cognitive_complexity": 11,
+          "lines_of_code": 789,
+          "comment_ratio": 0.17,
+          "function_count": 24,
+          "class_count": 6
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "validation_missing",
+            "severity": 8,
+            "location": "ingest_data:45",
+            "description": "No schema validation on input",
+            "suggestion": "Add Great Expectations checks"
+          },
+          {
+            "smell_type": "non_idempotent",
+            "severity": 7,
+            "location": "process_pipeline:89",
+            "description": "Pipeline not idempotent",
+            "suggestion": "Use deterministic IDs and upserts"
+          }
+        ],
+        "quality_score": 76.0,
+        "validation_coverage": 65,
+        "data_quality_score": 70,
+        "idempotency_violations": 1,
+        "execution_time_ms": 18456
+      },
+      "expected_aggregated_result": {
+        "phase": "data-pipeline-analysis",
+        "status": "complete",
+        "summary": "Data pipeline: Missing validation, non-idempotent processing.",
+        "quality_metrics": {
+          "overall_score": 76.0,
+          "data_quality": 70,
+          "idempotency": 68,
+          "validation_coverage": 65
+        },
+        "next_phase": "improvement",
+        "blockers": [],
+        "recommendations": [
+          "Add schema validation with Great Expectations",
+          "Make pipeline idempotent with upserts",
+          "Add data quality metrics",
+          "Implement data lineage tracking"
+        ]
+      }
+    },
+    {
+      "example_id": 49,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-49",
+      "drone_results": {
+        "success": true,
+        "path": "src/realtime/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 8,
+          "cognitive_complexity": 10,
+          "lines_of_code": 456,
+          "comment_ratio": 0.16,
+          "function_count": 15,
+          "class_count": 4
+        },
+        "smells_detected": 2,
+        "smells": [
+          {
+            "smell_type": "reconnection",
+            "severity": 7,
+            "location": "connect:34",
+            "description": "No exponential backoff on reconnect",
+            "suggestion": "Implement backoff strategy"
+          },
+          {
+            "smell_type": "resource_leak",
+            "severity": 8,
+            "location": "handleDisconnect:78",
+            "description": "WebSocket not properly closed",
+            "suggestion": "Ensure cleanup in finally block"
+          }
+        ],
+        "quality_score": 79.0,
+        "connection_issues": 1,
+        "memory_leaks": 1,
+        "reliability_score": 75,
+        "execution_time_ms": 15678
+      },
+      "expected_aggregated_result": {
+        "phase": "websocket-analysis",
+        "status": "complete",
+        "summary": "WebSocket analysis: Reconnection strategy needed, resource leak detected.",
+        "quality_metrics": {
+          "overall_score": 79.0,
+          "reliability": 75,
+          "resource_management": 72
+        },
+        "next_phase": "fix",
+        "blockers": [],
+        "recommendations": [
+          "Add exponential backoff for reconnection",
+          "Fix WebSocket cleanup in error cases",
+          "Implement heartbeat mechanism",
+          "Add connection state management"
+        ]
+      }
+    },
+    {
+      "example_id": 50,
+      "drone_id": "code-analyzer",
+      "task_completed": "analyze-code-50",
+      "drone_results": {
+        "success": true,
+        "path": "src/",
+        "analyzed": true,
+        "metrics": {
+          "cyclomatic_complexity": 7,
+          "cognitive_complexity": 8,
+          "lines_of_code": 2345,
+          "comment_ratio": 0.18,
+          "function_count": 67,
+          "class_count": 18
+        },
+        "license_compliance": {
+          "compatible": 89,
+          "incompatible": 3,
+          "violations": [
+            {"package": "gpl-library", "license": "GPL-3.0", "issue": "Copyleft incompatible with MIT"},
+            {"package": "proprietary-sdk", "license": "Commercial", "issue": "Commercial restriction"},
+            {"package": "legacy-lib", "license": "Unknown", "issue": "License not specified"}
+          ],
+          "missing_attributions": 2
+        },
+        "quality_score": 72.0,
+        "license_violations": 3,
+        "compliance_score": 75,
+        "execution_time_ms": 14234
+      },
+      "expected_aggregated_result": {
+        "phase": "license-compliance",
+        "status": "blocked",
+        "summary": "License compliance: 3 violations (GPL incompatibility, commercial restriction, unknown).",
+        "quality_metrics": {
+          "overall_score": 72.0,
+          "compliance": 75,
+          "attribution_coverage": 92
+        },
+        "next_phase": "fix",
+        "blockers": [
+          "Replace GPL-licensed dependency",
+          "Address commercial license restriction",
+          "Identify unknown license"
+        ],
+        "recommendations": [
+          "Replace gpl-library with MIT-compatible alternative",
+          "Review commercial SDK licensing terms",
+          "Investigate legacy-lib license",
+          "Add missing attributions",
+          "Set up automated license scanning"
+        ]
+      }
+    }
+  ]
+}

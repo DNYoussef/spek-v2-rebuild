@@ -1,0 +1,271 @@
+digraph agent_api_reference {
+  label="SPEK Agent API Reference - 24 Task Types Across 6 New Agents";
+  labelloc=t;
+  fontsize=20;
+  rankdir=TB;
+  node [fontname="Arial"];
+  edge [fontname="Arial"];
+  compound=true;
+
+  // Entry point
+  start [label="START: Developer creates task", shape=ellipse, style=filled, fillcolor=lightgreen];
+
+  // Navigation decision
+  agent_select [label="Which agent\nneeds task type?", shape=diamond, style=filled, fillcolor=lightblue];
+
+  // Agent selection
+  select_frontend [label="Frontend Development", shape=box, style=filled, fillcolor=lightyellow];
+  select_backend [label="Backend Development", shape=box, style=filled, fillcolor=lightyellow];
+  select_analyzer [label="Code Analyzer", shape=box, style=filled, fillcolor=lightyellow];
+  select_infra [label="Infrastructure Ops", shape=box, style=filled, fillcolor=lightyellow];
+  select_release [label="Release Manager", shape=box, style=filled, fillcolor=lightyellow];
+  select_perf [label="Performance Engineer", shape=box, style=filled, fillcolor=lightyellow];
+
+  // Main workflow
+  start -> agent_select;
+  agent_select -> select_frontend [label="UI/Component\nwork"];
+  agent_select -> select_backend [label="API/Database\nwork"];
+  agent_select -> select_analyzer [label="Code analysis\nwork"];
+  agent_select -> select_infra [label="Infrastructure\nwork"];
+  agent_select -> select_release [label="Release\nwork"];
+  agent_select -> select_perf [label="Performance\nwork"];
+
+  // Frontend Development Agent cluster
+  subgraph cluster_frontend {
+    label="Frontend Development Agent (frontend-dev)";
+    style=filled;
+    fillcolor=lightcyan;
+
+    fe_entry [label="Agent ID: frontend-dev\nPrincess: Princess-Dev\nKeywords: ui, component, react, frontend, typescript", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Task Type 1: implement-component
+    fe_task1 [label="Task Type 1:\nimplement-component", shape=box, style=filled, fillcolor=lightyellow];
+    fe_task1_payload [label="Payload:\n- component_name (string, required)\n- component_type ('functional'|'class', default: functional)\n- props (string[], optional)\n- has_state (boolean, optional)\n- styling ('css-in-js'|'tailwind'|'styled-components')", shape=plaintext];
+    fe_task1_response [label="Response:\n- code (TypeScript/React code)\n- language ('typescript')\n- component_type (string)\n- file_name (string)\n- imports (string[])\n- tests (string, optional)", shape=plaintext];
+    fe_task1_validation [label="Validation:\n- component_name must be PascalCase\n- props must be array of strings\n- component_type defaults to 'functional'", shape=box, style=filled, fillcolor=orange];
+
+    // Task Type 2: implement-ui
+    fe_task2 [label="Task Type 2:\nimplement-ui", shape=box, style=filled, fillcolor=lightyellow];
+    fe_task2_payload [label="Payload:\n- ui_name (string, required)\n- layout_type ('responsive'|'fixed'|'centered'|'sidebar')\n- sections (string[], list of UI sections)\n- accessibility (boolean, default: true)\n- responsive_breakpoints (string[], optional)", shape=plaintext];
+    fe_task2_response [label="Response:\n- code (complete UI layout code)\n- language ('typescript')\n- layout_components (string[])\n- styles (CSS/Tailwind styles)\n- accessibility_notes (string)", shape=plaintext];
+
+    // Task Type 3: optimize-rendering
+    fe_task3 [label="Task Type 3:\noptimize-rendering", shape=box, style=filled, fillcolor=lightyellow];
+    fe_task3_payload [label="Payload:\n- component_name (string, required)\n- optimization_type ('memoization'|'lazy-loading'|'virtualization'|'comprehensive')\n- current_code (string, optional)\n- performance_target (object: render_time_ms, memory_mb)", shape=plaintext];
+    fe_task3_response [label="Response:\n- recommendations (string[])\n- code_changes (string, optional)\n- expected_improvement (render_time_reduction, memory_reduction)\n- implementation_notes (string)", shape=plaintext];
+
+    // Task Type 4: implement-styles
+    fe_task4 [label="Task Type 4:\nimplement-styles", shape=box, style=filled, fillcolor=lightyellow];
+    fe_task4_payload [label="Payload:\n- component_name (string, required)\n- style_system ('tailwind'|'css-in-js'|'styled-components'|'css-modules')\n- theme (object: colors, spacing, typography)\n- responsive (boolean, default: true)", shape=plaintext];
+    fe_task4_response [label="Response:\n- styles (generated styles)\n- variants (string[])\n- usage_examples (string)\n- theme_tokens (string, optional)", shape=plaintext];
+
+    fe_entry -> fe_task1 -> fe_task1_payload -> fe_task1_response -> fe_task1_validation;
+    fe_entry -> fe_task2 -> fe_task2_payload -> fe_task2_response;
+    fe_entry -> fe_task3 -> fe_task3_payload -> fe_task3_response;
+    fe_entry -> fe_task4 -> fe_task4_payload -> fe_task4_response;
+  }
+
+  // Backend Development Agent cluster
+  subgraph cluster_backend {
+    label="Backend Development Agent (backend-dev)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    be_entry [label="Agent ID: backend-dev\nPrincess: Princess-Dev\nKeywords: api, database, endpoint, backend, server", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Task Type 5: implement-api
+    be_task5 [label="Task Type 5:\nimplement-api", shape=box, style=filled, fillcolor=lightyellow];
+    be_task5_payload [label="Payload:\n- endpoint (string, required)\n- method ('GET'|'POST'|'PUT'|'DELETE'|'PATCH')\n- api_type ('rest'|'graphql')\n- request_body (object, for POST/PUT/PATCH)\n- response_schema (object)\n- authentication (boolean, default: true)\n- rate_limiting (requests_per_minute)", shape=plaintext];
+    be_task5_response [label="Response:\n- code (FastAPI/Express code)\n- language ('python'|'typescript')\n- models (Pydantic/TypeORM models)\n- validation (input validation logic)\n- tests (suggested tests)\n- documentation (API docs)", shape=plaintext];
+
+    // Task Type 6: implement-database
+    be_task6 [label="Task Type 6:\nimplement-database", shape=box, style=filled, fillcolor=lightyellow];
+    be_task6_payload [label="Payload:\n- table_name (string, required)\n- database_type ('postgresql'|'mysql'|'mongodb'|'sqlite')\n- columns (object, for SQL)\n- fields (object, for NoSQL)\n- relationships (array: type, target_table)\n- indexes (string[])", shape=plaintext];
+    be_task6_response [label="Response:\n- schema (SQL CREATE TABLE or NoSQL schema)\n- migration (database migration script)\n- orm_model (SQLAlchemy/TypeORM code)\n- relationships_code (string)", shape=plaintext];
+
+    // Task Type 7: implement-business-logic
+    be_task7 [label="Task Type 7:\nimplement-business-logic", shape=box, style=filled, fillcolor=lightyellow];
+    be_task7_payload [label="Payload:\n- logic_name (string, required)\n- operations (string[])\n- validation_rules (array: field, rule)\n- error_handling (boolean, default: true)\n- transaction_support (boolean)", shape=plaintext];
+    be_task7_response [label="Response:\n- code (business logic implementation)\n- language ('python'|'typescript')\n- validation_functions (string)\n- error_cases (string[])\n- tests (string)", shape=plaintext];
+
+    // Task Type 8: optimize-queries
+    be_task8 [label="Task Type 8:\noptimize-queries", shape=box, style=filled, fillcolor=lightyellow];
+    be_task8_payload [label="Payload:\n- query_type ('select'|'insert'|'update'|'delete'|'join')\n- table (string, primary table)\n- current_query (string, optional)\n- performance_issues (string[])\n- target_improvement (string, e.g., '50% faster')", shape=plaintext];
+    be_task8_response [label="Response:\n- optimized_query (string)\n- recommendations (string[])\n- index_suggestions (string[])\n- expected_improvement (string)\n- explanation (string)", shape=plaintext];
+
+    be_entry -> be_task5 -> be_task5_payload -> be_task5_response;
+    be_entry -> be_task6 -> be_task6_payload -> be_task6_response;
+    be_entry -> be_task7 -> be_task7_payload -> be_task7_response;
+    be_entry -> be_task8 -> be_task8_payload -> be_task8_response;
+  }
+
+  // Code Analyzer Agent cluster
+  subgraph cluster_analyzer {
+    label="Code Analyzer Agent (code-analyzer)";
+    style=filled;
+    fillcolor=lightblue;
+
+    ca_entry [label="Agent ID: code-analyzer\nPrincess: Princess-Quality\nKeywords: analyze, complexity, duplicate, quality", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Task Type 9: analyze-code
+    ca_task9 [label="Task Type 9:\nanalyze-code", shape=box, style=filled, fillcolor=lightyellow];
+    ca_task9_payload [label="Payload:\n- file_path (string, optional)\n- code (string, optional)\n- language ('python'|'typescript'|'javascript')\n- analysis_types (string[], ['quality', 'security', 'performance'])", shape=plaintext];
+    ca_task9_response [label="Response:\n- analysis.quality_score (0-100)\n- analysis.issues (array: severity, line, message, fix_suggestion)\n- analysis.metrics (loc, functions, classes, avg_complexity)", shape=plaintext];
+
+    // Task Type 10: detect-complexity
+    ca_task10 [label="Task Type 10:\ndetect-complexity", shape=box, style=filled, fillcolor=lightyellow];
+    ca_task10_payload [label="Payload:\n- file_path (string, optional)\n- code (string, optional)\n- threshold (number, default: 10, NASA: ≤10)", shape=plaintext];
+    ca_task10_response [label="Response:\n- complexity_metrics (array: function_name, complexity, line_number, exceeds_threshold, refactoring_suggestion)\n- summary (total_functions, avg_complexity, violations)", shape=plaintext];
+
+    // Task Type 11: detect-duplicates
+    ca_task11 [label="Task Type 11:\ndetect-duplicates", shape=box, style=filled, fillcolor=lightyellow];
+    ca_task11_payload [label="Payload:\n- file_path (string, optional)\n- code (string, optional)\n- similarity_threshold (number, default: 0.8)\n- min_lines (number, default: 5)", shape=plaintext];
+    ca_task11_response [label="Response:\n- duplicates (array: locations, similarity, code_snippet, refactoring_suggestion)\n- total_duplicates (number)", shape=plaintext];
+
+    // Task Type 12: analyze-dependencies
+    ca_task12 [label="Task Type 12:\nanalyze-dependencies", shape=box, style=filled, fillcolor=lightyellow];
+    ca_task12_payload [label="Payload:\n- file_path (string, optional)\n- code (string, optional)\n- check_circular (boolean, default: true)\n- check_unused (boolean, default: true)", shape=plaintext];
+    ca_task12_response [label="Response:\n- dependencies (direct, indirect, circular, unused)\n- dependency_graph (DOT format graph)", shape=plaintext];
+
+    ca_entry -> ca_task9 -> ca_task9_payload -> ca_task9_response;
+    ca_entry -> ca_task10 -> ca_task10_payload -> ca_task10_response;
+    ca_entry -> ca_task11 -> ca_task11_payload -> ca_task11_response;
+    ca_entry -> ca_task12 -> ca_task12_payload -> ca_task12_response;
+  }
+
+  // Infrastructure Operations Agent cluster
+  subgraph cluster_infra {
+    label="Infrastructure Operations Agent (infrastructure-ops)";
+    style=filled;
+    fillcolor=lightcyan;
+
+    io_entry [label="Agent ID: infrastructure-ops\nPrincess: Princess-Coordination\nKeywords: kubernetes, k8s, docker, cloud, deploy, infrastructure", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Task Type 13: deploy-infrastructure
+    io_task13 [label="Task Type 13:\ndeploy-infrastructure", shape=box, style=filled, fillcolor=lightyellow];
+    io_task13_payload [label="Payload:\n- platform ('kubernetes'|'docker'|'aws'|'gcp'|'azure')\n- app_name (string, required)\n- image (string, Docker image)\n- replicas (number, default: 3)\n- port (number)\n- environment_variables (object)\n- resources (cpu, memory)", shape=plaintext];
+    io_task13_response [label="Response:\n- manifests (K8s YAML manifests)\n- deployment_commands (string[])\n- service_url (string, optional)\n- monitoring_setup (string, optional)", shape=plaintext];
+
+    // Task Type 14: scale-infrastructure
+    io_task14 [label="Task Type 14:\nscale-infrastructure", shape=box, style=filled, fillcolor=lightyellow];
+    io_task14_payload [label="Payload:\n- resource (string, deployment/statefulset)\n- replicas (number, optional)\n- auto_scaling (min_replicas, max_replicas, cpu_threshold, memory_threshold)\n- platform ('kubernetes'|'docker-swarm')", shape=plaintext];
+    io_task14_response [label="Response:\n- commands (string[])\n- config (HPA/autoscaling config)\n- monitoring_metrics (string[])", shape=plaintext];
+
+    // Task Type 15: monitor-infrastructure
+    io_task15 [label="Task Type 15:\nmonitor-infrastructure", shape=box, style=filled, fillcolor=lightyellow];
+    io_task15_payload [label="Payload:\n- monitoring_type ('prometheus'|'grafana'|'cloudwatch'|'datadog')\n- targets (string[], services to monitor)\n- metrics (string[], specific metrics)\n- alerts (array: metric, threshold, severity)", shape=plaintext];
+    io_task15_response [label="Response:\n- config (Prometheus config)\n- dashboards (Grafana dashboards, optional)\n- alert_rules (string)\n- installation_steps (string[])", shape=plaintext];
+
+    // Task Type 16: configure-infrastructure
+    io_task16 [label="Task Type 16:\nconfigure-infrastructure", shape=box, style=filled, fillcolor=lightyellow];
+    io_task16_payload [label="Payload:\n- config_type ('network'|'security'|'storage'|'compute')\n- platform (string)\n- settings (object)", shape=plaintext];
+    io_task16_response [label="Response:\n- config_files (object)\n- apply_commands (string[])\n- validation_steps (string[])", shape=plaintext];
+
+    io_entry -> io_task13 -> io_task13_payload -> io_task13_response;
+    io_entry -> io_task14 -> io_task14_payload -> io_task14_response;
+    io_entry -> io_task15 -> io_task15_payload -> io_task15_response;
+    io_entry -> io_task16 -> io_task16_payload -> io_task16_response;
+  }
+
+  // Release Manager Agent cluster
+  subgraph cluster_release {
+    label="Release Manager Agent (release-manager)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    rm_entry [label="Agent ID: release-manager\nPrincess: Princess-Coordination\nKeywords: release, version, changelog, tag, deploy", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Task Type 17: prepare-release
+    rm_task17 [label="Task Type 17:\nprepare-release", shape=box, style=filled, fillcolor=lightyellow];
+    rm_task17_payload [label="Payload:\n- current_version (string, optional)\n- release_type ('major'|'minor'|'patch')\n- version (string, or specify exact version)\n- pre_release (boolean, alpha/beta)", shape=plaintext];
+    rm_task17_response [label="Response:\n- new_version (string, e.g., '1.6.0')\n- release_notes_template (string)\n- checklist (string[])\n- files_to_update (string[])", shape=plaintext];
+
+    // Task Type 18: generate-changelog
+    rm_task18 [label="Task Type 18:\ngenerate-changelog", shape=box, style=filled, fillcolor=lightyellow];
+    rm_task18_payload [label="Payload:\n- from_version (string, optional)\n- to_version (string, optional)\n- commits (array: message, hash, author, date)\n- format ('markdown'|'keepachangelog'|'conventional')", shape=plaintext];
+    rm_task18_response [label="Response:\n- changelog (formatted changelog)\n- categories (features, bug_fixes, breaking_changes, documentation)", shape=plaintext];
+
+    // Task Type 19: tag-release
+    rm_task19 [label="Task Type 19:\ntag-release", shape=box, style=filled, fillcolor=lightyellow];
+    rm_task19_payload [label="Payload:\n- version (string, required)\n- message (string, tag message)\n- signed (boolean, GPG sign tag, default: false)\n- push (boolean, push to remote, default: false)", shape=plaintext];
+    rm_task19_response [label="Response:\n- tag_command (string)\n- push_command (string, optional)\n- tag_name (string)\n- success_message (string)", shape=plaintext];
+
+    // Task Type 20: coordinate-deployment
+    rm_task20 [label="Task Type 20:\ncoordinate-deployment", shape=box, style=filled, fillcolor=lightyellow];
+    rm_task20_payload [label="Payload:\n- version (string)\n- environments (string[], ['staging', 'production'])\n- strategy ('blue-green'|'rolling'|'canary')\n- rollback_plan (boolean, default: true)\n- approval_required (boolean)", shape=plaintext];
+    rm_task20_response [label="Response:\n- deployment_plan (stages: environment, steps, estimated_duration)\n- rollback_procedure (string)\n- verification_steps (string[])", shape=plaintext];
+
+    rm_entry -> rm_task17 -> rm_task17_payload -> rm_task17_response;
+    rm_entry -> rm_task18 -> rm_task18_payload -> rm_task18_response;
+    rm_entry -> rm_task19 -> rm_task19_payload -> rm_task19_response;
+    rm_entry -> rm_task20 -> rm_task20_payload -> rm_task20_response;
+  }
+
+  // Performance Engineer Agent cluster
+  subgraph cluster_perf {
+    label="Performance Engineer Agent (performance-engineer)";
+    style=filled;
+    fillcolor=lightblue;
+
+    pe_entry [label="Agent ID: performance-engineer\nPrincess: Princess-Coordination\nKeywords: performance, profiling, optimize, benchmark, bottleneck", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Task Type 21: profile-performance
+    pe_task21 [label="Task Type 21:\nprofile-performance", shape=box, style=filled, fillcolor=lightyellow];
+    pe_task21_payload [label="Payload:\n- target (string, function/endpoint to profile)\n- metrics (string[], ['cpu', 'memory', 'io', 'network'])\n- duration_seconds (number)\n- detail_level ('high'|'medium'|'low')", shape=plaintext];
+    pe_task21_response [label="Response:\n- profile_results (duration_ms, cpu_time_ms, memory_mb, io_operations, hot_spots)\n- visualization (flame graph data, optional)", shape=plaintext];
+
+    // Task Type 22: detect-bottlenecks
+    pe_task22 [label="Task Type 22:\ndetect-bottlenecks", shape=box, style=filled, fillcolor=lightyellow];
+    pe_task22_payload [label="Payload:\n- system (string, system/service to analyze)\n- metrics (response_time, throughput, error_rate, cpu_usage, memory_usage)\n- analysis_period (string, e.g., '1h', '24h')", shape=plaintext];
+    pe_task22_response [label="Response:\n- bottlenecks (array: component, severity, description, impact, affected_metrics)\n- priority_ranking (string[])", shape=plaintext];
+
+    // Task Type 23: optimize-performance
+    pe_task23 [label="Task Type 23:\noptimize-performance", shape=box, style=filled, fillcolor=lightyellow];
+    pe_task23_payload [label="Payload:\n- target (string, what to optimize)\n- current_performance (metric, value)\n- target_performance (metric, value)\n- bottleneck_type ('cpu'|'memory'|'io'|'network')", shape=plaintext];
+    pe_task23_response [label="Response:\n- optimizations (array: strategy, description, expected_improvement, implementation_effort, code_example)\n- priority_order (string[])", shape=plaintext];
+
+    // Task Type 24: benchmark-system
+    pe_task24 [label="Task Type 24:\nbenchmark-system", shape=box, style=filled, fillcolor=lightyellow];
+    pe_task24_payload [label="Payload:\n- system (string)\n- test_cases (array: name, endpoint, method, load)\n- baseline (object, compare against baseline)\n- duration_seconds (number)", shape=plaintext];
+    pe_task24_response [label="Response:\n- benchmark_results (test_cases: avg_response_ms, p50, p95, p99, throughput_rps, error_rate)\n- comparison (regression, changes)\n- recommendations (string[])", shape=plaintext];
+
+    pe_entry -> pe_task21 -> pe_task21_payload -> pe_task21_response;
+    pe_entry -> pe_task22 -> pe_task22_payload -> pe_task22_response;
+    pe_entry -> pe_task23 -> pe_task23_payload -> pe_task23_response;
+    pe_entry -> pe_task24 -> pe_task24_payload -> pe_task24_response;
+  }
+
+  // Connect agent selection to clusters
+  select_frontend -> fe_entry [lhead=cluster_frontend];
+  select_backend -> be_entry [lhead=cluster_backend];
+  select_analyzer -> ca_entry [lhead=cluster_analyzer];
+  select_infra -> io_entry [lhead=cluster_infra];
+  select_release -> rm_entry [lhead=cluster_release];
+  select_perf -> pe_entry [lhead=cluster_perf];
+
+  // Common response fields
+  subgraph cluster_common {
+    label="Common Response Structure (All Tasks)";
+    style=filled;
+    fillcolor=lightgreen;
+
+    common_success [label="Result Object:\n- success (boolean)\n- data (task-specific)\n- message (string)\n- execution_time_ms (number)\n- metadata (agent_id, task_id, timestamp)", shape=box];
+
+    common_error [label="Error Response:\n- success: false\n- message (error description)\n- error_type ('validation'|'execution'|'system')\n- recovery_suggestion (string, optional)", shape=box, style=filled, fillcolor=orange];
+  }
+
+  // Exit points
+  end_success [label="END: Task executed successfully", shape=doublecircle, style=filled, fillcolor=lightgreen];
+  end_error [label="END: Task failed with error", shape=doublecircle, style=filled, fillcolor=red];
+
+  // Cross-references to common response
+  fe_task1_response -> common_success [style=dashed, color=blue];
+  be_task5_response -> common_success [style=dashed, color=blue];
+  ca_task9_response -> common_success [style=dashed, color=blue];
+  io_task13_response -> common_success [style=dashed, color=blue];
+  rm_task17_response -> common_success [style=dashed, color=blue];
+  pe_task21_response -> common_success [style=dashed, color=blue];
+
+  common_success -> end_success;
+  common_error -> end_error;
+}

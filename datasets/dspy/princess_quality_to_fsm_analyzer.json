@@ -1,0 +1,1140 @@
+{
+  "communication_path": "princess-quality→fsm-analyzer",
+  "description": "Princess-Quality delegates FSM validation to FSM-Analyzer drone",
+  "agent_context": {
+    "coordinator": "princess-quality",
+    "drone": "fsm-analyzer",
+    "relationship": "architecture_validation_delegation",
+    "coordination_protocol": "EnhancedLightweightProtocol"
+  },
+  "examples": [
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "User authentication flow",
+        "code_files": ["src/auth/auth_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate FSM justification for auth flow",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["unauthenticated", "authenticating", "authenticated", "locked"],
+          "expected_transitions": 8,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["architecture review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=3 criteria met", "FSM justified", "XState properly used"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Payment processing workflow",
+        "code_files": ["src/payments/payment_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate FSM for payment processing",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["pending", "processing", "authorized", "captured", "failed", "refunded"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=3 criteria met", "FSM justified", "state transitions safe", "error recovery complete"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple form validation",
+        "code_files": ["src/forms/validator.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no unnecessary FSM in form validation",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 10,
+        "quality_gates": ["no FSM used", "simple if/else preferred", "no over-engineering"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Order fulfillment workflow",
+        "code_files": ["src/orders/fulfillment_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate order fulfillment FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["created", "confirmed", "picking", "packing", "shipped", "delivered", "cancelled"],
+          "expected_transitions": 15,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["architecture approved"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=4 criteria met", "FSM strongly justified", "audit trail present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Session management",
+        "code_files": ["src/sessions/session_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check session management FSM justification",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["inactive", "active", "expired", "terminated"],
+          "expected_transitions": 8,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["security review complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=3 criteria met", "concurrent session handling", "timeout logic clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Document approval workflow",
+        "code_files": ["src/documents/approval_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate document approval FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["draft", "pending_review", "approved", "rejected", "published"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "audit trail required", "approval flow clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple cache toggle",
+        "code_files": ["src/cache/toggle.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for simple toggle",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "boolean state sufficient", "theater avoided"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Multi-step onboarding flow",
+        "code_files": ["src/onboarding/onboarding_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate onboarding flow FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["welcome", "profile_setup", "preferences", "verification", "completed"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["architecture review complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "step progression clear", "resume capability"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Circuit breaker",
+        "code_files": ["src/resilience/circuit_breaker_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check circuit breaker FSM justification",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["closed", "open", "half_open"],
+          "expected_transitions": 5,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 15,
+        "quality_gates": ["3 states present", ">=5 transitions", "error recovery documented"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Job scheduling workflow",
+        "code_files": ["src/scheduler/job_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate job scheduler FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["queued", "running", "paused", "completed", "failed", "cancelled"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["code review complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "pause/resume handled", "failure recovery clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple API endpoint",
+        "code_files": ["src/api/endpoint.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for simple endpoint",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "request/response sufficient", "no over-engineering"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Subscription lifecycle",
+        "code_files": ["src/subscriptions/subscription_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate subscription FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["trial", "active", "past_due", "cancelled", "expired"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["billing architecture complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=4 criteria met", "billing transitions clear", "grace periods handled"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Content moderation workflow",
+        "code_files": ["src/moderation/moderation_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check content moderation FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["pending", "auto_approved", "flagged", "manual_review", "approved", "rejected"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=4 criteria met", "audit trail required", "escalation paths clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple feature flag check",
+        "code_files": ["src/features/flag_checker.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for feature flag",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "boolean check sufficient", "simplicity maintained"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Deployment pipeline",
+        "code_files": ["src/deploy/pipeline_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate deployment pipeline FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["initiated", "building", "testing", "staging", "production", "rolled_back"],
+          "expected_transitions": 15,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["DevOps architecture complete"],
+        "estimated_minutes": 22,
+        "quality_gates": [">=4 criteria met", "rollback paths clear", "audit trail present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Notification delivery",
+        "code_files": ["src/notifications/delivery_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check notification delivery FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["queued", "sending", "sent", "failed", "retrying"],
+          "expected_transitions": 8,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=3 criteria met", "retry logic present", "failure handling clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple data validator",
+        "code_files": ["src/validators/data_validator.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for data validation",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "validation rules sufficient", "no theater"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Inventory reservation system",
+        "code_files": ["src/inventory/reservation_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate inventory reservation FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["available", "reserved", "confirmed", "released", "expired"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["architecture approved"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=4 criteria met", "concurrent reservations handled", "timeout logic present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Webhook delivery workflow",
+        "code_files": ["src/webhooks/delivery_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check webhook delivery FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["pending", "delivering", "delivered", "failed", "retrying", "dead_letter"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=4 criteria met", "retry exhaustion handled", "dead letter queue present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple rate limiter",
+        "code_files": ["src/middleware/rate_limit.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for rate limiter",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "counter-based sufficient", "no over-engineering"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Loan application workflow",
+        "code_files": ["src/loans/application_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate loan application FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["draft", "submitted", "under_review", "approved", "rejected", "funded", "cancelled"],
+          "expected_transitions": 18,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["compliance review complete"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=5 criteria met", "audit trail mandatory", "compliance checkpoints clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "File upload state machine",
+        "code_files": ["src/uploads/upload_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check file upload FSM justification",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["pending", "uploading", "validating", "processing", "completed", "failed"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "chunked upload handling", "resume capability"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple email validator",
+        "code_files": ["src/validators/email.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for email validation",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "regex validation sufficient", "simplicity preferred"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Customer support ticket lifecycle",
+        "code_files": ["src/support/ticket_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate support ticket FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["new", "assigned", "in_progress", "waiting_customer", "resolved", "closed", "reopened"],
+          "expected_transitions": 15,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["architecture review complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=4 criteria met", "escalation paths present", "SLA tracking enabled"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Backup workflow",
+        "code_files": ["src/backup/backup_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check backup workflow FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["scheduled", "running", "verifying", "completed", "failed", "retrying"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "verification step present", "retry logic clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple password strength checker",
+        "code_files": ["src/security/password_strength.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for password checker",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "scoring function sufficient", "no theater"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Multi-step KYC verification",
+        "code_files": ["src/kyc/verification_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate KYC verification FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["not_started", "documents_submitted", "under_review", "additional_info_required", "verified", "rejected"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["compliance architecture complete"],
+        "estimated_minutes": 22,
+        "quality_gates": [">=5 criteria met", "audit trail mandatory", "compliance rules enforced"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Chat connection manager",
+        "code_files": ["src/chat/connection_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check chat connection FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["disconnected", "connecting", "connected", "reconnecting", "idle", "terminated"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=4 criteria met", "reconnection logic present", "idle detection clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple URL shortener",
+        "code_files": ["src/shortener/encode.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for URL shortener",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "encoding function sufficient", "no over-complication"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Video transcoding pipeline",
+        "code_files": ["src/media/transcoding_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate video transcoding FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["queued", "downloading", "transcoding", "uploading", "completed", "failed"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["media architecture complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=3 criteria met", "progress tracking present", "failure recovery documented"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "API key rotation workflow",
+        "code_files": ["src/security/key_rotation_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check API key rotation FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["active", "rotating", "grace_period", "deprecated", "revoked"],
+          "expected_transitions": 8,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["security implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=4 criteria met", "audit trail required", "grace period handled"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple health check",
+        "code_files": ["src/health/check.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for health check",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "status check sufficient", "simplicity maintained"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Distributed transaction coordinator",
+        "code_files": ["src/transactions/coordinator_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate transaction coordinator FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["initiated", "preparing", "prepared", "committing", "committed", "aborting", "aborted"],
+          "expected_transitions": 15,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["distributed systems architecture complete"],
+        "estimated_minutes": 25,
+        "quality_gates": [">=5 criteria met", "2PC protocol correct", "rollback paths clear", "audit trail present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Email campaign workflow",
+        "code_files": ["src/campaigns/campaign_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check email campaign FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["draft", "scheduled", "sending", "paused", "completed", "cancelled"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "pause/resume functionality", "sending progress tracked"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple logger wrapper",
+        "code_files": ["src/utils/logger.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for logger",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "logging function sufficient", "no theater"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Bidding auction system",
+        "code_files": ["src/auctions/auction_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate auction bidding FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["scheduled", "open", "extended", "closing", "closed", "settled", "cancelled"],
+          "expected_transitions": 14,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["auction architecture complete"],
+        "estimated_minutes": 22,
+        "quality_gates": [">=5 criteria met", "audit trail mandatory", "concurrent bids handled", "extension logic present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Feature rollout manager",
+        "code_files": ["src/features/rollout_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check feature rollout FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["disabled", "canary", "gradual_rollout", "full_rollout", "rolled_back"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "rollback capability", "percentage tracking present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple config loader",
+        "code_files": ["src/config/loader.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for config loader",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "load function sufficient", "no over-engineering"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Data migration orchestrator",
+        "code_files": ["src/migrations/orchestrator_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate data migration FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["pending", "validating", "migrating", "verifying", "completed", "failed", "rolled_back"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["database architecture complete"],
+        "estimated_minutes": 22,
+        "quality_gates": [">=4 criteria met", "verification step mandatory", "rollback tested", "audit trail present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "A/B test assignment",
+        "code_files": ["src/experiments/assignment_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check A/B test FSM justification",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["draft", "running", "paused", "concluded", "archived"],
+          "expected_transitions": 8,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 15,
+        "quality_gates": [">=3 criteria met", "pause capability", "conclusion logic clear"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple retry logic",
+        "code_files": ["src/utils/retry.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for retry decorator",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "counter and backoff sufficient", "simplicity preferred"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Code review workflow",
+        "code_files": ["src/reviews/review_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate code review FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["pending", "in_review", "changes_requested", "approved", "merged", "closed"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["workflow architecture complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=4 criteria met", "approval logic clear", "re-review handling", "audit trail present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Batch import processor",
+        "code_files": ["src/import/batch_processor_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check batch import FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["uploaded", "validating", "processing", "partially_completed", "completed", "failed"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["implementation complete"],
+        "estimated_minutes": 18,
+        "quality_gates": [">=3 criteria met", "partial completion handling", "error recovery present"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple cache lookup",
+        "code_files": ["src/cache/lookup.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for cache lookup",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "get/set sufficient", "no theater"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "architecture",
+        "implementation": "Game match lifecycle",
+        "code_files": ["src/game/match_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Validate game match FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["lobby", "starting", "in_progress", "paused", "finished", "abandoned"],
+          "expected_transitions": 12,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["game architecture complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=4 criteria met", "pause/resume logic", "abandonment handling", "concurrent player actions"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Compliance audit trail",
+        "code_files": ["src/compliance/audit_fsm.py"],
+        "fsm_justification_required": true
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Check compliance audit FSM",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": ["initiated", "data_collection", "analysis", "report_generation", "review", "finalized"],
+          "expected_transitions": 10,
+          "check_xstate_usage": true
+        },
+        "dependencies": ["compliance implementation complete"],
+        "estimated_minutes": 20,
+        "quality_gates": [">=5 criteria met", "audit trail mandatory", "immutable state transitions", "compliance verified"]
+      }
+    },
+    {
+      "phase": "review",
+      "context": {
+        "previous_phase": "code",
+        "implementation": "Simple token validator",
+        "code_files": ["src/auth/token_validator.py"],
+        "fsm_justification_required": false
+      },
+      "expected_drone_task": {
+        "drone_id": "fsm-analyzer",
+        "task_type": "validate-fsm-usage",
+        "description": "Verify no FSM for token validation",
+        "specifications": {
+          "decision_matrix_criteria": [">=3 distinct states", ">=5 transitions", "complex error recovery", "audit trail needed", "concurrent sessions"],
+          "minimum_criteria_met": 3,
+          "expected_states": [],
+          "expected_transitions": 0,
+          "check_xstate_usage": false
+        },
+        "dependencies": ["code review done"],
+        "estimated_minutes": 5,
+        "quality_gates": ["no FSM used", "JWT decode sufficient", "no over-complication"]
+      }
+    }
+  ]
+}

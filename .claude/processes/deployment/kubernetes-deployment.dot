@@ -1,0 +1,117 @@
+digraph KUBERNETES_DEPLOYMENT {
+    // TRIGGER: Deploying containerized application to Kubernetes
+    // USE WHEN:
+    //   - Container images ready
+    //   - Kubernetes cluster configured
+    //   - Ready for production deployment
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_k8s_deploy {
+        label="TRIGGER: Kubernetes Deployment";
+        style="rounded,bold";
+        bgcolor="#e3f2fd";
+
+        // Entry
+        "Container ready to deploy" [shape=ellipse];
+
+        // Prerequisite checks
+        "kubectl cluster-info" [shape=plaintext];
+        "kubectl get nodes" [shape=plaintext];
+        "Cluster healthy?" [shape=diamond];
+
+        // Build & push container
+        "docker build -t spek-platform:vX.X.X ." [shape=plaintext];
+        "docker tag spek-platform:vX.X.X registry/spek-platform:vX.X.X" [shape=plaintext];
+        "docker push registry/spek-platform:vX.X.X" [shape=plaintext];
+        "Image pushed?" [shape=diamond];
+
+        // Update Kubernetes manifests
+        "Update deployment.yaml:\n- image: registry/spek-platform:vX.X.X\n- replicas: 3\n- resources: {cpu: 500m, memory: 512Mi}" [shape=box];
+        "kubectl apply -f k8s/namespace.yaml" [shape=plaintext];
+        "kubectl apply -f k8s/configmap.yaml" [shape=plaintext];
+        "kubectl apply -f k8s/secrets.yaml" [shape=plaintext];
+        "kubectl apply -f k8s/deployment.yaml" [shape=plaintext];
+        "kubectl apply -f k8s/service.yaml" [shape=plaintext];
+        "kubectl apply -f k8s/ingress.yaml" [shape=plaintext];
+
+        // Wait for rollout
+        "kubectl rollout status deployment/spek-platform -n production" [shape=plaintext];
+        "Rollout successful?" [shape=diamond];
+
+        // Verify deployment
+        "kubectl get pods -n production" [shape=plaintext];
+        "All pods running?" [shape=diamond];
+        "kubectl describe pod <pod-name> -n production" [shape=plaintext];
+        "kubectl logs -f <pod-name> -n production" [shape=plaintext];
+
+        // Service check
+        "kubectl get svc -n production" [shape=plaintext];
+        "kubectl get ingress -n production" [shape=plaintext];
+        "curl http://<service-ip>/health" [shape=plaintext];
+        "Service responding?" [shape=diamond];
+
+        "Deployment complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "DEPLOYMENT FAILED" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+        // Flow
+        "Container ready to deploy" -> "kubectl cluster-info";
+        "kubectl cluster-info" -> "kubectl get nodes";
+        "kubectl get nodes" -> "Cluster healthy?";
+
+        "Cluster healthy?" -> "docker build -t spek-platform:vX.X.X ." [label="yes"];
+        "Cluster healthy?" -> "DEPLOYMENT FAILED" [label="no"];
+
+        "docker build -t spek-platform:vX.X.X ." -> "docker tag spek-platform:vX.X.X registry/spek-platform:vX.X.X";
+        "docker tag spek-platform:vX.X.X registry/spek-platform:vX.X.X" -> "docker push registry/spek-platform:vX.X.X";
+        "docker push registry/spek-platform:vX.X.X" -> "Image pushed?";
+
+        "Image pushed?" -> "Update deployment.yaml:\n- image: registry/spek-platform:vX.X.X\n- replicas: 3\n- resources: {cpu: 500m, memory: 512Mi}" [label="yes"];
+        "Image pushed?" -> "DEPLOYMENT FAILED" [label="no"];
+
+        "Update deployment.yaml:\n- image: registry/spek-platform:vX.X.X\n- replicas: 3\n- resources: {cpu: 500m, memory: 512Mi}" -> "kubectl apply -f k8s/namespace.yaml";
+        "kubectl apply -f k8s/namespace.yaml" -> "kubectl apply -f k8s/configmap.yaml";
+        "kubectl apply -f k8s/configmap.yaml" -> "kubectl apply -f k8s/secrets.yaml";
+        "kubectl apply -f k8s/secrets.yaml" -> "kubectl apply -f k8s/deployment.yaml";
+        "kubectl apply -f k8s/deployment.yaml" -> "kubectl apply -f k8s/service.yaml";
+        "kubectl apply -f k8s/service.yaml" -> "kubectl apply -f k8s/ingress.yaml";
+        "kubectl apply -f k8s/ingress.yaml" -> "kubectl rollout status deployment/spek-platform -n production";
+
+        "kubectl rollout status deployment/spek-platform -n production" -> "Rollout successful?";
+        "Rollout successful?" -> "kubectl get pods -n production" [label="yes"];
+        "Rollout successful?" -> "DEPLOYMENT FAILED" [label="no"];
+
+        "kubectl get pods -n production" -> "All pods running?";
+        "All pods running?" -> "kubectl get svc -n production" [label="yes"];
+        "All pods running?" -> "kubectl describe pod <pod-name> -n production" [label="no"];
+        "kubectl describe pod <pod-name> -n production" -> "kubectl logs -f <pod-name> -n production";
+        "kubectl logs -f <pod-name> -n production" -> "DEPLOYMENT FAILED";
+
+        "kubectl get svc -n production" -> "kubectl get ingress -n production";
+        "kubectl get ingress -n production" -> "curl http://<service-ip>/health";
+        "curl http://<service-ip>/health" -> "Service responding?";
+
+        "Service responding?" -> "Deployment complete" [label="yes"];
+        "Service responding?" -> "DEPLOYMENT FAILED" [label="no"];
+    }
+
+    // Troubleshooting
+    subgraph cluster_troubleshooting {
+        label="Troubleshooting";
+        bgcolor="#fff3e0";
+
+        "Check pod events:\nkubectl describe pod <pod-name> -n production" [shape=box];
+        "Check logs:\nkubectl logs -f <pod-name> -n production" [shape=box];
+        "Check resource usage:\nkubectl top pods -n production" [shape=box];
+        "Check service endpoints:\nkubectl get endpoints -n production" [shape=box];
+
+        "DEPLOYMENT FAILED" -> "Check pod events:\nkubectl describe pod <pod-name> -n production";
+        "Check pod events:\nkubectl describe pod <pod-name> -n production" -> "Check logs:\nkubectl logs -f <pod-name> -n production";
+        "Check logs:\nkubectl logs -f <pod-name> -n production" -> "Check resource usage:\nkubectl top pods -n production";
+        "Check resource usage:\nkubectl top pods -n production" -> "Check service endpoints:\nkubectl get endpoints -n production";
+    }
+
+    // External connections
+    "Deployment complete" -> post_deployment_verification [label="continue to", style=dotted];
+}

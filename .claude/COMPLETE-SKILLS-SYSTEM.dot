@@ -1,0 +1,331 @@
+digraph CompleteSkillsSystem {
+    // Graph settings
+    rankdir=TB;
+    node [fontname="Arial", fontsize=10];
+    edge [fontname="Arial", fontsize=9];
+    compound=true;
+
+    // Title
+    label="SPEK Platform v2: Complete Skills System\n71 Total Skills (16 Global + 55 Project-Specific)\nLast Updated: 2025-10-17";
+    labelloc="t";
+    fontsize=14;
+    fontname="Arial Bold";
+
+    // ========================================
+    // GLOBAL SKILLS (16) - User-Level
+    // ========================================
+
+    subgraph cluster_global {
+        label="🌍 GLOBAL SKILLS (16)\nReusable Across Any Project";
+        style=filled;
+        color=lightblue;
+
+        subgraph cluster_global_meta {
+            label="Meta-Level Skills (7)";
+            style=filled;
+            color=lightcyan;
+
+            global_agent_creator [label="agent-creator\nCreate AI agents", shape=box, style=filled, fillcolor=lightyellow];
+            global_skill_forge [label="skill-forge\nAdvanced skill creation", shape=box, style=filled, fillcolor=lightyellow];
+            global_micro_skill [label="micro-skill-creator\nAtomic skills", shape=box, style=filled, fillcolor=lightyellow];
+            global_skill_agent [label="skill-creator-agent\nSkills + agents", shape=box, style=filled, fillcolor=lightyellow];
+            global_intent [label="intent-analyzer\nDeep intent analysis", shape=box, style=filled, fillcolor=lightyellow];
+            global_prompt [label="prompt-architect\nPrompt engineering", shape=box, style=filled, fillcolor=lightyellow];
+            global_cascade [label="cascade-orchestrator\nWorkflow cascades", shape=box, style=filled, fillcolor=lightyellow];
+        }
+
+        subgraph cluster_global_quality {
+            label="Quality & Validation (4)";
+            style=filled;
+            color=lightcyan;
+
+            global_func_audit [label="functionality-audit\nSandbox testing", shape=box, style=filled, fillcolor=lightgreen];
+            global_style_audit [label="style-audit\nStyle enforcement", shape=box, style=filled, fillcolor=lightgreen];
+            global_theater_audit [label="theater-detection-audit\nMock detection", shape=box, style=filled, fillcolor=lightgreen];
+            global_prod_ready [label="production-readiness\nPre-deployment", shape=box, style=filled, fillcolor=lightgreen];
+        }
+
+        subgraph cluster_global_workflow {
+            label="Workflow & Development (5)";
+            style=filled;
+            color=lightcyan;
+
+            global_slash [label="slash-command-encoder\nSlash commands", shape=box, style=filled, fillcolor=wheat];
+            global_feature [label="feature-dev-complete\n12-stage lifecycle", shape=box, style=filled, fillcolor=wheat];
+            global_review [label="code-review-assistant\nMulti-agent PR", shape=box, style=filled, fillcolor=wheat];
+            global_quick [label="quick-quality-check\nFast parallel checks", shape=box, style=filled, fillcolor=wheat];
+            global_bugfix [label="smart-bug-fix\nRCA + auto-fix", shape=box, style=filled, fillcolor=wheat];
+        }
+    }
+
+    // ========================================
+    // PROJECT-SPECIFIC SKILLS (55) - SPEK v2
+    // ========================================
+
+    subgraph cluster_project {
+        label="🎯 PROJECT-SPECIFIC SKILLS (55)\nSPEK Platform v2 Only";
+        style=filled;
+        color=lightgray;
+
+        // Foundation Layer (2)
+        subgraph cluster_foundation {
+            label="Foundation Layer (2)";
+            style=filled;
+            color=lavender;
+
+            spek_init [label="session-init-queen\nInitialize Queen", shape=doubleoctagon, style=filled, fillcolor=gold];
+            spek_orchestrator [label="skill-cascade-orchestrator\nMeta-orchestrator", shape=doubleoctagon, style=filled, fillcolor=gold];
+        }
+
+        // Atomic Skills (22)
+        subgraph cluster_atomic {
+            label="Atomic Skills (22)";
+            style=filled;
+            color=honeydew;
+
+            subgraph cluster_atomic_test {
+                label="Testing & Validation (7)";
+                style=filled;
+                color=white;
+
+                atom_test_runner [label="test-runner", shape=box, style=filled, fillcolor=lightblue];
+                atom_build_verify [label="build-verifier", shape=box, style=filled, fillcolor=lightblue];
+                atom_type_check [label="type-checker", shape=box, style=filled, fillcolor=lightblue];
+                atom_linter [label="linter", shape=box, style=filled, fillcolor=lightblue];
+                atom_nasa [label="nasa-compliance-checker", shape=box, style=filled, fillcolor=lightblue];
+                atom_debug_clean [label="debug-output-cleaner", shape=box, style=filled, fillcolor=lightblue];
+                atom_e2e [label="e2e-test-runner", shape=box, style=filled, fillcolor=lightblue];
+            }
+
+            subgraph cluster_atomic_doc {
+                label="Documentation & Style (3)";
+                style=filled;
+                color=white;
+
+                atom_docstring [label="docstring-validator", shape=box, style=filled, fillcolor=lightyellow];
+                atom_style_match [label="style-matcher", shape=box, style=filled, fillcolor=lightyellow];
+                atom_theater [label="theater-scanner", shape=box, style=filled, fillcolor=lightyellow];
+            }
+
+            subgraph cluster_atomic_git {
+                label="Git & Version Control (3)";
+                style=filled;
+                color=white;
+
+                atom_git_status [label="git-status-checker", shape=box, style=filled, fillcolor=lightcyan];
+                atom_commit_msg [label="commit-message-validator", shape=box, style=filled, fillcolor=lightcyan];
+                atom_rollback [label="rollback-executor", shape=box, style=filled, fillcolor=lightcyan];
+            }
+
+            subgraph cluster_atomic_security {
+                label="Security & Performance (4)";
+                style=filled;
+                color=white;
+
+                atom_security [label="security-scanner", shape=box, style=filled, fillcolor=pink];
+                atom_secrets [label="secrets-detector", shape=box, style=filled, fillcolor=pink];
+                atom_perf [label="performance-validator", shape=box, style=filled, fillcolor=pink];
+                atom_cors [label="cors-configurator", shape=box, style=filled, fillcolor=pink];
+            }
+
+            subgraph cluster_atomic_debug {
+                label="Debugging & Troubleshooting (3)";
+                style=filled;
+                color=white;
+
+                atom_minrepro [label="minimal-reproduction-creator", shape=box, style=filled, fillcolor=wheat];
+                atom_error_pattern [label="error-pattern-analyzer", shape=box, style=filled, fillcolor=wheat];
+                atom_debug_inject [label="debug-logger-injector", shape=box, style=filled, fillcolor=wheat];
+            }
+
+            subgraph cluster_atomic_env {
+                label="Environment & Deployment (2)";
+                style=filled;
+                color=white;
+
+                atom_env [label="environment-validator", shape=box, style=filled, fillcolor=lightgreen];
+                atom_health [label="health-check-monitor", shape=box, style=filled, fillcolor=lightgreen];
+            }
+        }
+
+        // Composite Skills (15)
+        subgraph cluster_composite {
+            label="Composite Skills (15)";
+            style=filled;
+            color=mistyrose;
+
+            subgraph cluster_composite_dev {
+                label="Development Workflows (5)";
+                style=filled;
+                color=white;
+
+                comp_tdd [label="tdd-cycle-orchestrator", shape=hexagon, style=filled, fillcolor=lightblue];
+                comp_completion [label="completion-gate-orchestrator", shape=hexagon, style=filled, fillcolor=lightblue];
+                comp_stuck [label="stuck-escalation-orchestrator", shape=hexagon, style=filled, fillcolor=lightblue];
+                comp_typescript [label="typescript-fixer-orchestrator", shape=hexagon, style=filled, fillcolor=lightblue];
+                comp_analyzer [label="analyzer-decision-orchestrator", shape=hexagon, style=filled, fillcolor=lightblue];
+            }
+
+            subgraph cluster_composite_deploy {
+                label="Deployment Workflows (6)";
+                style=filled;
+                color=white;
+
+                comp_predeploy [label="pre-deploy-gate-orchestrator", shape=hexagon, style=filled, fillcolor=lightgreen];
+                comp_k8s [label="kubernetes-deployer", shape=hexagon, style=filled, fillcolor=lightgreen];
+                comp_database [label="database-migrator", shape=hexagon, style=filled, fillcolor=lightgreen];
+                comp_postdeploy [label="post-deploy-monitor", shape=hexagon, style=filled, fillcolor=lightgreen];
+                comp_rollback_orch [label="rollback-orchestrator", shape=hexagon, style=filled, fillcolor=lightgreen];
+                comp_week26 [label="week26-launcher", shape=hexagon, style=filled, fillcolor=gold];
+            }
+
+            subgraph cluster_composite_security {
+                label="Security Workflows (2)";
+                style=filled;
+                color=white;
+
+                comp_security [label="security-setup-orchestrator", shape=hexagon, style=filled, fillcolor=pink];
+                comp_incident [label="incident-response-orchestrator", shape=hexagon, style=filled, fillcolor=pink];
+            }
+
+            subgraph cluster_composite_decision {
+                label="Decision Workflows (2)";
+                style=filled;
+                color=white;
+
+                comp_fsm [label="fsm-decision-orchestrator", shape=hexagon, style=filled, fillcolor=lightyellow];
+                comp_dspy [label="dspy-training-orchestrator", shape=hexagon, style=filled, fillcolor=lightyellow];
+            }
+        }
+
+        // Helper Scripts (16)
+        subgraph cluster_scripts {
+            label="Helper Scripts (16)";
+            style=filled;
+            color=lavenderblush;
+
+            subgraph cluster_loop1 {
+                label="Loop 1 (3)";
+                style=filled;
+                color=white;
+
+                script_research [label="research_coordinator.py", shape=note, style=filled, fillcolor=lightcyan];
+                script_premortem [label="premortem_generator.py", shape=note, style=filled, fillcolor=lightcyan];
+                script_loop1_mem [label="loop1_memory.py", shape=note, style=filled, fillcolor=lightcyan];
+            }
+
+            subgraph cluster_loop2 {
+                label="Loop 2 (5)";
+                style=filled;
+                color=white;
+
+                script_audit [label="audit_runner.py", shape=note, style=filled, fillcolor=wheat];
+                script_queen [label="queen_coordinator.py", shape=note, style=filled, fillcolor=wheat];
+                script_princess [label="princess_spawner.py", shape=note, style=filled, fillcolor=wheat];
+                script_drone [label="drone_selector.py", shape=note, style=filled, fillcolor=wheat];
+                script_loop2_mem [label="loop2_memory.py", shape=note, style=filled, fillcolor=wheat];
+            }
+
+            subgraph cluster_loop3 {
+                label="Loop 3 (5)";
+                style=filled;
+                color=white;
+
+                script_quality [label="quality_gate.py", shape=note, style=filled, fillcolor=lightgreen];
+                script_integration [label="integration_tester.py", shape=note, style=filled, fillcolor=lightgreen];
+                script_rewrite [label="rewrite_coordinator.py", shape=note, style=filled, fillcolor=lightgreen];
+                script_deploy_approve [label="deployment_approver.py", shape=note, style=filled, fillcolor=lightgreen];
+                script_escalation [label="escalation_manager.py", shape=note, style=filled, fillcolor=lightgreen];
+            }
+
+            subgraph cluster_flow {
+                label="Flow Orchestrator (3)";
+                style=filled;
+                color=white;
+
+                script_flow [label="flow_manager.py", shape=note, style=filled, fillcolor=gold];
+                script_memory [label="memory_manager.py", shape=note, style=filled, fillcolor=gold];
+                script_transition [label="transition_coordinator.py", shape=note, style=filled, fillcolor=gold];
+            }
+        }
+    }
+
+    // ========================================
+    // KEY RELATIONSHIPS
+    // ========================================
+
+    // Global skills influence project-specific design
+    global_skill_forge -> spek_orchestrator [label="created by", style=dashed, color=blue];
+    global_agent_creator -> spek_init [label="created by", style=dashed, color=blue];
+    global_cascade -> spek_orchestrator [label="pattern", style=dashed, color=blue];
+
+    // Foundation orchestrates everything
+    spek_orchestrator -> comp_tdd [label="triggers", color=red, penwidth=2];
+    spek_orchestrator -> comp_completion [label="triggers", color=red, penwidth=2];
+    spek_orchestrator -> comp_predeploy [label="triggers", color=red, penwidth=2];
+
+    // Composite skills use atomic skills
+    comp_tdd -> atom_test_runner [label="calls", color=green];
+    comp_tdd -> atom_build_verify [label="calls", color=green];
+    comp_tdd -> atom_nasa [label="calls", color=green];
+
+    comp_completion -> atom_test_runner [label="calls", color=green];
+    comp_completion -> atom_build_verify [label="calls", color=green];
+    comp_completion -> atom_type_check [label="calls", color=green];
+    comp_completion -> atom_linter [label="calls", color=green];
+    comp_completion -> atom_theater [label="calls", color=green];
+
+    comp_predeploy -> atom_test_runner [label="calls", color=green];
+    comp_predeploy -> atom_e2e [label="calls", color=green];
+    comp_predeploy -> atom_security [label="calls", color=green];
+    comp_predeploy -> atom_secrets [label="calls", color=green];
+    comp_predeploy -> atom_perf [label="calls", color=green];
+    comp_predeploy -> atom_env [label="calls", color=green];
+    comp_predeploy -> atom_health [label="calls", color=green];
+
+    comp_security -> atom_security [label="calls", color=green];
+    comp_security -> atom_secrets [label="calls", color=green];
+    comp_security -> atom_cors [label="calls", color=green];
+
+    comp_stuck -> atom_minrepro [label="calls", color=green];
+    comp_stuck -> atom_error_pattern [label="calls", color=green];
+    comp_stuck -> atom_debug_inject [label="calls", color=green];
+
+    // Scripts support composite workflows
+    script_queen -> comp_tdd [label="supports", style=dotted, color=purple];
+    script_audit -> comp_completion [label="supports", style=dotted, color=purple];
+    script_quality -> comp_predeploy [label="supports", style=dotted, color=purple];
+    script_deploy_approve -> comp_predeploy [label="supports", style=dotted, color=purple];
+
+    // Week 26 launcher orchestrates deployment
+    comp_week26 -> comp_predeploy [label="step 1", color=orange, penwidth=2];
+    comp_week26 -> comp_k8s [label="step 2", color=orange, penwidth=2];
+    comp_week26 -> comp_postdeploy [label="step 3", color=orange, penwidth=2];
+
+    // ========================================
+    // LEGEND
+    // ========================================
+
+    subgraph cluster_legend {
+        label="Legend";
+        style=filled;
+        color=white;
+
+        legend_global [label="Global Skill\n(Any Project)", shape=box, style=filled, fillcolor=lightyellow];
+        legend_foundation [label="Foundation Skill\n(SPEK Init)", shape=doubleoctagon, style=filled, fillcolor=gold];
+        legend_atomic [label="Atomic Skill\n(Reusable)", shape=box, style=filled, fillcolor=lightblue];
+        legend_composite [label="Composite Skill\n(Orchestrator)", shape=hexagon, style=filled, fillcolor=lightgreen];
+        legend_script [label="Helper Script\n(Python)", shape=note, style=filled, fillcolor=wheat];
+
+        legend_global -> legend_foundation [label="influences", style=dashed, color=blue];
+        legend_foundation -> legend_composite [label="triggers", color=red];
+        legend_composite -> legend_atomic [label="calls", color=green];
+        legend_script -> legend_composite [label="supports", style=dotted, color=purple];
+    }
+
+    // ========================================
+    // STATISTICS
+    // ========================================
+
+    stats [label="📊 STATISTICS\n\nGlobal Skills: 16\n├─ Meta-Level: 7\n├─ Quality: 4\n└─ Workflow: 5\n\nProject Skills: 55\n├─ Foundation: 2\n├─ Atomic: 22\n├─ Composite: 15\n└─ Scripts: 16\n\nTOTAL: 71 Skills", shape=box, style=filled, fillcolor=lightyellow, fontsize=11];
+}

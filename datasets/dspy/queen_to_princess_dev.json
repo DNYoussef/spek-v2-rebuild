@@ -1,0 +1,1299 @@
+{
+  "dataset_name": "queen_to_princess_dev",
+  "total_examples": 100,
+  "coverage": {
+    "web_development": 25,
+    "backend_systems": 25,
+    "mobile_development": 15,
+    "infrastructure": 15,
+    "data_ml": 10,
+    "security": 10
+  },
+  "examples": [
+    {
+      "id": 1,
+      "category": "web_development",
+      "task_description": "Implement user profile page with avatar upload",
+      "objective": "CRUD operations + S3 file upload with 80% test coverage",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design profile data model + S3 integration", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement profile API endpoints", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement avatar upload to S3", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Code review focusing on security and error handling", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 2,
+      "category": "web_development",
+      "task_description": "Build real-time notification system with WebSockets",
+      "objective": "Bidirectional WebSocket communication with React frontend",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design WebSocket message protocol and state management", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement WebSocket server with Socket.io", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build React notification component with hooks", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test connection stability and reconnection logic", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review for high-concurrency scenarios", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 3,
+      "category": "web_development",
+      "task_description": "Create responsive dashboard with charts and filters",
+      "objective": "Multi-widget dashboard using Chart.js with URL state persistence",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design widget layout system and filter state schema", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Chart.js integration with data transformations", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build filter controls with URL query sync", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Responsive design review across devices", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 4,
+      "category": "web_development",
+      "task_description": "Implement form wizard with validation and progress saving",
+      "objective": "Multi-step form with field-level validation and draft persistence",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design step progression logic and validation schema", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build form wizard component with Formik/Yup", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement draft autosave to localStorage", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test validation edge cases and navigation", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "UX review for error messaging and accessibility", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 5,
+      "category": "web_development",
+      "task_description": "Add infinite scroll pagination with virtual rendering",
+      "objective": "Performant list rendering for 10k+ items using react-window",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design virtual scroll strategy and data fetching", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-window integration with API pagination", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Performance profiling and scroll behavior testing", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Code review focusing on memory leaks and performance", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 6,
+      "category": "web_development",
+      "task_description": "Build drag-and-drop kanban board",
+      "objective": "Interactive kanban with react-beautiful-dnd and state persistence",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design board state structure and drag-drop interactions", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement kanban columns with react-beautiful-dnd", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add optimistic updates and API synchronization", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Accessibility review for keyboard navigation", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 7,
+      "category": "web_development",
+      "task_description": "Implement search with autocomplete and debouncing",
+      "objective": "Fast search experience with Elasticsearch backend and React frontend",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design search API with query optimization strategy", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build autocomplete component with debouncing", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Elasticsearch query with highlighting", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test search performance and relevance tuning", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "UX review for search result presentation", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 8,
+      "category": "web_development",
+      "task_description": "Create dark mode toggle with system preference detection",
+      "objective": "Theme switching with CSS variables and localStorage persistence",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design theme system using CSS custom properties", "dependencies": [], "estimated_minutes": 20},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement theme toggle with system preference detection", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Apply theme to all components with smooth transitions", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Visual QA across all pages and components", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 9,
+      "category": "web_development",
+      "task_description": "Build reusable data table with sorting, filtering, and export",
+      "objective": "Feature-rich table component using react-table v8",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design table configuration API and plugin system", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-table with sorting and filtering", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add CSV/Excel export functionality", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "API usability review with sample implementations", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 10,
+      "category": "web_development",
+      "task_description": "Implement OAuth2 social login (Google, GitHub, Facebook)",
+      "objective": "Multi-provider authentication with Passport.js",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design OAuth callback flow and user account linking", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Passport.js strategies for each provider", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build login UI with provider buttons", "dependencies": ["design"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test OAuth flows and error handling", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review for token handling and CSRF", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 11,
+      "category": "web_development",
+      "task_description": "Add image optimization with lazy loading and responsive sizes",
+      "objective": "Performance optimization using Next.js Image component",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design image sizing strategy and CDN integration", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Replace img tags with Next.js Image components", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure image optimization and caching", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance audit using Lighthouse", "dependencies": ["code"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 12,
+      "category": "web_development",
+      "task_description": "Build multi-language support with i18n",
+      "objective": "Internationalization using react-i18next with dynamic loading",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design translation file structure and language detection", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-i18next with namespace organization", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Extract hardcoded strings and create translation files", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test language switching and missing translations", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Review for RTL support and pluralization", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 13,
+      "category": "web_development",
+      "task_description": "Create animated page transitions with Framer Motion",
+      "objective": "Smooth route transitions and micro-interactions",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design animation choreography and timing", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Framer Motion route transitions", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add micro-interactions to buttons and cards", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and reduced motion support", "dependencies": ["code"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 14,
+      "category": "web_development",
+      "task_description": "Implement server-side rendering with Next.js",
+      "objective": "Convert SPA to SSR for SEO and performance",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design data fetching strategy (SSG vs SSR vs ISR)", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Migrate pages to Next.js with getServerSideProps", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure API routes and middleware", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test hydration and client-side navigation", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "SEO audit and performance comparison", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 15,
+      "category": "web_development",
+      "task_description": "Build progressive web app with offline support",
+      "objective": "PWA with service worker caching and install prompt",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design caching strategy and offline fallbacks", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement service worker with Workbox", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add manifest.json and install prompt UI", "dependencies": ["design"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test offline functionality and cache updates", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "PWA audit using Lighthouse", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 16,
+      "category": "web_development",
+      "task_description": "Create component library with Storybook",
+      "objective": "Reusable UI components with documentation and testing",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design component API and theming system", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build base components (Button, Input, Card, etc.)", "dependencies": ["design"], "estimated_minutes": 60},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Storybook with stories and controls", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "API consistency review and accessibility check", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 17,
+      "category": "web_development",
+      "task_description": "Implement GraphQL API with Apollo Server",
+      "objective": "Type-safe GraphQL API replacing REST endpoints",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design GraphQL schema and resolver architecture", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Apollo Server with schema definition", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build resolvers with DataLoader for N+1 prevention", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test queries and mutations with GraphQL Playground", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and caching strategy", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 18,
+      "category": "web_development",
+      "task_description": "Add end-to-end testing with Playwright",
+      "objective": "E2E test coverage for critical user flows",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design test scenarios and page object models", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Playwright tests for auth and checkout flows", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure CI integration with screenshots and videos", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Fix flaky tests and optimize selectors", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Test coverage review and maintenance strategy", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 19,
+      "category": "web_development",
+      "task_description": "Build real-time collaborative editor with CRDTs",
+      "objective": "Google Docs-like editing using Yjs and Quill",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design CRDT synchronization and conflict resolution", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Yjs with Quill editor integration", "dependencies": ["design"], "estimated_minutes": 55},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add WebRTC or WebSocket provider for sync", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test concurrent editing and network partitions", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review for large documents", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 20,
+      "category": "web_development",
+      "task_description": "Implement video player with custom controls",
+      "objective": "Custom video player using Video.js with analytics",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design player UI and analytics event tracking", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build Video.js player with custom skin", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add playback analytics and quality switching", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Cross-browser testing and accessibility review", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 21,
+      "category": "web_development",
+      "task_description": "Create admin panel with role-based access control",
+      "objective": "RBAC system with permissions and user management UI",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design RBAC schema and permission hierarchy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement permission middleware and guards", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build admin UI for role and permission management", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test permission inheritance and edge cases", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review for privilege escalation", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 22,
+      "category": "web_development",
+      "task_description": "Add code syntax highlighting with Prism.js",
+      "objective": "Multi-language syntax highlighting with line numbers and copy button",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design code block component API and theme support", "dependencies": [], "estimated_minutes": 20},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Prism.js with language detection", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add line numbers, highlighting, and copy functionality", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Theme compatibility and performance review", "dependencies": ["code"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 23,
+      "category": "web_development",
+      "task_description": "Build email template system with MJML",
+      "objective": "Responsive email templates with variable interpolation",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design template structure and variable schema", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create MJML templates for common emails", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build rendering engine with Handlebars integration", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test across email clients (Gmail, Outlook, etc.)", "dependencies": ["code"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Accessibility and spam score review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 24,
+      "category": "web_development",
+      "task_description": "Implement rate limiting and request throttling",
+      "objective": "API protection using express-rate-limit and Redis",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design rate limit tiers and Redis key strategy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement express-rate-limit with Redis store", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add custom error responses and retry headers", "dependencies": ["design"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Load testing and limit verification", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review and bypass prevention", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 25,
+      "category": "web_development",
+      "task_description": "Create PDF generation service with Puppeteer",
+      "objective": "HTML to PDF conversion with custom headers and footers",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design PDF template system and API interface", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Puppeteer PDF generation service", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build template engine with dynamic content", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test PDF quality and performance optimization", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Memory leak check and resource cleanup", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 26,
+      "category": "backend_systems",
+      "task_description": "Design and implement PostgreSQL database schema with migrations",
+      "objective": "Normalized schema with foreign keys, indexes, and migration system",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design ER diagram and normalization strategy", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create Sequelize/TypeORM models and migrations", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add indexes, constraints, and performance optimizations", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test migration rollback and data integrity", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Schema review for scalability and query performance", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 27,
+      "category": "backend_systems",
+      "task_description": "Build Redis caching layer for API responses",
+      "objective": "Cache-aside pattern with TTL management and invalidation",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design cache key strategy and invalidation logic", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Redis cache middleware with decorators", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add cache warming and background refresh", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test cache hit rates and memory usage", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance comparison and cache strategy review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 28,
+      "category": "backend_systems",
+      "task_description": "Implement job queue with Bull and Redis",
+      "objective": "Background job processing with retry logic and monitoring",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design job types, priorities, and failure handling", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Bull queues with processors and workers", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add job monitoring UI with Bull Board", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test concurrent processing and retry logic", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Scalability review and worker configuration", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 29,
+      "category": "backend_systems",
+      "task_description": "Create microservice with event-driven architecture",
+      "objective": "Service using RabbitMQ for async communication",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design event schema and message routing topology", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement RabbitMQ publishers and consumers", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add dead letter queue and retry mechanism", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test message delivery and idempotency", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "integrate", "description": "Integration testing with other microservices", "dependencies": ["debug"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Architecture review for eventual consistency", "dependencies": ["integrate"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 30,
+      "category": "backend_systems",
+      "task_description": "Implement full-text search with Elasticsearch",
+      "objective": "Multi-field search with faceting and relevance tuning",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design index mapping and analyzer configuration", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Elasticsearch client with CRUD operations", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build search query with filters and aggregations", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test search relevance and performance tuning", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Index strategy review and reindexing plan", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 31,
+      "category": "backend_systems",
+      "task_description": "Build API gateway with rate limiting and authentication",
+      "objective": "Centralized gateway using Kong or Express Gateway",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design gateway routing and plugin architecture", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Kong with JWT authentication plugin", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add rate limiting and request transformation", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Load testing and failover verification", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review and monitoring setup", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 32,
+      "category": "backend_systems",
+      "task_description": "Implement database replication and read replicas",
+      "objective": "PostgreSQL streaming replication with read-write splitting",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design replication topology and failover strategy", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure PostgreSQL streaming replication", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement connection pooling with read-write routing", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test replication lag and failover scenarios", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance benchmarking and monitoring setup", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 33,
+      "category": "backend_systems",
+      "task_description": "Create logging and monitoring system with ELK stack",
+      "objective": "Centralized logging using Elasticsearch, Logstash, Kibana",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design log schema and retention policy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Logstash pipelines for log ingestion", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build Kibana dashboards for error tracking", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test log aggregation and search performance", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Alert configuration and SLA monitoring", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 34,
+      "category": "backend_systems",
+      "task_description": "Implement OAuth2 authorization server",
+      "objective": "Custom OAuth2 server with PKCE and refresh tokens",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design OAuth2 flow and token storage strategy", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement authorization server with oauth2-server", "dependencies": ["design"], "estimated_minutes": 55},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build consent UI and client registration", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test all OAuth2 grant types and edge cases", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security audit for token leakage and CSRF", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 35,
+      "category": "backend_systems",
+      "task_description": "Build file storage service with S3-compatible API",
+      "objective": "MinIO-based storage with presigned URLs and encryption",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design bucket organization and access control", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement MinIO client with upload/download APIs", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add presigned URL generation and lifecycle policies", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test large file uploads and concurrent access", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review for public access and encryption", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 36,
+      "category": "backend_systems",
+      "task_description": "Implement distributed locking with Redis",
+      "objective": "Redlock algorithm for coordination across services",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design lock key strategy and timeout handling", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Redlock using node-redlock library", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add lock utilities with automatic extension", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test race conditions and network partitions", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Correctness review and failure mode analysis", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 37,
+      "category": "backend_systems",
+      "task_description": "Create WebSocket server with room-based broadcasting",
+      "objective": "Socket.io server with namespaces, rooms, and Redis adapter",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design room architecture and message protocol", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Socket.io server with authentication", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add Redis adapter for horizontal scaling", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test concurrent connections and message delivery", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and connection limits", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 38,
+      "category": "backend_systems",
+      "task_description": "Build scheduled task system with node-cron",
+      "objective": "Cron job scheduler with distributed execution prevention",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design cron schedule and distributed locking", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement node-cron with Redis lock integration", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add job monitoring and failure notifications", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test schedule accuracy and duplicate prevention", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Reliability review and recovery strategy", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 39,
+      "category": "backend_systems",
+      "task_description": "Implement API versioning strategy",
+      "objective": "URL-based and header-based API versioning with deprecation",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design versioning scheme and migration path", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement version routing middleware", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add deprecation warnings and sunset headers", "dependencies": ["design"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "API documentation review and migration guide", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 40,
+      "category": "backend_systems",
+      "task_description": "Create data export service with CSV/JSON/Excel formats",
+      "objective": "Streaming export for large datasets with progress tracking",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design streaming architecture and format converters", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement streaming CSV/JSON exporters", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add Excel export using exceljs library", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test memory usage with large datasets", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and file size limits", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 41,
+      "category": "backend_systems",
+      "task_description": "Build notification service with multi-channel delivery",
+      "objective": "Unified notification system for email, SMS, push, and webhooks",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design notification schema and provider abstraction", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement email (SendGrid) and SMS (Twilio) providers", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add push notifications (FCM) and webhooks", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test delivery tracking and failure handling", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Deliverability review and spam prevention", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 42,
+      "category": "backend_systems",
+      "task_description": "Implement database query optimization with indexing strategy",
+      "objective": "Analyze slow queries and add appropriate indexes",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Analyze query patterns and identify bottlenecks", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create composite indexes for common queries", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Refactor N+1 queries with eager loading", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Benchmark query performance before/after", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Index strategy review and maintenance plan", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 43,
+      "category": "backend_systems",
+      "task_description": "Build GraphQL subscriptions for real-time updates",
+      "objective": "WebSocket-based GraphQL subscriptions with Redis pub/sub",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design subscription schema and event triggers", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement GraphQL subscriptions with Apollo Server", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add Redis pub/sub for multi-server scaling", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test subscription filtering and performance", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Scalability review and connection limits", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 44,
+      "category": "backend_systems",
+      "task_description": "Implement data validation with JSON Schema",
+      "objective": "Request/response validation using Ajv",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design JSON schemas for all API endpoints", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Ajv validation middleware", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add custom error formatting and messages", "dependencies": ["design"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test validation edge cases and performance", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Schema completeness and error clarity review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 45,
+      "category": "backend_systems",
+      "task_description": "Create health check and readiness probe endpoints",
+      "objective": "Kubernetes-compatible health checks with dependency validation",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design health check strategy for all dependencies", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement /health and /ready endpoints", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add database, Redis, and third-party service checks", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test graceful degradation and timeout handling", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Kubernetes integration and probe configuration", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 46,
+      "category": "backend_systems",
+      "task_description": "Build multi-tenant architecture with data isolation",
+      "objective": "Schema-based multi-tenancy with row-level security",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design tenant isolation strategy and migration", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement tenant middleware and context injection", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add PostgreSQL row-level security policies", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test data isolation and cross-tenant access prevention", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security audit for tenant leakage", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 47,
+      "category": "backend_systems",
+      "task_description": "Implement saga pattern for distributed transactions",
+      "objective": "Compensating transactions for multi-service operations",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design saga workflow and compensation logic", "dependencies": [], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement saga orchestrator with state machine", "dependencies": ["design"], "estimated_minutes": 60},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add compensation handlers for rollback", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test failure scenarios and partial rollbacks", "dependencies": ["code"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Consistency guarantees and idempotency review", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 48,
+      "category": "backend_systems",
+      "task_description": "Create audit logging system for compliance",
+      "objective": "Immutable audit trail with tamper detection",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design audit event schema and retention policy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement audit logging middleware with cryptographic signatures", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build audit log query API with filtering", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test tamper detection and log completeness", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Compliance review (GDPR, SOC2, HIPAA)", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 49,
+      "category": "backend_systems",
+      "task_description": "Implement feature flags with LaunchDarkly",
+      "objective": "Dynamic feature toggling with targeting rules",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design flag strategy and rollout plan", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Integrate LaunchDarkly SDK with caching", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add flag evaluation helpers and React hooks", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test flag updates and fallback behavior", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Flag lifecycle management and cleanup process", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 50,
+      "category": "backend_systems",
+      "task_description": "Build API documentation with OpenAPI/Swagger",
+      "objective": "Auto-generated API docs with Try It Out functionality",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design OpenAPI schema organization", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add swagger-jsdoc annotations to routes", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Swagger UI with authentication", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Documentation completeness and accuracy review", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 51,
+      "category": "mobile_development",
+      "task_description": "Build offline-first mobile app with React Native and WatermelonDB",
+      "objective": "Local-first architecture with background sync",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design data model and sync strategy", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement WatermelonDB schemas and queries", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build sync engine with conflict resolution", "dependencies": ["design"], "estimated_minutes": 55},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test offline scenarios and sync reliability", "dependencies": ["code"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and battery impact", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 52,
+      "category": "mobile_development",
+      "task_description": "Implement push notifications with Firebase Cloud Messaging",
+      "objective": "Cross-platform push notifications with deep linking",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design notification schema and deep link routes", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Integrate FCM with React Native Firebase", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement notification handlers and deep linking", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test foreground/background notification behavior", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Permission flow and notification UX review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 53,
+      "category": "mobile_development",
+      "task_description": "Create native module for biometric authentication",
+      "objective": "Touch ID/Face ID integration for iOS and Android",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design native module API and error handling", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement iOS module with LocalAuthentication", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Android module with BiometricPrompt", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test on multiple devices and fallback scenarios", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review and key storage validation", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 54,
+      "category": "mobile_development",
+      "task_description": "Build camera feature with image processing",
+      "objective": "Custom camera UI with filters and cropping",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design camera UI and image pipeline", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-native-camera with custom controls", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add image filters using react-native-image-filter-kit", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test memory management and image quality", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and battery impact", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 55,
+      "category": "mobile_development",
+      "task_description": "Implement in-app purchases with RevenueCat",
+      "objective": "Cross-platform IAP with subscription management",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design subscription tiers and purchase flow", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Integrate RevenueCat SDK for iOS and Android", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build paywall UI and restore purchases flow", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test purchase scenarios and receipt validation", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "App Store compliance and refund handling review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 56,
+      "category": "mobile_development",
+      "task_description": "Create animated onboarding flow with Lottie",
+      "objective": "Interactive tutorial with progress tracking",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design onboarding steps and animation flow", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Lottie animations with react-native-lottie", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build swipeable tutorial with skip functionality", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Animation performance and accessibility review", "dependencies": ["code"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 57,
+      "category": "mobile_development",
+      "task_description": "Build location tracking with geofencing",
+      "objective": "Background location updates with geofence alerts",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design location update strategy and battery optimization", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-native-geolocation with background mode", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add geofencing with local notifications", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test accuracy and background execution limits", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Privacy compliance and permission flow review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 58,
+      "category": "mobile_development",
+      "task_description": "Implement audio player with background playback",
+      "objective": "Music player with lock screen controls",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design audio player architecture and playlist management", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-native-track-player with playback controls", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add lock screen media controls and notifications", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test background playback and interruption handling", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Audio session management and CarPlay support", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 59,
+      "category": "mobile_development",
+      "task_description": "Create AR feature with expo-camera and ARKit",
+      "objective": "Augmented reality experience for product visualization",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design AR interaction model and 3D asset pipeline", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement ARKit/ARCore integration", "dependencies": ["design"], "estimated_minutes": 55},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add 3D model placement and scaling controls", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test plane detection and tracking stability", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and device compatibility", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 60,
+      "category": "mobile_development",
+      "task_description": "Build chat interface with real-time messaging",
+      "objective": "WhatsApp-like chat with typing indicators and read receipts",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design message schema and real-time sync strategy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-native-gifted-chat with Socket.io", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add typing indicators, read receipts, and media messages", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test message ordering and offline queue", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review for large conversation history", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 61,
+      "category": "mobile_development",
+      "task_description": "Implement QR code scanner with barcode detection",
+      "objective": "Fast QR/barcode scanning with result validation",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design scanner UI and validation logic", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-native-camera with barcode detection", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add result parsing and error handling", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test scanning accuracy in various lighting", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Permission flow and camera performance review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 62,
+      "category": "mobile_development",
+      "task_description": "Create video recording with compression and upload",
+      "objective": "In-app video capture with cloud upload progress",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design video pipeline and compression strategy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement video capture with react-native-camera", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add video compression and resumable upload", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test file size optimization and upload reliability", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Storage limits and network efficiency review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 63,
+      "category": "mobile_development",
+      "task_description": "Build social sharing with native share dialogs",
+      "objective": "Deep linking and share sheet integration",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design share content templates and deep link schema", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement react-native-share with dynamic content", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add deep link handling and attribution tracking", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test share targets and deep link routing", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Open Graph metadata and preview generation review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 64,
+      "category": "mobile_development",
+      "task_description": "Implement app theme customization with user preferences",
+      "objective": "Dynamic theming with color scheme and font size controls",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design theme system and customization options", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement styled-components theme provider", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build settings UI with live preview", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Accessibility review for color contrast and text scaling", "dependencies": ["code"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 65,
+      "category": "mobile_development",
+      "task_description": "Create pull-to-refresh with skeleton loading states",
+      "objective": "Smooth refresh UX with optimistic updates",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design loading state animations and timing", "dependencies": [], "estimated_minutes": 20},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement RefreshControl with skeleton screens", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add optimistic UI updates and error recovery", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Animation smoothness and UX review", "dependencies": ["code"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 66,
+      "category": "infrastructure",
+      "task_description": "Set up Docker multi-stage builds for microservices",
+      "objective": "Optimized Docker images with layer caching",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design Dockerfile structure and build stages", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create multi-stage Dockerfiles for each service", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure docker-compose for local development", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test build times and image sizes", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security scan with Trivy and best practices review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 67,
+      "category": "infrastructure",
+      "task_description": "Implement CI/CD pipeline with GitHub Actions",
+      "objective": "Automated testing, building, and deployment workflow",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design pipeline stages and deployment strategy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create GitHub Actions workflows for test and build", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add deployment jobs with approval gates", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test pipeline execution and failure scenarios", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review for secrets and permissions", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 68,
+      "category": "infrastructure",
+      "task_description": "Configure Kubernetes cluster with Helm charts",
+      "objective": "Production-ready K8s deployment with auto-scaling",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design K8s architecture and resource allocation", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create Helm charts for all microservices", "dependencies": ["design"], "estimated_minutes": 55},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure HPA, service mesh, and ingress", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test rolling updates and rollback procedures", "dependencies": ["code"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Resource limits and security policies review", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 69,
+      "category": "infrastructure",
+      "task_description": "Set up monitoring with Prometheus and Grafana",
+      "objective": "Comprehensive metrics collection and visualization",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design metrics strategy and alerting rules", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Prometheus scraping and service discovery", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build Grafana dashboards for key metrics", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test alerting and dashboard accuracy", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Alert fatigue review and SLO definition", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 70,
+      "category": "infrastructure",
+      "task_description": "Implement infrastructure as code with Terraform",
+      "objective": "AWS infrastructure provisioning with state management",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design resource organization and module structure", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create Terraform modules for VPC, ECS, RDS", "dependencies": ["design"], "estimated_minutes": 55},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure remote state with S3 and DynamoDB locking", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test plan/apply cycles and drift detection", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review for IAM policies and encryption", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 71,
+      "category": "infrastructure",
+      "task_description": "Configure distributed tracing with Jaeger",
+      "objective": "Request tracing across microservices",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design trace propagation and sampling strategy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Integrate OpenTelemetry SDK in all services", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Deploy Jaeger collector and query service", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test trace visualization and performance impact", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Sampling rate optimization and retention policy", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 72,
+      "category": "infrastructure",
+      "task_description": "Set up secrets management with HashiCorp Vault",
+      "objective": "Centralized secret storage with rotation policies",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design secret organization and access policies", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Deploy Vault cluster with high availability", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Integrate Vault client in application services", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test secret rotation and unsealing procedures", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security audit for access patterns and encryption", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 73,
+      "category": "infrastructure",
+      "task_description": "Implement blue-green deployment strategy",
+      "objective": "Zero-downtime deployments with instant rollback",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design traffic switching and health check strategy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure load balancer for blue-green routing", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Create deployment scripts with validation gates", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test deployment and rollback procedures", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Cost analysis and resource utilization review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 74,
+      "category": "infrastructure",
+      "task_description": "Set up log aggregation with Fluentd and S3",
+      "objective": "Centralized log collection with long-term archival",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design log routing and retention strategy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Deploy Fluentd DaemonSet with log parsing", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure S3 output with compression and lifecycle", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test log delivery and query performance", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Cost optimization and compliance review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 75,
+      "category": "infrastructure",
+      "task_description": "Configure autoscaling with custom metrics",
+      "objective": "Application-aware scaling based on business metrics",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design scaling metrics and threshold strategy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement custom metrics exporter for Prometheus", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure HPA with custom metrics adapter", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test scaling behavior and stability", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance review and cost efficiency analysis", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 76,
+      "category": "infrastructure",
+      "task_description": "Implement disaster recovery plan with automated backups",
+      "objective": "RTO/RPO compliance with tested recovery procedures",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design backup strategy and recovery objectives", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure automated database and volume backups", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build recovery automation scripts", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test full recovery in isolated environment", "dependencies": ["code"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "review", "description": "DR documentation and runbook validation", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 77,
+      "category": "infrastructure",
+      "task_description": "Set up service mesh with Istio",
+      "objective": "Secure service-to-service communication with observability",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design mesh architecture and traffic policies", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Deploy Istio control plane and inject sidecars", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure mTLS, circuit breakers, and rate limits", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test traffic routing and fault injection", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance impact and resource usage review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 78,
+      "category": "infrastructure",
+      "task_description": "Implement GitOps with ArgoCD",
+      "objective": "Declarative continuous delivery for Kubernetes",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design Git repository structure and sync strategy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Deploy ArgoCD and configure application definitions", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Set up automated sync with health checks", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test sync behavior and rollback capabilities", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Access control and audit trail review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 79,
+      "category": "infrastructure",
+      "task_description": "Configure CDN with CloudFront and cache optimization",
+      "objective": "Global content delivery with edge caching",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design cache key strategy and invalidation logic", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure CloudFront distribution with behaviors", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add Lambda@Edge for custom headers and redirects", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test cache hit rates and geographic performance", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Cost analysis and cache efficiency review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 80,
+      "category": "infrastructure",
+      "task_description": "Set up cost monitoring with AWS Cost Explorer API",
+      "objective": "Automated cost tracking and budget alerts",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design cost allocation tags and reporting structure", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Cost Explorer API integration", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build cost dashboard with trend analysis", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test budget alerts and anomaly detection", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Cost optimization recommendations review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 81,
+      "category": "data_ml",
+      "task_description": "Build ETL pipeline with Apache Airflow",
+      "objective": "Scheduled data extraction, transformation, and loading",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design DAG structure and data transformation logic", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Airflow DAGs with operators", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add error handling and data validation tasks", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test pipeline execution and retry logic", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Performance optimization and monitoring review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 82,
+      "category": "data_ml",
+      "task_description": "Implement recommendation engine with collaborative filtering",
+      "objective": "Personalized recommendations using matrix factorization",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design model architecture and training strategy", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement collaborative filtering with Surprise library", "dependencies": ["design"], "estimated_minutes": 55},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build inference API with caching", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Evaluate model accuracy and recommendation quality", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Cold start handling and diversity review", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 83,
+      "category": "data_ml",
+      "task_description": "Create real-time analytics dashboard with Superset",
+      "objective": "Interactive data visualization with drill-down capabilities",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design dashboard layout and metrics hierarchy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Superset with data sources", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build charts and dashboards with filters", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test query performance and caching", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Dashboard usability and data accuracy review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 84,
+      "category": "data_ml",
+      "task_description": "Build sentiment analysis model with transformers",
+      "objective": "Fine-tuned BERT for product review classification",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design training pipeline and evaluation metrics", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Fine-tune BERT model using Hugging Face", "dependencies": ["design"], "estimated_minutes": 60},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build inference API with model serving", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Evaluate model accuracy and edge cases", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Bias analysis and performance optimization", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 85,
+      "category": "data_ml",
+      "task_description": "Implement data lake with AWS S3 and Glue",
+      "objective": "Centralized data storage with cataloging and partitioning",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design data lake architecture and partitioning strategy", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure S3 buckets with lifecycle policies", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Set up Glue crawlers and data catalog", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test data ingestion and query performance", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Data governance and access control review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 86,
+      "category": "data_ml",
+      "task_description": "Create anomaly detection system with Isolation Forest",
+      "objective": "Real-time anomaly detection for fraud prevention",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design feature engineering and model architecture", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Isolation Forest with scikit-learn", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build real-time scoring API with alerting", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Tune threshold and evaluate false positive rate", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Model explainability and monitoring review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 87,
+      "category": "data_ml",
+      "task_description": "Build time series forecasting with Prophet",
+      "objective": "Demand forecasting with seasonal decomposition",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design forecasting model and external regressors", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Prophet model with hyperparameter tuning", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build forecasting API with confidence intervals", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Evaluate forecast accuracy with backtesting", "dependencies": ["code"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Model assumptions and uncertainty quantification review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 88,
+      "category": "data_ml",
+      "task_description": "Implement A/B testing framework with statistical analysis",
+      "objective": "Experiment platform with bayesian analysis",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design experiment tracking and statistical tests", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build experiment assignment and tracking system", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement bayesian analysis with PyMC3", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test sample size calculations and power analysis", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Statistical validity and bias prevention review", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 89,
+      "category": "data_ml",
+      "task_description": "Create feature store with Feast",
+      "objective": "Centralized feature management for ML models",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design feature definitions and data sources", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Feast with offline and online stores", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement feature materialization pipeline", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test feature serving latency and consistency", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Feature versioning and monitoring strategy review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 90,
+      "category": "data_ml",
+      "task_description": "Build model monitoring with Evidently AI",
+      "objective": "Production ML model performance and drift detection",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design monitoring metrics and drift detection strategy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Integrate Evidently for data and model drift", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build monitoring dashboard with alerting", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test drift detection and alert thresholds", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Retraining triggers and model governance review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 91,
+      "category": "security",
+      "task_description": "Implement OAuth2 PKCE flow for mobile apps",
+      "objective": "Secure authentication without client secrets",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design PKCE flow and code verifier generation", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement authorization server PKCE validation", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build mobile client with AppAuth SDK", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test code challenge validation and replay attacks", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security audit for authorization code interception", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 92,
+      "category": "security",
+      "task_description": "Add API request signing with HMAC",
+      "objective": "Request integrity verification and replay protection",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design signing scheme and nonce strategy", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement HMAC signing middleware", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add timestamp validation and nonce tracking", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test signature validation and replay prevention", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Security review for timing attacks and key rotation", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 93,
+      "category": "security",
+      "task_description": "Implement end-to-end encryption for messaging",
+      "objective": "Signal Protocol implementation for private messaging",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design key exchange and ratcheting protocol", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement Double Ratchet algorithm", "dependencies": ["design"], "estimated_minutes": 60},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build key server for identity verification", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test forward secrecy and message ordering", "dependencies": ["code"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "review", "description": "Cryptographic security audit and key management", "dependencies": ["debug"], "estimated_minutes": 35}
+      ]
+    },
+    {
+      "id": 94,
+      "category": "security",
+      "task_description": "Build content security policy (CSP) framework",
+      "objective": "XSS protection with CSP headers and reporting",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design CSP directives and violation reporting", "dependencies": [], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement CSP middleware with nonce generation", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add CSP violation reporting and monitoring", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test policy enforcement and inline script handling", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Policy strictness and third-party integration review", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 95,
+      "category": "security",
+      "task_description": "Implement database encryption at rest",
+      "objective": "Transparent data encryption with key rotation",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design encryption strategy and key management", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Enable PostgreSQL TDE with AWS KMS", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement application-level encryption for sensitive fields", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test performance impact and key rotation", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Compliance validation (PCI-DSS, HIPAA)", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 96,
+      "category": "security",
+      "task_description": "Create security audit logging with SIEM integration",
+      "objective": "Security event collection and SIEM forwarding",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design security event taxonomy and retention", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement security event logging middleware", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure Splunk/Datadog SIEM integration", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test event correlation and alerting rules", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "SOC2 compliance and incident response review", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 97,
+      "category": "security",
+      "task_description": "Implement API gateway with WAF rules",
+      "objective": "Web application firewall with OWASP Top 10 protection",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design WAF rule set and rate limiting strategy", "dependencies": [], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure AWS WAF with managed rule groups", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Add custom rules for application-specific threats", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test rule effectiveness and false positive rate", "dependencies": ["code"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "review", "description": "Threat model review and rule tuning", "dependencies": ["debug"], "estimated_minutes": 25}
+      ]
+    },
+    {
+      "id": 98,
+      "category": "security",
+      "task_description": "Build vulnerability scanning pipeline with Snyk",
+      "objective": "Automated dependency scanning in CI/CD",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design scan strategy and remediation workflow", "dependencies": [], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "code", "description": "Integrate Snyk into GitHub Actions pipeline", "dependencies": ["design"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "code", "description": "Configure scan policies and severity thresholds", "dependencies": ["design"], "estimated_minutes": 30},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test scan coverage and false positive handling", "dependencies": ["code"], "estimated_minutes": 25},
+        {"princess": "princess-dev", "task_type": "review", "description": "Vulnerability SLA and patch management review", "dependencies": ["debug"], "estimated_minutes": 20}
+      ]
+    },
+    {
+      "id": 99,
+      "category": "security",
+      "task_description": "Implement zero-trust network architecture",
+      "objective": "Service mesh with mTLS and identity-based access",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design zero-trust model and identity verification", "dependencies": [], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Deploy service mesh with automatic mTLS", "dependencies": ["design"], "estimated_minutes": 50},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement authorization policies with OPA", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test certificate rotation and policy enforcement", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "Threat model validation and blast radius review", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    },
+    {
+      "id": 100,
+      "category": "security",
+      "task_description": "Create incident response automation with runbooks",
+      "objective": "Automated security incident detection and response",
+      "expected_subtasks": [
+        {"princess": "princess-dev", "task_type": "design", "description": "Design incident taxonomy and response workflows", "dependencies": [], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "code", "description": "Build automated response playbooks with PagerDuty", "dependencies": ["design"], "estimated_minutes": 45},
+        {"princess": "princess-dev", "task_type": "code", "description": "Implement automated containment actions", "dependencies": ["design"], "estimated_minutes": 40},
+        {"princess": "princess-dev", "task_type": "debug", "description": "Test incident simulation and runbook execution", "dependencies": ["code"], "estimated_minutes": 35},
+        {"princess": "princess-dev", "task_type": "review", "description": "MTTR optimization and escalation path review", "dependencies": ["debug"], "estimated_minutes": 30}
+      ]
+    }
+  ]
+}

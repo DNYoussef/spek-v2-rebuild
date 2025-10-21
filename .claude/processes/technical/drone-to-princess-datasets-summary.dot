@@ -1,0 +1,272 @@
+digraph drone_to_princess_datasets_summary {
+  label="Drone-to-Princess DSPy Training Datasets Summary\nPrincess Hive Delegation Optimization";
+  rankdir=TB;
+  compound=true;
+
+  // ============================================================
+  // ENTRY POINT
+  // ============================================================
+
+  entry [label="DSPy Training\nDatasets", shape=ellipse, style=filled, fillcolor=lightblue];
+
+  nav_decision [label="Review Focus?", shape=diamond, style=filled, fillcolor=lightyellow];
+
+  entry -> nav_decision;
+
+  // ============================================================
+  // CLUSTER 1: OVERVIEW
+  // ============================================================
+
+  subgraph cluster_overview {
+    label="OVERVIEW (DSPy Optimization)";
+    style=filled;
+    fillcolor=lightgray;
+
+    overview_entry [label="Dataset Purpose", shape=plaintext];
+
+    overview_purpose [label="Purpose:\nOptimize Princess delegation logic\nusing DSPy training datasets\n\nTarget: Improve routing accuracy\nfrom baseline to optimized Princess", shape=box, style=filled, fillcolor=lightblue];
+
+    overview_architecture [label="Princess Hive Architecture:\nTier 1: Queen (top coordinator)\nTier 2: 3 Princess coordinators\n  - Princess-Dev\n  - Princess-Quality\n  - Princess-Coordination\nTier 3: 28 Drone agents (specialized)", shape=box, style=filled, fillcolor=lightblue];
+
+    overview_routing [label="Routing Methods (3):\n1. Task type matching\n2. Keyword analysis\n3. Fallback chains\n\nTarget Latency: <100ms\nTarget Accuracy: >95%", shape=box, style=filled, fillcolor=lightyellow];
+
+    overview_datasets [label="3 Training Datasets:\n1. Princess-Dev → 9 Drones\n2. Princess-Quality → 10 Drones\n3. Princess-Coordination → 9 Drones\n\nTotal: 28 Drones across 3 Princesses", shape=box, style=filled, fillcolor=lightblue];
+
+    overview_entry -> overview_purpose -> overview_architecture -> overview_routing -> overview_datasets;
+  }
+
+  nav_decision -> overview_entry [label="Overview", lhead=cluster_overview];
+
+  // ============================================================
+  // CLUSTER 2: PRINCESS-DEV DATASET
+  // ============================================================
+
+  subgraph cluster_princess_dev {
+    label="PRINCESS-DEV DATASET (9 Drones)";
+    style=filled;
+    fillcolor=lightgray;
+
+    dev_entry [label="Princess-Dev Routing", shape=plaintext];
+
+    dev_scope [label="Scope:\nDevelopment coordination\n9 specialized drones\nFocus: Implementation tasks", shape=box, style=filled, fillcolor=lightblue];
+
+    dev_drones [label="9 Drones:\n1. coder (code implementation)\n2. frontend-dev (UI development)\n3. backend-dev (API development)\n4. architect (system design)\n5. pseudocode-writer (algorithm design)\n6. debugger (bug fixing)\n7. integration-engineer (component integration)\n8. devops (deployment automation)\n9. code-analyzer (static analysis)", shape=box, style=filled, fillcolor=lightyellow];
+
+    dev_keywords [label="Keyword Sets:\ncoder: [\"implement\", \"code\", \"function\", \"class\", \"write code\"]\nfrontend-dev: [\"ui\", \"component\", \"react\", \"frontend\", \"typescript\"]\nbackend-dev: [\"api\", \"endpoint\", \"route\", \"backend\", \"server\"]\narchitect: [\"design\", \"architecture\", \"system\", \"structure\", \"pattern\"]\npseudocode-writer: [\"algorithm\", \"pseudocode\", \"logic\", \"steps\", \"flow\"]\ndebugger: [\"bug\", \"fix\", \"debug\", \"error\", \"issue\"]\nintegration-engineer: [\"integrate\", \"connect\", \"link\", \"combine\", \"merge\"]\ndevops: [\"deploy\", \"ci/cd\", \"pipeline\", \"release\", \"production\"]\ncode-analyzer: [\"analyze\", \"lint\", \"scan\", \"review\", \"inspect\"]", shape=box, style=filled, fillcolor=lightyellow];
+
+    dev_examples [label="Training Examples (Sample):\nQ: \"Implement user authentication\"\nA: coder (keyword: \"implement\")\n\nQ: \"Design React component for dashboard\"\nA: frontend-dev (keywords: \"design\", \"React\", \"component\")\n\nQ: \"Create REST API endpoint for users\"\nA: backend-dev (keywords: \"create\", \"API\", \"endpoint\")\n\nQ: \"Debug login failure issue\"\nA: debugger (keywords: \"debug\", \"issue\")\n\nQ: \"Analyze code for security vulnerabilities\"\nA: code-analyzer (keywords: \"analyze\", \"code\")", shape=box, style=filled, fillcolor=lightgreen];
+
+    dev_metrics [label="Success Metrics:\n- Routing accuracy: >95%\n- Latency: <100ms\n- Fallback rate: <5%\n- Keyword match rate: >90%", shape=box, style=filled, fillcolor=lightblue];
+
+    dev_entry -> dev_scope -> dev_drones -> dev_keywords -> dev_examples -> dev_metrics;
+  }
+
+  nav_decision -> dev_entry [label="Princess-Dev", lhead=cluster_princess_dev];
+
+  // ============================================================
+  // CLUSTER 3: PRINCESS-QUALITY DATASET
+  // ============================================================
+
+  subgraph cluster_princess_quality {
+    label="PRINCESS-QUALITY DATASET (10 Drones)";
+    style=filled;
+    fillcolor=lightgray;
+
+    quality_entry [label="Princess-Quality Routing", shape=plaintext];
+
+    quality_scope [label="Scope:\nQuality assurance coordination\n10 specialized drones\nFocus: Testing, review, validation", shape=box, style=filled, fillcolor=lightblue];
+
+    quality_drones [label="10 Drones:\n1. tester (test creation/validation)\n2. reviewer (code review)\n3. security-manager (security validation)\n4. theater-detector (theater scanning)\n5. nasa-enforcer (NASA Rule 10 validation)\n6. fsm-analyzer (FSM complexity analysis)\n7. performance-engineer (performance optimization)\n8. cost-tracker (budget monitoring)\n9. release-manager (release coordination)\n10. infrastructure-ops (Kubernetes/Docker deployment)", shape=box, style=filled, fillcolor=lightyellow];
+
+    quality_keywords [label="Keyword Sets:\ntester: [\"test\", \"testing\", \"unit test\", \"integration test\", \"coverage\"]\nreviewer: [\"review\", \"code review\", \"feedback\", \"approve\", \"reject\"]\nsecurity-manager: [\"security\", \"vulnerability\", \"penetration test\", \"owasp\", \"authentication\"]\ntheater-detector: [\"theater\", \"mock\", \"fake\", \"placeholder\", \"todo\"]\nnasa-enforcer: [\"nasa\", \"compliance\", \"loc\", \"function size\", \"rule 10\"]\nfsm-analyzer: [\"fsm\", \"state machine\", \"transitions\", \"states\", \"complexity\"]\nperformance-engineer: [\"performance\", \"optimize\", \"speed\", \"latency\", \"throughput\"]\ncost-tracker: [\"cost\", \"budget\", \"pricing\", \"expense\", \"billing\"]\nrelease-manager: [\"release\", \"version\", \"changelog\", \"deploy\", \"rollout\"]\ninfrastructure-ops: [\"kubernetes\", \"docker\", \"container\", \"k8s\", \"deployment\"]", shape=box, style=filled, fillcolor=lightyellow];
+
+    quality_examples [label="Training Examples (Sample):\nQ: \"Create unit tests for auth module\"\nA: tester (keywords: \"create\", \"unit tests\")\n\nQ: \"Review pull request for security issues\"\nA: reviewer + security-manager (keywords: \"review\", \"security\")\n\nQ: \"Validate NASA Rule 10 compliance\"\nA: nasa-enforcer (keywords: \"validate\", \"NASA Rule 10\")\n\nQ: \"Scan codebase for theater code\"\nA: theater-detector (keywords: \"scan\", \"theater\")\n\nQ: \"Optimize database query performance\"\nA: performance-engineer (keywords: \"optimize\", \"performance\")\n\nQ: \"Deploy to Kubernetes production cluster\"\nA: infrastructure-ops (keywords: \"deploy\", \"Kubernetes\", \"production\")", shape=box, style=filled, fillcolor=lightgreen];
+
+    quality_metrics [label="Success Metrics:\n- Routing accuracy: >95%\n- Latency: <100ms\n- Fallback rate: <5%\n- Multi-agent coordination: <150ms", shape=box, style=filled, fillcolor=lightblue];
+
+    quality_entry -> quality_scope -> quality_drones -> quality_keywords -> quality_examples -> quality_metrics;
+  }
+
+  nav_decision -> quality_entry [label="Princess-Quality", lhead=cluster_princess_quality];
+
+  // ============================================================
+  // CLUSTER 4: PRINCESS-COORDINATION DATASET
+  // ============================================================
+
+  subgraph cluster_princess_coordination {
+    label="PRINCESS-COORDINATION DATASET (9 Drones)";
+    style=filled;
+    fillcolor=lightgray;
+
+    coord_entry [label="Princess-Coordination Routing", shape=plaintext];
+
+    coord_scope [label="Scope:\nTask coordination & workflow\n9 specialized drones\nFocus: Planning, orchestration, documentation", shape=box, style=filled, fillcolor=lightblue];
+
+    coord_drones [label="9 Drones:\n1. researcher (research/analysis)\n2. spec-writer (requirements documentation)\n3. docs-writer (documentation generation)\n4. planner (task planning)\n5. orchestrator (workflow orchestration)\n6. queen (top-level coordinator)\n7. princess-dev (development coordination)\n8. princess-quality (QA coordination)\n9. princess-coordination (task coordination)", shape=box, style=filled, fillcolor=lightyellow];
+
+    coord_keywords [label="Keyword Sets:\nresearcher: [\"research\", \"analyze\", \"investigate\", \"study\", \"explore\"]\nspec-writer: [\"spec\", \"requirements\", \"specification\", \"document requirements\", \"define\"]\ndocs-writer: [\"documentation\", \"docs\", \"readme\", \"guide\", \"manual\"]\nplanner: [\"plan\", \"schedule\", \"timeline\", \"roadmap\", \"task list\"]\norchestrator: [\"orchestrate\", \"coordinate\", \"workflow\", \"pipeline\", \"sequence\"]\nqueen: [\"delegate\", \"assign\", \"distribute\", \"coordinate all\", \"top level\"]\nprincess-dev: [\"coordinate dev\", \"development coordination\", \"dev tasks\", \"code coordination\"]\nprincess-quality: [\"coordinate qa\", \"quality coordination\", \"test coordination\", \"qa tasks\"]\nprincess-coordination: [\"coordinate tasks\", \"task coordination\", \"workflow coordination\", \"meta coordination\"]", shape=box, style=filled, fillcolor=lightyellow];
+
+    coord_examples [label="Training Examples (Sample):\nQ: \"Research best practices for API design\"\nA: researcher (keywords: \"research\", \"best practices\")\n\nQ: \"Write specification for user management feature\"\nA: spec-writer (keywords: \"write\", \"specification\", \"feature\")\n\nQ: \"Generate documentation for REST API\"\nA: docs-writer (keywords: \"generate\", \"documentation\", \"API\")\n\nQ: \"Create project plan for next sprint\"\nA: planner (keywords: \"create\", \"plan\", \"sprint\")\n\nQ: \"Orchestrate multi-agent workflow for code generation\"\nA: orchestrator (keywords: \"orchestrate\", \"workflow\", \"multi-agent\")\n\nQ: \"Coordinate all agents for project completion\"\nA: queen (keywords: \"coordinate all\", \"agents\", \"project\")", shape=box, style=filled, fillcolor=lightgreen];
+
+    coord_metrics [label="Success Metrics:\n- Routing accuracy: >95%\n- Latency: <100ms\n- Fallback rate: <5%\n- Delegation hierarchy: <3 levels", shape=box, style=filled, fillcolor=lightblue];
+
+    coord_entry -> coord_scope -> coord_drones -> coord_keywords -> coord_examples -> coord_metrics;
+  }
+
+  nav_decision -> coord_entry [label="Princess-Coordination", lhead=cluster_princess_coordination];
+
+  // ============================================================
+  // CLUSTER 5: ROUTING LOGIC
+  // ============================================================
+
+  subgraph cluster_routing {
+    label="ROUTING LOGIC (3 Methods)";
+    style=filled;
+    fillcolor=lightgray;
+
+    routing_entry [label="Routing Decision Flow", shape=plaintext];
+
+    routing_method1 [label="Method 1: Task Type Matching\n1. Extract task type from request\n2. Match to drone task type list\n3. Return matched drone\n\nPriority: HIGH\nAccuracy: >90%\nLatency: <50ms", shape=box, style=filled, fillcolor=lightblue];
+
+    routing_method2 [label="Method 2: Keyword Analysis\n1. Extract keywords from task description\n2. Compute keyword overlap with drone keywords\n3. Rank drones by overlap score\n4. Return top-ranked drone\n\nPriority: MEDIUM\nAccuracy: >85%\nLatency: <75ms", shape=box, style=filled, fillcolor=lightblue];
+
+    routing_method3 [label="Method 3: Fallback Chains\n1. If task type match fails\n2. If keyword overlap <threshold\n3. Use fallback chain (e.g., coder → queen)\n4. Return fallback drone\n\nPriority: LOW\nAccuracy: >70%\nLatency: <100ms", shape=box, style=filled, fillcolor=lightyellow];
+
+    routing_decision [label="Routing\nDecision\nLogic", shape=diamond, style=filled, fillcolor=orange];
+
+    routing_success [label="✅ Drone Assigned\nLatency: <100ms\nConfidence: >95%", shape=box, style=filled, fillcolor=lightgreen];
+
+    routing_fail [label="❌ Routing Failed\nEscalate to Queen\nManual assignment", shape=box, style=filled, fillcolor=red];
+
+    routing_entry -> routing_method1 -> routing_method2 -> routing_method3 -> routing_decision;
+    routing_decision -> routing_success [label="Match found"];
+    routing_decision -> routing_fail [label="No match"];
+  }
+
+  nav_decision -> routing_entry [label="Routing Logic", lhead=cluster_routing];
+
+  // ============================================================
+  // CLUSTER 6: DSPY OPTIMIZATION
+  // ============================================================
+
+  subgraph cluster_dspy {
+    label="DSPy OPTIMIZATION PROCESS";
+    style=filled;
+    fillcolor=lightgray;
+
+    dspy_entry [label="DSPy Training Workflow", shape=plaintext];
+
+    dspy_step1 [label="Step 1: Collect Training Data\n- Gather task → drone assignments\n- Label with ground truth\n- Split train/validation (80/20)\n- Total: 100-200 examples per Princess", shape=box, style=filled, fillcolor=lightyellow];
+
+    dspy_step2 [label="Step 2: Train DSPy Modules\n- Use ChainOfThought for reasoning\n- Use ReAct for multi-step tasks\n- Optimize with BootstrapFewShot\n- Target: >95% validation accuracy", shape=box, style=filled, fillcolor=lightyellow];
+
+    dspy_step3 [label="Step 3: Validate Performance\n- Test on validation set\n- Measure accuracy, latency, fallback rate\n- Compare baseline vs optimized\n- Target: +10-20% accuracy improvement", shape=box, style=filled, fillcolor=lightyellow];
+
+    dspy_step4 [label="Step 4: A/B Testing\n- Deploy optimized Princess alongside baseline\n- Split traffic 50/50\n- Monitor metrics (accuracy, latency, cost)\n- Decision: rollout or rollback", shape=box, style=filled, fillcolor=lightyellow];
+
+    dspy_gate [label="A/B Test\nPassed?", shape=diamond, style=filled, fillcolor=orange];
+
+    dspy_rollout [label="✅ Rollout\nReplace baseline\nwith optimized Princess", shape=box, style=filled, fillcolor=lightgreen];
+
+    dspy_rollback [label="❌ Rollback\nKeep baseline\nIterate on training", shape=box, style=filled, fillcolor=red];
+
+    dspy_entry -> dspy_step1 -> dspy_step2 -> dspy_step3 -> dspy_step4 -> dspy_gate;
+    dspy_gate -> dspy_rollout [label="Pass"];
+    dspy_gate -> dspy_rollback [label="Fail"];
+    dspy_rollback -> dspy_step1 [label="Retry", style=dashed];
+  }
+
+  nav_decision -> dspy_entry [label="DSPy Optimization", lhead=cluster_dspy];
+
+  // ============================================================
+  // CLUSTER 7: PERFORMANCE METRICS
+  // ============================================================
+
+  subgraph cluster_metrics {
+    label="PERFORMANCE METRICS";
+    style=filled;
+    fillcolor=lightgray;
+
+    metrics_entry [label="Success Criteria", shape=plaintext];
+
+    metrics_baseline [label="Baseline (No DSPy):\nRouting accuracy: 80-85%\nLatency: <100ms (keyword matching)\nFallback rate: 10-15%\nManual intervention: 5%", shape=box, style=filled, fillcolor=orange];
+
+    metrics_target [label="Target (With DSPy):\nRouting accuracy: >95%\nLatency: <100ms (maintained)\nFallback rate: <5%\nManual intervention: <1%", shape=box, style=filled, fillcolor=lightyellow];
+
+    metrics_optimized [label="Optimized (Expected):\nRouting accuracy: 95-98%\nLatency: <100ms ✅\nFallback rate: 2-3%\nManual intervention: <0.5%\nImprovement: +10-15% accuracy", shape=box, style=filled, fillcolor=lightgreen];
+
+    metrics_roi [label="ROI Analysis:\nTraining cost: ~$50 (one-time)\nInference cost: ~$5/month (marginal)\nBenefit: 15% accuracy improvement\n  = 15% fewer misroutes\n  = 15% faster task completion\n  = $75/month value (estimated)\nROI: 150% (15x return)", shape=box, style=filled, fillcolor=lightblue];
+
+    metrics_entry -> metrics_baseline -> metrics_target -> metrics_optimized -> metrics_roi;
+  }
+
+  nav_decision -> metrics_entry [label="Metrics", lhead=cluster_metrics];
+
+  // ============================================================
+  // CLUSTER 8: INTEGRATION PATTERN
+  // ============================================================
+
+  subgraph cluster_integration {
+    label="INTEGRATION PATTERN";
+    style=filled;
+    fillcolor=lightgray;
+
+    integration_entry [label="Integration Workflow", shape=plaintext];
+
+    integration_step1 [label="Step 1: Embed Datasets\n- Store datasets in docs/ directory\n- Format: JSON with task, drone, keywords\n- Versioning: v1, v2, etc.", shape=box, style=filled, fillcolor=lightyellow];
+
+    integration_step2 [label="Step 2: Load in Princess Agent\n- Read dataset on initialization\n- Build keyword index\n- Cache in memory (<1MB per Princess)", shape=box, style=filled, fillcolor=lightyellow];
+
+    integration_step3 [label="Step 3: Route with DSPy\n- Extract task features\n- Query DSPy module\n- Get drone recommendation\n- Validate confidence >threshold", shape=box, style=filled, fillcolor=lightyellow];
+
+    integration_step4 [label="Step 4: Fallback Handling\n- If confidence <threshold\n- Use keyword matching fallback\n- If still no match, escalate to Queen", shape=box, style=filled, fillcolor=lightyellow];
+
+    integration_step5 [label="Step 5: Logging & Monitoring\n- Log all routing decisions\n- Track accuracy, latency, fallback rate\n- Alert on degradation\n- Periodic retraining (monthly)", shape=box, style=filled, fillcolor=lightyellow];
+
+    integration_entry -> integration_step1 -> integration_step2 -> integration_step3 -> integration_step4 -> integration_step5;
+  }
+
+  nav_decision -> integration_entry [label="Integration", lhead=cluster_integration];
+
+  // ============================================================
+  // CLUSTER 9: NEXT STEPS
+  // ============================================================
+
+  subgraph cluster_next {
+    label="NEXT STEPS";
+    style=filled;
+    fillcolor=lightgray;
+
+    next_entry [label="Implementation Roadmap", shape=plaintext];
+
+    next_step1 [label="Step 1: Dataset Creation (Week 6)\n- Gather 100-200 examples per Princess\n- Label with ground truth\n- Split train/validation (80/20)\n- Store in docs/DRONE_TO_PRINCESS_DATASETS/", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step2 [label="Step 2: DSPy Training (Week 6)\n- Train 3 Princess modules\n- Validate on test set\n- Optimize hyperparameters\n- Target: >95% validation accuracy", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step3 [label="Step 3: Integration (Week 6)\n- Embed in Princess agents\n- Add fallback handling\n- Logging & monitoring\n- Documentation", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step4 [label="Step 4: A/B Testing (Week 6)\n- Deploy alongside baseline\n- Split traffic 50/50\n- Monitor metrics (7 days)\n- Decision: rollout or rollback", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_step5 [label="Step 5: Rollout (Week 7)\n- Replace baseline with optimized\n- Monitor for 30 days\n- Periodic retraining (monthly)\n- Expand to more drones if successful", shape=box, style=filled, fillcolor=lightyellow];
+
+    next_entry -> next_step1 -> next_step2 -> next_step3 -> next_step4 -> next_step5;
+  }
+
+  nav_decision -> next_entry [label="Next Steps", lhead=cluster_next];
+
+  // ============================================================
+  // EXIT POINT
+  // ============================================================
+
+  exit [label="Dataset Summary\nReview Complete", shape=doublecircle, style=filled, fillcolor=lightgreen];
+
+  overview_datasets -> exit [style=dashed, label="Review complete"];
+  dev_metrics -> exit [style=dashed, label="Princess-Dev defined"];
+  quality_metrics -> exit [style=dashed, label="Princess-Quality defined"];
+  coord_metrics -> exit [style=dashed, label="Princess-Coordination defined"];
+  routing_success -> exit [style=dashed, label="Routing logic validated"];
+  dspy_rollout -> exit [style=dashed, label="DSPy workflow defined"];
+  metrics_roi -> exit [style=dashed, label="ROI validated"];
+  integration_step5 -> exit [style=dashed, label="Integration planned"];
+  next_step5 -> exit [style=dashed, label="Roadmap clear"];
+}

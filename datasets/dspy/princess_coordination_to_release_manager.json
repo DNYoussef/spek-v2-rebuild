@@ -1,0 +1,1005 @@
+{
+  "communication_path": "princess-coordination→release-manager",
+  "description": "Princess-Coordination delegates release coordination to Release-Manager drone",
+  "examples": [
+    {
+      "phase": "release-planning",
+      "context": {
+        "version": "v2.5.0",
+        "type": "major release",
+        "features": "15 new features, 32 bug fixes",
+        "timeline": "3 weeks"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "plan-release",
+        "description": "Create comprehensive release plan for v2.5.0 major release",
+        "specifications": {
+          "milestones": ["code freeze", "QA testing", "staging deployment", "production release"],
+          "timeline": {"code_freeze": "Week 1", "qa_testing": "Week 2", "staging": "Week 2.5", "production": "Week 3"},
+          "release_notes": "draft highlighting major features and breaking changes",
+          "rollback_plan": "detailed rollback procedure",
+          "stakeholder_communication": "email templates and announcement schedule"
+        },
+        "dependencies": ["all features merged", "changelog updated", "documentation ready"],
+        "estimated_minutes": 45,
+        "quality_gates": ["release plan approved", "stakeholders notified", "rollback tested", "go/no-go checklist created"]
+      }
+    },
+    {
+      "phase": "version-control",
+      "context": {
+        "strategy": "semantic versioning",
+        "branches": "main, develop, release/*",
+        "current_version": "2.4.3"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "create-release-branch",
+        "description": "Create and configure release/2.5.0 branch with version tagging",
+        "specifications": {
+          "branch_name": "release/2.5.0",
+          "version_bump": "major (2.4.3 → 2.5.0)",
+          "version_files": ["package.json", "version.py", "CHANGELOG.md"],
+          "git_tags": ["v2.5.0-rc.1", "v2.5.0-rc.2", "v2.5.0"],
+          "protection_rules": "require PR reviews, passing CI"
+        },
+        "dependencies": ["develop branch stable", "feature branches merged", "version strategy agreed"],
+        "estimated_minutes": 30,
+        "quality_gates": ["branch created", "version bumped", "tags applied", "CI passing"]
+      }
+    },
+    {
+      "phase": "changelog-generation",
+      "context": {
+        "commits": "247 commits since last release",
+        "format": "conventional commits",
+        "audience": "developers and end users"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "generate-changelog",
+        "description": "Generate comprehensive changelog from git history and PRs",
+        "specifications": {
+          "sections": ["Breaking Changes", "New Features", "Bug Fixes", "Performance", "Documentation", "Chores"],
+          "format": "Markdown with links to PRs and issues",
+          "highlights": "top 5 features with descriptions",
+          "contributors": "list of contributors with @mentions",
+          "migration_guide": "for breaking changes"
+        },
+        "dependencies": ["commits follow conventional format", "PRs properly labeled"],
+        "estimated_minutes": 35,
+        "quality_gates": ["changelog complete", "breaking changes documented", "migration guide clear", "reviewed by team"]
+      }
+    },
+    {
+      "phase": "release-candidate",
+      "context": {
+        "version": "v2.5.0-rc.1",
+        "testing": "internal QA team",
+        "feedback_window": "3 days"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "deploy-release-candidate",
+        "description": "Deploy release candidate to staging and coordinate QA testing",
+        "specifications": {
+          "deployment": {"environment": "staging", "version": "v2.5.0-rc.1"},
+          "testing_plan": ["smoke tests", "regression tests", "performance benchmarks"],
+          "feedback_collection": "Google Form + GitHub issues",
+          "bug_tracking": "critical bugs block release, minor bugs documented",
+          "communication": "announce to QA team via Slack and email"
+        },
+        "dependencies": ["staging environment ready", "test data seeded", "QA team available"],
+        "estimated_minutes": 40,
+        "quality_gates": ["RC deployed", "tests passed", "feedback collected", "critical bugs resolved"]
+      }
+    },
+    {
+      "phase": "production-release",
+      "context": {
+        "version": "v2.5.0",
+        "deployment_strategy": "rolling update",
+        "maintenance_window": "none (zero downtime)"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "execute-production-release",
+        "description": "Deploy v2.5.0 to production with zero downtime",
+        "specifications": {
+          "pre_deployment": ["backup database", "notify stakeholders", "enable feature flags"],
+          "deployment": {"strategy": "rolling update", "canary_percentage": 10, "gradual_rollout": "10% → 50% → 100%"},
+          "monitoring": ["error rates", "latency", "user metrics", "business KPIs"],
+          "rollback_trigger": "error rate >2% or latency >500ms",
+          "post_deployment": ["smoke tests", "update documentation", "publish release notes"]
+        },
+        "dependencies": ["RC testing passed", "stakeholders approved", "on-call team ready"],
+        "estimated_minutes": 50,
+        "quality_gates": ["zero downtime", "metrics healthy", "smoke tests passed", "release notes published"]
+      }
+    },
+    {
+      "phase": "hotfix-release",
+      "context": {
+        "severity": "critical security vulnerability",
+        "affected_version": "v2.5.0",
+        "fix_version": "v2.5.1"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-hotfix",
+        "description": "Expedite hotfix release v2.5.1 for critical security patch",
+        "specifications": {
+          "branch": "hotfix/2.5.1 from main",
+          "fast_track": "abbreviated testing, security review only",
+          "deployment": "immediate rollout to production",
+          "communication": ["security advisory", "customer notification", "public disclosure (if applicable)"],
+          "post_hotfix": "backport to release branches, schedule full QA"
+        },
+        "dependencies": ["fix implemented", "security review passed", "patch tested"],
+        "estimated_minutes": 35,
+        "quality_gates": ["vulnerability patched", "no regressions", "customers notified", "disclosure handled"]
+      }
+    },
+    {
+      "phase": "rollback-execution",
+      "context": {
+        "issue": "critical bug discovered post-release",
+        "current_version": "v2.5.0",
+        "rollback_to": "v2.4.3"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "execute-rollback",
+        "description": "Rollback production from v2.5.0 to v2.4.3 due to critical bug",
+        "specifications": {
+          "rollback_steps": ["pause new deployments", "revert deployment manifest", "restore database backup (if needed)", "verify old version"],
+          "communication": ["notify stakeholders immediately", "status page update", "incident postmortem"],
+          "data_integrity": "verify no data loss or corruption",
+          "root_cause": "initiate postmortem investigation",
+          "prevention": "add regression test to catch issue"
+        },
+        "dependencies": ["rollback plan documented", "backups available", "team coordinated"],
+        "estimated_minutes": 40,
+        "quality_gates": ["rollback complete", "service restored", "data integrity verified", "postmortem scheduled"]
+      }
+    },
+    {
+      "phase": "release-automation",
+      "context": {
+        "goal": "automate release pipeline",
+        "tools": "GitHub Actions + Semantic Release",
+        "scope": "from commit to production"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "automate-release-pipeline",
+        "description": "Setup automated release pipeline with semantic-release and CI/CD",
+        "specifications": {
+          "semantic_release": "automatic version bumping from commit messages",
+          "pipeline_stages": ["lint", "test", "build", "publish npm/PyPI", "create GitHub release", "deploy"],
+          "artifacts": ["Docker images", "NPM packages", "PyPI wheels", "release notes"],
+          "notifications": ["Slack on release", "email to stakeholders", "tweet from company account"],
+          "manual_gates": "production deployment requires approval"
+        },
+        "dependencies": ["CI/CD configured", "semantic-release installed", "credentials configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["releases automated", "version bumps correct", "artifacts published", "notifications sent"]
+      }
+    },
+    {
+      "phase": "dependency-updates",
+      "context": {
+        "dependencies": "150 npm packages, 45 Python packages",
+        "updates": "23 security updates, 67 feature updates",
+        "strategy": "Renovate bot for automation"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-dependency-updates",
+        "description": "Manage dependency updates with automated PRs and testing",
+        "specifications": {
+          "renovate_config": {"auto_merge": "patch updates only", "schedule": "weekly", "grouping": "by update type"},
+          "security_updates": "immediate PRs for critical CVEs",
+          "testing": "automated tests must pass before merge",
+          "changelogs": "include dependency update notes in release",
+          "monitoring": "track dependency health score"
+        },
+        "dependencies": ["Renovate bot configured", "CI tests comprehensive", "auto-merge rules safe"],
+        "estimated_minutes": 40,
+        "quality_gates": ["security updates applied", "no breaking changes", "tests passing", "dependency graph updated"]
+      }
+    },
+    {
+      "phase": "feature-flags",
+      "context": {
+        "features": "5 new features behind flags",
+        "tool": "LaunchDarkly",
+        "rollout": "gradual rollout to user segments"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "manage-feature-flags",
+        "description": "Coordinate feature flag rollout and monitoring",
+        "specifications": {
+          "flags": ["new_dashboard", "ai_recommendations", "dark_mode", "advanced_analytics", "collaboration_tools"],
+          "rollout_plan": {"beta_users": "10%", "week_1": "25%", "week_2": "50%", "week_3": "100%"},
+          "monitoring": ["track adoption rate", "error rates per flag", "user feedback"],
+          "kill_switch": "instant disable if error rate >5%",
+          "cleanup": "remove flags after 100% rollout for 2 weeks"
+        },
+        "dependencies": ["LaunchDarkly configured", "flags implemented", "monitoring dashboards"],
+        "estimated_minutes": 35,
+        "quality_gates": ["flags deployed", "rollout controlled", "metrics tracked", "kill switch tested"]
+      }
+    },
+    {
+      "phase": "release-notes",
+      "context": {
+        "version": "v2.5.0",
+        "audience": "customers, developers, partners",
+        "channels": "blog, email, in-app"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "publish-release-notes",
+        "description": "Create and distribute release notes across all channels",
+        "specifications": {
+          "content": {"overview": "executive summary", "highlights": "top 5 features with screenshots", "detailed_changes": "from changelog", "upgrade_guide": "step-by-step instructions"},
+          "formats": ["Markdown for GitHub", "HTML for blog", "plain text for email"],
+          "distribution": ["GitHub release page", "company blog", "email newsletter", "in-app notification", "social media"],
+          "seo": "optimize blog post for search engines",
+          "media": "include demo videos and screenshots"
+        },
+        "dependencies": ["changelog finalized", "screenshots captured", "videos recorded"],
+        "estimated_minutes": 50,
+        "quality_gates": ["notes published", "all channels updated", "SEO optimized", "media embedded"]
+      }
+    },
+    {
+      "phase": "api-versioning",
+      "context": {
+        "api_version": "v3 (breaking changes)",
+        "deprecation": "v2 API deprecated, v1 API sunset",
+        "migration": "6-month transition period"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "manage-api-versioning",
+        "description": "Coordinate API version release and deprecation strategy",
+        "specifications": {
+          "versioning": {"v3": "new endpoints", "v2": "deprecated (6 months)", "v1": "sunset (remove)"},
+          "documentation": ["API v3 reference", "migration guide from v2", "deprecation notices"],
+          "notifications": ["email to API consumers", "deprecation headers in v2 responses", "in-dashboard warnings"],
+          "support": "developer support channel for migration help",
+          "metrics": "track v2 → v3 migration progress"
+        },
+        "dependencies": ["v3 API tested", "migration guide written", "communication templates"],
+        "estimated_minutes": 45,
+        "quality_gates": ["v3 released", "v2 deprecated", "v1 sunset", "migration support available", "metrics tracking"]
+      }
+    },
+    {
+      "phase": "compliance-release",
+      "context": {
+        "compliance": "GDPR, SOC2, HIPAA",
+        "changes": "data privacy enhancements",
+        "documentation": "compliance reports required"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-compliance-release",
+        "description": "Manage release with compliance requirements and documentation",
+        "specifications": {
+          "compliance_checks": ["data encryption verified", "audit logging enabled", "access controls tested"],
+          "documentation": ["compliance report for auditors", "data processing agreement updates", "privacy policy changes"],
+          "notifications": ["legal team approval", "compliance officer sign-off", "customer privacy notices"],
+          "evidence": "collect evidence for audit trail",
+          "training": "brief support team on compliance changes"
+        },
+        "dependencies": ["compliance review passed", "legal approval", "documentation complete"],
+        "estimated_minutes": 55,
+        "quality_gates": ["compliance verified", "documentation approved", "evidence collected", "team trained"]
+      }
+    },
+    {
+      "phase": "mobile-release",
+      "context": {
+        "platforms": "iOS, Android",
+        "version": "3.2.0",
+        "stores": "App Store, Google Play"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-mobile-release",
+        "description": "Manage mobile app release to App Store and Google Play",
+        "specifications": {
+          "builds": {"ios": "build with Xcode Cloud", "android": "build with GitHub Actions"},
+          "testing": ["TestFlight beta (100 users)", "Google Play internal testing"],
+          "store_submission": ["App Store review (3-5 days)", "Google Play review (24 hours)"],
+          "screenshots": "update store screenshots and descriptions",
+          "phased_rollout": {"ios": "phased release over 7 days", "android": "staged rollout 1% → 100%"}
+        },
+        "dependencies": ["builds signed", "store listings updated", "beta testing complete"],
+        "estimated_minutes": 50,
+        "quality_gates": ["store approvals received", "phased rollout started", "crash rate <1%", "ratings monitored"]
+      }
+    },
+    {
+      "phase": "docker-release",
+      "context": {
+        "images": "5 microservices",
+        "registry": "Docker Hub, AWS ECR",
+        "tags": "v2.5.0, latest"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "publish-docker-images",
+        "description": "Build and publish Docker images to registries with multi-arch support",
+        "specifications": {
+          "build": {"platforms": ["linux/amd64", "linux/arm64"], "buildx": "multi-platform builds"},
+          "tags": ["v2.5.0", "v2.5", "v2", "latest"],
+          "registries": ["Docker Hub (public)", "AWS ECR (private)"],
+          "scanning": "Trivy scan before push, block critical vulnerabilities",
+          "signing": "Docker Content Trust for image signing",
+          "manifests": "multi-arch manifest lists"
+        },
+        "dependencies": ["Dockerfiles optimized", "credentials configured", "CI pipeline ready"],
+        "estimated_minutes": 40,
+        "quality_gates": ["images built", "scans passed", "images signed", "published to all registries"]
+      }
+    },
+    {
+      "phase": "release-metrics",
+      "context": {
+        "tracking": "deployment frequency, lead time, MTTR",
+        "goal": "DORA metrics compliance",
+        "dashboard": "Grafana"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "track-release-metrics",
+        "description": "Implement release metrics tracking and reporting for DORA metrics",
+        "specifications": {
+          "metrics": ["deployment frequency (weekly)", "lead time (commit to deploy)", "change failure rate", "MTTR (mean time to recovery)"],
+          "collection": "automated via CI/CD pipeline events",
+          "dashboard": "Grafana dashboard with trend analysis",
+          "alerts": "notify if metrics degrade",
+          "reporting": "monthly executive report on release health"
+        },
+        "dependencies": ["metrics instrumented", "dashboard created", "alerting configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["metrics collecting", "dashboard operational", "trends visible", "reports automated"]
+      }
+    },
+    {
+      "phase": "release-retrospective",
+      "context": {
+        "release": "v2.5.0 retrospective",
+        "participants": "engineering, QA, product, operations",
+        "focus": "improve release process"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "facilitate-release-retrospective",
+        "description": "Conduct release retrospective and document improvement actions",
+        "specifications": {
+          "format": "what went well, what didn't, action items",
+          "data": ["release timeline", "incidents", "metrics", "feedback"],
+          "participants": "cross-functional team (10 people)",
+          "output": ["retrospective document", "action items with owners", "process improvements"],
+          "follow_up": "track action items to completion"
+        },
+        "dependencies": ["release complete", "metrics collected", "participants available"],
+        "estimated_minutes": 50,
+        "quality_gates": ["retrospective held", "action items identified", "owners assigned", "process improved"]
+      }
+    },
+    {
+      "phase": "branch-strategy",
+      "context": {
+        "model": "GitFlow vs Trunk-based",
+        "team_size": "25 developers",
+        "release_cadence": "bi-weekly"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "optimize-branch-strategy",
+        "description": "Evaluate and implement optimal branching strategy for team",
+        "specifications": {
+          "current": "GitFlow with main, develop, feature/*, release/*",
+          "evaluation": ["trunk-based development", "GitHub Flow", "GitLab Flow"],
+          "recommendation": "trunk-based with feature flags for bi-weekly releases",
+          "migration": "gradual transition over 2 sprints",
+          "documentation": "branching guide and team training"
+        },
+        "dependencies": ["team survey", "release cadence analysis", "tooling support"],
+        "estimated_minutes": 45,
+        "quality_gates": ["strategy selected", "migration planned", "team trained", "documentation complete"]
+      }
+    },
+    {
+      "phase": "release-gate",
+      "context": {
+        "gate": "automated quality gates",
+        "checks": "tests, security, performance",
+        "blocking": "critical issues block release"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "implement-release-gates",
+        "description": "Setup automated quality gates to prevent bad releases",
+        "specifications": {
+          "gates": ["all tests pass", "code coverage >80%", "no critical security vulnerabilities", "performance benchmarks met", "no P0 bugs"],
+          "enforcement": "block deployment if any gate fails",
+          "visibility": "dashboard showing gate status",
+          "overrides": "manual override requires VP approval",
+          "notifications": "alert team when gates fail"
+        },
+        "dependencies": ["gates defined", "automation implemented", "approvals configured"],
+        "estimated_minutes": 40,
+        "quality_gates": ["gates enforced", "no bad releases", "visibility clear", "overrides tracked"]
+      }
+    },
+    {
+      "phase": "environment-parity",
+      "context": {
+        "environments": "dev, staging, production",
+        "issue": "config drift causing bugs",
+        "solution": "infrastructure as code"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "ensure-environment-parity",
+        "description": "Implement infrastructure as code to maintain environment parity",
+        "specifications": {
+          "iac_tool": "Terraform for infrastructure, Helm for apps",
+          "parity": "staging matches production configuration",
+          "drift_detection": "automated drift detection and alerts",
+          "testing": "promote code through environments (dev → staging → prod)",
+          "config_management": "environment-specific config via secrets/configmaps"
+        },
+        "dependencies": ["Terraform modules created", "Helm charts configured", "CI/CD updated"],
+        "estimated_minutes": 50,
+        "quality_gates": ["environments identical", "drift detected", "config managed", "tests pass in all envs"]
+      }
+    },
+    {
+      "phase": "release-communication",
+      "context": {
+        "stakeholders": "customers, support team, sales, marketing",
+        "channels": "email, Slack, blog, in-app",
+        "timing": "synchronized release announcement"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-release-comms",
+        "description": "Orchestrate release communication across all stakeholders",
+        "specifications": {
+          "timeline": ["T-1 week: preview to beta users", "T-1 day: notify support and sales", "T-0: public announcement", "T+1 day: success metrics"],
+          "content": {"customers": "feature highlights and upgrade guide", "support": "technical details and FAQs", "sales": "pitch deck and demo", "marketing": "blog post and social media"},
+          "channels": ["email newsletter", "in-app notification", "blog post", "Twitter/LinkedIn", "customer webinar"],
+          "feedback": "collect customer feedback via survey"
+        },
+        "dependencies": ["content created", "channels configured", "stakeholders aligned"],
+        "estimated_minutes": 45,
+        "quality_gates": ["all stakeholders notified", "content published", "feedback collected", "launch successful"]
+      }
+    },
+    {
+      "phase": "canary-release",
+      "context": {
+        "strategy": "canary deployment",
+        "traffic": "1% → 10% → 50% → 100%",
+        "monitoring": "error rate, latency, business metrics"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "execute-canary-deployment",
+        "description": "Deploy new version using canary strategy with automated rollback",
+        "specifications": {
+          "stages": [{"traffic": "1%", "duration": "15m"}, {"traffic": "10%", "duration": "30m"}, {"traffic": "50%", "duration": "1h"}, {"traffic": "100%", "duration": "continuous"}],
+          "metrics": {"error_rate": "<1%", "p99_latency": "<500ms", "conversion_rate": "no drop"},
+          "rollback": "automatic if thresholds exceeded",
+          "analysis": "Flagger with Prometheus for automated analysis",
+          "notifications": "Slack updates at each stage"
+        },
+        "dependencies": ["Flagger configured", "metrics defined", "rollback tested"],
+        "estimated_minutes": 50,
+        "quality_gates": ["canary successful", "metrics healthy", "no rollback triggered", "promoted to 100%"]
+      }
+    },
+    {
+      "phase": "security-release",
+      "context": {
+        "vulnerability": "CVE-2023-12345 (high severity)",
+        "affected_versions": "v2.0.0 to v2.5.0",
+        "disclosure": "coordinated disclosure in 30 days"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-security-release",
+        "description": "Manage security vulnerability patching and coordinated disclosure",
+        "specifications": {
+          "patching": ["patch all affected versions", "release v2.5.1, v2.4.8, v2.3.12"],
+          "testing": "security team verification of fix",
+          "disclosure": ["draft CVE description", "coordinate with reporter", "publish security advisory"],
+          "communication": ["email affected customers", "blog post with upgrade instructions", "social media announcement"],
+          "timeline": "patch → test → notify customers → public disclosure"
+        },
+        "dependencies": ["fix implemented", "security review passed", "patches ready"],
+        "estimated_minutes": 55,
+        "quality_gates": ["vulnerability patched", "all versions updated", "customers notified", "disclosure published"]
+      }
+    },
+    {
+      "phase": "release-packaging",
+      "context": {
+        "formats": "npm, PyPI, Docker, binaries",
+        "platforms": "Windows, macOS, Linux",
+        "signing": "code signing required"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "package-release-artifacts",
+        "description": "Build and package release artifacts for multiple platforms",
+        "specifications": {
+          "npm": "publish to npmjs.com with provenance",
+          "pypi": "publish wheels and source distribution",
+          "docker": "multi-arch images for amd64 and arm64",
+          "binaries": ["Windows EXE (signed)", "macOS app (notarized)", "Linux tarball"],
+          "checksums": "SHA256 checksums for all artifacts",
+          "signing": ["npm provenance", "Python signing", "Docker Content Trust", "code signing certificates"]
+        },
+        "dependencies": ["builds completed", "certificates valid", "credentials configured"],
+        "estimated_minutes": 45,
+        "quality_gates": ["all artifacts built", "signatures valid", "checksums published", "registries updated"]
+      }
+    },
+    {
+      "phase": "release-validation",
+      "context": {
+        "environment": "production",
+        "tests": "smoke tests, integration tests",
+        "monitoring": "real-time metrics"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "validate-production-release",
+        "description": "Execute post-deployment validation and monitoring",
+        "specifications": {
+          "smoke_tests": ["health checks", "critical user flows", "API endpoints"],
+          "integration_tests": "run full integration test suite against production",
+          "monitoring": ["error rate tracking", "latency monitoring", "business KPIs", "log analysis"],
+          "alerts": "configure alerts for anomalies",
+          "duration": "monitor for 24 hours post-release",
+          "sign_off": "release manager sign-off after validation"
+        },
+        "dependencies": ["deployment complete", "tests ready", "monitoring configured"],
+        "estimated_minutes": 40,
+        "quality_gates": ["smoke tests pass", "integration tests pass", "metrics healthy", "no critical issues", "sign-off obtained"]
+      }
+    },
+    {
+      "phase": "breaking-changes",
+      "context": {
+        "changes": "3 breaking API changes",
+        "migration": "automated migration tool",
+        "support": "extended support for old API"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "manage-breaking-changes",
+        "description": "Coordinate breaking changes release with migration support",
+        "specifications": {
+          "documentation": ["migration guide with code examples", "breaking changes FAQ", "video tutorial"],
+          "tooling": "automated migration script to update code",
+          "deprecation": "6-month deprecation period with warnings",
+          "support": ["migration office hours", "dedicated Slack channel", "priority support tickets"],
+          "monitoring": "track migration progress via telemetry"
+        },
+        "dependencies": ["breaking changes documented", "migration tool tested", "support team trained"],
+        "estimated_minutes": 50,
+        "quality_gates": ["migration guide published", "migration tool available", "support channels active", "majority migrated"]
+      }
+    },
+    {
+      "phase": "release-scheduling",
+      "context": {
+        "cadence": "bi-weekly releases",
+        "schedule": "Tuesdays 10 AM PST",
+        "blackout": "holidays and major events"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "manage-release-calendar",
+        "description": "Maintain release calendar with blackout periods and stakeholder coordination",
+        "specifications": {
+          "calendar": "shared Google Calendar with release dates",
+          "blackout_periods": ["Black Friday", "Cyber Monday", "Christmas week", "company all-hands"],
+          "notifications": ["2 weeks before: release announcement", "1 week before: code freeze", "1 day before: final go/no-go"],
+          "coordination": "sync with product, marketing, support calendars",
+          "flexibility": "ability to delay release for critical issues"
+        },
+        "dependencies": ["calendar created", "stakeholders subscribed", "blackout dates identified"],
+        "estimated_minutes": 35,
+        "quality_gates": ["calendar published", "stakeholders aligned", "blackout periods respected", "notifications automated"]
+      }
+    },
+    {
+      "phase": "database-migrations",
+      "context": {
+        "changes": "schema changes in release",
+        "strategy": "blue-green migration",
+        "rollback": "reversible migrations"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-db-migrations",
+        "description": "Manage database migrations as part of release process",
+        "specifications": {
+          "strategy": "expand-contract pattern for zero-downtime",
+          "phases": ["expand: add new columns", "migrate: dual-write", "contract: remove old columns"],
+          "testing": "test migrations on production replica",
+          "rollback": "all migrations reversible with down migrations",
+          "monitoring": "track migration progress and duration",
+          "backup": "full backup before migration"
+        },
+        "dependencies": ["migrations written", "rollback tested", "backup verified"],
+        "estimated_minutes": 45,
+        "quality_gates": ["migrations successful", "zero downtime", "data integrity verified", "rollback plan ready"]
+      }
+    },
+    {
+      "phase": "release-train",
+      "context": {
+        "model": "release train with fixed schedule",
+        "teams": "8 teams contributing features",
+        "coordination": "feature freeze, integration testing"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "orchestrate-release-train",
+        "description": "Coordinate release train across multiple teams",
+        "specifications": {
+          "schedule": {"week_1": "feature development", "week_2": "integration and testing", "week_3": "release"},
+          "feature_freeze": "no new features after week 1",
+          "integration": "all teams integrate to shared staging environment",
+          "testing": "cross-team integration testing",
+          "go_no_go": "joint decision by all team leads",
+          "coordination": "weekly sync meetings and shared Slack channel"
+        },
+        "dependencies": ["teams aligned on schedule", "integration environment ready", "testing plans created"],
+        "estimated_minutes": 55,
+        "quality_gates": ["all teams on schedule", "integration successful", "go/no-go decision made", "release delivered"]
+      }
+    },
+    {
+      "phase": "release-documentation",
+      "context": {
+        "docs": "API docs, user guides, admin docs",
+        "updates": "30 pages updated, 5 new pages",
+        "versioning": "docs versioned with releases"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "update-release-documentation",
+        "description": "Coordinate documentation updates for release",
+        "specifications": {
+          "updates": ["API reference (OpenAPI spec)", "user guides with screenshots", "admin documentation", "migration guides"],
+          "versioning": "maintain docs for v2.4 and v2.5",
+          "review": "technical writer review for clarity",
+          "translation": "prepare for localization (3 languages)",
+          "publishing": "publish to docs site synchronized with release",
+          "search": "update search index"
+        },
+        "dependencies": ["content written", "screenshots captured", "review completed"],
+        "estimated_minutes": 50,
+        "quality_gates": ["docs updated", "review passed", "versioning correct", "published on time", "search working"]
+      }
+    },
+    {
+      "phase": "release-compliance",
+      "context": {
+        "requirements": "FDA, FedRAMP compliance",
+        "evidence": "change control records",
+        "validation": "release validation protocol"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "ensure-release-compliance",
+        "description": "Manage compliance requirements for regulated release",
+        "specifications": {
+          "change_control": "document all changes with approvals",
+          "validation": "execute release validation protocol",
+          "evidence": ["test results", "approval records", "deployment logs", "verification reports"],
+          "approvals": ["QA lead", "compliance officer", "release manager"],
+          "traceability": "link requirements to test cases to deployment",
+          "archival": "archive all evidence for 10 years"
+        },
+        "dependencies": ["validation protocol approved", "test results collected", "approvals obtained"],
+        "estimated_minutes": 55,
+        "quality_gates": ["validation complete", "evidence collected", "approvals obtained", "traceability verified", "archived"]
+      }
+    },
+    {
+      "phase": "release-metrics-analysis",
+      "context": {
+        "release": "v2.5.0 retrospective metrics",
+        "data": "deployment data, incidents, feedback",
+        "goal": "identify improvement opportunities"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "analyze-release-metrics",
+        "description": "Analyze release metrics and identify process improvements",
+        "specifications": {
+          "metrics": ["deployment frequency", "lead time", "MTTR", "change failure rate", "deployment duration"],
+          "comparison": "compare to previous releases and industry benchmarks",
+          "incidents": "analyze incidents during release",
+          "feedback": "collect team and customer feedback",
+          "recommendations": "identify top 3 improvements for next release",
+          "report": "executive summary with visualizations"
+        },
+        "dependencies": ["metrics collected", "incidents documented", "feedback gathered"],
+        "estimated_minutes": 45,
+        "quality_gates": ["metrics analyzed", "trends identified", "recommendations made", "report published", "improvements prioritized"]
+      }
+    },
+    {
+      "phase": "artifact-retention",
+      "context": {
+        "artifacts": "Docker images, build artifacts, release assets",
+        "retention": "3 months for old versions",
+        "compliance": "audit trail required"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "manage-artifact-retention",
+        "description": "Implement artifact retention and cleanup policy",
+        "specifications": {
+          "retention_policy": {"latest": "keep forever", "releases": "keep for 1 year", "dev_builds": "keep for 3 months"},
+          "cleanup": "automated cleanup of old artifacts",
+          "exceptions": "compliance-required versions kept indefinitely",
+          "audit_trail": "log all artifact deletions",
+          "recovery": "ability to restore deleted artifacts from archive"
+        },
+        "dependencies": ["policy defined", "automation implemented", "audit logging configured"],
+        "estimated_minutes": 40,
+        "quality_gates": ["policy enforced", "cleanup automated", "audit trail complete", "storage optimized"]
+      }
+    },
+    {
+      "phase": "release-metrics-dashboard",
+      "context": {
+        "stakeholders": "engineering, product, executives",
+        "metrics": "release velocity, quality, deployment frequency",
+        "tool": "Grafana"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "create-release-dashboard",
+        "description": "Build comprehensive release metrics dashboard for stakeholders",
+        "specifications": {
+          "metrics": ["releases per month", "lead time", "cycle time", "change failure rate", "deployment frequency", "rollback rate"],
+          "visualizations": ["trend charts", "burn-down charts", "heat maps", "gauges"],
+          "filters": "filter by team, service, time period",
+          "alerts": "alert when metrics degrade",
+          "sharing": "public URL for executives, embedded in wiki"
+        },
+        "dependencies": ["metrics instrumented", "Grafana configured", "data sources connected"],
+        "estimated_minutes": 45,
+        "quality_gates": ["dashboard created", "metrics accurate", "visualizations clear", "stakeholders trained", "alerts configured"]
+      }
+    },
+    {
+      "phase": "emergency-release",
+      "context": {
+        "urgency": "production outage requires immediate fix",
+        "approval": "fast-track approval process",
+        "testing": "minimal testing, high risk"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "execute-emergency-release",
+        "description": "Coordinate emergency release to resolve production outage",
+        "specifications": {
+          "fast_track": ["skip non-critical tests", "concurrent build and approval", "immediate deployment"],
+          "approval": "VP Engineering approval required",
+          "communication": ["incident commander notified", "status page updated", "stakeholders alerted"],
+          "rollback": "rollback plan ready if fix fails",
+          "post_incident": "schedule postmortem within 24 hours",
+          "documentation": "document emergency release in runbook"
+        },
+        "dependencies": ["fix implemented", "approval obtained", "incident commander coordinated"],
+        "estimated_minutes": 30,
+        "quality_gates": ["outage resolved", "fix deployed", "service restored", "postmortem scheduled", "incident documented"]
+      }
+    },
+    {
+      "phase": "release-orchestration",
+      "context": {
+        "services": "15 microservices with dependencies",
+        "deployment_order": "DAG-based orchestration",
+        "tool": "Argo Workflows"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "orchestrate-multi-service-release",
+        "description": "Orchestrate deployment of multiple microservices in correct order",
+        "specifications": {
+          "dependency_graph": "DAG defining service dependencies",
+          "orchestration": "Argo Workflows for parallel and sequential deployments",
+          "health_checks": "verify each service before proceeding",
+          "rollback": "cascade rollback if any service fails",
+          "monitoring": "real-time deployment progress dashboard",
+          "duration": "estimated 90 minutes for full deployment"
+        },
+        "dependencies": ["dependency graph defined", "Argo Workflows configured", "health checks implemented"],
+        "estimated_minutes": 50,
+        "quality_gates": ["all services deployed", "dependencies satisfied", "health checks passed", "no rollbacks", "deployment completed"]
+      }
+    },
+    {
+      "phase": "release-tagging",
+      "context": {
+        "strategy": "semantic versioning with git tags",
+        "automation": "automated tagging via CI/CD",
+        "protection": "protected tags"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "manage-release-tagging",
+        "description": "Implement automated and protected git tagging strategy",
+        "specifications": {
+          "tagging": ["semantic versioning (vMAJOR.MINOR.PATCH)", "pre-release tags (rc, beta, alpha)", "build metadata (+build.123)"],
+          "automation": "automatic tagging on merge to main",
+          "protection": ["tag protection rules", "require signed tags", "prevent tag deletion"],
+          "changelog": "generate changelog from tags and commits",
+          "integration": "tags trigger release pipeline"
+        },
+        "dependencies": ["git hooks configured", "signing keys setup", "CI/CD integrated"],
+        "estimated_minutes": 35,
+        "quality_gates": ["tagging automated", "tags protected", "changelog generated", "pipeline triggered", "tags signed"]
+      }
+    },
+    {
+      "phase": "staging-validation",
+      "context": {
+        "environment": "staging (production replica)",
+        "validation": "comprehensive testing before production",
+        "duration": "24 hours soak test"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "validate-staging-release",
+        "description": "Execute comprehensive validation in staging environment",
+        "specifications": {
+          "testing": ["smoke tests", "integration tests", "regression tests", "performance tests", "security scans"],
+          "soak_test": "24 hours with production-like load",
+          "monitoring": ["error rates", "latency", "resource usage", "log analysis"],
+          "sign_off": "QA lead and product manager approval",
+          "issues": "track and resolve issues in staging before production"
+        },
+        "dependencies": ["staging deployed", "test data loaded", "monitoring configured"],
+        "estimated_minutes": 40,
+        "quality_gates": ["all tests passed", "soak test successful", "no critical issues", "sign-offs obtained", "production ready"]
+      }
+    },
+    {
+      "phase": "multi-region-release",
+      "context": {
+        "regions": "us-east-1, eu-west-1, ap-southeast-1",
+        "strategy": "sequential rollout with validation",
+        "traffic": "global load balancer"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "coordinate-multi-region-release",
+        "description": "Deploy release across multiple regions with sequential validation",
+        "specifications": {
+          "rollout": ["deploy to us-east-1 (canary)", "validate for 2 hours", "deploy to eu-west-1", "validate", "deploy to ap-southeast-1"],
+          "traffic_management": "route traffic away during deployment, gradual re-enable",
+          "monitoring": "per-region metrics and alerts",
+          "rollback": "region-specific rollback if issues detected",
+          "duration": "estimated 6 hours for full global rollout"
+        },
+        "dependencies": ["multi-region infrastructure", "health checks configured", "global load balancer"],
+        "estimated_minutes": 55,
+        "quality_gates": ["all regions deployed", "traffic routing optimized", "regional metrics healthy", "no rollbacks", "global release successful"]
+      }
+    },
+    {
+      "phase": "customer-testing",
+      "context": {
+        "beta_customers": "10 enterprise customers",
+        "duration": "2 weeks early access",
+        "feedback": "collect feedback for GA release"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "manage-customer-beta-testing",
+        "description": "Coordinate beta testing with select customers before GA release",
+        "specifications": {
+          "selection": "select 10 customers representing different use cases",
+          "onboarding": ["beta agreement", "NDA", "feature access", "dedicated support channel"],
+          "feedback": ["weekly check-ins", "feedback survey", "bug reporting", "feature requests"],
+          "monitoring": "track usage and error rates for beta customers",
+          "decision": "go/no-go decision based on beta feedback"
+        },
+        "dependencies": ["beta version deployed", "customers selected", "support team ready"],
+        "estimated_minutes": 50,
+        "quality_gates": ["beta customers onboarded", "feedback collected", "critical issues resolved", "go/no-go decision made", "GA release approved"]
+      }
+    },
+    {
+      "phase": "release-risk-assessment",
+      "context": {
+        "release": "v2.5.0 with significant changes",
+        "risk_factors": "breaking changes, database migrations, infrastructure changes",
+        "mitigation": "risk mitigation strategies"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "assess-release-risk",
+        "description": "Conduct risk assessment and define mitigation strategies for release",
+        "specifications": {
+          "risk_identification": ["breaking changes impact", "database migration risks", "infrastructure dependencies", "third-party integrations"],
+          "risk_scoring": "severity (1-5) × likelihood (1-5) = risk score",
+          "mitigation": ["phased rollout", "feature flags", "rollback plan", "extra monitoring", "on-call team"],
+          "decision": "go/no-go based on risk score and mitigation",
+          "documentation": "risk register with mitigation plans"
+        },
+        "dependencies": ["release changes documented", "stakeholders consulted", "risk framework defined"],
+        "estimated_minutes": 45,
+        "quality_gates": ["risks identified", "scored and prioritized", "mitigation plans created", "decision documented", "stakeholders aligned"]
+      }
+    },
+    {
+      "phase": "release-automation-improvement",
+      "context": {
+        "current": "50% automated release process",
+        "goal": "95% automation with manual approval gates",
+        "tools": "GitHub Actions, ArgoCD, Terraform"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "improve-release-automation",
+        "description": "Increase release automation to reduce manual effort and errors",
+        "specifications": {
+          "gaps": ["manual version bumping", "manual changelog generation", "manual artifact publishing", "manual smoke testing"],
+          "improvements": ["automated version bumping with semantic-release", "changelog from conventional commits", "automated artifact publishing", "automated smoke tests"],
+          "approval_gates": "manual approval for production deployment",
+          "benefits": "faster releases, fewer errors, consistent process",
+          "timeline": "implement over 2 sprints"
+        },
+        "dependencies": ["current process documented", "automation tools selected", "team buy-in"],
+        "estimated_minutes": 50,
+        "quality_gates": ["automation gaps identified", "improvements implemented", "manual steps reduced", "error rate decreased", "release velocity increased"]
+      }
+    },
+    {
+      "phase": "release-certification",
+      "context": {
+        "certification": "ISO 9001 quality management",
+        "requirement": "documented and auditable release process",
+        "audit": "annual ISO audit"
+      },
+      "expected_drone_task": {
+        "drone_id": "release-manager",
+        "task_type": "certify-release-process",
+        "description": "Ensure release process meets ISO 9001 certification requirements",
+        "specifications": {
+          "documentation": ["release process documentation", "work instructions", "quality records", "audit trail"],
+          "traceability": "link requirements to test cases to deployment",
+          "approvals": "documented approvals at each stage",
+          "continuous_improvement": "document process improvements from retrospectives",
+          "audit_readiness": "prepare evidence for annual audit"
+        },
+        "dependencies": ["process documented", "quality records maintained", "audit schedule"],
+        "estimated_minutes": 55,
+        "quality_gates": ["process documented", "traceability established", "audit trail complete", "continuous improvement tracked", "certification maintained"]
+      }
+    }
+  ]
+}

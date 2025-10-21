@@ -1,0 +1,3001 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "created": "2025-10-10",
+    "purpose": "DSPy optimization for Queen→Princess-Quality communication",
+    "total_examples": 100,
+    "categories": {
+      "unit_testing": 30,
+      "integration_testing": 25,
+      "compliance": 20,
+      "performance": 15,
+      "security": 10
+    }
+  },
+  "examples": [
+    {
+      "id": 1,
+      "category": "integration_testing",
+      "task_description": "Validate OAuth2 implementation quality",
+      "objective": "80% coverage, NASA compliant, zero mock code",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Create auth integration tests with edge cases",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Validate NASA Rule 10 for auth functions (≤60 LOC)",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for TODO comments and mock code",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "category": "unit_testing",
+      "task_description": "Test payment processing module",
+      "objective": "90% coverage, all edge cases, error handling",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Create unit tests for payment calculations",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test error handling for failed transactions",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify function length compliance",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "category": "compliance",
+      "task_description": "Audit codebase for NASA Rule 10 violations",
+      "objective": "≥92% compliance across all modules",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Scan all core modules for function length violations",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Check agent modules for recursion violations",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Identify mock code and placeholder violations",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "category": "performance",
+      "task_description": "Performance test API endpoints",
+      "objective": "<200ms response time, 1000 RPS capacity",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Create load tests for user endpoints",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Stress test authentication flow",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify no unbounded loops in hot paths",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "category": "security",
+      "task_description": "Security audit for user input validation",
+      "objective": "Zero XSS/SQL injection vulnerabilities",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test SQL injection attack vectors",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate XSS prevention measures",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for hardcoded credentials",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "category": "unit_testing",
+      "task_description": "Test user registration workflow",
+      "objective": "85% coverage, validation edge cases",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test email validation logic",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test password strength requirements",
+          "dependencies": [],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test duplicate user detection",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify registration functions ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 7,
+      "category": "integration_testing",
+      "task_description": "Validate database migration system",
+      "objective": "Zero data loss, rollback support",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test forward migration execution",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test rollback scenarios",
+          "dependencies": ["test_forward_migration"],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate data integrity post-migration",
+          "dependencies": ["test_forward_migration"],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 8,
+      "category": "compliance",
+      "task_description": "FSM validation for state machine implementations",
+      "objective": "All FSMs meet ≥3 decision matrix criteria",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "fsm-analyze",
+          "description": "Analyze checkout FSM complexity",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "fsm-analyze",
+          "description": "Validate user session FSM justification",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Detect over-engineered FSMs",
+          "dependencies": [],
+          "estimated_minutes": 18
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "category": "performance",
+      "task_description": "Database query optimization validation",
+      "objective": "<50ms query time, N+1 prevention",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile slow query execution times",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test N+1 query detection",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify no unbounded result sets",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ]
+    },
+    {
+      "id": 10,
+      "category": "unit_testing",
+      "task_description": "Test shopping cart functionality",
+      "objective": "90% coverage, concurrent user scenarios",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test add/remove item operations",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test quantity update edge cases",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test concurrent cart modifications",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 11,
+      "category": "security",
+      "task_description": "API authentication security audit",
+      "objective": "JWT validation, rate limiting, CSRF protection",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test JWT token expiration handling",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate rate limiting enforcement",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test CSRF token validation",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for security theater patterns",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 12,
+      "category": "integration_testing",
+      "task_description": "Validate email notification system",
+      "objective": "100% delivery rate, retry logic",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test email template rendering",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test SMTP failure retry logic",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate delivery tracking",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ]
+    },
+    {
+      "id": 13,
+      "category": "compliance",
+      "task_description": "Code quality audit for new feature branch",
+      "objective": "Zero critical violations, 85% coverage",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Scan feature branch for NASA violations",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Detect TODO/FIXME comments",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure test coverage delta",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 14,
+      "category": "unit_testing",
+      "task_description": "Test file upload handling",
+      "objective": "Support 10MB files, virus scanning, type validation",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test file size limit enforcement",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test file type validation",
+          "dependencies": [],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test malicious file detection",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify upload handler ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 15,
+      "category": "performance",
+      "task_description": "Cache layer performance validation",
+      "objective": "95% hit rate, <10ms cache lookup",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure cache hit/miss ratios",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test cache invalidation logic",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile cache lookup latency",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 16,
+      "category": "integration_testing",
+      "task_description": "Validate third-party payment gateway integration",
+      "objective": "Support Stripe/PayPal, handle webhooks",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test Stripe payment flow",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test PayPal payment flow",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test webhook signature validation",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for mock payment responses",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 17,
+      "category": "security",
+      "task_description": "Password security audit",
+      "objective": "bcrypt hashing, complexity rules, breach detection",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test password hashing strength",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test password complexity validation",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test breach password detection",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 18,
+      "category": "unit_testing",
+      "task_description": "Test data serialization module",
+      "objective": "JSON/XML/protobuf support, error handling",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test JSON serialization edge cases",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test XML parsing error handling",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test protobuf encoding/decoding",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 19,
+      "category": "compliance",
+      "task_description": "Accessibility compliance audit (WCAG 2.1)",
+      "objective": "Level AA compliance, screen reader support",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test keyboard navigation flow",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test screen reader compatibility",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate color contrast ratios",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 20,
+      "category": "performance",
+      "task_description": "Frontend bundle size optimization",
+      "objective": "<500KB gzipped, lazy loading implemented",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure bundle size before optimization",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test lazy loading implementation",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate tree-shaking effectiveness",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 21,
+      "category": "integration_testing",
+      "task_description": "Validate WebSocket real-time messaging",
+      "objective": "Sub-second latency, reconnection handling",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test message delivery latency",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test automatic reconnection logic",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test message queue during disconnection",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 22,
+      "category": "unit_testing",
+      "task_description": "Test search functionality",
+      "objective": "Fuzzy matching, filters, pagination",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test fuzzy search algorithm",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test filter combinations",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test pagination edge cases",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify search functions ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 23,
+      "category": "security",
+      "task_description": "CORS configuration security audit",
+      "objective": "Whitelist domains, credentials handling",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test CORS origin validation",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test preflight request handling",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate credentials policy",
+          "dependencies": [],
+          "estimated_minutes": 18
+        }
+      ]
+    },
+    {
+      "id": 24,
+      "category": "compliance",
+      "task_description": "GDPR compliance audit",
+      "objective": "Data export, deletion, consent management",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test user data export functionality",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test right-to-deletion implementation",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate consent tracking system",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 25,
+      "category": "performance",
+      "task_description": "Image processing performance test",
+      "objective": "<2s processing, 5MB max size",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile image resize operations",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test thumbnail generation speed",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate memory usage during processing",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 26,
+      "category": "unit_testing",
+      "task_description": "Test notification preferences system",
+      "objective": "Email/SMS/push toggles, frequency controls",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test preference update logic",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test notification delivery routing",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test frequency throttling",
+          "dependencies": [],
+          "estimated_minutes": 22
+        }
+      ]
+    },
+    {
+      "id": 27,
+      "category": "integration_testing",
+      "task_description": "Validate CI/CD pipeline integration",
+      "objective": "Auto-deploy on merge, rollback support",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test automated deployment workflow",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test rollback mechanism",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate health check integration",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 28,
+      "category": "security",
+      "task_description": "Session management security audit",
+      "objective": "Secure cookies, session timeout, CSRF tokens",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test session timeout enforcement",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test cookie security attributes",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate session fixation prevention",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 29,
+      "category": "unit_testing",
+      "task_description": "Test date/time handling module",
+      "objective": "Timezone support, DST handling, localization",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test timezone conversion accuracy",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test DST transition handling",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test date formatting localization",
+          "dependencies": [],
+          "estimated_minutes": 22
+        }
+      ]
+    },
+    {
+      "id": 30,
+      "category": "compliance",
+      "task_description": "PCI-DSS compliance audit for payment data",
+      "objective": "Encrypted storage, secure transmission, audit logs",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test credit card data encryption",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate TLS certificate configuration",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test payment audit logging",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for plaintext card numbers",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ]
+    },
+    {
+      "id": 31,
+      "category": "performance",
+      "task_description": "Memory leak detection and profiling",
+      "objective": "Zero memory leaks, <500MB baseline",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile memory usage under load",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test long-running process stability",
+          "dependencies": [],
+          "estimated_minutes": 60
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Detect circular reference leaks",
+          "dependencies": [],
+          "estimated_minutes": 35
+        }
+      ]
+    },
+    {
+      "id": 32,
+      "category": "unit_testing",
+      "task_description": "Test error handling and logging",
+      "objective": "Structured logs, error categorization, alerts",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test error classification logic",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test log formatting and structure",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test alert threshold triggers",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 33,
+      "category": "integration_testing",
+      "task_description": "Validate analytics event tracking",
+      "objective": "100% event capture, batching, retry logic",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test event capture completeness",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test event batching logic",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test failed event retry mechanism",
+          "dependencies": [],
+          "estimated_minutes": 32
+        }
+      ]
+    },
+    {
+      "id": 34,
+      "category": "security",
+      "task_description": "Input sanitization security audit",
+      "objective": "XSS prevention, SQL escaping, command injection",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test HTML entity encoding",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test SQL parameterization",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test command injection prevention",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 35,
+      "category": "compliance",
+      "task_description": "API documentation completeness audit",
+      "objective": "100% endpoint coverage, examples, error codes",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Verify all endpoints documented",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate request/response examples",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Check error code documentation",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 36,
+      "category": "unit_testing",
+      "task_description": "Test rate limiting module",
+      "objective": "Token bucket algorithm, per-user limits",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test token bucket refill logic",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test per-user limit enforcement",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test burst capacity handling",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify rate limiter ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 37,
+      "category": "performance",
+      "task_description": "Concurrent user stress test",
+      "objective": "1000 concurrent users, <5% error rate",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Simulate 1000 concurrent sessions",
+          "dependencies": [],
+          "estimated_minutes": 50
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure error rate under load",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test database connection pool limits",
+          "dependencies": [],
+          "estimated_minutes": 35
+        }
+      ]
+    },
+    {
+      "id": 38,
+      "category": "integration_testing",
+      "task_description": "Validate backup and restore system",
+      "objective": "Daily backups, 5-minute RTO, data integrity",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test automated backup execution",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test restore process timing",
+          "dependencies": ["test_backup"],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate restored data integrity",
+          "dependencies": ["test_restore"],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 39,
+      "category": "unit_testing",
+      "task_description": "Test encryption module",
+      "objective": "AES-256, key rotation, secure key storage",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test AES-256 encryption/decryption",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test key rotation mechanism",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate key storage security",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 40,
+      "category": "security",
+      "task_description": "Dependency vulnerability scan",
+      "objective": "Zero high/critical CVEs, automated updates",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Scan npm dependencies for CVEs",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate automated update process",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test breaking change detection",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 41,
+      "category": "compliance",
+      "task_description": "License compliance audit",
+      "objective": "MIT/Apache compatible, no GPL violations",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Scan dependency licenses",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Identify GPL/AGPL dependencies",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate license compatibility",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 42,
+      "category": "performance",
+      "task_description": "CDN performance validation",
+      "objective": "<100ms global latency, 99.9% uptime",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure CDN edge latency",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test failover to origin server",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate cache hit ratios",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 43,
+      "category": "unit_testing",
+      "task_description": "Test webhook delivery system",
+      "objective": "Guaranteed delivery, retry exponential backoff",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test webhook signing verification",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test exponential backoff retry",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test dead letter queue handling",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 44,
+      "category": "integration_testing",
+      "task_description": "Validate monitoring and alerting system",
+      "objective": "5-minute detection, PagerDuty integration",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test metric collection accuracy",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test alert threshold triggers",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test PagerDuty notification delivery",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 45,
+      "category": "security",
+      "task_description": "API key rotation security audit",
+      "objective": "Zero-downtime rotation, expiration tracking",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test key rotation workflow",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test dual-key transition period",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate expiration notifications",
+          "dependencies": [],
+          "estimated_minutes": 22
+        }
+      ]
+    },
+    {
+      "id": 46,
+      "category": "unit_testing",
+      "task_description": "Test internationalization (i18n) module",
+      "objective": "10 languages, pluralization, RTL support",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test translation loading",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test pluralization rules",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test RTL text rendering",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify i18n functions ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 47,
+      "category": "compliance",
+      "task_description": "SOC 2 compliance audit preparation",
+      "objective": "Access controls, audit logs, encryption",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test access control enforcement",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate audit log completeness",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test data encryption at rest",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 48,
+      "category": "performance",
+      "task_description": "GraphQL query performance optimization",
+      "objective": "N+1 prevention, <100ms query time",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Detect N+1 query patterns",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test DataLoader batching",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile complex query execution",
+          "dependencies": [],
+          "estimated_minutes": 40
+        }
+      ]
+    },
+    {
+      "id": 49,
+      "category": "integration_testing",
+      "task_description": "Validate container orchestration (Kubernetes)",
+      "objective": "Auto-scaling, health checks, rolling updates",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test horizontal pod autoscaling",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test liveness/readiness probes",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test rolling update strategy",
+          "dependencies": [],
+          "estimated_minutes": 40
+        }
+      ]
+    },
+    {
+      "id": 50,
+      "category": "unit_testing",
+      "task_description": "Test feature flag system",
+      "objective": "Real-time toggles, user targeting, A/B testing",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test flag evaluation logic",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test user segment targeting",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test A/B experiment allocation",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 51,
+      "category": "security",
+      "task_description": "OAuth2 scope validation audit",
+      "objective": "Least privilege, scope enforcement, token introspection",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test scope validation on endpoints",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test token introspection accuracy",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate scope escalation prevention",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 52,
+      "category": "compliance",
+      "task_description": "Code review checklist compliance",
+      "objective": "100% review coverage, automated checks",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test PR checklist automation",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Validate NASA compliance in PRs",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan PRs for theater patterns",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ]
+    },
+    {
+      "id": 53,
+      "category": "performance",
+      "task_description": "Real User Monitoring (RUM) validation",
+      "objective": "<3s page load, Core Web Vitals green",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure Largest Contentful Paint",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure First Input Delay",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure Cumulative Layout Shift",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 54,
+      "category": "unit_testing",
+      "task_description": "Test queue processing system",
+      "objective": "FIFO ordering, priority queues, dead letters",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test FIFO message ordering",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test priority queue processing",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test dead letter queue routing",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 55,
+      "category": "integration_testing",
+      "task_description": "Validate multi-region deployment",
+      "objective": "Geo-routing, data replication, failover",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test geo-based routing accuracy",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test cross-region data replication",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test region failover mechanism",
+          "dependencies": [],
+          "estimated_minutes": 50
+        }
+      ]
+    },
+    {
+      "id": 56,
+      "category": "security",
+      "task_description": "Content Security Policy (CSP) audit",
+      "objective": "Strict CSP, nonce-based scripts, no unsafe-inline",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test CSP header enforcement",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test nonce generation and validation",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate CSP violation reporting",
+          "dependencies": [],
+          "estimated_minutes": 22
+        }
+      ]
+    },
+    {
+      "id": 57,
+      "category": "unit_testing",
+      "task_description": "Test audit logging system",
+      "objective": "Immutable logs, tamper detection, retention policy",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test log immutability enforcement",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test tamper detection mechanism",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test log retention policy automation",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 58,
+      "category": "compliance",
+      "task_description": "Disaster recovery plan validation",
+      "objective": "4-hour RTO, 1-hour RPO, tested quarterly",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test full system recovery procedure",
+          "dependencies": [],
+          "estimated_minutes": 60
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate RTO achievement",
+          "dependencies": ["test_recovery"],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test data loss measurement (RPO)",
+          "dependencies": ["test_recovery"],
+          "estimated_minutes": 40
+        }
+      ]
+    },
+    {
+      "id": 59,
+      "category": "performance",
+      "task_description": "Elasticsearch query optimization",
+      "objective": "<200ms search, relevance tuning, aggregations",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile search query performance",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test relevance scoring accuracy",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test aggregation query speed",
+          "dependencies": [],
+          "estimated_minutes": 32
+        }
+      ]
+    },
+    {
+      "id": 60,
+      "category": "integration_testing",
+      "task_description": "Validate microservice circuit breaker",
+      "objective": "Auto-recovery, fallback responses, metrics",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test circuit breaker state transitions",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test fallback response handling",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate recovery after failure",
+          "dependencies": [],
+          "estimated_minutes": 40
+        }
+      ]
+    },
+    {
+      "id": 61,
+      "category": "unit_testing",
+      "task_description": "Test API versioning system",
+      "objective": "Backward compatibility, deprecation warnings",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test version header parsing",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test backward compatibility layer",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test deprecation warning delivery",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify version adapter ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 62,
+      "category": "security",
+      "task_description": "API authorization matrix validation",
+      "objective": "RBAC enforcement, privilege escalation prevention",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test role-based access control",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test privilege escalation prevention",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate permission inheritance",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 63,
+      "category": "compliance",
+      "task_description": "Error message security audit",
+      "objective": "No sensitive data leakage, generic messages",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Scan error messages for PII",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test stack trace sanitization",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Detect debug info in production errors",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ]
+    },
+    {
+      "id": 64,
+      "category": "performance",
+      "task_description": "Redis cache performance tuning",
+      "objective": "<5ms latency, eviction policy optimization",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure Redis command latency",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test eviction policy effectiveness",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test connection pool sizing",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 65,
+      "category": "unit_testing",
+      "task_description": "Test background job scheduler",
+      "objective": "Cron scheduling, job deduplication, retry logic",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test cron expression parsing",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test job deduplication logic",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test failed job retry mechanism",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 66,
+      "category": "integration_testing",
+      "task_description": "Validate service mesh (Istio) integration",
+      "objective": "Traffic routing, mutual TLS, telemetry",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test traffic routing rules",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test mutual TLS configuration",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate telemetry collection",
+          "dependencies": [],
+          "estimated_minutes": 35
+        }
+      ]
+    },
+    {
+      "id": 67,
+      "category": "security",
+      "task_description": "Secrets management security audit",
+      "objective": "Vault integration, rotation automation, no hardcoding",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test secrets retrieval from Vault",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test automated secret rotation",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for hardcoded secrets in code",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 68,
+      "category": "unit_testing",
+      "task_description": "Test data masking module",
+      "objective": "PII redaction, format preservation, reversibility",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test PII detection and redaction",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test format-preserving masking",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test reversible masking for authorized users",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 69,
+      "category": "compliance",
+      "task_description": "Change management process audit",
+      "objective": "Approval workflows, rollback procedures, audit trail",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test approval workflow enforcement",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test rollback procedure automation",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate change audit logging",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 70,
+      "category": "performance",
+      "task_description": "WebSocket connection scaling test",
+      "objective": "10,000 concurrent connections, <100ms latency",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test 10K concurrent WebSocket connections",
+          "dependencies": [],
+          "estimated_minutes": 50
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure message delivery latency",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test connection cleanup on disconnect",
+          "dependencies": [],
+          "estimated_minutes": 35
+        }
+      ]
+    },
+    {
+      "id": 71,
+      "category": "integration_testing",
+      "task_description": "Validate log aggregation pipeline",
+      "objective": "Real-time indexing, retention policy, search speed",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test log ingestion throughput",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test retention policy enforcement",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate log search performance",
+          "dependencies": [],
+          "estimated_minutes": 32
+        }
+      ]
+    },
+    {
+      "id": 72,
+      "category": "unit_testing",
+      "task_description": "Test consent management platform",
+      "objective": "GDPR/CCPA compliance, granular controls, tracking",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test consent capture workflow",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test granular preference controls",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test consent withdrawal handling",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 73,
+      "category": "security",
+      "task_description": "Container security scanning",
+      "objective": "Zero critical CVEs, minimal base image, non-root user",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Scan container images for CVEs",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate non-root user configuration",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test minimal base image usage",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 74,
+      "category": "compliance",
+      "task_description": "API rate limit documentation audit",
+      "objective": "Published limits, headers, error responses",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Verify rate limit documentation accuracy",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test rate limit header inclusion",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate 429 error response format",
+          "dependencies": [],
+          "estimated_minutes": 22
+        }
+      ]
+    },
+    {
+      "id": 75,
+      "category": "performance",
+      "task_description": "Database connection pool optimization",
+      "objective": "Minimal idle connections, fast acquisition, leak detection",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test connection acquisition speed",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test idle connection cleanup",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test connection leak detection",
+          "dependencies": [],
+          "estimated_minutes": 35
+        }
+      ]
+    },
+    {
+      "id": 76,
+      "category": "unit_testing",
+      "task_description": "Test data export functionality",
+      "objective": "CSV/JSON/Excel formats, large datasets, streaming",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test CSV export formatting",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test JSON export with nested data",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test streaming large datasets",
+          "dependencies": [],
+          "estimated_minutes": 35
+        }
+      ]
+    },
+    {
+      "id": 77,
+      "category": "integration_testing",
+      "task_description": "Validate OAuth2 provider integration",
+      "objective": "Google/GitHub/Azure AD, token refresh, user info",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test Google OAuth2 flow",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test GitHub OAuth2 flow",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test token refresh mechanism",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 78,
+      "category": "security",
+      "task_description": "HTTP security headers audit",
+      "objective": "HSTS, X-Frame-Options, CSP, referrer policy",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test HSTS header configuration",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test X-Frame-Options enforcement",
+          "dependencies": [],
+          "estimated_minutes": 18
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate CSP and referrer policy",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 79,
+      "category": "unit_testing",
+      "task_description": "Test pagination module",
+      "objective": "Cursor/offset pagination, limit enforcement, metadata",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test cursor-based pagination",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test offset-based pagination",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test page size limit enforcement",
+          "dependencies": [],
+          "estimated_minutes": 20
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify pagination functions ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 80,
+      "category": "compliance",
+      "task_description": "Third-party integration security audit",
+      "objective": "API key security, webhook validation, rate limits",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test API key storage security",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test webhook signature validation",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate third-party rate limiting",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 81,
+      "category": "performance",
+      "task_description": "Server-side rendering (SSR) performance test",
+      "objective": "<500ms TTFB, hydration optimization",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure time to first byte (TTFB)",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test client-side hydration speed",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile SSR memory usage",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 82,
+      "category": "integration_testing",
+      "task_description": "Validate event sourcing implementation",
+      "objective": "Event replay, snapshots, consistency",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test event replay accuracy",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test snapshot creation and loading",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate event ordering consistency",
+          "dependencies": [],
+          "estimated_minutes": 38
+        }
+      ]
+    },
+    {
+      "id": 83,
+      "category": "unit_testing",
+      "task_description": "Test validation middleware",
+      "objective": "Schema validation, custom rules, error formatting",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test JSON schema validation",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test custom validation rules",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test validation error formatting",
+          "dependencies": [],
+          "estimated_minutes": 22
+        }
+      ]
+    },
+    {
+      "id": 84,
+      "category": "security",
+      "task_description": "TLS/SSL configuration audit",
+      "objective": "TLS 1.3, strong ciphers, certificate validation",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test TLS version enforcement",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test cipher suite configuration",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate certificate chain verification",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 85,
+      "category": "compliance",
+      "task_description": "Incident response plan validation",
+      "objective": "Runbooks, escalation paths, post-mortem process",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test incident detection automation",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate escalation workflow",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test post-mortem template generation",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 86,
+      "category": "performance",
+      "task_description": "API gateway performance optimization",
+      "objective": "<10ms routing latency, request coalescing",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure routing decision latency",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test request coalescing effectiveness",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile gateway memory usage",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 87,
+      "category": "unit_testing",
+      "task_description": "Test state synchronization module",
+      "objective": "Optimistic locking, conflict resolution, versioning",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test optimistic locking mechanism",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test conflict resolution strategies",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test version vector handling",
+          "dependencies": [],
+          "estimated_minutes": 32
+        }
+      ]
+    },
+    {
+      "id": 88,
+      "category": "integration_testing",
+      "task_description": "Validate message bus integration (RabbitMQ/Kafka)",
+      "objective": "Guaranteed delivery, partitioning, consumer groups",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test message delivery guarantees",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test partition assignment strategy",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test consumer group rebalancing",
+          "dependencies": [],
+          "estimated_minutes": 38
+        }
+      ]
+    },
+    {
+      "id": 89,
+      "category": "security",
+      "task_description": "SAML SSO integration security audit",
+      "objective": "Signature validation, assertion encryption, replay prevention",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test SAML signature validation",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test assertion encryption/decryption",
+          "dependencies": [],
+          "estimated_minutes": 32
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate replay attack prevention",
+          "dependencies": [],
+          "estimated_minutes": 28
+        }
+      ]
+    },
+    {
+      "id": 90,
+      "category": "unit_testing",
+      "task_description": "Test distributed tracing integration",
+      "objective": "Span propagation, context injection, sampling",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test trace context propagation",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test span creation and attributes",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test sampling strategy configuration",
+          "dependencies": [],
+          "estimated_minutes": 22
+        }
+      ]
+    },
+    {
+      "id": 91,
+      "category": "compliance",
+      "task_description": "Code coverage enforcement audit",
+      "objective": "≥80% coverage, branch coverage, mutation testing",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure line and branch coverage",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Run mutation testing analysis",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate coverage thresholds in CI",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 92,
+      "category": "performance",
+      "task_description": "Cold start optimization for serverless functions",
+      "objective": "<1s cold start, provisioned concurrency",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Measure cold start latency",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test provisioned concurrency effectiveness",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile function initialization time",
+          "dependencies": [],
+          "estimated_minutes": 32
+        }
+      ]
+    },
+    {
+      "id": 93,
+      "category": "integration_testing",
+      "task_description": "Validate blue-green deployment strategy",
+      "objective": "Zero downtime, instant rollback, health validation",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test traffic switching mechanism",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test instant rollback capability",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate health check before switch",
+          "dependencies": [],
+          "estimated_minutes": 30
+        }
+      ]
+    },
+    {
+      "id": 94,
+      "category": "unit_testing",
+      "task_description": "Test multi-tenancy isolation",
+      "objective": "Data isolation, resource quotas, tenant routing",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test tenant data isolation",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test resource quota enforcement",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test tenant context routing",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    },
+    {
+      "id": 95,
+      "category": "security",
+      "task_description": "GraphQL security audit",
+      "objective": "Query depth limiting, complexity analysis, introspection control",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test query depth limit enforcement",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test query complexity scoring",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate introspection disable in production",
+          "dependencies": [],
+          "estimated_minutes": 20
+        }
+      ]
+    },
+    {
+      "id": 96,
+      "category": "compliance",
+      "task_description": "Regulatory compliance audit (HIPAA/FERPA)",
+      "objective": "Encryption requirements, access controls, audit logs",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test PHI/PII encryption at rest",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate access control enforcement",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test comprehensive audit logging",
+          "dependencies": [],
+          "estimated_minutes": 38
+        }
+      ]
+    },
+    {
+      "id": 97,
+      "category": "performance",
+      "task_description": "Time-series database optimization",
+      "objective": "<50ms query, downsampling, retention tiers",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Profile time-series query performance",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test downsampling automation",
+          "dependencies": [],
+          "estimated_minutes": 30
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate retention tier transitions",
+          "dependencies": [],
+          "estimated_minutes": 32
+        }
+      ]
+    },
+    {
+      "id": 98,
+      "category": "integration_testing",
+      "task_description": "Validate chaos engineering implementation",
+      "objective": "Failure injection, recovery validation, blast radius",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test network latency injection",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test service failure injection",
+          "dependencies": [],
+          "estimated_minutes": 45
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate blast radius containment",
+          "dependencies": [],
+          "estimated_minutes": 38
+        }
+      ]
+    },
+    {
+      "id": 99,
+      "category": "unit_testing",
+      "task_description": "Test circuit breaker pattern implementation",
+      "objective": "Failure detection, half-open state, metrics",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test failure threshold detection",
+          "dependencies": [],
+          "estimated_minutes": 25
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test half-open state transitions",
+          "dependencies": [],
+          "estimated_minutes": 28
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test circuit breaker metrics",
+          "dependencies": [],
+          "estimated_minutes": 22
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "nasa-check",
+          "description": "Verify circuit breaker ≤60 LOC",
+          "dependencies": [],
+          "estimated_minutes": 15
+        }
+      ]
+    },
+    {
+      "id": 100,
+      "category": "security",
+      "task_description": "Zero trust architecture validation",
+      "objective": "Mutual authentication, least privilege, continuous verification",
+      "expected_subtasks": [
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test mutual TLS authentication",
+          "dependencies": [],
+          "estimated_minutes": 35
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Validate least privilege enforcement",
+          "dependencies": [],
+          "estimated_minutes": 40
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "test",
+          "description": "Test continuous verification mechanisms",
+          "dependencies": [],
+          "estimated_minutes": 38
+        },
+        {
+          "princess": "princess-quality",
+          "task_type": "theater-detect",
+          "description": "Scan for trust-but-verify anti-patterns",
+          "dependencies": [],
+          "estimated_minutes": 25
+        }
+      ]
+    }
+  ]
+}

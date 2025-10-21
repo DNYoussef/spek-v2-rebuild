@@ -1,0 +1,107 @@
+{
+  "delegate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"User authentication service\", \"code_files\": [\"src/auth/authenticator.py\", \"src/auth/token_manager.py\"], \"nasa_target\": \">=92%\"}",
+        "reasoning": "For a security-critical authentication service with a high NASA compliance target of 92%, I'm selecting the nasa-enforcer drone to perform a thorough compliance validation. The authentication system requires special attention to security invariants and robust error handling. The nasa-enforcer will focus on verifying bounded operations, proper assertion coverage, and manageable complexity in critical authentication flows.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate authentication service compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \">=3 assertions in security-critical paths\",\n            \"no recursion\",\n            \"fixed loop bounds\",\n            \"explicit error states\"\n        ],\n        \"critical_paths\": [\n            \"authenticate_user\",\n            \"validate_token\",\n            \"refresh_token\",\n            \"revoke_token\"\n        ],\n        \"compliance_target\": 92,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=92% compliance score achieved\",\n        \"All security-critical paths have complete assertion coverage\",\n        \"Token validation logic is bounded and safe\",\n        \"Authentication flows have explicit error handling\",\n        \"No potential infinite loops in token management\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Payment processing module\", \"code_files\": [\"src/payments/processor.py\"], \"nasa_target\": \">=95%\"}",
+        "reasoning": "For a payment processing module, we need extremely high reliability and safety. Given the NASA target of 95%, which is one of the highest thresholds, I'm selecting the nasa-enforcer drone to perform a thorough compliance check. The payment processing domain requires special attention to error handling, transaction atomicity, and input validation. The nasa-enforcer will focus on these critical aspects while ensuring the code meets strict complexity and safety guidelines.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Perform comprehensive compliance validation of payment processor\",\n    \"payload\": {\n        \"rules\": [\n            \"<=40 LOC per function\",\n            \"mandatory error handling\",\n            \"input validation required\",\n            \"no global state\",\n            \"transaction atomicity verified\",\n            \"fixed loop bounds\"\n        ],\n        \"critical_paths\": [\n            \"process_payment\",\n            \"validate_transaction\",\n            \"handle_errors\",\n            \"rollback_transaction\"\n        ],\n        \"compliance_target\": 95,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \"Achieve >=95% NASA compliance score\",\n        \"All critical payment paths validated\",\n        \"No potential race conditions identified\",\n        \"Error handling coverage complete\",\n        \"Transaction boundaries clearly defined\",\n        \"Input validation comprehensive\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"refactor\", \"implementation\": \"Legacy god object refactoring\", \"code_files\": [\"src/legacy/monolith.py\"], \"nasa_target\": \">=80%\"}",
+        "reasoning": "For a legacy god object refactoring review, we need specialized analysis to ensure the refactoring maintains system stability while improving code quality. The nasa-enforcer drone is best suited for this task because:\n1. Legacy code often has complex dependencies requiring careful compliance checking\n2. Refactoring large objects needs strict verification of modularization\n3. The 80% NASA target indicates critical but not mission-critical code\n4. Static analysis can verify improvement in code structure",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate refactored monolith compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \"max 5 dependencies per module\",\n            \"cyclomatic complexity <= 10\",\n            \"no global state\"\n        ],\n        \"critical_paths\": [\n            \"core_business_logic\",\n            \"data_access_layer\"\n        ],\n        \"compliance_target\": 80,\n        \"report_format\": \"detailed\",\n        \"focus_areas\": [\n            \"class cohesion\",\n            \"method extraction\",\n            \"dependency reduction\"\n        ]\n    },\n    \"acceptance_criteria\": [\n        \">=80% NASA compliance score achieved\",\n        \"No new circular dependencies introduced\",\n        \"Methods properly extracted and organized\",\n        \"State management simplified and documented\",\n        \"Integration points clearly defined\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Database migration system\", \"code_files\": [\"src/db/migrator.py\", \"src/db/rollback_handler.py\"], \"nasa_target\": \">=92%\"}",
+        "reasoning": "For a database migration system, we need rigorous compliance checking due to the critical nature of database operations. The nasa-enforcer drone is best suited for this task since we need to ensure:\n1. High reliability in migration and rollback paths\n2. Strict bounds on operations to prevent runaway migrations\n3. Clear error handling and state management\n4. Meeting the high NASA compliance target of 92%\n\nThe task will focus on critical paths including migration execution and rollback procedures, with special attention to transaction safety and data integrity.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate database migration system compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \">=3 assertions in critical paths\",\n            \"fixed loop bounds\",\n            \"transaction boundaries explicit\",\n            \"rollback paths verified\"\n        ],\n        \"critical_paths\": [\n            \"execute_migration\",\n            \"perform_rollback\",\n            \"verify_schema_state\"\n        ],\n        \"compliance_target\": 92,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=92% compliance score achieved\",\n        \"All migration operations bounded\",\n        \"Rollback paths fully validated\",\n        \"State tracking verified\",\n        \"Error handling comprehensive\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"API rate limiter\", \"code_files\": [\"src/middleware/rate_limiter.py\"], \"nasa_target\": \">=90%\"}",
+        "reasoning": "For reviewing an API rate limiter implementation, I'll delegate to the nasa-enforcer drone since this is a critical middleware component that requires strict compliance validation. The rate limiter needs to be highly reliable and predictable, making NASA compliance especially important. Key areas to validate include:\n1. Bounded execution time for rate calculations\n2. Predictable memory usage\n3. Thread-safe operations\n4. Clear error handling paths",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate rate limiter compliance and safety\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \"fixed memory bounds\",\n            \"no recursion\",\n            \"thread-safe operations\"\n        ],\n        \"critical_paths\": [\n            \"check_rate_limit\",\n            \"update_counter\",\n            \"cleanup_expired\"\n        ],\n        \"compliance_target\": 90,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=90% NASA compliance score achieved\",\n        \"Rate calculation logic has constant time complexity\",\n        \"Memory usage bounds clearly defined\",\n        \"Thread safety verified in critical sections\",\n        \"Error handling paths documented and validated\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"File upload handler\", \"code_files\": [\"src/uploads/handler.py\", \"src/uploads/validator.py\"], \"nasa_target\": \">=85%\"}",
+        "reasoning": "For reviewing a file upload handler implementation, I'll delegate to the nasa-enforcer drone since this is a critical system component that needs rigorous compliance validation. The focus areas should be:\n1. File handling safety and bounds checking\n2. Input validation robustness\n3. Resource management compliance\n4. Error handling patterns\n\nThe nasa-enforcer will verify these against our standard compliance rules while paying special attention to upload-specific concerns like buffer management and validation chains.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate file upload system compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \"buffer size limits enforced\",\n            \"explicit error handling\",\n            \"fixed loop bounds\"\n        ],\n        \"critical_paths\": [\n            \"handle_upload\",\n            \"validate_file\",\n            \"process_chunks\"\n        ],\n        \"compliance_target\": 85,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=85% compliance score achieved\",\n        \"All file size checks verified\",\n        \"Validation chain complete\",\n        \"Resource cleanup guaranteed\",\n        \"Memory usage bounded\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Cache invalidation system\", \"code_files\": [\"src/cache/invalidator.py\"], \"nasa_target\": \">=90%\"}",
+        "reasoning": "For reviewing a cache invalidation system, which is a critical and complex component, I'll delegate to the nasa-enforcer drone. This choice is made because:\n1. The high NASA target of 90% requires rigorous compliance checking\n2. Cache invalidation is notorious for subtle bugs and race conditions\n3. We need to ensure the implementation follows strict safety guidelines\n4. The drone will verify bounded operations and proper error handling",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate cache invalidation system compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \"no recursion\",\n            \"fixed loop bounds\",\n            \">=3 assertions in critical paths\"\n        ],\n        \"critical_paths\": [\n            \"invalidate_key\",\n            \"batch_invalidate\",\n            \"verify_invalidation\"\n        ],\n        \"compliance_target\": 90,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=90% compliance score achieved\",\n        \"All critical paths have proper error handling\",\n        \"No unbounded operations in invalidation logic\",\n        \"Race condition prevention verified\",\n        \"Proper logging of invalidation events\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Search indexing service\", \"code_files\": [\"src/search/indexer.py\", \"src/search/query_builder.py\"], \"nasa_target\": \">=85%\"}",
+        "reasoning": "For reviewing a search indexing service, I'll delegate to the nasa-enforcer drone since we need to validate compliance with NASA standards. The critical aspects are:\n1. Ensuring indexing operations are bounded and predictable\n2. Query building follows safe practices\n3. Meeting the 85% NASA compliance target\n4. Focusing on core search operations\n\nThe nasa-enforcer is best suited due to its specialization in code safety validation and compliance checking.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate search indexing service compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \"fixed loop bounds\",\n            \"no recursive indexing\",\n            \"sanitized inputs\"\n        ],\n        \"critical_paths\": [\n            \"index_document\",\n            \"build_query\",\n            \"validate_search_params\"\n        ],\n        \"compliance_target\": 85,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=85% NASA compliance score achieved\",\n        \"Index operations have clear bounds\",\n        \"Query building validates all inputs\",\n        \"No unbounded search operations\",\n        \"Memory usage patterns documented\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"WebSocket connection manager\", \"code_files\": [\"src/websocket/manager.py\", \"src/websocket/broadcaster.py\"], \"nasa_target\": \">=88%\"}",
+        "reasoning": "For a WebSocket connection manager, we need rigorous validation of the connection handling and broadcasting logic to ensure reliability and safety. The nasa-enforcer drone is best suited for this task since we need to verify compliance with NASA's coding standards, particularly around connection lifecycle management and broadcast operations. The high compliance target of 88% requires detailed analysis of critical paths and careful verification of bounded operations.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate WebSocket manager compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \"fixed loop bounds\",\n            \">=2 assertions in critical paths\",\n            \"error states handled\"\n        ],\n        \"critical_paths\": [\n            \"handle_connection\",\n            \"broadcast_message\",\n            \"cleanup_connections\"\n        ],\n        \"compliance_target\": 88,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=88% compliance score achieved\",\n        \"Connection handling loops are bounded\",\n        \"Broadcast operations have safety checks\",\n        \"Resource cleanup is guaranteed\",\n        \"Error handling coverage is complete\"\n    ]\n}"
+      },
+      {
+        "augmented": true,
+        "phase": "review",
+        "context": "{\"previous_phase\": \"code\", \"implementation\": \"Email notification service\", \"code_files\": [\"src/notifications/email_sender.py\"], \"nasa_target\": \">=85%\"}",
+        "reasoning": "For reviewing an email notification service, I'll assign the nasa-enforcer drone since we need to validate compliance with NASA standards. The critical aspects include email sending logic, retry mechanisms, and template handling. Given the target compliance of 85% and the focus on notifications, we need strict validation of error handling and output formatting.",
+        "drone_task": "{\n    \"drone_id\": \"nasa-enforcer\",\n    \"task_type\": \"validate-nasa-compliance\",\n    \"description\": \"Validate email notification service compliance\",\n    \"payload\": {\n        \"rules\": [\n            \"<=60 LOC per function\",\n            \"no recursion\",\n            \"fixed loop bounds\",\n            \"error handling required\"\n        ],\n        \"critical_paths\": [\n            \"send_email\",\n            \"format_template\",\n            \"handle_failure\"\n        ],\n        \"compliance_target\": 85,\n        \"report_format\": \"detailed\"\n    },\n    \"acceptance_criteria\": [\n        \">=85% compliance score achieved\",\n        \"Email sending logic has proper error boundaries\",\n        \"Template processing has input validation\",\n        \"Retry mechanism has fixed bounds\",\n        \"No unbounded operations in critical paths\"\n    ]\n}"
+      }
+    ],
+    "signature": {
+      "instructions": "Delegate task to drone agent with clear instructions.\n\nYou are a Princess agent coordinating your specialized drone hive.\nYour role is to take high-level workflow phases and convert them\ninto specific, actionable tasks for your drone agents.\n\nPrincess-Dev drones: coder, reviewer, debugger, integration-engineer\nPrincess-Quality drones: tester, nasa-enforcer, theater-detector, fsm-analyzer\nPrincess-Coordination drones: orchestrator, planner, cost-tracker\n\nEach drone task must have:\n- Specific drone agent assignment\n- Task type matching drone capabilities\n- Clear context from previous phases\n- Concrete deliverables\n- Quality gates/acceptance criteria\n\nFollow the 26 prompt engineering principles:\n- Clarity: Unambiguous instructions\n- Context: Include relevant phase results\n- Constraints: Respect drone capabilities\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Phase:",
+          "description": "Development phase to execute (design, code, test, review, etc.)"
+        },
+        {
+          "prefix": "Context:",
+          "description": "Context and results from previous phases that this phase depends on"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Delegation reasoning explaining drone selection and task structure"
+        },
+        {
+          "prefix": "Drone Task:",
+          "description": "Structured task for drone agent as JSON object. Must have: {'drone_id': str, 'task_type': str, 'description': str, 'payload': dict, 'acceptance_criteria': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

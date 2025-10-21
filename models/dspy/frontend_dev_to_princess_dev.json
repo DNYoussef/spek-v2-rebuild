@@ -1,0 +1,64 @@
+{
+  "aggregate.predict": {
+    "traces": [],
+    "train": [],
+    "demos": [
+      {
+        "augmented": true,
+        "drone_results": "{\"success\": true, \"component\": \"Pagination.tsx\", \"files_created\": [\"components/Pagination.tsx\"], \"lines_of_code\": 245, \"type_coverage\": 100, \"url_state\": true, \"ellipsis_logic\": true, \"execution_time_ms\": 2600, \"issues_found\": []}",
+        "quality_gates": "{\"type_coverage\": 100, \"url_state\": true, \"ellipsis_logic\": true, \"accessibility_score\": 96}",
+        "reasoning": "Analyzing the drone results for the Pagination component implementation:\n1. All critical quality gates have been met:\n   - Type coverage is 100% (required: 100%)\n   - URL state sync implemented (required: true)\n   - Ellipsis logic working (required: true)\n2. No issues were found during implementation\n3. Performance metrics show reasonable execution time\n4. Code base size is moderate and focused\n5. Accessibility score exceeds typical requirements at 96%",
+        "aggregated_result": "{\n    \"success\": true,\n    \"overall_score\": 0.98,\n    \"gates_passed\": 4,\n    \"gates_failed\": 0,\n    \"artifacts\": [\"components/Pagination.tsx\"],\n    \"recommendations\": [\n        \"Add comprehensive unit tests for edge cases\",\n        \"Document keyboard navigation patterns\",\n        \"Consider adding more pagination variants (simple/detailed)\"\n    ],\n    \"summary\": \"Pagination component successfully implemented with URL state synchronization, ellipsis logic for large page counts, and high accessibility score. Component is type-safe and performs within expected parameters.\",\n    \"metrics\": {\n        \"type_coverage\": 100,\n        \"accessibility_score\": 96,\n        \"execution_time_ms\": 2600,\n        \"lines_of_code\": 245\n    }\n}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"component\": \"ToastProvider.tsx\", \"files_created\": [\"components/ToastProvider.tsx\", \"hooks/useToast.ts\"], \"lines_of_code\": 176, \"type_coverage\": 100, \"all_variants_tested\": true, \"accessibility_score\": 98, \"execution_time_ms\": 2100, \"issues_found\": []}",
+        "quality_gates": "{\"type_coverage\": 100, \"variants\": 4, \"accessibility_score\": 98, \"auto_dismiss\": true}",
+        "aggregated_result": "{\"phase\": \"implement-toast-notifications\", \"status\": \"complete\", \"summary\": \"Toast notification system implemented with React Hot Toast. All variants (success, error, warning, info) working with auto-dismiss (5s default), manual close, and action buttons. ARIA live region for accessibility. Supports multiple positions and stacking.\", \"quality_metrics\": {\"type_coverage\": 100, \"variants\": 4, \"accessibility_score\": 98, \"auto_dismiss\": true}, \"artifacts\": [\"components/ToastProvider.tsx\", \"hooks/useToast.ts\"], \"next_phase\": \"integration-test\", \"blockers\": []}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"component\": \"KanbanBoard.tsx\", \"files_created\": [\"components/KanbanBoard.tsx\", \"components/KanbanCard.tsx\", \"components/KanbanColumn.tsx\"], \"lines_of_code\": 567, \"type_coverage\": 100, \"drag_drop\": true, \"optimistic_updates\": true, \"execution_time_ms\": 5100, \"issues_found\": []}",
+        "quality_gates": "{\"type_coverage\": 100, \"drag_drop\": true, \"optimistic_updates\": true, \"accessibility_score\": 91}",
+        "aggregated_result": "{\"phase\": \"implement-kanban-board\", \"status\": \"complete\", \"summary\": \"Kanban board implemented with React Beautiful DnD. Drag-and-drop working smoothly between columns. Optimistic updates with React Query for immediate UI feedback. Add/edit/delete card functionality. Keyboard card movement accessible. Horizontal scroll on mobile.\", \"quality_metrics\": {\"type_coverage\": 100, \"drag_drop\": true, \"optimistic_updates\": true, \"accessibility_score\": 91}, \"artifacts\": [\"components/KanbanBoard.tsx\", \"components/KanbanCard.tsx\", \"components/KanbanColumn.tsx\"], \"next_phase\": \"integration-test\", \"blockers\": []}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"component\": \"ImageGallery.tsx\", \"files_created\": [\"components/ImageGallery.tsx\", \"components/Lightbox.tsx\"], \"lines_of_code\": 412, \"type_coverage\": 100, \"lightbox_works\": true, \"responsive_grid\": true, \"execution_time_ms\": 4200, \"issues_found\": []}",
+        "quality_gates": "{\"type_coverage\": 100, \"lightbox\": true, \"responsive_grid\": true, \"accessibility_score\": 93}",
+        "aggregated_result": "{\"phase\": \"implement-image-gallery\", \"status\": \"complete\", \"summary\": \"Image gallery with thumbnail grid and lightbox viewer completed. Grid layout responsive (1-4 columns). Lightbox opens on click with full-screen backdrop, navigation arrows, thumbnails, zoom, and download. Keyboard navigation and ARIA labels. Masonry layout option.\", \"quality_metrics\": {\"type_coverage\": 100, \"lightbox\": true, \"responsive_grid\": true, \"accessibility_score\": 93}, \"artifacts\": [\"components/ImageGallery.tsx\", \"components/Lightbox.tsx\"], \"next_phase\": \"integration-test\", \"blockers\": []}"
+      },
+      {
+        "drone_results": "{\"success\": true, \"component\": \"ActivityHeatmap.tsx\", \"files_created\": [\"components/ActivityHeatmap.tsx\"], \"lines_of_code\": 234, \"type_coverage\": 100, \"colors_accurate\": true, \"tooltips_work\": true, \"execution_time_ms\": 2900, \"issues_found\": []}",
+        "quality_gates": "{\"type_coverage\": 100, \"colors_accurate\": true, \"tooltips\": true, \"accessibility_score\": 94}",
+        "aggregated_result": "{\"phase\": \"implement-heatmap\", \"status\": \"complete\", \"summary\": \"Activity heatmap implemented with React Calendar Heatmap. GitHub-style 365-day grid with gradient colors (0-4 activity levels). Tooltips show date and activity count on hover. React Query fetches daily activity data. Horizontal scroll on mobile. ARIA labels for screen readers.\", \"quality_metrics\": {\"type_coverage\": 100, \"colors_accurate\": true, \"tooltips\": true, \"accessibility_score\": 94}, \"artifacts\": [\"components/ActivityHeatmap.tsx\"], \"next_phase\": \"integration-test\", \"blockers\": []}"
+      }
+    ],
+    "signature": {
+      "instructions": "Aggregate drone results into coherent princess-level output.\n\nYou are a Princess agent receiving results from multiple drone agents\nthat executed tasks in parallel or sequence. Your role is to combine\ntheir individual results into a unified, comprehensive result that\ncan be reported to the Queen.\n\nAggregation must include:\n- Success/failure status of overall workflow\n- Quality metrics from all drones\n- Validation against quality gates\n- Artifacts produced by drones\n- Recommendations or next steps\n\nFollow the 26 prompt engineering principles:\n- Completeness: Include all relevant drone outputs\n- Quality: Validate against gates (test coverage, NASA compliance, etc.)\n- Clarity: Summarize complex results clearly\n- Structure: Output valid JSON format",
+      "fields": [
+        {
+          "prefix": "Drone Results:",
+          "description": "List of results from drone agents (each with success, data, metrics)"
+        },
+        {
+          "prefix": "Quality Gates:",
+          "description": "Quality gates to validate against (e.g., test_coverage >= 80%)"
+        },
+        {
+          "prefix": "Reasoning: Let's think step by step in order to",
+          "description": "Aggregation reasoning explaining how results were combined and validated"
+        },
+        {
+          "prefix": "Aggregated Result:",
+          "description": "Aggregated result as JSON object. Must have: {'success': bool, 'overall_score': float, 'gates_passed': int, 'gates_failed': int, 'artifacts': list[str], 'recommendations': list[str]}"
+        }
+      ]
+    },
+    "lm": null
+  },
+  "metadata": {
+    "dependency_versions": {
+      "python": "3.12",
+      "dspy": "3.0.3",
+      "cloudpickle": "3.0"
+    }
+  }
+}

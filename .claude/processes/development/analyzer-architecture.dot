@@ -1,0 +1,254 @@
+digraph AnalyzerArchitecture {
+    rankdir=TB;
+    compound=true;
+    fontname="Arial";
+
+    // Title
+    label="SPEK Analyzer Architecture\nHow All Components Work Together";
+    labelloc=t;
+    fontsize=16;
+    fontname="Arial Bold";
+
+    // ==================== USER INTERFACE LAYER ====================
+    subgraph cluster_user_interface {
+        label="User Interface Layer";
+        style=filled;
+        fillcolor="#E3F2FD";
+        fontname="Arial Bold";
+
+        cli [label="CLI Interface\nanalyzer.core.cli\n\nEntry point for\ncommand-line usage", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+
+        api [label="API Interface\nanalyzer.api.analyze()\n\nProgrammatic access\nfor scripts/tools", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+
+        direct_linters [label="Direct Linter Access\nfrom analyzer.linters import *\n\nFor custom workflows", shape=box, style="filled,rounded", fillcolor="#BBDEFB"];
+    }
+
+    // ==================== CORE ORCHESTRATION LAYER ====================
+    subgraph cluster_core {
+        label="Core Orchestration Layer";
+        style=filled;
+        fillcolor="#F3E5F5";
+        fontname="Arial Bold";
+
+        engine [label="Analysis Engine\nanalyzer.core.engine\n\nCoordinates analysis workflow:\n1. File discovery\n2. Linter selection\n3. Result aggregation\n4. Report generation", shape=box, style="filled,rounded", fillcolor="#E1BEE7"];
+
+        import_manager [label="Import Manager\nanalyzer.core.import_manager\n\nHandles module imports:\n- Graceful fallbacks\n- Enhanced vs. basic mode\n- Dependency validation", shape=box, style="filled,rounded", fillcolor="#E1BEE7"];
+
+        fallback [label="Fallback Handler\nanalyzer.core.fallback\n\nProvides degraded service:\n- Basic metrics when\n  linters unavailable\n- Error recovery", shape=box, style="filled,rounded", fillcolor="#E1BEE7"];
+    }
+
+    // ==================== LINTER ABSTRACTION LAYER ====================
+    subgraph cluster_linters {
+        label="Linter Abstraction Layer (Bridge Pattern)";
+        style=filled;
+        fillcolor="#E8F5E9";
+        fontname="Arial Bold";
+
+        registry [label="Linter Registry\nanalyzer.linters.linter_infrastructure\n\nCentral coordination:\n- Lazy registration\n- Multi-linter execution\n- Violation aggregation\n- Availability checking", shape=box, style="filled,rounded", fillcolor="#A5D6A7"];
+
+        base_linter [label="Base Linter Protocol\nanalyzer.linters.base_linter\n\nInterface contract:\n- is_available() -> bool\n- run(file_path) -> dict\n- convert_to_violations() -> list", shape=box, style="filled,rounded", fillcolor="#C8E6C9"];
+
+        radon_bridge [label="Radon Bridge\nanalyzer.linters.radon_bridge\n\nComplexity metrics:\n- Cyclomatic complexity (CC)\n- Maintainability index (MI)\n- Rank mapping (A-F)\n- Severity conversion", shape=box, style="filled,rounded", fillcolor="#C8E6C9"];
+
+        pylint_bridge [label="Pylint Bridge\nanalyzer.linters.pylint_bridge\n\nLogic/Style checks:\n- Fatal errors\n- Logic errors\n- Style warnings\n- Conventions", shape=box, style="filled,rounded", fillcolor="#C8E6C9"];
+
+        future_linter [label="Future Linters\n- Flake8 (PEP8)\n- Mypy (Types)\n- Bandit (Security)\n- Custom linters", shape=box, style="filled,rounded,dashed", fillcolor="#C8E6C9"];
+    }
+
+    // ==================== EXTERNAL TOOLS ====================
+    subgraph cluster_external {
+        label="External Tools (via subprocess)";
+        style=filled;
+        fillcolor="#FFF9C4";
+        fontname="Arial Bold";
+
+        radon_tool [label="Radon CLI\npython -m radon\n\nCommands:\n- radon cc (complexity)\n- radon mi (maintainability)", shape=cylinder, style=filled, fillcolor="#FFF59D"];
+
+        pylint_tool [label="Pylint CLI\npython -m pylint\n\nCommands:\n- pylint --output-format=json", shape=cylinder, style=filled, fillcolor="#FFF59D"];
+    }
+
+    // ==================== ANALYSIS ENGINES ====================
+    subgraph cluster_engines {
+        label="Specialized Analysis Engines";
+        style=filled;
+        fillcolor="#FCE4EC";
+        fontname="Arial Bold";
+
+        syntax_analyzer [label="Syntax Analyzer\nanalyzer.engines.syntax_analyzer\n\nAST-based analysis:\n- Function length (NASA Rule 10)\n- Import validation\n- Structure analysis", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+
+        pattern_detector [label="Pattern Detector\nanalyzer.engines.pattern_detector\n\nCode pattern detection:\n- God objects\n- Anti-patterns\n- Design patterns", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+
+        compliance_validator [label="Compliance Validator\nanalyzer.engines.compliance_validator\n\nCompliance checking:\n- NASA Rule 10\n- Custom rules\n- Quality gates", shape=box, style="filled,rounded", fillcolor="#F8BBD0"];
+    }
+
+    // ==================== CONSTANTS & CONFIGURATION ====================
+    subgraph cluster_constants {
+        label="Constants & Configuration";
+        style=filled;
+        fillcolor="#FFECB3";
+        fontname="Arial Bold";
+
+        thresholds [label="Thresholds\nanalyzer.constants.thresholds\n\nQuality thresholds:\n- Complexity limits\n- Coverage targets\n- Performance bounds", shape=note, style=filled, fillcolor="#FFE082"];
+
+        thresholds_ci [label="CI/CD Thresholds\nanalyzer.constants.thresholds_ci\n\nTemporary CI overrides:\n- Relaxed for legacy code\n- Deprecation warnings", shape=note, style=filled, fillcolor="#FFE082"];
+
+        nasa_rules [label="NASA Rules\nanalyzer.constants.nasa_rules\n\nNASA Rule 10:\n- Max function length (60 LOC)\n- Assertions required\n- No recursion", shape=note, style=filled, fillcolor="#FFE082"];
+
+        quality_standards [label="Quality Standards\nanalyzer.constants.quality_standards\n\nFile patterns:\n- Supported extensions\n- Exclude patterns", shape=note, style=filled, fillcolor="#FFE082"];
+
+        messages [label="Messages\nanalyzer.constants.messages\n\nStandardized messages:\n- Error messages\n- Recommendations\n- Status codes", shape=note, style=filled, fillcolor="#FFE082"];
+
+        weights [label="Weights\nanalyzer.constants.weights\n\nScoring weights:\n- Metric importance\n- Severity levels", shape=note, style=filled, fillcolor="#FFE082"];
+
+        policies [label="Policies\nanalyzer.constants.policies\n\nGovernance policies:\n- MECE requirements\n- Quality gates", shape=note, style=filled, fillcolor="#FFE082"];
+    }
+
+    // ==================== DATA MODELS ====================
+    subgraph cluster_data_models {
+        label="Data Models";
+        style=filled;
+        fillcolor="#E0F2F1";
+        fontname="Arial Bold";
+
+        violation [label="Violation Model\n\nAttributes:\n- severity (critical/high/medium/low)\n- description\n- line_number\n- source (linter name)\n- recommendation", shape=box3d, style=filled, fillcolor="#B2DFDB"];
+
+        metrics [label="Metrics Model\n\nAttributes:\n- total_functions\n- average_complexity\n- max_complexity\n- average_mi\n- file_count", shape=box3d, style=filled, fillcolor="#B2DFDB"];
+
+        result [label="Analysis Result\n\nStructure:\n{\n  'success': bool,\n  'violations': [Violation],\n  'metrics': Metrics,\n  'linter': str,\n  'timestamp': str\n}", shape=box3d, style=filled, fillcolor="#B2DFDB"];
+    }
+
+    // ==================== DATA FLOW ====================
+
+    // User interface to core
+    cli -> engine [label="1. Request analysis", color=blue, penwidth=2];
+    api -> engine [label="1. Request analysis", color=blue, penwidth=2];
+    direct_linters -> registry [label="1. Direct linter call", color=blue, penwidth=2];
+
+    // Core orchestration
+    engine -> import_manager [label="2. Load modules", color=purple, penwidth=2];
+    import_manager -> fallback [label="3. If imports fail", color=red, style=dashed];
+    engine -> registry [label="4. Request linter execution", color=blue, penwidth=2];
+
+    // Registry coordination
+    registry -> base_linter [label="5. Check contract", color=green, penwidth=2];
+    base_linter -> radon_bridge [label="6. Implements", color=green, style=dashed];
+    base_linter -> pylint_bridge [label="6. Implements", color=green, style=dashed];
+    base_linter -> future_linter [label="6. Future", color=gray, style=dashed];
+
+    // Bridge to external tools
+    radon_bridge -> radon_tool [label="7. Execute subprocess", color=orange, penwidth=2];
+    pylint_bridge -> pylint_tool [label="7. Execute subprocess", color=orange, penwidth=2];
+
+    // Tool responses
+    radon_tool -> radon_bridge [label="8. JSON results", color=orange, penwidth=2];
+    pylint_tool -> pylint_bridge [label="8. JSON results", color=orange, penwidth=2];
+
+    // Violation conversion
+    radon_bridge -> violation [label="9. Convert to violations", color=brown, penwidth=2];
+    pylint_bridge -> violation [label="9. Convert to violations", color=brown, penwidth=2];
+
+    // Metrics extraction
+    radon_bridge -> metrics [label="10. Extract metrics", color=brown, penwidth=2];
+
+    // Result aggregation
+    radon_bridge -> result [label="11. Build result", color=purple, penwidth=2];
+    pylint_bridge -> result [label="11. Build result", color=purple, penwidth=2];
+    result -> registry [label="12. Return to registry", color=purple, penwidth=2];
+
+    // Registry aggregation
+    registry -> result [label="13. Aggregate all results", color=blue, penwidth=2];
+    registry -> engine [label="14. Return aggregated results", color=blue, penwidth=2];
+
+    // Engine uses specialized analyzers
+    engine -> syntax_analyzer [label="15. AST analysis", color=teal, style=dotted];
+    engine -> pattern_detector [label="15. Pattern detection", color=teal, style=dotted];
+    engine -> compliance_validator [label="15. Compliance check", color=teal, style=dotted];
+
+    // Engines use constants
+    syntax_analyzer -> nasa_rules [label="Read", color=gray, style=dashed];
+    syntax_analyzer -> thresholds [label="Read", color=gray, style=dashed];
+    pattern_detector -> thresholds [label="Read", color=gray, style=dashed];
+    compliance_validator -> nasa_rules [label="Read", color=gray, style=dashed];
+    compliance_validator -> quality_standards [label="Read", color=gray, style=dashed];
+
+    // Linters use constants
+    radon_bridge -> thresholds [label="Read", color=gray, style=dashed];
+    pylint_bridge -> thresholds [label="Read", color=gray, style=dashed];
+
+    // Messages for errors
+    engine -> messages [label="Error messages", color=gray, style=dashed];
+    registry -> messages [label="Error messages", color=gray, style=dashed];
+
+    // Final output
+    engine -> cli [label="16. Format & display", color=blue, penwidth=2];
+    engine -> api [label="16. Return results", color=blue, penwidth=2];
+
+    // ==================== DESIGN PATTERNS ====================
+    subgraph cluster_patterns {
+        label="Design Patterns";
+        style=filled;
+        fillcolor="#F5F5F5";
+        fontname="Arial Bold";
+
+        pattern_bridge [label="Bridge Pattern\n\nDecouples linter abstraction\nfrom implementation\n\nBenefits:\n- Easy to add new linters\n- Uniform interface\n- Testable without tools", shape=note, style="filled,dashed", fillcolor=white];
+
+        pattern_registry [label="Registry Pattern\n\nCentral linter management\nwith lazy registration\n\nBenefits:\n- Automatic discovery\n- Multi-linter coordination\n- Availability checking", shape=note, style="filled,dashed", fillcolor=white];
+
+        pattern_facade [label="Facade Pattern\n\nSimple API over complex\nlinter infrastructure\n\nBenefits:\n- Easy to use\n- Hides complexity\n- Consistent interface", shape=note, style="filled,dashed", fillcolor=white];
+
+        pattern_strategy [label="Strategy Pattern\n\nInterchangeable linters\nfor different analysis needs\n\nBenefits:\n- Flexible analysis\n- Runtime selection\n- Easy testing", shape=note, style="filled,dashed", fillcolor=white];
+    }
+
+    // ==================== KEY CHARACTERISTICS ====================
+    subgraph cluster_characteristics {
+        label="Key Characteristics";
+        style=filled;
+        fillcolor="#FFFDE7";
+        fontname="Arial Bold";
+
+        char_cross_platform [label="Cross-Platform\n\nUses python -m pattern:\n- Works without PATH setup\n- Consistent across OS\n- sys.executable based", shape=box, style="filled,rounded", fillcolor="#FFF9C4"];
+
+        char_fail_safe [label="Fail-Safe\n\nGraceful degradation:\n- Fallback when linters unavailable\n- Partial results on errors\n- Always returns usable data", shape=box, style="filled,rounded", fillcolor="#FFF9C4"];
+
+        char_extensible [label="Extensible\n\nEasy to add linters:\n1. Implement base_linter protocol\n2. Register in registry\n3. Auto-discovered", shape=box, style="filled,rounded", fillcolor="#FFF9C4"];
+
+        char_testable [label="Testable\n\n125 total tests:\n- 119 unit tests\n- 6 integration tests\n- Mocks for external tools\n- Real tool validation", shape=box, style="filled,rounded", fillcolor="#FFF9C4"];
+
+        char_performant [label="Performant\n\n~4s per file average:\n- Parallel execution ready\n- Lazy loading\n- Efficient subprocess calls", shape=box, style="filled,rounded", fillcolor="#FFF9C4"];
+    }
+
+    // ==================== EXECUTION FLOW EXAMPLE ====================
+    subgraph cluster_example {
+        label="Execution Flow Example: analyze('file.py')";
+        style=filled;
+        fillcolor="#F1F8E9";
+        fontname="Arial Bold";
+
+        ex1 [label="1. User calls\napi.analyze('file.py')", shape=ellipse, fillcolor="#DCEDC8"];
+        ex2 [label="2. Engine coordinates\nanalysis workflow", shape=box, fillcolor="#DCEDC8"];
+        ex3 [label="3. Registry gets\navailable linters\n(Radon + Pylint)", shape=box, fillcolor="#DCEDC8"];
+        ex4 [label="4. Radon bridge:\n- Run radon cc\n- Run radon mi\n- Convert to violations\n- Extract metrics", shape=box, fillcolor="#DCEDC8"];
+        ex5 [label="5. Pylint bridge:\n- Run pylint\n- Parse JSON\n- Convert to violations", shape=box, fillcolor="#DCEDC8"];
+        ex6 [label="6. Registry aggregates:\n- 10 total violations\n- Metrics from Radon", shape=box, fillcolor="#DCEDC8"];
+        ex7 [label="7. Engine returns:\n{\n  'violations': 10,\n  'metrics': {...},\n  'linters_run': ['radon', 'pylint']\n}", shape=box, fillcolor="#DCEDC8"];
+        ex8 [label="8. User receives\nanalysis results", shape=ellipse, fillcolor="#DCEDC8"];
+
+        ex1 -> ex2 -> ex3 -> ex4 -> ex5 -> ex6 -> ex7 -> ex8 [color=darkgreen, penwidth=2];
+    }
+
+    // ==================== LEGEND ====================
+    subgraph cluster_legend {
+        label="Legend";
+        style=filled;
+        fillcolor=white;
+        fontname="Arial Bold";
+
+        legend_data [label="Data Flow", color=blue, penwidth=2];
+        legend_subprocess [label="Subprocess Call", color=orange, penwidth=2];
+        legend_config [label="Configuration Read", color=gray, style=dashed];
+        legend_optional [label="Optional/Future", color=gray, style=dashed];
+        legend_error [label="Error Path", color=red, style=dashed];
+
+        legend_data -> legend_subprocess -> legend_config -> legend_optional -> legend_error [style=invis];
+    }
+}

@@ -1,0 +1,1458 @@
+{
+  "communication_path": "princess-dev→debugger",
+  "description": "Princess-Dev delegates bug fixing and debugging tasks to Debugger drone",
+  "version": "1.0",
+  "total_examples": 50,
+  "examples": [
+    {
+      "id": 1,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "runtime_error",
+        "error_message": "TypeError: Cannot read property 'id' of undefined",
+        "affected_file": "src/components/UserProfile.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix undefined user object error in UserProfile component",
+        "specifications": {
+          "investigation_steps": [
+            "Trace component props and state",
+            "Check data fetching timing",
+            "Verify null/undefined guards",
+            "Review error boundaries"
+          ],
+          "root_cause_hypothesis": "User data not loaded before component renders",
+          "fix_approach": "Add loading state and null checks",
+          "test_scenarios": ["Initial render", "Slow network", "User not found"]
+        },
+        "dependencies": ["access to error logs", "ability to run locally"],
+        "estimated_minutes": 30,
+        "quality_gates": ["error no longer occurs", "edge cases handled", "tests added"]
+      }
+    },
+    {
+      "id": 2,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "performance",
+        "error_message": "API endpoint /products taking 5+ seconds",
+        "affected_file": "src/api/products.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Investigate and fix slow products API endpoint",
+        "specifications": {
+          "investigation_steps": [
+            "Profile database queries",
+            "Check for N+1 problems",
+            "Analyze network requests",
+            "Review caching strategy"
+          ],
+          "root_cause_hypothesis": "Missing database indexes or N+1 queries",
+          "fix_approach": "Add indexes, implement query optimization, add caching",
+          "test_scenarios": ["Small dataset", "Large dataset (10k+ products)", "Concurrent requests"]
+        },
+        "dependencies": ["production database access", "profiling tools"],
+        "estimated_minutes": 45,
+        "quality_gates": ["response time <500ms", "no N+1 queries", "load tested"]
+      }
+    },
+    {
+      "id": 3,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "memory_leak",
+        "error_message": "Memory usage grows continuously, OOM after 2 hours",
+        "affected_file": "src/services/websocket-manager.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix memory leak in WebSocket manager",
+        "specifications": {
+          "investigation_steps": [
+            "Profile heap snapshots",
+            "Check event listener cleanup",
+            "Verify connection disposal",
+            "Review closure captures"
+          ],
+          "root_cause_hypothesis": "Event listeners not removed on disconnect",
+          "fix_approach": "Implement proper cleanup in disconnect handlers",
+          "test_scenarios": ["Connect/disconnect cycles", "Long-running connections", "High connection count"]
+        },
+        "dependencies": ["memory profiler", "ability to reproduce"],
+        "estimated_minutes": 50,
+        "quality_gates": ["memory stable over time", "heap size doesn't grow", "stress tested"]
+      }
+    },
+    {
+      "id": 4,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "race_condition",
+        "error_message": "Order total sometimes incorrect (intermittent)",
+        "affected_file": "src/cart/checkout.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix race condition in checkout total calculation",
+        "specifications": {
+          "investigation_steps": [
+            "Review async operation ordering",
+            "Check state update timing",
+            "Identify shared mutable state",
+            "Add logging to trace execution"
+          ],
+          "root_cause_hypothesis": "Concurrent updates to cart state",
+          "fix_approach": "Use locking or queue operations sequentially",
+          "test_scenarios": ["Rapid cart updates", "Concurrent checkout attempts", "Network delays"]
+        },
+        "dependencies": ["ability to reproduce intermittent issue"],
+        "estimated_minutes": 55,
+        "quality_gates": ["issue not reproducible", "concurrency tested", "state consistency verified"]
+      }
+    },
+    {
+      "id": 5,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "authentication_failure",
+        "error_message": "JWT token validation fails with 'invalid signature'",
+        "affected_file": "src/middleware/auth.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Debug JWT token signature validation failure",
+        "specifications": {
+          "investigation_steps": [
+            "Verify signing key consistency",
+            "Check token generation process",
+            "Review algorithm mismatch",
+            "Validate token structure"
+          ],
+          "root_cause_hypothesis": "Environment variable mismatch or key rotation issue",
+          "fix_approach": "Ensure consistent secret across services, handle key rotation",
+          "test_scenarios": ["Fresh token", "Rotated keys", "Cross-service validation"]
+        },
+        "dependencies": ["access to environment configs", "token samples"],
+        "estimated_minutes": 35,
+        "quality_gates": ["validation succeeds", "key rotation handled", "error messages clear"]
+      }
+    },
+    {
+      "id": 6,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "database_connection",
+        "error_message": "Connection pool exhausted, max connections reached",
+        "affected_file": "src/db/connection.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix database connection pool exhaustion",
+        "specifications": {
+          "investigation_steps": [
+            "Check connection leaks",
+            "Review pool configuration",
+            "Monitor connection lifecycle",
+            "Identify long-running queries"
+          ],
+          "root_cause_hypothesis": "Connections not released properly",
+          "fix_approach": "Ensure proper connection disposal, increase pool size, add timeouts",
+          "test_scenarios": ["High concurrent load", "Long-running transactions", "Connection failures"]
+        },
+        "dependencies": ["database monitoring tools", "production traffic patterns"],
+        "estimated_minutes": 40,
+        "quality_gates": ["pool exhaustion prevented", "connections released properly", "load tested"]
+      }
+    },
+    {
+      "id": 7,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "flaky_test",
+        "error_message": "Test 'user login flow' fails intermittently (30% failure rate)",
+        "affected_file": "tests/integration/auth.test.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix flaky authentication integration test",
+        "specifications": {
+          "investigation_steps": [
+            "Identify non-deterministic elements",
+            "Check for timing dependencies",
+            "Review test isolation",
+            "Analyze failure patterns"
+          ],
+          "root_cause_hypothesis": "Race condition or timing dependency in test",
+          "fix_approach": "Add proper waits, improve test isolation, mock time-dependent behavior",
+          "test_scenarios": ["Run test 100 times", "Slow/fast execution", "Parallel execution"]
+        },
+        "dependencies": ["test failure logs", "CI environment access"],
+        "estimated_minutes": 40,
+        "quality_gates": ["test passes 100/100 times", "no timing dependencies", "properly isolated"]
+      }
+    },
+    {
+      "id": 8,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "cors_error",
+        "error_message": "CORS policy blocks requests from frontend domain",
+        "affected_file": "src/server.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix CORS configuration for frontend requests",
+        "specifications": {
+          "investigation_steps": [
+            "Review CORS middleware config",
+            "Check allowed origins",
+            "Verify credentials handling",
+            "Test preflight requests"
+          ],
+          "root_cause_hypothesis": "Missing or incorrect allowed origins configuration",
+          "fix_approach": "Update CORS config with correct origins and credentials",
+          "test_scenarios": ["Production domain", "Development domain", "Preflight OPTIONS"]
+        },
+        "dependencies": ["access to server configuration"],
+        "estimated_minutes": 25,
+        "quality_gates": ["CORS errors resolved", "preflight working", "credentials allowed"]
+      }
+    },
+    {
+      "id": 9,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "infinite_loop",
+        "error_message": "Browser tab freezes when opening settings page",
+        "affected_file": "src/components/Settings.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix infinite render loop in Settings component",
+        "specifications": {
+          "investigation_steps": [
+            "Check useEffect dependencies",
+            "Review state update patterns",
+            "Profile component renders",
+            "Identify circular dependencies"
+          ],
+          "root_cause_hypothesis": "useEffect missing dependencies or circular state updates",
+          "fix_approach": "Correct dependency arrays, break circular updates",
+          "test_scenarios": ["Initial render", "Settings changes", "Props updates"]
+        },
+        "dependencies": ["React DevTools", "profiler access"],
+        "estimated_minutes": 30,
+        "quality_gates": ["no infinite renders", "performance acceptable", "dependencies correct"]
+      }
+    },
+    {
+      "id": 10,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "data_inconsistency",
+        "error_message": "User sees old data after update (cache stale)",
+        "affected_file": "src/cache/user-cache.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix stale cache data after user updates",
+        "specifications": {
+          "investigation_steps": [
+            "Review cache invalidation logic",
+            "Check TTL configuration",
+            "Trace update flow",
+            "Verify invalidation events"
+          ],
+          "root_cause_hypothesis": "Cache invalidation not triggered on updates",
+          "fix_approach": "Implement proper cache invalidation on mutations",
+          "test_scenarios": ["Update user", "Concurrent reads/writes", "Distributed cache"]
+        },
+        "dependencies": ["Redis access", "invalidation event logs"],
+        "estimated_minutes": 35,
+        "quality_gates": ["cache invalidates properly", "no stale data", "consistency verified"]
+      }
+    },
+    {
+      "id": 11,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "validation_error",
+        "error_message": "Form submission succeeds with invalid email format",
+        "affected_file": "src/validation/user-schema.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix email validation bypass in user form",
+        "specifications": {
+          "investigation_steps": [
+            "Review validation schema",
+            "Test edge case emails",
+            "Check validation execution",
+            "Verify error handling"
+          ],
+          "root_cause_hypothesis": "Regex pattern too permissive or validation not enforced",
+          "fix_approach": "Strengthen regex pattern, ensure validation runs",
+          "test_scenarios": ["Valid emails", "Invalid formats", "Edge cases (unicode, special chars)"]
+        },
+        "dependencies": ["validation test suite"],
+        "estimated_minutes": 20,
+        "quality_gates": ["invalid emails rejected", "valid emails accepted", "comprehensive tests"]
+      }
+    },
+    {
+      "id": 12,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "websocket_disconnect",
+        "error_message": "WebSocket connections drop after 60 seconds",
+        "affected_file": "src/websocket/server.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix premature WebSocket disconnections",
+        "specifications": {
+          "investigation_steps": [
+            "Check keepalive/ping configuration",
+            "Review proxy/load balancer timeouts",
+            "Monitor connection lifecycle",
+            "Test with long-lived connections"
+          ],
+          "root_cause_hypothesis": "Missing keepalive pings or proxy timeout",
+          "fix_approach": "Implement heartbeat mechanism, configure proxy timeouts",
+          "test_scenarios": ["Idle connection >5 min", "Active connection", "Proxy timeout"]
+        },
+        "dependencies": ["access to proxy configs", "connection monitoring"],
+        "estimated_minutes": 40,
+        "quality_gates": ["connections stable", "keepalive working", "proxy configured"]
+      }
+    },
+    {
+      "id": 13,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "encoding_error",
+        "error_message": "Unicode characters corrupted in API responses",
+        "affected_file": "src/api/middleware/json.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix Unicode encoding issues in API responses",
+        "specifications": {
+          "investigation_steps": [
+            "Check Content-Type headers",
+            "Review string encoding/decoding",
+            "Test with various Unicode characters",
+            "Verify database encoding"
+          ],
+          "root_cause_hypothesis": "Missing UTF-8 charset in Content-Type or database encoding",
+          "fix_approach": "Set charset=utf-8, ensure database uses UTF-8",
+          "test_scenarios": ["Emoji characters", "CJK characters", "Accented letters"]
+        },
+        "dependencies": ["test data with various Unicode"],
+        "estimated_minutes": 25,
+        "quality_gates": ["Unicode preserved", "headers correct", "database encoding verified"]
+      }
+    },
+    {
+      "id": 14,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "timeout_error",
+        "error_message": "Lambda function times out processing large images",
+        "affected_file": "lambda/image-processor.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Optimize Lambda to handle large images within timeout",
+        "specifications": {
+          "investigation_steps": [
+            "Profile execution time",
+            "Check image processing efficiency",
+            "Review memory allocation",
+            "Test with various image sizes"
+          ],
+          "root_cause_hypothesis": "Inefficient image processing or insufficient memory",
+          "fix_approach": "Optimize processing algorithm, increase memory/timeout, add streaming",
+          "test_scenarios": ["Small images (<1MB)", "Large images (>10MB)", "Various formats"]
+        },
+        "dependencies": ["CloudWatch logs", "test images"],
+        "estimated_minutes": 45,
+        "quality_gates": ["no timeouts", "processing time acceptable", "memory efficient"]
+      }
+    },
+    {
+      "id": 15,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "mock_failure",
+        "error_message": "API mocks not working in unit tests",
+        "affected_file": "tests/unit/user-service.test.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix API mocking in user service tests",
+        "specifications": {
+          "investigation_steps": [
+            "Review mock setup",
+            "Check mock library usage",
+            "Verify import ordering",
+            "Test mock isolation"
+          ],
+          "root_cause_hypothesis": "Mocks not hoisted or import order issue",
+          "fix_approach": "Correct mock setup, use jest.mock properly, check import order",
+          "test_scenarios": ["Individual tests", "Test suite", "Parallel execution"]
+        },
+        "dependencies": ["Jest documentation", "test runner access"],
+        "estimated_minutes": 30,
+        "quality_gates": ["mocks work reliably", "tests isolated", "no real API calls"]
+      }
+    },
+    {
+      "id": 16,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "session_expiry",
+        "error_message": "Users logged out unexpectedly during active sessions",
+        "affected_file": "src/auth/session-manager.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix premature session expiration issue",
+        "specifications": {
+          "investigation_steps": [
+            "Review session TTL logic",
+            "Check token refresh mechanism",
+            "Monitor session storage",
+            "Test session lifecycle"
+          ],
+          "root_cause_hypothesis": "Token refresh not working or session storage clearing",
+          "fix_approach": "Implement sliding sessions, fix refresh logic",
+          "test_scenarios": ["Active user >1 hour", "Idle user", "Multiple tabs"]
+        },
+        "dependencies": ["session logs", "Redis access"],
+        "estimated_minutes": 40,
+        "quality_gates": ["sessions persist appropriately", "refresh works", "UX improved"]
+      }
+    },
+    {
+      "id": 17,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "scroll_bug",
+        "error_message": "Infinite scroll loads duplicate items",
+        "affected_file": "src/components/InfiniteList.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix duplicate items in infinite scroll",
+        "specifications": {
+          "investigation_steps": [
+            "Review pagination logic",
+            "Check cursor/offset handling",
+            "Monitor scroll triggers",
+            "Test edge cases"
+          ],
+          "root_cause_hypothesis": "Incorrect cursor tracking or concurrent requests",
+          "fix_approach": "Fix cursor logic, deduplicate items, prevent concurrent loads",
+          "test_scenarios": ["Rapid scrolling", "Slow network", "List updates during scroll"]
+        },
+        "dependencies": ["React DevTools", "network throttling"],
+        "estimated_minutes": 35,
+        "quality_gates": ["no duplicates", "pagination correct", "UX smooth"]
+      }
+    },
+    {
+      "id": 18,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "environment_variable",
+        "error_message": "Service fails with 'DATABASE_URL is not defined'",
+        "affected_file": "src/config/database.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Debug missing environment variable in deployment",
+        "specifications": {
+          "investigation_steps": [
+            "Check environment variable configuration",
+            "Review deployment scripts",
+            "Verify secret management",
+            "Test variable loading"
+          ],
+          "root_cause_hypothesis": "Environment variable not set in deployment environment",
+          "fix_approach": "Configure environment variables correctly in deployment platform",
+          "test_scenarios": ["Development env", "Staging env", "Production env"]
+        },
+        "dependencies": ["deployment platform access", "secrets management"],
+        "estimated_minutes": 20,
+        "quality_gates": ["variables available", "deployment succeeds", "documented"]
+      }
+    },
+    {
+      "id": 19,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "type_error",
+        "error_message": "TypeScript error: Type 'string | undefined' not assignable to 'string'",
+        "affected_file": "src/utils/format.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix TypeScript type narrowing issue",
+        "specifications": {
+          "investigation_steps": [
+            "Review type definitions",
+            "Check null/undefined handling",
+            "Add type guards",
+            "Verify type inference"
+          ],
+          "root_cause_hypothesis": "Missing null check or incorrect type annotation",
+          "fix_approach": "Add proper type guards, use optional chaining, fix type definitions",
+          "test_scenarios": ["Defined values", "Undefined values", "Null values"]
+        },
+        "dependencies": ["TypeScript compiler", "type definitions"],
+        "estimated_minutes": 20,
+        "quality_gates": ["TypeScript compiles", "types accurate", "null safety"]
+      }
+    },
+    {
+      "id": 20,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "payment_failure",
+        "error_message": "Payment webhook received but order not updated",
+        "affected_file": "src/webhooks/stripe.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix payment webhook processing failure",
+        "specifications": {
+          "investigation_steps": [
+            "Review webhook handler logic",
+            "Check signature verification",
+            "Trace order update flow",
+            "Monitor webhook logs"
+          ],
+          "root_cause_hypothesis": "Webhook processed but database update failed",
+          "fix_approach": "Add error handling, retry logic, and better logging",
+          "test_scenarios": ["Successful payment", "Failed payment", "Duplicate webhooks"]
+        },
+        "dependencies": ["Stripe webhook logs", "database logs"],
+        "estimated_minutes": 45,
+        "quality_gates": ["webhooks process reliably", "orders updated", "idempotency ensured"]
+      }
+    },
+    {
+      "id": 21,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "css_layout",
+        "error_message": "Layout breaks on mobile devices below 375px width",
+        "affected_file": "src/components/Header.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix responsive layout issue on small mobile screens",
+        "specifications": {
+          "investigation_steps": [
+            "Test on various screen sizes",
+            "Review CSS media queries",
+            "Check flexbox/grid usage",
+            "Inspect element overflow"
+          ],
+          "root_cause_hypothesis": "Missing media query or fixed width elements",
+          "fix_approach": "Add appropriate breakpoints, use relative units",
+          "test_scenarios": ["320px width", "375px width", "768px width", "1024px width"]
+        },
+        "dependencies": ["browser DevTools", "device testing"],
+        "estimated_minutes": 25,
+        "quality_gates": ["works on all screen sizes", "no overflow", "visually correct"]
+      }
+    },
+    {
+      "id": 22,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "ssl_certificate",
+        "error_message": "ERR_CERT_COMMON_NAME_INVALID on production domain",
+        "affected_file": "nginx/ssl.conf"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix SSL certificate domain mismatch",
+        "specifications": {
+          "investigation_steps": [
+            "Check certificate CN/SAN",
+            "Verify domain configuration",
+            "Review SSL certificate generation",
+            "Test certificate renewal"
+          ],
+          "root_cause_hypothesis": "Certificate issued for wrong domain or missing SAN",
+          "fix_approach": "Generate new certificate with correct domains",
+          "test_scenarios": ["Main domain", "WWW subdomain", "API subdomain"]
+        },
+        "dependencies": ["SSL certificate access", "DNS configuration"],
+        "estimated_minutes": 30,
+        "quality_gates": ["certificate valid", "all domains covered", "auto-renewal working"]
+      }
+    },
+    {
+      "id": 23,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "timezone_bug",
+        "error_message": "Date calculations incorrect for users in different timezones",
+        "affected_file": "src/utils/date.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix timezone handling in date calculations",
+        "specifications": {
+          "investigation_steps": [
+            "Review date library usage",
+            "Check UTC vs local time",
+            "Test with various timezones",
+            "Verify date parsing"
+          ],
+          "root_cause_hypothesis": "Mixing UTC and local time without proper conversion",
+          "fix_approach": "Consistently use UTC, convert to local only for display",
+          "test_scenarios": ["UTC timezone", "PST timezone", "JST timezone", "DST transitions"]
+        },
+        "dependencies": ["timezone test data"],
+        "estimated_minutes": 35,
+        "quality_gates": ["calculations correct in all zones", "DST handled", "consistent approach"]
+      }
+    },
+    {
+      "id": 24,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "file_upload",
+        "error_message": "Large file uploads fail with 413 Payload Too Large",
+        "affected_file": "src/middleware/upload.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix file upload size limit issue",
+        "specifications": {
+          "investigation_steps": [
+            "Check middleware size limits",
+            "Review proxy/server limits",
+            "Test with various file sizes",
+            "Monitor upload progress"
+          ],
+          "root_cause_hypothesis": "Nginx or Express body size limit too low",
+          "fix_approach": "Increase limits appropriately, add chunked upload support",
+          "test_scenarios": ["1MB file", "10MB file", "50MB file", "Concurrent uploads"]
+        },
+        "dependencies": ["Nginx configuration", "server access"],
+        "estimated_minutes": 30,
+        "quality_gates": ["uploads succeed", "limits documented", "progress tracking works"]
+      }
+    },
+    {
+      "id": 25,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "async_error",
+        "error_message": "UnhandledPromiseRejectionWarning in background task",
+        "affected_file": "src/tasks/email-sender.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix unhandled promise rejection in email sender",
+        "specifications": {
+          "investigation_steps": [
+            "Trace async call chain",
+            "Add error handlers",
+            "Review promise usage",
+            "Test error scenarios"
+          ],
+          "root_cause_hypothesis": "Missing .catch() or try/catch on async function",
+          "fix_approach": "Add proper error handling throughout async chain",
+          "test_scenarios": ["Email success", "Email service down", "Invalid recipient"]
+        },
+        "dependencies": ["error logs", "email service access"],
+        "estimated_minutes": 25,
+        "quality_gates": ["no unhandled rejections", "errors logged properly", "graceful degradation"]
+      }
+    },
+    {
+      "id": 26,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "docker_build",
+        "error_message": "Docker build fails at npm install step",
+        "affected_file": "Dockerfile"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix Docker build failure during npm install",
+        "specifications": {
+          "investigation_steps": [
+            "Check Dockerfile syntax",
+            "Review package.json dependencies",
+            "Test build locally",
+            "Check network access"
+          ],
+          "root_cause_hypothesis": "Network issue, missing build dependencies, or package lock mismatch",
+          "fix_approach": "Fix network config, add build dependencies, update lockfile",
+          "test_scenarios": ["Clean build", "Cached build", "Different platforms"]
+        },
+        "dependencies": ["Docker environment", "build logs"],
+        "estimated_minutes": 30,
+        "quality_gates": ["build succeeds", "reproducible", "documented"]
+      }
+    },
+    {
+      "id": 27,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "snapshot_mismatch",
+        "error_message": "Jest snapshot tests failing after component updates",
+        "affected_file": "tests/components/Button.test.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Review and update failing Jest snapshot tests",
+        "specifications": {
+          "investigation_steps": [
+            "Review snapshot diffs",
+            "Verify intentional changes",
+            "Check for unintended side effects",
+            "Update or revert changes"
+          ],
+          "root_cause_hypothesis": "Component changed, snapshot needs update",
+          "fix_approach": "Review changes, update snapshots if correct, revert if not",
+          "test_scenarios": ["Visual comparison", "Functionality testing", "All variants"]
+        },
+        "dependencies": ["snapshot diffs", "component specs"],
+        "estimated_minutes": 20,
+        "quality_gates": ["snapshots match", "changes intentional", "all tests pass"]
+      }
+    },
+    {
+      "id": 28,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "rate_limit",
+        "error_message": "API returns 429 Too Many Requests for legitimate users",
+        "affected_file": "src/middleware/rate-limiter.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix overly aggressive rate limiting",
+        "specifications": {
+          "investigation_steps": [
+            "Review rate limit configuration",
+            "Check key generation (IP vs user)",
+            "Monitor request patterns",
+            "Test with real traffic"
+          ],
+          "root_cause_hypothesis": "Rate limits too low or shared key across users",
+          "fix_approach": "Adjust limits, use user-specific keys, add whitelist",
+          "test_scenarios": ["Single user normal use", "Multiple users same IP", "API heavy usage"]
+        },
+        "dependencies": ["rate limit logs", "traffic analytics"],
+        "estimated_minutes": 35,
+        "quality_gates": ["legitimate users not blocked", "DDoS protection maintained", "UX improved"]
+      }
+    },
+    {
+      "id": 29,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "mobile_gestures",
+        "error_message": "Swipe gestures not working on mobile devices",
+        "affected_file": "src/components/ImageCarousel.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix swipe gesture handling on mobile",
+        "specifications": {
+          "investigation_steps": [
+            "Test on physical devices",
+            "Review touch event handlers",
+            "Check gesture library usage",
+            "Test edge cases (fast swipes, diagonal)"
+          ],
+          "root_cause_hypothesis": "Touch events not captured or conflicts with scrolling",
+          "fix_approach": "Implement proper touch handlers, prevent default appropriately",
+          "test_scenarios": ["iOS Safari", "Android Chrome", "Various swipe speeds"]
+        },
+        "dependencies": ["physical mobile devices", "remote debugging"],
+        "estimated_minutes": 40,
+        "quality_gates": ["swipes work on all devices", "no scroll conflicts", "UX smooth"]
+      }
+    },
+    {
+      "id": 30,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "asset_loading",
+        "error_message": "Static assets return 404 on production",
+        "affected_file": "webpack.config.js"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix 404 errors for static assets in production",
+        "specifications": {
+          "investigation_steps": [
+            "Check build output directory",
+            "Review publicPath configuration",
+            "Verify server static file serving",
+            "Test asset URLs"
+          ],
+          "root_cause_hypothesis": "Incorrect publicPath or server misconfiguration",
+          "fix_approach": "Fix webpack publicPath, configure server correctly",
+          "test_scenarios": ["JS bundles", "CSS files", "Images", "Fonts"]
+        },
+        "dependencies": ["build artifacts", "server configuration"],
+        "estimated_minutes": 25,
+        "quality_gates": ["all assets load", "paths correct", "caching works"]
+      }
+    },
+    {
+      "id": 31,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "test_timeout",
+        "error_message": "Integration test times out waiting for database",
+        "affected_file": "tests/integration/user-registration.test.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix integration test timeout issue",
+        "specifications": {
+          "investigation_steps": [
+            "Check database connection in tests",
+            "Review test setup/teardown",
+            "Monitor test database state",
+            "Increase timeout or optimize query"
+          ],
+          "root_cause_hypothesis": "Slow database query or connection not established",
+          "fix_approach": "Optimize query, ensure proper test database setup, adjust timeouts",
+          "test_scenarios": ["Fresh database", "With existing data", "Concurrent tests"]
+        },
+        "dependencies": ["test database", "test logs"],
+        "estimated_minutes": 30,
+        "quality_gates": ["tests complete quickly", "no timeouts", "database clean"]
+      }
+    },
+    {
+      "id": 32,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "logging_error",
+        "error_message": "Application logs not appearing in CloudWatch",
+        "affected_file": "src/config/logger.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Debug missing CloudWatch logs",
+        "specifications": {
+          "investigation_steps": [
+            "Check CloudWatch permissions",
+            "Review logger configuration",
+            "Test log output locally",
+            "Verify log group/stream"
+          ],
+          "root_cause_hypothesis": "Missing IAM permissions or incorrect log group configuration",
+          "fix_approach": "Fix IAM policy, configure logger with correct log group",
+          "test_scenarios": ["Different log levels", "Structured logs", "Error logs"]
+        },
+        "dependencies": ["AWS access", "IAM permissions"],
+        "estimated_minutes": 30,
+        "quality_gates": ["logs appear in CloudWatch", "all levels working", "structured correctly"]
+      }
+    },
+    {
+      "id": 33,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "accessibility",
+        "error_message": "Screen reader cannot navigate form properly",
+        "affected_file": "src/components/ContactForm.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix accessibility issues in contact form",
+        "specifications": {
+          "investigation_steps": [
+            "Test with screen reader",
+            "Review ARIA labels",
+            "Check focus management",
+            "Validate semantic HTML"
+          ],
+          "root_cause_hypothesis": "Missing ARIA labels or incorrect focus order",
+          "fix_approach": "Add proper ARIA attributes, fix focus order, use semantic HTML",
+          "test_scenarios": ["NVDA on Windows", "VoiceOver on Mac", "Keyboard navigation"]
+        },
+        "dependencies": ["screen reader software", "accessibility testing tools"],
+        "estimated_minutes": 35,
+        "quality_gates": ["screen reader works", "WCAG 2.1 AA compliant", "keyboard accessible"]
+      }
+    },
+    {
+      "id": 34,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "hot_reload",
+        "error_message": "Hot module replacement not working in development",
+        "affected_file": "webpack.config.dev.js"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix broken hot module replacement in dev server",
+        "specifications": {
+          "investigation_steps": [
+            "Review webpack HMR config",
+            "Check dev server settings",
+            "Test with simple change",
+            "Review module acceptance"
+          ],
+          "root_cause_hypothesis": "HMR not enabled or modules not accepting updates",
+          "fix_approach": "Enable HMR properly, add module.hot.accept calls",
+          "test_scenarios": ["Component change", "CSS change", "State preservation"]
+        },
+        "dependencies": ["webpack dev server", "development environment"],
+        "estimated_minutes": 25,
+        "quality_gates": ["HMR works", "state preserved", "fast updates"]
+      }
+    },
+    {
+      "id": 35,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "mock_data",
+        "error_message": "Mock data doesn't match production data structure",
+        "affected_file": "tests/fixtures/users.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Update mock data to match current production schema",
+        "specifications": {
+          "investigation_steps": [
+            "Compare mock and production schemas",
+            "Review recent schema changes",
+            "Update type definitions",
+            "Regenerate fixtures"
+          ],
+          "root_cause_hypothesis": "Schema changed but fixtures not updated",
+          "fix_approach": "Update fixtures to match current schema, add validation",
+          "test_scenarios": ["All fixture types", "Schema validation", "Test usage"]
+        },
+        "dependencies": ["production schema", "type definitions"],
+        "estimated_minutes": 30,
+        "quality_gates": ["fixtures match schema", "types correct", "tests pass"]
+      }
+    },
+    {
+      "id": 36,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "redirect_loop",
+        "error_message": "Users stuck in infinite redirect after login",
+        "affected_file": "src/middleware/auth-redirect.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix redirect loop in authentication flow",
+        "specifications": {
+          "investigation_steps": [
+            "Trace redirect chain",
+            "Review auth state checks",
+            "Check for circular redirects",
+            "Test edge cases"
+          ],
+          "root_cause_hypothesis": "Condition always triggers redirect",
+          "fix_approach": "Fix redirect logic, add loop detection",
+          "test_scenarios": ["Login from protected page", "Direct login", "Already authenticated"]
+        },
+        "dependencies": ["browser DevTools", "network trace"],
+        "estimated_minutes": 30,
+        "quality_gates": ["no redirect loops", "correct flow", "UX smooth"]
+      }
+    },
+    {
+      "id": 37,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "bundle_size",
+        "error_message": "Production bundle size increased by 500KB unexpectedly",
+        "affected_file": "webpack.config.prod.js"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Investigate and reduce unexpected bundle size increase",
+        "specifications": {
+          "investigation_steps": [
+            "Analyze bundle with webpack-bundle-analyzer",
+            "Check for duplicate dependencies",
+            "Review recent imports",
+            "Identify large dependencies"
+          ],
+          "root_cause_hypothesis": "New dependency or improper tree shaking",
+          "fix_approach": "Remove/replace large dependency, fix imports for tree shaking",
+          "test_scenarios": ["Bundle analysis", "Gzip size", "Load time impact"]
+        },
+        "dependencies": ["webpack-bundle-analyzer", "build statistics"],
+        "estimated_minutes": 40,
+        "quality_gates": ["bundle size reduced", "target <500KB total", "tree shaking verified"]
+      }
+    },
+    {
+      "id": 38,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "health_check",
+        "error_message": "Health check endpoint returns 503 intermittently",
+        "affected_file": "src/routes/health.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix intermittent health check failures",
+        "specifications": {
+          "investigation_steps": [
+            "Review health check logic",
+            "Check dependency availability",
+            "Monitor timing",
+            "Test under load"
+          ],
+          "root_cause_hypothesis": "Dependency check timing out or failing intermittently",
+          "fix_approach": "Add timeouts to checks, make checks resilient, add retries",
+          "test_scenarios": ["All dependencies healthy", "Database slow", "Redis down"]
+        },
+        "dependencies": ["monitoring data", "load balancer logs"],
+        "estimated_minutes": 35,
+        "quality_gates": ["health check reliable", "timeouts appropriate", "informative status"]
+      }
+    },
+    {
+      "id": 39,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "coverage_gap",
+        "error_message": "Code coverage dropped below 80% threshold",
+        "affected_file": "src/services/payment-processor.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Add tests to restore code coverage above threshold",
+        "specifications": {
+          "investigation_steps": [
+            "Review coverage report",
+            "Identify uncovered lines",
+            "Analyze edge cases",
+            "Write missing tests"
+          ],
+          "root_cause_hypothesis": "New code added without corresponding tests",
+          "fix_approach": "Write tests for uncovered code paths, focus on edge cases",
+          "test_scenarios": ["Happy path", "Error cases", "Edge cases"]
+        },
+        "dependencies": ["coverage report", "test framework"],
+        "estimated_minutes": 45,
+        "quality_gates": ["coverage >=80%", "edge cases tested", "quality maintained"]
+      }
+    },
+    {
+      "id": 40,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "notification_spam",
+        "error_message": "Users receiving duplicate email notifications",
+        "affected_file": "src/services/notification-service.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix duplicate email notification issue",
+        "specifications": {
+          "investigation_steps": [
+            "Review notification trigger logic",
+            "Check for race conditions",
+            "Monitor notification queue",
+            "Implement deduplication"
+          ],
+          "root_cause_hypothesis": "Event triggers multiple notifications or no deduplication",
+          "fix_approach": "Add idempotency keys, implement deduplication window",
+          "test_scenarios": ["Single event", "Rapid events", "Distributed workers"]
+        },
+        "dependencies": ["email logs", "event logs"],
+        "estimated_minutes": 40,
+        "quality_gates": ["no duplicates", "idempotency enforced", "UX improved"]
+      }
+    },
+    {
+      "id": 41,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "focus_trap",
+        "error_message": "Keyboard users cannot exit modal dialog",
+        "affected_file": "src/components/Modal.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix focus trap issue in modal component",
+        "specifications": {
+          "investigation_steps": [
+            "Test keyboard navigation",
+            "Review focus trap implementation",
+            "Check ESC key handler",
+            "Test with screen reader"
+          ],
+          "root_cause_hypothesis": "Focus trap not releasing or ESC key not handled",
+          "fix_approach": "Implement proper focus trap with release mechanism",
+          "test_scenarios": ["Keyboard only", "Screen reader", "ESC key", "Click outside"]
+        },
+        "dependencies": ["accessibility testing tools"],
+        "estimated_minutes": 30,
+        "quality_gates": ["focus trap works", "can exit modal", "WCAG compliant"]
+      }
+    },
+    {
+      "id": 42,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "cdn_caching",
+        "error_message": "Updated assets not loading due to CDN cache",
+        "affected_file": "webpack.config.prod.js"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix stale asset caching issue with CDN",
+        "specifications": {
+          "investigation_steps": [
+            "Review asset naming strategy",
+            "Check cache headers",
+            "Test cache invalidation",
+            "Implement content hashing"
+          ],
+          "root_cause_hypothesis": "Assets not content-hashed or cache headers incorrect",
+          "fix_approach": "Enable content hashing in webpack, set proper cache headers",
+          "test_scenarios": ["New deployment", "Asset updates", "Cache hit/miss"]
+        },
+        "dependencies": ["webpack configuration", "CDN settings"],
+        "estimated_minutes": 30,
+        "quality_gates": ["content hashing enabled", "cache headers correct", "updates deploy reliably"]
+      }
+    },
+    {
+      "id": 43,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "test_isolation",
+        "error_message": "Tests pass individually but fail when run together",
+        "affected_file": "tests/services/user-service.test.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix test isolation issue in user service tests",
+        "specifications": {
+          "investigation_steps": [
+            "Review test setup/teardown",
+            "Check for shared state",
+            "Identify test order dependency",
+            "Review mock cleanup"
+          ],
+          "root_cause_hypothesis": "Shared state or mocks not cleaned up between tests",
+          "fix_approach": "Improve test isolation, clean up properly, use beforeEach/afterEach",
+          "test_scenarios": ["Tests in order", "Tests shuffled", "Parallel execution"]
+        },
+        "dependencies": ["test runner", "test logs"],
+        "estimated_minutes": 35,
+        "quality_gates": ["tests isolated", "pass in any order", "no shared state"]
+      }
+    },
+    {
+      "id": 44,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "cookie_issue",
+        "error_message": "Authentication cookie not being set on subdomain",
+        "affected_file": "src/middleware/session.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix cookie domain configuration for subdomains",
+        "specifications": {
+          "investigation_steps": [
+            "Review cookie settings",
+            "Check domain and path attributes",
+            "Test with various subdomains",
+            "Verify SameSite and Secure flags"
+          ],
+          "root_cause_hypothesis": "Cookie domain not set to parent domain",
+          "fix_approach": "Set cookie domain to .example.com for subdomain sharing",
+          "test_scenarios": ["Main domain", "API subdomain", "App subdomain", "Cross-subdomain"]
+        },
+        "dependencies": ["browser DevTools", "subdomain access"],
+        "estimated_minutes": 25,
+        "quality_gates": ["cookies work on all subdomains", "secure flags correct", "SameSite configured"]
+      }
+    },
+    {
+      "id": 45,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "state_mutation",
+        "error_message": "Redux state mutation detected in reducer",
+        "affected_file": "src/store/cart/reducer.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix state mutation in Redux cart reducer",
+        "specifications": {
+          "investigation_steps": [
+            "Review reducer code",
+            "Identify mutation points",
+            "Use Immer or spread operators",
+            "Enable Redux DevTools checks"
+          ],
+          "root_cause_hypothesis": "Directly modifying state object instead of returning new state",
+          "fix_approach": "Use immutable update patterns or Immer",
+          "test_scenarios": ["Add item", "Remove item", "Update quantity", "Clear cart"]
+        },
+        "dependencies": ["Redux DevTools", "test suite"],
+        "estimated_minutes": 25,
+        "quality_gates": ["no mutations detected", "immutability enforced", "tests pass"]
+      }
+    },
+    {
+      "id": 46,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "migration_failure",
+        "error_message": "Database migration fails on production",
+        "affected_file": "migrations/003_add_user_roles.sql"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Debug and fix failing database migration",
+        "specifications": {
+          "investigation_steps": [
+            "Review migration SQL",
+            "Check for syntax errors",
+            "Test on staging database",
+            "Verify dependencies"
+          ],
+          "root_cause_hypothesis": "SQL syntax error or missing prerequisite",
+          "fix_approach": "Fix SQL syntax, ensure proper ordering, test thoroughly",
+          "test_scenarios": ["Fresh database", "Production snapshot", "Rollback"]
+        },
+        "dependencies": ["database access", "migration logs"],
+        "estimated_minutes": 40,
+        "quality_gates": ["migration succeeds", "reversible", "data integrity maintained"]
+      }
+    },
+    {
+      "id": 47,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "testing",
+        "issue_type": "memory_snapshot",
+        "error_message": "Jest memory usage grows with each test file",
+        "affected_file": "jest.config.js"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix Jest memory accumulation across test files",
+        "specifications": {
+          "investigation_steps": [
+            "Review Jest configuration",
+            "Check for global leaks",
+            "Monitor memory per test file",
+            "Clear caches between files"
+          ],
+          "root_cause_hypothesis": "Module caching or global state not cleaned",
+          "fix_approach": "Configure Jest to clear mocks/modules, fix global state",
+          "test_scenarios": ["Full test suite", "Individual files", "Memory profiling"]
+        },
+        "dependencies": ["Jest", "memory profiler"],
+        "estimated_minutes": 35,
+        "quality_gates": ["memory stable", "tests complete", "no leaks"]
+      }
+    },
+    {
+      "id": 48,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "production",
+        "issue_type": "seo_metadata",
+        "error_message": "Social media preview not showing correct image",
+        "affected_file": "src/pages/_document.tsx"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix Open Graph image metadata for social sharing",
+        "specifications": {
+          "investigation_steps": [
+            "Review meta tags",
+            "Test with Facebook debugger",
+            "Check image URL accessibility",
+            "Verify image dimensions"
+          ],
+          "root_cause_hypothesis": "Incorrect og:image URL or image not accessible",
+          "fix_approach": "Fix og:image URL, ensure absolute URLs, verify image accessible",
+          "test_scenarios": ["Facebook sharing", "Twitter cards", "LinkedIn preview"]
+        },
+        "dependencies": ["social media debuggers", "meta tag inspector"],
+        "estimated_minutes": 25,
+        "quality_gates": ["preview image shows", "all platforms work", "metadata complete"]
+      }
+    },
+    {
+      "id": 49,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "code",
+        "issue_type": "event_listener",
+        "error_message": "Multiple event listeners attached on component re-render",
+        "affected_file": "src/hooks/useWindowResize.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Fix event listener memory leak in resize hook",
+        "specifications": {
+          "investigation_steps": [
+            "Review useEffect cleanup",
+            "Check listener attachment",
+            "Monitor listener count",
+            "Test component remounts"
+          ],
+          "root_cause_hypothesis": "Missing cleanup function in useEffect",
+          "fix_approach": "Return cleanup function from useEffect to remove listener",
+          "test_scenarios": ["Component mount/unmount", "Multiple re-renders", "Memory profiling"]
+        },
+        "dependencies": ["React DevTools", "browser DevTools"],
+        "estimated_minutes": 20,
+        "quality_gates": ["single listener attached", "cleanup working", "no memory leak"]
+      }
+    },
+    {
+      "id": 50,
+      "phase": "debug",
+      "context": {
+        "previous_phase": "deployment",
+        "issue_type": "graceful_shutdown",
+        "error_message": "Server doesn't complete in-flight requests on shutdown",
+        "affected_file": "src/server.ts"
+      },
+      "expected_drone_task": {
+        "drone_id": "debugger",
+        "task_type": "debug",
+        "description": "Implement graceful shutdown for server",
+        "specifications": {
+          "investigation_steps": [
+            "Review shutdown signal handling",
+            "Check connection draining",
+            "Monitor in-flight requests",
+            "Test deployment rollouts"
+          ],
+          "root_cause_hypothesis": "Server exits immediately without waiting for requests",
+          "fix_approach": "Implement graceful shutdown with connection draining",
+          "test_scenarios": ["SIGTERM signal", "During active requests", "Zero-downtime deploy"]
+        },
+        "dependencies": ["deployment platform", "load testing"],
+        "estimated_minutes": 40,
+        "quality_gates": ["requests complete", "no dropped connections", "zero downtime"]
+      }
+    }
+  ]
+}

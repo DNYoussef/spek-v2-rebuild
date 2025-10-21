@@ -1,0 +1,101 @@
+digraph WHEN_STUCK {
+    // TRIGGER: I'm stuck, confused, or hitting the same error repeatedly
+    // USE WHEN:
+    //   - Third attempt at same approach failed
+    //   - Don't understand error message
+    //   - Tried multiple solutions without progress
+    //   - Same issue for >30 minutes
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_stuck {
+        label="TRIGGER: Stuck or Confused";
+        style="rounded,bold";
+        bgcolor="#fff3e0";
+
+        // Entry
+        "I'm stuck" [shape=ellipse];
+
+        // Document the problem
+        "Write down:\n- What I'm trying to do\n- What's not working\n- What I've tried (list all attempts)" [shape=box];
+
+        // Decision point
+        "Third attempt failed?" [shape=diamond];
+
+        // Escalation path (after 3 attempts)
+        "Tell user explicitly:\n'I don't understand [specific thing]'\n'I tried [A, B, C]'\n'Expected X but got Y'" [shape=box];
+
+        // Simplification path (before 3 attempts)
+        "Try simplification:\n1. Comment out half the code\n2. Add debug output\n3. Hardcode values\n4. Copy working example" [shape=box];
+
+        // Debug techniques
+        "Add debug logging" [shape=box];
+        "console.log('Variable:', variable)" [shape=plaintext];
+        "console.log('State:', JSON.stringify(state, null, 2))" [shape=plaintext];
+
+        // Search for similar solutions
+        "Search codebase for similar patterns" [shape=box];
+        "grep -r 'similar_function' ." [shape=plaintext];
+        "Read 2-3 similar files" [shape=box];
+
+        // Try minimal reproduction
+        "Create minimal test case" [shape=box];
+        "Remove all non-essential code" [shape=box];
+        "Does minimal version work?" [shape=diamond];
+
+        "Problem solved" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "ASK FOR HELP" [shape=octagon, style=filled, fillcolor=orange];
+
+        // Flow
+        "I'm stuck" -> "Write down:\n- What I'm trying to do\n- What's not working\n- What I've tried (list all attempts)";
+
+        "Write down:\n- What I'm trying to do\n- What's not working\n- What I've tried (list all attempts)" -> "Third attempt failed?";
+
+        // Escalation path
+        "Third attempt failed?" -> "Tell user explicitly:\n'I don't understand [specific thing]'\n'I tried [A, B, C]'\n'Expected X but got Y'" [label="yes"];
+        "Tell user explicitly:\n'I don't understand [specific thing]'\n'I tried [A, B, C]'\n'Expected X but got Y'" -> "ASK FOR HELP";
+
+        // Simplification path
+        "Third attempt failed?" -> "Try simplification:\n1. Comment out half the code\n2. Add debug output\n3. Hardcode values\n4. Copy working example" [label="no"];
+
+        "Try simplification:\n1. Comment out half the code\n2. Add debug output\n3. Hardcode values\n4. Copy working example" -> "Add debug logging";
+        "Add debug logging" -> "console.log('Variable:', variable)";
+        "console.log('Variable:', variable)" -> "console.log('State:', JSON.stringify(state, null, 2))";
+
+        "console.log('State:', JSON.stringify(state, null, 2))" -> "Search codebase for similar patterns";
+        "Search codebase for similar patterns" -> "grep -r 'similar_function' .";
+        "grep -r 'similar_function' ." -> "Read 2-3 similar files";
+
+        "Read 2-3 similar files" -> "Create minimal test case";
+        "Create minimal test case" -> "Remove all non-essential code";
+        "Remove all non-essential code" -> "Does minimal version work?";
+
+        "Does minimal version work?" -> "Problem solved" [label="yes"];
+        "Does minimal version work?" -> "I'm stuck" [label="no - still stuck, loop back"];
+    }
+
+    // Communication templates
+    subgraph cluster_communication {
+        label="How to Ask for Help";
+        bgcolor="#e3f2fd";
+
+        "Good: 'I'm trying to X but getting error Y.\nI tried A (result), B (result), C (result).\nExpected Z but got W.'" [shape=box, style=filled, fillcolor=lightgreen];
+
+        "Bad: 'It doesn't work'\n'I'm confused'\n'Can you help?'" [shape=box, style=filled, fillcolor=lightcoral];
+    }
+
+    // Debugging techniques
+    subgraph cluster_debugging {
+        label="Debugging Techniques";
+        bgcolor="#fff3e0";
+
+        "1. Binary search:\nComment out half, test, repeat" [shape=box];
+        "2. Rubber duck:\nExplain problem out loud" [shape=box];
+        "3. Fresh start:\nRewrite from scratch" [shape=box];
+        "4. Time box:\n30 min max before asking" [shape=box];
+    }
+
+    // External connections
+    "Problem solved" -> continue_implementation [label="resume work", style=dotted];
+}

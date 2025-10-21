@@ -1,0 +1,117 @@
+digraph DSPY_TRAINING_WORKFLOW {
+    // TRIGGER: Starting DSPy agent optimization
+    // USE WHEN:
+    //   - New agent needs optimization
+    //   - Agent quality below 80%
+    //   - Have 5-10+ training examples ready
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_dspy_training {
+        label="TRIGGER: DSPy Training Workflow";
+        style="rounded,bold";
+        bgcolor="#e8f5e9";
+
+        // Entry
+        "Agent needs optimization" [shape=ellipse];
+
+        // Phase 0: Planning (CRITICAL - BEFORE CODE)
+        "PHASE 0: PLANNING" [shape=box, style=filled, fillcolor=orange];
+        "Define task clearly:\n- Problem to solve\n- Success criteria\n- Inputs/outputs" [shape=box];
+        "Have 5-10+ examples?" [shape=diamond];
+        "Gather input-output examples:\n- Minimum 5-10 pairs\n- All same structure\n- 95%+ quality" [shape=box];
+        "Define 3-7 success metrics" [shape=box];
+        "Choose optimizer proactively:\n- BootstrapFewShot (5-20 examples)\n- MIPROv2 (50+ examples)" [shape=box];
+
+        // Phase 1: Setup
+        "PHASE 1: SETUP" [shape=box, style=filled, fillcolor=lightblue];
+        "pip install -U dspy" [shape=plaintext];
+        "export GOOGLE_API_KEY=\"your-key\"" [shape=plaintext];
+        "python -c \"import dspy; print(dspy.__version__)\"" [shape=plaintext];
+        "DSPy installed?" [shape=diamond];
+
+        // Phase 2: Implementation
+        "PHASE 2: IMPLEMENTATION" [shape=box, style=filled, fillcolor=lightgreen];
+        "Create signature:\nclass TaskDecomposition(dspy.Signature)" [shape=box];
+        "Create module:\nclass QueenModule(dspy.Module)" [shape=box];
+        "Create data loader:\ndef load_training_data()" [shape=box];
+        "Create metric function:\ndef queen_metric(example, prediction)" [shape=box];
+
+        // Phase 3: Training
+        "PHASE 3: TRAINING" [shape=box, style=filled, fillcolor=lightyellow];
+        "Load training data:\ntrainset, valset = split_train_val(examples, 0.2)" [shape=plaintext];
+        "Create optimizer:\noptimizer = dspy.BootstrapFewShot(metric=queen_metric)" [shape=plaintext];
+        "Train module:\ncompiled = optimizer.compile(module, trainset)" [shape=plaintext];
+        "Training successful?" [shape=diamond];
+
+        // Phase 4: Validation
+        "PHASE 4: VALIDATION" [shape=box, style=filled, fillcolor=lightcoral];
+        "Evaluate on validation set:\nevaluator = Evaluate(devset=valset, metric=queen_metric)" [shape=plaintext];
+        "score = evaluator(compiled)" [shape=plaintext];
+        "Improvement ≥10%?" [shape=diamond];
+        "Save model:\ncompiled.save(\"models/dspy/queen_optimized.json\")" [shape=plaintext];
+
+        "Training complete" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "TRAINING FAILED" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+
+        // Flow
+        "Agent needs optimization" -> "PHASE 0: PLANNING";
+        "PHASE 0: PLANNING" -> "Define task clearly:\n- Problem to solve\n- Success criteria\n- Inputs/outputs";
+        "Define task clearly:\n- Problem to solve\n- Success criteria\n- Inputs/outputs" -> "Have 5-10+ examples?";
+
+        "Have 5-10+ examples?" -> "Define 3-7 success metrics" [label="yes"];
+        "Have 5-10+ examples?" -> "Gather input-output examples:\n- Minimum 5-10 pairs\n- All same structure\n- 95%+ quality" [label="no"];
+        "Gather input-output examples:\n- Minimum 5-10 pairs\n- All same structure\n- 95%+ quality" -> "Have 5-10+ examples?";
+
+        "Define 3-7 success metrics" -> "Choose optimizer proactively:\n- BootstrapFewShot (5-20 examples)\n- MIPROv2 (50+ examples)";
+        "Choose optimizer proactively:\n- BootstrapFewShot (5-20 examples)\n- MIPROv2 (50+ examples)" -> "PHASE 1: SETUP";
+
+        // Setup
+        "PHASE 1: SETUP" -> "pip install -U dspy";
+        "pip install -U dspy" -> "export GOOGLE_API_KEY=\"your-key\"";
+        "export GOOGLE_API_KEY=\"your-key\"" -> "python -c \"import dspy; print(dspy.__version__)\"";
+        "python -c \"import dspy; print(dspy.__version__)\"" -> "DSPy installed?";
+        "DSPy installed?" -> "PHASE 2: IMPLEMENTATION" [label="yes"];
+        "DSPy installed?" -> "TRAINING FAILED" [label="no"];
+
+        // Implementation
+        "PHASE 2: IMPLEMENTATION" -> "Create signature:\nclass TaskDecomposition(dspy.Signature)";
+        "Create signature:\nclass TaskDecomposition(dspy.Signature)" -> "Create module:\nclass QueenModule(dspy.Module)";
+        "Create module:\nclass QueenModule(dspy.Module)" -> "Create data loader:\ndef load_training_data()";
+        "Create data loader:\ndef load_training_data()" -> "Create metric function:\ndef queen_metric(example, prediction)";
+        "Create metric function:\ndef queen_metric(example, prediction)" -> "PHASE 3: TRAINING";
+
+        // Training
+        "PHASE 3: TRAINING" -> "Load training data:\ntrainset, valset = split_train_val(examples, 0.2)";
+        "Load training data:\ntrainset, valset = split_train_val(examples, 0.2)" -> "Create optimizer:\noptimizer = dspy.BootstrapFewShot(metric=queen_metric)";
+        "Create optimizer:\noptimizer = dspy.BootstrapFewShot(metric=queen_metric)" -> "Train module:\ncompiled = optimizer.compile(module, trainset)";
+        "Train module:\ncompiled = optimizer.compile(module, trainset)" -> "Training successful?";
+        "Training successful?" -> "PHASE 4: VALIDATION" [label="yes"];
+        "Training successful?" -> "TRAINING FAILED" [label="no"];
+
+        // Validation
+        "PHASE 4: VALIDATION" -> "Evaluate on validation set:\nevaluator = Evaluate(devset=valset, metric=queen_metric)";
+        "Evaluate on validation set:\nevaluator = Evaluate(devset=valset, metric=queen_metric)" -> "score = evaluator(compiled)";
+        "score = evaluator(compiled)" -> "Improvement ≥10%?";
+        "Improvement ≥10%?" -> "Save model:\ncompiled.save(\"models/dspy/queen_optimized.json\")" [label="yes"];
+        "Improvement ≥10%?" -> "TRAINING FAILED" [label="no"];
+        "Save model:\ncompiled.save(\"models/dspy/queen_optimized.json\")" -> "Training complete";
+    }
+
+    // Critical warnings
+    subgraph cluster_warnings {
+        label="CRITICAL: DON'T SKIP PHASE 0";
+        bgcolor="#ffcdd2";
+
+        "NEVER skip planning phase" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Input structure MUST be consistent" [shape=octagon, style=filled, fillcolor=red, fontcolor=white];
+        "Need 5-10+ examples minimum" [shape=octagon, style=filled, fillcolor=orange];
+        "Output quality MUST be 95%+" [shape=octagon, style=filled, fillcolor=orange];
+        "Use 3-7 metrics (not >10)" [shape=octagon, style=filled, fillcolor=yellow];
+    }
+
+    // External connections
+    "TRAINING FAILED" -> dspy_troubleshooting [label="debug", style=dotted];
+    "Training complete" -> dspy_ab_testing [label="validate", style=dotted];
+}

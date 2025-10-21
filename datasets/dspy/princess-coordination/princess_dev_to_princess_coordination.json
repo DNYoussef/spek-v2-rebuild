@@ -1,0 +1,1190 @@
+{
+  "communication_path": "princess-dev→princess-coordination",
+  "description": "Princess-Dev requests planning/cost estimation from Princess-Coordination before starting development",
+  "metadata": {
+    "total_examples": 30,
+    "scenario_types": ["cost_estimate_request", "planning_request", "resource_allocation", "deployment_request", "documentation_request"],
+    "version": "8.0.0",
+    "created_for": "DSPy optimization Week 6+"
+  },
+  "examples": [
+    {
+      "id": "dev-coord-001",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_estimate_request",
+      "context": {
+        "feature_proposed": "Add GraphQL subscriptions for real-time updates",
+        "estimated_complexity": "HIGH",
+        "estimated_loc": 500,
+        "new_dependencies": ["graphql-ws", "subscriptions-transport-ws"],
+        "infrastructure_changes": ["WebSocket server", "Redis pub/sub"]
+      },
+      "expected_coordination_message": {
+        "request_type": "cost-estimate",
+        "description": "Request cost estimate for GraphQL subscriptions feature",
+        "scope": {
+          "development_hours": "unknown",
+          "testing_hours": "unknown",
+          "infrastructure_cost": "unknown",
+          "maintenance_cost": "unknown"
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "budget_limit": 1000,
+          "timeline_limit_days": 14
+        },
+        "success_criteria": [
+          "Total cost estimate provided",
+          "Cost breakdown by category",
+          "Risk factors identified",
+          "Timeline estimate provided"
+        ],
+        "drone_assignments": [
+          {"drone": "cost-tracker", "task": "Estimate development and infrastructure costs", "estimated_min": 45},
+          {"drone": "planner", "task": "Create implementation timeline", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-002",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "planning_request",
+      "context": {
+        "feature_proposed": "Migrate from monolith to microservices architecture",
+        "estimated_complexity": "CRITICAL",
+        "estimated_loc": 5000,
+        "affected_systems": ["auth", "users", "notifications", "payments"],
+        "risk_level": "HIGH"
+      },
+      "expected_coordination_message": {
+        "request_type": "strategic-plan",
+        "description": "Request comprehensive plan for microservices migration",
+        "scope": {
+          "planning_phases": ["discovery", "design", "implementation", "testing", "deployment"],
+          "dependencies": ["service boundaries", "data migration", "API contracts"],
+          "risks": ["downtime", "data loss", "compatibility"]
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "zero_downtime_required": true,
+          "rollback_plan_required": true,
+          "budget_limit": 5000
+        },
+        "success_criteria": [
+          "Detailed migration plan created",
+          "All dependencies mapped",
+          "Risk mitigation strategies defined",
+          "Rollback plan documented",
+          "Timeline with milestones"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create microservices migration plan", "estimated_min": 180},
+          {"drone": "cost-tracker", "task": "Estimate full migration cost", "estimated_min": 60},
+          {"drone": "orchestrator", "task": "Define migration workflow", "estimated_min": 90}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-003",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "resource_allocation",
+      "context": {
+        "features_in_flight": [
+          {"name": "OAuth2 authentication", "progress": 75, "blocked": false},
+          {"name": "Payment processing", "progress": 30, "blocked": true, "blocker": "Stripe API access"},
+          {"name": "Email notifications", "progress": 0, "blocked": false}
+        ],
+        "available_drones": ["coder", "debugger", "integration-engineer"],
+        "timeline_pressure": "HIGH"
+      },
+      "expected_coordination_message": {
+        "request_type": "resource-allocation",
+        "description": "Request resource allocation across 3 concurrent features",
+        "scope": {
+          "optimization_goal": "maximize_throughput",
+          "constraints": ["3 available drones", "1 blocked feature"],
+          "timeline": "7 days"
+        },
+        "priority": 8,
+        "urgency": "high",
+        "success_criteria": [
+          "Optimal drone assignment provided",
+          "Blocked feature addressed",
+          "Timeline feasibility validated",
+          "Risk of delays minimized"
+        ],
+        "drone_assignments": [
+          {"drone": "orchestrator", "task": "Optimize drone allocation across features", "estimated_min": 45},
+          {"drone": "planner", "task": "Assess timeline feasibility", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-004",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "deployment_request",
+      "context": {
+        "feature": "OAuth2 authentication",
+        "deployment_environment": "production",
+        "artifacts": ["src/auth/oauth.py", "src/auth/jwt.py", "migrations/001_oauth_tables.sql"],
+        "dependencies": ["database migration", "environment variables"],
+        "rollback_required": true
+      },
+      "expected_coordination_message": {
+        "request_type": "deployment-plan",
+        "description": "Request deployment plan for OAuth2 authentication to production",
+        "scope": {
+          "deployment_strategy": "blue-green OR canary OR rolling",
+          "pre_deployment_checks": ["backup", "migration dry-run", "smoke tests"],
+          "post_deployment_validation": ["health checks", "integration tests"],
+          "rollback_plan": "required"
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "downtime_tolerance": "0 minutes",
+          "rollback_time_limit": "5 minutes"
+        },
+        "success_criteria": [
+          "Deployment strategy selected",
+          "Pre/post deployment checklists created",
+          "Rollback plan documented",
+          "Monitoring alerts configured"
+        ],
+        "drone_assignments": [
+          {"drone": "devops", "task": "Create deployment automation script", "estimated_min": 90},
+          {"drone": "orchestrator", "task": "Define deployment workflow", "estimated_min": 60},
+          {"drone": "planner", "task": "Create rollback plan", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-005",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "documentation_request",
+      "context": {
+        "feature": "GraphQL API with 45 queries and mutations",
+        "documentation_missing": ["API reference", "authentication guide", "examples", "changelog"],
+        "target_audience": ["external developers", "internal team"],
+        "deadline": "5 days"
+      },
+      "expected_coordination_message": {
+        "request_type": "documentation-plan",
+        "description": "Request comprehensive documentation plan for GraphQL API",
+        "scope": {
+          "documentation_types": ["API reference", "getting started", "tutorials", "changelog"],
+          "formats": ["markdown", "OpenAPI spec", "code examples"],
+          "hosting": "docs website"
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "deadline": "5 days",
+          "audience": ["developers", "non-technical stakeholders"]
+        },
+        "success_criteria": [
+          "Documentation plan created",
+          "Content outline provided",
+          "Timeline feasibility validated",
+          "Resource allocation planned"
+        ],
+        "drone_assignments": [
+          {"drone": "docs-writer", "task": "Create documentation outline and plan", "estimated_min": 60},
+          {"drone": "planner", "task": "Validate timeline feasibility", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-006",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_estimate_request",
+      "context": {
+        "feature_proposed": "Add machine learning recommendation engine",
+        "estimated_complexity": "CRITICAL",
+        "estimated_loc": 2000,
+        "new_dependencies": ["tensorflow", "pandas", "scikit-learn"],
+        "infrastructure_changes": ["GPU instances", "ML training pipeline", "model serving"]
+      },
+      "expected_coordination_message": {
+        "request_type": "cost-estimate",
+        "description": "Request cost estimate for ML recommendation engine",
+        "scope": {
+          "development_hours": "unknown",
+          "ml_training_cost": "unknown",
+          "infrastructure_cost_monthly": "unknown",
+          "data_science_expertise_required": true
+        },
+        "priority": 8,
+        "urgency": "medium",
+        "constraints": {
+          "budget_limit": 10000,
+          "timeline_limit_days": 30,
+          "expertise_available": false
+        },
+        "success_criteria": [
+          "Total cost estimate (one-time + recurring)",
+          "Infrastructure cost breakdown",
+          "Expertise gap identified",
+          "Alternative solutions proposed if over budget"
+        ],
+        "drone_assignments": [
+          {"drone": "cost-tracker", "task": "Estimate ML infrastructure and training costs", "estimated_min": 75},
+          {"drone": "planner", "task": "Assess expertise requirements and timeline", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-007",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "planning_request",
+      "context": {
+        "feature_proposed": "Implement comprehensive logging and monitoring",
+        "estimated_complexity": "MEDIUM",
+        "estimated_loc": 800,
+        "affected_systems": ["all microservices", "infrastructure"],
+        "new_dependencies": ["ELK stack", "Prometheus", "Grafana"]
+      },
+      "expected_coordination_message": {
+        "request_type": "implementation-plan",
+        "description": "Request implementation plan for logging and monitoring system",
+        "scope": {
+          "phases": ["infrastructure setup", "instrumentation", "dashboard creation", "alerting"],
+          "services_to_instrument": 12,
+          "metrics_to_track": ["latency", "error rate", "throughput", "saturation"]
+        },
+        "priority": 8,
+        "urgency": "high",
+        "constraints": {
+          "production_ready": true,
+          "timeline_limit_days": 10
+        },
+        "success_criteria": [
+          "Detailed implementation plan",
+          "Service instrumentation strategy",
+          "Dashboard and alert specifications",
+          "Timeline with dependencies"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create observability implementation plan", "estimated_min": 90},
+          {"drone": "devops", "task": "Plan infrastructure setup", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-008",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "resource_allocation",
+      "context": {
+        "urgent_bug": {
+          "severity": "CRITICAL",
+          "description": "Payment processing failing for 10% of transactions",
+          "impact": "Revenue loss",
+          "estimated_fix_time": "4 hours"
+        },
+        "scheduled_features": [
+          {"name": "Search optimization", "progress": 60, "due": "3 days"},
+          {"name": "Email templates", "progress": 40, "due": "5 days"}
+        ],
+        "available_drones": ["coder", "debugger"]
+      },
+      "expected_coordination_message": {
+        "request_type": "crisis-resource-allocation",
+        "description": "Request immediate resource reallocation for critical payment bug",
+        "scope": {
+          "crisis_response": "immediate",
+          "feature_impact_assessment": "required",
+          "timeline_adjustments": "required"
+        },
+        "priority": 10,
+        "urgency": "critical",
+        "constraints": {
+          "fix_deadline": "4 hours",
+          "revenue_impact": "high"
+        },
+        "success_criteria": [
+          "Critical bug assigned to debugger immediately",
+          "Feature timelines adjusted",
+          "Stakeholder communication plan",
+          "Postmortem scheduled"
+        ],
+        "drone_assignments": [
+          {"drone": "orchestrator", "task": "Immediate resource reallocation", "estimated_min": 15},
+          {"drone": "planner", "task": "Adjust feature timelines", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-009",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "deployment_request",
+      "context": {
+        "feature": "Database schema migration (100+ tables)",
+        "deployment_environment": "production",
+        "migration_type": "breaking_change",
+        "affected_users": "all",
+        "estimated_downtime": "2 hours"
+      },
+      "expected_coordination_message": {
+        "request_type": "migration-deployment-plan",
+        "description": "Request complex database migration deployment plan",
+        "scope": {
+          "migration_strategy": "multi-phase OR blue-green database",
+          "downtime_window": "required",
+          "data_integrity_validation": "critical",
+          "rollback_plan": "required"
+        },
+        "priority": 10,
+        "urgency": "high",
+        "constraints": {
+          "max_downtime": "2 hours",
+          "data_loss_tolerance": "0%",
+          "customer_notification_required": true
+        },
+        "success_criteria": [
+          "Migration deployment plan created",
+          "Downtime window scheduled",
+          "Data integrity checks defined",
+          "Rollback procedure documented",
+          "Customer communication drafted"
+        ],
+        "drone_assignments": [
+          {"drone": "devops", "task": "Create migration automation", "estimated_min": 120},
+          {"drone": "planner", "task": "Define migration phases and rollback", "estimated_min": 90},
+          {"drone": "docs-writer", "task": "Draft customer communication", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-010",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_estimate_request",
+      "context": {
+        "feature_proposed": "Implement real-time collaboration features",
+        "estimated_complexity": "HIGH",
+        "estimated_loc": 1200,
+        "new_dependencies": ["Socket.io", "CRDTs", "Redis Streams"],
+        "infrastructure_changes": ["WebSocket cluster", "distributed state management"]
+      },
+      "expected_coordination_message": {
+        "request_type": "cost-estimate",
+        "description": "Request cost estimate for real-time collaboration",
+        "scope": {
+          "development_hours": "unknown",
+          "infrastructure_cost_monthly": "unknown",
+          "scalability_cost_per_1000_users": "unknown"
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "budget_limit": 3000,
+          "scalability_target": "10000 concurrent users"
+        },
+        "success_criteria": [
+          "Development cost estimate",
+          "Infrastructure cost (baseline + scaling)",
+          "Scalability analysis",
+          "Alternative architectures if over budget"
+        ],
+        "drone_assignments": [
+          {"drone": "cost-tracker", "task": "Estimate development and infrastructure costs with scaling", "estimated_min": 60},
+          {"drone": "planner", "task": "Assess scalability requirements and timeline", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-011",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "planning_request",
+      "context": {
+        "feature_proposed": "Implement multi-language support (i18n)",
+        "estimated_complexity": "MEDIUM",
+        "estimated_loc": 600,
+        "languages_required": ["English", "Spanish", "French", "German", "Japanese"],
+        "affected_systems": ["frontend", "backend", "email templates", "documentation"]
+      },
+      "expected_coordination_message": {
+        "request_type": "implementation-plan",
+        "description": "Request i18n implementation plan",
+        "scope": {
+          "phases": ["infrastructure", "content extraction", "translation", "testing"],
+          "translation_strategy": "professional OR crowdsourced OR automated",
+          "maintenance_plan": "ongoing"
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "translation_budget": 5000,
+          "timeline_limit_days": 21
+        },
+        "success_criteria": [
+          "I18n implementation plan",
+          "Translation strategy and budget",
+          "Content extraction plan",
+          "Ongoing maintenance strategy"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create i18n implementation plan", "estimated_min": 75},
+          {"drone": "cost-tracker", "task": "Estimate translation and maintenance costs", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-012",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "documentation_request",
+      "context": {
+        "feature": "Payment processing system with 15 API endpoints",
+        "compliance_required": ["PCI DSS", "GDPR"],
+        "documentation_missing": ["API docs", "security guide", "compliance checklist", "incident runbook"],
+        "target_audience": ["developers", "security auditors", "compliance officers"]
+      },
+      "expected_coordination_message": {
+        "request_type": "compliance-documentation-plan",
+        "description": "Request compliance documentation plan for payment system",
+        "scope": {
+          "documentation_types": ["API reference", "security documentation", "compliance documentation", "operational runbooks"],
+          "compliance_standards": ["PCI DSS", "GDPR"],
+          "review_required": ["security team", "legal team"]
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "audit_deadline": "14 days",
+          "legal_review_required": true
+        },
+        "success_criteria": [
+          "Compliance documentation plan",
+          "Security documentation outline",
+          "Runbook templates",
+          "Review and approval timeline"
+        ],
+        "drone_assignments": [
+          {"drone": "docs-writer", "task": "Create compliance documentation plan", "estimated_min": 90},
+          {"drone": "planner", "task": "Coordinate legal and security reviews", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-013",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "resource_allocation",
+      "context": {
+        "technical_debt_items": [
+          {"name": "Refactor god object analyzer", "priority": "HIGH", "estimated_hours": 8},
+          {"name": "Upgrade SQLAlchemy 1.4 to 2.0", "priority": "MEDIUM", "estimated_hours": 12},
+          {"name": "Remove deprecated API endpoints", "priority": "LOW", "estimated_hours": 4}
+        ],
+        "new_features_requested": [
+          {"name": "Admin dashboard", "priority": "HIGH", "estimated_hours": 40},
+          {"name": "Export to PDF", "priority": "MEDIUM", "estimated_hours": 16}
+        ],
+        "sprint_capacity": "80 hours"
+      },
+      "expected_coordination_message": {
+        "request_type": "sprint-planning",
+        "description": "Request sprint plan balancing tech debt and new features",
+        "scope": {
+          "optimization_goal": "maximize_value",
+          "tech_debt_allocation": "20-30%",
+          "sprint_duration": "2 weeks"
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "success_criteria": [
+          "Sprint backlog prioritized",
+          "Tech debt vs features balanced",
+          "Resource allocation optimized",
+          "Risk of burnout minimized"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create optimal sprint plan", "estimated_min": 60},
+          {"drone": "orchestrator", "task": "Allocate resources across work items", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-014",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "deployment_request",
+      "context": {
+        "feature": "Kubernetes cluster migration (from VMs)",
+        "deployment_environment": "production",
+        "services_to_migrate": 8,
+        "risk_level": "CRITICAL",
+        "rollback_complexity": "HIGH"
+      },
+      "expected_coordination_message": {
+        "request_type": "infrastructure-migration-plan",
+        "description": "Request Kubernetes migration deployment plan",
+        "scope": {
+          "migration_strategy": "phased migration, service by service",
+          "testing_strategy": "shadow deployment + canary",
+          "rollback_plan": "VM fallback for each service"
+        },
+        "priority": 10,
+        "urgency": "high",
+        "constraints": {
+          "zero_downtime_required": true,
+          "rollback_time_per_service": "10 minutes",
+          "migration_window": "4 weeks"
+        },
+        "success_criteria": [
+          "Phased migration plan (8 services)",
+          "Testing and validation strategy",
+          "Rollback plan per service",
+          "Monitoring and alerting setup"
+        ],
+        "drone_assignments": [
+          {"drone": "devops", "task": "Create Kubernetes migration automation", "estimated_min": 180},
+          {"drone": "planner", "task": "Define migration phases and dependencies", "estimated_min": 120},
+          {"drone": "orchestrator", "task": "Coordinate service-by-service migration", "estimated_min": 90}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-015",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_estimate_request",
+      "context": {
+        "feature_proposed": "Implement automated testing infrastructure",
+        "estimated_complexity": "HIGH",
+        "estimated_loc": 1000,
+        "new_dependencies": ["Selenium", "Cypress", "k6", "Docker"],
+        "infrastructure_changes": ["CI/CD pipeline expansion", "test environment provisioning"]
+      },
+      "expected_coordination_message": {
+        "request_type": "cost-estimate",
+        "description": "Request cost estimate for automated testing infrastructure",
+        "scope": {
+          "development_hours": "unknown",
+          "infrastructure_cost_monthly": "unknown",
+          "ci_cd_cost_increase": "unknown",
+          "maintenance_cost_yearly": "unknown"
+        },
+        "priority": 8,
+        "urgency": "medium",
+        "constraints": {
+          "budget_limit": 2000,
+          "roi_requirement": "30% test time reduction"
+        },
+        "success_criteria": [
+          "Total cost estimate (setup + recurring)",
+          "ROI analysis (time savings vs cost)",
+          "Infrastructure cost breakdown",
+          "Alternative approaches if over budget"
+        ],
+        "drone_assignments": [
+          {"drone": "cost-tracker", "task": "Estimate testing infrastructure costs and ROI", "estimated_min": 60},
+          {"drone": "planner", "task": "Assess implementation timeline", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-016",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "planning_request",
+      "context": {
+        "feature_proposed": "Implement comprehensive API rate limiting",
+        "estimated_complexity": "MEDIUM",
+        "estimated_loc": 400,
+        "affected_endpoints": "all API endpoints (120+)",
+        "rate_limit_strategy": ["per-user", "per-IP", "per-endpoint"]
+      },
+      "expected_coordination_message": {
+        "request_type": "implementation-plan",
+        "description": "Request rate limiting implementation plan",
+        "scope": {
+          "phases": ["infrastructure", "instrumentation", "testing", "gradual rollout"],
+          "rate_limit_tiers": ["free", "basic", "premium", "enterprise"],
+          "monitoring_required": true
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "backward_compatibility": true,
+          "timeline_limit_days": 7
+        },
+        "success_criteria": [
+          "Rate limiting implementation plan",
+          "Tier configuration strategy",
+          "Monitoring and alerting plan",
+          "Gradual rollout strategy"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create rate limiting implementation plan", "estimated_min": 60},
+          {"drone": "orchestrator", "task": "Define gradual rollout strategy", "estimated_min": 30}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-017",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "documentation_request",
+      "context": {
+        "feature": "Microservices architecture (8 services)",
+        "documentation_missing": ["service catalog", "API contracts", "deployment guides", "troubleshooting runbooks"],
+        "target_audience": ["developers", "DevOps", "support team"],
+        "urgency": "immediate"
+      },
+      "expected_coordination_message": {
+        "request_type": "architecture-documentation-plan",
+        "description": "Request microservices architecture documentation plan",
+        "scope": {
+          "documentation_types": ["service catalog", "API contracts (OpenAPI)", "deployment runbooks", "troubleshooting guides"],
+          "diagrams_required": ["service topology", "data flow", "deployment pipeline"],
+          "maintenance_plan": "living documentation"
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "deadline": "7 days",
+          "must_be_searchable": true
+        },
+        "success_criteria": [
+          "Architecture documentation plan",
+          "Service catalog template",
+          "API contract standards",
+          "Runbook templates"
+        ],
+        "drone_assignments": [
+          {"drone": "docs-writer", "task": "Create architecture documentation plan", "estimated_min": 90},
+          {"drone": "planner", "task": "Coordinate with service owners", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-018",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "resource_allocation",
+      "context": {
+        "incident_response": {
+          "type": "data_breach_suspected",
+          "severity": "CRITICAL",
+          "actions_required": ["investigation", "containment", "customer notification", "regulatory reporting"]
+        },
+        "ongoing_work": [
+          {"name": "Feature development", "team_size": 5, "can_pause": true},
+          {"name": "Production support", "team_size": 2, "can_pause": false}
+        ]
+      },
+      "expected_coordination_message": {
+        "request_type": "incident-resource-allocation",
+        "description": "Request immediate resource allocation for security incident",
+        "scope": {
+          "incident_response_team": "3-5 people",
+          "work_suspension": "all non-critical work",
+          "external_support": "security consultants, legal counsel"
+        },
+        "priority": 10,
+        "urgency": "critical",
+        "constraints": {
+          "response_time": "immediate",
+          "regulatory_deadline": "72 hours"
+        },
+        "success_criteria": [
+          "Incident response team assembled",
+          "Non-critical work paused",
+          "Communication plan activated",
+          "Investigation timeline created"
+        ],
+        "drone_assignments": [
+          {"drone": "orchestrator", "task": "Immediate incident response coordination", "estimated_min": 30},
+          {"drone": "planner", "task": "Create incident response timeline", "estimated_min": 45},
+          {"drone": "docs-writer", "task": "Draft stakeholder communications", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-019",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "deployment_request",
+      "context": {
+        "feature": "Feature flag system rollout",
+        "deployment_environment": "production",
+        "rollout_strategy": "gradual percentage-based",
+        "monitoring_required": true,
+        "rollback_trigger": "error_rate > 2%"
+      },
+      "expected_coordination_message": {
+        "request_type": "gradual-rollout-plan",
+        "description": "Request gradual rollout plan for feature flag system",
+        "scope": {
+          "rollout_phases": ["1%", "5%", "25%", "50%", "100%"],
+          "monitoring_metrics": ["error rate", "latency", "adoption rate"],
+          "rollback_automation": "required"
+        },
+        "priority": 8,
+        "urgency": "medium",
+        "constraints": {
+          "rollout_duration": "5 days",
+          "automated_rollback": true
+        },
+        "success_criteria": [
+          "Gradual rollout plan created",
+          "Monitoring dashboards configured",
+          "Automated rollback implemented",
+          "Success criteria per phase defined"
+        ],
+        "drone_assignments": [
+          {"drone": "devops", "task": "Configure gradual rollout automation", "estimated_min": 90},
+          {"drone": "orchestrator", "task": "Define rollout workflow and phases", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-020",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_estimate_request",
+      "context": {
+        "feature_proposed": "Implement data warehouse for analytics",
+        "estimated_complexity": "CRITICAL",
+        "estimated_loc": 3000,
+        "new_dependencies": ["Snowflake OR BigQuery", "dbt", "Airflow"],
+        "infrastructure_changes": ["ETL pipelines", "data modeling", "BI tools"]
+      },
+      "expected_coordination_message": {
+        "request_type": "cost-estimate",
+        "description": "Request cost estimate for data warehouse implementation",
+        "scope": {
+          "development_hours": "unknown",
+          "warehouse_cost_monthly": "unknown",
+          "data_storage_growth": "unknown",
+          "etl_infrastructure_cost": "unknown"
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "budget_limit": 8000,
+          "data_volume_tb": 5,
+          "query_performance_target": "< 5s"
+        },
+        "success_criteria": [
+          "Total cost estimate (setup + recurring)",
+          "Cost comparison: Snowflake vs BigQuery",
+          "Scaling cost projections",
+          "ROI analysis"
+        ],
+        "drone_assignments": [
+          {"drone": "cost-tracker", "task": "Estimate data warehouse costs with scaling", "estimated_min": 90},
+          {"drone": "planner", "task": "Assess implementation timeline and data modeling effort", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-021",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "planning_request",
+      "context": {
+        "feature_proposed": "Implement disaster recovery system",
+        "estimated_complexity": "CRITICAL",
+        "estimated_loc": 1500,
+        "requirements": ["multi-region", "automated failover", "data replication"],
+        "rto_target": "1 hour",
+        "rpo_target": "15 minutes"
+      },
+      "expected_coordination_message": {
+        "request_type": "disaster-recovery-plan",
+        "description": "Request disaster recovery implementation plan",
+        "scope": {
+          "phases": ["architecture", "replication setup", "failover automation", "testing"],
+          "components": ["database replication", "application deployment", "DNS failover", "monitoring"],
+          "testing_frequency": "quarterly"
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "rto": "1 hour",
+          "rpo": "15 minutes",
+          "budget_limit": 15000
+        },
+        "success_criteria": [
+          "DR implementation plan",
+          "Failover automation design",
+          "Testing procedure documented",
+          "Cost vs RTO/RPO tradeoffs analyzed"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create disaster recovery plan", "estimated_min": 120},
+          {"drone": "devops", "task": "Design failover automation", "estimated_min": 90},
+          {"drone": "cost-tracker", "task": "Estimate DR infrastructure costs", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-022",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "documentation_request",
+      "context": {
+        "feature": "Internal developer platform (IDP)",
+        "documentation_missing": ["developer onboarding", "service templates", "deployment guides", "best practices"],
+        "target_audience": ["new developers", "existing team"],
+        "goal": "reduce_onboarding_time_50%"
+      },
+      "expected_coordination_message": {
+        "request_type": "developer-experience-documentation-plan",
+        "description": "Request IDP documentation plan to improve developer experience",
+        "scope": {
+          "documentation_types": ["getting started", "tutorials", "reference guides", "best practices"],
+          "interactive_elements": ["service generators", "code examples", "troubleshooting"],
+          "success_metrics": ["onboarding time", "developer satisfaction"]
+        },
+        "priority": 8,
+        "urgency": "medium",
+        "constraints": {
+          "deadline": "14 days",
+          "onboarding_time_target": "< 1 day"
+        },
+        "success_criteria": [
+          "Developer documentation plan",
+          "Onboarding flow designed",
+          "Interactive tutorials planned",
+          "Success metrics defined"
+        ],
+        "drone_assignments": [
+          {"drone": "docs-writer", "task": "Create IDP documentation plan", "estimated_min": 90},
+          {"drone": "planner", "task": "Design onboarding flow", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-023",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "resource_allocation",
+      "context": {
+        "performance_degradation": {
+          "severity": "HIGH",
+          "symptoms": ["API latency increased 3x", "database CPU at 90%"],
+          "user_impact": "moderate",
+          "immediate_action_needed": true
+        },
+        "team_availability": {
+          "on_call": 1,
+          "available_within_1h": 2,
+          "available_next_day": 4
+        }
+      },
+      "expected_coordination_message": {
+        "request_type": "performance-incident-allocation",
+        "description": "Request resource allocation for performance degradation",
+        "scope": {
+          "immediate_response": "1-2 people",
+          "investigation_team": "3 people",
+          "timeline": "4 hours to resolution"
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "resolution_deadline": "4 hours",
+          "minimize_user_impact": true
+        },
+        "success_criteria": [
+          "Response team assembled",
+          "Investigation plan created",
+          "Mitigation applied within 1 hour",
+          "Root cause identified within 4 hours"
+        ],
+        "drone_assignments": [
+          {"drone": "orchestrator", "task": "Coordinate performance incident response", "estimated_min": 30},
+          {"drone": "planner", "task": "Create investigation and mitigation plan", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-024",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "deployment_request",
+      "context": {
+        "feature": "API versioning system (v1 → v2 migration)",
+        "deployment_environment": "production",
+        "backward_compatibility_duration": "6 months",
+        "affected_clients": "external API consumers (500+)"
+      },
+      "expected_coordination_message": {
+        "request_type": "api-migration-plan",
+        "description": "Request API versioning migration deployment plan",
+        "scope": {
+          "migration_phases": ["v2 release", "deprecation notice", "v1 sunset"],
+          "communication_plan": "email, docs, in-app notifications",
+          "monitoring": "v1 vs v2 adoption tracking"
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "backward_compatibility": "6 months",
+          "customer_notification": "30 days advance"
+        },
+        "success_criteria": [
+          "API migration plan created",
+          "Customer communication drafted",
+          "Adoption monitoring configured",
+          "Deprecation timeline defined"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create API migration timeline", "estimated_min": 75},
+          {"drone": "docs-writer", "task": "Draft migration guide and customer communications", "estimated_min": 90},
+          {"drone": "orchestrator", "task": "Coordinate phased rollout", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-025",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_estimate_request",
+      "context": {
+        "feature_proposed": "Implement mobile app (iOS + Android)",
+        "estimated_complexity": "CRITICAL",
+        "estimated_loc": 10000,
+        "new_dependencies": ["React Native OR Flutter", "mobile backend", "push notifications"],
+        "infrastructure_changes": ["mobile app backend", "push notification service", "app store presence"]
+      },
+      "expected_coordination_message": {
+        "request_type": "cost-estimate",
+        "description": "Request cost estimate for mobile app development",
+        "scope": {
+          "development_hours": "unknown",
+          "backend_infrastructure_cost": "unknown",
+          "app_store_fees": "unknown",
+          "ongoing_maintenance_cost": "unknown"
+        },
+        "priority": 8,
+        "urgency": "medium",
+        "constraints": {
+          "budget_limit": 50000,
+          "timeline_limit_months": 6,
+          "platform": "iOS + Android"
+        },
+        "success_criteria": [
+          "Total cost estimate (development + infrastructure + maintenance)",
+          "Cost comparison: React Native vs Flutter",
+          "Timeline and resource requirements",
+          "ROI analysis and user acquisition projections"
+        ],
+        "drone_assignments": [
+          {"drone": "cost-tracker", "task": "Estimate mobile app development and infrastructure costs", "estimated_min": 90},
+          {"drone": "planner", "task": "Create mobile app development roadmap", "estimated_min": 75}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-026",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "planning_request",
+      "context": {
+        "feature_proposed": "Implement advanced caching strategy",
+        "estimated_complexity": "MEDIUM",
+        "estimated_loc": 700,
+        "caching_layers": ["CDN", "API gateway", "application", "database query"],
+        "expected_performance_gain": "5x"
+      },
+      "expected_coordination_message": {
+        "request_type": "implementation-plan",
+        "description": "Request multi-layer caching implementation plan",
+        "scope": {
+          "phases": ["CDN setup", "API caching", "application caching", "query caching", "cache invalidation"],
+          "technologies": ["CloudFlare", "Redis", "Varnish"],
+          "metrics": ["cache hit rate", "latency reduction"]
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "timeline_limit_days": 10,
+          "cache_consistency_required": true
+        },
+        "success_criteria": [
+          "Multi-layer caching plan",
+          "Cache invalidation strategy",
+          "Performance benchmarking plan",
+          "Monitoring and alerting setup"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create caching implementation plan", "estimated_min": 75},
+          {"drone": "devops", "task": "Plan infrastructure setup", "estimated_min": 45}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-027",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "documentation_request",
+      "context": {
+        "feature": "Security incident response procedures",
+        "documentation_missing": ["incident classification", "response playbooks", "escalation paths", "postmortem templates"],
+        "target_audience": ["security team", "on-call engineers", "management"],
+        "compliance_required": ["SOC 2", "ISO 27001"]
+      },
+      "expected_coordination_message": {
+        "request_type": "security-documentation-plan",
+        "description": "Request security incident response documentation plan",
+        "scope": {
+          "documentation_types": ["incident classification guide", "response playbooks", "communication templates", "postmortem templates"],
+          "compliance_standards": ["SOC 2", "ISO 27001"],
+          "training_required": true
+        },
+        "priority": 9,
+        "urgency": "high",
+        "constraints": {
+          "audit_deadline": "21 days",
+          "compliance_validation_required": true
+        },
+        "success_criteria": [
+          "Security documentation plan",
+          "Incident response playbooks",
+          "Compliance mapping documented",
+          "Training plan created"
+        ],
+        "drone_assignments": [
+          {"drone": "docs-writer", "task": "Create security documentation plan", "estimated_min": 90},
+          {"drone": "planner", "task": "Coordinate compliance validation", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-028",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "resource_allocation",
+      "context": {
+        "quarterly_objectives": [
+          {"objective": "Reduce technical debt by 30%", "progress": 15, "priority": "HIGH"},
+          {"objective": "Launch 3 major features", "progress": 33, "priority": "HIGH"},
+          {"objective": "Improve test coverage to 85%", "progress": 60, "priority": "MEDIUM"}
+        ],
+        "team_capacity": "100 engineering days",
+        "remaining_time": "30 days"
+      },
+      "expected_coordination_message": {
+        "request_type": "quarterly-planning",
+        "description": "Request quarterly sprint planning to meet objectives",
+        "scope": {
+          "optimization_goal": "maximize_okr_completion",
+          "risk_assessment": "required",
+          "contingency_plan": "required"
+        },
+        "priority": 8,
+        "urgency": "high",
+        "constraints": {
+          "remaining_days": 30,
+          "team_capacity": 100,
+          "must_complete_high_priority": true
+        },
+        "success_criteria": [
+          "Quarterly plan created",
+          "Resource allocation optimized",
+          "Risk mitigation strategies",
+          "Contingency plans for delays"
+        ],
+        "drone_assignments": [
+          {"drone": "planner", "task": "Create quarterly execution plan", "estimated_min": 90},
+          {"drone": "orchestrator", "task": "Optimize resource allocation", "estimated_min": 60}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-029",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "deployment_request",
+      "context": {
+        "feature": "Compliance certification deployment (SOC 2 Type II)",
+        "deployment_environment": "production",
+        "requirements": ["security controls", "audit logging", "access controls", "encryption"],
+        "audit_date": "30 days"
+      },
+      "expected_coordination_message": {
+        "request_type": "compliance-deployment-plan",
+        "description": "Request compliance certification deployment plan",
+        "scope": {
+          "compliance_controls": ["authentication", "authorization", "audit logging", "encryption", "backups"],
+          "evidence_collection": "automated",
+          "audit_preparation": "required"
+        },
+        "priority": 10,
+        "urgency": "critical",
+        "constraints": {
+          "audit_deadline": "30 days",
+          "zero_compliance_gaps": true
+        },
+        "success_criteria": [
+          "Compliance deployment plan",
+          "All controls implemented",
+          "Evidence collection automated",
+          "Audit readiness validated"
+        ],
+        "drone_assignments": [
+          {"drone": "devops", "task": "Implement compliance controls", "estimated_min": 180},
+          {"drone": "planner", "task": "Create audit preparation timeline", "estimated_min": 90},
+          {"drone": "docs-writer", "task": "Document compliance controls and evidence", "estimated_min": 120}
+        ]
+      }
+    },
+    {
+      "id": "dev-coord-030",
+      "sender": "princess-dev",
+      "receiver": "princess-coordination",
+      "scenario_type": "cost_estimate_request",
+      "context": {
+        "feature_proposed": "Implement advanced search with semantic similarity",
+        "estimated_complexity": "HIGH",
+        "estimated_loc": 1500,
+        "new_dependencies": ["OpenAI Embeddings", "Pinecone OR Weaviate", "vector database"],
+        "infrastructure_changes": ["embedding generation", "vector indexing", "similarity search"]
+      },
+      "expected_coordination_message": {
+        "request_type": "cost-estimate",
+        "description": "Request cost estimate for semantic search implementation",
+        "scope": {
+          "development_hours": "unknown",
+          "embedding_cost_monthly": "unknown",
+          "vector_database_cost": "unknown",
+          "query_cost_per_1000": "unknown"
+        },
+        "priority": 7,
+        "urgency": "medium",
+        "constraints": {
+          "budget_limit": 4000,
+          "query_volume": "1M queries/month",
+          "latency_target": "< 200ms"
+        },
+        "success_criteria": [
+          "Total cost estimate (setup + recurring per query volume)",
+          "Cost comparison: Pinecone vs Weaviate",
+          "Scaling cost analysis",
+          "Alternative approaches if over budget"
+        ],
+        "drone_assignments": [
+          {"drone": "cost-tracker", "task": "Estimate semantic search costs with scaling", "estimated_min": 75},
+          {"drone": "planner", "task": "Assess implementation complexity and timeline", "estimated_min": 60}
+        ]
+      }
+    }
+  ]
+}

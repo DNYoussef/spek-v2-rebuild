@@ -1,0 +1,157 @@
+digraph COMPLETION_CHECKLIST {
+    // TRIGGER: Before marking work complete
+    // USE WHEN:
+    //   - Feature implementation finished
+    //   - About to mark task as done
+    //   - Ready for review/merge
+
+    rankdir=TB;
+    node [fontname="Arial"];
+
+    subgraph cluster_completion {
+        label="TRIGGER: Before Marking Work Complete";
+        style="rounded,bold";
+        bgcolor="#e0f2f1";
+
+        // Entry
+        "Ready to mark complete" [shape=ellipse];
+
+        // Test verification
+        "npm test" [shape=plaintext];
+        "All tests pass?" [shape=diamond];
+        "Fix failing tests" [shape=box];
+
+        // Build verification
+        "npm run build" [shape=plaintext];
+        "Build successful?" [shape=diamond];
+        "Fix build errors" [shape=box];
+
+        // Type checking
+        "npm run typecheck" [shape=plaintext];
+        "No type errors?" [shape=diamond];
+        "Fix type errors" [shape=box];
+
+        // Linting
+        "npm run lint" [shape=plaintext];
+        "No lint errors?" [shape=diamond];
+        "Fix lint errors" [shape=box];
+
+        // NASA compliance
+        "python -c \"\nimport ast\nwith open('file.py', 'r', encoding='utf-8') as f:\n    tree = ast.parse(f.read())\nfor node in ast.walk(tree):\n    if isinstance(node, ast.FunctionDef):\n        length = node.end_lineno - node.lineno + 1\n        if length > 60:\n            print(f'{node.name}: {length} LOC (violation)')\n\"" [shape=plaintext];
+        "NASA compliance met?" [shape=diamond];
+        "Refactor functions <=60 LOC" [shape=box];
+
+        // Code style
+        "Style matches codebase?" [shape=diamond];
+        "Review 2-3 similar files\nAdjust style to match" [shape=box];
+
+        // Debug output cleanup
+        "grep -r 'console.log' src/" [shape=plaintext];
+        "grep -r 'print(' src/" [shape=plaintext];
+        "All debug output removed?" [shape=diamond];
+        "Remove console.log/print statements" [shape=box];
+
+        // Documentation
+        "Functions have docstrings?" [shape=diamond];
+        "Add docstrings to all functions" [shape=box];
+
+        "Complex logic documented?" [shape=diamond];
+        "Add inline comments for complex sections" [shape=box];
+
+        // Git status
+        "git status" [shape=plaintext];
+        "Only intended files changed?" [shape=diamond];
+        "Revert unintended changes:\ngit checkout -- <file>" [shape=plaintext];
+
+        // Commit verification
+        "git log -1" [shape=plaintext];
+        "Commit message clear?" [shape=diamond];
+        "git commit --amend" [shape=plaintext];
+
+        "WORK COMPLETE" [shape=doublecircle, style=filled, fillcolor=lightgreen];
+        "FIX ISSUES" [shape=octagon, style=filled, fillcolor=orange];
+
+        // Flow
+        "Ready to mark complete" -> "npm test";
+
+        "npm test" -> "All tests pass?";
+        "All tests pass?" -> "npm run build" [label="yes"];
+        "All tests pass?" -> "Fix failing tests" [label="no"];
+        "Fix failing tests" -> "npm test";
+
+        "npm run build" -> "Build successful?";
+        "Build successful?" -> "npm run typecheck" [label="yes"];
+        "Build successful?" -> "Fix build errors" [label="no"];
+        "Fix build errors" -> "npm run build";
+
+        "npm run typecheck" -> "No type errors?";
+        "No type errors?" -> "npm run lint" [label="yes"];
+        "No type errors?" -> "Fix type errors" [label="no"];
+        "Fix type errors" -> "npm run typecheck";
+
+        "npm run lint" -> "No lint errors?";
+        "No lint errors?" -> "python -c \"\nimport ast\nwith open('file.py', 'r', encoding='utf-8') as f:\n    tree = ast.parse(f.read())\nfor node in ast.walk(tree):\n    if isinstance(node, ast.FunctionDef):\n        length = node.end_lineno - node.lineno + 1\n        if length > 60:\n            print(f'{node.name}: {length} LOC (violation)')\n\"" [label="yes"];
+        "No lint errors?" -> "Fix lint errors" [label="no"];
+        "Fix lint errors" -> "npm run lint";
+
+        "python -c \"\nimport ast\nwith open('file.py', 'r', encoding='utf-8') as f:\n    tree = ast.parse(f.read())\nfor node in ast.walk(tree):\n    if isinstance(node, ast.FunctionDef):\n        length = node.end_lineno - node.lineno + 1\n        if length > 60:\n            print(f'{node.name}: {length} LOC (violation)')\n\"" -> "NASA compliance met?";
+        "NASA compliance met?" -> "Style matches codebase?" [label="yes"];
+        "NASA compliance met?" -> "Refactor functions <=60 LOC" [label="no"];
+        "Refactor functions <=60 LOC" -> "Style matches codebase?";
+
+        "Style matches codebase?" -> "grep -r 'console.log' src/" [label="yes"];
+        "Style matches codebase?" -> "Review 2-3 similar files\nAdjust style to match" [label="no"];
+        "Review 2-3 similar files\nAdjust style to match" -> "grep -r 'console.log' src/";
+
+        "grep -r 'console.log' src/" -> "grep -r 'print(' src/";
+        "grep -r 'print(' src/" -> "All debug output removed?";
+        "All debug output removed?" -> "Functions have docstrings?" [label="yes"];
+        "All debug output removed?" -> "Remove console.log/print statements" [label="no"];
+        "Remove console.log/print statements" -> "Functions have docstrings?";
+
+        "Functions have docstrings?" -> "Complex logic documented?" [label="yes"];
+        "Functions have docstrings?" -> "Add docstrings to all functions" [label="no"];
+        "Add docstrings to all functions" -> "Complex logic documented?";
+
+        "Complex logic documented?" -> "git status" [label="yes"];
+        "Complex logic documented?" -> "Add inline comments for complex sections" [label="no"];
+        "Add inline comments for complex sections" -> "git status";
+
+        "git status" -> "Only intended files changed?";
+        "Only intended files changed?" -> "git log -1" [label="yes"];
+        "Only intended files changed?" -> "Revert unintended changes:\ngit checkout -- <file>" [label="no"];
+        "Revert unintended changes:\ngit checkout -- <file>" -> "git log -1";
+
+        "git log -1" -> "Commit message clear?";
+        "Commit message clear?" -> "WORK COMPLETE" [label="yes"];
+        "Commit message clear?" -> "git commit --amend" [label="no"];
+        "git commit --amend" -> "WORK COMPLETE";
+    }
+
+    // Quality gates summary
+    subgraph cluster_quality_gates {
+        label="Quality Gates Summary";
+        bgcolor="#e8f5e9";
+
+        "✅ All tests pass" [shape=box];
+        "✅ Build successful" [shape=box];
+        "✅ No type errors" [shape=box];
+        "✅ No lint errors" [shape=box];
+        "✅ NASA compliance (≤60 LOC/function)" [shape=box];
+        "✅ Style matches codebase" [shape=box];
+        "✅ Debug output removed" [shape=box];
+        "✅ Documentation complete" [shape=box];
+        "✅ Git commits clean" [shape=box];
+    }
+
+    // Critical reminders
+    subgraph cluster_reminders {
+        label="BEFORE MARKING COMPLETE";
+        bgcolor="#fff3e0";
+
+        "Did you run ALL quality checks?" [shape=octagon, style=filled, fillcolor=orange];
+        "Did you remove ALL console.log/print?" [shape=octagon, style=filled, fillcolor=orange];
+        "Are functions ≤60 LOC?" [shape=octagon, style=filled, fillcolor=orange];
+        "Is code style consistent?" [shape=octagon, style=filled, fillcolor=orange];
+    }
+}

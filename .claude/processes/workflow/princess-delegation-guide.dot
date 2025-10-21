@@ -1,0 +1,294 @@
+digraph princess_delegation_guide {
+  label="Princess Delegation Routing Guide - 3-Tier Architecture (28 Agents)";
+  labelloc=t;
+  fontsize=20;
+  rankdir=TB;
+  node [fontname="Arial"];
+  edge [fontname="Arial"];
+  compound=true;
+
+  // Entry point
+  start [label="START: User creates task", shape=ellipse, style=filled, fillcolor=lightgreen];
+
+  // Queen receives task
+  queen_receive [label="Queen receives task", shape=box, style=filled, fillcolor=lightblue];
+
+  // Princess selection decision
+  princess_select [label="Which Princess\nhandles this task?", shape=diamond, style=filled, fillcolor=lightblue];
+
+  // Main workflow
+  start -> queen_receive -> princess_select;
+
+  // Princess-Dev cluster
+  subgraph cluster_princess_dev {
+    label="Princess-Dev (Development Coordination)";
+    style=filled;
+    fillcolor=lightcyan;
+
+    princess_dev_entry [label="Agent ID: princess-dev\nResponsibility: Development & implementation\nRouting: Keyword + Task Type + Fallback", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Routing decision
+    dev_routing_decision [label="Routing Method:\n1. Keyword analysis\n2. Task type match\n3. Fallback to coder", shape=diamond, style=filled, fillcolor=lightyellow];
+
+    // Keyword analysis
+    dev_keyword_check [label="Check task description\nfor keywords", shape=box];
+
+    dev_frontend_keywords [label="Frontend keywords?\n(ui, component, react,\nfrontend, typescript,\njsx, css, style)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    dev_backend_keywords [label="Backend keywords?\n(api, database, endpoint,\nbackend, server, sql,\nrest, graphql)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    // Task type mapping
+    dev_task_type_check [label="Check task_type\nfor direct mapping", shape=box];
+
+    dev_frontend_task_types [label="Frontend task types?\n(implement-component,\nimplement-ui,\noptimize-rendering,\nimplement-styles)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    dev_backend_task_types [label="Backend task types?\n(implement-api,\nimplement-database,\nimplement-business-logic,\noptimize-queries)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    // Drone agents
+    drone_frontend [label="frontend-dev\nPriority: HIGH\nKeywords: ui, component, react, frontend\nTask Types: implement-component, implement-ui, optimize-rendering, implement-styles", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_backend [label="backend-dev\nPriority: HIGH\nKeywords: api, database, endpoint, backend\nTask Types: implement-api, implement-database, implement-business-logic, optimize-queries", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_coder [label="coder\nPriority: MEDIUM (fallback)\nKeywords: function, class, module\nTask Types: code, implement", shape=box, style=filled, fillcolor=orange];
+
+    drone_researcher [label="researcher\nPriority: MEDIUM\nKeywords: research, investigate, explore\nTask Types: research, analyze-requirements", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Routing flow
+    princess_dev_entry -> dev_routing_decision;
+    dev_routing_decision -> dev_keyword_check [label="1. Keywords first"];
+    dev_keyword_check -> dev_frontend_keywords;
+    dev_frontend_keywords -> drone_frontend [label="YES"];
+    dev_frontend_keywords -> dev_backend_keywords [label="NO"];
+    dev_backend_keywords -> drone_backend [label="YES"];
+    dev_backend_keywords -> dev_task_type_check [label="NO"];
+
+    dev_routing_decision -> dev_task_type_check [label="2. Task type"];
+    dev_task_type_check -> dev_frontend_task_types;
+    dev_frontend_task_types -> drone_frontend [label="YES"];
+    dev_frontend_task_types -> dev_backend_task_types [label="NO"];
+    dev_backend_task_types -> drone_backend [label="YES"];
+    dev_backend_task_types -> drone_coder [label="NO"];
+
+    dev_routing_decision -> drone_coder [label="3. Fallback"];
+  }
+
+  // Princess-Quality cluster
+  subgraph cluster_princess_quality {
+    label="Princess-Quality (Quality Assurance Coordination)";
+    style=filled;
+    fillcolor=lightyellow;
+
+    princess_quality_entry [label="Agent ID: princess-quality\nResponsibility: Quality assurance & validation\nRouting: Task Type + Keyword Fallback", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Routing decision
+    quality_routing_decision [label="Routing Method:\n1. Task type match\n2. Keyword fallback", shape=diamond, style=filled, fillcolor=lightyellow];
+
+    // Task type mapping
+    quality_task_type_check [label="Check task_type\nfor direct mapping", shape=box];
+
+    quality_analyzer_task_types [label="Analyzer task types?\n(analyze-code,\ndetect-complexity,\ndetect-duplicates,\nanalyze-dependencies)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    quality_tester_task_types [label="Tester task types?\n(test,\nvalidate-coverage,\nrun-tests)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    quality_reviewer_task_types [label="Reviewer task types?\n(review,\naudit)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    quality_nasa_task_types [label="NASA task types?\n(nasa-check,\ncompliance)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    quality_theater_task_types [label="Theater task types?\n(detect-theater,\nvalidate-authenticity)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    // Keyword fallback
+    quality_keyword_fallback [label="Description contains\n'review'?", shape=diamond, style=filled, fillcolor=orange];
+
+    // Drone agents
+    drone_analyzer [label="code-analyzer (NEW)\nPriority: HIGH\nKeywords: analyze, complexity, duplicate, quality\nTask Types: analyze-code, detect-complexity, detect-duplicates, analyze-dependencies", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_tester [label="tester\nPriority: HIGH\nKeywords: test, coverage, pytest, jest\nTask Types: test, validate-coverage, run-tests", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_reviewer [label="reviewer\nPriority: HIGH (default fallback)\nKeywords: review, audit, inspect\nTask Types: review, audit", shape=box, style=filled, fillcolor=orange];
+
+    drone_nasa [label="nasa-enforcer\nPriority: MEDIUM\nKeywords: nasa, compliance, rule\nTask Types: nasa-check, compliance", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_theater [label="theater-detector\nPriority: MEDIUM\nKeywords: theater, mock, fake\nTask Types: detect-theater, validate-authenticity", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Routing flow
+    princess_quality_entry -> quality_routing_decision;
+    quality_routing_decision -> quality_task_type_check [label="1. Task type"];
+    quality_task_type_check -> quality_analyzer_task_types;
+    quality_analyzer_task_types -> drone_analyzer [label="YES"];
+    quality_analyzer_task_types -> quality_tester_task_types [label="NO"];
+    quality_tester_task_types -> drone_tester [label="YES"];
+    quality_tester_task_types -> quality_reviewer_task_types [label="NO"];
+    quality_reviewer_task_types -> drone_reviewer [label="YES"];
+    quality_reviewer_task_types -> quality_nasa_task_types [label="NO"];
+    quality_nasa_task_types -> drone_nasa [label="YES"];
+    quality_nasa_task_types -> quality_theater_task_types [label="NO"];
+    quality_theater_task_types -> drone_theater [label="YES"];
+    quality_theater_task_types -> quality_keyword_fallback [label="NO"];
+
+    quality_routing_decision -> quality_keyword_fallback [label="2. Fallback"];
+    quality_keyword_fallback -> drone_reviewer [label="YES"];
+    quality_keyword_fallback -> drone_reviewer [label="NO (default)"];
+  }
+
+  // Princess-Coordination cluster
+  subgraph cluster_princess_coordination {
+    label="Princess-Coordination (Task Coordination)";
+    style=filled;
+    fillcolor=lightblue;
+
+    princess_coord_entry [label="Agent ID: princess-coordination\nResponsibility: Task & workflow coordination\nRouting: Keyword + Task Type + Fallback", shape=box, style=filled, fillcolor=lightgreen];
+
+    // Routing decision
+    coord_routing_decision [label="Routing Method:\n1. Keyword analysis\n2. Task type match\n3. Fallback to orchestrator", shape=diamond, style=filled, fillcolor=lightyellow];
+
+    // Keyword analysis
+    coord_keyword_check [label="Check task description\nfor keywords", shape=box];
+
+    coord_infra_keywords [label="Infrastructure keywords?\n(kubernetes, k8s, docker,\ncloud, infrastructure,\nhelm, terraform)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    coord_release_keywords [label="Release keywords?\n(release, version,\nchangelog, tag,\npublish)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    coord_perf_keywords [label="Performance keywords?\n(performance, profiling,\noptimize, benchmark,\nbottleneck, latency)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    // Task type mapping
+    coord_task_type_check [label="Check task_type\nfor direct mapping", shape=box];
+
+    coord_infra_task_types [label="Infrastructure task types?\n(deploy-infrastructure,\nscale-infrastructure,\nmonitor-infrastructure,\nconfigure-infrastructure)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    coord_release_task_types [label="Release task types?\n(prepare-release,\ngenerate-changelog,\ntag-release,\ncoordinate-deployment)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    coord_perf_task_types [label="Performance task types?\n(profile-performance,\ndetect-bottlenecks,\noptimize-performance,\nbenchmark-system)", shape=diamond, style=filled, fillcolor=lightblue];
+
+    // Drone agents
+    drone_infra [label="infrastructure-ops (NEW)\nPriority: HIGH\nKeywords: kubernetes, k8s, docker, cloud, infrastructure\nTask Types: deploy-infrastructure, scale-infrastructure, monitor-infrastructure, configure-infrastructure", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_release [label="release-manager (NEW)\nPriority: HIGH\nKeywords: release, version, changelog, tag\nTask Types: prepare-release, generate-changelog, tag-release, coordinate-deployment", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_perf [label="performance-engineer (NEW)\nPriority: HIGH\nKeywords: performance, profiling, optimize, benchmark\nTask Types: profile-performance, detect-bottlenecks, optimize-performance, benchmark-system", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_orchestrator [label="orchestrator\nPriority: MEDIUM (fallback)\nKeywords: orchestrate, workflow, pipeline\nTask Types: orchestrate, workflow, coordinate", shape=box, style=filled, fillcolor=orange];
+
+    drone_planner [label="planner\nPriority: MEDIUM\nKeywords: plan, strategy, roadmap\nTask Types: plan, decompose, strategy", shape=box, style=filled, fillcolor=lightyellow];
+
+    drone_cost [label="cost-tracker\nPriority: MEDIUM\nKeywords: cost, budget, price, estimate\nTask Types: track-cost, budget, estimate", shape=box, style=filled, fillcolor=lightyellow];
+
+    // Routing flow
+    princess_coord_entry -> coord_routing_decision;
+    coord_routing_decision -> coord_keyword_check [label="1. Keywords first"];
+    coord_keyword_check -> coord_infra_keywords;
+    coord_infra_keywords -> drone_infra [label="YES"];
+    coord_infra_keywords -> coord_release_keywords [label="NO"];
+    coord_release_keywords -> drone_release [label="YES"];
+    coord_release_keywords -> coord_perf_keywords [label="NO"];
+    coord_perf_keywords -> drone_perf [label="YES"];
+    coord_perf_keywords -> coord_task_type_check [label="NO"];
+
+    coord_routing_decision -> coord_task_type_check [label="2. Task type"];
+    coord_task_type_check -> coord_infra_task_types;
+    coord_infra_task_types -> drone_infra [label="YES"];
+    coord_infra_task_types -> coord_release_task_types [label="NO"];
+    coord_release_task_types -> drone_release [label="YES"];
+    coord_release_task_types -> coord_perf_task_types [label="NO"];
+    coord_perf_task_types -> drone_perf [label="YES"];
+    coord_perf_task_types -> drone_orchestrator [label="NO"];
+
+    coord_routing_decision -> drone_orchestrator [label="3. Fallback"];
+  }
+
+  // Connect Queen to Princesses
+  princess_select -> princess_dev_entry [label="Development\nwork" lhead=cluster_princess_dev];
+  princess_select -> princess_quality_entry [label="Quality\nwork" lhead=cluster_princess_quality];
+  princess_select -> princess_coord_entry [label="Coordination\nwork" lhead=cluster_princess_coordination];
+
+  // Routing decision matrix
+  subgraph cluster_decision_matrix {
+    label="Routing Decision Matrix - Quick Reference";
+    style=filled;
+    fillcolor=lightgreen;
+
+    matrix_title [label="IF task mentions...", shape=plaintext];
+
+    matrix_frontend [label="UI, component, React, frontend\n→ frontend-dev (Princess-Dev)", shape=box, style=filled, fillcolor=lightcyan];
+    matrix_backend [label="API, database, endpoint, backend\n→ backend-dev (Princess-Dev)", shape=box, style=filled, fillcolor=lightyellow];
+    matrix_analyzer [label="analyze, complexity, duplicate\n→ code-analyzer (Princess-Quality)", shape=box, style=filled, fillcolor=lightblue];
+    matrix_tester [label="test, coverage, pytest\n→ tester (Princess-Quality)", shape=box, style=filled, fillcolor=lightyellow];
+    matrix_reviewer [label="review, audit\n→ reviewer (Princess-Quality)", shape=box, style=filled, fillcolor=lightyellow];
+    matrix_infra [label="Kubernetes, Docker, deploy\n→ infrastructure-ops (Princess-Coordination)", shape=box, style=filled, fillcolor=lightcyan];
+    matrix_release [label="release, version, changelog\n→ release-manager (Princess-Coordination)", shape=box, style=filled, fillcolor=lightyellow];
+    matrix_perf [label="performance, optimize, benchmark\n→ performance-engineer (Princess-Coordination)", shape=box, style=filled, fillcolor=lightblue];
+
+    matrix_title -> matrix_frontend -> matrix_backend -> matrix_analyzer -> matrix_tester -> matrix_reviewer -> matrix_infra -> matrix_release -> matrix_perf;
+  }
+
+  // Routing priority
+  subgraph cluster_priority {
+    label="Routing Priority (Highest → Lowest)";
+    style=filled;
+    fillcolor=orange;
+
+    priority_1 [label="1. Task Type Match (Highest)\nDirect mapping: implement-api → backend-dev", shape=box, style=filled, fillcolor=lightgreen];
+    priority_2 [label="2. Keyword Analysis (Medium)\nDescription: 'Create React component' → frontend-dev", shape=box, style=filled, fillcolor=lightyellow];
+    priority_3 [label="3. Fallback Chain (Lowest)\nPrincess-Dev → coder\nPrincess-Quality → reviewer\nPrincess-Coordination → orchestrator", shape=box, style=filled, fillcolor=orange];
+
+    priority_1 -> priority_2 -> priority_3;
+  }
+
+  // Troubleshooting
+  subgraph cluster_troubleshooting {
+    label="Common Issues & Solutions";
+    style=filled;
+    fillcolor=pink;
+
+    issue_1 [label="Issue 1: Task routes to wrong agent\nCause: Generic task type without keywords\nSolution: Use specific keywords in description", shape=box, style=filled, fillcolor=orange];
+
+    issue_2 [label="Issue 2: Agent not found error\nCause: Agent not registered in Princess\nSolution: Verify agent in drone_agents dictionary", shape=box, style=filled, fillcolor=orange];
+
+    issue_3 [label="Issue 3: Multiple keywords match\nCause: Ambiguous task (UI + API)\nSolution: Split into separate tasks", shape=box, style=filled, fillcolor=orange];
+
+    issue_1 -> issue_2 -> issue_3;
+  }
+
+  // Best practices
+  subgraph cluster_best_practices {
+    label="Best Practices";
+    style=filled;
+    fillcolor=lightgreen;
+
+    practice_1 [label="1. Use specific task types\n✅ implement-component\n❌ code (too generic)", shape=box];
+    practice_2 [label="2. Include domain keywords\n✅ 'Create React component'\n❌ 'Create profile' (no keywords)", shape=box];
+    practice_3 [label="3. One responsibility per task\n✅ Split UI and API tasks\n❌ 'Full-stack dashboard'", shape=box];
+    practice_4 [label="4. Test routing before production\nCreate test cases for all routing scenarios", shape=box];
+
+    practice_1 -> practice_2 -> practice_3 -> practice_4;
+  }
+
+  // Performance metrics
+  subgraph cluster_performance {
+    label="Routing Performance Metrics";
+    style=filled;
+    fillcolor=lightblue;
+
+    perf_keyword [label="Keyword analysis: <1ms (actual: 0.3ms)", shape=box, style=filled, fillcolor=lightgreen];
+    perf_task_type [label="Task type lookup: <0.1ms (actual: 0.05ms)", shape=box, style=filled, fillcolor=lightgreen];
+    perf_selection [label="Agent selection: <2ms (actual: 1.2ms)", shape=box, style=filled, fillcolor=lightgreen];
+    perf_total [label="Total validation: <5ms (actual: 3.5ms)", shape=box, style=filled, fillcolor=lightgreen];
+
+    perf_keyword -> perf_task_type -> perf_selection -> perf_total;
+  }
+
+  // Exit points
+  end_routed [label="END: Task routed to Drone agent", shape=doublecircle, style=filled, fillcolor=lightgreen];
+  end_fallback [label="END: Task routed to fallback agent", shape=doublecircle, style=filled, fillcolor=orange];
+  end_error [label="END: Routing failed with error", shape=doublecircle, style=filled, fillcolor=red];
+
+  drone_frontend -> end_routed;
+  drone_backend -> end_routed;
+  drone_analyzer -> end_routed;
+  drone_infra -> end_routed;
+  drone_release -> end_routed;
+  drone_perf -> end_routed;
+
+  drone_coder -> end_fallback;
+  drone_reviewer -> end_fallback;
+  drone_orchestrator -> end_fallback;
+}
